@@ -33,6 +33,25 @@ class CustomerSqlFactory<
 
     return query;
   };
+
+  getFindBySlugOrDomainSql = (slug: string, domain?: string): QuerySqlToken => {
+    const domainIdentifier = sql.identifier(["domain"]);
+    const slugIdentifier = sql.identifier(["slug"]);
+
+    const domainFilterFragment = domain
+      ? sql.fragment`
+        OR ${domainIdentifier} = ${domain}
+      `
+      : sql.fragment``;
+
+    return sql.type(this.validationSchema)`
+      SELECT *
+      FROM ${this.getTableFragment()}
+      WHERE
+      ${slugIdentifier} = ${slug}
+      ${domainFilterFragment};
+    `;
+  };
 }
 
 export default CustomerSqlFactory;
