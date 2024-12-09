@@ -28,7 +28,10 @@ const plugin = FastifyPlugin(
       const supertokensConfig = { recipes };
 
       // merge supertokens config
-      config.user.supertokens = merge(supertokensConfig, config.user.supertokens);
+      config.user.supertokens = merge(
+        supertokensConfig,
+        config.user.supertokens
+      );
 
       // Register customer discovery plugin
       await fastify.register(customerDiscoveryPlugin);

@@ -1,0 +1,10 @@
+export interface Customer {
+  domain: string;
+  id: number;
+  individual: boolean;
+  name: string;
+  organizationName: string;
+  registeredNumber: string;
+  slug: string;
+  taxId: string;
+}
