@@ -9,7 +9,7 @@ import type { APIInterface } from "supertokens-node/recipe/thirdpartyemailpasswo
 
 const emailPasswordSignUpPOST = (
   originalImplementation: APIInterface,
-  fastify: FastifyInstance
+  fastify: FastifyInstance,
 ): APIInterface["emailPasswordSignUpPOST"] => {
   return async (input) => {
     const request = input.options.req.original as FastifyRequest;
@@ -25,7 +25,7 @@ const emailPasswordSignUpPOST = (
     input.userContext.roles =
       www.enabled &&
       (www.slugs.some(
-        (slug) => `${slug}.${subdomainsConfig.rootDomain}` === host
+        (slug) => `${slug}.${subdomainsConfig.rootDomain}` === host,
       ) ||
         www.domains.includes(host))
         ? [ROLE_SAAS_OWNER]
@@ -35,7 +35,7 @@ const emailPasswordSignUpPOST = (
     if (
       admin.enabled &&
       (admin.slugs.some(
-        (slug) => `${slug}.${subdomainsConfig.rootDomain}` === host
+        (slug) => `${slug}.${subdomainsConfig.rootDomain}` === host,
       ) ||
         admin.domains.includes(host))
     ) {

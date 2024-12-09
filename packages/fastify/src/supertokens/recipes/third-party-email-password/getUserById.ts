@@ -6,7 +6,7 @@ import type { RecipeInterface } from "supertokens-node/recipe/thirdpartyemailpas
 const getUserById = (
   originalImplementation: RecipeInterface,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  fastify: FastifyInstance
+  fastify: FastifyInstance,
 ): RecipeInterface["getUserById"] => {
   return async (input) => {
     let user = await originalImplementation.getUserById(input);

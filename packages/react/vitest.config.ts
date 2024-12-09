@@ -17,6 +17,6 @@ export default defineConfig((configEnvironment) =>
         globals: true,
         setupFiles: "./setup-test.ts",
       },
-    })
-  )
+    }),
+  ),
 );

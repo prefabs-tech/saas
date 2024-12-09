@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
       lib: {
         entry: path.resolve(
           path.dirname(fileURLToPath(import.meta.url)),
-          "src/index.ts"
+          "src/index.ts",
         ),
         fileName: "12deg-saas-fastify",
         name: "12degSaasFastify",

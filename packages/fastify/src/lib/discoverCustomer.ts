@@ -9,7 +9,7 @@ import type { Database } from "@dzangolab/fastify-slonik";
 const discoverCustomer = async (
   config: ApiConfig,
   database: Database,
-  host: string
+  host: string,
 ): Promise<Customer | null> => {
   if (getAllReservedDomains(config).includes(host)) {
     // eslint-disable-next-line unicorn/no-null
@@ -19,7 +19,7 @@ const discoverCustomer = async (
   if (
     getAllReservedSlugs(config).some(
       (slug: string) =>
-        `${slug}.${config.saas?.subdomains?.rootDomain}` === host
+        `${slug}.${config.saas?.subdomains?.rootDomain}` === host,
     )
   ) {
     // eslint-disable-next-line unicorn/no-null

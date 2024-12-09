@@ -9,7 +9,7 @@ import type { QueryResultRow, QuerySqlToken } from "slonik";
 class CustomerSqlFactory<
     Customer extends QueryResultRow,
     CustomerCreateInput extends QueryResultRow,
-    CustomerUpdateInput extends QueryResultRow
+    CustomerUpdateInput extends QueryResultRow,
   >
   extends DefaultSqlFactory<Customer, CustomerCreateInput, CustomerUpdateInput>
   implements SqlFactory<Customer, CustomerCreateInput, CustomerUpdateInput>
@@ -18,7 +18,7 @@ class CustomerSqlFactory<
 
   getFindByHostnameSql = (
     hostname: string,
-    rootDomain: string
+    rootDomain: string,
   ): QuerySqlToken => {
     const query = sql.type(z.any())`
       SELECT *

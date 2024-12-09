@@ -4,7 +4,7 @@ import type { APIInterface } from "supertokens-node/recipe/thirdpartyemailpasswo
 const emailPasswordSignInPOST = (
   originalImplementation: APIInterface,
   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-  fastify: FastifyInstance
+  fastify: FastifyInstance,
 ): APIInterface["emailPasswordSignInPOST"] => {
   return async (input) => {
     input.userContext.customer = input.options.req.original.customer;

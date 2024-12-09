@@ -15,7 +15,7 @@ import type { FastifyInstance } from "fastify";
 const plugin = async (
   fastify: FastifyInstance,
   options: Record<string, never>,
-  done: () => void
+  done: () => void,
 ) => {
   try {
     const { config, slonik } = fastify;
@@ -40,7 +40,7 @@ const plugin = async (
         await runMigrations(
           { client },
           migrationsPath,
-          customer as unknown as Customer
+          customer as unknown as Customer,
         );
       }
 
@@ -50,7 +50,7 @@ const plugin = async (
     } else {
       /* eslint-disable-next-line unicorn/consistent-destructuring */
       fastify.log.warn(
-        `Customer migrations path '${migrationsPath}' does not exists.`
+        `Customer migrations path '${migrationsPath}' does not exists.`,
       );
     }
   } catch (error: unknown) {
