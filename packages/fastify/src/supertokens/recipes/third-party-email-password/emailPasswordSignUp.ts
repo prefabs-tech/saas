@@ -8,6 +8,8 @@ import { deleteUser } from "supertokens-node";
 import EmailVerification from "supertokens-node/recipe/emailverification";
 import UserRoles from "supertokens-node/recipe/userroles";
 
+import { ROLE_SAAS_ACCOUNT_MEMBER } from "../../../constants";
+import CustomerUserService from "../../../model/customerUsers/service";
 import Email from "../../utils/email";
 
 import type { User } from "@dzangolab/fastify-user";
@@ -73,6 +75,15 @@ const emailPasswordSignUp = (
           message: "Something went wrong",
           statusCode: 500,
         };
+      }
+
+      if (input.userContext.customer) {
+        const customerUserService = new CustomerUserService(config, slonik);
+        await customerUserService.create({
+          customerId: input.userContext.customer.id,
+          userId: originalResponse.user.id,
+          role_id: ROLE_SAAS_ACCOUNT_MEMBER,
+        });
       }
 
       user.roles = roles;

@@ -7,6 +7,9 @@ import { deleteUser } from "supertokens-node";
 import { getUserByThirdPartyInfo } from "supertokens-node/recipe/thirdpartyemailpassword";
 import UserRoles from "supertokens-node/recipe/userroles";
 
+import { ROLE_SAAS_ACCOUNT_MEMBER } from "../../../constants";
+import CustomerUserService from "../../../model/customerUsers/service";
+
 import type { Customer } from "../../../types";
 import type { User } from "@dzangolab/fastify-user";
 import type { FastifyInstance, FastifyError } from "fastify";
@@ -96,6 +99,15 @@ const thirdPartySignInUp = (
           message: "Something went wrong",
           statusCode: 500,
         };
+      }
+
+      if (input.userContext.customer) {
+        const customerUserService = new CustomerUserService(config, slonik);
+        await customerUserService.create({
+          customerId: input.userContext.customer.id,
+          userId: originalResponse.user.id,
+          role_id: ROLE_SAAS_ACCOUNT_MEMBER,
+        });
       }
     } else {
       await userService
