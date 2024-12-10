@@ -5,7 +5,7 @@ interface SubdomainsOptions {
   migrations?: {
     path?: string;
   };
-  multiDatabase: boolean;
+  multiDatabase?: boolean;
   reserved?: {
     admin?: {
       domains?: string[];
@@ -29,7 +29,6 @@ interface SubdomainsOptions {
     };
   };
   required?: boolean;
-
   rootDomain: string;
 }
 
