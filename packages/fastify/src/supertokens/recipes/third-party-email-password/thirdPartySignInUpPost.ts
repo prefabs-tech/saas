@@ -1,6 +1,6 @@
 import { getUserService, ROLE_USER } from "@dzangolab/fastify-user";
 
-import { ROLE_SAAS_OWNER } from "../../../constants";
+import { ROLE_SAAS_ACCOUNT_OWNER } from "../../../constants";
 import getHost from "../../../lib/getHost";
 import getSubdomainsConfig from "../../../lib/getSubdomainsConfig";
 
@@ -31,7 +31,7 @@ const thirdPartySignInUpPOST = (
         (slug) => `${slug}.${subdomainsConfig.rootDomain}` === host,
       ) ||
         www.domains.includes(host))
-        ? [ROLE_SAAS_OWNER]
+        ? [ROLE_SAAS_ACCOUNT_OWNER]
         : [request.config.user.role || ROLE_USER];
 
     // if request from admin app, throw error
