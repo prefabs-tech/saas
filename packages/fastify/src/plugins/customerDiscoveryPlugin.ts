@@ -8,7 +8,7 @@ import type { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 const plugin = async (
   fastify: FastifyInstance,
   options: Record<string, never>,
-  done: () => void
+  done: () => void,
 ) => {
   fastify.addHook(
     "preHandler",
@@ -33,7 +33,7 @@ const plugin = async (
           .status(404)
           .send({ error: { message: "Customer not found" } });
       }
-    }
+    },
   );
 
   done();

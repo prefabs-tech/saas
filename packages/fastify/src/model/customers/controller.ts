@@ -5,7 +5,7 @@ import type { FastifyInstance } from "fastify";
 const plugin = async (
   fastify: FastifyInstance,
   options: unknown,
-  done: () => void
+  done: () => void,
 ) => {
   const handlersConfig = fastify.config.saas?.handlers?.customer;
 
@@ -14,23 +14,23 @@ const plugin = async (
     {
       preHandler: fastify.verifySession(),
     },
-    handlersConfig?.list || handlers.list
+    handlersConfig?.list || handlers.list,
   );
 
   fastify.get(
-    "/customers/:id(^\\d+)",
+    String.raw`/customers/:id(^\d+)`,
     {
       preHandler: fastify.verifySession(),
     },
-    handlersConfig?.getById || handlers.getById
+    handlersConfig?.getById || handlers.getById,
   );
 
   fastify.delete(
-    "/customers/:id(^\\d+)",
+    String.raw`/customers/:id(^\d+)`,
     {
       preHandler: fastify.verifySession(),
     },
-    handlersConfig?.delete || handlers.delete
+    handlersConfig?.delete || handlers.delete,
   );
 
   fastify.post(
@@ -38,15 +38,15 @@ const plugin = async (
     {
       preHandler: fastify.verifySession(),
     },
-    handlersConfig?.create || handlers.create
+    handlersConfig?.create || handlers.create,
   );
 
   fastify.put(
-    "/customers/:id(^\\d+)",
+    String.raw`/customers/:id(^\d+)`,
     {
       preHandler: fastify.verifySession(),
     },
-    handlersConfig?.update || handlers.update
+    handlersConfig?.update || handlers.update,
   );
 
   done();

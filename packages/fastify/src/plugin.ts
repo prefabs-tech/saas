@@ -12,7 +12,7 @@ const plugin = FastifyPlugin(
   async (
     fastify: FastifyInstance,
     options: Record<never, never>,
-    done: () => void
+    done: () => void,
   ) => {
     const { config, log, slonik } = fastify;
 
@@ -30,7 +30,7 @@ const plugin = FastifyPlugin(
       // merge supertokens config
       config.user.supertokens = merge(
         supertokensConfig,
-        config.user.supertokens
+        config.user.supertokens,
       );
 
       // Register customer discovery plugin
@@ -38,7 +38,7 @@ const plugin = FastifyPlugin(
     }
 
     done();
-  }
+  },
 );
 
 export default plugin;

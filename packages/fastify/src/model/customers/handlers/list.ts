@@ -5,7 +5,7 @@ import type { SessionRequest } from "supertokens-node/framework/fastify";
 
 const listOrganization = async (
   request: SessionRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) => {
   const service = new Service(request.config, request.slonik);
 
@@ -20,7 +20,7 @@ const listOrganization = async (
     limit,
     offset,
     filters ? JSON.parse(filters) : undefined,
-    sort ? JSON.parse(sort) : undefined
+    sort ? JSON.parse(sort) : undefined,
   );
 
   reply.send(data);

@@ -6,7 +6,7 @@ import type { APIInterface } from "supertokens-node/recipe/thirdpartyemailpasswo
 const generatePasswordResetTokenPOST = (
   originalImplementation: APIInterface,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  fastify: FastifyInstance
+  fastify: FastifyInstance,
 ): APIInterface["generatePasswordResetTokenPOST"] => {
   return async (input) => {
     input.userContext.customer = input.options.req.original.customer;
@@ -17,7 +17,7 @@ const generatePasswordResetTokenPOST = (
 
     input.formFields = updateFields(
       input.formFields,
-      input.userContext.customer?.id
+      input.userContext.customer?.id,
     );
 
     const originalResponse =

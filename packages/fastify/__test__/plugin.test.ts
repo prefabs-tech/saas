@@ -12,10 +12,10 @@ vi.mock("../src/migrations/runMigrations");
 vi.mock("@dzangolab/fastify-user", () => ({
   __esModule: true,
   default: FastifyPlugin(
-    async (fastify: FastifyInstance, options: unknown, done: () => void) => {}
+    async (fastify: FastifyInstance, options: unknown, done: () => void) => {},
   ),
   userPlugin: FastifyPlugin(
-    async (fastify: FastifyInstance, options: unknown, done: () => void) => {}
+    async (fastify: FastifyInstance, options: unknown, done: () => void) => {},
   ),
 }));
 

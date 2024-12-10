@@ -10,7 +10,7 @@ const Mutation = {
     arguments_: {
       data: CustomerCreateInput;
     },
-    context: MercuriusContext
+    context: MercuriusContext,
   ) => {
     const service = new Service(context.config, context.database);
 
@@ -20,7 +20,7 @@ const Mutation = {
       }
 
       const customer = (await service.create(
-        arguments_.data
+        arguments_.data,
       )) as CustomerCreateInput;
 
       return customer;
@@ -34,7 +34,7 @@ const Mutation = {
     arguments_: {
       id: number;
     },
-    context: MercuriusContext
+    context: MercuriusContext,
   ) => {
     const service = new Service(context.config, context.database);
 
@@ -53,14 +53,14 @@ const Mutation = {
       id: number;
       data: CustomerUpdateInput;
     },
-    context: MercuriusContext
+    context: MercuriusContext,
   ) => {
     const service = new Service(context.config, context.database);
 
     try {
       const Customer = await service.update(
         arguments_.id as number,
-        arguments_.data as CustomerUpdateInput
+        arguments_.data as CustomerUpdateInput,
       );
 
       return Customer;
@@ -74,7 +74,7 @@ const Query = {
   customer: async (
     parent: unknown,
     arguments_: { id: number },
-    context: MercuriusContext
+    context: MercuriusContext,
   ) => {
     const service = new Service(context.config, context.database);
 
@@ -89,7 +89,7 @@ const Query = {
       filters?: FilterInput;
       sort?: SortInput[];
     },
-    context: MercuriusContext
+    context: MercuriusContext,
   ) => {
     const service = new Service(context.config, context.database);
 
@@ -99,7 +99,7 @@ const Query = {
       arguments_.filters
         ? JSON.parse(JSON.stringify(arguments_.filters))
         : undefined,
-      arguments_.sort ? JSON.parse(JSON.stringify(arguments_.sort)) : undefined
+      arguments_.sort ? JSON.parse(JSON.stringify(arguments_.sort)) : undefined,
     );
   },
 };

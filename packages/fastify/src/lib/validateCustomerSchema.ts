@@ -7,7 +7,7 @@ const domainSchema = z.optional(
   z
     .string()
     .max(255)
-    .regex(/^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/)
+    .regex(/^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/),
 );
 
 const slugSchema = z.string().regex(/^(?!.*-+$)[a-z][\da-z-]{0,24}([\da-z])?$/);
@@ -46,7 +46,7 @@ const validateCustomerInput = (customerInput: CustomerCreateInput) => {
 
 const validateTenantUpdate = (
   config: ApiConfig,
-  customerUpdateInput: CustomerUpdateInput
+  customerUpdateInput: CustomerUpdateInput,
 ) => {
   const tenantInputSchema = z.object({
     domain: domainSchema,
