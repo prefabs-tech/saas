@@ -1,5 +1,5 @@
 interface Customer {
-  id: string;
+  id: number;
   name: string;
   organizationName: string;
   registeredNumber: string;
