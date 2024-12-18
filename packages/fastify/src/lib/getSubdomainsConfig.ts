@@ -9,7 +9,8 @@ const getSubdomainsConfig = (config: ApiConfig) => {
     migrations: {
       path: subdomainsConfig?.migrations?.path || `${migrationsPath}/customers`,
     },
-    multiDatabase: subdomainsConfig?.multiDatabase ?? true,
+    multiDatabase:
+      (subdomainsConfig?.enabled && subdomainsConfig?.multiDatabase) ?? false,
     reserved: {
       admin: {
         domains: subdomainsConfig?.reserved?.admin?.domains || [],
@@ -32,7 +33,7 @@ const getSubdomainsConfig = (config: ApiConfig) => {
         slugs: subdomainsConfig?.reserved?.www?.slugs || ["www"],
       },
     },
-    required: subdomainsConfig?.required ?? true,
+    required: (subdomainsConfig?.enabled && subdomainsConfig?.required) ?? false,
     rootDomain: subdomainsConfig?.rootDomain,
   };
 };

@@ -24,18 +24,16 @@ const plugin = FastifyPlugin(
 
     await runMigrations(slonik);
 
-    if (config.saas?.subdomains?.enabled) {
-      const supertokensConfig = { recipes };
+    // Register customer discovery plugin
+    await fastify.register(customerDiscoveryPlugin);
 
-      // merge supertokens config
-      config.user.supertokens = merge(
-        supertokensConfig,
-        config.user.supertokens,
-      );
+    // const supertokensConfig = { recipes };
 
-      // Register customer discovery plugin
-      await fastify.register(customerDiscoveryPlugin);
-    }
+    // // merge supertokens config
+    // config.user.supertokens = merge(
+    //   supertokensConfig,
+    //   config.user.supertokens,
+    // );
 
     done();
   },

@@ -1,7 +1,11 @@
 import FastifyPlugin from "fastify-plugin";
 
-import discoverCustomer from "../lib/discoverCustomer";
+import {
+  discoverCustomerByHostname,
+  discoverCustomerByHttpHeader,
+} from "../lib/discoverCustomer";
 import getHost from "../lib/getHost";
+import getSubdomainsConfig from "../lib/getSubdomainsConfig";
 
 import type { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 
@@ -13,18 +17,35 @@ const plugin = async (
   fastify.addHook(
     "preHandler",
     async (request: FastifyRequest, reply: FastifyReply) => {
-      const url =
-        request.headers.referer || request.headers.origin || request.hostname;
+      const { config, headers, slonik: database } = request;
 
-      const { config, slonik: database } = request;
+      const url = headers.referer || headers.origin || request.hostname;
+      const subdomainsConfig = getSubdomainsConfig(config);
+      let customer;
 
       try {
-        const customer = await discoverCustomer(config, database, getHost(url));
+        if (subdomainsConfig.enabled) {
+          customer = await discoverCustomerByHostname(
+            config,
+            database,
+            getHost(url),
+          );
+        }
+
+        if (!subdomainsConfig.required) {
+          customer = await discoverCustomerByHttpHeader(
+            config,
+            database,
+            headers,
+          );
+        }
 
         if (customer) {
           request.customer = customer;
 
-          request.dbSchema = customer.slug;
+          if (subdomainsConfig.multiDatabase) {
+            request.dbSchema = customer.slug;
+          }
         }
       } catch (error) {
         fastify.log.error(error);
