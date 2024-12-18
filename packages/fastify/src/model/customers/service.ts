@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier, brace-style */
+import { hostname } from "node:os";
+
 import { BaseService } from "@dzangolab/fastify-slonik";
 
 
@@ -13,7 +15,6 @@ import { validateCustomerInput } from "../../lib/validateCustomerSchema";
 import type { Customer as BaseCustomer } from "../../types";
 import type { FilterInput, Service } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
-import { hostname } from "node:os";
 
 class CustomerService<
     Customer extends QueryResultRow,

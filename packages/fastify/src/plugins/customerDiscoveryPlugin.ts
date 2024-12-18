@@ -24,6 +24,9 @@ const plugin = async (
       let customer;
 
       try {
+        // TODO: throw error if subdomain / custom domain is blacklisted
+        // TODO: skip customer discovery for reserved subdomain / custom domain
+
         if (subdomainsConfig.enabled) {
           customer = await discoverCustomerByHostname(
             config,
@@ -32,7 +35,10 @@ const plugin = async (
           );
         }
 
-        if (!subdomainsConfig.required) {
+        if (!customer && !subdomainsConfig.required) {
+          // TODO: If `ignoreRoutePattern` option is provided
+          // run the regexp and if true then skip the tenant discovery
+
           customer = await discoverCustomerByHttpHeader(
             config,
             database,
@@ -43,7 +49,7 @@ const plugin = async (
         if (customer) {
           request.customer = customer;
 
-          if (subdomainsConfig.multiDatabase) {
+          if (subdomainsConfig.multiDatabase && customer.slug) {
             request.dbSchema = customer.slug;
           }
         }

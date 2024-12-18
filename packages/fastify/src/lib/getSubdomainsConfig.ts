@@ -33,7 +33,8 @@ const getSubdomainsConfig = (config: ApiConfig) => {
         slugs: subdomainsConfig?.reserved?.www?.slugs || ["www"],
       },
     },
-    required: (subdomainsConfig?.enabled && subdomainsConfig?.required) ?? false,
+    required:
+      (subdomainsConfig?.enabled && subdomainsConfig?.required) ?? false,
     rootDomain: subdomainsConfig?.rootDomain,
   };
 };

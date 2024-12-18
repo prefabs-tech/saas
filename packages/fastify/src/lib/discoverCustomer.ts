@@ -16,24 +16,19 @@ const discoverCustomerByHttpHeader = async (
   const customerId = headers[CUSTOMER_HEADER_NAME] as string | undefined;
 
   if (!customerId) {
-    throw new Error("Customer not found");
+    // eslint-disable-next-line unicorn/no-null
+    return null;
   }
 
   const service = new CustomerService(config, database);
 
   // findone by customerId and slug IS not NULL
-  const customer = await service.findOneBy({
+  return (await service.findOneBy({
     AND: [
       { key: "id", operator: "eq", value: customerId },
       { key: "slug", operator: "eq", not: false, value: "NULL" },
     ],
-  });
-
-  if (customer) {
-    return customer as unknown as Customer;
-  }
-
-  throw new Error("Customer not found");
+  })) as unknown as Customer;
 };
 
 const discoverCustomerByHostname = async (
@@ -58,13 +53,7 @@ const discoverCustomerByHostname = async (
 
   const service = new CustomerService(config, database);
 
-  const customer = await service.findByHostname(hostname);
-
-  if (customer) {
-    return customer as unknown as Customer;
-  }
-
-  throw new Error("Customer not found");
+  return (await service.findByHostname(hostname)) as unknown as Customer;
 };
 
 export { discoverCustomerByHostname, discoverCustomerByHttpHeader };
