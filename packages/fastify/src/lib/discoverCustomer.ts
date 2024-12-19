@@ -22,8 +22,6 @@ const discoverByIdWithoutSlug = async (
   database: Database,
   id: string | undefined,
 ): Promise<Customer | null> => {
-  // const customerId = headers[CUSTOMER_HEADER_NAME] as string | undefined;
-
   if (!id) {
     // eslint-disable-next-line unicorn/no-null
     return null;
