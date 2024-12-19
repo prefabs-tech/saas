@@ -22,7 +22,7 @@ const createCustomersTableQuery = (): QuerySqlToken<ZodTypeAny> => {
       registered_number VARCHAR(255),
       tax_id VARCHAR(255),
       individual BOOLEAN NOT NULL DEFAULT FALSE,
-      slug VARCHAR(24) NOT NULL,
+      slug VARCHAR(24),
       domain VARCHAR(255),
       UNIQUE (slug),
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
