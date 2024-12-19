@@ -27,13 +27,10 @@ const plugin = FastifyPlugin(
     // Register customer discovery plugin
     await fastify.register(customerDiscoveryPlugin);
 
-    // const supertokensConfig = { recipes };
+    const supertokensConfig = { recipes };
 
-    // // merge supertokens config
-    // config.user.supertokens = merge(
-    //   supertokensConfig,
-    //   config.user.supertokens,
-    // );
+    // merge supertokens config
+    config.user.supertokens = merge(supertokensConfig, config.user.supertokens);
 
     done();
   },

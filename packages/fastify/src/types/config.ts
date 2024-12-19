@@ -43,6 +43,7 @@ interface SaasOptions {
     };
   };
   subdomains?: SubdomainsOptions;
+  ignoreRoutePatterns: Array<string | RegExp>;
   routes?: {
     customers?: {
       disabled: boolean;

@@ -1,9 +1,7 @@
 import FastifyPlugin from "fastify-plugin";
 
-import {
-  discoverCustomerByHostname,
-  discoverCustomerByHttpHeader,
-} from "../lib/discoverCustomer";
+import { CUSTOMER_HEADER_NAME } from "../constants";
+import discoverCustomer from "../lib/discoverCustomer";
 import getHost from "../lib/getHost";
 import getSubdomainsConfig from "../lib/getSubdomainsConfig";
 
@@ -20,31 +18,18 @@ const plugin = async (
       const { config, headers, slonik: database } = request;
 
       const url = headers.referer || headers.origin || request.hostname;
+      const customerId = headers[CUSTOMER_HEADER_NAME] as string;
+
       const subdomainsConfig = getSubdomainsConfig(config);
-      let customer;
 
       try {
-        // TODO: throw error if subdomain / custom domain is blacklisted
-        // TODO: skip customer discovery for reserved subdomain / custom domain
-
-        if (subdomainsConfig.enabled) {
-          customer = await discoverCustomerByHostname(
-            config,
-            database,
-            getHost(url),
-          );
-        }
-
-        if (!customer && !subdomainsConfig.required) {
-          // TODO: If `ignoreRoutePattern` option is provided
-          // run the regexp and if true then skip the tenant discovery
-
-          customer = await discoverCustomerByHttpHeader(
-            config,
-            database,
-            headers,
-          );
-        }
+        const customer = await discoverCustomer(
+          config,
+          database,
+          getHost(url),
+          request.url,
+          customerId,
+        );
 
         if (customer) {
           request.customer = customer;
@@ -53,6 +38,9 @@ const plugin = async (
             request.dbSchema = customer.slug;
           }
         }
+
+        console.log("customer", request.customer);
+        console.log("dbSchema", request.dbSchema);
       } catch (error) {
         fastify.log.error(error);
 

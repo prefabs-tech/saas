@@ -1,8 +1,5 @@
-/* eslint-disable prettier/prettier, brace-style */
-import { hostname } from "node:os";
-
+/* eslint-disable brace-style */
 import { BaseService } from "@dzangolab/fastify-slonik";
-
 
 import CustomerSqlFactory from "./sqlFactory";
 import getAllReservedDomains from "../../lib/getAllReservedDomains";
@@ -19,16 +16,11 @@ import type { QueryResultRow } from "slonik";
 class CustomerService<
     Customer extends QueryResultRow,
     CustomerCreateInput extends QueryResultRow,
-    CustomerUpdateInput extends QueryResultRow
+    CustomerUpdateInput extends QueryResultRow,
   >
-  extends BaseService<
-    Customer,
-    CustomerCreateInput,
-    CustomerUpdateInput
-  >
-  implements
-    Service<Customer, CustomerCreateInput, CustomerUpdateInput>
-  {
+  extends BaseService<Customer, CustomerCreateInput, CustomerUpdateInput>
+  implements Service<Customer, CustomerCreateInput, CustomerUpdateInput>
+{
   static readonly TABLE = "__customers";
 
   create = async (data: CustomerCreateInput): Promise<Customer | undefined> => {
@@ -47,9 +39,7 @@ class CustomerService<
       };
     }
 
-    if (
-      getAllReservedDomains(this.config).includes(data.doamin as string)
-    ) {
+    if (getAllReservedDomains(this.config).includes(data.doamin as string)) {
       throw {
         name: "ERROR_RESERVED_DOMAIN",
         message: `The requested domain "${data.domain}" is reserved and cannot be used`,
@@ -57,10 +47,7 @@ class CustomerService<
       };
     }
 
-    await this.validateSlugOrDomain(
-      data.slug as string,
-      data.domain as string,
-    );
+    await this.validateSlugOrDomain(data.slug as string, data.domain as string);
 
     const query = this.factory.getCreateSql(data);
 
