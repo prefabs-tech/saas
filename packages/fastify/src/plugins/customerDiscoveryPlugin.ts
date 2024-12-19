@@ -38,9 +38,6 @@ const plugin = async (
             request.dbSchema = customer.slug;
           }
         }
-
-        console.log("customer", request.customer);
-        console.log("dbSchema", request.dbSchema);
       } catch (error) {
         fastify.log.error(error);
 
