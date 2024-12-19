@@ -22,7 +22,11 @@ vi.mock("@dzangolab/fastify-user", () => ({
 describe("plugin", () => {
   it("should be exported as default and register without issues", async () => {
     const fastify = Fastify();
-    fastify.register(configPlugin, { config: {} });
+    fastify.register(configPlugin, {
+      config: {
+        user: {},
+      },
+    });
 
     await expect(fastify.register(plugin)).resolves.not.toThrow();
   });
