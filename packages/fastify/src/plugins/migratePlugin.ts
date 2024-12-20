@@ -20,13 +20,17 @@ const plugin = async (
   try {
     const { config, slonik } = fastify;
 
-    const databaseConfig = getDatabaseConfig(config.slonik);
-
     const subdomainsConfig = getSubdomainsConfig(config);
+
+    if (!subdomainsConfig.multiDatabase) {
+      return;
+    }
 
     const migrationsPath = subdomainsConfig.migrations.path;
 
     if (existsSync(migrationsPath)) {
+      const databaseConfig = getDatabaseConfig(config.slonik);
+
       const customerService = new Service(config, slonik);
 
       const customers = await customerService.all(["name", "slug"]);
@@ -34,8 +38,12 @@ const plugin = async (
       const client = await initializePgPool(databaseConfig);
 
       for (const customer of customers) {
+        if (!customer || !customer.slug) {
+          continue;
+        }
+
         /* eslint-disable-next-line unicorn/consistent-destructuring */
-        fastify.log.info(`Running migrations for customer ${customer?.name}`);
+        fastify.log.info(`Running migrations for customer ${customer.name}`);
 
         await runMigrations(
           { client },

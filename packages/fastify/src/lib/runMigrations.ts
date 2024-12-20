@@ -18,7 +18,7 @@ const runMigrations = async (
   migrationsPath: string,
   customer: Customer,
 ) => {
-  if (!existsSync(migrationsPath)) {
+  if (!customer.slug || !existsSync(migrationsPath)) {
     return false;
   }
 
