@@ -33,6 +33,7 @@ interface SubdomainsOptions {
 }
 
 interface SaasOptions {
+  excludeRoutePatterns?: Array<string | RegExp>;
   handlers?: {
     customer?: {
       create?: typeof customerHandlers.create;
@@ -43,7 +44,6 @@ interface SaasOptions {
     };
   };
   subdomains?: SubdomainsOptions;
-  ignoreRoutePatterns?: Array<string | RegExp>;
   routes?: {
     customers?: {
       disabled: boolean;

@@ -15,20 +15,34 @@ const plugin = async (
   fastify.addHook(
     "preHandler",
     async (request: FastifyRequest, reply: FastifyReply) => {
-      const { config, headers, slonik: database } = request;
+      const { config, headers, routeConfig, slonik: database } = request;
 
-      const url = headers.referer || headers.origin || request.hostname;
+      const hostname = getHost(
+        headers.referer || headers.origin || request.hostname,
+      );
       const customerId = headers[CUSTOMER_HEADER_NAME] as string;
 
       const subdomainsConfig = getSubdomainsConfig(config);
+
+      const excludeRoutePatterns = config.saas?.excludeRoutePatterns ?? [
+        /^\/auth\//,
+      ];
+
+      const regexPatterns = excludeRoutePatterns.map((pattern) =>
+        pattern instanceof RegExp ? pattern : new RegExp(`^${pattern}`),
+      );
+
+      const isRouteExcludedFromDiscovery = regexPatterns.some(
+        (regex) => regex.test(request.url) || routeConfig.saas?.exclude,
+      );
 
       try {
         const customer = await discoverCustomer(
           config,
           database,
-          getHost(url),
-          request.url,
+          hostname,
           customerId,
+          isRouteExcludedFromDiscovery,
         );
 
         if (customer) {

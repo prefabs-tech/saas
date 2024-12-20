@@ -13,6 +13,12 @@ declare module "fastify" {
   interface FastifyRequest {
     customer?: Customer;
   }
+
+  interface FastifyContextConfig {
+    saas?: {
+      exclude?: boolean;
+    };
+  }
 }
 
 declare module "mercurius" {
