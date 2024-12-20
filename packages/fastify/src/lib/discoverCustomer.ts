@@ -55,23 +55,12 @@ const isHostnameBlacklisted = (
   );
 };
 
-const isRouteIgnored = (
-  ignoreRoutePatterns: Array<string | RegExp>,
-  route: string,
-) => {
-  const regexPatterns = ignoreRoutePatterns.map((pattern) =>
-    pattern instanceof RegExp ? pattern : new RegExp(`^${pattern}`),
-  );
-
-  return regexPatterns.some((regex) => regex.test(route));
-};
-
 const discoverCustomer = async (
   config: ApiConfig,
   database: Database,
   hostname: string,
-  route: string,
   id: string | undefined,
+  isRouteExcludedFromDiscovery?: boolean,
 ): Promise<Customer | null> => {
   let customer;
   const subdomainsConfig = getSubdomainsConfig(config);
@@ -80,7 +69,7 @@ const discoverCustomer = async (
     throw new Error("Blacklisted hostname");
   }
 
-  //FIXME skip domain discovery for all reserved slugs /domains except for main app
+  // FIXME skip domain discovery for all reserved slugs / domains except for main app
   if (getAllReservedDomains(config).includes(hostname)) {
     // eslint-disable-next-line unicorn/no-null
     return null;
@@ -101,11 +90,7 @@ const discoverCustomer = async (
   }
 
   if (!customer && !subdomainsConfig.required) {
-    const ignoreRoutePatterns = config.saas?.ignoreRoutePatterns ?? [
-      /^\/auth\//,
-    ];
-
-    if (isRouteIgnored(ignoreRoutePatterns, route)) {
+    if (isRouteExcludedFromDiscovery) {
       // eslint-disable-next-line unicorn/no-null
       return null;
     }
