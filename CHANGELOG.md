@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/12deg/saas/compare/v0.2.0...v0.2.1) (2024-12-20)
+
+
+### Bug Fixes
+
+* skip running customer migrations for customer who don't have slug ([9030451](https://github.com/12deg/saas/commit/9030451e228294ff094a329a1f921bfb50fa2e64))
+
+
+
 # [0.2.0](https://github.com/12deg/saas/compare/v0.1.0...v0.2.0) (2024-12-19)
 
 
