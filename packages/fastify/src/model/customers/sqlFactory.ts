@@ -1,11 +1,7 @@
-import {
-  createFilterFragment,
-  createTableIdentifier,
-  DefaultSqlFactory,
-} from "@dzangolab/fastify-slonik";
+import { DefaultSqlFactory } from "@dzangolab/fastify-slonik";
 import { sql } from "slonik";
 
-import type { FilterInput, SqlFactory } from "@dzangolab/fastify-slonik";
+import type { SqlFactory } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow, QuerySqlToken } from "slonik";
 
 /* eslint-disable brace-style */
@@ -17,17 +13,6 @@ class CustomerSqlFactory<
   extends DefaultSqlFactory<Customer, CustomerCreateInput, CustomerUpdateInput>
   implements SqlFactory<Customer, CustomerCreateInput, CustomerUpdateInput>
 {
-  /* eslint-enabled */
-  getFindBySql = (filters?: FilterInput): QuerySqlToken => {
-    const tableIdentifier = createTableIdentifier(this.table, this.schema);
-
-    return sql.type(this.validationSchema)`
-      SELECT *
-      FROM ${this.getTableFragment()}
-      ${createFilterFragment(filters, tableIdentifier)}
-    `;
-  };
-
   getFindByHostnameSql = (
     hostname: string,
     rootDomain: string,

@@ -30,7 +30,7 @@ const discoverByIdWithoutSlug = async (
   const service = new CustomerService(config, database);
 
   // findone by customerId and slug IS not NULL
-  return (await service.findOneBy({
+  return (await service.findOne({
     AND: [
       { key: "id", operator: "eq", value: id },
       { key: "slug", operator: "eq", not: false, value: "NULL" },

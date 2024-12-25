@@ -10,7 +10,7 @@ import runMigrations from "../../lib/runMigrations";
 import { validateCustomerInput } from "../../lib/validateCustomerSchema";
 
 import type { Customer as BaseCustomer } from "../../types";
-import type { FilterInput, Service } from "@dzangolab/fastify-slonik";
+import type { Service } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
 
 class CustomerService<
@@ -65,16 +65,6 @@ class CustomerService<
       hostname,
       this.config.saas?.subdomains?.rootDomain as string,
     );
-
-    const customer = await this.database.connect(async (connection) => {
-      return connection.maybeOne(query);
-    });
-
-    return customer;
-  };
-
-  findOneBy = async (filters?: FilterInput): Promise<Customer | null> => {
-    const query = this.factory.getFindBySql(filters);
 
     const customer = await this.database.connect(async (connection) => {
       return connection.maybeOne(query);
