@@ -2,9 +2,9 @@ import { existsSync } from "node:fs";
 
 import FastifyPlugin from "fastify-plugin";
 
+import getSaasConfig from "../config";
 import changeSchema from "../lib/changeSchema";
 import getDatabaseConfig from "../lib/getDatabaseConfig";
-import getSubdomainsConfig from "../lib/getSubdomainsConfig";
 import initializePgPool from "../lib/initializePgPool";
 import runMigrations from "../lib/runMigrations";
 import Service from "../model/customers/service";
@@ -20,13 +20,9 @@ const plugin = async (
   try {
     const { config, slonik } = fastify;
 
-    const subdomainsConfig = getSubdomainsConfig(config);
+    const saasConfig = getSaasConfig(config);
 
-    if (!subdomainsConfig.multiDatabase) {
-      return;
-    }
-
-    const migrationsPath = subdomainsConfig.migrations.path;
+    const migrationsPath = saasConfig.multiDatabase.migrations.path;
 
     if (existsSync(migrationsPath)) {
       const databaseConfig = getDatabaseConfig(config.slonik);

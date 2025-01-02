@@ -1,8 +1,5 @@
 import { getUserService, ROLE_USER } from "@dzangolab/fastify-user";
 
-import getHost from "../../../lib/getHost";
-import getSubdomainsConfig from "../../../lib/getSubdomainsConfig";
-
 import type { FastifyInstance, FastifyRequest } from "fastify";
 import type { APIInterface } from "supertokens-node/recipe/thirdpartyemailpassword/types";
 
@@ -15,31 +12,7 @@ const thirdPartySignInUpPOST = (
   return async (input) => {
     const request = input.options.req.original as FastifyRequest;
 
-    const url =
-      request.headers.referer || request.headers.origin || request.hostname;
-
-    const host = getHost(url);
-
-    const subdomainsConfig = getSubdomainsConfig(request.config);
-
-    const { admin } = subdomainsConfig.reserved;
-
     input.userContext.roles = [fastify.config.user.role || ROLE_USER];
-
-    // if request from admin app, throw error
-    if (
-      admin.enabled &&
-      (admin.slugs.some(
-        (slug) => `${slug}.${subdomainsConfig.rootDomain}` === host,
-      ) ||
-        admin.domains.includes(host))
-    ) {
-      throw {
-        name: "SIGN_UP_FAILED",
-        message: "Admin signUp is not allowed",
-        statusCode: 403,
-      };
-    }
 
     input.userContext.customer = request.customer;
     input.userContext.dbSchema = request.dbSchema;

@@ -30,7 +30,7 @@ declare module "mercurius" {
 
 declare module "@dzangolab/fastify-config" {
   interface ApiConfig {
-    saas?: SaasConfig;
+    saas: SaasConfig;
   }
 }
 
