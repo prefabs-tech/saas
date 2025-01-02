@@ -26,7 +26,7 @@ const plugin = async (
       // skip customer discovery if request is for other apps
       for (const app of saasConfig.apps) {
         if (`${app.subdomain}.${saasConfig.rootDomain}` === hostname) {
-          log.info(`Request for ${hostname} is for ${app.name} app`);
+          log.info(` Incoming request for ${app.name} app`);
 
           return;
         }
