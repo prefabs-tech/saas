@@ -2,10 +2,10 @@
 import { BaseService } from "@dzangolab/fastify-slonik";
 
 import CustomerSqlFactory from "./sqlFactory";
-import getAllReservedDomains from "../../lib/getAllReservedDomains";
-import getAllReservedSlugs from "../../lib/getAllReservedSlugs";
+import getSaasConfig from "../../config";
 import getDatabaseConfig from "../../lib/getDatabaseConfig";
-import getSubdomainsConfig from "../../lib/getSubdomainsConfig";
+import getInvalidDomains from "../../lib/getInvalidDomains";
+import getInvalidSlugs from "../../lib/getInvalidSlugs";
 import runMigrations from "../../lib/runMigrations";
 import { validateCustomerInput } from "../../lib/validateCustomerSchema";
 
@@ -31,7 +31,7 @@ class CustomerService<
 
     validateCustomerInput(data);
 
-    if (getAllReservedSlugs(this.config).includes(data.slug as string)) {
+    if (getInvalidSlugs(this.config).includes(data.slug as string)) {
       throw {
         name: "ERROR_RESERVED_SLUG",
         message: `The requested slug "${data.slug}" is reserved and cannot be used`,
@@ -39,7 +39,7 @@ class CustomerService<
       };
     }
 
-    if (getAllReservedDomains(this.config).includes(data.doamin as string)) {
+    if (getInvalidDomains(this.config).includes(data.doamin as string)) {
       throw {
         name: "ERROR_RESERVED_DOMAIN",
         message: `The requested domain "${data.domain}" is reserved and cannot be used`,
@@ -61,9 +61,11 @@ class CustomerService<
   };
 
   findByHostname = async (hostname: string): Promise<Customer | null> => {
+    const saasConfig = getSaasConfig(this.config);
+
     const query = this.factory.getFindByHostnameSql(
       hostname,
-      this.config.saas?.subdomains?.rootDomain as string,
+      saasConfig.rootDomain as string,
     );
 
     const customer = await this.database.connect(async (connection) => {
@@ -118,15 +120,15 @@ class CustomerService<
   };
 
   protected postCreate = async (customer: Customer): Promise<Customer> => {
-    const subdomainsConfig = getSubdomainsConfig(this.config);
+    const saasConfig = getSaasConfig(this.config);
 
-    if (!subdomainsConfig.enabled) {
+    if (saasConfig.subdomains === "disabled") {
       return customer;
     }
 
     await runMigrations(
       getDatabaseConfig(this.config.slonik),
-      subdomainsConfig.migrations.path,
+      saasConfig.multiDatabase.migrations.path,
       customer as unknown as BaseCustomer,
     );
 

@@ -1,9 +1,9 @@
 import FastifyPlugin from "fastify-plugin";
 
+import getSaasConfig from "../config";
 import { CUSTOMER_HEADER_NAME } from "../constants";
 import discoverCustomer from "../lib/discoverCustomer";
 import getHost from "../lib/getHost";
-import getSubdomainsConfig from "../lib/getSubdomainsConfig";
 
 import type { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 
@@ -15,20 +15,24 @@ const plugin = async (
   fastify.addHook(
     "preHandler",
     async (request: FastifyRequest, reply: FastifyReply) => {
-      const { config, headers, routeConfig, slonik: database } = request;
+      const { config, headers, log, routeConfig, slonik: database } = request;
 
       const hostname = getHost(
         headers.referer || headers.origin || request.hostname,
       );
       const customerId = headers[CUSTOMER_HEADER_NAME] as string;
+      const saasConfig = getSaasConfig(config);
 
-      const subdomainsConfig = getSubdomainsConfig(config);
+      // skip customer discovery if request is for other apps
+      for (const app of saasConfig.apps) {
+        if (`${app.subdomain}.${saasConfig.rootDomain}` === hostname) {
+          log.info(` Incoming request for ${app.name} app`);
 
-      const excludeRoutePatterns = config.saas?.excludeRoutePatterns ?? [
-        /^\/auth\//,
-      ];
+          return;
+        }
+      }
 
-      const regexPatterns = excludeRoutePatterns.map((pattern) =>
+      const regexPatterns = saasConfig.excludeRoutePatterns.map((pattern) =>
         pattern instanceof RegExp ? pattern : new RegExp(`^${pattern}`),
       );
 
@@ -48,7 +52,7 @@ const plugin = async (
         if (customer) {
           request.customer = customer;
 
-          if (subdomainsConfig.multiDatabase && customer.slug) {
+          if (customer.slug) {
             request.dbSchema = customer.slug;
           }
         }

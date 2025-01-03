@@ -1,38 +1,12 @@
 import customerHandlers from "../model/customers/handlers";
 
-interface SubdomainsOptions {
-  enabled?: boolean;
-  migrations?: {
-    path?: string;
-  };
-  multiDatabase?: boolean;
-  reserved?: {
-    admin?: {
-      domains?: string[];
-      enabled?: boolean;
-      slugs?: string[];
-    };
-    blacklisted?: {
-      domains?: string[];
-      enabled?: boolean;
-      slugs?: string[];
-    };
-    others?: {
-      domains?: string[];
-      enabled?: boolean;
-      slugs?: string[];
-    };
-    www?: {
-      domains?: string[];
-      enabled?: boolean;
-      slugs?: string[];
-    };
-  };
-  required?: boolean;
-  rootDomain: string;
-}
-
 interface SaasOptions {
+  apps?: [
+    {
+      name: string;
+      subdomain: string;
+    },
+  ];
   excludeRoutePatterns?: Array<string | RegExp>;
   handlers?: {
     customer?: {
@@ -43,13 +17,25 @@ interface SaasOptions {
       update?: typeof customerHandlers.update;
     };
   };
-  subdomains?: SubdomainsOptions;
+  invalid: {
+    domains?: string[];
+    slugs?: string[];
+  };
+  mainAppSubdomain: string;
+  multiDatabase?: {
+    enabled: boolean;
+    migrations?: {
+      path?: string;
+    };
+  };
+  rootDomain: string;
+  routePrefix?: string;
   routes?: {
     customers?: {
       disabled: boolean;
     };
   };
-  routePrefix?: string;
+  subdomains: "disabled" | "required" | "optional";
 }
 
 export type SaasConfig = SaasOptions;
