@@ -1,4 +1,4 @@
-import type { FastifyError, FastifyInstance, FastifyRequest } from "fastify";
+import type { FastifyError, FastifyInstance } from "fastify";
 import type { APIInterface } from "supertokens-node/recipe/session/types";
 
 const verifySession = (
@@ -14,21 +14,6 @@ const verifySession = (
     const originalResponse = await originalImplementation.verifySession(input);
 
     if (originalResponse) {
-      const request = input.userContext._default.request
-        .request as FastifyRequest;
-
-      const customer = request.customer;
-      const payloadCusotmerId =
-        originalResponse.getAccessTokenPayload().customerId;
-
-      if (customer && customer.id != payloadCusotmerId) {
-        throw {
-          name: "SESSION_VERIFICATION_FAILED",
-          message: "invalid session",
-          statusCode: 401,
-        } as FastifyError;
-      }
-
       const user = input.userContext._default.request.request.user;
 
       if (user?.disabled) {

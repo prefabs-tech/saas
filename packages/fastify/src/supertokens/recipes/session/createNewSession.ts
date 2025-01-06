@@ -28,13 +28,6 @@ const createNewSession = (
 
     const { config, slonik } = fastify;
 
-    if (customer) {
-      input.accessTokenPayload = {
-        ...input.accessTokenPayload,
-        customerId: customer.id,
-      };
-    }
-
     if (request && !request?.user) {
       const userService = getUserService(config, slonik, customer?.slug);
 

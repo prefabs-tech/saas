@@ -37,9 +37,9 @@ const emailPasswordSignUp = (
 
     const originalEmail = input.email;
 
-    input.email = Email.addIdPrefix(
+    input.email = Email.addPrefix(
       originalEmail,
-      input.userContext.customer?.id,
+      input.userContext.authEmailPrefix,
     );
 
     const originalResponse =

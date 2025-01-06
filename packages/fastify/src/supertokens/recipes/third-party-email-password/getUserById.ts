@@ -11,10 +11,13 @@ const getUserById = (
   return async (input) => {
     let user = await originalImplementation.getUserById(input);
 
-    if (user && input.userContext && input.userContext.customer) {
+    if (user) {
       user = {
         ...user,
-        email: Email.removeIdPrefix(user.email, input.userContext.customer.id),
+        email: Email.removePrefix(
+          user.email,
+          input.userContext.authEmailPrefix,
+        ),
       };
     }
 

@@ -14,9 +14,9 @@ const emailPasswordSignIn = (
   const { config, log, slonik } = fastify;
 
   return async (input) => {
-    input.email = Email.addIdPrefix(
+    input.email = Email.addPrefix(
       input.email,
-      input.userContext.customer?.id,
+      input.userContext.authEmailPrefix,
     );
 
     const originalResponse =
