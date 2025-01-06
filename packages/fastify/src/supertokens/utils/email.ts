@@ -1,17 +1,14 @@
 const Email = {
-  addIdPrefix: (email: string, id?: string) => {
-    if (id) {
-      email = id + "_" + email;
+  addPrefix: (email: string, prefix: string = "") => {
+    if (prefix) {
+      email = prefix + email;
     }
 
     return email;
   },
-  removeIdPrefix: (email: string, id?: string) => {
-    if (
-      id &&
-      id == email.slice(0, Math.max(0, Math.max(0, email.indexOf("_"))))
-    ) {
-      email = email.slice(Math.max(0, email.indexOf("_") + 1));
+  removePrefix: (email: string, prefix: string = "") => {
+    if (prefix && email.startsWith(prefix)) {
+      email = email.slice(prefix.length);
     }
 
     return email;

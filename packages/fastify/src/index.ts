@@ -11,6 +11,7 @@ declare module "fastify" {
   }
 
   interface FastifyRequest {
+    authEmailPrefix: string;
     customer?: Customer;
   }
 

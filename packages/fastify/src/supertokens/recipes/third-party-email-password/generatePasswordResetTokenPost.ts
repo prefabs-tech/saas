@@ -10,6 +10,8 @@ const generatePasswordResetTokenPOST = (
 ): APIInterface["generatePasswordResetTokenPOST"] => {
   return async (input) => {
     input.userContext.customer = input.options.req.original.customer;
+    input.userContext.authEmailPrefix =
+      input.options.req.original.authEmailPrefix;
 
     if (originalImplementation.generatePasswordResetTokenPOST === undefined) {
       throw new Error("Should never come here");
@@ -17,7 +19,7 @@ const generatePasswordResetTokenPOST = (
 
     input.formFields = updateFields(
       input.formFields,
-      input.userContext.customer?.id,
+      input.userContext.authEmailPrefix,
     );
 
     const originalResponse =

@@ -13,6 +13,7 @@ const emailPasswordSignUpPOST = (
 
     input.userContext.customer = request.customer;
     input.userContext.dbSchema = request.dbSchema;
+    input.userContext.authEmailPrefix = request.authEmailPrefix;
 
     if (originalImplementation.emailPasswordSignUpPOST === undefined) {
       throw new Error("Should never come here");

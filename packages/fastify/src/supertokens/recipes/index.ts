@@ -1,5 +1,5 @@
 import { sendEmailVerificationEmail } from "./email-verification";
-import { createNewSession, verifySession, refreshPOST } from "./session";
+import { createNewSession, verifySession } from "./session";
 import {
   emailPasswordSignIn,
   emailPasswordSignUp,
@@ -26,7 +26,6 @@ const emailVerificationConfig: EmailVerificationRecipe = {
 const sessionConfig: SessionRecipe = {
   override: {
     apis: {
-      refreshPOST,
       verifySession,
     },
     functions: {

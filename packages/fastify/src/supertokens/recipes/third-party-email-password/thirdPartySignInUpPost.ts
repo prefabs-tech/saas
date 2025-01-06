@@ -16,6 +16,7 @@ const thirdPartySignInUpPOST = (
 
     input.userContext.customer = request.customer;
     input.userContext.dbSchema = request.dbSchema;
+    input.userContext.authEmailPrefix = request.authEmailPrefix;
 
     if (originalImplementation.thirdPartySignInUpPOST === undefined) {
       throw new Error("Should never come here");

@@ -3,11 +3,11 @@ interface FormField {
   value: string;
 }
 
-const updateFields = (formFields: FormField[], id?: string) => {
-  if (id) {
+const updateFields = (formFields: FormField[], prefix: string = "") => {
+  if (prefix) {
     formFields.find((field) => {
       if (field.id === "email") {
-        field.value = id + "_" + field.value;
+        field.value = prefix + field.value;
       }
     });
   }

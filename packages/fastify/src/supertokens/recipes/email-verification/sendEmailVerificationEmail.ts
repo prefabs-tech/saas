@@ -41,9 +41,7 @@ const sendEmailVerificationEmail = (
 
       let email = input.user.email;
 
-      if (request.customer) {
-        email = Email.removeIdPrefix(email, request.customer.id);
-      }
+      email = Email.removePrefix(email, request.authEmailPrefix);
 
       sendEmail({
         fastify,

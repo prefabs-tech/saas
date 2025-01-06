@@ -24,10 +24,9 @@ const thirdPartySignInUp = (
   return async (input) => {
     const roles = (input.userContext.roles || []) as string[];
     const customer: Customer | undefined = input.userContext.customer;
+    const authEmailPrefix: boolean = input.userContext.authEmailPrefix;
 
-    if (customer) {
-      input.thirdPartyUserId = customer.id + "_" + input.thirdPartyUserId;
-    }
+    input.thirdPartyUserId = authEmailPrefix + input.thirdPartyUserId;
 
     const thirdPartyUser = await getUserByThirdPartyInfo(
       input.thirdPartyId,
@@ -101,10 +100,10 @@ const thirdPartySignInUp = (
         };
       }
 
-      if (input.userContext.customer) {
+      if (customer) {
         const customerUserService = new CustomerUserService(config, slonik);
         await customerUserService.create({
-          customerId: input.userContext.customer.id,
+          customerId: customer.id,
           userId: originalResponse.user.id,
           role_id: ROLE_SAAS_ACCOUNT_MEMBER,
         });

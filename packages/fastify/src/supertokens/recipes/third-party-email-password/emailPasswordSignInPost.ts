@@ -9,6 +9,8 @@ const emailPasswordSignInPOST = (
   return async (input) => {
     input.userContext.customer = input.options.req.original.customer;
     input.userContext.dbSchema = input.options.req.original.dbSchema;
+    input.userContext.authEmailPrefix =
+      input.options.req.original.authEmailPrefix;
 
     if (originalImplementation.emailPasswordSignInPOST === undefined) {
       throw new Error("Should never come here");

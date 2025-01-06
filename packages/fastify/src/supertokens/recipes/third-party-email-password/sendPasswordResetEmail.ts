@@ -50,9 +50,9 @@ const sendPasswordResetEmail = (
       fastify,
       subject: "Reset Password",
       templateName: "reset-password",
-      to: Email.removeIdPrefix(
+      to: Email.removePrefix(
         input.user.email,
-        input.userContext.customer?.id,
+        input.userContext.authEmailPrefix,
       ),
       templateData: {
         passwordResetLink,
