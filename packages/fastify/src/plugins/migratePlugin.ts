@@ -29,12 +29,12 @@ const plugin = async (
 
       const customerService = new Service(config, slonik);
 
-      const customers = await customerService.all(["name", "slug"]);
+      const customers = await customerService.all(["name", "database"]);
 
       const client = await initializePgPool(databaseConfig);
 
       for (const customer of customers) {
-        if (!customer || !customer.slug) {
+        if (!customer || !customer.database) {
           continue;
         }
 

@@ -29,7 +29,11 @@ const createNewSession = (
     const { config, slonik } = fastify;
 
     if (request && !request?.user) {
-      const userService = getUserService(config, slonik, customer?.slug);
+      const userService = getUserService(
+        config,
+        slonik,
+        customer?.database as string,
+      );
 
       const user = (await userService.findById(input.userId)) || undefined;
 

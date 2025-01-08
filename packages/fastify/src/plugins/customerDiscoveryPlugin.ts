@@ -52,8 +52,8 @@ const plugin = async (
         if (customer) {
           request.customer = customer;
 
-          if (customer.slug) {
-            request.dbSchema = customer.slug;
+          if (customer.database) {
+            request.dbSchema = customer.database;
           }
         }
       } catch (error) {

@@ -18,7 +18,7 @@ const runMigrations = async (
   migrationsPath: string,
   customer: Customer,
 ) => {
-  if (!customer.slug || !existsSync(migrationsPath)) {
+  if (!customer.database || !existsSync(migrationsPath)) {
     return false;
   }
 
@@ -27,7 +27,7 @@ const runMigrations = async (
       ? (migrateConfig.client as pg.Client)
       : await initializePgPool(migrateConfig);
 
-  await changeSchema(client, customer.slug);
+  await changeSchema(client, customer.database);
 
   await migrate({ client }, migrationsPath);
 

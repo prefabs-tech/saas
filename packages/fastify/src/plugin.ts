@@ -37,7 +37,7 @@ const plugin = FastifyPlugin(
       const { customer } = request;
       request.authEmailPrefix = "";
 
-      if (customer && customer.slug) {
+      if (customer && customer.slug && customer.database) {
         request.authEmailPrefix = `${customer.id}_`;
       }
     });
