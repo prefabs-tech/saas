@@ -28,7 +28,7 @@ class CustomerService<
   static readonly TABLE = "__customers";
 
   create = async (data: CustomerCreateInput): Promise<Customer | undefined> => {
-    // This handles the empty stringCustomerCreat issue.
+    // This handles the empty string issue.
     if (data.slug === "") {
       delete data.slug;
     }
