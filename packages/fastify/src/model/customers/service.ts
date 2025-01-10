@@ -51,6 +51,8 @@ class CustomerService<
       (data as BaseCustomerCreateInput).database = `s_${nanoid()}`;
     }
 
+    delete data.useSeparateDatabase;
+
     validateCustomerInput(data);
 
     if (getInvalidSlugs(this.config).includes(data.slug as string)) {
