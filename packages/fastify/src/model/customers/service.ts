@@ -26,8 +26,6 @@ class CustomerService<
   extends BaseService<Customer, CustomerCreateInput, CustomerUpdateInput>
   implements Service<Customer, CustomerCreateInput, CustomerUpdateInput>
 {
-  static readonly TABLE = "__customers";
-
   create = async (data: CustomerCreateInput): Promise<Customer | undefined> => {
     // This handles the empty string issue.
     if (data.slug === "") {
@@ -38,11 +36,9 @@ class CustomerService<
       delete data.domain;
     }
 
-    const saasConfig = getSaasConfig(this.config);
-
     if (
-      saasConfig.subdomains !== "disabled" &&
-      saasConfig.multiDatabase?.enabled &&
+      this.saasConfig.subdomains !== "disabled" &&
+      this.saasConfig.multiDatabase?.enabled &&
       data.slug &&
       data.useSeparateDatabase
     ) {
@@ -99,6 +95,14 @@ class CustomerService<
     return customer;
   };
 
+  get table() {
+    return this.saasConfig.tables.customers.name;
+  }
+
+  get saasConfig() {
+    return getSaasConfig(this.config);
+  }
+
   get factory() {
     if (!this.table) {
       throw new Error(`Service table is not defined`);
@@ -144,18 +148,16 @@ class CustomerService<
   };
 
   protected postCreate = async (customer: Customer): Promise<Customer> => {
-    const saasConfig = getSaasConfig(this.config);
-
     if (
-      saasConfig.subdomains === "disabled" ||
-      !saasConfig.multiDatabase?.enabled
+      this.saasConfig.subdomains === "disabled" ||
+      !this.saasConfig.multiDatabase?.enabled
     ) {
       return customer;
     }
 
     await runMigrations(
       getDatabaseConfig(this.config.slonik),
-      saasConfig.multiDatabase.migrations.path,
+      this.saasConfig.multiDatabase.migrations.path,
       customer as unknown as BaseCustomer,
     );
 

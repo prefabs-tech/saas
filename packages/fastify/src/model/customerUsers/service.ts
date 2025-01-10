@@ -2,6 +2,7 @@
 import { BaseService } from "@dzangolab/fastify-slonik";
 
 import CustomerUserSqlFactory from "./sqlFactory";
+import getSaasConfig from "../../config";
 
 import type { Service } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
@@ -19,8 +20,6 @@ class CustomerUserService<
   implements
     Service<CustomerUser, CustomerUserCreateInput, CustomerUserUpdateInput>
   {
-  static readonly TABLE = "__customer_users";
-
   get factory() {
     if (!this.table) {
       throw new Error(`Service table is not defined`);
@@ -39,6 +38,14 @@ class CustomerUserService<
       CustomerUserCreateInput,
       CustomerUserUpdateInput
     >;
+  }
+
+  get table() {
+    return this.saasConfig.tables.customerUsers.name;
+  }
+
+  get saasConfig() {
+    return getSaasConfig(this.config);
   }
 }
 
