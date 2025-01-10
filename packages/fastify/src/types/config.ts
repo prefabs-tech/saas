@@ -36,6 +36,17 @@ interface SaasOptions {
     };
   };
   subdomains: "disabled" | "required" | "optional";
+  tables?: {
+    customers?: {
+      name: string;
+    };
+    customerUsers?: {
+      name: string;
+    };
+    customerAddresses?: {
+      name: string;
+    };
+  };
 }
 
 export type SaasConfig = SaasOptions;

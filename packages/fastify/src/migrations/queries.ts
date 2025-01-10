@@ -1,18 +1,12 @@
 import { QuerySqlToken, sql } from "slonik";
 import { ZodTypeAny } from "zod";
 
-const getTables = () => {
-  const tables = {
-    customers: "__customers",
-    customer_users: "__customer_users",
-    customer_addresses: "__customer_addresses",
-  };
+import type { SaasConfig } from "../types";
 
-  return tables;
-};
-
-const createCustomersTableQuery = (): QuerySqlToken<ZodTypeAny> => {
-  const { customers } = getTables();
+const createCustomersTableQuery = (
+  config: SaasConfig,
+): QuerySqlToken<ZodTypeAny> => {
+  const customers = config.tables?.customers?.name as string;
 
   return sql.unsafe`
     CREATE TABLE IF NOT EXISTS ${sql.identifier([customers])} (
@@ -33,8 +27,11 @@ const createCustomersTableQuery = (): QuerySqlToken<ZodTypeAny> => {
   `;
 };
 
-const createCustomerAddressesTableQuery = (): QuerySqlToken<ZodTypeAny> => {
-  const { customer_addresses, customers } = getTables();
+const createCustomerAddressesTableQuery = (
+  config: SaasConfig,
+): QuerySqlToken<ZodTypeAny> => {
+  const customer_addresses = config.tables?.customerAddresses?.name as string;
+  const customers = config.tables?.customers?.name as string;
 
   return sql.unsafe`
     CREATE TABLE IF NOT EXISTS ${sql.identifier([customer_addresses])} (
@@ -57,8 +54,11 @@ const createCustomerAddressesTableQuery = (): QuerySqlToken<ZodTypeAny> => {
   `;
 };
 
-const createCustomerUsersTableQuery = (): QuerySqlToken<ZodTypeAny> => {
-  const { customer_users, customers } = getTables();
+const createCustomerUsersTableQuery = (
+  config: SaasConfig,
+): QuerySqlToken<ZodTypeAny> => {
+  const customer_users = config.tables?.customerUsers?.name as string;
+  const customers = config.tables?.customers?.name as string;
 
   return sql.unsafe`
     CREATE TABLE IF NOT EXISTS ${sql.identifier([customer_users])} (

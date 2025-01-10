@@ -30,6 +30,18 @@ const getSaasConfig = (config: ApiConfig) => {
     routePrefix: saasConfig.routePrefix,
     routes: saasConfig.routes,
     subdomains: saasConfig.subdomains,
+    tables: {
+      customers: {
+        name: saasConfig.tables?.customers?.name || "__customers",
+      },
+      customerUsers: {
+        name: saasConfig.tables?.customerUsers?.name || "__customer_users",
+      },
+      customerAddresses: {
+        name:
+          saasConfig.tables?.customerAddresses?.name || "__customer_addresses",
+      },
+    },
   };
 };
 

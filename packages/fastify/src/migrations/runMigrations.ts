@@ -3,15 +3,22 @@ import {
   createCustomerUsersTableQuery,
   createCustomersTableQuery,
 } from "./queries";
+import getSaasConfig from "../config";
 
+import type { ApiConfig } from "@dzangolab/fastify-config";
 import type { Database } from "@dzangolab/fastify-slonik";
 
-const runMigrations = async (database: Database) => {
+const runMigrations = async (config: ApiConfig, database: Database) => {
+  const saasConfig = getSaasConfig(config);
   await database.connect(async (connection) => {
     await connection.transaction(async (transactionConnection) => {
-      await transactionConnection.query(createCustomersTableQuery());
-      await transactionConnection.query(createCustomerUsersTableQuery());
-      await transactionConnection.query(createCustomerAddressesTableQuery());
+      await transactionConnection.query(createCustomersTableQuery(saasConfig));
+      await transactionConnection.query(
+        createCustomerUsersTableQuery(saasConfig),
+      );
+      await transactionConnection.query(
+        createCustomerAddressesTableQuery(saasConfig),
+      );
     });
   });
 };

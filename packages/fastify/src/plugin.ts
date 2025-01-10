@@ -22,7 +22,7 @@ const plugin = FastifyPlugin(
       await createSaasRoles();
     });
 
-    await runMigrations(slonik);
+    await runMigrations(config, slonik);
 
     // Register customer discovery plugin
     await fastify.register(customerDiscoveryPlugin);
