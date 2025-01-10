@@ -40,12 +40,12 @@ class CustomerUserService<
     >;
   }
 
-  get table() {
-    return this.saasConfig.tables.customerUsers.name;
-  }
-
   get saasConfig() {
     return getSaasConfig(this.config);
+  }
+
+  get table() {
+    return this.saasConfig.tables.customerUsers.name;
   }
 }
 

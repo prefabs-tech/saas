@@ -95,34 +95,6 @@ class CustomerService<
     return customer;
   };
 
-  get table() {
-    return this.saasConfig.tables.customers.name;
-  }
-
-  get saasConfig() {
-    return getSaasConfig(this.config);
-  }
-
-  get factory() {
-    if (!this.table) {
-      throw new Error(`Service table is not defined`);
-    }
-
-    if (!this._factory) {
-      this._factory = new CustomerSqlFactory<
-        Customer,
-        CustomerCreateInput,
-        CustomerUpdateInput
-      >(this);
-    }
-
-    return this._factory as CustomerSqlFactory<
-      Customer,
-      CustomerCreateInput,
-      CustomerUpdateInput
-    >;
-  }
-
   validateSlugOrDomain = async (slug: string, domain?: string) => {
     const query = this.factory.getFindBySlugOrDomainSql(slug, domain);
 
@@ -146,6 +118,34 @@ class CustomerService<
       };
     }
   };
+
+  get factory() {
+    if (!this.table) {
+      throw new Error(`Service table is not defined`);
+    }
+
+    if (!this._factory) {
+      this._factory = new CustomerSqlFactory<
+        Customer,
+        CustomerCreateInput,
+        CustomerUpdateInput
+      >(this);
+    }
+
+    return this._factory as CustomerSqlFactory<
+      Customer,
+      CustomerCreateInput,
+      CustomerUpdateInput
+    >;
+  }
+
+  get saasConfig() {
+    return getSaasConfig(this.config);
+  }
+
+  get table() {
+    return this.saasConfig.tables.customers.name;
+  }
 
   protected postCreate = async (customer: Customer): Promise<Customer> => {
     if (
