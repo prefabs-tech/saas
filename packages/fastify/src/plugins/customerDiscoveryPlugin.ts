@@ -50,10 +50,17 @@ const plugin = async (
         );
 
         if (customer) {
+          // set customer on request object
           request.customer = customer;
 
-          if (customer.slug) {
-            request.dbSchema = customer.slug;
+          // set db schema for multi-database on request object
+          if (customer.database) {
+            request.dbSchema = customer.database;
+          }
+
+          // set auth email prefix for user isolation on request object
+          if (customer.slug && customer.database) {
+            request.authEmailPrefix = `${customer.id}_`;
           }
         }
       } catch (error) {

@@ -6,7 +6,7 @@ import runMigrations from "./migrations/runMigrations";
 import customerDiscoveryPlugin from "./plugins/customerDiscoveryPlugin";
 import recipes from "./supertokens/recipes";
 
-import type { FastifyInstance, FastifyRequest } from "fastify";
+import type { FastifyInstance } from "fastify";
 
 const plugin = FastifyPlugin(
   async (
@@ -31,16 +31,6 @@ const plugin = FastifyPlugin(
 
     // merge supertokens config
     config.user.supertokens = merge(supertokensConfig, config.user.supertokens);
-
-    fastify.addHook("preHandler", async (request: FastifyRequest) => {
-      // FIXME - authEmailPrefix should be set based on subdomains, multi database and sso config
-      const { customer } = request;
-      request.authEmailPrefix = "";
-
-      if (customer && customer.slug) {
-        request.authEmailPrefix = `${customer.id}_`;
-      }
-    });
 
     done();
   },

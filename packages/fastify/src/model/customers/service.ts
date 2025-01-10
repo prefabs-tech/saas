@@ -1,15 +1,20 @@
 /* eslint-disable brace-style */
 import { BaseService } from "@dzangolab/fastify-slonik";
+import { customAlphabet } from "nanoid";
 
 import CustomerSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
+import { NANOID_ALPHABET, NANOID_SIZE } from "../../constants";
 import getDatabaseConfig from "../../lib/getDatabaseConfig";
 import getInvalidDomains from "../../lib/getInvalidDomains";
 import getInvalidSlugs from "../../lib/getInvalidSlugs";
 import runMigrations from "../../lib/runMigrations";
 import { validateCustomerInput } from "../../lib/validateCustomerSchema";
 
-import type { Customer as BaseCustomer } from "../../types";
+import type {
+  Customer as BaseCustomer,
+  CustomerCreateInput as BaseCustomerCreateInput,
+} from "../../types";
 import type { Service } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
 
@@ -25,8 +30,25 @@ class CustomerService<
 
   create = async (data: CustomerCreateInput): Promise<Customer | undefined> => {
     // This handles the empty string issue.
+    if (data.slug === "") {
+      delete data.slug;
+    }
+
     if (data.domain === "") {
       delete data.domain;
+    }
+
+    const saasConfig = getSaasConfig(this.config);
+
+    if (
+      saasConfig.subdomains !== "disabled" &&
+      saasConfig.multiDatabase?.enabled &&
+      data.slug &&
+      data.useSeparateDatabase
+    ) {
+      const nanoid = customAlphabet(NANOID_ALPHABET, NANOID_SIZE);
+      // [RL 2024-01-08] Added `s_` prefix to indicate that the database is a schema
+      (data as BaseCustomerCreateInput).database = `s_${nanoid()}`;
     }
 
     validateCustomerInput(data);
@@ -39,7 +61,7 @@ class CustomerService<
       };
     }
 
-    if (getInvalidDomains(this.config).includes(data.doamin as string)) {
+    if (getInvalidDomains(this.config).includes(data.domain as string)) {
       throw {
         name: "ERROR_RESERVED_DOMAIN",
         message: `The requested domain "${data.domain}" is reserved and cannot be used`,
@@ -122,7 +144,10 @@ class CustomerService<
   protected postCreate = async (customer: Customer): Promise<Customer> => {
     const saasConfig = getSaasConfig(this.config);
 
-    if (saasConfig.subdomains === "disabled") {
+    if (
+      saasConfig.subdomains === "disabled" ||
+      !saasConfig.multiDatabase?.enabled
+    ) {
       return customer;
     }
 

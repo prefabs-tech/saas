@@ -18,7 +18,7 @@ const plugin = async (
   );
 
   fastify.get(
-    String.raw`/customers/:id(^\d+)`,
+    String.raw`/customers/:id(^[0-9a-fa-f-]{36}$)`,
     {
       preHandler: fastify.verifySession(),
     },
@@ -26,7 +26,7 @@ const plugin = async (
   );
 
   fastify.delete(
-    String.raw`/customers/:id(^\d+)`,
+    String.raw`/customers/:id(^[0-9a-fa-f-]{36}$)`,
     {
       preHandler: fastify.verifySession(),
     },
@@ -42,7 +42,7 @@ const plugin = async (
   );
 
   fastify.put(
-    String.raw`/customers/:id(^\d+)`,
+    String.raw`/customers/:id(^[0-9a-fa-f-]{36}$)`,
     {
       preHandler: fastify.verifySession(),
     },

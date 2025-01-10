@@ -42,6 +42,7 @@ export default defineConfig(({ mode }) => {
             graphql: "Graphql",
             "graphql-tag": "graphqlTag",
             "node:fs": "NodeFs",
+            nanoid: "NanoId",
             pg: "Pg",
             slonik: "Slonik",
             "supertokens-node": "SupertokensNode",

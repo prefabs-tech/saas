@@ -5,9 +5,19 @@ const getSaasConfig = (config: ApiConfig) => {
   const migrationsPath = config.slonik?.migrations?.path || "migrations";
 
   return {
-    excludeRoutePatterns: saasConfig.excludeRoutePatterns || [],
+    apps: saasConfig.apps || [
+      {
+        name: "admin",
+        subdomain: "admin",
+      },
+    ],
+    excludeRoutePatterns: saasConfig.excludeRoutePatterns || [/^\/auth\//],
     handlers: saasConfig.handlers,
-    subdomains: saasConfig.subdomains,
+    invalid: {
+      domains: saasConfig.invalid?.domains || [],
+      slugs: saasConfig.invalid?.domains || ["admin"],
+    },
+    mainAppSubdomain: saasConfig.mainAppSubdomain || "app",
     multiDatabase: {
       enabled: saasConfig.multiDatabase?.enabled || false,
       migrations: {
@@ -16,20 +26,10 @@ const getSaasConfig = (config: ApiConfig) => {
           `${migrationsPath}/customers`,
       },
     },
-    routes: saasConfig.routes,
-    apps: saasConfig.apps || [
-      {
-        name: "admin",
-        subdomain: "admin",
-      },
-    ],
-    invalid: {
-      domains: saasConfig.invalid?.domains || [],
-      slugs: saasConfig.invalid?.domains || ["admin"],
-    },
-    routePrefix: saasConfig.routePrefix,
-    mainAppSubdomain: saasConfig.mainAppSubdomain || "app",
     rootDomain: saasConfig.rootDomain,
+    routePrefix: saasConfig.routePrefix,
+    routes: saasConfig.routes,
+    subdomains: saasConfig.subdomains,
   };
 };
 
