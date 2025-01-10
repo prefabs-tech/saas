@@ -4,6 +4,7 @@ import { customAlphabet } from "nanoid";
 
 import CustomerSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
+import { NANOID_ALPHABET, NANOID_SIZE } from "../../constants";
 import getDatabaseConfig from "../../lib/getDatabaseConfig";
 import getInvalidDomains from "../../lib/getInvalidDomains";
 import getInvalidSlugs from "../../lib/getInvalidSlugs";
@@ -45,7 +46,7 @@ class CustomerService<
       data.slug &&
       data.useSeparateDatabase
     ) {
-      const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz0123456789", 8);
+      const nanoid = customAlphabet(NANOID_ALPHABET, NANOID_SIZE);
       // [RL 2024-01-08] Added `s_` prefix to indicate that the database is a schema
       (data as BaseCustomerCreateInput).database = `s_${nanoid()}`;
     }

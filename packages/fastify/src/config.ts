@@ -11,7 +11,7 @@ const getSaasConfig = (config: ApiConfig) => {
         subdomain: "admin",
       },
     ],
-    excludeRoutePatterns: saasConfig.excludeRoutePatterns || [],
+    excludeRoutePatterns: saasConfig.excludeRoutePatterns || [/^\/auth\//],
     handlers: saasConfig.handlers,
     invalid: {
       domains: saasConfig.invalid?.domains || [],
