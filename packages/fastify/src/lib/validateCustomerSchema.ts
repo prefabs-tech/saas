@@ -10,7 +10,9 @@ const domainSchema = z.optional(
     .regex(/^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/),
 );
 
-const slugSchema = z.string().regex(/^(?!.*-+$)[a-z][\da-z-]{0,24}([\da-z])?$/);
+const slugSchema = z
+  .string()
+  .regex(/^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/);
 
 const validateCustomerInput = (customerInput: CustomerCreateInput) => {
   const customerInputSchema = z.object({
@@ -44,15 +46,15 @@ const validateCustomerInput = (customerInput: CustomerCreateInput) => {
   }
 };
 
-const validateTenantUpdate = (
+const validateCustomerUpdate = (
   config: ApiConfig,
   customerUpdateInput: CustomerUpdateInput,
 ) => {
-  const tenantInputSchema = z.object({
+  const customerInputSchema = z.object({
     domain: domainSchema,
   });
 
-  const validationResult = tenantInputSchema.safeParse({
+  const validationResult = customerInputSchema.safeParse({
     domain: customerUpdateInput.domain,
   });
 
@@ -69,5 +71,5 @@ export {
   domainSchema,
   slugSchema,
   validateCustomerInput,
-  validateTenantUpdate,
+  validateCustomerUpdate,
 };
