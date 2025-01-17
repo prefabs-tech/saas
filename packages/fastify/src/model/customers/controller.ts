@@ -49,6 +49,14 @@ const plugin = async (
     handlersConfig?.update || handlers.update,
   );
 
+  fastify.get(
+    "/my-accounts",
+    {
+      preHandler: fastify.verifySession(),
+    },
+    handlers.myAccounts,
+  );
+
   done();
 };
 
