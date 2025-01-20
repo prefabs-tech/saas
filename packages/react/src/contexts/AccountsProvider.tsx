@@ -23,13 +23,13 @@ interface Properties {
       storageKey?: string;
     };
   };
-  user: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  userId: string;
   children: React.ReactNode;
 }
 
 export const accountsContext = createContext<AccountsContextType | null>(null);
 
-const AccountsProvider = ({ config, user, children }: Properties) => {
+const AccountsProvider = ({ config, userId, children }: Properties) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -51,19 +51,23 @@ const AccountsProvider = ({ config, user, children }: Properties) => {
   };
 
   useEffect(() => {
-    setLoading(true);
+    if (userId) {
+      setLoading(true);
 
-    fetchAccounts(user.id, { apiBaseUrl })
-      .then(({ accounts }) => {
-        updateAccounts(accounts);
-      })
-      .catch((error) => {
-        setError(true);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+      fetchAccounts(userId, { apiBaseUrl })
+        .then(({ accounts }) => {
+          updateAccounts(accounts as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+        })
+        .catch((error) => {
+          setError(true);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      updateAccounts([]);
+    }
+  }, [userId]);
 
   useEffect(() => {
     const {
