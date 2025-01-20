@@ -3,6 +3,10 @@ import { Customer } from "./components/customer/Customer";
 
 import "./assets/css/index.css";
 
+export * from "./contexts";
+
+export * from "./hooks";
+
 export * from "./types";
 
 export { CustomerForm, CustomersTable, Customer };
