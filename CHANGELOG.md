@@ -1,3 +1,12 @@
+## [0.3.1](https://github.com/12deg/saas/compare/v0.3.0...v0.3.1) (2025-01-22)
+
+
+### Bug Fixes
+
+* **customers:** update type to include database column ([14e5c42](https://github.com/12deg/saas/commit/14e5c42a664fabad29f67fcdb4d29f0d301c1fd6))
+
+
+
 # [0.3.0](https://github.com/12deg/saas/compare/v0.2.1...v0.3.0) (2025-01-22)
 
 
