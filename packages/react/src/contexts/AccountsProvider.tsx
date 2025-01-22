@@ -23,7 +23,7 @@ interface Properties {
       storageKey?: string;
     };
   };
-  userId: string;
+  userId?: string;
   children: React.ReactNode;
 }
 
