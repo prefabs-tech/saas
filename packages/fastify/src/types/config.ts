@@ -14,6 +14,7 @@ interface SaasOptions {
       delete?: typeof customerHandlers.delete;
       getById?: typeof customerHandlers.getById;
       list?: typeof customerHandlers.list;
+      myAccounts?: typeof customerHandlers.myAccounts;
       update?: typeof customerHandlers.update;
     };
   };

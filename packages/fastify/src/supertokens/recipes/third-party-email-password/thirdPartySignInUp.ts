@@ -101,7 +101,11 @@ const thirdPartySignInUp = (
       }
 
       if (customer) {
-        const customerUserService = new CustomerUserService(config, slonik);
+        const customerUserService = new CustomerUserService(
+          config,
+          slonik,
+          input.userContext.dbSchema,
+        );
         await customerUserService.create({
           customerId: customer.id,
           userId: originalResponse.user.id,

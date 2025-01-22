@@ -49,6 +49,19 @@ const plugin = async (
     handlersConfig?.update || handlers.update,
   );
 
+  fastify.get(
+    "/my-accounts",
+    {
+      config: {
+        saas: {
+          exclude: true,
+        },
+      },
+      preHandler: fastify.verifySession(),
+    },
+    handlersConfig?.myAccounts || handlers.myAccounts,
+  );
+
   done();
 };
 

@@ -1,6 +1,6 @@
-import type { Client } from "pg";
+import type { Client, PoolClient } from "pg";
 
-const changeSchema = async (client: Client, name: string) => {
+const changeSchema = async (client: Client | PoolClient, name: string) => {
   // Create schema if not exists and switch to the schema
   await client.query(
     `

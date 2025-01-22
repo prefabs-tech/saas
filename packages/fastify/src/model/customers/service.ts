@@ -5,11 +5,10 @@ import { customAlphabet } from "nanoid";
 import CustomerSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
 import { NANOID_ALPHABET, NANOID_SIZE } from "../../constants";
-import getDatabaseConfig from "../../lib/getDatabaseConfig";
 import getInvalidDomains from "../../lib/getInvalidDomains";
 import getInvalidSlugs from "../../lib/getInvalidSlugs";
-import runMigrations from "../../lib/runMigrations";
 import { validateCustomerInput } from "../../lib/validateCustomerSchema";
+import runCustomerMigrations from "../../migrations/runCustomerMigrations";
 
 import type {
   Customer as BaseCustomer,
@@ -95,15 +94,25 @@ class CustomerService<
     return customer;
   };
 
+  findByUserId = async (userId: string): Promise<Customer | null> => {
+    const query = this.factory.getFindByUserIdSql(userId);
+
+    const customer = await this.database.connect(async (connection) => {
+      return connection.maybeOne(query);
+    });
+
+    return customer;
+  };
+
   validateSlugOrDomain = async (slug: string, domain?: string) => {
     const query = this.factory.getFindBySlugOrDomainSql(slug, domain);
 
-    const tenants = await this.database.connect(async (connection) => {
+    const customers = await this.database.connect(async (connection) => {
       return connection.any(query);
     });
 
-    if (tenants.length > 0) {
-      if (tenants.some((tenant) => tenant.slug === slug)) {
+    if (customers.length > 0) {
+      if (customers.some((customer) => customer.slug === slug)) {
         throw {
           name: "ERROR_SLUG_ALREADY_EXISTS",
           message: `The specified slug "${slug}" already exists`,
@@ -155,9 +164,8 @@ class CustomerService<
       return customer;
     }
 
-    await runMigrations(
-      getDatabaseConfig(this.config.slonik),
-      this.saasConfig.multiDatabase.migrations.path,
+    await runCustomerMigrations(
+      this.config,
       customer as unknown as BaseCustomer,
     );
 

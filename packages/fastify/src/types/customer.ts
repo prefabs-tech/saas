@@ -10,6 +10,12 @@ interface Customer {
   database: string | null;
 }
 
+interface CustomerUser {
+  customerId: string;
+  userId: string;
+  role: string;
+}
+
 type CustomerCreateInput = Partial<Omit<Customer, "id">> & {
   useSeparateDatabase?: boolean;
 };
@@ -18,4 +24,9 @@ type CustomerUpdateInput = Partial<
   Omit<Customer, "id" | "database" | "name" | "slug">
 >;
 
-export type { Customer, CustomerCreateInput, CustomerUpdateInput };
+export type {
+  Customer,
+  CustomerCreateInput,
+  CustomerUpdateInput,
+  CustomerUser,
+};

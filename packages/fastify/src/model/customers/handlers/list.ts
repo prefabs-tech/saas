@@ -3,10 +3,7 @@ import Service from "../service";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
-const listOrganization = async (
-  request: SessionRequest,
-  reply: FastifyReply,
-) => {
+const list = async (request: SessionRequest, reply: FastifyReply) => {
   const service = new Service(request.config, request.slonik);
 
   const { limit, offset, filters, sort } = request.query as {
@@ -26,4 +23,4 @@ const listOrganization = async (
   reply.send(data);
 };
 
-export default listOrganization;
+export default list;

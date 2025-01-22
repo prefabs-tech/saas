@@ -1,5 +1,10 @@
-import { DefaultSqlFactory } from "@dzangolab/fastify-slonik";
+import {
+  createTableFragment,
+  DefaultSqlFactory,
+} from "@dzangolab/fastify-slonik";
 import { sql } from "slonik";
+
+import getSaasConfig from "../../config";
 
 import type { SqlFactory } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow, QuerySqlToken } from "slonik";
@@ -49,6 +54,24 @@ class CustomerSqlFactory<
       ${domainFilterFragment};
     `;
   };
+
+  getFindByUserIdSql = (userId: string): QuerySqlToken => {
+    const customerUsersTable = createTableFragment(
+      this.saasConfig.tables.customerUsers.name,
+      this.schema,
+    );
+
+    return sql.type(this.validationSchema)`
+      SELECT c.*
+      FROM ${this.getTableFragment()} AS c
+      JOIN ${customerUsersTable} AS cu on c.id = cu.customer_id
+      WHERE cu.user_id = ${userId};
+    `;
+  };
+
+  get saasConfig() {
+    return getSaasConfig(this.config);
+  }
 }
 
 export default CustomerSqlFactory;
