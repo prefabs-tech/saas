@@ -18,7 +18,7 @@ interface SaasOptions {
       update?: typeof customerHandlers.update;
     };
   };
-  invalid: {
+  invalid?: {
     domains?: string[];
     slugs?: string[];
   };
