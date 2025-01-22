@@ -5,11 +5,10 @@ import { customAlphabet } from "nanoid";
 import CustomerSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
 import { NANOID_ALPHABET, NANOID_SIZE } from "../../constants";
-import getDatabaseConfig from "../../lib/getDatabaseConfig";
 import getInvalidDomains from "../../lib/getInvalidDomains";
 import getInvalidSlugs from "../../lib/getInvalidSlugs";
-import runMigrations from "../../lib/runMigrations";
 import { validateCustomerInput } from "../../lib/validateCustomerSchema";
+import runCustomerMigrations from "../../migrations/runCustomerMigrations";
 
 import type {
   Customer as BaseCustomer,
@@ -165,9 +164,8 @@ class CustomerService<
       return customer;
     }
 
-    await runMigrations(
-      getDatabaseConfig(this.config.slonik),
-      this.saasConfig.multiDatabase.migrations.path,
+    await runCustomerMigrations(
+      this.config,
       customer as unknown as BaseCustomer,
     );
 
