@@ -4,6 +4,7 @@ import { ApiConfig } from "@dzangolab/fastify-config";
 import { migrate } from "@dzangolab/postgres-migrations";
 import * as pg from "pg";
 
+import { createCustomerUsersTableQuery } from "./queries";
 import getSaasConfig from "../config";
 import changeSchema from "../lib/changeSchema";
 import getDatabaseConfig from "../lib/getDatabaseConfig";
@@ -35,7 +36,16 @@ const runCustomerMigrations = async (
     // Switch to the correct schema
     await changeSchema(client, customer.database);
 
-    // TODO: Run customer migrations from saas package
+    // list of migrations that needs to be run from the package
+    // for the customers who uses separate database.
+    const queries = [createCustomerUsersTableQuery(saasConfig)];
+
+    for (const query of queries) {
+      await client.query({
+        text: query.sql, // Raw SQL string
+        values: query.values.length > 0 ? [...query.values] : undefined, // Spread to ensure it's mutable
+      });
+    }
 
     // Check if the migrations path exists
     if (existsSync(migrationsPath)) {
