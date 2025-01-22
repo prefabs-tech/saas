@@ -58,7 +58,6 @@ const createCustomerUsersTableQuery = (
   config: SaasConfig,
 ): QuerySqlToken<ZodTypeAny> => {
   const customer_users = config.tables?.customerUsers?.name as string;
-  const customers = config.tables?.customers?.name as string;
 
   return sql.unsafe`
     CREATE TABLE IF NOT EXISTS ${sql.identifier([customer_users])} (
@@ -70,11 +69,7 @@ const createCustomerUsersTableQuery = (
       date_end TIMESTAMP,
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
       updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
-      UNIQUE (customer_id, user_id),
-      CONSTRAINT fk_customer
-        FOREIGN KEY (customer_id)
-        REFERENCES ${sql.identifier([customers])} (id)
-        ON DELETE CASCADE
+      UNIQUE (customer_id, user_id)
     );
   `;
 };

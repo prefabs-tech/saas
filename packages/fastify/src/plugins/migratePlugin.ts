@@ -6,7 +6,7 @@ import getSaasConfig from "../config";
 import changeSchema from "../lib/changeSchema";
 import getDatabaseConfig from "../lib/getDatabaseConfig";
 import initializePgPool from "../lib/initializePgPool";
-import runMigrations from "../lib/runMigrations";
+import runCustomerMigrations from "../migrations/runCustomerMigrations";
 import Service from "../model/customers/service";
 
 import type { Customer } from "../types";
@@ -41,10 +41,10 @@ const plugin = async (
         /* eslint-disable-next-line unicorn/consistent-destructuring */
         fastify.log.info(`Running migrations for customer ${customer.name}`);
 
-        await runMigrations(
-          { client },
-          migrationsPath,
+        await runCustomerMigrations(
+          config,
           customer as unknown as Customer,
+          client,
         );
       }
 
