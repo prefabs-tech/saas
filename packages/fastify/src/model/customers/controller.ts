@@ -59,7 +59,7 @@ const plugin = async (
       },
       preHandler: fastify.verifySession(),
     },
-    handlers.myAccounts,
+    handlersConfig?.myAccounts || handlers.myAccounts,
   );
 
   done();
