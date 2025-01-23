@@ -10,9 +10,9 @@ const domainSchema = z.optional(
     .regex(/^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/),
 );
 
-const slugSchema = z
-  .string()
-  .regex(/^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/);
+const slugSchema = z.optional(
+  z.string().regex(/^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/),
+);
 
 const validateCustomerInput = (customerInput: CustomerCreateInput) => {
   const customerInputSchema = z.object({

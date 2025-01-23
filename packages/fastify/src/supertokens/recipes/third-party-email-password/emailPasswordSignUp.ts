@@ -86,7 +86,8 @@ const emailPasswordSignUp = (
         await customerUserService.create({
           customerId: input.userContext.customer.id,
           userId: originalResponse.user.id,
-          role_id: ROLE_SAAS_ACCOUNT_MEMBER,
+          role_id:
+            input.userContext.saasAccountRole || ROLE_SAAS_ACCOUNT_MEMBER,
         });
       }
 

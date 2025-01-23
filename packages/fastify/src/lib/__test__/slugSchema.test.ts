@@ -23,7 +23,7 @@ describe.concurrent("slugSchema", () => {
     ["1tenant", true],
     ["-ab", false],
     ["a1-", false],
-    [undefined, false],
+    [undefined, true],
   ])("slugSchema.safeParse(slug) -> expected", async (slug, expected) => {
     expect(slugSchema.safeParse(slug).success).toBe(expected);
   });
