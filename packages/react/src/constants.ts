@@ -1,1 +1,1 @@
-export const STORAGE_KEY_DEFAULT = "x-cutomer-id";
+export const STORAGE_KEY_DEFAULT = "x-customer-id";

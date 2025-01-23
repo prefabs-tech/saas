@@ -1,7 +1,7 @@
 export interface Customer {
   database: string | null;
   domain: string;
-  id: number;
+  id: string;
   individual: boolean;
   name: string;
   organizationName: string;
