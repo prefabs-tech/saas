@@ -59,22 +59,25 @@ importers:
     devDependencies:
       '@12deg/eslint-config':
         specifier: 0.1.11
-        version: 0.1.11(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint@8.57.1)(typescript@4.9.5))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@4.9.5)
+        version: 0.1.11(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.5.4)
+      '@12deg/tsconfig':
+        specifier: 0.1.11
+        version: 0.1.11(@types/node@20.12.2)
       '@dzangolab/fastify-config':
-        specifier: 0.76.2
-        version: 0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2)
+        specifier: 0.77.0
+        version: 0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2)
       '@dzangolab/fastify-graphql':
-        specifier: 0.76.2
-        version: 0.76.2(@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2))(@dzangolab/fastify-slonik@0.76.2(@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@4.5.0)(fastify@4.10.2)(graphql@16.9.0)(mercurius@14.1.0(graphql@16.9.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+        specifier: 0.77.0
+        version: 0.77.0(@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2))(@dzangolab/fastify-slonik@0.77.0(@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@4.5.0)(fastify@4.10.2)(graphql@16.9.0)(mercurius@14.1.0(graphql@16.9.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       '@dzangolab/fastify-mailer':
-        specifier: 0.76.2
-        version: 0.76.2(@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(mjml@4.15.3)
+        specifier: 0.77.0
+        version: 0.77.0(@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(mjml@4.15.3)
       '@dzangolab/fastify-slonik':
-        specifier: 0.76.2
-        version: 0.76.2(@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+        specifier: 0.77.0
+        version: 0.77.0(@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       '@dzangolab/fastify-user':
-        specifier: 0.76.2
-        version: 0.76.2(6yw2aygilhvjg6lxawc47vfphq)
+        specifier: 0.77.0
+        version: 0.77.0(m6wkpqy2ukiisy42lurx62cfjy)
       '@types/humps':
         specifier: 2.0.6
         version: 2.0.6
@@ -89,10 +92,10 @@ importers:
         version: 8.11.10
       '@typescript-eslint/eslint-plugin':
         specifier: 8.14.0
-        version: 8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint@8.57.1)(typescript@4.9.5)
+        version: 8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4)
       '@typescript-eslint/parser':
         specifier: 8.14.0
-        version: 8.14.0(eslint@8.57.1)(typescript@4.9.5)
+        version: 8.14.0(eslint@8.57.1)(typescript@5.5.4)
       '@vitest/coverage-istanbul':
         specifier: 2.0.4
         version: 2.0.4(vitest@2.0.4(@types/node@20.12.2)(jsdom@24.0.0))
@@ -107,10 +110,10 @@ importers:
         version: 1.1.2(eslint-plugin-import@2.31.0)
       eslint-import-resolver-typescript:
         specifier: 3.6.3
-        version: 3.6.3(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-plugin-import@2.31.0)(eslint@8.57.1)
+        version: 3.6.3(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-plugin-import@2.31.0)(eslint@8.57.1)
       eslint-plugin-import:
         specifier: 2.31.0
-        version: 2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
+        version: 2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
       eslint-plugin-n:
         specifier: 14.0.0
         version: 14.0.0(eslint@8.57.1)
@@ -148,8 +151,8 @@ importers:
         specifier: 14.1.3
         version: 14.1.3
       typescript:
-        specifier: 4.9.5
-        version: 4.9.5
+        specifier: 5.5.4
+        version: 5.5.4
       vite:
         specifier: 4.5.3
         version: 4.5.3(@types/node@20.12.2)
@@ -282,6 +285,9 @@ packages:
         optional: true
       vue-eslint-parser:
         optional: true
+
+  '@12deg/tsconfig@0.1.11':
+    resolution: {integrity: sha512-r/q6ZRX4sl7IMUNYlvPTjPZQAyBhcjepduoqP69owZG+SZbu75+Cfw6KfYphpm1LWzf6Y7eAv7ee8BLAPoojPg==}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -450,19 +456,19 @@ packages:
     resolution: {integrity: sha512-tpyc+7i6bPG9mvaBbtKUeghfyZSDgWquIDfMgqYtTbmZ9Y9VzEm2je9EYcQ0aoz5o7NvGS+rcDec93yO08MHYA==}
     engines: {node: '>=v18'}
 
-  '@dzangolab/fastify-config@0.76.2':
-    resolution: {integrity: sha512-NzJQxXnFpq3amZJgmh1QMeqbK7joMODHfz1itDz9ToDeLZYnw5TcOu/Qk6hGlTdzXqqoAAldfD5J1c43y1srKw==}
+  '@dzangolab/fastify-config@0.77.0':
+    resolution: {integrity: sha512-W4GCOBguVYb0DMDnAOXeBop6t/ioAz0sPMOX2EaHCe3Rd/fMsGBpekZ2ci3iBdPLCH8ZRXGAaWxWntMHu0XpxQ==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
       fastify: '>=4.10.2'
       fastify-plugin: '>=4.5.0'
 
-  '@dzangolab/fastify-graphql@0.76.2':
-    resolution: {integrity: sha512-zr+WhtQzYdLQMNHUgw5nH44zSnhNFsnKTVTHC84+gahBUGaAvXJaNrN43QehPjVkpgtQ8mRliMeW0e7I/ZovaQ==}
+  '@dzangolab/fastify-graphql@0.77.0':
+    resolution: {integrity: sha512-kcUXMrhvIjHnc5eiUdYKPRtx6bJsumADeB6iYc8PFkQOF5WgSqww+61q0MgBd2Ma7pWQ76URzpWNtSdazFLxtA==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@dzangolab/fastify-config': 0.76.2
-      '@dzangolab/fastify-slonik': 0.76.2
+      '@dzangolab/fastify-config': 0.77.0
+      '@dzangolab/fastify-slonik': 0.77.0
       fastify: '>=4.10.2'
       fastify-plugin: '>=4.5.0'
       graphql: '>=16.9.0'
@@ -470,11 +476,11 @@ packages:
       slonik: '>=46.1.0'
       zod: '>=3.23.8'
 
-  '@dzangolab/fastify-mailer@0.76.2':
-    resolution: {integrity: sha512-H42Zmt9M7O0Ge1c+aDwwfcJ3AfTUsoN6yPyxqrEPoTHMIpfdGmTKo44RtOfuuMeVHdApfihe/eFmqpLLSacpVA==}
+  '@dzangolab/fastify-mailer@0.77.0':
+    resolution: {integrity: sha512-vP/41ln1j1SmA2XAdG0AeDwLWLmI8UHreV5+SGyuQJSAqqELwlkWyXIHwzhgn3wF0I2FouIu8ZonPmq55dyJ6A==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@dzangolab/fastify-config': 0.76.2
+      '@dzangolab/fastify-config': 0.77.0
       fastify: '>=4.10.2'
       fastify-plugin: '>=4.5.0'
       mjml: '>=4.15.3'
@@ -482,11 +488,11 @@ packages:
       '@dzangolab/fastify-config':
         optional: true
 
-  '@dzangolab/fastify-slonik@0.76.2':
-    resolution: {integrity: sha512-7ju4lDyq4noZGJJVI1XratkWX/XuNhQHuf3G1zyOLHieazHX1kMryLRGUXuf20mYiMP4kkShXSD3K90SIc04WA==}
+  '@dzangolab/fastify-slonik@0.77.0':
+    resolution: {integrity: sha512-1iCLj9ezTYN95s6M8DJ0vCeYZe/fdJoxh1ay7t1hWnHhZTN7oiTAHbUM9jbtpLZkIcHd1Ew33Vba6o4NTLL7LQ==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@dzangolab/fastify-config': 0.76.2
+      '@dzangolab/fastify-config': 0.77.0
       fastify: '>=4.10.2'
       fastify-plugin: '>=4.5.0'
       pg-mem: '>=3.0.2'
@@ -496,14 +502,14 @@ packages:
       pg-mem:
         optional: true
 
-  '@dzangolab/fastify-user@0.76.2':
-    resolution: {integrity: sha512-r9yWM4st+seiFUy1bWx55KKEF+GQZuJ6pk0v3Xq/xMd3LGQohj88iqZdXUzmxBr0CcPrbhhXHEXaF6qD0d47Ow==}
+  '@dzangolab/fastify-user@0.77.0':
+    resolution: {integrity: sha512-FDz6Yal1zyd7bjZlHN+JvuPxRya4xWkfDJEqPfcVOn5V4MPb/XRFlb8/ROJ6+UleMzCFx9K0pd8f2JJdXm6eaQ==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@dzangolab/fastify-config': 0.76.2
-      '@dzangolab/fastify-graphql': 0.76.2
-      '@dzangolab/fastify-mailer': 0.76.2
-      '@dzangolab/fastify-slonik': 0.76.2
+      '@dzangolab/fastify-config': 0.77.0
+      '@dzangolab/fastify-graphql': 0.77.0
+      '@dzangolab/fastify-mailer': 0.77.0
+      '@dzangolab/fastify-slonik': 0.77.0
       '@fastify/cors': '>=8.5.0'
       '@fastify/formbody': '>=7.4.0'
       fastify: '>=4.10.2'
@@ -1502,6 +1508,14 @@ packages:
 
   '@vitest/utils@2.0.4':
     resolution: {integrity: sha512-Zc75QuuoJhOBnlo99ZVUkJIuq4Oj0zAkrQ2VzCqNCx6wAwViHEh5Fnp4fiJTE9rA+sAoXRf00Z9xGgfEzV6fzQ==}
+
+  '@vue/tsconfig@0.1.3':
+    resolution: {integrity: sha512-kQVsh8yyWPvHpb8gIc9l/HIDiiVUy1amynLNpCy8p+FoCiZXCo6fQos5/097MmnNZc9AtseDsCrfkhqCrJ8Olg==}
+    peerDependencies:
+      '@types/node': '*'
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
 
   JSONStream@1.3.5:
     resolution: {integrity: sha512-E+iruNOY8VV9s4JEbe1aNEm6MiszPRr/UfcHMz0TQh1BXSxHK+ASV1R6W4HpjBhSeS+54PIsAMCBmwD06LLsqQ==}
@@ -4937,11 +4951,6 @@ packages:
     resolution: {integrity: sha512-/OxDN6OtAk5KBpGb28T+HZc2M+ADtvRxXrKKbUwtsLgdoxgX13hyy7ek6bFRl5+aBs2yZzB0c4CnQfAtVypW/g==}
     engines: {node: '>= 0.4'}
 
-  typescript@4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
-
   typescript@5.4.5:
     resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
     engines: {node: '>=14.17'}
@@ -5343,23 +5352,6 @@ packages:
 
 snapshots:
 
-  '@12deg/eslint-config@0.1.11(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint@8.57.1)(typescript@4.9.5))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@4.9.5)':
-    dependencies:
-      '@typescript-eslint/eslint-plugin': 8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint@8.57.1)(typescript@4.9.5)
-      '@typescript-eslint/parser': 8.14.0(eslint@8.57.1)(typescript@4.9.5)
-      eslint: 8.57.1
-      eslint-config-prettier: 9.1.0(eslint@8.57.1)
-      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.31.0)
-      eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-plugin-import@2.31.0)(eslint@8.57.1)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
-      eslint-plugin-prettier: 5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)
-      eslint-plugin-unicorn: 56.0.1(eslint@8.57.1)
-      prettier: 3.3.3
-      typescript: 4.9.5
-    optionalDependencies:
-      eslint-plugin-n: 14.0.0(eslint@8.57.1)
-      eslint-plugin-promise: 7.1.0(eslint@8.57.1)
-
   '@12deg/eslint-config@0.1.11(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.4.5)':
     dependencies:
       '@typescript-eslint/eslint-plugin': 8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5)
@@ -5376,6 +5368,29 @@ snapshots:
     optionalDependencies:
       eslint-plugin-n: 14.0.0(eslint@8.57.1)
       eslint-plugin-promise: 7.1.0(eslint@8.57.1)
+
+  '@12deg/eslint-config@0.1.11(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.5.4)':
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4)
+      '@typescript-eslint/parser': 8.14.0(eslint@8.57.1)(typescript@5.5.4)
+      eslint: 8.57.1
+      eslint-config-prettier: 9.1.0(eslint@8.57.1)
+      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.31.0)
+      eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-plugin-import@2.31.0)(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
+      eslint-plugin-prettier: 5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)
+      eslint-plugin-unicorn: 56.0.1(eslint@8.57.1)
+      prettier: 3.3.3
+      typescript: 5.5.4
+    optionalDependencies:
+      eslint-plugin-n: 14.0.0(eslint@8.57.1)
+      eslint-plugin-promise: 7.1.0(eslint@8.57.1)
+
+  '@12deg/tsconfig@0.1.11(@types/node@20.12.2)':
+    dependencies:
+      '@vue/tsconfig': 0.1.3(@types/node@20.12.2)
+    transitivePeerDependencies:
+      - '@types/node'
 
   '@ampproject/remapping@2.3.0':
     dependencies:
@@ -5623,15 +5638,15 @@ snapshots:
       '@types/conventional-commits-parser': 5.0.0
       chalk: 5.3.0
 
-  '@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2)':
+  '@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2)':
     dependencies:
       fastify: 4.10.2
       fastify-plugin: 4.5.0
 
-  '@dzangolab/fastify-graphql@0.76.2(@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2))(@dzangolab/fastify-slonik@0.76.2(@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@4.5.0)(fastify@4.10.2)(graphql@16.9.0)(mercurius@14.1.0(graphql@16.9.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
+  '@dzangolab/fastify-graphql@0.77.0(@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2))(@dzangolab/fastify-slonik@0.77.0(@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@4.5.0)(fastify@4.10.2)(graphql@16.9.0)(mercurius@14.1.0(graphql@16.9.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
     dependencies:
-      '@dzangolab/fastify-config': 0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2)
-      '@dzangolab/fastify-slonik': 0.76.2(@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@dzangolab/fastify-config': 0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2)
+      '@dzangolab/fastify-slonik': 0.77.0(@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       '@graphql-tools/merge': 9.0.11(graphql@16.9.0)
       fastify: 4.10.2
       fastify-plugin: 4.5.0
@@ -5641,7 +5656,7 @@ snapshots:
       slonik: 46.1.0(zod@3.23.8)
       zod: 3.23.8
 
-  '@dzangolab/fastify-mailer@0.76.2(@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(mjml@4.15.3)':
+  '@dzangolab/fastify-mailer@0.77.0(@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(mjml@4.15.3)':
     dependencies:
       fastify: 4.10.2
       fastify-plugin: 4.5.0
@@ -5653,14 +5668,14 @@ snapshots:
       nodemailer-html-to-text: 3.2.0
       nodemailer-mjml: 1.4.7(nodemailer@6.9.16)
     optionalDependencies:
-      '@dzangolab/fastify-config': 0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2)
+      '@dzangolab/fastify-config': 0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2)
     transitivePeerDependencies:
       - encoding
       - htmlnano
 
-  '@dzangolab/fastify-slonik@0.76.2(@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
+  '@dzangolab/fastify-slonik@0.77.0(@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
     dependencies:
-      '@dzangolab/fastify-config': 0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2)
+      '@dzangolab/fastify-config': 0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2)
       '@dzangolab/postgres-migrations': 5.4.2
       fastify: 4.10.2
       fastify-plugin: 4.5.0
@@ -5674,12 +5689,12 @@ snapshots:
     transitivePeerDependencies:
       - pg-native
 
-  '@dzangolab/fastify-user@0.76.2(6yw2aygilhvjg6lxawc47vfphq)':
+  '@dzangolab/fastify-user@0.77.0(m6wkpqy2ukiisy42lurx62cfjy)':
     dependencies:
-      '@dzangolab/fastify-config': 0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2)
-      '@dzangolab/fastify-graphql': 0.76.2(@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2))(@dzangolab/fastify-slonik@0.76.2(@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@4.5.0)(fastify@4.10.2)(graphql@16.9.0)(mercurius@14.1.0(graphql@16.9.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
-      '@dzangolab/fastify-mailer': 0.76.2(@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(mjml@4.15.3)
-      '@dzangolab/fastify-slonik': 0.76.2(@dzangolab/fastify-config@0.76.2(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@dzangolab/fastify-config': 0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2)
+      '@dzangolab/fastify-graphql': 0.77.0(@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2))(@dzangolab/fastify-slonik@0.77.0(@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@4.5.0)(fastify@4.10.2)(graphql@16.9.0)(mercurius@14.1.0(graphql@16.9.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@dzangolab/fastify-mailer': 0.77.0(@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(mjml@4.15.3)
+      '@dzangolab/fastify-slonik': 0.77.0(@dzangolab/fastify-config@0.77.0(fastify-plugin@4.5.0)(fastify@4.10.2))(fastify-plugin@4.5.0)(fastify@4.10.2)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       fastify: 4.10.2
       fastify-plugin: 4.5.0
       humps: 2.0.1
@@ -6423,24 +6438,6 @@ snapshots:
 
   '@types/tough-cookie@4.0.5': {}
 
-  '@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint@8.57.1)(typescript@4.9.5)':
-    dependencies:
-      '@eslint-community/regexpp': 4.11.0
-      '@typescript-eslint/parser': 8.14.0(eslint@8.57.1)(typescript@4.9.5)
-      '@typescript-eslint/scope-manager': 8.14.0
-      '@typescript-eslint/type-utils': 8.14.0(eslint@8.57.1)(typescript@4.9.5)
-      '@typescript-eslint/utils': 8.14.0(eslint@8.57.1)(typescript@4.9.5)
-      '@typescript-eslint/visitor-keys': 8.14.0
-      eslint: 8.57.1
-      graphemer: 1.4.0
-      ignore: 5.3.1
-      natural-compare: 1.4.0
-      ts-api-utils: 1.4.3(typescript@4.9.5)
-    optionalDependencies:
-      typescript: 4.9.5
-    transitivePeerDependencies:
-      - supports-color
-
   '@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5)':
     dependencies:
       '@eslint-community/regexpp': 4.11.0
@@ -6459,16 +6456,21 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5)':
+  '@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4)':
     dependencies:
+      '@eslint-community/regexpp': 4.11.0
+      '@typescript-eslint/parser': 8.14.0(eslint@8.57.1)(typescript@5.5.4)
       '@typescript-eslint/scope-manager': 8.14.0
-      '@typescript-eslint/types': 8.14.0
-      '@typescript-eslint/typescript-estree': 8.14.0(typescript@4.9.5)
+      '@typescript-eslint/type-utils': 8.14.0(eslint@8.57.1)(typescript@5.5.4)
+      '@typescript-eslint/utils': 8.14.0(eslint@8.57.1)(typescript@5.5.4)
       '@typescript-eslint/visitor-keys': 8.14.0
-      debug: 4.3.6
       eslint: 8.57.1
+      graphemer: 1.4.0
+      ignore: 5.3.1
+      natural-compare: 1.4.0
+      ts-api-utils: 1.4.3(typescript@5.5.4)
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
 
@@ -6485,22 +6487,23 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4)':
+    dependencies:
+      '@typescript-eslint/scope-manager': 8.14.0
+      '@typescript-eslint/types': 8.14.0
+      '@typescript-eslint/typescript-estree': 8.14.0(typescript@5.5.4)
+      '@typescript-eslint/visitor-keys': 8.14.0
+      debug: 4.3.6
+      eslint: 8.57.1
+    optionalDependencies:
+      typescript: 5.5.4
+    transitivePeerDependencies:
+      - supports-color
+
   '@typescript-eslint/scope-manager@8.14.0':
     dependencies:
       '@typescript-eslint/types': 8.14.0
       '@typescript-eslint/visitor-keys': 8.14.0
-
-  '@typescript-eslint/type-utils@8.14.0(eslint@8.57.1)(typescript@4.9.5)':
-    dependencies:
-      '@typescript-eslint/typescript-estree': 8.14.0(typescript@4.9.5)
-      '@typescript-eslint/utils': 8.14.0(eslint@8.57.1)(typescript@4.9.5)
-      debug: 4.3.6
-      ts-api-utils: 1.4.3(typescript@4.9.5)
-    optionalDependencies:
-      typescript: 4.9.5
-    transitivePeerDependencies:
-      - eslint
-      - supports-color
 
   '@typescript-eslint/type-utils@8.14.0(eslint@8.57.1)(typescript@5.4.5)':
     dependencies:
@@ -6514,22 +6517,19 @@ snapshots:
       - eslint
       - supports-color
 
-  '@typescript-eslint/types@8.14.0': {}
-
-  '@typescript-eslint/typescript-estree@8.14.0(typescript@4.9.5)':
+  '@typescript-eslint/type-utils@8.14.0(eslint@8.57.1)(typescript@5.5.4)':
     dependencies:
-      '@typescript-eslint/types': 8.14.0
-      '@typescript-eslint/visitor-keys': 8.14.0
+      '@typescript-eslint/typescript-estree': 8.14.0(typescript@5.5.4)
+      '@typescript-eslint/utils': 8.14.0(eslint@8.57.1)(typescript@5.5.4)
       debug: 4.3.6
-      fast-glob: 3.3.2
-      is-glob: 4.0.3
-      minimatch: 9.0.5
-      semver: 7.6.3
-      ts-api-utils: 1.4.3(typescript@4.9.5)
+      ts-api-utils: 1.4.3(typescript@5.5.4)
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 5.5.4
     transitivePeerDependencies:
+      - eslint
       - supports-color
+
+  '@typescript-eslint/types@8.14.0': {}
 
   '@typescript-eslint/typescript-estree@8.14.0(typescript@5.4.5)':
     dependencies:
@@ -6546,16 +6546,20 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.14.0(eslint@8.57.1)(typescript@4.9.5)':
+  '@typescript-eslint/typescript-estree@8.14.0(typescript@5.5.4)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.1)
-      '@typescript-eslint/scope-manager': 8.14.0
       '@typescript-eslint/types': 8.14.0
-      '@typescript-eslint/typescript-estree': 8.14.0(typescript@4.9.5)
-      eslint: 8.57.1
+      '@typescript-eslint/visitor-keys': 8.14.0
+      debug: 4.3.6
+      fast-glob: 3.3.2
+      is-glob: 4.0.3
+      minimatch: 9.0.5
+      semver: 7.6.3
+      ts-api-utils: 1.4.3(typescript@5.5.4)
+    optionalDependencies:
+      typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
-      - typescript
 
   '@typescript-eslint/utils@8.14.0(eslint@8.57.1)(typescript@5.4.5)':
     dependencies:
@@ -6563,6 +6567,17 @@ snapshots:
       '@typescript-eslint/scope-manager': 8.14.0
       '@typescript-eslint/types': 8.14.0
       '@typescript-eslint/typescript-estree': 8.14.0(typescript@5.4.5)
+      eslint: 8.57.1
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+
+  '@typescript-eslint/utils@8.14.0(eslint@8.57.1)(typescript@5.5.4)':
+    dependencies:
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.1)
+      '@typescript-eslint/scope-manager': 8.14.0
+      '@typescript-eslint/types': 8.14.0
+      '@typescript-eslint/typescript-estree': 8.14.0(typescript@5.5.4)
       eslint: 8.57.1
     transitivePeerDependencies:
       - supports-color
@@ -6686,6 +6701,10 @@ snapshots:
       estree-walker: 3.0.3
       loupe: 3.1.1
       tinyrainbow: 1.2.0
+
+  '@vue/tsconfig@0.1.3(@types/node@20.12.2)':
+    optionalDependencies:
+      '@types/node': 20.12.2
 
   JSONStream@1.3.5:
     dependencies:
@@ -7650,7 +7669,7 @@ snapshots:
 
   eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0):
     dependencies:
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
 
   eslint-import-resolver-node@0.3.9:
     dependencies:
@@ -7658,25 +7677,6 @@ snapshots:
       is-core-module: 2.15.1
       resolve: 1.22.8
     transitivePeerDependencies:
-      - supports-color
-
-  eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-plugin-import@2.31.0)(eslint@8.57.1):
-    dependencies:
-      '@nolyfill/is-core-module': 1.0.39
-      debug: 4.3.6
-      enhanced-resolve: 5.17.1
-      eslint: 8.57.1
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
-      fast-glob: 3.3.2
-      get-tsconfig: 4.7.6
-      is-bun-module: 1.3.0
-      is-glob: 4.0.3
-    optionalDependencies:
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
-    transitivePeerDependencies:
-      - '@typescript-eslint/parser'
-      - eslint-import-resolver-node
-      - eslint-import-resolver-webpack
       - supports-color
 
   eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-plugin-import@2.31.0)(eslint@8.57.1):
@@ -7698,15 +7698,23 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
+  eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-plugin-import@2.31.0)(eslint@8.57.1):
     dependencies:
-      debug: 3.2.7
-    optionalDependencies:
-      '@typescript-eslint/parser': 8.14.0(eslint@8.57.1)(typescript@4.9.5)
+      '@nolyfill/is-core-module': 1.0.39
+      debug: 4.3.6
+      enhanced-resolve: 5.17.1
       eslint: 8.57.1
-      eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-plugin-import@2.31.0)(eslint@8.57.1)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
+      fast-glob: 3.3.2
+      get-tsconfig: 4.7.6
+      is-bun-module: 1.3.0
+      is-glob: 4.0.3
+    optionalDependencies:
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
     transitivePeerDependencies:
+      - '@typescript-eslint/parser'
+      - eslint-import-resolver-node
+      - eslint-import-resolver-webpack
       - supports-color
 
   eslint-module-utils@2.12.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
@@ -7720,40 +7728,22 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
+    dependencies:
+      debug: 3.2.7
+    optionalDependencies:
+      '@typescript-eslint/parser': 8.14.0(eslint@8.57.1)(typescript@5.5.4)
+      eslint: 8.57.1
+      eslint-import-resolver-node: 0.3.9
+      eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-plugin-import@2.31.0)(eslint@8.57.1)
+    transitivePeerDependencies:
+      - supports-color
+
   eslint-plugin-es@4.1.0(eslint@8.57.1):
     dependencies:
       eslint: 8.57.1
       eslint-utils: 2.1.0
       regexpp: 3.2.0
-
-  eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
-    dependencies:
-      '@rtsao/scc': 1.1.0
-      array-includes: 3.1.8
-      array.prototype.findlastindex: 1.2.5
-      array.prototype.flat: 1.3.2
-      array.prototype.flatmap: 1.3.2
-      debug: 3.2.7
-      doctrine: 2.1.0
-      eslint: 8.57.1
-      eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
-      hasown: 2.0.2
-      is-core-module: 2.15.1
-      is-glob: 4.0.3
-      minimatch: 3.1.2
-      object.fromentries: 2.0.8
-      object.groupby: 1.0.3
-      object.values: 1.2.0
-      semver: 6.3.1
-      string.prototype.trimend: 1.0.8
-      tsconfig-paths: 3.15.0
-    optionalDependencies:
-      '@typescript-eslint/parser': 8.14.0(eslint@8.57.1)(typescript@4.9.5)
-    transitivePeerDependencies:
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - supports-color
 
   eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
     dependencies:
@@ -7779,6 +7769,35 @@ snapshots:
       tsconfig-paths: 3.15.0
     optionalDependencies:
       '@typescript-eslint/parser': 8.14.0(eslint@8.57.1)(typescript@5.4.5)
+    transitivePeerDependencies:
+      - eslint-import-resolver-typescript
+      - eslint-import-resolver-webpack
+      - supports-color
+
+  eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1):
+    dependencies:
+      '@rtsao/scc': 1.1.0
+      array-includes: 3.1.8
+      array.prototype.findlastindex: 1.2.5
+      array.prototype.flat: 1.3.2
+      array.prototype.flatmap: 1.3.2
+      debug: 3.2.7
+      doctrine: 2.1.0
+      eslint: 8.57.1
+      eslint-import-resolver-node: 0.3.9
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
+      hasown: 2.0.2
+      is-core-module: 2.15.1
+      is-glob: 4.0.3
+      minimatch: 3.1.2
+      object.fromentries: 2.0.8
+      object.groupby: 1.0.3
+      object.values: 1.2.0
+      semver: 6.3.1
+      string.prototype.trimend: 1.0.8
+      tsconfig-paths: 3.15.0
+    optionalDependencies:
+      '@typescript-eslint/parser': 8.14.0(eslint@8.57.1)(typescript@5.5.4)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -10551,13 +10570,13 @@ snapshots:
 
   trim-newlines@3.0.1: {}
 
-  ts-api-utils@1.4.3(typescript@4.9.5):
-    dependencies:
-      typescript: 4.9.5
-
   ts-api-utils@1.4.3(typescript@5.4.5):
     dependencies:
       typescript: 5.4.5
+
+  ts-api-utils@1.4.3(typescript@5.5.4):
+    dependencies:
+      typescript: 5.5.4
 
   tsconfig-paths@3.15.0:
     dependencies:
@@ -10662,8 +10681,6 @@ snapshots:
       has-proto: 1.0.3
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
-
-  typescript@4.9.5: {}
 
   typescript@5.4.5: {}
 
