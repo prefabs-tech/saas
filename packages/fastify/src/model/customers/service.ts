@@ -66,7 +66,12 @@ class CustomerService<
       };
     }
 
-    await this.validateSlugOrDomain(data.slug as string, data.domain as string);
+    if (data.slug) {
+      await this.validateSlugOrDomain(
+        data.slug as string,
+        data.domain as string,
+      );
+    }
 
     const query = this.factory.getCreateSql(data);
 
