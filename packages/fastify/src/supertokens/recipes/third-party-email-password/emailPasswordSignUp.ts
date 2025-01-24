@@ -119,6 +119,8 @@ const emailPasswordSignUp = (
             const tokenResponse =
               await EmailVerification.createEmailVerificationToken(
                 originalResponse.user.id,
+                input.email,
+                input.userContext,
               );
 
             if (tokenResponse.status === "OK") {

@@ -6,7 +6,7 @@ import {
   ROLE_SAAS_ACCOUNT_OWNER,
 } from "../../../constants";
 import getHost from "../../../lib/getHost";
-import customerService from "../../../model/customers/service";
+import CustomerService from "../../../model/customers/service";
 
 import type { Customer, CustomerCreateInput } from "../../../types";
 import type { FastifyError, FastifyInstance, FastifyRequest } from "fastify";
@@ -63,20 +63,22 @@ const emailPasswordSignUpPOST = (
     const mainAppDomain = `${saasConfig.mainAppSubdomain}.${saasConfig.rootDomain}`;
 
     if (hostname === mainAppDomain) {
-      const service = new customerService(config, slonik);
+      const customerService = new CustomerService(config, slonik);
 
       const { customerFormFields } = body;
 
       const customerCreateInput: CustomerCreateInput = Object.fromEntries(
         customerFormFields.map(
-          (current: { id: string; value: string | number | boolean }) => [
-            current.id,
-            current.value,
-          ],
+          (customerFormField: {
+            id: string;
+            value: string | number | boolean;
+          }) => [customerFormField.id, customerFormField.value],
         ),
       );
 
-      const customer = (await service.create(
+      // TODO: validate customerCreateInput
+
+      const customer = (await customerService.create(
         customerCreateInput,
       )) as unknown as Customer;
       input.userContext.customer = customer;
@@ -92,6 +94,15 @@ const emailPasswordSignUpPOST = (
       }
 
       input.userContext.saasAccountRole = ROLE_SAAS_ACCOUNT_OWNER;
+
+      const response =
+        await originalImplementation.emailPasswordSignUpPOST(input);
+
+      if (response.status !== "OK") {
+        await customerService.delete(customer.id);
+      }
+
+      return response;
     }
 
     return await originalImplementation.emailPasswordSignUpPOST(input);
