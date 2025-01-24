@@ -1,3 +1,18 @@
+## [0.3.2](https://github.com/12deg/saas/compare/v0.3.1...v0.3.2) (2025-01-24)
+
+
+### Bug Fixes
+
+* fix email verification for saas owner signup ([23d1520](https://github.com/12deg/saas/commit/23d1520efe11d2cdec9f70b2626ae879a8c0eed1))
+
+
+### Features
+
+* delete customer if error in user signup ([77c7783](https://github.com/12deg/saas/commit/77c77832c8e93bb960abfe21b247a0bf894f2c6f))
+* support saas account owner singup from main app ([63a324f](https://github.com/12deg/saas/commit/63a324fb092852bea8569b882f6b9fb70a6de234))
+
+
+
 ## [0.3.1](https://github.com/12deg/saas/compare/v0.3.0...v0.3.1) (2025-01-22)
 
 
