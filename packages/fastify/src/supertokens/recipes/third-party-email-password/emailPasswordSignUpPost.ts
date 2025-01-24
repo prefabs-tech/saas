@@ -69,10 +69,10 @@ const emailPasswordSignUpPOST = (
 
       const customerCreateInput: CustomerCreateInput = Object.fromEntries(
         customerFormFields.map(
-          (current: { id: string; value: string | number | boolean }) => [
-            current.id,
-            current.value,
-          ],
+          (customerFormField: {
+            id: string;
+            value: string | number | boolean;
+          }) => [customerFormField.id, customerFormField.value],
         ),
       );
 
