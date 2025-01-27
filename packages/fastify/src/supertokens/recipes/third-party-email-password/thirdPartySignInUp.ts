@@ -22,9 +22,9 @@ const thirdPartySignInUp = (
   const { config, log, slonik } = fastify;
 
   return async (input) => {
-    const roles = (input.userContext.roles || []) as string[];
-    const customer: Customer | undefined = input.userContext.customer;
-    const authEmailPrefix: boolean = input.userContext.authEmailPrefix;
+    const roles = (input.userContext?.roles || []) as string[];
+    const customer: Customer | undefined = input.userContext?.customer;
+    const authEmailPrefix: boolean = input.userContext?.authEmailPrefix;
 
     input.thirdPartyUserId = authEmailPrefix + input.thirdPartyUserId;
 
@@ -48,7 +48,7 @@ const thirdPartySignInUp = (
     const userService = getUserService(
       config,
       slonik,
-      input.userContext.dbSchema,
+      input.userContext?.dbSchema,
     );
 
     if (originalResponse.createdNewUser) {
@@ -104,7 +104,7 @@ const thirdPartySignInUp = (
         const customerUserService = new CustomerUserService(
           config,
           slonik,
-          input.userContext.dbSchema,
+          input.userContext?.dbSchema,
         );
         await customerUserService.create({
           customerId: customer.id,

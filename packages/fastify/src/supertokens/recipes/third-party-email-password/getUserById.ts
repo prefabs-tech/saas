@@ -16,7 +16,7 @@ const getUserById = (
         ...user,
         email: Email.removePrefix(
           user.email,
-          input.userContext.authEmailPrefix,
+          input.userContext?.authEmailPrefix,
         ),
       };
     }

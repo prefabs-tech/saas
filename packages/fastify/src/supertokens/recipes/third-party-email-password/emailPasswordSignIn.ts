@@ -16,7 +16,7 @@ const emailPasswordSignIn = (
   return async (input) => {
     input.email = Email.addPrefix(
       input.email,
-      input.userContext.authEmailPrefix,
+      input.userContext?.authEmailPrefix,
     );
 
     const originalResponse =
@@ -29,7 +29,7 @@ const emailPasswordSignIn = (
     const userService = getUserService(
       config,
       slonik,
-      input.userContext.dbSchema,
+      input.userContext?.dbSchema,
     );
 
     const user = await userService.findById(originalResponse.user.id);

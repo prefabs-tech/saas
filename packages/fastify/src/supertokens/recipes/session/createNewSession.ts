@@ -22,7 +22,7 @@ const createNewSession = (
       | FastifyRequest
       | undefined;
 
-    const customer = (input.userContext.customer || request?.customer) as
+    const customer = (input.userContext?.customer || request?.customer) as
       | Customer
       | undefined;
 

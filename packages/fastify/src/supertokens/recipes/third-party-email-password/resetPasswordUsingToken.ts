@@ -14,7 +14,9 @@ const resetPasswordUsingToken = (
 
     if (originalResponse.status === "OK" && originalResponse.userId) {
       const user = await getUserById(originalResponse.userId, {
-        customer: input.userContext._default.request.request.authEmailPrefix,
+        authEmailPrefix:
+          input.userContext._default.request.request.authEmailPrefix,
+        customer: input.userContext._default.request.request.customer,
       });
 
       if (user) {

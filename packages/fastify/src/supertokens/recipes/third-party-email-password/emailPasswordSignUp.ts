@@ -23,7 +23,7 @@ const emailPasswordSignUp = (
   const { config, log, slonik } = fastify;
 
   return async (input) => {
-    const roles = (input.userContext.roles || []) as string[];
+    const roles = (input.userContext?.roles || []) as string[];
 
     if (!(await areRolesExist(roles))) {
       log.error(`At least one role from ${roles.join(", ")} does not exist.`);
@@ -39,7 +39,7 @@ const emailPasswordSignUp = (
 
     input.email = Email.addPrefix(
       originalEmail,
-      input.userContext.authEmailPrefix,
+      input.userContext?.authEmailPrefix,
     );
 
     const originalResponse =
@@ -49,7 +49,7 @@ const emailPasswordSignUp = (
       const userService = getUserService(
         config,
         slonik,
-        input.userContext.dbSchema,
+        input.userContext?.dbSchema,
       );
 
       let user: User | null | undefined;
@@ -77,7 +77,7 @@ const emailPasswordSignUp = (
         };
       }
 
-      if (input.userContext.customer) {
+      if (input.userContext?.customer) {
         const customerUserService = new CustomerUserService(
           config,
           slonik,
@@ -111,9 +111,9 @@ const emailPasswordSignUp = (
 
       if (config.user.features?.signUp?.emailVerification) {
         try {
-          if (input.userContext.autoVerifyEmail) {
+          if (input.userContext?.autoVerifyEmail) {
             // auto verify email
-            await verifyEmail(user.id);
+            await verifyEmail(user.id, input.email, input.userContext);
           } else {
             // send email verification
             const tokenResponse =

@@ -52,7 +52,7 @@ const sendPasswordResetEmail = (
       templateName: "reset-password",
       to: Email.removePrefix(
         input.user.email,
-        input.userContext.authEmailPrefix,
+        input.userContext?.authEmailPrefix,
       ),
       templateData: {
         passwordResetLink,
