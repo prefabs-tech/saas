@@ -1,6 +1,6 @@
 export interface Customer {
   database: string | null;
-  domain: string;
+  domain: string | null;
   id: string;
   individual: boolean;
   name: string;
