@@ -1,23 +1,33 @@
-import { useAccounts } from "@/hooks";
 import { LoadingIcon, Select } from "@dzangolab/react-ui";
-import { useEffect, useState } from "react";
 
-export const AccountSwitcher = () => {
+import { useAccounts } from "@/hooks";
+import { Customer } from "@/types/customer";
+
+type Properties = {
+  label?: string;
+  onSwitch?: (account?: Customer) => void;
+};
+
+export const AccountSwitcher = ({
+  label = "Switch account",
+  onSwitch,
+}: Properties) => {
   const { accounts, activeAccount, loading, switchAccount } = useAccounts();
 
-  const [account, setAccount] = useState(activeAccount?.id || "");
-
-  useEffect(() => {
-    if (account) {
-      const newActiveAccount = accounts.find(
-        (_account) => _account.id === account,
-      );
-
-      if (newActiveAccount) {
-        switchAccount(newActiveAccount);
-      }
+  const handleSelect = (accountId: string) => {
+    if (accountId === activeAccount?.id) {
+      return;
     }
-  }, [account]);
+
+    const newActiveAccount = accounts.find(
+      (_account) => _account.id === accountId,
+    );
+
+    if (newActiveAccount) {
+      switchAccount(newActiveAccount);
+      onSwitch && onSwitch(newActiveAccount);
+    }
+  };
 
   if (loading) {
     return <LoadingIcon />;
@@ -25,14 +35,14 @@ export const AccountSwitcher = () => {
 
   return (
     <Select
-      label="Switch account"
+      label={label}
       options={accounts.map((account) => ({
         label: account.name,
         value: account.id,
       }))}
-      value={account}
+      value={activeAccount?.id || ""}
       name="account"
-      onChange={setAccount}
+      onChange={handleSelect}
       multiple={false}
     ></Select>
   );

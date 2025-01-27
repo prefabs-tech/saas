@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 
 import { getMyAccounts } from "@/api/accounts";
 import { STORAGE_KEY_DEFAULT } from "@/constants";
@@ -10,13 +10,13 @@ export interface AccountsContextType {
   loading: boolean;
   error: boolean;
   switchAccount: (account: Customer | null) => void;
+  updateAccounts: (accounts: Customer[]) => void;
 }
 
 interface Properties {
   config: {
     apiBaseUrl: string;
     autoSelectAccount?: boolean;
-    disablePersistence?: boolean;
     allowMultipleSessions?: boolean; // disablePersistence must be false
     customStorageKey?: string;
   };
@@ -36,46 +36,96 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
   const {
     apiBaseUrl,
     autoSelectAccount,
-    disablePersistence,
     customStorageKey = STORAGE_KEY_DEFAULT,
     allowMultipleSessions = true,
   } = config;
 
-  const updateAccounts = (newAccounts: Array<Customer>) => {
-    setAccounts(newAccounts);
+  const switchAccount = useCallback(
+    (newAccount: Customer | null) => {
+      setLoading(true);
 
-    if (!newAccounts?.length) {
-      return setActiveAccount(null);
-    }
+      setActiveAccount(newAccount);
 
-    // most likely run when app loads for the first time or page refresh
-    if (!disablePersistence && !activeAccount) {
-      const savedAccountId = allowMultipleSessions
-        ? sessionStorage.getItem(customStorageKey)
-        : localStorage.getItem(customStorageKey);
+      if (newAccount) {
+        localStorage.setItem(customStorageKey, `${newAccount.id}`);
 
-      if (savedAccountId) {
-        const newActiveAccount = newAccounts.find(
-          (nAccount) => nAccount.id === savedAccountId,
+        if (allowMultipleSessions) {
+          sessionStorage.setItem(customStorageKey, `${newAccount.id}`);
+        }
+      } else {
+        if (allowMultipleSessions) {
+          sessionStorage.removeItem(customStorageKey);
+        }
+
+        localStorage.removeItem(customStorageKey);
+      }
+
+      setLoading(false);
+    },
+    [setLoading, setActiveAccount],
+  );
+
+  const computeNewActiveAccount = useCallback(
+    (newAccounts: Customer[]) => {
+      if (!newAccounts?.length) {
+        return null;
+      }
+
+      const newActiveAccount: Customer | null = autoSelectAccount
+        ? newAccounts[0]
+        : null;
+
+      if (!activeAccount) {
+        // check if saved accountId is present in newAccounts, return it if found
+        let savedAccountId = localStorage.getItem(customStorageKey);
+
+        if (allowMultipleSessions) {
+          const sessionSavedAccountId =
+            sessionStorage.getItem(customStorageKey);
+
+          savedAccountId = sessionSavedAccountId
+            ? sessionSavedAccountId
+            : savedAccountId;
+        }
+
+        if (!savedAccountId) {
+          return newActiveAccount;
+        }
+
+        const savedAccountIndex = newAccounts.findIndex(
+          (account) => account.id === savedAccountId,
         );
 
-        if (newActiveAccount) {
-          return setActiveAccount(newActiveAccount);
-        }
-      }
-    }
-
-    if (autoSelectAccount) {
-      if (newAccounts.length === 1) {
-        return setActiveAccount(newAccounts[0]);
+        return savedAccountIndex !== -1
+          ? newAccounts[savedAccountIndex]
+          : newActiveAccount;
       }
 
-      const newActiveAccount = newAccounts.find(
-        (nAccount) => nAccount.id === activeAccount?.id,
+      const previousAccountIndex = newAccounts.findIndex(
+        (account) => account.id === activeAccount.id,
       );
-      setActiveAccount(newActiveAccount || null);
-    }
-  };
+
+      return previousAccountIndex !== -1
+        ? newAccounts[previousAccountIndex]
+        : newActiveAccount;
+    },
+    [activeAccount],
+  );
+
+  const updateAccounts = useCallback(
+    (newAccounts: Array<Customer>) => {
+      setLoading(true);
+
+      setAccounts(newAccounts);
+
+      const newActiveAccount = computeNewActiveAccount(newAccounts);
+
+      switchAccount(newActiveAccount);
+
+      setLoading(false);
+    },
+    [setLoading, switchAccount, computeNewActiveAccount],
+  );
 
   useEffect(() => {
     if (userId) {
@@ -83,7 +133,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
 
       getMyAccounts({ apiBaseUrl })
         .then((accounts) => {
-          updateAccounts(accounts as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+          updateAccounts(accounts);
         })
         .catch((error) => {
           setError(true);
@@ -91,30 +141,8 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         .finally(() => {
           setLoading(false);
         });
-    } else {
-      updateAccounts([]);
     }
   }, [userId]);
-
-  useEffect(() => {
-    if (disablePersistence) {
-      return;
-    }
-
-    if (activeAccount) {
-      localStorage.setItem(customStorageKey, `${activeAccount.id}`);
-
-      if (allowMultipleSessions) {
-        sessionStorage.setItem(customStorageKey, `${activeAccount.id}`);
-      }
-    } else {
-      localStorage.removeItem(customStorageKey);
-
-      if (allowMultipleSessions) {
-        sessionStorage.removeItem(customStorageKey);
-      }
-    }
-  }, [activeAccount]);
 
   return (
     <accountsContext.Provider
@@ -123,7 +151,8 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         activeAccount,
         loading,
         error,
-        switchAccount: setActiveAccount,
+        switchAccount,
+        updateAccounts,
       }}
     >
       {loading ? null : children}
