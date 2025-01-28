@@ -1,21 +1,39 @@
-import React, { createContext, useCallback, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import { getMyAccounts } from "@/api/accounts";
 import { STORAGE_KEY_DEFAULT } from "@/constants";
 import { Customer } from "@/types/customer";
 
 export interface AccountsContextType {
-  accounts: Array<Customer>;
+  accounts: Array<Customer> | null;
   activeAccount: Customer | null;
   loading: boolean;
   error: boolean;
-  switchAccount: (account: Customer | null) => void;
+  accountLoading: boolean;
+  meta: {
+    subdomain: string;
+    isMainApp: boolean;
+    mainAppSubdomain: string;
+    rootDomain: string;
+  };
+  switchAccount: (
+    account: Customer | null,
+    options?: { clearState?: boolean },
+  ) => void;
   updateAccounts: (accounts: Customer[]) => void;
 }
 
 interface Properties {
   config: {
     apiBaseUrl: string;
+    mainAppSubdomain: string;
+    rootDomain: string;
     autoSelectAccount?: boolean;
     allowMultipleSessions?: boolean; // disablePersistence must be false
     customStorageKey?: string;
@@ -29,20 +47,29 @@ export const accountsContext = createContext<AccountsContextType | null>(null);
 const AccountsProvider = ({ config, userId, children }: Properties) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [accountLoading, setAccountLoading] = useState(false);
 
-  const [accounts, setAccounts] = useState<Array<Customer>>([]);
+  const [accounts, setAccounts] = useState<Array<Customer> | null>(null);
   const [activeAccount, setActiveAccount] = useState<Customer | null>(null);
 
   const {
     apiBaseUrl,
+    mainAppSubdomain,
+    rootDomain,
     autoSelectAccount,
     customStorageKey = STORAGE_KEY_DEFAULT,
     allowMultipleSessions = true,
   } = config;
 
+  const subdomain = window.location.hostname.split(".")[0];
+  const isMainApp = useMemo(() => subdomain === mainAppSubdomain, [subdomain]);
+
   const switchAccount = useCallback(
-    (newAccount: Customer | null) => {
-      setLoading(true);
+    (
+      newAccount: Customer | null,
+      { clearState = true }: { clearState?: boolean } = {},
+    ) => {
+      setAccountLoading(true);
 
       setActiveAccount(newAccount);
 
@@ -52,7 +79,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         if (allowMultipleSessions) {
           sessionStorage.setItem(customStorageKey, `${newAccount.id}`);
         }
-      } else {
+      } else if (clearState) {
         if (allowMultipleSessions) {
           sessionStorage.removeItem(customStorageKey);
         }
@@ -60,7 +87,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         localStorage.removeItem(customStorageKey);
       }
 
-      setLoading(false);
+      setAccountLoading(false);
     },
     [setLoading, setActiveAccount],
   );
@@ -69,6 +96,18 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
     (newAccounts: Customer[]) => {
       if (!newAccounts?.length) {
         return null;
+      }
+
+      if (!isMainApp) {
+        const accountIndex = newAccounts.findIndex(
+          (account) => account.slug === subdomain,
+        );
+
+        if (accountIndex === -1) {
+          throw new Error("Account not found for user");
+        }
+
+        return newAccounts[accountIndex];
       }
 
       const newActiveAccount: Customer | null = autoSelectAccount
@@ -109,7 +148,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         ? newAccounts[previousAccountIndex]
         : newActiveAccount;
     },
-    [activeAccount],
+    [activeAccount, subdomain],
   );
 
   const updateAccounts = useCallback(
@@ -120,7 +159,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
 
       const newActiveAccount = computeNewActiveAccount(newAccounts);
 
-      switchAccount(newActiveAccount);
+      switchAccount(newActiveAccount, { clearState: false });
 
       setLoading(false);
     },
@@ -151,6 +190,13 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         activeAccount,
         loading,
         error,
+        accountLoading,
+        meta: {
+          subdomain,
+          isMainApp,
+          mainAppSubdomain,
+          rootDomain,
+        },
         switchAccount,
         updateAccounts,
       }}

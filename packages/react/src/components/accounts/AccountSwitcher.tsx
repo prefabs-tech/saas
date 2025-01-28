@@ -12,14 +12,15 @@ export const AccountSwitcher = ({
   label = "Switch account",
   onSwitch,
 }: Properties) => {
-  const { accounts, activeAccount, loading, switchAccount } = useAccounts();
+  const { accounts, activeAccount, loading, meta, switchAccount } =
+    useAccounts();
 
   const handleSelect = (accountId: string) => {
     if (accountId === activeAccount?.id) {
       return;
     }
 
-    const newActiveAccount = accounts.find(
+    const newActiveAccount = accounts?.find(
       (_account) => _account.id === accountId,
     );
 
@@ -29,7 +30,7 @@ export const AccountSwitcher = ({
     }
   };
 
-  if (loading) {
+  if (loading || !accounts) {
     return <LoadingIcon />;
   }
 
@@ -37,7 +38,7 @@ export const AccountSwitcher = ({
     <Select
       label={label}
       options={accounts.map((account) => ({
-        label: account.name,
+        label: `${account.name} (${account.id})`,
         value: account.id,
       }))}
       value={activeAccount?.id || ""}
