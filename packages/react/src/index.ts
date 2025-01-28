@@ -4,6 +4,7 @@ import type { AppConfig } from "@dzangolab/react-config";
 import { AccountSwitcher } from "./components/accounts";
 import { CustomerForm, CustomersTable } from "./components/customer";
 import { Customer } from "./components/customer/Customer";
+import { SignupForm } from "./components/user/signup";
 import AccountsProvider, { accountsContext } from "./contexts/AccountsProvider";
 
 import "./assets/css/index.css";
@@ -25,6 +26,7 @@ export {
   CustomerForm,
   CustomersTable,
   Customer,
+  SignupForm,
 
   // contexts
   accountsContext,

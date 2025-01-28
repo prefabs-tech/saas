@@ -12,8 +12,7 @@ export const AccountSwitcher = ({
   label = "Switch account",
   onSwitch,
 }: Properties) => {
-  const { accounts, activeAccount, loading, meta, switchAccount } =
-    useAccounts();
+  const { accounts, activeAccount, loading, switchAccount } = useAccounts();
 
   const handleSelect = (accountId: string) => {
     if (accountId === activeAccount?.id) {
