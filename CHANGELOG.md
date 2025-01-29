@@ -1,3 +1,12 @@
+## [0.3.3](https://github.com/12deg/saas/compare/v0.3.2...v0.3.3) (2025-01-27)
+
+
+### Bug Fixes
+
+* fix email password signup with auto verify user context enabled ([c59e832](https://github.com/12deg/saas/commit/c59e83243e07ce6d2a91bde98d66464fab720642))
+
+
+
 ## [0.3.2](https://github.com/12deg/saas/compare/v0.3.1...v0.3.2) (2025-01-24)
 
 
