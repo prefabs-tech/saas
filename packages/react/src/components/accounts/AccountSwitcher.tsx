@@ -8,10 +8,7 @@ type Properties = {
   onSwitch?: (account?: Customer) => void;
 };
 
-export const AccountSwitcher = ({
-  label = "Switch account",
-  onSwitch,
-}: Properties) => {
+export const AccountSwitcher = ({ label, onSwitch }: Properties) => {
   const { accounts, activeAccount, loading, switchAccount } = useAccounts();
 
   const handleSelect = (accountId: string) => {
@@ -37,7 +34,7 @@ export const AccountSwitcher = ({
     <Select
       label={label}
       options={accounts.map((account) => ({
-        label: `${account.name} (${account.id})`,
+        label: `${account.name}`,
         value: account.id,
       }))}
       value={activeAccount?.id || ""}
