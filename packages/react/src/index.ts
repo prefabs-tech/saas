@@ -1,6 +1,7 @@
 import { AccountSwitcher } from "./components/accounts";
 import { CustomerForm, CustomersTable } from "./components/customer";
 import { Customer } from "./components/customer/Customer";
+import { CustomerSignupForm } from "./components/customer/Signup";
 import AccountsProvider, { accountsContext } from "./contexts/AccountsProvider";
 import "./assets/css/index.css";
 import { SaasOptions } from "./types";
@@ -23,6 +24,7 @@ export {
   CustomerForm,
   CustomersTable,
   Customer,
+  CustomerSignupForm,
 
   // contexts
   accountsContext,
