@@ -35,7 +35,7 @@ interface Properties {
     mainAppSubdomain: string;
     rootDomain: string;
     autoSelectAccount?: boolean;
-    allowMultipleSessions?: boolean; // disablePersistence must be false
+    allowMultipleSessions?: boolean;
     customStorageKey?: string;
   };
   userId?: string;

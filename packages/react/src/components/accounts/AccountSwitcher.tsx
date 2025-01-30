@@ -1,15 +1,27 @@
-import { LoadingIcon, Select } from "@dzangolab/react-ui";
+import { useTranslation } from "@dzangolab/react-i18n";
+import { DropdownMenu, LoadingIcon } from "@dzangolab/react-ui";
 
 import { useAccounts } from "@/hooks";
 import { Customer } from "@/types/customer";
 
 type Properties = {
-  label?: string;
+  emptyLabel?: string;
+  noHelperText?: boolean;
   onSwitch?: (account?: Customer) => void;
 };
 
-export const AccountSwitcher = ({ label, onSwitch }: Properties) => {
+export const AccountSwitcher = ({
+  emptyLabel,
+  noHelperText = true,
+  onSwitch,
+}: Properties) => {
+  const { t } = useTranslation("accounts");
+
   const { accounts, activeAccount, loading, switchAccount } = useAccounts();
+
+  const label = activeAccount
+    ? activeAccount.name
+    : emptyLabel || t("switcher.emptyLabel");
 
   const handleSelect = (accountId: string) => {
     if (accountId === activeAccount?.id) {
@@ -31,16 +43,15 @@ export const AccountSwitcher = ({ label, onSwitch }: Properties) => {
   }
 
   return (
-    <Select
-      label={label}
-      options={accounts.map((account) => ({
-        label: `${account.name}`,
-        value: account.id,
-      }))}
-      value={activeAccount?.id || ""}
-      name="account"
-      onChange={handleSelect}
-      multiple={false}
-    ></Select>
+    <div className="account-switcher">
+      {!noHelperText && <small>{t("switcher.helper")}</small>}
+      <DropdownMenu
+        label={label}
+        menu={accounts.map((account) => ({
+          label: `${account.name}`,
+          onClick: () => handleSelect(account.id),
+        }))}
+      ></DropdownMenu>
+    </div>
   );
 };
