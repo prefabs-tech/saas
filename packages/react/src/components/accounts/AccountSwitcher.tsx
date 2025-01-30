@@ -12,7 +12,7 @@ type Properties = {
 
 export const AccountSwitcher = ({
   emptyLabel,
-  noHelperText = true,
+  noHelperText = false,
   onSwitch,
 }: Properties) => {
   const { t } = useTranslation("accounts");
