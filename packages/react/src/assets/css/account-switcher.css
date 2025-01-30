@@ -1,0 +1,11 @@
+.account-switcher {
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-switcher > small {
+  color: var(--dz-secondary-color, #555);
+  padding-left: 0.65rem;
+  margin-top: -1rem;
+}
