@@ -166,7 +166,7 @@ importers:
   packages/react:
     dependencies:
       axios:
-        specifier: ^1.7.9
+        specifier: 1.7.9
         version: 1.7.9(debug@4.3.6)
     devDependencies:
       '@12deg/eslint-config':
