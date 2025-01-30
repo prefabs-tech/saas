@@ -1,75 +1,45 @@
-import { z } from "zod";
+import { customerCreateInputSchema } from "../schemas";
+import getInvalidDomains from "./getInvalidDomains";
+import getInvalidSlugs from "./getInvalidSlugs";
+import getSaasConfig from "../config";
 
-import type { CustomerCreateInput, CustomerUpdateInput } from "../types";
+import type { CustomerCreateInput } from "../types";
 import type { ApiConfig } from "@dzangolab/fastify-config";
 
-const domainSchema = z.optional(
-  z
-    .string()
-    .max(255)
-    .regex(/^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/),
-);
-
-const slugSchema = z.optional(
-  z.string().regex(/^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/),
-);
-
-const validateCustomerInput = (customerInput: CustomerCreateInput) => {
-  const customerInputSchema = z.object({
-    slug: slugSchema,
-    domain: domainSchema,
-  });
-
-  const validationResult = customerInputSchema.safeParse({
-    slug: customerInput.slug,
-    domain: customerInput.domain,
-  });
-
-  if (!validationResult.success) {
-    if (
-      validationResult.error.issues.some((issue) => {
-        return issue.path.includes("slug");
-      })
-    ) {
-      throw {
-        name: "ERROR_INVALID_SLUG",
-        message: "Invalid slug",
-        statusCode: 422,
-      };
-    }
-
-    throw {
-      name: "ERROR_INVALID_DOMAIN",
-      message: "Invalid domain",
-      statusCode: 422,
-    };
-  }
-};
-
-const validateCustomerUpdate = (
+const validateCustomerInput = (
   config: ApiConfig,
-  customerUpdateInput: CustomerUpdateInput,
+  customerInput: CustomerCreateInput,
 ) => {
-  const customerInputSchema = z.object({
-    domain: domainSchema,
-  });
+  const saasConfig = getSaasConfig(config);
+  const customerInputSchema = customerCreateInputSchema(saasConfig);
 
-  const validationResult = customerInputSchema.safeParse({
-    domain: customerUpdateInput.domain,
-  });
+  const validationResult = customerInputSchema.safeParse(customerInput);
 
   if (!validationResult.success) {
+    const errorField = validationResult.error.issues[0]?.path?.[0] || "unknown";
+
+    throw {
+      name: `ERROR_INVALID_${errorField}`.toUpperCase(),
+      message: `Invalid ${errorField}`,
+      statusCode: 422,
+    };
+  }
+
+  if (getInvalidSlugs(config).includes(customerInput.slug as string)) {
+    throw {
+      name: "ERROR_INVALID_SLUG",
+      message: `The requested slug "${customerInput.slug}" is invalid and cannot be used`,
+      statusCode: 422,
+    };
+  }
+
+  if (getInvalidDomains(config).includes(customerInput.domain as string)) {
     throw {
       name: "ERROR_INVALID_DOMAIN",
-      message: "Invalid domain",
+      message: `The requested domain "${customerInput.domain}" is invalid and cannot be used`,
       statusCode: 422,
     };
   }
 };
 
-export {
-  domainSchema,
-  slugSchema,
-  validateCustomerInput,
-  validateCustomerUpdate,
-};
+export { validateCustomerInput };
