@@ -5,8 +5,6 @@ import { customAlphabet } from "nanoid";
 import CustomerSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
 import { NANOID_ALPHABET, NANOID_SIZE } from "../../constants";
-import getInvalidDomains from "../../lib/getInvalidDomains";
-import getInvalidSlugs from "../../lib/getInvalidSlugs";
 import { validateCustomerInput } from "../../lib/validateCustomerSchema";
 import runCustomerMigrations from "../../migrations/runCustomerMigrations";
 
@@ -26,12 +24,12 @@ class CustomerService<
   implements Service<Customer, CustomerCreateInput, CustomerUpdateInput>
 {
   create = async (data: CustomerCreateInput): Promise<Customer | undefined> => {
-    // This handles the empty string issue.
-    if (data.slug === "") {
+    if (this.saasConfig.subdomains === "disabled" || data.slug === "") {
       delete data.slug;
+      delete data.domain;
     }
 
-    if (data.domain === "") {
+    if (this.saasConfig.subdomains === "disabled" || data.domain === "") {
       delete data.domain;
     }
 
@@ -48,23 +46,7 @@ class CustomerService<
 
     delete data.useSeparateDatabase;
 
-    validateCustomerInput(data);
-
-    if (getInvalidSlugs(this.config).includes(data.slug as string)) {
-      throw {
-        name: "ERROR_RESERVED_SLUG",
-        message: `The requested slug "${data.slug}" is reserved and cannot be used`,
-        statusCode: 422,
-      };
-    }
-
-    if (getInvalidDomains(this.config).includes(data.domain as string)) {
-      throw {
-        name: "ERROR_RESERVED_DOMAIN",
-        message: `The requested domain "${data.domain}" is reserved and cannot be used`,
-        statusCode: 422,
-      };
-    }
+    validateCustomerInput(this.config, data);
 
     if (data.slug) {
       await this.validateSlugOrDomain(
