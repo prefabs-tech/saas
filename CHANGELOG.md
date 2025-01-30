@@ -1,3 +1,12 @@
+## [0.3.4](https://github.com/12deg/saas/compare/v0.3.3...v0.3.4) (2025-01-30)
+
+
+### Bug Fixes
+
+* fix validation on create customer ([#28](https://github.com/12deg/saas/issues/28)) ([9ad616f](https://github.com/12deg/saas/commit/9ad616f0ef252e15fab69b156351f3c7e851fed8))
+
+
+
 ## [0.3.3](https://github.com/12deg/saas/compare/v0.3.2...v0.3.3) (2025-01-27)
 
 
