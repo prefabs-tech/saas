@@ -1,8 +1,7 @@
 import { FormActions, Provider, TextInput } from "@dzangolab/react-form";
 import { useTranslation } from "@dzangolab/react-i18n";
 
-import { Customer } from "../../types";
-
+import type { Customer } from "@/types";
 interface Properties {
   customer?: Customer;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -8,11 +8,11 @@ import {
 } from "@dzangolab/react-ui";
 import React from "react";
 
-import type { Customer } from "../../types";
+import type { Customer } from "@/types";
 
 type VisibleColumn = "name" | "taxId" | "type" | string;
 
-export interface Properties
+export interface CustomersTableProperties
   extends Partial<
     Omit<
       TDataTableProperties<Customer>,
@@ -38,7 +38,7 @@ export const CustomersTable = ({
     "type",
   ],
   ...tableOptions
-}: Properties) => {
+}: CustomersTableProperties) => {
   const { t } = useTranslation("customers");
 
   const defaultColumns: Array<TableColumnDefinition<Customer>> = [
