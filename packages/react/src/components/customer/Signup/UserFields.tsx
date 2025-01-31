@@ -1,9 +1,17 @@
 import { Email, Password, useFormContext } from "@dzangolab/react-form";
 import { useTranslation } from "@dzangolab/react-i18n";
 import { Checkbox } from "@dzangolab/react-ui";
-import React from "react";
+import React, { ReactNode } from "react";
 
-export const UserFields: React.FC = () => {
+type Properties = {
+  showTermsAndConditions?: boolean;
+  termsAndConditionsLabel?: string;
+};
+
+export const UserFields: React.FC<Properties> = ({
+  showTermsAndConditions = true,
+  termsAndConditionsLabel,
+}) => {
   const { t } = useTranslation("accounts");
 
   const {
@@ -35,10 +43,9 @@ export const UserFields: React.FC = () => {
         getFieldState={getFieldState}
         submitCount={submitCount}
       />
-      <Checkbox
-        name="agreement"
-        label="I agree to all the Terms and Conditions"
-      ></Checkbox>
+      {showTermsAndConditions && (
+        <Checkbox name="agreement" label={termsAndConditionsLabel}></Checkbox>
+      )}
     </>
   );
 };

@@ -8,12 +8,16 @@ import { CustomerSignupFormFields } from "./CustomerSignupFormFields";
 
 export type CustomerSignupProperties = {
   loading?: boolean;
+  showTermsAndConditions?: boolean;
+  termsAndConditionsLabel?: string;
   handleSubmit: (formData: CustomerSignupData) => void;
   onFormStepChange?: (activeStep: number) => void;
 };
 
 export const CustomerSignupForm = ({
   loading,
+  showTermsAndConditions,
+  termsAndConditionsLabel,
   handleSubmit,
   onFormStepChange,
 }: CustomerSignupProperties) => {
@@ -29,7 +33,7 @@ export const CustomerSignupForm = ({
       .max(255, {
         message: t("customer.form.validations.name.invalid"),
       })
-      .nonempty({
+      .min(1, {
         message: t("customer.form.validations.name.required"),
       }),
     individual: z.boolean(),
@@ -112,6 +116,8 @@ export const CustomerSignupForm = ({
       >
         <CustomerSignupFormFields
           loading={loading}
+          showTermsAndConditions={showTermsAndConditions}
+          termsAndConditionsLabel={termsAndConditionsLabel}
           onFormStepChange={onFormStepChange}
         />
       </Provider>

@@ -7,11 +7,15 @@ import { UserFields } from "./UserFields";
 
 export type CustomerSignupFormFieldsProperties = {
   loading?: boolean;
+  showTermsAndConditions?: boolean;
+  termsAndConditionsLabel?: string;
   onFormStepChange?: (activeStep: number) => void;
 };
 
 export const CustomerSignupFormFields = ({
   loading,
+  showTermsAndConditions,
+  termsAndConditionsLabel,
   onFormStepChange,
 }: CustomerSignupFormFieldsProperties) => {
   const { t } = useTranslation("accounts");
@@ -73,7 +77,12 @@ export const CustomerSignupFormFields = ({
       case 2:
         return <CustomerFields step={2} />;
       case 3:
-        return <UserFields />;
+        return (
+          <UserFields
+            showTermsAndConditions={showTermsAndConditions}
+            termsAndConditionsLabel={termsAndConditionsLabel}
+          />
+        );
     }
   };
 
