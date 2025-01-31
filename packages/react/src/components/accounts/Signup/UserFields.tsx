@@ -5,7 +5,7 @@ import React, { ReactNode } from "react";
 
 type Properties = {
   showTermsAndConditions?: boolean;
-  termsAndConditionsLabel?: string;
+  termsAndConditionsLabel?: ReactNode;
 };
 
 export const UserFields: React.FC<Properties> = ({
@@ -15,29 +15,30 @@ export const UserFields: React.FC<Properties> = ({
   const { t } = useTranslation("accounts");
 
   const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    formState: { errors, submitCount },
     register,
     getFieldState,
-    formState: { errors, submitCount },
   } = useFormContext();
 
   return (
     <>
       <Email
-        label={t("customer.form.fields.email.label")}
+        label={t("signup.fields.email.label")}
         name="email"
-        placeholder={t("customer.form.fields.email.placeholder")}
+        placeholder={t("signup.fields.email.placeholder")}
         submitCount={submitCount}
       />
       <Password
-        label={t("customer.form.fields.password.label")}
+        label={t("signup.fields.password.label")}
         name="password"
         register={register}
         getFieldState={getFieldState}
         submitCount={submitCount}
-        helperText={t("customer.form.fields.password.helper")}
+        helperText={t("signup.fields.password.helper")}
       />
       <Password
-        label={t("customer.form.fields.confirmPassword")}
+        label={t("signup.fields.confirmPassword")}
         name="confirmPassword"
         register={register}
         getFieldState={getFieldState}

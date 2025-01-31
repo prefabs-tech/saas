@@ -27,30 +27,28 @@ export const CustomerFields = ({ step }: Properties) => {
 
   return (
     <>
-      {step === 0 && (
-        <TextInput label={t("customer.form.fields.name")} name="name" />
-      )}
+      {step === 0 && <TextInput label={t("signup.fields.name")} name="name" />}
 
       {step === 1 && (
         <>
           <p>
-            <strong>{t("customer.form.fieldsGroup.accountType")}</strong>
+            <strong>{t("signup.fieldsGroup.accountType")}</strong>
           </p>
           <SwitchInput
-            label={t("customer.form.fields.individual")}
+            label={t("signup.fields.individual")}
             name="individual"
           />
           {!individual && (
             <fieldset>
               <TextInput
-                label={t("customer.form.fields.organizationName")}
+                label={t("signup.fields.organizationName")}
                 name="organizationName"
               />
               <TextInput
-                label={t("customer.form.fields.registeredNumber")}
+                label={t("signup.fields.registeredNumber")}
                 name="registeredNumber"
               />
-              <TextInput label={t("customer.form.fields.taxId")} name="taxId" />
+              <TextInput label={t("signup.fields.taxId")} name="taxId" />
             </fieldset>
           )}{" "}
         </>
@@ -59,15 +57,15 @@ export const CustomerFields = ({ step }: Properties) => {
       {step === 2 && (
         <>
           <p>
-            <strong>{t("customer.form.fieldsGroup.configuration")}</strong>
+            <strong>{t("signup.fieldsGroup.configuration")}</strong>
           </p>
-          <TextInput label={t("customer.form.fields.slug")} name="slug" />
+          <TextInput label={t("signup.fields.slug")} name="slug" />
           <SwitchInput
-            label={t("customer.form.fields.useSeparateDb")}
+            label={t("signup.fields.useSeparateDb")}
             name="useSeparateDatabase"
             disabled={!slug}
           />
-          <TextInput label={t("customer.form.fields.domain")} name="domain" />
+          <TextInput label={t("signup.fields.domain")} name="domain" />
         </>
       )}
 

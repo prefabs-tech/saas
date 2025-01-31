@@ -1,23 +1,23 @@
 import { FormActions, useFormContext } from "@dzangolab/react-form";
 import { useTranslation } from "@dzangolab/react-i18n";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 import { CustomerFields } from "./CustomerFields";
 import { UserFields } from "./UserFields";
 
-export type CustomerSignupFormFieldsProperties = {
+export type AccountSignupFormFieldsProperties = {
   loading?: boolean;
   showTermsAndConditions?: boolean;
-  termsAndConditionsLabel?: string;
+  termsAndConditionsLabel?: ReactNode;
   onFormStepChange?: (activeStep: number) => void;
 };
 
-export const CustomerSignupFormFields = ({
+export const AccountSignupFormFields = ({
   loading,
   showTermsAndConditions,
   termsAndConditionsLabel,
   onFormStepChange,
-}: CustomerSignupFormFieldsProperties) => {
+}: AccountSignupFormFieldsProperties) => {
   const { t } = useTranslation("accounts");
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -50,8 +50,8 @@ export const CustomerSignupFormFields = ({
     {
       label:
         activeIndex === 3
-          ? t("customer.form.actions.submit")
-          : t("customer.form.actions.next"),
+          ? t("signup.actions.submit")
+          : t("signup.actions.next"),
       type: activeIndex === 3 ? "submit" : "button",
       onClick: handleNext,
     },
@@ -60,7 +60,7 @@ export const CustomerSignupFormFields = ({
   if (activeIndex > 0) {
     formActions.unshift({
       id: "cancel",
-      label: t("customer.form.actions.previous"),
+      label: t("signup.actions.previous"),
       severity: "secondary",
       type: "button",
       variant: "outlined",

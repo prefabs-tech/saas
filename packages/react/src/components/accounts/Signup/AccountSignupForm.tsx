@@ -1,82 +1,83 @@
 import { emailSchema, passwordSchema, Provider } from "@dzangolab/react-form";
 import { useTranslation } from "@dzangolab/react-i18n";
+import { ReactNode } from "react";
 import { z } from "zod";
 
-import { CustomerSignupData } from "@/types/customer";
+import { AccountSignupData } from "@/types/customer";
 
-import { CustomerSignupFormFields } from "./CustomerSignupFormFields";
+import { AccountSignupFormFields } from "./AccountSignupFormFields";
 
-export type CustomerSignupProperties = {
+export type AccountSignupProperties = {
   loading?: boolean;
   showTermsAndConditions?: boolean;
-  termsAndConditionsLabel?: string;
-  handleSubmit: (formData: CustomerSignupData) => void;
+  termsAndConditionsLabel?: ReactNode;
+  handleSubmit: (formData: AccountSignupData) => void;
   onFormStepChange?: (activeStep: number) => void;
 };
 
-export const CustomerSignupForm = ({
+export const AccountSignupForm = ({
   loading,
   showTermsAndConditions,
   termsAndConditionsLabel,
   handleSubmit,
   onFormStepChange,
-}: CustomerSignupProperties) => {
+}: AccountSignupProperties) => {
   const { t } = useTranslation("accounts");
 
-  const onSubmit = (data: CustomerSignupData) => {
+  const onSubmit = (data: AccountSignupData) => {
     handleSubmit(data);
   };
 
-  const customerSignupSchema = z.object({
+  const accountSignupSchema = z.object({
     name: z
       .string()
       .max(255, {
-        message: t("customer.form.validations.name.invalid"),
+        message: t("signup.validations.name.invalid"),
       })
       .min(1, {
-        message: t("customer.form.validations.name.required"),
+        message: t("signup.validations.name.required"),
       }),
     individual: z.boolean(),
     organizationName: z
       .string()
       .max(255, {
-        message: t("customer.form.validations.organizationName.invalid"),
+        message: t("signup.validations.organizationName.invalid"),
       })
       .nullable(),
     registeredNumber: z
       .string()
       .max(255, {
-        message: t("customer.form.validations.registeredNumber.invalid"),
+        message: t("signup.validations.registeredNumber.invalid"),
       })
       .nullable(),
     taxId: z
       .string()
       .max(255, {
-        message: t("customer.form.validations.taxId.invalid"),
+        message: t("signup.validations.taxId.invalid"),
       })
       .nullable(),
     slug: z
       .string()
       .max(24, {
-        message: t("customer.form.validations.slug.invalid"),
+        message: t("signup.validations.slug.invalid"),
       })
       .nullable(),
     useSeparateDatabase: z.boolean().nullable(),
     domain: z
       .string()
       .max(253, {
-        message: t("customer.form.validations.domain.invalid"),
+        message: t("signup.validations.domain.invalid"),
       })
       .nullable(),
 
     email: emailSchema({
-      invalid: t("customer.form.validations.email.invalid"),
-      required: t("customer.form.validations.email.required"),
+      invalid: t("signup.validations.email.invalid"),
+      required: t("signup.validations.email.required"),
     }),
     password: passwordSchema(
       {
-        required: t("customer.form.validations.password.required"),
-        weak: t("customer.form.validations.password.invalid"),
+        required: t("signup.validations.password.required"),
+        weak: t("signup.validations.password.invalid"),
       },
       {
         minLength: 8,
@@ -88,7 +89,7 @@ export const CustomerSignupForm = ({
     ),
     confirmPassword: z
       .string()
-      .min(1, t("customer.form.validations.configmPassword.required")),
+      .min(1, t("signup.validations.configmPassword.required")),
   });
 
   return (
@@ -111,10 +112,10 @@ export const CustomerSignupForm = ({
           password: "",
           confirmPassword: "",
         }}
-        className="customer-signup"
-        validationSchema={customerSignupSchema as any} // eslint-disable-line @typescript-eslint/no-explicit-any
+        className="account-signup"
+        validationSchema={accountSignupSchema as any} // eslint-disable-line @typescript-eslint/no-explicit-any
       >
-        <CustomerSignupFormFields
+        <AccountSignupFormFields
           loading={loading}
           showTermsAndConditions={showTermsAndConditions}
           termsAndConditionsLabel={termsAndConditionsLabel}

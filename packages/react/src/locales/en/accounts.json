@@ -1,77 +1,72 @@
 {
-  "customer": {
-    "edit": "Edit",
-    "editTitle": "Edit customer",
-    "form": {
-      "actions": {
-        "cancel": "Cancel",
-        "next": "Next",
-        "previous": "Previous",
-        "submit": "Signup"
-      },
-      "fields": {
-        "billingAddress": "Billing address",
-        "confirmPassword": "Confirm password",
-        "domain": "Domain",
-        "email": { "label": "Your email", "placeholder": "" },
-        "individual": "Individual",
-        "name": "Name",
-        "organizationName": "Organization name",
-        "password": {
-          "label": "Your password",
-          "helper": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase"
-        },
-        "registeredNumber": "Registration number",
-        "slug": "Slug",
-        "taxId": "Tax ID",
-        "typeId": {
-          "label": "Type",
-          "options": {
-            "individual": "Individual",
-            "organization": "Organization"
-          }
-        },
-        "useSeparateDb": "Use separate database"
-      },
-      "fieldsGroup": {
-        "accountType": "What is the type of your account?",
-        "configuration": "Account configurations"
-      },
-      "validations": {
-        "configmPassword": {
-          "required": "Confirm password is required"
-        },
-        "domain": {
-          "invalid": "Domain must be less than 255 characters"
-        },
-        "email": {
-          "invalid": "Please enter valid email address",
-          "required": "Email is required"
-        },
-        "name": {
-          "invalid": "Name must be less than 255 characters",
-          "required": "Name is required"
-        },
-        "organizationName": {
-          "invalid": "Organization name must be less than 255 characters"
-        },
-        "password": {
-          "invalid": "Please enter valid password",
-          "required": "Password is required"
-        },
-        "registeredNumber": {
-          "invalid": "Registration number must be less than 255 characters"
-        },
-        "slug": {
-          "invalid": "Slug must be less than 25 characters",
-          "required": "Slug is required"
-        },
-        "taxId": {
-          "invalid": "Tax id must be less than 255 characters"
-        }
-      }
+  "signup": {
+    "actions": {
+      "cancel": "Cancel",
+      "next": "Next",
+      "previous": "Previous",
+      "submit": "Signup"
     },
-    "loginLabel": "Login"
+    "fields": {
+      "billingAddress": "Billing address",
+      "confirmPassword": "Confirm password",
+      "domain": "Domain",
+      "email": { "label": "Your email", "placeholder": "" },
+      "individual": "Individual",
+      "name": "Name",
+      "organizationName": "Organization name",
+      "password": {
+        "label": "Your password",
+        "helper": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase"
+      },
+      "registeredNumber": "Registration number",
+      "slug": "Slug",
+      "taxId": "Tax ID",
+      "typeId": {
+        "label": "Type",
+        "options": {
+          "individual": "Individual",
+          "organization": "Organization"
+        }
+      },
+      "useSeparateDb": "Use separate database"
+    },
+    "fieldsGroup": {
+      "accountType": "What is the type of your account?",
+      "configuration": "Account configurations"
+    },
+    "validations": {
+      "configmPassword": {
+        "required": "Confirm password is required"
+      },
+      "domain": {
+        "invalid": "Domain must be less than 255 characters"
+      },
+      "email": {
+        "invalid": "Please enter valid email address",
+        "required": "Email is required"
+      },
+      "name": {
+        "invalid": "Name must be less than 255 characters",
+        "required": "Name is required"
+      },
+      "organizationName": {
+        "invalid": "Organization name must be less than 255 characters"
+      },
+      "password": {
+        "invalid": "Please enter valid password",
+        "required": "Password is required"
+      },
+      "registeredNumber": {
+        "invalid": "Registration number must be less than 255 characters"
+      },
+      "slug": {
+        "invalid": "Slug must be less than 25 characters",
+        "required": "Slug is required"
+      },
+      "taxId": {
+        "invalid": "Tax id must be less than 255 characters"
+      }
+    }
   },
   "switcher": {
     "emptyLabel": "Choose account",

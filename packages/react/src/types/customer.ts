@@ -10,7 +10,7 @@ export interface Customer {
   taxId: string;
 }
 
-export type CustomerSignupData = {
+export type AccountSignupData = {
   confirmPassword: string;
   database: string | null;
   domain: string | null;
