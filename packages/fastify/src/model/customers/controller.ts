@@ -62,6 +62,22 @@ const plugin = async (
     handlersConfig?.myAccounts || handlers.myAccounts,
   );
 
+  fastify.get(
+    "/my-account",
+    {
+      preHandler: fastify.verifySession(),
+    },
+    handlersConfig?.myAccount || handlers.myAccount,
+  );
+
+  fastify.put(
+    "/my-account",
+    {
+      preHandler: fastify.verifySession(),
+    },
+    handlersConfig?.updateMyAccount || handlers.updateMyAccount,
+  );
+
   done();
 };
 
