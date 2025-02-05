@@ -68,8 +68,6 @@ export const CustomerFields = ({ step }: Properties) => {
           <TextInput label={t("signup.fields.domain")} name="domain" />
         </>
       )}
-
-      {/* <FormActions actions={formActions} alignment="left" /> */}
     </>
   );
 };
