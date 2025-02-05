@@ -1,23 +1,19 @@
 import { FormActions, useFormContext } from "@dzangolab/react-form";
 import { useTranslation } from "@dzangolab/react-i18n";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { CustomerFields } from "./CustomerFields";
 import { UserFields } from "./UserFields";
 
-export type AccountSignupFormFieldsProperties = {
+export type CustomerSignupFormFieldsProperties = {
   loading?: boolean;
-  showTermsAndConditions?: boolean;
-  termsAndConditionsLabel?: ReactNode;
   onFormStepChange?: (activeStep: number) => void;
 };
 
-export const AccountSignupFormFields = ({
+export const CustomerSignupFormFields = ({
   loading,
-  showTermsAndConditions,
-  termsAndConditionsLabel,
   onFormStepChange,
-}: AccountSignupFormFieldsProperties) => {
+}: CustomerSignupFormFieldsProperties) => {
   const { t } = useTranslation("accounts");
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -77,12 +73,7 @@ export const AccountSignupFormFields = ({
       case 2:
         return <CustomerFields step={2} />;
       case 3:
-        return (
-          <UserFields
-            showTermsAndConditions={showTermsAndConditions}
-            termsAndConditionsLabel={termsAndConditionsLabel}
-          />
-        );
+        return <UserFields />;
     }
   };
 

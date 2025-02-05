@@ -1,18 +1,15 @@
 import { Email, Password, useFormContext } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Checkbox } from "@dzangolab/react-ui";
-import React, { ReactNode } from "react";
+import { Trans, useTranslation } from "@dzangolab/react-i18n";
+import { Checkbox, InlineLink } from "@dzangolab/react-ui";
+import React from "react";
 
-type Properties = {
-  showTermsAndConditions?: boolean;
-  termsAndConditionsLabel?: ReactNode;
-};
+import { useConfig } from "@/hooks";
 
-export const UserFields: React.FC<Properties> = ({
-  showTermsAndConditions = true,
-  termsAndConditionsLabel,
-}) => {
+export const UserFields = () => {
   const { t } = useTranslation("accounts");
+
+  const { accounts } = useConfig();
+  const { termsAndConditionsUrl } = accounts?.signup || {};
 
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -44,8 +41,20 @@ export const UserFields: React.FC<Properties> = ({
         getFieldState={getFieldState}
         submitCount={submitCount}
       />
-      {showTermsAndConditions && (
-        <Checkbox name="agreement" label={termsAndConditionsLabel}></Checkbox>
+      {termsAndConditionsUrl && (
+        <Checkbox
+          name="agreement"
+          label={
+            <Trans i18nKey="accounts:signup.termsAndConditions">
+              I agree to all the{" "}
+              <InlineLink
+                to={termsAndConditionsUrl}
+                label={"Terms and Conditions"}
+              ></InlineLink>{" "}
+              set out by the user aggreement
+            </Trans>
+          }
+        ></Checkbox>
       )}
     </>
   );

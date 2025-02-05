@@ -34,6 +34,11 @@
       "accountType": "What is the type of your account? (fr)",
       "configuration": "Account configurations (fr)"
     },
+    "termsAndConditions": "I agree to all the <0>Terms and Conditions</0> by the user agreement. (fr)",
+    "title": {
+      "customer": "Customer signup (fr)",
+      "user": "Signup (fr)"
+    },
     "validations": {
       "configmPassword": {
         "required": "Confirm password is required (fr)"

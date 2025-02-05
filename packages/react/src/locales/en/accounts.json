@@ -34,6 +34,11 @@
       "accountType": "What is the type of your account?",
       "configuration": "Account configurations"
     },
+    "termsAndConditions": "I agree to all the <0>Terms and Conditions</0> by the user agreement.",
+    "title": {
+      "customer": "Customer signup",
+      "user": "Signup"
+    },
     "validations": {
       "configmPassword": {
         "required": "Confirm password is required"

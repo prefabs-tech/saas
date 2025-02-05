@@ -1,34 +1,29 @@
 import { emailSchema, passwordSchema, Provider } from "@dzangolab/react-form";
 import { useTranslation } from "@dzangolab/react-i18n";
-import { ReactNode } from "react";
 import { z } from "zod";
 
-import { AccountSignupData } from "@/types/customer";
+import { CustomerSignupData } from "@/types/customer";
 
-import { AccountSignupFormFields } from "./AccountSignupFormFields";
+import { CustomerSignupFormFields } from "./CustomerSignupFormFields";
 
-export type AccountSignupProperties = {
+export type CustomerSignupProperties = {
   loading?: boolean;
-  showTermsAndConditions?: boolean;
-  termsAndConditionsLabel?: ReactNode;
-  handleSubmit: (formData: AccountSignupData) => void;
+  handleSubmit: (formData: CustomerSignupData) => void;
   onFormStepChange?: (activeStep: number) => void;
 };
 
-export const AccountSignupForm = ({
+export const CustomerSignupForm = ({
   loading,
-  showTermsAndConditions,
-  termsAndConditionsLabel,
   handleSubmit,
   onFormStepChange,
-}: AccountSignupProperties) => {
+}: CustomerSignupProperties) => {
   const { t } = useTranslation("accounts");
 
-  const onSubmit = (data: AccountSignupData) => {
+  const onSubmit = (data: CustomerSignupData) => {
     handleSubmit(data);
   };
 
-  const accountSignupSchema = z.object({
+  const customerSignupSchema = z.object({
     name: z
       .string()
       .max(255, {
@@ -113,12 +108,10 @@ export const AccountSignupForm = ({
           confirmPassword: "",
         }}
         className="account-signup"
-        validationSchema={accountSignupSchema as any} // eslint-disable-line @typescript-eslint/no-explicit-any
+        validationSchema={customerSignupSchema as any} // eslint-disable-line @typescript-eslint/no-explicit-any
       >
-        <AccountSignupFormFields
+        <CustomerSignupFormFields
           loading={loading}
-          showTermsAndConditions={showTermsAndConditions}
-          termsAndConditionsLabel={termsAndConditionsLabel}
           onFormStepChange={onFormStepChange}
         />
       </Provider>

@@ -1,4 +1,4 @@
-export interface Customer {
+export type Customer = {
   database: string | null;
   domain: string | null;
   id: string;
@@ -8,19 +8,22 @@ export interface Customer {
   registeredNumber: string;
   slug: string;
   taxId: string;
-}
+};
 
-export type AccountSignupData = {
+export type UserSignupData = {
   confirmPassword: string;
-  database: string | null;
-  domain: string | null;
   email: string;
+  password: string;
+};
+
+export type CustomerSignupData = UserSignupData & {
+  domain: string | null;
   id: string;
   individual: boolean;
   name: string;
   organizationName: string;
-  password: string;
   registeredNumber: string;
   slug: string;
   taxId: string;
+  useSeparateDatabase: boolean;
 };
