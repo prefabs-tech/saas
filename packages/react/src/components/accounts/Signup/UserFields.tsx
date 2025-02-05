@@ -1,6 +1,6 @@
 import { Email, Password, useFormContext } from "@dzangolab/react-form";
 import { Trans, useTranslation } from "@dzangolab/react-i18n";
-import { Checkbox, InlineLink } from "@dzangolab/react-ui";
+import { Checkbox } from "@dzangolab/react-ui";
 import React from "react";
 
 import { useConfig } from "@/hooks";
@@ -46,12 +46,13 @@ export const UserFields = () => {
           name="agreement"
           label={
             <Trans i18nKey="accounts:signup.termsAndConditions">
-              I agree to all the{" "}
-              <InlineLink
-                to={termsAndConditionsUrl}
-                label={"Terms and Conditions"}
-              ></InlineLink>{" "}
-              set out by the user aggreement
+              <a
+                href={termsAndConditionsUrl}
+                className="inline-link underlined"
+                target="_blank"
+              >
+                Terms and Conditions
+              </a>
             </Trans>
           }
         ></Checkbox>
