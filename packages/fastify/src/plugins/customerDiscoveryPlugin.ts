@@ -15,7 +15,7 @@ const plugin = async (
   fastify.addHook(
     "preHandler",
     async (request: FastifyRequest, reply: FastifyReply) => {
-      const { config, headers, log, routeConfig, slonik: database } = request;
+      const { config, headers, log, routeOptions, slonik: database } = request;
 
       const hostname = getHost(
         headers.referer || headers.origin || request.hostname,
@@ -37,7 +37,7 @@ const plugin = async (
       );
 
       const isRouteExcludedFromDiscovery = regexPatterns.some(
-        (regex) => regex.test(request.url) || routeConfig.saas?.exclude,
+        (regex) => regex.test(request.url) || routeOptions.config.saas?.exclude,
       );
 
       try {
