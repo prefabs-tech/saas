@@ -4,7 +4,10 @@ import { ApiConfig } from "@dzangolab/fastify-config";
 import { migrate } from "@dzangolab/postgres-migrations";
 import * as pg from "pg";
 
-import { createCustomerUsersTableQuery } from "./queries";
+import {
+  createCustomerInvitationsTableQuery,
+  createCustomerUsersTableQuery,
+} from "./queries";
 import getSaasConfig from "../config";
 import changeSchema from "../lib/changeSchema";
 import getDatabaseConfig from "../lib/getDatabaseConfig";
@@ -38,7 +41,10 @@ const runCustomerMigrations = async (
 
     // list of migrations that needs to be run from the package
     // for the customers who uses separate database.
-    const queries = [createCustomerUsersTableQuery(saasConfig)];
+    const queries = [
+      createCustomerUsersTableQuery(saasConfig),
+      createCustomerInvitationsTableQuery(saasConfig),
+    ];
 
     for (const query of queries) {
       await client.query({

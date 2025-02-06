@@ -45,6 +45,11 @@ const getSaasConfig = (config: ApiConfig) => {
         name:
           saasConfig.tables?.customerAddresses?.name || "__customer_addresses",
       },
+      customerInvitations: {
+        name:
+          saasConfig.tables?.customerInvitations?.name ||
+          "__customer_invitations",
+      },
     },
   };
 };

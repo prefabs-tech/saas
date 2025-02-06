@@ -49,6 +49,9 @@ interface SaasOptions {
     customerAddresses?: {
       name: string;
     };
+    customerInvitations?: {
+      name: string;
+    };
   };
 }
 
