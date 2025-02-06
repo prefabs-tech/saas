@@ -47,11 +47,6 @@ export const CustomerFields = () => {
       {subdomains !== "disabled" && (
         <>
           <TextInput label={t("signup.fields.slug")} name="slug" />
-          <TextInput
-            label={t("signup.fields.domain")}
-            name="domain"
-            disabled={!slug}
-          />
           {multiDatabase && (
             <SwitchInput
               label={t("signup.fields.useSeparateDb")}

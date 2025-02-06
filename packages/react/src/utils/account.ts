@@ -34,7 +34,6 @@ export const prepareSignupData = ({
     taxId,
     slug,
     useSeparateDatabase,
-    domain,
   } = data as CustomerSignupData;
 
   return {
@@ -59,15 +58,15 @@ export const prepareSignupData = ({
       },
       {
         id: "organizationName",
-        value: !individual ? organizationName : "",
+        value: !individual ? organizationName : null,
       },
       {
         id: "registeredNumber",
-        value: !individual ? registeredNumber : "",
+        value: !individual ? registeredNumber : null,
       },
       {
         id: "taxId",
-        value: !individual ? taxId : "",
+        value: !individual ? taxId : null,
       },
       {
         id: "slug",
@@ -75,11 +74,7 @@ export const prepareSignupData = ({
       },
       {
         id: "useSeparateDatabase",
-        value: slug ? useSeparateDatabase : null,
-      },
-      {
-        id: "domain",
-        value: slug ? domain : "",
+        value: slug ? useSeparateDatabase : false,
       },
     ],
   };

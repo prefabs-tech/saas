@@ -18,7 +18,6 @@ export type UserSignupData = {
 };
 
 export type CustomerSignupData = UserSignupData & {
-  domain: string | null;
   id: string;
   individual: boolean;
   name: string;

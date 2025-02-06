@@ -39,8 +39,7 @@ export const Signup = ({
           }
 
           if (appRedirection && "slug" in data && data.slug) {
-            const appDomain = data.domain ? data.domain : rootDomain;
-            const appUrl = `${data.slug}.${appDomain}`;
+            const appUrl = `http://${data.slug}.${rootDomain}`;
 
             window.open(appUrl, "_blank");
           }

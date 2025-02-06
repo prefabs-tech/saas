@@ -75,16 +75,6 @@ export const CustomerSignupForm = ({
             .optional()
             .or(z.literal("")),
     useSeparateDatabase: z.boolean().nullable(),
-    domain: z
-      .string()
-      .max(255)
-      .regex(
-        /^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/,
-        t("signup.validations.domain.invalid"),
-      )
-      .nullable()
-      .optional()
-      .or(z.literal("")),
   });
 
   const userSchema = z.object({
@@ -160,7 +150,6 @@ export const CustomerSignupForm = ({
         onSubmit={onSubmit}
         defaultValues={{
           // customer details
-          domain: "",
           individual: false,
           name: "",
           organizationName: "",
