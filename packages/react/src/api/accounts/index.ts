@@ -1,4 +1,9 @@
-import { CustomerSignupData, Customer, UserSignupData } from "@/types/customer";
+import {
+  CustomerSignupData,
+  Customer,
+  UserSignupData,
+  UserType,
+} from "@/types/customer";
 import { prepareSignupData } from "@/utils";
 
 import client from "../axios";
@@ -29,7 +34,7 @@ export const signup = async ({
   signupPath: string;
   data: CustomerSignupData | UserSignupData;
   customerSignup?: boolean;
-}): Promise<Customer> => {
+}): Promise<UserType> => {
   const payload = prepareSignupData({ data, customerSignup });
 
   const response = await client(apiBaseUrl).post(signupPath, payload, {

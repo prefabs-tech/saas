@@ -24,14 +24,12 @@ export const UserFields = () => {
         label={t("signup.fields.email.label")}
         name="email"
         placeholder={t("signup.fields.email.placeholder")}
-        submitCount={submitCount}
       />
       <Password
         label={t("signup.fields.password.label")}
         name="password"
         register={register}
         getFieldState={getFieldState}
-        submitCount={submitCount}
         helperText={t("signup.fields.password.helper")}
       />
       <Password
@@ -39,7 +37,6 @@ export const UserFields = () => {
         name="confirmPassword"
         register={register}
         getFieldState={getFieldState}
-        submitCount={submitCount}
       />
       {termsAndConditionsUrl && (
         <Checkbox

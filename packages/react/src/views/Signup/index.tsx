@@ -21,9 +21,10 @@ export const Signup = ({
   const {
     meta: { isMainApp },
   } = useAccounts();
-  const { apiBaseUrl, accounts } = useConfig();
+  const { apiBaseUrl, accounts, rootDomain } = useConfig();
 
-  const { path: signupPath = SIGNUP_PATH_DEFAULT } = accounts?.signup || {};
+  const { path: signupPath = SIGNUP_PATH_DEFAULT, appRedirection = true } =
+    accounts?.signup || {};
 
   const [loading, setLoading] = useState(false);
 
@@ -35,6 +36,13 @@ export const Signup = ({
         if (result) {
           if (onSignupSuccess) {
             await onSignupSuccess(result);
+          }
+
+          if (appRedirection && "slug" in data && data.slug) {
+            const appDomain = data.domain ? data.domain : rootDomain;
+            const appUrl = `${data.slug}.${appDomain}`;
+
+            window.open(appUrl, "_blank");
           }
         }
       })

@@ -9,7 +9,7 @@
     "fields": {
       "billingAddress": "Billing address (fr)",
       "confirmPassword": "Confirm password (fr)",
-      "domain": "Domain (fr)",
+      "domain": "Custom domain (fr)",
       "email": { "label": "Your email (fr)", "placeholder": "" },
       "individual": "Individual (fr)",
       "name": "Name (fr)",
@@ -36,11 +36,12 @@
     },
     "termsAndConditions": "I agree to all the <0>Terms and Conditions</0> by the user agreement. (fr)",
     "title": {
-      "customer": "Customer signup (fr)",
+      "customer": "Create a new account (fr)",
       "user": "Signup (fr)"
     },
     "validations": {
       "configmPassword": {
+        "mustMatch": "Passwords must match (fr)",
         "required": "Confirm password is required (fr)"
       },
       "domain": {

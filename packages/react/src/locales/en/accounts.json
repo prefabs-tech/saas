@@ -9,7 +9,7 @@
     "fields": {
       "billingAddress": "Billing address",
       "confirmPassword": "Confirm password",
-      "domain": "Domain",
+      "domain": "Custom domain",
       "email": { "label": "Your email", "placeholder": "" },
       "individual": "Individual",
       "name": "Name",
@@ -36,15 +36,16 @@
     },
     "termsAndConditions": "I agree to all the <0>Terms and Conditions</0> by the user agreement.",
     "title": {
-      "customer": "Customer signup",
+      "customer": "Create a new account",
       "user": "Signup"
     },
     "validations": {
       "configmPassword": {
+        "mustMatch": "Passwords must match",
         "required": "Confirm password is required"
       },
       "domain": {
-        "invalid": "Domain must be less than 255 characters"
+        "invalid": "Please enter a valid domain upto 255 characters"
       },
       "email": {
         "invalid": "Please enter valid email address",
@@ -65,7 +66,7 @@
         "invalid": "Registration number must be less than 255 characters"
       },
       "slug": {
-        "invalid": "Slug must be less than 25 characters",
+        "invalid": "Please enter a valid slug upto 25 characters",
         "required": "Slug is required"
       },
       "taxId": {

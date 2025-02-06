@@ -24,49 +24,62 @@ export const prepareSignupData = ({
     };
   }
 
+  const {
+    email,
+    password,
+    name,
+    individual,
+    organizationName,
+    registeredNumber,
+    taxId,
+    slug,
+    useSeparateDatabase,
+    domain,
+  } = data as CustomerSignupData;
+
   return {
     formFields: [
       {
         id: "email",
-        value: data.email,
+        value: email,
       },
       {
         id: "password",
-        value: data.password,
+        value: password,
       },
     ],
     customerFormFields: [
       {
         id: "name",
-        value: (data as CustomerSignupData).name,
+        value: name,
       },
       {
         id: "individual",
-        value: (data as CustomerSignupData).individual,
+        value: individual,
       },
       {
         id: "organizationName",
-        value: (data as CustomerSignupData).organizationName,
+        value: !individual ? organizationName : "",
       },
       {
         id: "registeredNumber",
-        value: (data as CustomerSignupData).registeredNumber,
+        value: !individual ? registeredNumber : "",
       },
       {
         id: "taxId",
-        value: (data as CustomerSignupData).taxId,
+        value: !individual ? taxId : "",
       },
       {
         id: "slug",
-        value: (data as CustomerSignupData).slug,
+        value: slug,
       },
       {
         id: "useSeparateDatabase",
-        value: (data as CustomerSignupData).useSeparateDatabase,
+        value: slug ? useSeparateDatabase : null,
       },
       {
         id: "domain",
-        value: (data as CustomerSignupData).domain,
+        value: slug ? domain : "",
       },
     ],
   };

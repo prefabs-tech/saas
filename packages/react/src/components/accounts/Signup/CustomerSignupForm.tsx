@@ -1,29 +1,35 @@
-import { emailSchema, passwordSchema, Provider } from "@dzangolab/react-form";
+import {
+  emailSchema,
+  FormActions,
+  passwordSchema,
+  Provider,
+} from "@dzangolab/react-form";
 import { useTranslation } from "@dzangolab/react-i18n";
+import { useState } from "react";
 import { z } from "zod";
 
+import { useConfig } from "@/hooks";
 import { CustomerSignupData } from "@/types/customer";
 
-import { CustomerSignupFormFields } from "./CustomerSignupFormFields";
+import { CustomerFields } from "./CustomerFields";
+import { UserFields } from "./UserFields";
 
 export type CustomerSignupProperties = {
   loading?: boolean;
   handleSubmit: (formData: CustomerSignupData) => void;
-  onFormStepChange?: (activeStep: number) => void;
 };
 
 export const CustomerSignupForm = ({
   loading,
   handleSubmit,
-  onFormStepChange,
 }: CustomerSignupProperties) => {
   const { t } = useTranslation("accounts");
 
-  const onSubmit = (data: CustomerSignupData) => {
-    handleSubmit(data);
-  };
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const customerSignupSchema = z.object({
+  const { subdomains } = useConfig();
+
+  const customerSchema = z.object({
     name: z
       .string()
       .max(255, {
@@ -51,20 +57,37 @@ export const CustomerSignupForm = ({
         message: t("signup.validations.taxId.invalid"),
       })
       .nullable(),
-    slug: z
-      .string()
-      .max(24, {
-        message: t("signup.validations.slug.invalid"),
-      })
-      .nullable(),
+    slug:
+      subdomains === "required"
+        ? z
+            .string()
+            .regex(
+              /^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/,
+              t("signup.validations.slug.invalid"),
+            )
+        : z
+            .string()
+            .regex(
+              /^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/,
+              t("signup.validations.slug.invalid"),
+            )
+            .nullable()
+            .optional()
+            .or(z.literal("")),
     useSeparateDatabase: z.boolean().nullable(),
     domain: z
       .string()
-      .max(253, {
-        message: t("signup.validations.domain.invalid"),
-      })
-      .nullable(),
+      .max(255)
+      .regex(
+        /^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/,
+        t("signup.validations.domain.invalid"),
+      )
+      .nullable()
+      .optional()
+      .or(z.literal("")),
+  });
 
+  const userSchema = z.object({
     email: emailSchema({
       invalid: t("signup.validations.email.invalid"),
       required: t("signup.validations.email.required"),
@@ -87,10 +110,54 @@ export const CustomerSignupForm = ({
       .min(1, t("signup.validations.configmPassword.required")),
   });
 
+  const customerSignupSchema = customerSchema.merge(userSchema).refine(
+    (data) => {
+      return data.password === data.confirmPassword;
+    },
+    {
+      message: t("signup.validations.configmPassword.mustMatch"),
+      path: ["confirmPassword"],
+    },
+  );
+
+  const onSubmit = (data: CustomerSignupData) => {
+    if (activeIndex === 1) {
+      handleSubmit(data);
+    } else {
+      setActiveIndex(1);
+    }
+  };
+
+  const onCancel = () => {
+    setActiveIndex(0);
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const formActions: any = [
+    {
+      label:
+        activeIndex === 1
+          ? t("signup.actions.submit")
+          : t("signup.actions.next"),
+      type: "submit",
+    },
+  ];
+
+  if (activeIndex > 0) {
+    formActions.unshift({
+      id: "cancel",
+      label: t("signup.actions.previous"),
+      severity: "secondary",
+      type: "button",
+      variant: "outlined",
+      onClick: onCancel,
+    });
+  }
+
   return (
     <>
       <Provider
-        onSubmit={(data) => onSubmit(data)}
+        onSubmit={onSubmit}
         defaultValues={{
           // customer details
           domain: "",
@@ -108,12 +175,13 @@ export const CustomerSignupForm = ({
           confirmPassword: "",
         }}
         className="account-signup"
-        validationSchema={customerSignupSchema as any} // eslint-disable-line @typescript-eslint/no-explicit-any
+        validationSchema={
+          activeIndex === 0 ? customerSchema : customerSignupSchema
+        }
       >
-        <CustomerSignupFormFields
-          loading={loading}
-          onFormStepChange={onFormStepChange}
-        />
+        {activeIndex === 0 && <CustomerFields />}
+        {activeIndex === 1 && <UserFields />}
+        <FormActions actions={formActions} alignment="fill" loading={loading} />
       </Provider>
     </>
   );

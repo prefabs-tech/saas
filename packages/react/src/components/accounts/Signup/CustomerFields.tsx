@@ -2,12 +2,12 @@ import { SwitchInput, TextInput, useFormContext } from "@dzangolab/react-form";
 import { useTranslation } from "@dzangolab/react-i18n";
 import { useEffect } from "react";
 
-type Properties = {
-  step: number;
-};
+import { useConfig } from "@/hooks";
 
-export const CustomerFields = ({ step }: Properties) => {
+export const CustomerFields = () => {
   const { t } = useTranslation("accounts");
+
+  const { multiDatabase, subdomains } = useConfig();
 
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -27,45 +27,38 @@ export const CustomerFields = ({ step }: Properties) => {
 
   return (
     <>
-      {step === 0 && <TextInput label={t("signup.fields.name")} name="name" />}
+      <TextInput label={t("signup.fields.name")} name="name" />
 
-      {step === 1 && (
+      <SwitchInput label={t("signup.fields.individual")} name="individual" />
+      {!individual && (
         <>
-          <p>
-            <strong>{t("signup.fieldsGroup.accountType")}</strong>
-          </p>
-          <SwitchInput
-            label={t("signup.fields.individual")}
-            name="individual"
+          <TextInput
+            label={t("signup.fields.organizationName")}
+            name="organizationName"
           />
-          {!individual && (
-            <fieldset>
-              <TextInput
-                label={t("signup.fields.organizationName")}
-                name="organizationName"
-              />
-              <TextInput
-                label={t("signup.fields.registeredNumber")}
-                name="registeredNumber"
-              />
-              <TextInput label={t("signup.fields.taxId")} name="taxId" />
-            </fieldset>
-          )}{" "}
+          <TextInput
+            label={t("signup.fields.registeredNumber")}
+            name="registeredNumber"
+          />
+          <TextInput label={t("signup.fields.taxId")} name="taxId" />
         </>
       )}
 
-      {step === 2 && (
+      {subdomains !== "disabled" && (
         <>
-          <p>
-            <strong>{t("signup.fieldsGroup.configuration")}</strong>
-          </p>
           <TextInput label={t("signup.fields.slug")} name="slug" />
-          <SwitchInput
-            label={t("signup.fields.useSeparateDb")}
-            name="useSeparateDatabase"
+          <TextInput
+            label={t("signup.fields.domain")}
+            name="domain"
             disabled={!slug}
           />
-          <TextInput label={t("signup.fields.domain")} name="domain" />
+          {multiDatabase && (
+            <SwitchInput
+              label={t("signup.fields.useSeparateDb")}
+              name="useSeparateDatabase"
+              disabled={!slug}
+            />
+          )}
         </>
       )}
     </>
