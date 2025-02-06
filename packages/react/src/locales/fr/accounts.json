@@ -1,4 +1,79 @@
 {
+  "signup": {
+    "actions": {
+      "cancel": "Cancel (fr)",
+      "next": "Next (fr)",
+      "previous": "Previous (fr)",
+      "submit": "Signup (fr)"
+    },
+    "fields": {
+      "billingAddress": "Billing address (fr)",
+      "confirmPassword": "Confirm password (fr)",
+      "domain": "Custom domain (fr)",
+      "email": { "label": "Your email (fr)", "placeholder": "" },
+      "individual": "Individual (fr)",
+      "name": "Name (fr)",
+      "organizationName": "Organization name (fr)",
+      "password": {
+        "label": "Your password (fr)",
+        "helper": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase (fr)"
+      },
+      "registeredNumber": "Registration number (fr)",
+      "slug": "Slug (fr)",
+      "taxId": "Tax ID (fr)",
+      "typeId": {
+        "label": "Type (fr)",
+        "options": {
+          "individual": "Individual (fr)",
+          "organization": "Organization (fr)"
+        }
+      },
+      "useSeparateDb": "Use separate database (fr)"
+    },
+    "fieldsGroup": {
+      "accountType": "What is the type of your account? (fr)",
+      "configuration": "Account configurations (fr)"
+    },
+    "termsAndConditions": "I agree to all the <0>Terms and Conditions</0> by the user agreement. (fr)",
+    "title": {
+      "customer": "Create a new account (fr)",
+      "user": "Signup (fr)"
+    },
+    "validations": {
+      "configmPassword": {
+        "mustMatch": "Passwords must match (fr)",
+        "required": "Confirm password is required (fr)"
+      },
+      "domain": {
+        "invalid": "Domain must be less than 255 characters (fr)"
+      },
+      "email": {
+        "invalid": "Please enter valid email address (fr)",
+        "required": "Email is required (fr)"
+      },
+      "name": {
+        "invalid": "Name must be less than 255 characters (fr)",
+        "required": "Name is required (fr)"
+      },
+      "organizationName": {
+        "invalid": "Organization name must be less than 255 characters (fr)"
+      },
+      "password": {
+        "invalid": "Please enter valid password (fr)",
+        "required": "Password is required (fr)"
+      },
+      "registeredNumber": {
+        "invalid": "Registration number must be less than 255 characters (fr)"
+      },
+      "slug": {
+        "invalid": "Slug must be less than 24 characters (fr)",
+        "required": "Slug is required (fr)"
+      },
+      "taxId": {
+        "invalid": "Tax id must be less than 255 characters (fr)"
+      }
+    }
+  },
   "switcher": {
     "emptyLabel": "Choose account (fr)",
     "helper": "Accounts (fr)"

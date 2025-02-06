@@ -1,4 +1,9 @@
-import { SaasOptions } from "./config";
-import { Customer } from "./customer";
+import { SaasConfig } from "./config";
+import { Customer, CustomerSignupData, UserSignupData } from "./customer";
 
-export type { Customer as CustomerType, SaasOptions };
+export type {
+  CustomerSignupData,
+  Customer as CustomerType,
+  SaasConfig,
+  UserSignupData,
+};

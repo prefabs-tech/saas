@@ -8,7 +8,10 @@ import React, {
 
 import { getMyAccounts } from "@/api/accounts";
 import { STORAGE_KEY_DEFAULT } from "@/constants";
+import { SaasConfig } from "@/types/config";
 import { Customer } from "@/types/customer";
+
+import ConfigProvider from "./ConfigProvider";
 
 export interface AccountsContextType {
   accounts: Array<Customer> | null;
@@ -30,14 +33,7 @@ export interface AccountsContextType {
 }
 
 interface Properties {
-  config: {
-    apiBaseUrl: string;
-    mainAppSubdomain: string;
-    rootDomain: string;
-    autoSelectAccount?: boolean;
-    allowMultipleSessions?: boolean;
-    customStorageKey?: string;
-  };
+  config: SaasConfig;
   userId?: string;
   children: React.ReactNode;
 }
@@ -56,10 +52,14 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
     apiBaseUrl,
     mainAppSubdomain,
     rootDomain,
-    autoSelectAccount,
-    customStorageKey = STORAGE_KEY_DEFAULT,
-    allowMultipleSessions = true,
+    accounts: accountsConfig,
   } = config;
+
+  const {
+    autoSelectAccount = true,
+    accountStorageKey = STORAGE_KEY_DEFAULT,
+    allowMultipleSessions = true,
+  } = accountsConfig || {};
 
   const subdomain = window.location.hostname.split(".")[0];
   const isMainApp = useMemo(() => subdomain === mainAppSubdomain, [subdomain]);
@@ -74,17 +74,17 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
       setActiveAccount(newAccount);
 
       if (newAccount) {
-        localStorage.setItem(customStorageKey, `${newAccount.id}`);
+        localStorage.setItem(accountStorageKey, `${newAccount.id}`);
 
         if (allowMultipleSessions) {
-          sessionStorage.setItem(customStorageKey, `${newAccount.id}`);
+          sessionStorage.setItem(accountStorageKey, `${newAccount.id}`);
         }
       } else if (clearState) {
         if (allowMultipleSessions) {
-          sessionStorage.removeItem(customStorageKey);
+          sessionStorage.removeItem(accountStorageKey);
         }
 
-        localStorage.removeItem(customStorageKey);
+        localStorage.removeItem(accountStorageKey);
       }
 
       setAccountLoading(false);
@@ -110,17 +110,16 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         return newAccounts[accountIndex];
       }
 
-      const newActiveAccount: Customer | null = autoSelectAccount
-        ? newAccounts[0]
-        : null;
+      const newActiveAccount: Customer | null =
+        autoSelectAccount || newAccounts.length === 1 ? newAccounts[0] : null;
 
       if (!activeAccount) {
         // check if saved accountId is present in newAccounts, return it if found
-        let savedAccountId = localStorage.getItem(customStorageKey);
+        let savedAccountId = localStorage.getItem(accountStorageKey);
 
         if (allowMultipleSessions) {
           const sessionSavedAccountId =
-            sessionStorage.getItem(customStorageKey);
+            sessionStorage.getItem(accountStorageKey);
 
           savedAccountId = sessionSavedAccountId
             ? sessionSavedAccountId
@@ -201,7 +200,9 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         updateAccounts,
       }}
     >
-      {loading ? null : children}
+      {loading ? null : (
+        <ConfigProvider config={config}>{children}</ConfigProvider>
+      )}
     </accountsContext.Provider>
   );
 };
