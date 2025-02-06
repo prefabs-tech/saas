@@ -59,7 +59,7 @@ const plugin = async (
           }
 
           // set auth email prefix for user isolation on request object
-          if (customer.slug && customer.database) {
+          if (customer.slug) {
             request.authEmailPrefix = `${customer.id}_`;
           }
         }

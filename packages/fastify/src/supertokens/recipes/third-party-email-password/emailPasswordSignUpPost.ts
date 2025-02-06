@@ -89,7 +89,7 @@ const emailPasswordSignUpPOST = (
       }
 
       // set auth email prefix for user isolation on request object
-      if (customer.slug && customer.database) {
+      if (customer.slug) {
         input.userContext.authEmailPrefix = `${customer.id}_`;
       }
 
