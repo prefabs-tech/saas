@@ -1,3 +1,17 @@
+# [0.4.0](https://github.com/12deg/saas/compare/v0.3.4...v0.4.0) (2025-02-06)
+
+
+### Bug Fixes
+
+* prefix auth user when customer opted for subdomain ([#27](https://github.com/12deg/saas/issues/27)) ([ad5ae50](https://github.com/12deg/saas/commit/ad5ae50107b5786863be539659583f5ac8fe54cb))
+
+
+### Features
+
+* **accounts:** add customer signup forms ([#30](https://github.com/12deg/saas/issues/30)) ([0217aa4](https://github.com/12deg/saas/commit/0217aa4effc5e18c93d7734ea6b6a8b3745fc48d))
+
+
+
 ## [0.3.4](https://github.com/12deg/saas/compare/v0.3.3...v0.3.4) (2025-01-30)
 
 
