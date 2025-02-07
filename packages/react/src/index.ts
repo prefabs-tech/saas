@@ -4,7 +4,7 @@ import {
   UserSignupForm,
 } from "./components/accounts";
 import { CustomerForm, CustomersTable } from "./components/customer";
-import { Customer } from "./components/customer/Customer";
+import { CustomerInfo } from "./components/customer/CustomerInfo";
 import AccountsProvider, { accountsContext } from "./contexts/AccountsProvider";
 import { SaasConfig } from "./types";
 import "./assets/css/index.css";
@@ -31,7 +31,7 @@ export * from "./views";
 export {
   // components
   AccountSwitcher,
-  Customer,
+  CustomerInfo,
   CustomerForm,
   CustomerSignupForm,
   CustomersTable,

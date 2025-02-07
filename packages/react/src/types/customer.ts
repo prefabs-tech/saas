@@ -1,15 +1,18 @@
-export type Customer = {
-  database: string | null;
-  domain: string | null;
-  id: string;
-  individual: boolean;
-  name: string;
-  organizationName: string | null;
-  registeredNumber: string | null;
-  slug: string | null;
-  taxId: string | null;
-  useSeparateDatabase: boolean | null;
+import { z } from "zod";
+import { customerSchema } from "../schemas";
+
+export type Customer = z.infer<typeof customerSchema>;
+
+export type CustomerCreateInput = Omit<
+  Customer,
+  "id" | "createdAt" | "updatedAt" | "database"
+> & {
+  useSeparateDatabase?: boolean;
 };
+
+export type CustomerUpdateInput = Partial<
+  Omit<Customer, "id" | "createdAt" | "updatedAt">
+>;
 
 export type UserSignupData = {
   confirmPassword: string;
@@ -29,7 +32,7 @@ export type CustomerSignupData = UserSignupData & {
 };
 
 // copied from @dzangolab/react-user pacakge
-export interface UserType {
+export interface User {
   id: string;
   email: string;
   timeJoined: number;
