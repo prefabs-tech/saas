@@ -8,19 +8,19 @@ import {
 } from "@dzangolab/react-ui";
 import React from "react";
 
-import type { CustomerType } from "../../types";
+import type { Customer } from "../../types";
 
 type VisibleColumn = "name" | "taxId" | "type" | string;
 
 export interface Properties
   extends Partial<
     Omit<
-      TDataTableProperties<CustomerType>,
+      TDataTableProperties<Customer>,
       "data" | "visibleColumns" | "fetchData"
     >
   > {
   fetchCustomers?: (arguments_: TRequestJSON) => void;
-  customers: Array<CustomerType>;
+  customers: Array<Customer>;
   visibleColumns?: VisibleColumn[];
 }
 
@@ -41,7 +41,7 @@ export const CustomersTable = ({
 }: Properties) => {
   const { t } = useTranslation("customers");
 
-  const defaultColumns: Array<TableColumnDefinition<CustomerType>> = [
+  const defaultColumns: Array<TableColumnDefinition<Customer>> = [
     {
       accessorKey: "name",
       header: t("table.defaultColumns.name"),

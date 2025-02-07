@@ -1,12 +1,12 @@
 import { FormActions, Provider, TextInput } from "@dzangolab/react-form";
 import { useTranslation } from "@dzangolab/react-i18n";
 
-import { CustomerType } from "../../types";
+import { Customer } from "../../types";
 
 interface Properties {
-  customer?: CustomerType;
+  customer?: Customer;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onSubmit: (customer: CustomerType) => void;
+  onSubmit: (customer: Customer) => void;
   onCancel: () => void;
 }
 

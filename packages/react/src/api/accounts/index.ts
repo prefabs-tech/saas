@@ -2,7 +2,7 @@ import {
   CustomerSignupData,
   Customer,
   UserSignupData,
-  UserType,
+  User,
 } from "@/types/customer";
 import { prepareSignupData } from "@/utils";
 
@@ -34,7 +34,7 @@ export const signup = async ({
   signupPath: string;
   data: CustomerSignupData | UserSignupData;
   customerSignup?: boolean;
-}): Promise<UserType> => {
+}): Promise<User> => {
   const payload = prepareSignupData({ data, customerSignup });
 
   const response = await client(apiBaseUrl).post(signupPath, payload, {

@@ -1,5 +1,5 @@
 export type SaasConfig = {
-  accounts: {
+  accounts?: {
     autoSelectAccount?: boolean;
     allowMultipleSessions?: boolean;
     accountStorageKey?: string;

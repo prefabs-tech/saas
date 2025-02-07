@@ -1,9 +1,17 @@
 import { SaasConfig } from "./config";
-import { Customer, CustomerSignupData, UserSignupData } from "./customer";
+import {
+  Customer,
+  CustomerCreateInput,
+  CustomerSignupData,
+  CustomerUpdateInput,
+  UserSignupData,
+} from "./customer";
 
 export type {
+  Customer,
+  CustomerCreateInput,
   CustomerSignupData,
-  Customer as CustomerType,
+  CustomerUpdateInput,
   SaasConfig,
   UserSignupData,
 };

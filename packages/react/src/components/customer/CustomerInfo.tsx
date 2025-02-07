@@ -1,12 +1,12 @@
 import { useTranslation } from "@dzangolab/react-i18n";
 
-import { CustomerType } from "../../types";
+import { Customer } from "../../types";
 
 interface Properties {
-  data?: CustomerType;
+  data?: Customer;
 }
 
-export const Customer = ({ data }: Properties) => {
+export const CustomerInfo = ({ data }: Properties) => {
   const { t } = useTranslation("customers");
 
   return (
