@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/12deg/saas/compare/v0.4.0...v0.5.0) (2025-02-07)
+
+
+### Features
+
+* **customer:** add customer schema and update types ([e934680](https://github.com/12deg/saas/commit/e934680b98ef77320f24a25ad3756eecf8323077))
+
+
+
 # [0.4.0](https://github.com/12deg/saas/compare/v0.3.4...v0.4.0) (2025-02-06)
 
 
