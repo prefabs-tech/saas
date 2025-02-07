@@ -8,20 +8,24 @@ import { QueryResultRow } from "slonik";
 import getSaasConfig from "../../../config";
 import { ROLE_SAAS_ACCOUNT_MEMBER } from "../../../constants";
 import sendInvitation from "../../../lib/sendInvitation";
+import CustomerService from "../../customers/service";
 import CustomerUserService from "../../customerUsers/service";
 import CustomerInvitationService from "../service";
 
 import type {
+  Customer,
+  CustomerCreateInput,
   CustomerInvitation,
   CustomerInvitationCreateInput,
   CustomerInvitationUpdateInput,
+  CustomerUpdateInput,
 } from "../../../types";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
 const create = async (request: SessionRequest, reply: FastifyReply) => {
-  const { body, config, customer, dbSchema, log, server, slonik, user } =
-    request;
+  const { body, config, dbSchema, log, server, slonik, user } = request;
+  let customer: Customer | undefined | null = request.customer;
 
   try {
     if (!user) {
@@ -33,13 +37,30 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
     }
 
     const RequestParameters = request.params as { customerId: string };
-    const customerId = customer ? customer.id : RequestParameters.customerId;
 
-    if (!customerId) {
+    if (customer && customer.id != RequestParameters.customerId) {
       return reply.status(400).send({
         error: "Bad Request",
         message: "Bad Request",
         statusCode: 400,
+      });
+    }
+
+    if (!customer) {
+      const customerService = new CustomerService<
+        Customer & QueryResultRow,
+        CustomerCreateInput,
+        CustomerUpdateInput
+      >(config, slonik);
+
+      customer = await customerService.findById(RequestParameters.customerId);
+    }
+
+    if (!customer) {
+      return reply.status(404).send({
+        error: "Not Found",
+        message: "Customer not found",
+        statusCode: 404,
       });
     }
 
@@ -82,7 +103,7 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
           {
             key: "customer_id",
             operator: "eq",
-            value: customerId,
+            value: customer.id,
           },
         ],
       });
@@ -104,16 +125,19 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
     >(config, slonik, dbSchema);
 
     const invitationCreateInput: CustomerInvitationCreateInput = {
-      customerId,
+      customerId: customer.id,
       email,
       expiresAt: computeInvitationExpiresAt(config, expiresAt),
       invitedById: user.id,
-      userId: invitedUser ? invitedUser.id : undefined,
       role: role || ROLE_SAAS_ACCOUNT_MEMBER,
     };
 
     if (Object.keys(payload || {}).length > 0) {
       invitationCreateInput.payload = JSON.stringify(payload);
+    }
+
+    if (invitedUser) {
+      invitationCreateInput.userId = invitedUser.id;
     }
 
     let customerInvitation: CustomerInvitation | undefined;
@@ -122,6 +146,7 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
       customerInvitation = await service.create(invitationCreateInput);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
+      console.log(error);
       return reply.status(422).send({
         statusCode: 422,
         status: "ERROR",
@@ -130,13 +155,19 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
     }
 
     if (customerInvitation) {
-      // FIXME: the app origin should be according to customer record.
+      let invitationOrigin: string;
       const saasConfig = getSaasConfig(config);
 
-      const origin = `${request.protocol}://${saasConfig.mainAppSubdomain}.${saasConfig.rootDomain}`;
+      if (customer.domain) {
+        invitationOrigin = `${request.protocol}://${customer.domain}`;
+      } else if (customer.slug) {
+        invitationOrigin = `${request.protocol}://${customer.slug}.${saasConfig.rootDomain}`;
+      } else {
+        invitationOrigin = `${request.protocol}://${saasConfig.mainAppSubdomain}.${saasConfig.rootDomain}`;
+      }
 
       try {
-        sendInvitation(server, customerInvitation, origin);
+        sendInvitation(server, customerInvitation, invitationOrigin);
       } catch (error) {
         log.error(error);
       }

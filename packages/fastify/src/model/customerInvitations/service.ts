@@ -36,7 +36,9 @@ class CustomerInvitationService<
 
     // only one valid invitation is allowed per email per customer
     if (validInvitationCount > 0) {
-      throw new Error("Customer invitation already exists");
+      throw new Error(
+        `Invitation already exists for email '${data.email}' for customerId '${data.customerId}'`,
+      );
     }
 
     const query = this.factory.getCreateSql(data);
