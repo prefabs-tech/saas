@@ -35,6 +35,7 @@ declare module "@dzangolab/fastify-config" {
   }
 }
 
+export { default as customerInvitationRoutes } from "./model/customerInvitations/controller";
 export { default as customerRoutes } from "./model/customers/controller";
 export { default as customerResolver } from "./model/customers/resolver";
 export { default as customerSchema } from "./model/customers/schema";

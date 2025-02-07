@@ -32,8 +32,8 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
       });
     }
 
-    const parameters = request.params as { customerId: string };
-    const customerId = customer ? customer.id : parameters.customerId;
+    const RequestParameters = request.params as { customerId: string };
+    const customerId = customer ? customer.id : RequestParameters.customerId;
 
     if (!customerId) {
       return reply.status(400).send({
@@ -59,13 +59,13 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
 
     const userService = getUserService(config, slonik, dbSchema);
 
-    const InvitedUser = await userService.findOne({
+    const invitedUser = await userService.findOne({
       key: "email",
       operator: "eq",
       value: email,
     });
 
-    if (InvitedUser) {
+    if (invitedUser) {
       const customerUserService = new CustomerUserService(
         config,
         slonik,
@@ -77,7 +77,7 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
           {
             key: "user_id",
             operator: "eq",
-            value: InvitedUser.id,
+            value: invitedUser.id,
           },
           {
             key: "customer_id",
@@ -108,6 +108,7 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
       email,
       expiresAt: computeInvitationExpiresAt(config, expiresAt),
       invitedById: user.id,
+      userId: invitedUser ? invitedUser.id : undefined,
       role: role || ROLE_SAAS_ACCOUNT_MEMBER,
     };
 
@@ -132,7 +133,7 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
       // FIXME: the app origin should be according to customer record.
       const saasConfig = getSaasConfig(config);
 
-      const origin = `${saasConfig.mainAppSubdomain}.${saasConfig.rootDomain}`;
+      const origin = `${request.protocol}://${saasConfig.mainAppSubdomain}.${saasConfig.rootDomain}`;
 
       try {
         sendInvitation(server, customerInvitation, origin);
