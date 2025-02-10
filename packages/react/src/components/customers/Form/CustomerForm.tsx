@@ -72,6 +72,16 @@ export const CustomerForm = ({
             .nullable()
             .optional()
             .or(z.literal("")),
+    domain: z
+      .string()
+      .max(255)
+      .regex(
+        /^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/,
+        t("form.validations.domain.invalid"),
+      )
+      .nullable()
+      .optional()
+      .or(z.literal("")),
     useSeparateDatabase: z.boolean().nullable(),
   });
 

@@ -7,10 +7,11 @@
     },
     "fields": {
       "billingAddress": "Billing address",
+      "database": "Database",
       "domain": "Domain",
       "name": "Name",
       "organizationName": "Organization name",
-      "registeredNumber": "Registration number",
+      "registeredNumber": "Registered number",
       "slug": "Slug",
       "taxId": "Tax ID",
       "type": {
@@ -44,7 +45,7 @@
         "invalid": "Organization name must be less than 255 characters"
       },
       "registeredNumber": {
-        "invalid": "Registration number must be less than 255 characters"
+        "invalid": "Registered number must be less than 255 characters"
       },
       "slug": {
         "invalid": "Slug must be less than 24 characters",

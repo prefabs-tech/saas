@@ -7,10 +7,11 @@
     },
     "fields": {
       "billingAddress": "Billing address (fr)",
+      "database": "Database (fr)",
       "domain": "Domain (fr)",
       "name": "Name (fr)",
       "organizationName": "Organization name (fr)",
-      "registeredNumber": "Registration number (fr)",
+      "registeredNumber": "Registered number (fr)",
       "slug": "Slug (fr)",
       "taxId": "Tax ID (fr)",
       "type": {
@@ -44,7 +45,7 @@
         "invalid": "Organization name must be less than 255 characters (fr)"
       },
       "registeredNumber": {
-        "invalid": "Registration number must be less than 255 characters (fr)"
+        "invalid": "Registered number must be less than 255 characters (fr)"
       },
       "slug": {
         "invalid": "Slug must be less than 24 characters (fr)",
@@ -64,7 +65,7 @@
     "columns": {
       "name": "Name (fr)",
       "organizationName": "Organization name (fr)",
-      "registeredNumber": "Registered name (fr)",
+      "registeredNumber": "Registered number (fr)",
       "schema": "Schema (fr)",
       "taxId": "Tax ID (fr)",
       "tenant": "Tenant (fr)",

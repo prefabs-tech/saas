@@ -37,6 +37,7 @@ export const CustomerFormFields = ({
   useEffect(() => {
     if (!slug) {
       setValue("useSeparateDatabase", false);
+      setValue("domain", "");
     }
   }, [slug]);
 
@@ -77,12 +78,13 @@ export const CustomerFormFields = ({
       )}
       {subdomains !== "disabled" && (
         <>
+          <TextInput label={t("form.fields.slug")} name="slug" />
           <TextInput
-            label={t("form.fields.slug")}
-            name="slug"
-            disabled={isEditForm}
+            label={t("form.fields.domain")}
+            name="domain"
+            disabled={!slug}
           />
-          {multiDatabase && (
+          {multiDatabase && !isEditForm && (
             <SwitchInput
               label={t("form.fields.useSeparateDb")}
               name="useSeparateDatabase"
