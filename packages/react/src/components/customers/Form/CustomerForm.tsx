@@ -2,14 +2,19 @@ import { FormSubmitOptions, Provider } from "@dzangolab/react-form";
 import { useTranslation } from "@dzangolab/react-i18n";
 import { z } from "zod";
 
+import { useConfig } from "@/hooks";
+import { Customer, CustomerCreateInput, CustomerUpdateInput } from "@/types";
+
 import { CustomerFormFields } from "./CustomerFormFields";
-import { CustomerType } from "@/types";
 
 type Properties = {
-  customer?: CustomerType;
+  customer?: Customer;
   loading?: boolean;
   handleCancel: () => void;
-  handleSubmit: (data: CustomerType, options?: FormSubmitOptions) => void;
+  handleSubmit: (
+    data: CustomerCreateInput | CustomerUpdateInput,
+    options?: FormSubmitOptions,
+  ) => void;
 };
 
 export const CustomerForm = ({
@@ -20,61 +25,67 @@ export const CustomerForm = ({
 }: Properties) => {
   const { t } = useTranslation("customers");
 
-  const customerValidationSchema: any = z.object({
+  const { subdomains } = useConfig();
+
+  const customerValidationSchema = z.object({
     name: z
       .string()
       .max(255, {
-        message: t("customer.form.validations.name.invalid"),
+        message: t("form.validations.name.invalid"),
       })
-      .nonempty({
-        message: t("customer.form.validations.name.required"),
+      .min(1, {
+        message: t("form.validations.name.required"),
       }),
     individual: z.boolean(),
     organizationName: z
       .string()
       .max(255, {
-        message: t("customer.form.validations.organizationName.invalid"),
+        message: t("form.validations.organizationName.invalid"),
       })
       .nullable(),
     registeredNumber: z
       .string()
       .max(255, {
-        message: t("customer.form.validations.registeredNumber.invalid"),
+        message: t("form.validations.registeredNumber.invalid"),
       })
       .nullable(),
     taxId: z
       .string()
       .max(255, {
-        message: t("customer.form.validations.taxId.invalid"),
+        message: t("form.validations.taxId.invalid"),
       })
       .nullable(),
-    slug: z
-      .string()
-      .max(24, {
-        message: t("customer.form.validations.slug.invalid"),
-      })
-      .nullable(),
+    slug:
+      subdomains === "required"
+        ? z
+            .string()
+            .regex(
+              /^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/,
+              t("form.validations.slug.invalid"),
+            )
+        : z
+            .string()
+            .regex(
+              /^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/,
+              t("form.validations.slug.invalid"),
+            )
+            .nullable()
+            .optional()
+            .or(z.literal("")),
     useSeparateDatabase: z.boolean().nullable(),
-    domain: z
-      .string()
-      .max(253, {
-        message: t("customer.form.validations.domain.invalid"),
-      })
-      .nullable(),
   });
 
   return (
     <Provider
       onSubmit={handleSubmit}
       defaultValues={{
-        domain: customer?.domain || "",
         individual: customer?.individual || false,
         name: customer?.name || "",
         organizationName: customer?.organizationName || "",
         registeredNumber: customer?.registeredNumber || "",
         slug: customer?.slug || "",
         taxId: customer?.taxId || "",
-        useSeparateDatabase: customer?.database || false,
+        useSeparateDatabase: !!customer?.database,
       }}
       className="customer-form"
       validationSchema={customerValidationSchema}

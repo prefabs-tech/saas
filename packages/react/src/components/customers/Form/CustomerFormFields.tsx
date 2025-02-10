@@ -7,6 +7,8 @@ import {
 import { useTranslation } from "@dzangolab/react-i18n";
 import { useEffect } from "react";
 
+import { useConfig } from "@/hooks";
+
 type Properties = {
   isEditForm?: boolean;
   loading?: boolean;
@@ -19,6 +21,8 @@ export const CustomerFormFields = ({
   handleCancel,
 }: Properties) => {
   const { t } = useTranslation("customers");
+
+  const { multiDatabase, subdomains } = useConfig();
 
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -36,14 +40,15 @@ export const CustomerFormFields = ({
     }
   }, [slug]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const formActions: any = [
     {
-      label: t("customer.form.actions.save"),
+      label: t("form.actions.save"),
     },
 
     {
       id: "cancel",
-      label: t("customer.form.actions.cancel"),
+      label: t("form.actions.cancel"),
       severity: "secondary",
       type: "button",
       variant: "outlined",
@@ -53,40 +58,40 @@ export const CustomerFormFields = ({
 
   return (
     <>
-      <TextInput label={t("customer.form.fields.name")} name="name" />
+      <TextInput label={t("form.fields.name")} name="name" />
       {!isEditForm && (
-        <SwitchInput
-          label={t("customer.form.fields.individual")}
-          name="individual"
-        />
+        <SwitchInput label={t("form.fields.type.label")} name="individual" />
       )}
-      {(!individual || (isEditForm && !individual)) && (
-        <fieldset>
+      {!individual && (
+        <>
           <TextInput
-            label={t("customer.form.fields.organizationName")}
+            label={t("form.fields.organizationName")}
             name="organizationName"
           />
           <TextInput
-            label={t("customer.form.fields.registeredNumber")}
+            label={t("form.fields.registeredNumber")}
             name="registeredNumber"
           />
-          <TextInput label={t("customer.form.fields.taxId")} name="taxId" />
-        </fieldset>
+          <TextInput label={t("form.fields.taxId")} name="taxId" />
+        </>
       )}
-      <TextInput
-        label={t("customer.form.fields.slug")}
-        name="slug"
-        disabled={isEditForm}
-      />
-      {slug && (
-        <SwitchInput
-          label={t("customer.form.fields.useSeparateDb")}
-          name="useSeparateDatabase"
-          disabled={isEditForm}
-        />
+      {subdomains !== "disabled" && (
+        <>
+          <TextInput
+            label={t("form.fields.slug")}
+            name="slug"
+            disabled={isEditForm}
+          />
+          {multiDatabase && (
+            <SwitchInput
+              label={t("form.fields.useSeparateDb")}
+              name="useSeparateDatabase"
+              disabled={!slug || isEditForm}
+            />
+          )}
+        </>
       )}
-      <TextInput label={t("customer.form.fields.domain")} name="domain" />
-      <FormActions actions={formActions} alignment="left" loading={loading} />
+      <FormActions actions={formActions} alignment="fill" loading={loading} />
     </>
   );
 };

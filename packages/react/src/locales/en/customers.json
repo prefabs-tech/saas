@@ -1,0 +1,81 @@
+{
+  "form": {
+    "actions": {
+      "cancel": "Cancel",
+      "save": "Save",
+      "submit": "Save"
+    },
+    "fields": {
+      "billingAddress": "Billing address",
+      "domain": "Domain",
+      "name": "Name",
+      "organizationName": "Organization name",
+      "registeredNumber": "Registration number",
+      "slug": "Slug",
+      "taxId": "Tax ID",
+      "type": {
+        "label": "Individual",
+        "options": {
+          "individual": "Individual",
+          "organization": "Organization"
+        }
+      },
+      "useSeparateDb": "Use separate database"
+    },
+    "messages": {
+      "error": {
+        "create": "Failed to create customer",
+        "edit": "Failed to update customer"
+      },
+      "success": {
+        "create": "Customer created successfully",
+        "edit": "Customer updated successfully"
+      }
+    },
+    "validations": {
+      "domain": {
+        "invalid": "Domain must be less than 255 characters"
+      },
+      "name": {
+        "invalid": "Name must be less than 255 characters",
+        "required": "Name is required"
+      },
+      "organizationName": {
+        "invalid": "Organization name must be less than 255 characters"
+      },
+      "registeredNumber": {
+        "invalid": "Registration number must be less than 255 characters"
+      },
+      "slug": {
+        "invalid": "Slug must be less than 24 characters",
+        "required": "Slug is required"
+      },
+      "taxId": {
+        "invalid": "Tax id must be less than 255 characters"
+      }
+    }
+  },
+  "table": {
+    "actions": {
+      "add": "Add",
+      "edit": "Edit",
+      "view": "View"
+    },
+    "columns": {
+      "name": "Name",
+      "organizationName": "Organization name",
+      "registeredNumber": "Registered name",
+      "schema": "Schema",
+      "taxId": "Tax ID",
+      "tenant": "Tenant",
+      "type": "Type"
+    },
+    "emptyMessage": "Table is empty",
+    "pagination": {
+      "pageControl": "Go to",
+      "rowsPerPage": "Rows"
+    },
+    "searchPlaceholder": "",
+    "title": "Customers"
+  }
+}
