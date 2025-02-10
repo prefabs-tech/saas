@@ -7,14 +7,16 @@ import type {
   CustomerInvitationCreateInput,
   CustomerInvitationUpdateInput,
 } from "../../../types";
-import type { FilterInput, PaginatedList } from "@dzangolab/fastify-slonik";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
-const list = async (request: SessionRequest, reply: FastifyReply) => {
-  const { config, customer, dbSchema, log, query, slonik } = request;
+const remove = async (request: SessionRequest, reply: FastifyReply) => {
+  const { config, customer, dbSchema, log, slonik } = request;
 
-  const requestParameters = request.params as { customerId: string };
+  const requestParameters = request.params as {
+    id: string;
+    customerId: string;
+  };
 
   if (customer && customer.id != requestParameters.customerId) {
     return reply.status(400).send({
@@ -35,41 +37,27 @@ const list = async (request: SessionRequest, reply: FastifyReply) => {
   }
 
   try {
-    const { limit, offset, filters, sort } = query as {
-      limit: number;
-      offset?: number;
-      filters?: string;
-      sort?: string;
-    };
-
-    const customerIdFilter = {
-      key: "customerId",
-      operator: "eq",
-      value: customerId,
-    } as FilterInput;
-
-    const combinedFilter = {
-      AND: [customerIdFilter, ...(filters ? [filters] : [])],
-    } as FilterInput;
-
     const service = new CustomerInvitationService<
       CustomerInvitation & QueryResultRow,
       CustomerInvitationCreateInput,
       CustomerInvitationUpdateInput
     >(config, slonik, dbSchema);
 
-    const invitations = (await service.list(
-      limit,
-      offset,
-      combinedFilter,
-      sort ? JSON.parse(sort) : undefined,
-    )) as PaginatedList<Partial<CustomerInvitation>>;
+    const customerInvitation = await service.delete(requestParameters.id);
 
-    for (const invitation of invitations.data) {
-      delete invitation.token;
+    if (!customerInvitation) {
+      return reply.status(422).send({
+        statusCode: 422,
+        status: "ERROR",
+        message: "Invitation not found",
+      });
     }
 
-    reply.send(invitations);
+    const data: Partial<CustomerInvitation> = customerInvitation;
+
+    delete data.token;
+
+    reply.send(data);
   } catch (error) {
     log.error(error);
 
@@ -81,4 +69,4 @@ const list = async (request: SessionRequest, reply: FastifyReply) => {
   }
 };
 
-export default list;
+export default remove;

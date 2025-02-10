@@ -36,9 +36,9 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
       });
     }
 
-    const RequestParameters = request.params as { customerId: string };
+    const requestParameters = request.params as { customerId: string };
 
-    if (customer && customer.id != RequestParameters.customerId) {
+    if (customer && customer.id != requestParameters.customerId) {
       return reply.status(400).send({
         error: "Bad Request",
         message: "Bad Request",
@@ -53,7 +53,7 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
         CustomerUpdateInput
       >(config, slonik);
 
-      customer = await customerService.findById(RequestParameters.customerId);
+      customer = await customerService.findById(requestParameters.customerId);
     }
 
     if (!customer) {

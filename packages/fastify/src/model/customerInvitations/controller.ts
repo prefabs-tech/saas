@@ -10,7 +10,7 @@ const plugin = async (
   fastify.get(
     "/customers/:customerId/invitations",
     {
-      preHandler: [fastify.verifySession()],
+      preHandler: fastify.verifySession(),
     },
     handlers.list,
   );
@@ -18,9 +18,57 @@ const plugin = async (
   fastify.post(
     "/customers/:customerId/invitations",
     {
-      preHandler: [fastify.verifySession()],
+      preHandler: fastify.verifySession(),
     },
     handlers.create,
+  );
+
+  fastify.post(
+    String.raw`/customers/:customerId/invitations/:id(^\d+)/resend`,
+    {
+      preHandler: fastify.verifySession(),
+    },
+    handlers.resend,
+  );
+
+  fastify.post(
+    String.raw`/customers/:customerId/invitations/:id(^\d+)/revoke`,
+    {
+      preHandler: fastify.verifySession(),
+    },
+    handlers.revoke,
+  );
+
+  fastify.get(
+    String.raw`/customers/:customerId/invitations/token/:token`,
+    {
+      config: {
+        saas: {
+          exclude: true,
+        },
+      },
+    },
+    handlers.getByToken,
+  );
+
+  fastify.delete(
+    String.raw`/customers/:customerId/invitations/:id(^\d+)`,
+    {
+      preHandler: fastify.verifySession(),
+    },
+    handlers.revoke,
+  );
+
+  fastify.post(
+    String.raw`/customers/:customerId/invitations/token/:token`,
+    {
+      config: {
+        saas: {
+          exclude: true,
+        },
+      },
+    },
+    handlers.accept,
   );
 
   done();
