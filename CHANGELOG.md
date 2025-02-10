@@ -1,3 +1,12 @@
+# [0.6.0](https://github.com/12deg/saas/compare/v0.5.0...v0.6.0) (2025-02-10)
+
+
+### Features
+
+* **customers:** add CustomerForm and CustomersTable comopnents ([#31](https://github.com/12deg/saas/issues/31)) ([5d83183](https://github.com/12deg/saas/commit/5d83183ab04d09837b3ebe685e070d701f372463))
+
+
+
 # [0.5.0](https://github.com/12deg/saas/compare/v0.4.0...v0.5.0) (2025-02-07)
 
 
