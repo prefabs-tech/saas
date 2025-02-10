@@ -48,7 +48,7 @@ export const AccountSwitcher = ({
       <DropdownMenu
         label={label}
         menu={accounts.map((account) => ({
-          label: `${account.name}`,
+          label: account.organizationName || account.name,
           onClick: () => handleSelect(account.id),
         }))}
       ></DropdownMenu>

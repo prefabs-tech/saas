@@ -3,8 +3,8 @@ import {
   CustomerSignupForm,
   UserSignupForm,
 } from "./components/accounts";
-import { CustomerForm, CustomersTable } from "./components/customer";
-import { CustomerInfo } from "./components/customer/CustomerInfo";
+import { CustomerForm, CustomersTable } from "./components/customers";
+import { CustomerInfo } from "./components/customers/CustomerInfo";
 import AccountsProvider, { accountsContext } from "./contexts/AccountsProvider";
 import { SaasConfig } from "./types";
 import "./assets/css/index.css";

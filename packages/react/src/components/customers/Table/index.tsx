@@ -8,11 +8,11 @@ import {
 } from "@dzangolab/react-ui";
 import React from "react";
 
-import type { Customer } from "../../types";
+import type { Customer } from "@/types";
 
 type VisibleColumn = "name" | "taxId" | "type" | string;
 
-export interface Properties
+export interface CustomersTableProperties
   extends Partial<
     Omit<
       TDataTableProperties<Customer>,
@@ -28,7 +28,6 @@ export const CustomersTable = ({
   className = "table-customers",
   columns = [],
   customers,
-  fetchCustomers,
   totalRecords = 0,
   visibleColumns = [
     "name",
@@ -37,22 +36,22 @@ export const CustomersTable = ({
     "taxId",
     "type",
   ],
+  fetchCustomers,
   ...tableOptions
-}: Properties) => {
+}: CustomersTableProperties) => {
   const { t } = useTranslation("customers");
 
   const defaultColumns: Array<TableColumnDefinition<Customer>> = [
     {
       accessorKey: "name",
-      header: t("table.defaultColumns.name"),
+      header: t("table.columns.name"),
       enableSorting: true,
       enableColumnFilter: true,
       enableGlobalFilter: true,
     },
     {
-      align: "left",
       accessorKey: "organizationName",
-      header: t("table.defaultColumns.organizationName"),
+      header: t("table.columns.organizationName"),
       cell: ({ row: { original } }) => {
         if (!original.organizationName) {
           return <code>&#8212;</code>;
@@ -62,9 +61,8 @@ export const CustomersTable = ({
       },
     },
     {
-      align: "left",
       accessorKey: "registeredNumber",
-      header: t("table.defaultColumns.registeredNumber"),
+      header: t("table.columns.registeredNumber"),
       cell: ({ row: { original } }) => {
         if (!original.registeredNumber) {
           return <code>&#8212;</code>;
@@ -74,9 +72,8 @@ export const CustomersTable = ({
       },
     },
     {
-      align: "left",
       accessorKey: "taxId",
-      header: t("table.defaultColumns.taxId"),
+      header: t("table.columns.taxId"),
       cell: ({ row: { original } }) => {
         if (!original.taxId) {
           return <code>&#8212;</code>;
@@ -88,13 +85,21 @@ export const CustomersTable = ({
     {
       align: "center",
       accessorKey: "individual",
-      header: t("table.defaultColumns.individual"),
+      header: t("table.columns.type"),
       cell({ row: { original } }) {
         if (original.individual) {
-          return <Tag fullWidth label="Individual" />;
+          return (
+            <Tag fullWidth label={t("form.fields.type.options.individual")} />
+          );
         }
 
-        return <Tag fullWidth label="Organization" color="green" />;
+        return (
+          <Tag
+            fullWidth
+            label={t("form.fields.type.options.organization")}
+            color="green"
+          />
+        );
       },
     },
   ];

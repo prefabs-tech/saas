@@ -1,0 +1,82 @@
+{
+  "form": {
+    "actions": {
+      "cancel": "Cancel (fr)",
+      "save": "Save (fr)",
+      "submit": "Save (fr)"
+    },
+    "fields": {
+      "billingAddress": "Billing address (fr)",
+      "database": "Database (fr)",
+      "domain": "Domain (fr)",
+      "name": "Name (fr)",
+      "organizationName": "Organization name (fr)",
+      "registeredNumber": "Registered number (fr)",
+      "slug": "Slug (fr)",
+      "taxId": "Tax ID (fr)",
+      "type": {
+        "label": "Individual (fr)",
+        "options": {
+          "individual": "Individual (fr)",
+          "organization": "Organization (fr)"
+        }
+      },
+      "useSeparateDb": "Use separate database (fr)"
+    },
+    "messages": {
+      "error": {
+        "create": "Failed to create customer (fr)",
+        "edit": "Failed to update customer (fr)"
+      },
+      "success": {
+        "create": "Customer created successfully (fr)",
+        "edit": "Customer updated successfully (fr)"
+      }
+    },
+    "validations": {
+      "domain": {
+        "invalid": "Domain must be less than 255 characters (fr)"
+      },
+      "name": {
+        "invalid": "Name must be less than 255 characters (fr)",
+        "required": "Name is required (fr)"
+      },
+      "organizationName": {
+        "invalid": "Organization name must be less than 255 characters (fr)"
+      },
+      "registeredNumber": {
+        "invalid": "Registered number must be less than 255 characters (fr)"
+      },
+      "slug": {
+        "invalid": "Slug must be less than 24 characters (fr)",
+        "required": "Slug is required (fr)"
+      },
+      "taxId": {
+        "invalid": "Tax id must be less than 255 characters (fr)"
+      }
+    }
+  },
+  "table": {
+    "actions": {
+      "add": "Add (fr)",
+      "edit": "Edit (fr)",
+      "view": "View (fr)"
+    },
+    "columns": {
+      "name": "Name (fr)",
+      "organizationName": "Organization name (fr)",
+      "registeredNumber": "Registered number (fr)",
+      "schema": "Schema (fr)",
+      "taxId": "Tax ID (fr)",
+      "tenant": "Tenant (fr)",
+      "type": "Type (fr)"
+    },
+    "emptyMessage": "Table is empty (fr)",
+    "pagination": {
+      "pageControl": "Go to (fr)",
+      "rowsPerPage": "Rows (fr)"
+    },
+    "searchPlaceholder": " (fr)",
+    "title": "Customers (fr)"
+  }
+}

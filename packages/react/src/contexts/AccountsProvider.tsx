@@ -62,7 +62,12 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
   } = accountsConfig || {};
 
   const subdomain = window.location.hostname.split(".")[0];
-  const isMainApp = useMemo(() => subdomain === mainAppSubdomain, [subdomain]);
+  const { isMainApp, isAdminApp } = useMemo(() => {
+    return {
+      isMainApp: subdomain === mainAppSubdomain,
+      isAdminApp: subdomain === "admin",
+    };
+  }, [subdomain]);
 
   const switchAccount = useCallback(
     (
@@ -166,7 +171,8 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
   );
 
   useEffect(() => {
-    if (userId) {
+    // ignore customer discovery for admin app
+    if (!isAdminApp && userId) {
       setLoading(true);
 
       getMyAccounts({ apiBaseUrl })
