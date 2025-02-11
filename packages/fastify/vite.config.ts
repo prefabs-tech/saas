@@ -31,6 +31,7 @@ export default defineConfig(({ mode }) => {
           globals: {
             "@dzangolab/fastify-config": "DzangolabFastifyConfig",
             "@dzangolab/fastify-graphql": "DzangolabFastifyGraphql",
+            "@dzangolab/fastify-mailer": "DzangolabFastifyMailer",
             "@dzangolab/fastify-slonik": "DzangolabFastifySlonik",
             "@dzangolab/fastify-user": "DzangolabFastifyUser",
             "@dzangolab/postgres-migrations": "DzangolabPostgresMigrations",

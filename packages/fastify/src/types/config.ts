@@ -1,4 +1,9 @@
+import { User } from "@dzangolab/fastify-user";
+
 import customerHandlers from "../model/customers/handlers";
+
+import type { CustomerInvitation } from "./customerInvitation";
+import type { FastifyRequest } from "fastify";
 
 interface SaasOptions {
   apps?: [
@@ -24,6 +29,14 @@ interface SaasOptions {
     domains?: string[];
     slugs?: string[];
   };
+  invitation?: {
+    acceptLinkPath?: string;
+    postAccept?: (
+      request: FastifyRequest,
+      invitation: CustomerInvitation,
+      user: User,
+    ) => Promise<void>;
+  };
   mainAppSubdomain: string;
   multiDatabase?: {
     enabled: boolean;
@@ -37,6 +50,9 @@ interface SaasOptions {
     customers?: {
       disabled: boolean;
     };
+    customerInvitations?: {
+      disabled: boolean;
+    };
   };
   subdomains: "disabled" | "required" | "optional";
   tables?: {
@@ -47,6 +63,9 @@ interface SaasOptions {
       name: string;
     };
     customerAddresses?: {
+      name: string;
+    };
+    customerInvitations?: {
       name: string;
     };
   };

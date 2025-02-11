@@ -1,5 +1,6 @@
 import {
   createCustomerAddressesTableQuery,
+  createCustomerInvitationsTableQuery,
   createCustomerUsersTableQuery,
   createCustomersTableQuery,
 } from "./queries";
@@ -18,6 +19,9 @@ const runMigrations = async (config: ApiConfig, database: Database) => {
       );
       await transactionConnection.query(
         createCustomerAddressesTableQuery(saasConfig),
+      );
+      await transactionConnection.query(
+        createCustomerInvitationsTableQuery(saasConfig),
       );
     });
   });

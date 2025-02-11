@@ -39,9 +39,9 @@ const Mutation = {
     const service = new Service(context.config, context.database);
 
     try {
-      const Customer = await service.delete(arguments_.id as number);
+      const customer = await service.delete(arguments_.id as number);
 
-      return Customer;
+      return customer;
     } catch (error) {
       console.log(error);
     }
@@ -58,12 +58,12 @@ const Mutation = {
     const service = new Service(context.config, context.database);
 
     try {
-      const Customer = await service.update(
+      const customer = await service.update(
         arguments_.id as number,
         arguments_.data as CustomerUpdateInput,
       );
 
-      return Customer;
+      return customer;
     } catch (error) {
       console.log(error);
     }
