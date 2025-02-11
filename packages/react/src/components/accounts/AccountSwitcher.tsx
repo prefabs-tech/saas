@@ -20,7 +20,7 @@ export const AccountSwitcher = ({
   const { accounts, activeAccount, loading, switchAccount } = useAccounts();
 
   const label = activeAccount
-    ? activeAccount.name
+    ? activeAccount.organizationName || activeAccount.name
     : emptyLabel || t("switcher.emptyLabel");
 
   const handleSelect = (accountId: string) => {

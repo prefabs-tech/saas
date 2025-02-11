@@ -1,4 +1,13 @@
 {
+  "account": {
+    "actions": {
+      "switch": "Switch"
+    },
+    "active": "Active",
+    "name": "Name",
+    "registeredNumber": "Registered number",
+    "taxId": "Tax ID"
+  },
   "signup": {
     "actions": {
       "cancel": "Cancel",
@@ -18,7 +27,7 @@
         "label": "Your password",
         "helper": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase"
       },
-      "registeredNumber": "Registration number",
+      "registeredNumber": "Registered number",
       "slug": "Slug",
       "taxId": "Tax ID",
       "typeId": {
@@ -63,7 +72,7 @@
         "required": "Password is required"
       },
       "registeredNumber": {
-        "invalid": "Registration number must be less than 255 characters"
+        "invalid": "Registered number must be less than 255 characters"
       },
       "slug": {
         "invalid": "Please enter a valid slug upto 24 characters",
@@ -77,5 +86,6 @@
   "switcher": {
     "emptyLabel": "Choose account",
     "helper": "Accounts"
-  }
+  },
+  "title": "My accounts"
 }
