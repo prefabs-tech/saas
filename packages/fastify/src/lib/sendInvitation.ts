@@ -13,7 +13,9 @@ const getInvitationLink = (
 ): string => {
   const { token } = invitation;
 
-  let invitationAcceptPath = CUSTOMER_INVITATION_ACCEPT_LINK_PATH;
+  let invitationAcceptPath =
+    config.saas.invitation?.acceptLinkPath ||
+    CUSTOMER_INVITATION_ACCEPT_LINK_PATH;
 
   invitationAcceptPath = invitationAcceptPath.replaceAll(
     /:token(?!\w)/g,

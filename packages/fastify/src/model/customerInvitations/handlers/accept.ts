@@ -20,6 +20,7 @@ import type {
   CustomerInvitationUpdateInput,
   CustomerUpdateInput,
 } from "../../../types";
+import type { User } from "@dzangolab/fastify-user";
 import type { FastifyReply, FastifyRequest } from "fastify";
 
 interface FieldInput {
@@ -130,6 +131,17 @@ const accept = async (request: FastifyRequest, reply: FastifyReply) => {
     await service.update(customerInvitation.id, {
       acceptedAt: formatDate(new Date(Date.now())),
     });
+
+    // run post accept hook
+    try {
+      await config.saas.invitation?.postAccept?.(
+        request,
+        customerInvitation,
+        signUpResponse.user as unknown as User,
+      );
+    } catch (error) {
+      log.error(error);
+    }
 
     // create new session so the user be logged in on signup
     await createNewSession(request, reply, signUpResponse.user.id);
