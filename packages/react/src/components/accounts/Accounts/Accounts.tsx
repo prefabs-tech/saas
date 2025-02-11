@@ -1,3 +1,5 @@
+import { GridContainer } from "@dzangolab/react-ui";
+
 import { useAccounts } from "@/hooks";
 import { Customer } from "@/types";
 
@@ -21,7 +23,7 @@ export const Accounts = ({ onAccountSwitch }: Properties) => {
   }
 
   return (
-    <div className="accounts">
+    <GridContainer className="accounts">
       {accounts?.map((account) => {
         return (
           <Account
@@ -33,6 +35,6 @@ export const Accounts = ({ onAccountSwitch }: Properties) => {
           />
         );
       })}
-    </div>
+    </GridContainer>
   );
 };

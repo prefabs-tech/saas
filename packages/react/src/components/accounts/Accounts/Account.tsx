@@ -1,5 +1,5 @@
 import { useTranslation } from "@dzangolab/react-i18n";
-import { Button, Data, GridContainer, Tag } from "@dzangolab/react-ui";
+import { Button, Tag } from "@dzangolab/react-ui";
 
 import { Customer } from "@/types";
 
@@ -30,16 +30,6 @@ export const Account = ({ account, active, loading, onSwitch }: Properties) => {
           </Button>
         )}
       </div>
-      {!account.individual && (
-        <GridContainer>
-          <Data label={t("account.name")} value={account.name}></Data>
-          <Data
-            label={t("account.registeredNumber")}
-            value={account.registeredNumber || "-"}
-          ></Data>
-          <Data label={t("account.taxId")} value={account.taxId}></Data>
-        </GridContainer>
-      )}
     </div>
   );
 };
