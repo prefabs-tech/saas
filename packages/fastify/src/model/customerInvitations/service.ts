@@ -18,6 +18,18 @@ class CustomerInvitationService<
   >
   // eslint-disable-next-line prettier/prettier
   implements Service<CustomerInvitation, CustomerInvitationCreateInput, CustomerInvitationUpdateInput> {
+  deleteByIdAndCustomerId = async (
+    id: number | string,
+    customerId: string,
+  ): Promise<CustomerInvitation | null> => {
+    const query = this.factory.getDeleteByIdAndCustomerIdSql(id, customerId);
+
+    const result = await this.database.connect((connection) => {
+      return connection.maybeOne(query);
+    });
+
+    return result;
+  };
 
   create = async (
     data: CustomerInvitationCreateInput,

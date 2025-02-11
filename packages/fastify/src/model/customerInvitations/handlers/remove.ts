@@ -43,7 +43,10 @@ const remove = async (request: SessionRequest, reply: FastifyReply) => {
       CustomerInvitationUpdateInput
     >(config, slonik, dbSchema);
 
-    const customerInvitation = await service.delete(requestParameters.id);
+    const customerInvitation = await service.deleteByIdAndCustomerId(
+      requestParameters.id,
+      customerId,
+    );
 
     if (!customerInvitation) {
       return reply.status(422).send({

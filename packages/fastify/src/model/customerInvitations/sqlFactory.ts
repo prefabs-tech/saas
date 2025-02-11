@@ -34,6 +34,17 @@ class CustomerInvitationSqlFactory<
     >
 {
   /* eslint-enabled */
+  getDeleteByIdAndCustomerIdSql = (
+    id: number | string,
+    customerId: string,
+  ): QuerySqlToken => {
+    return sql.type(this.validationSchema)`
+      DELETE FROM ${this.getTableFragment()}
+      WHERE id = ${id} AND customer_id = ${customerId}
+      RETURNING *;
+    `;
+  };
+
   getFindByTokenSql = (token: string): QuerySqlToken => {
     return sql.type(this.validationSchema)`
       SELECT *

@@ -56,7 +56,7 @@ const plugin = async (
     {
       preHandler: fastify.verifySession(),
     },
-    handlers.revoke,
+    handlers.remove,
   );
 
   fastify.post(
