@@ -1,0 +1,30 @@
+.account {
+  border-radius: 0.5rem;
+  border: 1px solid #dbdbdb;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-block: 1rem;
+  padding-inline: 1rem;
+}
+
+.account.highlight {
+  border: 1px solid var(--dz-primary-color);
+  transition: border 150ms linear;
+}
+
+.account .header {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  min-height: 2.75rem;
+}
+
+@media screen and (min-width: 60rem) {
+  .account .dz-grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}

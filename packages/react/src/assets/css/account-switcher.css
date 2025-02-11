@@ -1,6 +1,7 @@
 .account-switcher {
   display: flex;
   flex-direction: column;
+  max-width: 20rem;
 }
 
 .account-switcher > small {

@@ -1,4 +1,13 @@
 {
+  "account": {
+    "actions": {
+      "switch": "Switch (fr)"
+    },
+    "active": "Active (fr)",
+    "name": "Name (fr)",
+    "registeredNumber": "Registered number (fr)",
+    "taxId": "Tax ID (fr)"
+  },
   "signup": {
     "actions": {
       "cancel": "Cancel (fr)",
@@ -18,7 +27,7 @@
         "label": "Your password (fr)",
         "helper": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase (fr)"
       },
-      "registeredNumber": "Registration number (fr)",
+      "registeredNumber": "Registered number (fr)",
       "slug": "Slug (fr)",
       "taxId": "Tax ID (fr)",
       "typeId": {
@@ -63,7 +72,7 @@
         "required": "Password is required (fr)"
       },
       "registeredNumber": {
-        "invalid": "Registration number must be less than 255 characters (fr)"
+        "invalid": "Registered number must be less than 255 characters (fr)"
       },
       "slug": {
         "invalid": "Slug must be less than 24 characters (fr)",
@@ -77,5 +86,6 @@
   "switcher": {
     "emptyLabel": "Choose account (fr)",
     "helper": "Accounts (fr)"
-  }
+  },
+  "title": "Accounts"
 }
