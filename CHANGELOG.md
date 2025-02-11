@@ -1,3 +1,12 @@
+# [0.8.0](https://github.com/12deg/saas/compare/v0.7.0...v0.8.0) (2025-02-11)
+
+
+### Features
+
+* add customer invitations model ([#36](https://github.com/12deg/saas/issues/36)) ([42cad4c](https://github.com/12deg/saas/commit/42cad4c480cb926ee08e366a271be1a5cae1a0c0))
+
+
+
 # [0.7.0](https://github.com/12deg/saas/compare/v0.6.0...v0.7.0) (2025-02-11)
 
 
