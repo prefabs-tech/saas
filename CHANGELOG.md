@@ -1,3 +1,13 @@
+# [0.7.0](https://github.com/12deg/saas/compare/v0.6.0...v0.7.0) (2025-02-11)
+
+
+### Features
+
+* **accounts:** add accounts page component ([6fae366](https://github.com/12deg/saas/commit/6fae3660af42ff371430a42d56e20d0d8c699d81))
+* **accounts:** show limited information in my accounts page ([5f5c3df](https://github.com/12deg/saas/commit/5f5c3dffd717d5ffdbe2014a94b82014b096128a))
+
+
+
 # [0.6.0](https://github.com/12deg/saas/compare/v0.5.0...v0.6.0) (2025-02-10)
 
 
