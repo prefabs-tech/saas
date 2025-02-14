@@ -28,6 +28,8 @@ pnpm add --filter "@scope/project" @dzangolab/fastify-config @dzangolab/fastify-
 ## Configuration
 
 ```typescript
+import { SupertokensRecipesConfig } from "@12deg/saas-fastify";
+
 const config: ApiConfig = {
   ...
   saas: {
@@ -35,6 +37,12 @@ const config: ApiConfig = {
     mainAppSubdomain:  process.env.MAIN_APP_SUBDOMAIN as string || "app",
     subdomains: "optional" // "disabled", "optional", "required",
   },
+  user: {
+    ...
+    supertokens: {
+      recipes: SupertokensRecipesConfig,  
+    }
+  } 
   ...
 };
 ```
@@ -71,11 +79,11 @@ const start = async () => {
   // Register mailer plugin
   await fastify.register(mailerPlugin, config.mailer);
 
-  // Register saas-fastify plugin
-  await api.register(saasPlugin);
-
   // Register fastify-user plugin
   await fastify.register(userPlugin);
+
+  // Register saas-fastify plugin
+  await api.register(saasPlugin);
 
   // Run app database migrations
   await fastify.register(migrationPlugin, config.slonik);

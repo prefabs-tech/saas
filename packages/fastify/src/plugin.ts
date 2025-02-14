@@ -1,10 +1,11 @@
 import FastifyPlugin from "fastify-plugin";
-import merge from "lodash.merge";
 
 import createSaasRoles from "./lib/createSaasRoles";
 import runMigrations from "./migrations/runMigrations";
+import customerInvitationRoutes from "./model/customerInvitations/controller";
+import customerRoutes from "./model/customers/controller";
+import customerUserRoutes from "./model/customerUsers/controller";
 import customerDiscoveryPlugin from "./plugins/customerDiscoveryPlugin";
-import recipes from "./supertokens/recipes";
 
 import type { FastifyInstance } from "fastify";
 
@@ -27,10 +28,23 @@ const plugin = FastifyPlugin(
     // Register customer discovery plugin
     await fastify.register(customerDiscoveryPlugin);
 
-    const supertokensConfig = { recipes };
+    const { routePrefix, routes } = config.saas;
 
-    // merge supertokens config
-    config.user.supertokens = merge(supertokensConfig, config.user.supertokens);
+    if (!routes?.customers?.disabled) {
+      await fastify.register(customerRoutes, { prefix: routePrefix });
+    }
+
+    if (!routes?.customerInvitations?.disabled) {
+      await fastify.register(customerInvitationRoutes, {
+        prefix: routePrefix,
+      });
+    }
+
+    if (!routes?.customerUsers?.disabled) {
+      await fastify.register(customerUserRoutes, {
+        prefix: routePrefix,
+      });
+    }
 
     done();
   },
