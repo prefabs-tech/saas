@@ -12,7 +12,7 @@ const plugin = async (
     {
       preHandler: fastify.verifySession(),
     },
-    handlers.list,
+    handlers.getByCustomerId,
   );
 
   fastify.post(
