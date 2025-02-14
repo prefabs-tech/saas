@@ -53,6 +53,9 @@ interface SaasOptions {
     customerInvitations?: {
       disabled: boolean;
     };
+    customerUsers?: {
+      disabled: boolean;
+    };
   };
   subdomains: "disabled" | "required" | "optional";
   tables?: {

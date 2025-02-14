@@ -49,6 +49,14 @@ const plugin = async (
     handlersConfig?.update || handlers.update,
   );
 
+  fastify.put(
+    String.raw`/customers/:id(^[0-9a-fa-f-]{36}$)/users`,
+    {
+      preHandler: fastify.verifySession(),
+    },
+    handlersConfig?.update || handlers.update,
+  );
+
   fastify.get(
     "/my-accounts",
     {
