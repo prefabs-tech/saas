@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import configPlugin from "@dzangolab/fastify-config";
-import Fastify, { FastifyInstance } from "fastify";
+import Fastify, { FastifyInstance, FastifyReply } from "fastify";
 import FastifyPlugin from "fastify-plugin";
+import { SessionRequest } from "supertokens-node/framework/fastify";
 import { describe, it, expect, vi } from "vitest";
 
 import plugin from "../src/index";
@@ -25,7 +26,20 @@ describe("plugin", () => {
     fastify.register(configPlugin, {
       config: {
         user: {},
+        saas: {
+          routePrefix: undefined,
+        },
       },
+    });
+
+    fastify.decorate("verifySession", (options?: unknown) => {
+      return async function (
+        req: SessionRequest,
+        res: FastifyReply,
+      ): Promise<void> {
+        // Mocked example function
+        return;
+      };
     });
 
     await expect(fastify.register(plugin)).resolves.not.toThrow();
