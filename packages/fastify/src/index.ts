@@ -41,5 +41,6 @@ export { default as customerResolver } from "./model/customers/resolver";
 export { default as customerSchema } from "./model/customers/schema";
 export { default as customerService } from "./model/customers/service";
 export { default as customerMigrationPlugin } from "./plugins/migratePlugin";
+export { default as customerUserRoutes } from "./model/customerUsers/controller";
 
 export { default } from "./plugin";

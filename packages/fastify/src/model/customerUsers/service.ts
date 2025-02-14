@@ -19,7 +19,19 @@ class CustomerUserService<
   >
   implements
     Service<CustomerUser, CustomerUserCreateInput, CustomerUserUpdateInput>
-  {
+{
+  getUsersByCustomerId = async (
+    customerId: string,
+  ): Promise<readonly CustomerUser[]> => {
+    const query = this.factory.getUsersByCustomerIdSql(customerId);
+
+    const result = await this.database.connect((connection) => {
+      return connection.any(query);
+    });
+
+    return result as readonly CustomerUser[];
+  };
+
   get factory() {
     if (!this.table) {
       throw new Error(`Service table is not defined`);
