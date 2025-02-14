@@ -1,3 +1,12 @@
+## [0.8.1](https://github.com/12deg/saas/compare/v0.8.0...v0.8.1) (2025-02-14)
+
+
+### Features
+
+* add get customer users endpoint ([#46](https://github.com/12deg/saas/issues/46)) ([91d6764](https://github.com/12deg/saas/commit/91d6764922837b77df5da785efc8653cc1bee996))
+
+
+
 # [0.8.0](https://github.com/12deg/saas/compare/v0.7.0...v0.8.0) (2025-02-11)
 
 
