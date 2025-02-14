@@ -1,3 +1,12 @@
+## [0.8.2](https://github.com/12deg/saas/compare/v0.8.1...v0.8.2) (2025-02-14)
+
+
+### Features
+
+* register saas routes on plugin register ([#48](https://github.com/12deg/saas/issues/48)) ([706af99](https://github.com/12deg/saas/commit/706af99c2b9941ce8bd4266df797e9325c920303))
+
+
+
 ## [0.8.1](https://github.com/12deg/saas/compare/v0.8.0...v0.8.1) (2025-02-14)
 
 
