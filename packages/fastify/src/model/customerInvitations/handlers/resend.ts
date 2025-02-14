@@ -17,49 +17,46 @@ import type { QueryResultRow } from "slonik";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
 const resend = async (request: SessionRequest, reply: FastifyReply) => {
-  const { config, dbSchema, log, server, slonik, user } = request;
+  const { config, log, server, slonik } = request;
+
   let customer: Customer | undefined | null = request.customer;
 
+  const requestParameters = request.params as {
+    id: string;
+    customerId: string;
+  };
+
+  if (customer && customer.id != requestParameters.customerId) {
+    return reply.status(400).send({
+      error: "Bad Request",
+      message: "Bad Request",
+      statusCode: 400,
+    });
+  }
+
+  const customerId = customer ? customer.id : requestParameters.customerId;
+
+  if (!customer) {
+    const customerService = new CustomerService<
+      Customer & QueryResultRow,
+      CustomerCreateInput,
+      CustomerUpdateInput
+    >(config, slonik);
+
+    customer = await customerService.findById(customerId);
+  }
+
+  if (!customer) {
+    return reply.status(404).send({
+      error: "Not Found",
+      message: "Customer not found",
+      statusCode: 404,
+    });
+  }
+
+  const dbSchema = customer.database || undefined;
+
   try {
-    if (!user) {
-      return reply.status(401).send({
-        error: "Unauthorized",
-        message: "unauthorized",
-        statusCode: 401,
-      });
-    }
-
-    const requestParameters = request.params as {
-      id: string;
-      customerId: string;
-    };
-
-    if (customer && customer.id != requestParameters.customerId) {
-      return reply.status(400).send({
-        error: "Bad Request",
-        message: "Bad Request",
-        statusCode: 400,
-      });
-    }
-
-    if (!customer) {
-      const customerService = new CustomerService<
-        Customer & QueryResultRow,
-        CustomerCreateInput,
-        CustomerUpdateInput
-      >(config, slonik);
-
-      customer = await customerService.findById(requestParameters.customerId);
-    }
-
-    if (!customer) {
-      return reply.status(404).send({
-        error: "Not Found",
-        message: "Customer not found",
-        statusCode: 404,
-      });
-    }
-
     const service = new CustomerInvitationService<
       CustomerInvitation & QueryResultRow,
       CustomerInvitationCreateInput,

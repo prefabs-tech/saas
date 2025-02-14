@@ -24,7 +24,7 @@ import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
 const create = async (request: SessionRequest, reply: FastifyReply) => {
-  const { body, config, dbSchema, log, server, slonik, user } = request;
+  const { body, config, log, server, slonik, user } = request;
   let customer: Customer | undefined | null = request.customer;
 
   try {
@@ -63,6 +63,8 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
         statusCode: 404,
       });
     }
+
+    const dbSchema = customer.database || undefined;
 
     const { email, expiresAt, payload, role } =
       body as CustomerInvitationCreateInput;

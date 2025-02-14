@@ -2,18 +2,24 @@ import { formatDate } from "@dzangolab/fastify-slonik";
 import { QueryResultRow } from "slonik";
 
 import isInvitationValid from "../../../lib/isInvitationValid";
+import CustomerService from "../../customers/service";
 import CustomerInvitationService from "../service";
 
 import type {
+  Customer,
+  CustomerCreateInput,
   CustomerInvitation,
   CustomerInvitationCreateInput,
   CustomerInvitationUpdateInput,
+  CustomerUpdateInput,
 } from "../../../types";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
 const revoke = async (request: SessionRequest, reply: FastifyReply) => {
-  const { config, customer, dbSchema, log, slonik } = request;
+  const { config, log, slonik } = request;
+
+  let customer: Customer | undefined | null = request.customer;
 
   const requestParameters = request.params as {
     id: string;
@@ -30,13 +36,25 @@ const revoke = async (request: SessionRequest, reply: FastifyReply) => {
 
   const customerId = customer ? customer.id : requestParameters.customerId;
 
-  if (!customerId) {
-    return reply.status(400).send({
-      error: "Bad Request",
-      message: "Bad Request",
-      statusCode: 400,
+  if (!customer) {
+    const customerService = new CustomerService<
+      Customer & QueryResultRow,
+      CustomerCreateInput,
+      CustomerUpdateInput
+    >(config, slonik);
+
+    customer = await customerService.findById(customerId);
+  }
+
+  if (!customer) {
+    return reply.status(404).send({
+      error: "Not Found",
+      message: "Customer not found",
+      statusCode: 404,
     });
   }
+
+  const dbSchema = customer.database || undefined;
 
   try {
     const service = new CustomerInvitationService<
