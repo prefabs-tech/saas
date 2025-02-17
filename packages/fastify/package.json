@@ -48,7 +48,6 @@
     "@dzangolab/fastify-slonik": "0.77.4",
     "@dzangolab/fastify-user": "0.77.4",
     "@types/humps": "2.0.6",
-    "@types/lodash.merge": "4.6.9",
     "@types/node": "20.12.2",
     "@types/pg": "8.11.10",
     "@typescript-eslint/eslint-plugin": "8.14.0",
