@@ -172,7 +172,7 @@ export const CustomerInvitationsTable = ({
                 <Tag
                   key={role + index}
                   label={role}
-                  color={role === "ADMIN" ? "default" : "green"}
+                  color={role === "SAAS_ACCOUNT_MEMBER" ? "default" : "green"}
                   fullWidth
                 />
               ))}
@@ -199,12 +199,11 @@ export const CustomerInvitationsTable = ({
         const { acceptedAt, revokedAt, expiresAt } = original;
 
         const getLabel = () => {
-          if (acceptedAt) return t("invitations.table.status.accepted");
-          if (revokedAt) return t("invitations.table.status.revoked");
-          if (isExpired(expiresAt))
-            return t("invitations.table.status.expired");
+          if (acceptedAt) return t("invitations.status.accepted");
+          if (revokedAt) return t("invitations.status.revoked");
+          if (isExpired(expiresAt)) return t("invitations.status.expired");
 
-          return t("invitations.table.status.pending");
+          return t("invitations.status.pending");
         };
 
         const getColor = () => {
@@ -270,9 +269,7 @@ export const CustomerInvitationsTable = ({
             onClick: (invitation) => handleResendInvitation(invitation),
             requireConfirmationModal: true,
             confirmationOptions: {
-              message: t(
-                "invitations.table.confirmation.confirm.resend.message",
-              ),
+              message: t("invitations.table.confirmation.messages.resend"),
               header: t("invitations.table.confirmation.header"),
             },
           },
@@ -287,9 +284,7 @@ export const CustomerInvitationsTable = ({
             onClick: (invitation) => handleRevokeInvitation(invitation),
             requireConfirmationModal: true,
             confirmationOptions: {
-              message: t(
-                "invitations.table.confirmation.confirm.revoke.message",
-              ),
+              message: t("invitations.table.confirmation.messages.revoke"),
               header: t("invitations.table.confirmation.header"),
             },
           },
@@ -300,9 +295,7 @@ export const CustomerInvitationsTable = ({
             onClick: (invitation) => handleDeleteInvitation(invitation),
             requireConfirmationModal: true,
             confirmationOptions: {
-              message: t(
-                "invitations.table.confirmation.confirm.delete.message",
-              ),
+              message: t("invitations.table.confirmation.messages.delete"),
               header: t("invitations.table.confirmation.header"),
             },
           },

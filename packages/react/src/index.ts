@@ -5,10 +5,11 @@ import {
 } from "./components/accounts";
 import {
   CustomerForm,
-  CustomersTable,
-  CustomerInvitationsTable,
   CustomerInvitationForm,
   CustomerInvitationModal,
+  CustomerInvitationsTable,
+  CustomerUsersTable,
+  CustomersTable,
 } from "./components/customers";
 import { CustomerInfo } from "./components/customers/CustomerInfo";
 import AccountsProvider, { accountsContext } from "./contexts/AccountsProvider";
@@ -43,6 +44,7 @@ export {
   CustomerInvitationModal,
   CustomerInvitationsTable,
   CustomerSignupForm,
+  CustomerUsersTable,
   CustomersTable,
   UserSignupForm,
 
