@@ -39,7 +39,7 @@ export const Signup = ({
           }
 
           if (appRedirection && "slug" in data && data.slug) {
-            const appUrl = `http://${data.slug}.${rootDomain}`;
+            const appUrl = `http://${data.slug}.${rootDomain}`; // FIXME http used to support local testing
 
             window.open(appUrl, "_blank");
           }
