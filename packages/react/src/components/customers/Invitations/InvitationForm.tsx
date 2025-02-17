@@ -4,25 +4,23 @@ import {
   AdditionalFormFields,
 } from "@dzangolab/react-form";
 import { useTranslation } from "@dzangolab/react-i18n";
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { toast } from "react-toastify";
 import * as zod from "zod";
 
-import { addInvitation } from "@/api/customers";
-import { useConfig } from "@/hooks";
+import { useAddInvitationMutation } from "@/hooks";
 
 import { InvitationFormFields } from "./InvitationFormFields";
 
 import type {
   AddInvitationResponse,
-  InvitationAppOption,
   InvitationRoleOption,
   InvitationExpiryDateField,
 } from "@/types";
 
 interface Properties {
+  customerId: string;
   additionalInvitationFields?: AdditionalFormFields;
-  apps?: InvitationAppOption[];
   expiryDateField?: InvitationExpiryDateField;
   roles?: InvitationRoleOption[];
   onCancel?: () => void;
@@ -31,7 +29,8 @@ interface Properties {
   prepareData?: (rawFormData: any) => any;
 }
 
-export const InvitationForm = ({
+export const CustomerInvitationForm = ({
+  customerId,
   additionalInvitationFields,
   expiryDateField,
   roles,
@@ -41,15 +40,26 @@ export const InvitationForm = ({
 }: Properties) => {
   const { t, i18n } = useTranslation("invitations");
 
-  const config = useConfig();
+  const { loading: addLoading, trigger: triggerAdd } = useAddInvitationMutation(
+    {
+      onSuccess: (response) => {
+        toast.success(t("messages.invite.success"));
 
-  const [submitting, setSubmitting] = useState(false);
+        if (onSubmitted) {
+          onSubmitted(response);
+        }
+      },
+      onError: () => {
+        toast.error(t("messages.invite.error"));
+      },
+    },
+  );
 
   const getDefaultValues = useCallback(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let defaultValues: any = { email: "", role: undefined };
 
-    let filteredRoles = roles;
+    const filteredRoles = roles;
 
     if (expiryDateField?.display) {
       defaultValues.expiresAt = null;
@@ -93,29 +103,9 @@ export const InvitationForm = ({
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (data: any) => {
-    setSubmitting(true);
-
     const invitationData = prepareData ? prepareData(data) : getFormData(data);
 
-    addInvitation(invitationData, config.apiBaseUrl)
-      .then((response) => {
-        if ("data" in response && response.data.status === "ERROR") {
-          // TODO better handle errors
-          toast.error(t("messages.invite.error"));
-        } else {
-          toast.success(t("messages.invite.success"));
-
-          if (onSubmitted) {
-            onSubmitted(response);
-          }
-        }
-      })
-      .catch(() => {
-        toast.error(t("messages.invite.error"));
-      })
-      .finally(() => {
-        setSubmitting(false);
-      });
+    triggerAdd(customerId, invitationData);
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -160,7 +150,7 @@ export const InvitationForm = ({
       <InvitationFormFields
         renderAdditionalFields={additionalInvitationFields?.renderFields}
         expiryDateField={expiryDateField}
-        loading={submitting}
+        loading={addLoading}
         onCancel={onCancel}
         roles={roles}
       />

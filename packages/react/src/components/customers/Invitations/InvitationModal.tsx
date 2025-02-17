@@ -3,18 +3,17 @@ import { useTranslation } from "@dzangolab/react-i18n";
 import { Button, IButtonProperties, Modal } from "@dzangolab/react-ui";
 import React, { useState } from "react";
 
-import { InvitationForm } from "./InvitationForm";
+import { CustomerInvitationForm } from "./InvitationForm";
 
 import type {
   AddInvitationResponse,
-  InvitationAppOption,
   InvitationRoleOption,
   InvitationExpiryDateField,
 } from "@/types";
 
 interface Properties {
+  customerId: string;
   additionalInvitationFields?: AdditionalFormFields;
-  apps?: InvitationAppOption[];
   expiryDateField?: InvitationExpiryDateField;
   invitationButtonOptions?: IButtonProperties;
   roles?: InvitationRoleOption[];
@@ -23,9 +22,9 @@ interface Properties {
   prepareData?: (data: any) => any;
 }
 
-export const InvitationModal = ({
+export const CustomerInvitationModal = ({
+  customerId,
   additionalInvitationFields,
-  apps,
   expiryDateField,
   invitationButtonOptions,
   onSubmitted,
@@ -49,9 +48,9 @@ export const InvitationModal = ({
         visible={modalVisible}
         onHide={() => setModalVisible(false)}
       >
-        <InvitationForm
+        <CustomerInvitationForm
+          customerId={customerId}
           additionalInvitationFields={additionalInvitationFields}
-          apps={apps}
           expiryDateField={expiryDateField}
           onCancel={() => {
             setModalVisible(false);

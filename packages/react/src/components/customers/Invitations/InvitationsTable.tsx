@@ -3,7 +3,6 @@ import { useTranslation } from "@dzangolab/react-i18n";
 import {
   TDataTable as DataTable,
   TDataTableProperties,
-  TRequestJSON,
   IButtonProperties,
   TableColumnDefinition,
   Tag,
@@ -12,23 +11,23 @@ import {
 import { useCallback } from "react";
 import { toast } from "react-toastify";
 
+import { useGetInvitationsQuery } from "@/hooks";
 import {
-  deleteInvitation,
-  resendInvitation,
-  revokeInvitation,
-} from "@/api/customers";
-import { useConfig } from "@/hooks";
-import { DeleteInvitationResponse } from "@/types/invitation";
+  useDeleteInvitationMutation,
+  useResendInvitationMutation,
+  useRevokeInvitationMutation,
+} from "@/hooks/customers";
+import { DeleteInvitationResponse } from "@/types/customer-invitation";
 
-import { InvitationModal } from "./InvitationModal";
+import { CustomerInvitationModal } from "./InvitationModal";
 
 import type {
   AddInvitationResponse,
-  InvitationRoleOption,
-  InvitationExpiryDateField,
   ResendInvitationResponse,
   RevokeInvitationResponse,
-  Invitation,
+  CustomerInvitation,
+  InvitationExpiryDateField,
+  InvitationRoleOption,
 } from "../../../types";
 
 type VisibleColumn =
@@ -41,7 +40,7 @@ type VisibleColumn =
 
 export type InvitationsTableProperties = Partial<
   Omit<
-    TDataTableProperties<Invitation>,
+    TDataTableProperties<CustomerInvitation>,
     "data" | "visibleColumns" | "fetchData"
   >
 > & {
@@ -49,33 +48,27 @@ export type InvitationsTableProperties = Partial<
   additionalInvitationFields?: AdditionalFormFields;
   invitationButtonOptions?: IButtonProperties;
   invitationExpiryDateField?: InvitationExpiryDateField;
-  invitations: Array<Invitation>;
   roles?: Array<InvitationRoleOption>;
-  showAppColumn?: boolean;
   showInviteAction?: boolean;
   visibleColumns?: VisibleColumn[];
-  fetchInvitations?: (arguments_: TRequestJSON) => void;
   onInvitationAdded?: (response: AddInvitationResponse) => void;
   onInvitationDeleted?: (response: DeleteInvitationResponse) => void;
-  onInvitationResent?: (data: ResendInvitationResponse) => void;
-  onInvitationRevoked?: (data: RevokeInvitationResponse) => void;
+  onInvitationResent?: (response: ResendInvitationResponse) => void;
+  onInvitationRevoked?: (response: RevokeInvitationResponse) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prepareInvitationData?: (data: any) => any;
 };
 
-export const InvitationsTable = ({
+export const CustomerInvitationsTable = ({
   additionalInvitationFields,
   className = "table-invitations",
   columns = [],
   customerId,
   invitationButtonOptions,
   invitationExpiryDateField,
-  invitations,
   roles,
   showInviteAction = true,
-  totalRecords = 0,
   visibleColumns = ["email", "role", "expiresAt", "status", "actions"],
-  fetchInvitations,
   onInvitationDeleted,
   onInvitationAdded,
   onInvitationResent,
@@ -83,71 +76,81 @@ export const InvitationsTable = ({
   prepareInvitationData,
   ...tableOptions
 }: InvitationsTableProperties) => {
-  const config = useConfig();
-
   const { t } = useTranslation("invitations");
 
-  const handleResendInvitation = (invitation: Invitation) => {
-    resendInvitation(invitation.id, config.apiBaseUrl)
-      .then((response) => {
-        if ("data" in response && response.data.status === "ERROR") {
-          // TODO better handle errors
-          toast.error(t("messages.resend.error"));
-        } else {
-          toast.success(t("messages.resend.success"));
+  const {
+    data,
+    loading,
+    trigger: refetch,
+  } = useGetInvitationsQuery(customerId);
 
-          if (onInvitationResent) {
-            onInvitationResent(response);
-          }
-        }
-      })
-      .catch(() => {
-        toast.error(t("messages.resend.error"));
-      });
+  const { trigger: triggerResend } = useResendInvitationMutation({
+    onSuccess: (response) => {
+      toast.success(t("messages.resend.success"));
+
+      if (onInvitationResent) {
+        onInvitationResent(response);
+      }
+
+      refetch();
+    },
+    onError: () => {
+      toast.error(t("messages.resend.error"));
+    },
+  });
+
+  const { trigger: triggerRevoke } = useRevokeInvitationMutation({
+    onSuccess: (response) => {
+      toast.success(t("messages.revoke.success"));
+
+      if (onInvitationRevoked) {
+        onInvitationRevoked(response);
+      }
+
+      refetch();
+    },
+    onError: () => {
+      toast.error(t("messages.revoke.error"));
+    },
+  });
+
+  const { trigger: triggereDelete } = useDeleteInvitationMutation({
+    onSuccess: (response) => {
+      toast.success(t("messages.delete.success"));
+
+      if (onInvitationDeleted) {
+        onInvitationDeleted(response);
+      }
+
+      refetch();
+    },
+    onError: () => {
+      toast.error(t("messages.delete.error"));
+    },
+  });
+
+  const handleResendInvitation = (invitation: CustomerInvitation) => {
+    triggerResend(customerId, invitation.id);
   };
 
-  const handleRevokeInvitation = (invitation: Invitation) => {
-    revokeInvitation(invitation.id, config.apiBaseUrl)
-      .then((response) => {
-        if ("data" in response && response.data.status === "ERROR") {
-          // TODO better handle errors
-          toast.error(t("messages.revoke.error"));
-        } else {
-          toast.success(t("messages.revoke.success"));
-
-          if (onInvitationRevoked) {
-            onInvitationRevoked(response);
-          }
-        }
-      })
-      .catch(() => {
-        toast.error(t("messages.revoke.error"));
-      });
+  const handleRevokeInvitation = (invitation: CustomerInvitation) => {
+    triggerRevoke(customerId, invitation.id);
   };
 
-  const handleDeleteInvitation = async (id: number) => {
-    deleteInvitation(id, config.apiBaseUrl)
-      .then((response) => {
-        if ("data" in response && response.data.status === "ERROR") {
-          toast.error(t("messages.delete.error"));
-        } else {
-          toast.success(t("messages.delete.success"));
+  const handleDeleteInvitation = (invitation: CustomerInvitation) => {
+    triggereDelete(customerId, invitation.id);
+  };
 
-          if (onInvitationDeleted) {
-            onInvitationDeleted(response);
-          }
-        }
-      })
-      .catch(() => {
-        toast.error(t("messages.delete.error"));
-      });
+  const onInvitationSubmitted = (invitation: CustomerInvitation) => {
+    onInvitationAdded && onInvitationAdded(invitation);
+    refetch();
   };
 
   const isExpired = (date?: string | Date | number) => {
     return !!(date && new Date(date) < new Date());
   };
 
-  const defaultColumns: Array<TableColumnDefinition<Invitation>> = [
+  const defaultColumns: Array<TableColumnDefinition<CustomerInvitation>> = [
     {
       accessorKey: "email",
       header: t("table.defaultColumns.email"),
@@ -227,11 +230,12 @@ export const InvitationsTable = ({
     if (showInviteAction) {
       return (
         <div className="table-actions">
-          <InvitationModal
+          <CustomerInvitationModal
+            customerId={customerId}
             additionalInvitationFields={additionalInvitationFields}
             invitationButtonOptions={invitationButtonOptions}
             expiryDateField={invitationExpiryDateField}
-            onSubmitted={onInvitationAdded}
+            onSubmitted={onInvitationSubmitted}
             prepareData={prepareInvitationData}
             roles={roles}
           />
@@ -244,11 +248,10 @@ export const InvitationsTable = ({
     <DataTable
       className={className}
       columns={[...defaultColumns, ...columns]}
-      data={invitations}
+      data={data || []}
       emptyTableMessage={t("table.emptyMessage")}
-      fetchData={fetchInvitations}
       renderToolbarItems={renderToolbar}
-      totalRecords={totalRecords}
+      totalRecords={data?.length || 0}
       visibleColumns={visibleColumns}
       paginationOptions={{
         pageInputLabel: t("table.pagination.pageControl"),
@@ -289,7 +292,7 @@ export const InvitationsTable = ({
             label: t("invitations.actions.delete"),
             icon: "pi pi-trash",
             className: "danger",
-            onClick: (invitation) => handleDeleteInvitation(invitation.id),
+            onClick: (invitation) => handleDeleteInvitation(invitation),
             requireConfirmationModal: true,
             confirmationOptions: {
               message: t("confirmation.confirm.delete.message"),
@@ -298,6 +301,7 @@ export const InvitationsTable = ({
           },
         ],
       }}
+      isLoading={loading}
       {...tableOptions}
     ></DataTable>
   );
