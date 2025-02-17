@@ -1,3 +1,15 @@
+# [0.9.0](https://github.com/12deg/saas/compare/v0.8.2...v0.9.0) (2025-02-17)
+
+
+### Features
+
+* **customer:** add users table ([8406bc5](https://github.com/12deg/saas/commit/8406bc540bc1fc74ba5b55ecd66085b90999055d))
+* **customers:** add invitations components ([6bc0d82](https://github.com/12deg/saas/commit/6bc0d821ce90b313720ed1be98d70693e1b35f75))
+* **invitations:** add translations ([4501104](https://github.com/12deg/saas/commit/450110457dc55d281f92f31aaf5782dc763a1c49))
+* **invitations:** refine invitations api calls ([6263455](https://github.com/12deg/saas/commit/626345564fed56a151423c97afd75a92a19a2125))
+
+
+
 ## [0.8.2](https://github.com/12deg/saas/compare/v0.8.1...v0.8.2) (2025-02-14)
 
 
