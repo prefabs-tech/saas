@@ -1,0 +1,105 @@
+{
+  "info": {
+    "title": "Title"
+  },
+  "invitations": {
+    "form": {
+      "actions": {
+        "cancel": "Cancel",
+        "submit": "Invite user"
+      },
+      "fields": {
+        "email": {
+          "label": "Email",
+          "placeholder": ""
+        },
+        "expiresAfter": {
+          "label": "Expires after",
+          "placeholder": "Enter number of days"
+        },
+        "expiresAt": {
+          "label": "Expires at",
+          "placeholder": "Select a date"
+        },
+        "role": {
+          "label": "Role",
+          "placeholder": "Select role"
+        }
+      },
+      "title": "Invite a user",
+      "validation": {
+        "messages": {
+          "email": "Email is required",
+          "expiresAt": "Expiry date is required",
+          "validEmail": "Email must be a valid email",
+          "requiredField": "This field is required",
+          "role": "Role is required"
+        }
+      }
+    },
+    "messages": {
+      "delete": {
+        "success": "Successfully deleted invitation",
+        "error": "Error deleting invitation"
+      },
+      "invite": {
+        "success": "Successfully invited user",
+        "error": "Error inviting user"
+      },
+      "resend": {
+        "success": "Successfully resent invitation",
+        "error": "Error resending invitation"
+      },
+      "revoke": {
+        "success": "Successfully revoked invitation",
+        "error": "Error revoking invitation"
+      }
+    },
+    "table": {
+      "actions": {
+        "delete": "Delete",
+        "invite": "Invite a user",
+        "resend": "Resend",
+        "revoke": "Revoke"
+      },
+      "columns": {
+        "email": "Email",
+        "role": "Role",
+        "invitedBy": "Invited by",
+        "expiresAt": "Expires at",
+        "actions": "Actions",
+        "status": "Status"
+      },
+      "confirmation": {
+        "header": "Confirmation",
+        "confirm": {
+          "delete": {
+            "message": "Are you sure you want to delete?"
+          },
+          "resend": {
+            "message": "Are you sure you want to resend?"
+          },
+          "revoke": {
+            "message": "Are you sure you want to revoke?"
+          }
+        }
+      },
+      "emptyMessage": "Table is empty",
+      "pagination": {
+        "pageControl": "Go to",
+        "rowsPerPage": "Rows"
+      },
+      "searchPlaceholder": "",
+      "status": {
+        "accepted": "Accepted",
+        "expired": "Expired",
+        "pending": "Pending",
+        "revoked": "Revoked"
+      }
+    },
+    "title": "Invitations"
+  },
+  "users": {
+    "title": "Users"
+  }
+}

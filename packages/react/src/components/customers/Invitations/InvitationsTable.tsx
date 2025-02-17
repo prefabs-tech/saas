@@ -76,7 +76,7 @@ export const CustomerInvitationsTable = ({
   prepareInvitationData,
   ...tableOptions
 }: InvitationsTableProperties) => {
-  const { t } = useTranslation("invitations");
+  const { t } = useTranslation("customer");
 
   const {
     data,
@@ -86,7 +86,7 @@ export const CustomerInvitationsTable = ({
 
   const { trigger: triggerResend } = useResendInvitationMutation({
     onSuccess: (response) => {
-      toast.success(t("messages.resend.success"));
+      toast.success(t("invitations.messages.resend.success"));
 
       if (onInvitationResent) {
         onInvitationResent(response);
@@ -95,13 +95,13 @@ export const CustomerInvitationsTable = ({
       refetch();
     },
     onError: () => {
-      toast.error(t("messages.resend.error"));
+      toast.error(t("invitations.messages.resend.error"));
     },
   });
 
   const { trigger: triggerRevoke } = useRevokeInvitationMutation({
     onSuccess: (response) => {
-      toast.success(t("messages.revoke.success"));
+      toast.success(t("invitations.messages.revoke.success"));
 
       if (onInvitationRevoked) {
         onInvitationRevoked(response);
@@ -110,13 +110,13 @@ export const CustomerInvitationsTable = ({
       refetch();
     },
     onError: () => {
-      toast.error(t("messages.revoke.error"));
+      toast.error(t("invitations.messages.revoke.error"));
     },
   });
 
   const { trigger: triggereDelete } = useDeleteInvitationMutation({
     onSuccess: (response) => {
-      toast.success(t("messages.delete.success"));
+      toast.success(t("invitations.messages.delete.success"));
 
       if (onInvitationDeleted) {
         onInvitationDeleted(response);
@@ -125,7 +125,7 @@ export const CustomerInvitationsTable = ({
       refetch();
     },
     onError: () => {
-      toast.error(t("messages.delete.error"));
+      toast.error(t("invitations.messages.delete.error"));
     },
   });
 
@@ -153,7 +153,7 @@ export const CustomerInvitationsTable = ({
   const defaultColumns: Array<TableColumnDefinition<CustomerInvitation>> = [
     {
       accessorKey: "email",
-      header: t("table.defaultColumns.email"),
+      header: t("invitations.table.columns.email"),
       enableSorting: true,
       enableColumnFilter: true,
       enableGlobalFilter: true,
@@ -161,7 +161,7 @@ export const CustomerInvitationsTable = ({
     {
       align: "center",
       accessorKey: "role",
-      header: t("table.defaultColumns.role"),
+      header: t("invitations.table.columns.role"),
       cell: ({ getValue, row: { original } }) => {
         const roles = (original as unknown as { roles: string[] })?.roles;
 
@@ -185,7 +185,7 @@ export const CustomerInvitationsTable = ({
         return (
           <Tag
             label={role}
-            color={role === "ADMIN" ? "default" : "green"}
+            color={role === "SAAS_ACCOUNT_MEMBER" ? "default" : "green"}
             fullWidth
           />
         );
@@ -194,16 +194,17 @@ export const CustomerInvitationsTable = ({
     {
       align: "center",
       accessorKey: "status",
-      header: t("table.defaultColumns.status"),
+      header: t("invitations.table.columns.status"),
       cell: ({ row: { original } }) => {
         const { acceptedAt, revokedAt, expiresAt } = original;
 
         const getLabel = () => {
-          if (acceptedAt) return t("table.status.accepted");
-          if (revokedAt) return t("table.status.revoked");
-          if (isExpired(expiresAt)) return t("table.status.expired");
+          if (acceptedAt) return t("invitations.table.status.accepted");
+          if (revokedAt) return t("invitations.table.status.revoked");
+          if (isExpired(expiresAt))
+            return t("invitations.table.status.expired");
 
-          return t("table.status.pending");
+          return t("invitations.table.status.pending");
         };
 
         const getColor = () => {
@@ -219,7 +220,7 @@ export const CustomerInvitationsTable = ({
     },
     {
       accessorKey: "expiresAt",
-      header: t("table.defaultColumns.expiresAt"),
+      header: t("invitations.table.columns.expiresAt"),
       cell: ({ getValue }) => {
         return formatDateTime(getValue() as string);
       },
@@ -249,18 +250,18 @@ export const CustomerInvitationsTable = ({
       className={className}
       columns={[...defaultColumns, ...columns]}
       data={data || []}
-      emptyTableMessage={t("table.emptyMessage")}
+      emptyTableMessage={t("invitations.table.emptyMessage")}
       renderToolbarItems={renderToolbar}
       totalRecords={data?.length || 0}
       visibleColumns={visibleColumns}
       paginationOptions={{
-        pageInputLabel: t("table.pagination.pageControl"),
-        itemsPerPageControlLabel: t("table.pagination.rowsPerPage"),
+        pageInputLabel: t("invitations.table.pagination.pageControl"),
+        itemsPerPageControlLabel: t("invitations.table.pagination.rowsPerPage"),
       }}
       dataActionsMenu={{
         actions: [
           {
-            label: t("invitations.actions.resend"),
+            label: t("invitations.table.actions.resend"),
             icon: "pi pi-replay",
             disabled: (invitation) =>
               !!invitation.acceptedAt ||
@@ -269,12 +270,14 @@ export const CustomerInvitationsTable = ({
             onClick: (invitation) => handleResendInvitation(invitation),
             requireConfirmationModal: true,
             confirmationOptions: {
-              message: t("confirmation.confirm.resend.message"),
-              header: t("confirmation.header"),
+              message: t(
+                "invitations.table.confirmation.confirm.resend.message",
+              ),
+              header: t("invitations.table.confirmation.header"),
             },
           },
           {
-            label: t("invitations.actions.revoke"),
+            label: t("invitations.table.actions.revoke"),
             icon: "pi pi-times",
             className: "danger",
             disabled: (invitation) =>
@@ -284,19 +287,23 @@ export const CustomerInvitationsTable = ({
             onClick: (invitation) => handleRevokeInvitation(invitation),
             requireConfirmationModal: true,
             confirmationOptions: {
-              message: t("confirmation.confirm.revoke.message"),
-              header: t("confirmation.header"),
+              message: t(
+                "invitations.table.confirmation.confirm.revoke.message",
+              ),
+              header: t("invitations.table.confirmation.header"),
             },
           },
           {
-            label: t("invitations.actions.delete"),
+            label: t("invitations.table.actions.delete"),
             icon: "pi pi-trash",
             className: "danger",
             onClick: (invitation) => handleDeleteInvitation(invitation),
             requireConfirmationModal: true,
             confirmationOptions: {
-              message: t("confirmation.confirm.delete.message"),
-              header: t("confirmation.header"),
+              message: t(
+                "invitations.table.confirmation.confirm.delete.message",
+              ),
+              header: t("invitations.table.confirmation.header"),
             },
           },
         ],

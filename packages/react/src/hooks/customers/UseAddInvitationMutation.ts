@@ -7,7 +7,7 @@ import { useMutation, UseMutationOptions } from "../UseMutation";
 export const useAddInvitationMutation = <
   Response extends AddInvitationResponse,
 >(
-  options: UseMutationOptions<Response>,
+  options?: UseMutationOptions<Response>,
 ) => {
   const { loading, trigger } = useMutation<Response>(options);
 

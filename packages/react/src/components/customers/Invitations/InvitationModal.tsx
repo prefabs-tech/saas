@@ -31,20 +31,20 @@ export const CustomerInvitationModal = ({
   prepareData,
   roles,
 }: Properties) => {
-  const { t } = useTranslation("invitations");
+  const { t } = useTranslation("customer");
 
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   return (
     <div className="flex justify-content-center">
       <Button
-        label={t("modal.button.label")}
+        label={t("invitations.table.actions.invite")}
         onClick={() => setModalVisible(true)}
         {...invitationButtonOptions}
       />
       <Modal
         className="invitation-modal"
-        header={t("modal.dialog.header")}
+        header={t("invitations.form.title")}
         visible={modalVisible}
         onHide={() => setModalVisible(false)}
       >

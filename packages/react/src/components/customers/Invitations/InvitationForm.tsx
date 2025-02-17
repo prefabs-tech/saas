@@ -38,19 +38,19 @@ export const CustomerInvitationForm = ({
   onSubmitted,
   prepareData,
 }: Properties) => {
-  const { t, i18n } = useTranslation("invitations");
+  const { t, i18n } = useTranslation("customer");
 
   const { loading: addLoading, trigger: triggerAdd } = useAddInvitationMutation(
     {
       onSuccess: (response) => {
-        toast.success(t("messages.invite.success"));
+        toast.success(t("invitations.messages.invite.success"));
 
         if (onSubmitted) {
           onSubmitted(response);
         }
       },
       onError: () => {
-        toast.error(t("messages.invite.error"));
+        toast.error(t("invitations.messages.invite.error"));
       },
     },
   );
@@ -111,14 +111,16 @@ export const CustomerInvitationForm = ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let InvitationFormSchema: Zod.ZodObject<any> = zod.object({
     email: emailSchema({
-      invalid: t("validation.messages.validEmail"),
-      required: t("validation.messages.email"),
+      invalid: t("invitations.form.validation.messages.validEmail"),
+      required: t("invitations.form.validation.messages.email"),
     }),
   });
 
   if (roles?.length) {
     const RoleFormSchema = zod.object({
-      role: zod.string({ required_error: t("validation.messages.role") }),
+      role: zod.string({
+        required_error: t("invitations.form.validation.messages.role"),
+      }),
     });
 
     InvitationFormSchema = InvitationFormSchema.merge(RoleFormSchema);
@@ -127,7 +129,7 @@ export const CustomerInvitationForm = ({
   if (expiryDateField?.display) {
     const ExpiresAtFormSchema = zod.object({
       expiresAt: zod.date({
-        required_error: t("validation.messages.expiresAt"),
+        required_error: t("invitations.form.validation.messages.expiresAt"),
       }),
     });
 

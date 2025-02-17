@@ -26,7 +26,7 @@ export const InvitationFormFields: React.FC<IProperties> = ({
   onCancel,
   renderAdditionalFields,
 }) => {
-  const { t } = useTranslation("invitations");
+  const { t } = useTranslation("customer");
 
   const {
     register,
@@ -40,18 +40,18 @@ export const InvitationFormFields: React.FC<IProperties> = ({
         <DatePicker
           className="expires-at"
           key="calender"
-          label={t("form.fields.expiresAt.label")}
+          label={t("invitations.form.fields.expiresAt.label")}
           minDate={new Date()}
           name="expiresAt"
           panelClassName="expires-at-panel"
-          placeholder={t("form.fields.expiresAt.placeholder")}
+          placeholder={t("invitations.form.fields.expiresAt.placeholder")}
         />
       ) : (
         <DaysInput
           getFieldState={getFieldState}
-          label={t("form.fields.expiresAfter.label")}
+          label={t("invitations.form.fields.expiresAfter.label")}
           name="expiresAt"
-          placeholder={t("form.fields.expiresAfter.placeholder")}
+          placeholder={t("invitations.form.fields.expiresAfter.placeholder")}
           register={register}
         />
       )}
@@ -61,9 +61,9 @@ export const InvitationFormFields: React.FC<IProperties> = ({
   return (
     <>
       <Email
-        label={t("form.fields.email.label")}
+        label={t("invitations.form.fields.email.label")}
         name="email"
-        placeholder={t("form.fields.email.placeholder")}
+        placeholder={t("invitations.form.fields.email.placeholder")}
         submitCount={submitCount}
       />
 
@@ -72,8 +72,8 @@ export const InvitationFormFields: React.FC<IProperties> = ({
           autoSelectSingleOption
           disabled={roles.length <= 1 && true}
           name="role"
-          label={t("form.fields.role.label")}
-          placeholder={t("form.fields.role.placeholder")}
+          label={t("invitations.form.fields.role.label")}
+          placeholder={t("invitations.form.fields.role.placeholder")}
           options={roles.map((role) => {
             return {
               label: role.name,
@@ -95,11 +95,11 @@ export const InvitationFormFields: React.FC<IProperties> = ({
               event.preventDefault();
               onCancel && onCancel();
             },
-            label: t("form.actions.cancel"),
+            label: t("invitations.form.actions.cancel"),
           },
           {
             id: "submit",
-            label: t("form.actions.submit"),
+            label: t("invitations.form.actions.submit"),
             disabled: !!Object.values(errors).length,
           },
         ]}

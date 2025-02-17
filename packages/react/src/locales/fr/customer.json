@@ -1,0 +1,105 @@
+{
+  "info": {
+    "title": "Info (fr)"
+  },
+  "invitations": {
+    "form": {
+      "actions": {
+        "cancel": "Cancel (fr)",
+        "submit": "Invite user (fr)"
+      },
+      "fields": {
+        "email": {
+          "label": "Email (fr)",
+          "placeholder": ""
+        },
+        "expiresAfter": {
+          "label": "Expires after (fr)",
+          "placeholder": "Enter number of days (fr)"
+        },
+        "expiresAt": {
+          "label": "Expires at (fr)",
+          "placeholder": "Select a date (fr)"
+        },
+        "role": {
+          "label": "Role (fr)",
+          "placeholder": "Select role (fr)"
+        }
+      },
+      "title": "Invite a user (fr)",
+      "validation": {
+        "messages": {
+          "email": "Email is required (fr)",
+          "expiresAt": "Expiry date is required (fr)",
+          "validEmail": "Email must be a valid email (fr)",
+          "requiredField": "This field is required (fr)",
+          "role": "Role is required (fr)"
+        }
+      }
+    },
+    "messages": {
+      "delete": {
+        "success": "Successfully deleted invitation (fr)",
+        "error": "Error deleting invitation (fr)"
+      },
+      "invite": {
+        "success": "Successfully invited user (fr)",
+        "error": "Error inviting user (fr)"
+      },
+      "resend": {
+        "success": "Successfully resent invitation (fr)",
+        "error": "Error resending invitation (fr)"
+      },
+      "revoke": {
+        "success": "Successfully revoked invitation (fr)",
+        "error": "Error revoking invitation (fr)"
+      }
+    },
+    "table": {
+      "actions": {
+        "delete": "Delete (fr)",
+        "invite": "Invite a user (fr)",
+        "resend": "Resend (fr)",
+        "revoke": "Revoke (fr)"
+      },
+      "columns": {
+        "email": "Email (fr)",
+        "role": "Role (fr)",
+        "invitedBy": "Invited by (fr)",
+        "expiresAt": "Expires at (fr)",
+        "actions": "Actions (fr)",
+        "status": "Status (fr)"
+      },
+      "confirmation": {
+        "header": "Confirmation (fr)",
+        "confirm": {
+          "delete": {
+            "message": "Are you sure you want to delete (fr)?"
+          },
+          "resend": {
+            "message": "Are you sure you want to resend (fr)?"
+          },
+          "revoke": {
+            "message": "Are you sure you want to revoke (fr)?"
+          }
+        }
+      },
+      "emptyMessage": "Table is empty (fr)",
+      "pagination": {
+        "pageControl": "Go to (fr)",
+        "rowsPerPage": "Rows (fr)"
+      },
+      "searchPlaceholder": "",
+      "status": {
+        "accepted": "Accepted (fr)",
+        "expired": "Expired (fr)",
+        "pending": "Pending (fr)",
+        "revoked": "Revoked (fr)"
+      }
+    },
+    "title": "Invitations (fr)"
+  },
+  "users": {
+    "title": "Users (fr)"
+  }
+}

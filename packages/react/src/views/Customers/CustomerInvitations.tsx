@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { CustomerInvitationsTable } from "@/components/customers/Invitations";
 
 export const CustomerInvitations = () => {
-  const { t } = useTranslation("user");
+  const { t } = useTranslation("customer");
 
   const parameters = useParams();
 
@@ -14,7 +14,7 @@ export const CustomerInvitations = () => {
   }
 
   return (
-    <Page title={t("invitations.table.title")}>
+    <Page title={t("invitations.title")}>
       <CustomerInvitationsTable
         customerId={parameters.id}
         id="invitations-table"
