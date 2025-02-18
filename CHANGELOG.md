@@ -1,3 +1,18 @@
+# [0.10.0](https://github.com/12deg/saas/compare/v0.9.0...v0.10.0) (2025-02-18)
+
+
+### Bug Fixes
+
+* **customer-users:** update enable and disable actions ([90123fe](https://github.com/12deg/saas/commit/90123fe0d9c9df7c23832f5f1e403e60adb574d4))
+
+
+### Features
+
+* **customer-users:** add users page ([ed5d506](https://github.com/12deg/saas/commit/ed5d506c319740808b01516cf17157ade0044283))
+* **customer-users:** allow to select role for invitation ([ce4625e](https://github.com/12deg/saas/commit/ce4625edf4edd11a56b2ecaff8650c6baa8bd576))
+
+
+
 # [0.9.0](https://github.com/12deg/saas/compare/v0.8.2...v0.9.0) (2025-02-17)
 
 
