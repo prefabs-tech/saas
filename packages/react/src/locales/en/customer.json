@@ -103,6 +103,10 @@
         "success": "User disabled successfully"
       }
     },
+    "roles": {
+      "SAAS_ACCOUNT_MEMBER": "Member",
+      "SAAS_ACCOUNT_OWNER": "Owner"
+    },
     "status": {
       "active": "Active",
       "disabled": "Disabled",

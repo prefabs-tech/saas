@@ -1,3 +1,10 @@
 export const STORAGE_KEY_DEFAULT = "x-customer-id";
 
 export const SIGNUP_PATH_DEFAULT = "/auth/signup";
+
+export const SAAS_ACCOUNT_MEMBER = "SAAS_ACCOUNT_MEMBER";
+export const SAAS_ACCOUNT_OWNER = "SAAS_ACCOUNT_OWNER";
+export const SAAS_ACCOUNT_ROLES_DEFAULT = [
+  SAAS_ACCOUNT_OWNER,
+  SAAS_ACCOUNT_MEMBER,
+];

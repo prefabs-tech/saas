@@ -13,5 +13,6 @@ export type SaasConfig = {
   mainAppSubdomain: string;
   rootDomain: string;
   multiDatabase: boolean;
+  saasAccountRoles?: string[];
   subdomains: "required" | "optional" | "disabled";
 };

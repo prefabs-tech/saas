@@ -1,5 +1,3 @@
-import type { User } from "./customer";
-
 export type CustomerUser = {
   id: string;
   email: string;

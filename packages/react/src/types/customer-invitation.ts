@@ -62,11 +62,6 @@ export type CustomerInvitationUpdateInput = Partial<
   }
 >;
 
-export interface InvitationRoleOption {
-  name: string;
-  id: number;
-}
-
 export interface InvitationExpiryDateField {
   display: boolean;
   mode: "calendar" | "input";

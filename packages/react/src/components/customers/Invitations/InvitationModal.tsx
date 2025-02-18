@@ -5,18 +5,14 @@ import React, { useState } from "react";
 
 import { CustomerInvitationForm } from "./InvitationForm";
 
-import type {
-  AddInvitationResponse,
-  InvitationRoleOption,
-  InvitationExpiryDateField,
-} from "@/types";
+import type { AddInvitationResponse, InvitationExpiryDateField } from "@/types";
 
 interface Properties {
   customerId: string;
   additionalInvitationFields?: AdditionalFormFields;
   expiryDateField?: InvitationExpiryDateField;
   invitationButtonOptions?: IButtonProperties;
-  roles?: InvitationRoleOption[];
+  roles?: string[];
   onSubmitted?: (response: AddInvitationResponse) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prepareData?: (data: any) => any;
