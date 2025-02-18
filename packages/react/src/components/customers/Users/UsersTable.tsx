@@ -124,11 +124,11 @@ export const CustomerUsersTable = ({
   });
 
   const handleDisableUser = (user: CustomerUser) => {
-    triggerDisable(customerId, user.id);
+    triggerDisable(user.id);
   };
 
   const handleEnableUser = (user: CustomerUser) => {
-    triggerEnable(customerId, user.id);
+    triggerEnable(user.id);
   };
 
   const defaultColumns: Array<TableColumnDefinition<CustomerUser>> = [
