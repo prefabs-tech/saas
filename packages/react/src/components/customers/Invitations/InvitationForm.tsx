@@ -8,21 +8,18 @@ import React, { useCallback } from "react";
 import { toast } from "react-toastify";
 import * as zod from "zod";
 
-import { useAddInvitationMutation } from "@/hooks";
+import { SAAS_ACCOUNT_ROLES_DEFAULT } from "@/constants";
+import { useAddInvitationMutation, useConfig } from "@/hooks";
 
 import { InvitationFormFields } from "./InvitationFormFields";
 
-import type {
-  AddInvitationResponse,
-  InvitationRoleOption,
-  InvitationExpiryDateField,
-} from "@/types";
+import type { AddInvitationResponse, InvitationExpiryDateField } from "@/types";
 
 interface Properties {
   customerId: string;
   additionalInvitationFields?: AdditionalFormFields;
   expiryDateField?: InvitationExpiryDateField;
-  roles?: InvitationRoleOption[];
+  roles?: string[];
   onCancel?: () => void;
   onSubmitted?: (response: AddInvitationResponse) => void; // afterSubmit
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,12 +30,16 @@ export const CustomerInvitationForm = ({
   customerId,
   additionalInvitationFields,
   expiryDateField,
-  roles,
+  roles: customRoles,
   onCancel,
   onSubmitted,
   prepareData,
 }: Properties) => {
   const { t, i18n } = useTranslation("customer");
+
+  const { saasAccountRoles = SAAS_ACCOUNT_ROLES_DEFAULT } = useConfig();
+
+  const roles = customRoles || saasAccountRoles;
 
   const { loading: addLoading, trigger: triggerAdd } = useAddInvitationMutation(
     {

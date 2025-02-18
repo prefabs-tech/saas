@@ -10,11 +10,11 @@ import {
 import { useTranslation } from "@dzangolab/react-i18n";
 import React from "react";
 
-import { InvitationExpiryDateField, InvitationRoleOption } from "@/types";
+import { InvitationExpiryDateField } from "@/types";
 
 interface IProperties {
   expiryDateField?: InvitationExpiryDateField;
-  roles?: InvitationRoleOption[];
+  roles?: string[];
   loading?: boolean;
   onCancel?: () => void;
   renderAdditionalFields?: RenderAdditionalFormFields;
@@ -73,13 +73,13 @@ export const InvitationFormFields: React.FC<IProperties> = ({
           disabled={roles.length <= 1 && true}
           name="role"
           label={t("invitations.form.fields.role.label")}
-          placeholder={t("invitations.form.fields.role.placeholder")}
           options={roles.map((role) => {
             return {
-              label: role.name,
-              value: role.name,
+              label: t(`users.roles.${role}`),
+              value: role,
             };
           })}
+          placeholder={t("invitations.form.fields.role.placeholder")}
         />
       ) : null}
 

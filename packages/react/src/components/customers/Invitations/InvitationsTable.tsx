@@ -11,6 +11,7 @@ import {
 import { useCallback } from "react";
 import { toast } from "react-toastify";
 
+import { SAAS_ACCOUNT_OWNER } from "@/constants";
 import { useGetInvitationsQuery } from "@/hooks";
 import {
   useDeleteInvitationMutation,
@@ -27,7 +28,6 @@ import type {
   RevokeInvitationResponse,
   CustomerInvitation,
   InvitationExpiryDateField,
-  InvitationRoleOption,
 } from "../../../types";
 
 type VisibleColumn =
@@ -48,7 +48,7 @@ export type InvitationsTableProperties = Partial<
   additionalInvitationFields?: AdditionalFormFields;
   invitationButtonOptions?: IButtonProperties;
   invitationExpiryDateField?: InvitationExpiryDateField;
-  roles?: Array<InvitationRoleOption>;
+  roles?: string[];
   showInviteAction?: boolean;
   visibleColumns?: VisibleColumn[];
   onInvitationAdded?: (response: AddInvitationResponse) => void;
@@ -162,30 +162,13 @@ export const CustomerInvitationsTable = ({
       align: "center",
       accessorKey: "role",
       header: t("invitations.table.columns.role"),
-      cell: ({ getValue, row: { original } }) => {
-        const roles = (original as unknown as { roles: string[] })?.roles;
-
-        if (Array.isArray(roles)) {
-          return (
-            <>
-              {roles?.map((role: string, index: number) => (
-                <Tag
-                  key={role + index}
-                  label={role}
-                  color={role === "SAAS_ACCOUNT_MEMBER" ? "default" : "green"}
-                  fullWidth
-                />
-              ))}
-            </>
-          );
-        }
-
+      cell: ({ getValue }) => {
         const role = (getValue() as string) || "";
 
         return (
           <Tag
-            label={role}
-            color={role === "SAAS_ACCOUNT_MEMBER" ? "default" : "green"}
+            label={t(`users.roles.${role}`)}
+            color={role === SAAS_ACCOUNT_OWNER ? "default" : "green"}
             fullWidth
           />
         );

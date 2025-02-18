@@ -3,7 +3,6 @@ import { useTranslation } from "@dzangolab/react-i18n";
 import {
   TDataTable as DataTable,
   TDataTableProperties,
-  TRequestJSON,
   IButtonProperties,
   TableColumnDefinition,
   Tag,
@@ -12,6 +11,7 @@ import {
 } from "@dzangolab/react-ui";
 import { toast } from "react-toastify";
 
+import { SAAS_ACCOUNT_OWNER } from "@/constants";
 import { useDisableUserMutation } from "@/hooks/customers/UseDisableUserMutation";
 import { useEnableUserMutation } from "@/hooks/customers/UseEnableUserMutation";
 import { useGetUsersQuery } from "@/hooks/customers/UseGetUsersQuery";
@@ -20,7 +20,6 @@ import { CustomerInvitationModal } from "../Invitations";
 
 import type {
   AddInvitationResponse,
-  InvitationRoleOption,
   InvitationExpiryDateField,
   CustomerUser,
 } from "@/types";
@@ -50,10 +49,9 @@ export type UsersTableProperties = Partial<
     | DataActionsMenuProperties<CustomerUser>;
   invitationButtonOptions?: IButtonProperties;
   invitationExpiryDateField?: InvitationExpiryDateField;
-  roles?: Array<InvitationRoleOption>;
+  roles?: string[];
   showInviteAction?: boolean;
   visibleColumns?: VisibleColumn[];
-  fetchUsers?: (arguments_: TRequestJSON) => void;
   onInvitationAdded?: (response: AddInvitationResponse) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onUserEnabled?: (data: any) => void;
@@ -65,7 +63,7 @@ export type UsersTableProperties = Partial<
 
 export const CustomerUsersTable = ({
   additionalInvitationFields,
-  className = "table-customer-users",
+  className = "table-users",
   columns = [],
   customerId,
   dataActionsMenu,
@@ -82,7 +80,6 @@ export const CustomerUsersTable = ({
     "status",
     "actions",
   ],
-  fetchUsers,
   onInvitationAdded,
   onUserDisabled,
   onUserEnabled,
@@ -124,11 +121,11 @@ export const CustomerUsersTable = ({
   });
 
   const handleDisableUser = (user: CustomerUser) => {
-    triggerDisable(customerId, user.id);
+    triggerDisable(user.id);
   };
 
   const handleEnableUser = (user: CustomerUser) => {
-    triggerEnable(customerId, user.id);
+    triggerEnable(user.id);
   };
 
   const defaultColumns: Array<TableColumnDefinition<CustomerUser>> = [
@@ -165,8 +162,8 @@ export const CustomerUsersTable = ({
         return (
           <>
             <Tag
-              label={role}
-              color={role === "SAAS_ACCOUNT_MEMBER" ? "default" : "green"}
+              label={t(`users.roles.${role}`)}
+              color={role === SAAS_ACCOUNT_OWNER ? "default" : "green"}
               fullWidth
             />
           </>
