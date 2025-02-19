@@ -1,5 +1,6 @@
 const CUSTOMER_HEADER_NAME = "x-customer-id";
-const CUSTOMER_INVITATION_ACCEPT_LINK_PATH = "/signup/token/:token";
+const CUSTOMER_INVITATION_ACCEPT_LINK_PATH =
+  "/signup/token/:token?customerId=:customerId";
 const NANOID_ALPHABET = "abcdefghijklmnopqrstuvwxyz0123456789";
 const NANOID_SIZE = 8;
 const ROLE_SAAS_ACCOUNT_ADMIN = "SAAS_ACCOUNT_ADMIN";
