@@ -1,11 +1,19 @@
-import { Email, Password, useFormContext } from "@dzangolab/react-form";
+import {
+  CheckboxInput,
+  Email,
+  Password,
+  useFormContext,
+} from "@dzangolab/react-form";
 import { Trans, useTranslation } from "@dzangolab/react-i18n";
-import { Checkbox } from "@dzangolab/react-ui";
 import React from "react";
 
 import { useConfig } from "@/hooks";
 
-export const UserFields = () => {
+type Properties = {
+  disableEmailField?: boolean;
+};
+
+export const UserFields = ({ disableEmailField = false }: Properties) => {
   const { t } = useTranslation("accounts");
 
   const { accounts } = useConfig();
@@ -24,6 +32,7 @@ export const UserFields = () => {
         label={t("signup.fields.email.label")}
         name="email"
         placeholder={t("signup.fields.email.placeholder")}
+        disabled={disableEmailField}
       />
       <Password
         label={t("signup.fields.password.label")}
@@ -39,9 +48,9 @@ export const UserFields = () => {
         getFieldState={getFieldState}
       />
       {termsAndConditionsUrl && (
-        <Checkbox
-          name="agreement"
-          label={
+        <CheckboxInput
+          name="termsAndConditions"
+          inputLabel={
             <Trans i18nKey="accounts:signup.termsAndConditions">
               <a
                 href={termsAndConditionsUrl}
@@ -52,7 +61,7 @@ export const UserFields = () => {
               </a>
             </Trans>
           }
-        ></Checkbox>
+        ></CheckboxInput>
       )}
     </>
   );

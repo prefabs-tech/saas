@@ -49,7 +49,7 @@
       "user": "Signup (fr)"
     },
     "validations": {
-      "configmPassword": {
+      "confirmPassword": {
         "mustMatch": "Passwords must match (fr)",
         "required": "Confirm password is required (fr)"
       },
@@ -80,6 +80,9 @@
       },
       "taxId": {
         "invalid": "Tax id must be less than 255 characters (fr)"
+      },
+      "termsAndConditions": {
+        "required": "Please agree to the terms and conditions (fr)"
       }
     }
   },
@@ -87,5 +90,5 @@
     "emptyLabel": "Choose account (fr)",
     "helper": "Accounts (fr)"
   },
-  "title": "My accounts"
+  "title": "My accounts (fr)"
 }
