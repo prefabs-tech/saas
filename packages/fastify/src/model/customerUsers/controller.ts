@@ -2,11 +2,7 @@ import handlers from "./handlers";
 
 import type { FastifyInstance } from "fastify";
 
-const plugin = async (
-  fastify: FastifyInstance,
-  options: unknown,
-  done: () => void,
-) => {
+const plugin = async (fastify: FastifyInstance) => {
   fastify.get(
     String.raw`/customers/:customerId(^[0-9a-fa-f-]{36}$)/users`,
     {
@@ -14,8 +10,6 @@ const plugin = async (
     },
     handlers.getByCustomerId,
   );
-
-  done();
 };
 
 export default plugin;
