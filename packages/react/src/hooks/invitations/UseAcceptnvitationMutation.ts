@@ -5,14 +5,15 @@ import { AcceptInvitationResponse, UserSignupData } from "@/types";
 import { useMutation, UseMutationOptions } from "../UseMutation";
 
 export const useAcceptInvitationMutation = <
-  Response extends AcceptInvitationResponse,
+  Response = AcceptInvitationResponse,
+  Data = UserSignupData,
 >(
-  options?: UseMutationOptions<Response>,
+  options?: UseMutationOptions<Response, Data>,
 ) => {
-  const { loading, trigger } = useMutation<Response>(options);
+  const { loading, trigger } = useMutation<Response, Data>(options);
 
   const callMutation = useCallback(
-    (token: string, data: UserSignupData, customerId?: string | null) => {
+    (token: string, data: Data, customerId?: string | null) => {
       const url = customerId
         ? `customers/${customerId}/invitations/token/${token}`
         : `invitations/token/${token}`;

@@ -5,15 +5,23 @@ import client from "@/api/axios";
 import { useConfig } from "./UseConfig";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type UseMutationOptions<T = any> = {
-  method?: "POST" | "PUT" | "DELETE" | "PATCH";
-  withCredentials?: boolean;
-  onError?: (error: any) => void; // eslint-disable-line @typescript-eslint/no-explicit-any
-  onSuccess?: (response: T) => void;
+export type UseMutationRequestObject<D = any> = {
+  url: string;
+  method: "POST" | "PUT" | "DELETE" | "PATCH";
+  withCredentials: boolean;
+  data?: D;
 };
 
-export const useMutation = <MutationResponse>(
-  options?: UseMutationOptions<MutationResponse>,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type UseMutationOptions<R = any, D = any> = {
+  method?: "POST" | "PUT" | "DELETE" | "PATCH";
+  withCredentials?: boolean;
+  onError?: (error: any, request?: UseMutationRequestObject<D>) => void; // eslint-disable-line @typescript-eslint/no-explicit-any
+  onSuccess?: (response: R, request?: UseMutationRequestObject<D>) => void;
+};
+
+export const useMutation = <MutationResponse = any, MutationData = any>( // eslint-disable-line @typescript-eslint/no-explicit-any
+  options?: UseMutationOptions<MutationResponse, MutationData>,
 ) => {
   const {
     method = "POST",
@@ -26,21 +34,23 @@ export const useMutation = <MutationResponse>(
 
   const { apiBaseUrl } = useConfig();
 
-  const trigger = useCallback((url: string, data?: object) => {
+  const trigger = useCallback((url: string, data?: MutationData) => {
     setLoading(true);
 
+    const requestObject = {
+      url,
+      method,
+      data,
+      withCredentials,
+    };
+
     client(apiBaseUrl)
-      .request({
-        url,
-        method,
-        data,
-        withCredentials,
-      })
+      .request(requestObject)
       .then(({ data }) => {
         if ("status" in data && data.status === "ERROR") {
-          onError && onError(data);
+          onError && onError(data, data);
         } else {
-          onSuccess && onSuccess(data as MutationResponse);
+          onSuccess && onSuccess(data as MutationResponse, requestObject);
         }
       })
       .catch((error) => onError && onError(error))

@@ -6,11 +6,15 @@ import { toast } from "react-toastify";
 
 import { UserSignupForm } from "@/components/accounts";
 import { useAcceptInvitationMutation, useGetInvitationQuery } from "@/hooks";
+import { UseMutationRequestObject } from "@/hooks/UseMutation";
 import { AcceptInvitationResponse, UserSignupData } from "@/types";
 
 export type AcceptInvitationProperties = {
   centered?: boolean;
-  onAcceptInvitationSuccess?: (response?: AcceptInvitationResponse) => void;
+  onAcceptInvitationSuccess?: (
+    response?: AcceptInvitationResponse,
+    request?: UseMutationRequestObject<UserSignupData>,
+  ) => void;
 };
 
 export const AcceptInvitation = ({
@@ -34,7 +38,9 @@ export const AcceptInvitation = ({
 
   const { loading: acceptLoading, trigger: triggerAcceptInvitation } =
     useAcceptInvitationMutation({
-      onSuccess: onAcceptInvitationSuccess,
+      onSuccess: (response, request) =>
+        onAcceptInvitationSuccess &&
+        onAcceptInvitationSuccess(response, request),
       onError: () => {
         toast.error(t("invitations.messages.errorAcceptingInvitation"));
       },
