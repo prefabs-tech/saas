@@ -1,9 +1,4 @@
-import {
-  emailSchema,
-  FormActions,
-  passwordSchema,
-  Provider,
-} from "@dzangolab/react-form";
+import { emailSchema, passwordSchema, Provider } from "@dzangolab/react-form";
 import { useTranslation } from "@dzangolab/react-i18n";
 import { useState } from "react";
 import { z } from "zod";
@@ -12,6 +7,7 @@ import { useConfig } from "@/hooks";
 import { CustomerSignupData } from "@/types/customer";
 
 import { CustomerFields } from "./CustomerFields";
+import { SignupFormActions } from "./SignupFormActions";
 import { UserFields } from "./UserFields";
 
 export type CustomerSignupProperties = {
@@ -27,7 +23,8 @@ export const CustomerSignupForm = ({
 
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const { subdomains } = useConfig();
+  const { accounts, subdomains } = useConfig();
+  const { termsAndConditionsUrl } = accounts?.signup || {};
 
   const customerSchema = z.object({
     name: z
@@ -97,7 +94,14 @@ export const CustomerSignupForm = ({
     ),
     confirmPassword: z
       .string()
-      .min(1, t("signup.validations.configmPassword.required")),
+      .min(1, t("signup.validations.confirmPassword.required")),
+    ...(termsAndConditionsUrl
+      ? {
+          termsAndConditions: z.boolean().refine((value) => value === true, {
+            message: t("signup.validations.termsAndConditions.required"),
+          }),
+        }
+      : {}),
   });
 
   const customerSignupSchema = customerSchema.merge(userSchema).refine(
@@ -105,7 +109,7 @@ export const CustomerSignupForm = ({
       return data.password === data.confirmPassword;
     },
     {
-      message: t("signup.validations.configmPassword.mustMatch"),
+      message: t("signup.validations.confirmPassword.mustMatch"),
       path: ["confirmPassword"],
     },
   );
@@ -121,28 +125,6 @@ export const CustomerSignupForm = ({
   const onCancel = () => {
     setActiveIndex(0);
   };
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const formActions: any = [
-    {
-      label:
-        activeIndex === 1
-          ? t("signup.actions.submit")
-          : t("signup.actions.next"),
-      type: "submit",
-    },
-  ];
-
-  if (activeIndex > 0) {
-    formActions.unshift({
-      id: "cancel",
-      label: t("signup.actions.previous"),
-      severity: "secondary",
-      type: "button",
-      variant: "outlined",
-      onClick: onCancel,
-    });
-  }
 
   return (
     <>
@@ -170,7 +152,21 @@ export const CustomerSignupForm = ({
       >
         {activeIndex === 0 && <CustomerFields />}
         {activeIndex === 1 && <UserFields />}
-        <FormActions actions={formActions} alignment="fill" loading={loading} />
+        <SignupFormActions
+          submitButtonOptions={{
+            label:
+              activeIndex === 1
+                ? t("signup.actions.submit")
+                : t("signup.actions.next"),
+            disabled: false, // FIXME disable submit only when user fields are shown
+          }}
+          cancelButtonOptions={{
+            label: t("signup.actions.previous"),
+            onClick: onCancel,
+          }}
+          loading={loading}
+          showCancel={activeIndex === 1}
+        />
       </Provider>
     </>
   );

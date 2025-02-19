@@ -49,7 +49,7 @@
       "user": "Signup"
     },
     "validations": {
-      "configmPassword": {
+      "confirmPassword": {
         "mustMatch": "Passwords must match",
         "required": "Confirm password is required"
       },
@@ -80,6 +80,9 @@
       },
       "taxId": {
         "invalid": "Tax id must be less than 255 characters"
+      },
+      "termsAndConditions": {
+        "required": "Please agree to the terms and conditions"
       }
     }
   },
