@@ -1,3 +1,19 @@
+# [0.11.0](https://github.com/12deg/saas/compare/v0.10.0...v0.11.0) (2025-02-19)
+
+
+### Bug Fixes
+
+* fix customer invitation link ([#59](https://github.com/12deg/saas/issues/59)) ([af9033e](https://github.com/12deg/saas/commit/af9033ea7b843ee3d63fd8993f9d3184524680e9))
+
+
+### Features
+
+* **invitation:** add AcceptInvitation page ([d30c255](https://github.com/12deg/saas/commit/d30c2555dcc8fc865d55833f54ca9e94882e4dee))
+* **invitations:** improve callbacks ([5e0e34d](https://github.com/12deg/saas/commit/5e0e34d6912891b9d3a9451381414b7013333595))
+* **signup:** improve terms and conditions field ([6e37b4d](https://github.com/12deg/saas/commit/6e37b4d80236b9c12278bbb53591c0bfd24006f1))
+
+
+
 # [0.10.0](https://github.com/12deg/saas/compare/v0.9.0...v0.10.0) (2025-02-18)
 
 
