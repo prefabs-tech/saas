@@ -11,16 +11,15 @@ const getInvitationLink = (
   invitation: CustomerInvitation,
   origin: string,
 ): string => {
-  const { token } = invitation;
+  const { token, customerId } = invitation;
 
   let invitationAcceptPath =
     config.saas.invitation?.acceptLinkPath ||
     CUSTOMER_INVITATION_ACCEPT_LINK_PATH;
 
-  invitationAcceptPath = invitationAcceptPath.replaceAll(
-    /:token(?!\w)/g,
-    token,
-  );
+  invitationAcceptPath = invitationAcceptPath
+    .replaceAll(":token", token)
+    .replaceAll(":customerId", customerId);
 
   const url = new URL(invitationAcceptPath, origin);
 
