@@ -12,11 +12,7 @@ import Service from "../model/customers/service";
 import type { Customer } from "../types";
 import type { FastifyInstance } from "fastify";
 
-const plugin = async (
-  fastify: FastifyInstance,
-  options: Record<string, never>,
-  done: () => void,
-) => {
+const plugin = async (fastify: FastifyInstance) => {
   try {
     const { config, slonik } = fastify;
 
@@ -62,8 +58,6 @@ const plugin = async (
     fastify.log.error("🔴 SaaS: Failed to run customer migrations");
     throw error;
   }
-
-  done();
 };
 
 export default FastifyPlugin(plugin);

@@ -7,11 +7,7 @@ import getHost from "../lib/getHost";
 
 import type { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 
-const plugin = async (
-  fastify: FastifyInstance,
-  options: Record<string, never>,
-  done: () => void,
-) => {
+const plugin = async (fastify: FastifyInstance) => {
   fastify.addHook(
     "preHandler",
     async (request: FastifyRequest, reply: FastifyReply) => {
@@ -72,8 +68,6 @@ const plugin = async (
       }
     },
   );
-
-  done();
 };
 
 export default FastifyPlugin(plugin);

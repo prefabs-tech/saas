@@ -65,6 +65,7 @@ const createCustomerUsersTableQuery = (
       customer_id VARCHAR(36) NOT NULL,
       user_id VARCHAR(255) NOT NULL,
       role_id VARCHAR(255) NOT NULL,
+      disabled BOOLEAN NOT NULL DEFAULT false,
       date_start TIMESTAMP,
       date_end TIMESTAMP,
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
