@@ -1,9 +1,9 @@
 import {
-  CustomerSignupData,
-  Customer,
+  AccountSignupData,
+  Account,
   UserSignupData,
   User,
-} from "@/types/customer";
+} from "@/types/account";
 import { prepareSignupData } from "@/utils";
 
 import client from "../axios";
@@ -12,7 +12,7 @@ export const getMyAccounts = async ({
   apiBaseUrl,
 }: {
   apiBaseUrl: string;
-}): Promise<Customer[]> => {
+}): Promise<Account[]> => {
   const response = await client(apiBaseUrl).get(`/my-accounts`, {
     withCredentials: true,
   });
@@ -28,14 +28,14 @@ export const signup = async ({
   apiBaseUrl,
   signupPath,
   data,
-  customerSignup = true,
+  accountSignup = true,
 }: {
   apiBaseUrl: string;
   signupPath: string;
-  data: CustomerSignupData | UserSignupData;
-  customerSignup?: boolean;
+  data: AccountSignupData | UserSignupData;
+  accountSignup?: boolean;
 }): Promise<User> => {
-  const payload = prepareSignupData({ data, customerSignup });
+  const payload = prepareSignupData({ data, accountSignup });
 
   const response = await client(apiBaseUrl).post(signupPath, payload, {
     withCredentials: true,

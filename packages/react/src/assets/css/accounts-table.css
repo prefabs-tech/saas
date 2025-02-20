@@ -1,0 +1,27 @@
+.table-accounts .column-name {
+  min-width: 15rem;
+}
+
+.table-accounts .column-billingAddress {
+  width: 20rem;
+  max-width: 20rem;
+  min-width: 20rem;
+}
+
+.table-accounts .column-taxId {
+  width: 10rem;
+  max-width: 10rem;
+  min-width: 10rem;
+}
+
+.table-accounts .column-tenant {
+  width: 7rem;
+  max-width: 7rem;
+  min-width: 7rem;
+}
+
+.table-accounts .column-type {
+  width: 7rem;
+  max-width: 7rem;
+  min-width: 7rem;
+}

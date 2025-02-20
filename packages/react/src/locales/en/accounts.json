@@ -8,6 +8,63 @@
     "registeredNumber": "Registered number",
     "taxId": "Tax ID"
   },
+  "form": {
+    "actions": {
+      "cancel": "Cancel",
+      "save": "Save",
+      "submit": "Save"
+    },
+    "fields": {
+      "billingAddress": "Billing address",
+      "database": "Database",
+      "domain": "Domain",
+      "name": "Name",
+      "organizationName": "Organization name",
+      "registeredNumber": "Registered number",
+      "slug": "Slug",
+      "taxId": "Tax ID",
+      "type": {
+        "label": "Individual",
+        "options": {
+          "individual": "Individual",
+          "organization": "Organization"
+        }
+      },
+      "useSeparateDb": "Use separate database"
+    },
+    "messages": {
+      "error": {
+        "create": "Failed to create account",
+        "edit": "Failed to update account"
+      },
+      "success": {
+        "create": "Account created successfully",
+        "edit": "Account updated successfully"
+      }
+    },
+    "validations": {
+      "domain": {
+        "invalid": "Domain must be less than 255 characters"
+      },
+      "name": {
+        "invalid": "Name must be less than 255 characters",
+        "required": "Name is required"
+      },
+      "organizationName": {
+        "invalid": "Organization name must be less than 255 characters"
+      },
+      "registeredNumber": {
+        "invalid": "Registered number must be less than 255 characters"
+      },
+      "slug": {
+        "invalid": "Slug must be less than 24 characters",
+        "required": "Slug is required"
+      },
+      "taxId": {
+        "invalid": "Tax id must be less than 255 characters"
+      }
+    }
+  },
   "signup": {
     "actions": {
       "cancel": "Cancel",
@@ -45,7 +102,7 @@
     },
     "termsAndConditions": "I agree to all the <0>Terms and Conditions</0> by the user agreement.",
     "title": {
-      "customer": "Create a new account",
+      "account": "Create a new account",
       "user": "Signup"
     },
     "validations": {
@@ -89,6 +146,29 @@
   "switcher": {
     "emptyLabel": "Choose account",
     "helper": "Accounts"
+  },
+  "table": {
+    "actions": {
+      "add": "Add",
+      "edit": "Edit",
+      "view": "View"
+    },
+    "columns": {
+      "name": "Name",
+      "organizationName": "Organization name",
+      "registeredNumber": "Registered name",
+      "schema": "Schema",
+      "taxId": "Tax ID",
+      "tenant": "Tenant",
+      "type": "Type"
+    },
+    "emptyMessage": "Table is empty",
+    "pagination": {
+      "pageControl": "Go to",
+      "rowsPerPage": "Rows"
+    },
+    "searchPlaceholder": "",
+    "title": "Accounts"
   },
   "title": "My accounts"
 }

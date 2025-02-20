@@ -1,4 +1,4 @@
 export * from "./AcceptInvitation";
-export * from "./Accounts";
-export * from "./Customers";
+export * from "./Account";
+export * from "./MyAccounts";
 export * from "./Signup";

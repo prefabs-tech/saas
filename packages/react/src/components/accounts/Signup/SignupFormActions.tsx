@@ -9,7 +9,6 @@ type Properties = {
   loading?: boolean;
   showCancel?: boolean;
   submitButtonOptions?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
-  customerSignup?: boolean;
 };
 
 export const SignupFormActions = ({

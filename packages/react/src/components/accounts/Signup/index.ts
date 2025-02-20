@@ -1,2 +1,2 @@
-export * from "./CustomerSignupForm";
+export * from "./AccountSignupForm";
 export * from "./UserSignupForm";
