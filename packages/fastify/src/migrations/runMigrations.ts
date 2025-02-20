@@ -1,8 +1,8 @@
 import {
-  createCustomerAddressesTableQuery,
-  createCustomerInvitationsTableQuery,
-  createCustomerUsersTableQuery,
-  createCustomersTableQuery,
+  createAccountAddressesTableQuery,
+  createAccountInvitationsTableQuery,
+  createAccountUsersTableQuery,
+  createAccountsTableQuery,
 } from "./queries";
 import getSaasConfig from "../config";
 
@@ -13,15 +13,15 @@ const runMigrations = async (config: ApiConfig, database: Database) => {
   const saasConfig = getSaasConfig(config);
   await database.connect(async (connection) => {
     await connection.transaction(async (transactionConnection) => {
-      await transactionConnection.query(createCustomersTableQuery(saasConfig));
+      await transactionConnection.query(createAccountsTableQuery(saasConfig));
       await transactionConnection.query(
-        createCustomerUsersTableQuery(saasConfig),
+        createAccountUsersTableQuery(saasConfig),
       );
       await transactionConnection.query(
-        createCustomerAddressesTableQuery(saasConfig),
+        createAccountAddressesTableQuery(saasConfig),
       );
       await transactionConnection.query(
-        createCustomerInvitationsTableQuery(saasConfig),
+        createAccountInvitationsTableQuery(saasConfig),
       );
     });
   });

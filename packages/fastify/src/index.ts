@@ -1,6 +1,6 @@
 import { verifySession } from "supertokens-node/recipe/session/framework/fastify";
 
-import type { SaasConfig, Customer } from "./types";
+import type { SaasConfig, Account } from "./types";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { ApiConfig } from "@dzangolab/fastify-config";
 import type { Database } from "@dzangolab/fastify-slonik";
@@ -12,7 +12,7 @@ declare module "fastify" {
 
   interface FastifyRequest {
     authEmailPrefix?: string;
-    customer?: Customer;
+    account?: Account;
   }
 
   interface FastifyContextConfig {
@@ -35,13 +35,13 @@ declare module "@dzangolab/fastify-config" {
   }
 }
 
-export { default as customerInvitationRoutes } from "./model/customerInvitations/controller";
-export { default as customerRoutes } from "./model/customers/controller";
-export { default as customerResolver } from "./model/customers/resolver";
-export { default as customerSchema } from "./model/customers/schema";
-export { default as customerService } from "./model/customers/service";
-export { default as customerMigrationPlugin } from "./plugins/migratePlugin";
-export { default as customerUserRoutes } from "./model/customerUsers/controller";
+export { default as accountInvitationRoutes } from "./model/accountInvitations/controller";
+export { default as accountRoutes } from "./model/accounts/controller";
+export { default as accountResolver } from "./model/accounts/resolver";
+export { default as accountSchema } from "./model/accounts/schema";
+export { default as accountService } from "./model/accounts/service";
+export { default as accountMigrationPlugin } from "./plugins/migratePlugin";
+export { default as accountUserRoutes } from "./model/accountUsers/controller";
 export { default as supertokensRecipesConfig } from "./supertokens/recipes";
 
 export { default } from "./plugin";

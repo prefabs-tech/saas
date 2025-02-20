@@ -6,9 +6,9 @@ import {
   ROLE_SAAS_ACCOUNT_OWNER,
 } from "../../../constants";
 import getHost from "../../../lib/getHost";
-import CustomerService from "../../../model/customers/service";
+import AccountService from "../../../model/accounts/service";
 
-import type { Customer, CustomerCreateInput } from "../../../types";
+import type { Account, AccountCreateInput } from "../../../types";
 import type { FastifyError, FastifyInstance, FastifyRequest } from "fastify";
 import type { APIInterface } from "supertokens-node/recipe/thirdpartyemailpassword/types";
 
@@ -20,7 +20,7 @@ const emailPasswordSignUpPOST = (
   return async (input) => {
     const request = input.options.req.original as FastifyRequest<{
       Body: {
-        customerFormFields: { id: string; value: string | number | boolean }[];
+        accountFormFields?: { id: string; value: string | number | boolean }[];
         formFields: { id: string; value: string }[];
       };
     }>;
@@ -28,14 +28,14 @@ const emailPasswordSignUpPOST = (
     const {
       body,
       config,
-      customer,
+      account,
       dbSchema,
       authEmailPrefix,
       headers,
       slonik,
     } = request;
 
-    input.userContext.customer = customer;
+    input.userContext.account = account;
     input.userContext.dbSchema = dbSchema;
     input.userContext.authEmailPrefix = authEmailPrefix;
 
@@ -63,34 +63,42 @@ const emailPasswordSignUpPOST = (
     const mainAppDomain = `${saasConfig.mainAppSubdomain}.${saasConfig.rootDomain}`;
 
     if (hostname === mainAppDomain) {
-      const customerService = new CustomerService(config, slonik);
+      const accountService = new AccountService(config, slonik);
 
-      const { customerFormFields } = body;
+      const { accountFormFields } = body;
 
-      const customerCreateInput: CustomerCreateInput = Object.fromEntries(
-        customerFormFields.map(
-          (customerFormField: {
+      if (!accountFormFields) {
+        throw {
+          name: "ERROR_MISSING_ACCOUNT_FORM_FIELDS",
+          message: "Missing account form fields",
+          statusCode: 422,
+        } as FastifyError;
+      }
+
+      const accountCreateInput: AccountCreateInput = Object.fromEntries(
+        accountFormFields.map(
+          (accountFormField: {
             id: string;
             value: string | number | boolean;
-          }) => [customerFormField.id, customerFormField.value],
+          }) => [accountFormField.id, accountFormField.value],
         ),
       );
 
-      // TODO: validate customerCreateInput
+      // TODO: validate accountCreateInput
 
-      const customer = (await customerService.create(
-        customerCreateInput,
-      )) as unknown as Customer;
-      input.userContext.customer = customer;
+      const account = (await accountService.create(
+        accountCreateInput,
+      )) as unknown as Account;
+      input.userContext.account = account;
 
       // set db schema for multi-database on request object
-      if (customer.database) {
-        input.userContext.dbSchema = customer.database;
+      if (account.database) {
+        input.userContext.dbSchema = account.database;
       }
 
       // set auth email prefix for user isolation on request object
-      if (customer.slug) {
-        input.userContext.authEmailPrefix = `${customer.id}_`;
+      if (account.slug) {
+        input.userContext.authEmailPrefix = `${account.id}_`;
       }
 
       input.userContext.saasAccountRole = ROLE_SAAS_ACCOUNT_OWNER;
@@ -99,7 +107,7 @@ const emailPasswordSignUpPOST = (
         await originalImplementation.emailPasswordSignUpPOST(input);
 
       if (response.status !== "OK") {
-        await customerService.delete(customer.id);
+        await accountService.delete(account.id);
       }
 
       return response;

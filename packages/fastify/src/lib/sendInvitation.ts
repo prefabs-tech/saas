@@ -1,6 +1,6 @@
-import { CUSTOMER_INVITATION_ACCEPT_LINK_PATH } from "../constants";
+import { ACCOUNT_INVITATION_ACCEPT_LINK_PATH } from "../constants";
 
-import type { CustomerInvitation } from "../types";
+import type { AccountInvitation } from "../types";
 import type { ApiConfig } from "@dzangolab/fastify-config";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { FastifyMailer } from "@dzangolab/fastify-mailer";
@@ -8,18 +8,18 @@ import type { FastifyInstance } from "fastify";
 
 const getInvitationLink = (
   config: ApiConfig,
-  invitation: CustomerInvitation,
+  invitation: AccountInvitation,
   origin: string,
 ): string => {
-  const { token, customerId } = invitation;
+  const { token, accountId } = invitation;
 
   let invitationAcceptPath =
     config.saas.invitation?.acceptLinkPath ||
-    CUSTOMER_INVITATION_ACCEPT_LINK_PATH;
+    ACCOUNT_INVITATION_ACCEPT_LINK_PATH;
 
   invitationAcceptPath = invitationAcceptPath
     .replaceAll(":token", token)
-    .replaceAll(":customerId", customerId);
+    .replaceAll(":accountId", accountId);
 
   const url = new URL(invitationAcceptPath, origin);
 
@@ -58,7 +58,7 @@ const sendEmail = async ({
 
 const sendInvitation = async (
   fastify: FastifyInstance,
-  invitation: CustomerInvitation,
+  invitation: AccountInvitation,
   origin: string,
 ) => {
   const { config, log } = fastify;

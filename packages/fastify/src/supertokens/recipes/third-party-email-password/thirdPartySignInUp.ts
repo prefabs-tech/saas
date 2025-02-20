@@ -8,9 +8,9 @@ import { getUserByThirdPartyInfo } from "supertokens-node/recipe/thirdpartyemail
 import UserRoles from "supertokens-node/recipe/userroles";
 
 import { ROLE_SAAS_ACCOUNT_MEMBER } from "../../../constants";
-import CustomerUserService from "../../../model/customerUsers/service";
+import AccountUserService from "../../../model/accountUsers/service";
 
-import type { Customer } from "../../../types";
+import type { Account } from "../../../types";
 import type { User } from "@dzangolab/fastify-user";
 import type { FastifyInstance, FastifyError } from "fastify";
 import type { RecipeInterface } from "supertokens-node/recipe/thirdpartyemailpassword";
@@ -23,7 +23,7 @@ const thirdPartySignInUp = (
 
   return async (input) => {
     const roles = (input.userContext?.roles || []) as string[];
-    const customer: Customer | undefined = input.userContext?.customer;
+    const account: Account | undefined = input.userContext?.account;
     const authEmailPrefix: boolean = input.userContext?.authEmailPrefix;
 
     input.thirdPartyUserId = authEmailPrefix + input.thirdPartyUserId;
@@ -100,14 +100,14 @@ const thirdPartySignInUp = (
         };
       }
 
-      if (customer) {
-        const customerUserService = new CustomerUserService(
+      if (account) {
+        const accountUserService = new AccountUserService(
           config,
           slonik,
           input.userContext?.dbSchema,
         );
-        await customerUserService.create({
-          customerId: customer.id,
+        await accountUserService.create({
+          accountId: account.id,
           userId: originalResponse.user.id,
           role_id: ROLE_SAAS_ACCOUNT_MEMBER,
         });

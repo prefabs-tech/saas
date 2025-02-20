@@ -6,10 +6,10 @@ import getSaasConfig from "../config";
 import changeSchema from "../lib/changeSchema";
 import getDatabaseConfig from "../lib/getDatabaseConfig";
 import initializePgPool from "../lib/initializePgPool";
-import runCustomerMigrations from "../migrations/runCustomerMigrations";
-import Service from "../model/customers/service";
+import runAccountMigrations from "../migrations/runAccountMigrations";
+import Service from "../model/accounts/service";
 
-import type { Customer } from "../types";
+import type { Account } from "../types";
 import type { FastifyInstance } from "fastify";
 
 const plugin = async (fastify: FastifyInstance) => {
@@ -23,23 +23,23 @@ const plugin = async (fastify: FastifyInstance) => {
     if (existsSync(migrationsPath)) {
       const databaseConfig = getDatabaseConfig(config.slonik);
 
-      const customerService = new Service(config, slonik);
+      const accountService = new Service(config, slonik);
 
-      const customers = await customerService.all(["name", "database"]);
+      const accounts = await accountService.all(["name", "database"]);
 
       const client = await initializePgPool(databaseConfig);
 
-      for (const customer of customers) {
-        if (!customer || !customer.database) {
+      for (const account of accounts) {
+        if (!account || !account.database) {
           continue;
         }
 
         /* eslint-disable-next-line unicorn/consistent-destructuring */
-        fastify.log.info(`Running migrations for customer ${customer.name}`);
+        fastify.log.info(`Running migrations for account ${account.name}`);
 
-        await runCustomerMigrations(
+        await runAccountMigrations(
           config,
-          customer as unknown as Customer,
+          account as unknown as Account,
           client,
         );
       }
@@ -50,12 +50,12 @@ const plugin = async (fastify: FastifyInstance) => {
     } else {
       /* eslint-disable-next-line unicorn/consistent-destructuring */
       fastify.log.warn(
-        `Customer migrations path '${migrationsPath}' does not exists.`,
+        `Account migrations path '${migrationsPath}' does not exists.`,
       );
     }
   } catch (error: unknown) {
     /* eslint-disable-next-line unicorn/consistent-destructuring */
-    fastify.log.error("🔴 SaaS: Failed to run customer migrations");
+    fastify.log.error("🔴 SaaS: Failed to run account migrations");
     throw error;
   }
 };

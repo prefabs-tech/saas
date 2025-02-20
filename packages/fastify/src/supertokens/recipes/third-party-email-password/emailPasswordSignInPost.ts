@@ -7,7 +7,7 @@ const emailPasswordSignInPOST = (
   fastify: FastifyInstance,
 ): APIInterface["emailPasswordSignInPOST"] => {
   return async (input) => {
-    input.userContext.customer = input.options.req.original.customer;
+    input.userContext.account = input.options.req.original.account;
     input.userContext.dbSchema = input.options.req.original.dbSchema;
     input.userContext.authEmailPrefix =
       input.options.req.original.authEmailPrefix;

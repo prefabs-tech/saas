@@ -9,7 +9,7 @@ import EmailVerification from "supertokens-node/recipe/emailverification";
 import UserRoles from "supertokens-node/recipe/userroles";
 
 import { ROLE_SAAS_ACCOUNT_MEMBER } from "../../../constants";
-import CustomerUserService from "../../../model/customerUsers/service";
+import AccountUserService from "../../../model/accountUsers/service";
 import Email from "../../utils/email";
 
 import type { User } from "@dzangolab/fastify-user";
@@ -77,14 +77,14 @@ const emailPasswordSignUp = (
         };
       }
 
-      if (input.userContext?.customer) {
-        const customerUserService = new CustomerUserService(
+      if (input.userContext?.account) {
+        const accountUserService = new AccountUserService(
           config,
           slonik,
           input.userContext.dbSchema,
         );
-        await customerUserService.create({
-          customerId: input.userContext.customer.id,
+        await accountUserService.create({
+          accountId: input.userContext.account.id,
           userId: originalResponse.user.id,
           role_id:
             input.userContext.saasAccountRole || ROLE_SAAS_ACCOUNT_MEMBER,

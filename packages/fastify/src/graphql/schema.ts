@@ -1,5 +1,5 @@
 import { mergeTypeDefs } from "@graphql-tools/merge";
 
-import customerSchema from "../model/customers/schema";
+import accountSchema from "../model/accounts/schema";
 
-export default mergeTypeDefs([customerSchema]);
+export default mergeTypeDefs([accountSchema]);

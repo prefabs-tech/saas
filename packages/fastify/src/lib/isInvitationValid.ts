@@ -1,6 +1,6 @@
-import type { CustomerInvitation } from "../types";
+import type { AccountInvitation } from "../types";
 
-const isInvitationValid = (invitation: CustomerInvitation): boolean => {
+const isInvitationValid = (invitation: AccountInvitation): boolean => {
   if (
     invitation.acceptedAt ||
     invitation.revokedAt ||
