@@ -1,3 +1,12 @@
+## [0.11.1](https://github.com/12deg/saas/compare/v0.11.0...v0.11.1) (2025-02-20)
+
+
+### Bug Fixes
+
+* execute customer discovery in onRequst hook ([7ea314b](https://github.com/12deg/saas/commit/7ea314ba35d4b5e18a89cb38a5cefffc784bfadf))
+
+
+
 # [0.11.0](https://github.com/12deg/saas/compare/v0.10.0...v0.11.0) (2025-02-19)
 
 
