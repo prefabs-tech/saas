@@ -21,6 +21,7 @@ const getSaasConfig = (config: ApiConfig) => {
       domains: saasConfig.invalid?.domains || [],
       slugs: saasConfig.invalid?.domains || ["admin"],
     },
+    invitation: saasConfig.invitation,
     mainAppSubdomain: saasConfig.mainAppSubdomain || "app",
     multiDatabase: {
       enabled: saasConfig.multiDatabase?.enabled || false,

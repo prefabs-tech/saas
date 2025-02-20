@@ -63,6 +63,7 @@ const plugin = async (fastify: FastifyInstance) => {
           exclude: true,
         },
       },
+      preHandler: fastify.verifySession({ sessionRequired: false }),
     },
     handlers.accept,
   );
