@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* execute customer discovery in onRequst hook ([7ea314b](https://github.com/12deg/saas/commit/7ea314ba35d4b5e18a89cb38a5cefffc784bfadf))
+* discover customer in onRequest hook instead of preHandler hook ([7ea314b](https://github.com/12deg/saas/commit/7ea314ba35d4b5e18a89cb38a5cefffc784bfadf))
 
 
 
