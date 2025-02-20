@@ -9,7 +9,7 @@ import type { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 
 const plugin = async (fastify: FastifyInstance) => {
   fastify.addHook(
-    "preHandler",
+    "onRequest",
     async (request: FastifyRequest, reply: FastifyReply) => {
       const { config, headers, log, routeOptions, slonik: database } = request;
 
