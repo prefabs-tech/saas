@@ -12,7 +12,6 @@ const createAccountsTableQuery = (
     CREATE TABLE IF NOT EXISTS ${sql.identifier([accounts])} (
       id VARCHAR(36) DEFAULT gen_random_uuid() PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
-      organization_name VARCHAR(255),
       registered_number VARCHAR(255),
       tax_id VARCHAR(255),
       individual BOOLEAN NOT NULL DEFAULT FALSE,

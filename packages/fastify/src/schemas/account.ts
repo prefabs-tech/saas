@@ -5,7 +5,6 @@ import type { SaasConfig } from "../types";
 const accountSchema = z.object({
   id: z.string().uuid(),
   name: z.string().min(1).max(255),
-  organization_name: z.string().max(255).nullable().optional(),
   registered_number: z.string().max(255).nullable().optional(),
   tax_id: z.string().max(255).nullable().optional(),
   individual: z.boolean(),
@@ -21,7 +20,6 @@ const accountCreateInputSchema = (saasConfig: SaasConfig) => {
 
   return z.object({
     name: z.string().min(1).max(255),
-    organization_name: z.string().max(255).nullable().optional(),
     registered_number: z.string().max(255).nullable().optional(),
     tax_id: z.string().max(255).nullable().optional(),
     individual: z.boolean(),

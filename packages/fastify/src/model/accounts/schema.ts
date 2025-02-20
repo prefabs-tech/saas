@@ -5,7 +5,6 @@ import type { DocumentNode } from "graphql";
 const accountSchema: DocumentNode = gql`
   input AccountCreateInput {
     name: String!
-    organizationName: String
     registeredNumber: String
     taxId: String
     individual: Boolean!
@@ -14,7 +13,6 @@ const accountSchema: DocumentNode = gql`
   }
 
   input AccountUpdateInput {
-    organizationName: String
     registeredNumber: String
     taxId: String
   }
@@ -34,7 +32,6 @@ const accountSchema: DocumentNode = gql`
   type Account {
     id: String!
     name: String!
-    organizationName: String
     registeredNumber: String
     taxId: String
     individual: Boolean!

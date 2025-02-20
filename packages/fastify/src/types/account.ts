@@ -1,7 +1,6 @@
 interface Account {
   id: string;
   name: string;
-  organizationName: string | null;
   registeredNumber: string | null;
   taxId: string | null;
   individual: boolean;
