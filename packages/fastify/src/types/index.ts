@@ -1,3 +1,3 @@
 export * from "./config";
-export * from "./customer";
-export * from "./customerInvitation";
+export * from "./account";
+export * from "./accountInvitation";

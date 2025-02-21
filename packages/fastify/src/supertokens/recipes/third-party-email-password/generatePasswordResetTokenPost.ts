@@ -9,7 +9,7 @@ const generatePasswordResetTokenPOST = (
   fastify: FastifyInstance,
 ): APIInterface["generatePasswordResetTokenPOST"] => {
   return async (input) => {
-    input.userContext.customer = input.options.req.original.customer;
+    input.userContext.account = input.options.req.original.account;
     input.userContext.authEmailPrefix =
       input.options.req.original.authEmailPrefix;
 

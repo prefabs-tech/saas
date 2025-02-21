@@ -21,13 +21,14 @@ const getSaasConfig = (config: ApiConfig) => {
       domains: saasConfig.invalid?.domains || [],
       slugs: saasConfig.invalid?.domains || ["admin"],
     },
+    invitation: saasConfig.invitation,
     mainAppSubdomain: saasConfig.mainAppSubdomain || "app",
     multiDatabase: {
       enabled: saasConfig.multiDatabase?.enabled || false,
       migrations: {
         path:
           saasConfig.multiDatabase?.migrations?.path ||
-          `${migrationsPath}/customers`,
+          `${migrationsPath}/accounts`,
       },
     },
     rootDomain: saasConfig.rootDomain,
@@ -35,20 +36,20 @@ const getSaasConfig = (config: ApiConfig) => {
     routes: saasConfig.routes,
     subdomains: saasConfig.subdomains,
     tables: {
-      customers: {
-        name: saasConfig.tables?.customers?.name || "__customers",
+      accounts: {
+        name: saasConfig.tables?.accounts?.name || "__accounts",
       },
-      customerUsers: {
-        name: saasConfig.tables?.customerUsers?.name || "__customer_users",
+      accountUsers: {
+        name: saasConfig.tables?.accountUsers?.name || "__account_users",
       },
-      customerAddresses: {
+      accountAddresses: {
         name:
-          saasConfig.tables?.customerAddresses?.name || "__customer_addresses",
+          saasConfig.tables?.accountAddresses?.name || "__account_addresses",
       },
-      customerInvitations: {
+      accountInvitations: {
         name:
-          saasConfig.tables?.customerInvitations?.name ||
-          "__customer_invitations",
+          saasConfig.tables?.accountInvitations?.name ||
+          "__account_invitations",
       },
     },
   };

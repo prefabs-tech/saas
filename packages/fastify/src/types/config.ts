@@ -1,8 +1,8 @@
 import { User } from "@dzangolab/fastify-user";
 
-import customerHandlers from "../model/customers/handlers";
+import accountHandlers from "../model/accounts/handlers";
 
-import type { CustomerInvitation } from "./customerInvitation";
+import type { AccountInvitation } from "./accountInvitation";
 import type { FastifyRequest } from "fastify";
 
 interface SaasOptions {
@@ -14,15 +14,15 @@ interface SaasOptions {
   ];
   excludeRoutePatterns?: Array<string | RegExp>;
   handlers?: {
-    customer?: {
-      create?: typeof customerHandlers.create;
-      delete?: typeof customerHandlers.delete;
-      getById?: typeof customerHandlers.getById;
-      list?: typeof customerHandlers.list;
-      myAccount?: typeof customerHandlers.myAccount;
-      myAccounts?: typeof customerHandlers.myAccounts;
-      update?: typeof customerHandlers.update;
-      updateMyAccount?: typeof customerHandlers.updateMyAccount;
+    account?: {
+      create?: typeof accountHandlers.create;
+      delete?: typeof accountHandlers.delete;
+      getById?: typeof accountHandlers.getById;
+      list?: typeof accountHandlers.list;
+      myAccount?: typeof accountHandlers.myAccount;
+      myAccounts?: typeof accountHandlers.myAccounts;
+      update?: typeof accountHandlers.update;
+      updateMyAccount?: typeof accountHandlers.updateMyAccount;
     };
   };
   invalid?: {
@@ -33,7 +33,7 @@ interface SaasOptions {
     acceptLinkPath?: string;
     postAccept?: (
       request: FastifyRequest,
-      invitation: CustomerInvitation,
+      invitation: AccountInvitation,
       user: User,
     ) => Promise<void>;
   };
@@ -47,28 +47,28 @@ interface SaasOptions {
   rootDomain: string;
   routePrefix?: string;
   routes?: {
-    customers?: {
+    accounts?: {
       disabled: boolean;
     };
-    customerInvitations?: {
+    accountInvitations?: {
       disabled: boolean;
     };
-    customerUsers?: {
+    accountUsers?: {
       disabled: boolean;
     };
   };
   subdomains: "disabled" | "required" | "optional";
   tables?: {
-    customers?: {
+    accounts?: {
       name: string;
     };
-    customerUsers?: {
+    accountUsers?: {
       name: string;
     };
-    customerAddresses?: {
+    accountAddresses?: {
       name: string;
     };
-    customerInvitations?: {
+    accountInvitations?: {
       name: string;
     };
   };

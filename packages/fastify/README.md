@@ -52,7 +52,7 @@ const config: ApiConfig = {
 Register the saas plugin with your Fastify instance:
 
 ```typescript
-import saasPlugin, { customerMigrationPlugin } from "@12deg/saas-fastify";
+import saasPlugin, { accountMigrationPlugin } from "@12deg/saas-fastify";
 import configPlugin from "@dzangolab/fastify-config";
 import mailerPlugin from "@dzangolab/fastify-mailer";
 import slonikPlugin, { migrationPlugin } from "@dzangolab/fastify-slonik";
@@ -88,8 +88,8 @@ const start = async () => {
   // Run app database migrations
   await fastify.register(migrationPlugin, config.slonik);
 
-  // Run customers database migrations
-  await api.register(customerMigrationPlugin);
+  // Run accounts database migrations
+  await api.register(accountMigrationPlugin);
 
   try {
     await fastify.listen({
