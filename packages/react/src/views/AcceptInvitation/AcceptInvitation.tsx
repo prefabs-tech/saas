@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import { UseMutationRequestObject } from "@/api";
 import { UserSignupForm } from "@/components/accounts";
 import { useAcceptInvitationMutation, useGetInvitationQuery } from "@/hooks";
-import { UseMutationRequestObject } from "@/hooks/UseMutation";
 import { AcceptInvitationResponse, UserSignupData } from "@/types";
 
 export type AcceptInvitationProperties = {

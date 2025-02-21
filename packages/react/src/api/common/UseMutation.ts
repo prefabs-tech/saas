@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
 
-import client from "@/api/axios";
+import { useConfig } from "@/hooks";
 
-import { useConfig } from "./UseConfig";
+import { client } from "../axios";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type UseMutationRequestObject<D = any> = {

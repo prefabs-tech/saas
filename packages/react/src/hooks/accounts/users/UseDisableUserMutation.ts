@@ -1,8 +1,7 @@
 import { useCallback } from "react";
 
+import { useMutation, UseMutationOptions } from "@/api";
 import { DisableAccountUserResponse } from "@/types";
-
-import { useMutation, UseMutationOptions } from "../../UseMutation";
 
 export const useDisableUserMutation = <
   Response extends DisableAccountUserResponse,

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const client = (baseURL: string) => {
+export const client = (baseURL: string) => {
   return axios.create({
     baseURL: baseURL,
     headers: {
@@ -10,5 +10,3 @@ const client = (baseURL: string) => {
     },
   });
 };
-
-export default client;

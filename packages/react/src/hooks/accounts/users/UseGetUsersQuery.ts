@@ -1,6 +1,5 @@
+import { useQuery, UseQueryOptions } from "@/api";
 import { GetAccountUsersResponse } from "@/types";
-
-import { useQuery, UseQueryOptions } from "../../UseQuery";
 
 export const useGetUsersQuery = <Response extends GetAccountUsersResponse>(
   accountId: string,

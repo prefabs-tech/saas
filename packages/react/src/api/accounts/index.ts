@@ -6,7 +6,7 @@ import {
 } from "@/types/account";
 import { prepareSignupData } from "@/utils";
 
-import client from "../axios";
+import { client } from "../axios";
 
 export const getMyAccounts = async ({
   apiBaseUrl,

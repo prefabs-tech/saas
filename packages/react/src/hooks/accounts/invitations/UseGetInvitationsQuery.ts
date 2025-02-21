@@ -1,6 +1,5 @@
+import { useQuery, UseQueryOptions } from "@/api";
 import { GetAccountInvitationsResponse } from "@/types";
-
-import { useQuery, UseQueryOptions } from "../../UseQuery";
 
 export const useGetInvitationsQuery = <
   Response extends GetAccountInvitationsResponse,

@@ -1,6 +1,5 @@
+import { useQuery, UseQueryOptions } from "@/api";
 import { GetInvitationResponse } from "@/types";
-
-import { useQuery, UseQueryOptions } from "../../UseQuery";
 
 export const useGetInvitationQuery = <Response extends GetInvitationResponse>(
   token: string,

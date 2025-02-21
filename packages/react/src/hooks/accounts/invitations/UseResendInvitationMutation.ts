@@ -1,8 +1,7 @@
 import { useCallback } from "react";
 
+import { useMutation, UseMutationOptions } from "@/api";
 import { ResendAccountInvitationResponse } from "@/types";
-
-import { useMutation, UseMutationOptions } from "../../UseMutation";
 
 export const useResendInvitationMutation = <
   Response extends ResendAccountInvitationResponse,
