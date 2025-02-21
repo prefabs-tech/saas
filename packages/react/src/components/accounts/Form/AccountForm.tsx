@@ -23,7 +23,7 @@ export const AccountForm = ({
   handleCancel,
   handleSubmit,
 }: Properties) => {
-  const { t } = useTranslation("accounts");
+  const { t } = useTranslation("account");
 
   const { subdomains } = useConfig();
 

@@ -1,6 +1,63 @@
 {
+  "form": {
+    "actions": {
+      "cancel": "Cancel (fr)",
+      "save": "Save (fr)",
+      "submit": "Save (fr)"
+    },
+    "fields": {
+      "billingAddress": "Billing address (fr)",
+      "database": "Database (fr)",
+      "domain": "Domain (fr)",
+      "name": "Name (fr)",
+      "organizationName": "Organization name (fr)",
+      "registeredNumber": "Registered number (fr)",
+      "slug": "Slug (fr)",
+      "taxId": "Tax ID (fr)",
+      "type": {
+        "label": "Individual (fr)",
+        "options": {
+          "individual": "Individual (fr)",
+          "organization": "Organization (fr)"
+        }
+      },
+      "useSeparateDb": "Use separate database (fr)"
+    },
+    "messages": {
+      "error": {
+        "create": "Failed to create account (fr)",
+        "edit": "Failed to update account (fr)"
+      },
+      "success": {
+        "create": "Account created successfully (fr)",
+        "edit": "Account updated successfully (fr)"
+      }
+    },
+    "validations": {
+      "domain": {
+        "invalid": "Domain must be less than 255 characters (fr)"
+      },
+      "name": {
+        "invalid": "Name must be less than 255 characters (fr)",
+        "required": "Name is required (fr)"
+      },
+      "organizationName": {
+        "invalid": "Organization name must be less than 255 characters (fr)"
+      },
+      "registeredNumber": {
+        "invalid": "Registered number must be less than 255 characters (fr)"
+      },
+      "slug": {
+        "invalid": "Slug must be less than 24 characters (fr)",
+        "required": "Slug is required (fr)"
+      },
+      "taxId": {
+        "invalid": "Tax id must be less than 255 characters (fr)"
+      }
+    }
+  },
   "info": {
-    "title": "Title (fr)"
+    "title": "Info (fr)"
   },
   "invitations": {
     "form": {

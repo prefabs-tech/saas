@@ -12,6 +12,7 @@ type SignupProperties = {
   onSignupFailure?: (err: any) => Promise<void> | void; // eslint-disable-line @typescript-eslint/no-explicit-any
   onSignupSuccess?: (res: any) => Promise<void> | void; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
+
 export const SignupPage = ({
   onSignupFailure,
   onSignupSuccess,

@@ -20,7 +20,7 @@ export const AccountFormFields = ({
   loading,
   handleCancel,
 }: Properties) => {
-  const { t } = useTranslation("accounts");
+  const { t } = useTranslation("account");
 
   const { multiDatabase, subdomains } = useConfig();
 

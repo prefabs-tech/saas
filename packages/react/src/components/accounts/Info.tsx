@@ -10,7 +10,7 @@ interface Properties {
 }
 
 export const AccountInfo = ({ account }: Properties) => {
-  const { t } = useTranslation("accounts");
+  const { t } = useTranslation("account");
 
   const { multiDatabase, subdomains } = useConfig();
 
