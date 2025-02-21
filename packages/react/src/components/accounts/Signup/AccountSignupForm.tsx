@@ -36,12 +36,6 @@ export const AccountSignupForm = ({
         message: t("signup.validations.name.required"),
       }),
     individual: z.boolean(),
-    organizationName: z
-      .string()
-      .max(255, {
-        message: t("signup.validations.organizationName.invalid"),
-      })
-      .nullable(),
     registeredNumber: z
       .string()
       .max(255, {
@@ -134,7 +128,6 @@ export const AccountSignupForm = ({
           // account fields
           individual: false,
           name: "",
-          organizationName: "",
           registeredNumber: "",
           slug: "",
           taxId: "",

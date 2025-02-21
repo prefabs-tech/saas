@@ -3,7 +3,6 @@ import { z } from "zod";
 export const accountSchema = z.object({
   id: z.string().uuid(),
   name: z.string().min(1).max(255),
-  organizationName: z.string().max(255).nullable().optional(),
   registeredNumber: z.string().max(255).nullable().optional(),
   taxId: z.string().max(255).nullable().optional(),
   individual: z.boolean(),

@@ -25,7 +25,6 @@ export type AccountSignupData = UserSignupData & {
   id: string;
   individual: boolean;
   name: string;
-  organizationName: string | null;
   registeredNumber: string | null;
   slug: string | null;
   taxId: string | null;

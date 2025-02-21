@@ -20,7 +20,7 @@ export const AccountSwitcher = ({
   const { accounts, activeAccount, loading, switchAccount } = useAccounts();
 
   const label = activeAccount
-    ? activeAccount.organizationName || activeAccount.name
+    ? activeAccount.name
     : emptyLabel || t("switcher.emptyLabel");
 
   const handleSelect = (accountId: string) => {
@@ -48,7 +48,7 @@ export const AccountSwitcher = ({
       <DropdownMenu
         label={label}
         menu={accounts.map((account) => ({
-          label: account.organizationName || account.name,
+          label: account.name,
           onClick: () => handleSelect(account.id),
         }))}
       ></DropdownMenu>

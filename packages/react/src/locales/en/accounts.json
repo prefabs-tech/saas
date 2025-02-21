@@ -22,7 +22,6 @@
       "email": { "label": "Your email", "placeholder": "" },
       "individual": "Individual",
       "name": "Name",
-      "organizationName": "Organization name",
       "password": {
         "label": "Your password",
         "helper": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase"
@@ -64,9 +63,6 @@
         "invalid": "Name must be less than 255 characters",
         "required": "Name is required"
       },
-      "organizationName": {
-        "invalid": "Organization name must be less than 255 characters"
-      },
       "password": {
         "invalid": "Please enter valid password",
         "required": "Password is required"
@@ -98,7 +94,6 @@
     },
     "columns": {
       "name": "Name",
-      "organizationName": "Organization name",
       "registeredNumber": "Registered name",
       "schema": "Schema",
       "taxId": "Tax ID",

@@ -66,10 +66,6 @@ export const AccountFormFields = ({
       {!individual && (
         <>
           <TextInput
-            label={t("form.fields.organizationName")}
-            name="organizationName"
-          />
-          <TextInput
             label={t("form.fields.registeredNumber")}
             name="registeredNumber"
           />

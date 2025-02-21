@@ -16,7 +16,7 @@ export const Account = ({ account, active, loading, onSwitch }: Properties) => {
   return (
     <div className={`account${active ? " highlight" : ""}`}>
       <div className="header">
-        {account.organizationName || account.name}
+        {account.name}
         {active ? (
           <Tag label={t("account.active")}></Tag>
         ) : (

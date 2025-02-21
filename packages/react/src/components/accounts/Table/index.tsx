@@ -26,13 +26,7 @@ export const AccountsTable = ({
   columns = [],
   accounts,
   totalRecords = 0,
-  visibleColumns = [
-    "name",
-    "organizationName",
-    "registeredNumber",
-    "taxId",
-    "type",
-  ],
+  visibleColumns = ["name", "registeredNumber", "taxId", "type"],
   fetchAccounts,
   ...tableOptions
 }: AccountsTableProperties) => {
@@ -45,17 +39,6 @@ export const AccountsTable = ({
       enableSorting: true,
       enableColumnFilter: true,
       enableGlobalFilter: true,
-    },
-    {
-      accessorKey: "organizationName",
-      header: t("table.columns.organizationName"),
-      cell: ({ row: { original } }) => {
-        if (!original.organizationName) {
-          return <code>&#8212;</code>;
-        }
-
-        return original.organizationName;
-      },
     },
     {
       accessorKey: "registeredNumber",

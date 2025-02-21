@@ -22,7 +22,6 @@
       "email": { "label": "Your email (fr)", "placeholder": "" },
       "individual": "Individual (fr)",
       "name": "Name (fr)",
-      "organizationName": "Organization name (fr)",
       "password": {
         "label": "Your password (fr)",
         "helper": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase (fr)"
@@ -64,9 +63,6 @@
         "invalid": "Name must be less than 255 characters (fr)",
         "required": "Name is required (fr)"
       },
-      "organizationName": {
-        "invalid": "Organization name must be less than 255 characters (fr)"
-      },
       "password": {
         "invalid": "Please enter valid password (fr)",
         "required": "Password is required (fr)"
@@ -98,7 +94,6 @@
     },
     "columns": {
       "name": "Name (fr)",
-      "organizationName": "Organization name (fr)",
       "registeredNumber": "Registered number (fr)",
       "schema": "Schema (fr)",
       "taxId": "Tax ID (fr)",

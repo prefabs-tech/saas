@@ -29,7 +29,6 @@ export const prepareSignupData = ({
     password,
     name,
     individual,
-    organizationName,
     registeredNumber,
     taxId,
     slug,
@@ -55,10 +54,6 @@ export const prepareSignupData = ({
       {
         id: "individual",
         value: individual,
-      },
-      {
-        id: "organizationName",
-        value: !individual ? organizationName : null,
       },
       {
         id: "registeredNumber",

@@ -33,10 +33,6 @@ export const AccountFields = () => {
       {!individual && (
         <>
           <TextInput
-            label={t("signup.fields.organizationName")}
-            name="organizationName"
-          />
-          <TextInput
             label={t("signup.fields.registeredNumber")}
             name="registeredNumber"
           />

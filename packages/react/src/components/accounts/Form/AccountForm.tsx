@@ -37,12 +37,6 @@ export const AccountForm = ({
         message: t("form.validations.name.required"),
       }),
     individual: z.boolean(),
-    organizationName: z
-      .string()
-      .max(255, {
-        message: t("form.validations.organizationName.invalid"),
-      })
-      .nullable(),
     registeredNumber: z
       .string()
       .max(255, {
@@ -91,7 +85,6 @@ export const AccountForm = ({
       defaultValues={{
         individual: account?.individual || false,
         name: account?.name || "",
-        organizationName: account?.organizationName || "",
         registeredNumber: account?.registeredNumber || "",
         slug: account?.slug || "",
         taxId: account?.taxId || "",

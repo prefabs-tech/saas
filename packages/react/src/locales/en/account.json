@@ -10,7 +10,6 @@
       "database": "Database",
       "domain": "Domain",
       "name": "Name",
-      "organizationName": "Organization name",
       "registeredNumber": "Registered number",
       "slug": "Slug",
       "taxId": "Tax ID",
@@ -40,9 +39,6 @@
       "name": {
         "invalid": "Name must be less than 255 characters",
         "required": "Name is required"
-      },
-      "organizationName": {
-        "invalid": "Organization name must be less than 255 characters"
       },
       "registeredNumber": {
         "invalid": "Registered number must be less than 255 characters"
