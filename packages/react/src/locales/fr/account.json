@@ -10,7 +10,6 @@
       "database": "Database (fr)",
       "domain": "Domain (fr)",
       "name": "Name (fr)",
-      "organizationName": "Organization name (fr)",
       "registeredNumber": "Registered number (fr)",
       "slug": "Slug (fr)",
       "taxId": "Tax ID (fr)",
@@ -40,9 +39,6 @@
       "name": {
         "invalid": "Name must be less than 255 characters (fr)",
         "required": "Name is required (fr)"
-      },
-      "organizationName": {
-        "invalid": "Organization name must be less than 255 characters (fr)"
       },
       "registeredNumber": {
         "invalid": "Registered number must be less than 255 characters (fr)"
