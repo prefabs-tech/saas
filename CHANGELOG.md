@@ -1,3 +1,19 @@
+# [0.12.0](https://github.com/12deg/saas/compare/v0.11.1...v0.12.0) (2025-02-21)
+
+
+### Bug Fixes
+
+* remove unwanted translations ([2ef5752](https://github.com/12deg/saas/commit/2ef575239d25549f1977548e6e35f9e2f80bdd48))
+* update accounts data model ([d7f2a9c](https://github.com/12deg/saas/commit/d7f2a9c12475a81b743bfe21abc90a7788b868a6))
+
+
+### Features
+
+* accept account invitation for existing users ([#64](https://github.com/12deg/saas/issues/64)) ([2673182](https://github.com/12deg/saas/commit/267318253b3a8308af7ba4f9b54bc11e3d9dac7d))
+* **account:** update AccountShow ([320069e](https://github.com/12deg/saas/commit/320069e57d47584e542f1720d19fd886ccfdb2a2))
+
+
+
 ## [0.11.1](https://github.com/12deg/saas/compare/v0.11.0...v0.11.1) (2025-02-20)
 
 
