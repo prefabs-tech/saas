@@ -8,14 +8,14 @@ import React, {
 
 import { getMyAccounts } from "@/api/accounts";
 import { STORAGE_KEY_DEFAULT } from "@/constants";
+import { Account } from "@/types/account";
 import { SaasConfig } from "@/types/config";
-import { Customer } from "@/types/customer";
 
 import ConfigProvider from "./ConfigProvider";
 
 export interface AccountsContextType {
-  accounts: Array<Customer> | null;
-  activeAccount: Customer | null;
+  accounts: Array<Account> | null;
+  activeAccount: Account | null;
   loading: boolean;
   error: boolean;
   accountLoading: boolean;
@@ -26,10 +26,10 @@ export interface AccountsContextType {
     rootDomain: string;
   };
   switchAccount: (
-    account: Customer | null,
+    account: Account | null,
     options?: { clearState?: boolean },
   ) => void;
-  updateAccounts: (accounts: Customer[]) => void;
+  updateAccounts: (accounts: Account[]) => void;
 }
 
 interface Properties {
@@ -45,8 +45,8 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
   const [error, setError] = useState(false);
   const [accountLoading, setAccountLoading] = useState(false);
 
-  const [accounts, setAccounts] = useState<Array<Customer> | null>(null);
-  const [activeAccount, setActiveAccount] = useState<Customer | null>(null);
+  const [accounts, setAccounts] = useState<Array<Account> | null>(null);
+  const [activeAccount, setActiveAccount] = useState<Account | null>(null);
 
   const {
     apiBaseUrl,
@@ -71,7 +71,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
 
   const switchAccount = useCallback(
     (
-      newAccount: Customer | null,
+      newAccount: Account | null,
       { clearState = true }: { clearState?: boolean } = {},
     ) => {
       setAccountLoading(true);
@@ -98,7 +98,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
   );
 
   const computeNewActiveAccount = useCallback(
-    (newAccounts: Customer[]) => {
+    (newAccounts: Account[]) => {
       if (!newAccounts?.length) {
         return null;
       }
@@ -115,7 +115,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         return newAccounts[accountIndex];
       }
 
-      const newActiveAccount: Customer | null =
+      const newActiveAccount: Account | null =
         autoSelectAccount || newAccounts.length === 1 ? newAccounts[0] : null;
 
       if (!activeAccount) {
@@ -156,7 +156,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
   );
 
   const updateAccounts = useCallback(
-    (newAccounts: Array<Customer>) => {
+    (newAccounts: Array<Account>) => {
       setLoading(true);
 
       setAccounts(newAccounts);
@@ -171,7 +171,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
   );
 
   useEffect(() => {
-    // ignore customer discovery for admin app
+    // ignore account discovery for admin app
     if (!isAdminApp && userId) {
       setLoading(true);
 

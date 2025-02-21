@@ -4,7 +4,7 @@ import {
 } from "@dzangolab/fastify-user";
 import { getRequestFromUserContext } from "supertokens-node";
 
-import type { Customer } from "../../../types";
+import type { Account } from "../../../types";
 import type { FastifyError, FastifyInstance, FastifyRequest } from "fastify";
 import type { RecipeInterface } from "supertokens-node/recipe/session/types";
 
@@ -22,8 +22,8 @@ const createNewSession = (
       | FastifyRequest
       | undefined;
 
-    const customer = (input.userContext?.customer || request?.customer) as
-      | Customer
+    const account = (input.userContext?.account || request?.account) as
+      | Account
       | undefined;
 
     const { config, slonik } = fastify;
@@ -32,7 +32,7 @@ const createNewSession = (
       const userService = getUserService(
         config,
         slonik,
-        customer?.database as string,
+        account?.database as string,
       );
 
       const user = (await userService.findById(input.userId)) || undefined;

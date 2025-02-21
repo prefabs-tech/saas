@@ -14,7 +14,7 @@ const thirdPartySignInUpPOST = (
 
     input.userContext.roles = [fastify.config.user.role || ROLE_USER];
 
-    input.userContext.customer = request.customer;
+    input.userContext.account = request.account;
     input.userContext.dbSchema = request.dbSchema;
     input.userContext.authEmailPrefix = request.authEmailPrefix;
 

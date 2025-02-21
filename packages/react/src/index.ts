@@ -1,17 +1,17 @@
 import {
   AccountSwitcher,
-  CustomerSignupForm,
+  AccountForm,
+  AccountInfo,
+  AccountInvitationForm,
+  AccountInvitationModal,
+  AccountInvitationsTable,
+  AccountSignupForm,
+  AccountUsersTable,
+  AccountsTable,
+  MyAccounts,
   UserSignupForm,
-} from "./components/accounts";
-import {
-  CustomerForm,
-  CustomerInvitationForm,
-  CustomerInvitationModal,
-  CustomerInvitationsTable,
-  CustomerUsersTable,
-  CustomersTable,
-} from "./components/customers";
-import { CustomerInfo } from "./components/customers/CustomerInfo";
+} from "@/components/accounts";
+
 import AccountsProvider, { accountsContext } from "./contexts/AccountsProvider";
 import { SaasConfig } from "./types";
 import "./assets/css/index.css";
@@ -24,6 +24,7 @@ declare module "@dzangolab/react-config" {
     saas: SaasConfig;
   }
 }
+export * from "./api";
 
 export * from "./constants";
 
@@ -38,14 +39,15 @@ export * from "./views";
 export {
   // components
   AccountSwitcher,
-  CustomerForm,
-  CustomerInfo,
-  CustomerInvitationForm,
-  CustomerInvitationModal,
-  CustomerInvitationsTable,
-  CustomerSignupForm,
-  CustomerUsersTable,
-  CustomersTable,
+  AccountForm,
+  AccountInfo,
+  AccountInvitationForm,
+  AccountInvitationModal,
+  AccountInvitationsTable,
+  AccountSignupForm,
+  AccountUsersTable,
+  AccountsTable,
+  MyAccounts,
   UserSignupForm,
 
   // contexts

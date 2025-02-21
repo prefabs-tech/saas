@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import { UseMutationRequestObject } from "@/api";
 import { UserSignupForm } from "@/components/accounts";
 import { useAcceptInvitationMutation, useGetInvitationQuery } from "@/hooks";
-import { UseMutationRequestObject } from "@/hooks/UseMutation";
 import { AcceptInvitationResponse, UserSignupData } from "@/types";
 
 export type AcceptInvitationProperties = {
@@ -17,7 +17,7 @@ export type AcceptInvitationProperties = {
   ) => void;
 };
 
-export const AcceptInvitation = ({
+export const AcceptInvitationPage = ({
   centered = true,
   onAcceptInvitationSuccess,
 }: AcceptInvitationProperties) => {
@@ -25,14 +25,14 @@ export const AcceptInvitation = ({
 
   const { token } = useParams();
   const [searchParameters] = useSearchParams();
-  const customerId = searchParameters.get("customerId");
+  const accountId = searchParameters.get("accountId");
 
   const {
     data: invitation,
     loading: invitationLoading,
     error,
     trigger,
-  } = useGetInvitationQuery(token!, customerId, {
+  } = useGetInvitationQuery(token!, accountId, {
     lazy: true,
   });
 
@@ -57,7 +57,7 @@ export const AcceptInvitation = ({
       return;
     }
 
-    triggerAcceptInvitation(token, credential, customerId);
+    triggerAcceptInvitation(token, credential, accountId);
   };
 
   const renderPageContent = () => {

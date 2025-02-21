@@ -3,7 +3,7 @@ import { useTranslation } from "@dzangolab/react-i18n";
 import { z } from "zod";
 
 import { useConfig } from "@/hooks";
-import { UserSignupData } from "@/types/customer";
+import { UserSignupData } from "@/types/account";
 
 import { SignupFormActions } from "./SignupFormActions";
 import { UserFields } from "./UserFields";

@@ -1,24 +1,14 @@
-.account {
-  border-radius: 0.5rem;
-  border: 1px solid #dbdbdb;
-  border-radius: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding-block: 0.75rem;
-  padding-inline: 1rem;
+.account-details .account-detail {
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.account.highlight {
-  border: 1px solid var(--dz-primary-color);
-  transition: border 150ms linear;
+.account-detail .label {
+  display: block;
+  font-weight: bold;
 }
 
-.account .header {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: space-between;
-  min-height: 2.75rem;
+.account-detail .value {
+  display: block;
+  margin-top: 1rem;
 }

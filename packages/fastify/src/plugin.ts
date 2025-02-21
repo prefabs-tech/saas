@@ -2,10 +2,10 @@ import FastifyPlugin from "fastify-plugin";
 
 import createSaasRoles from "./lib/createSaasRoles";
 import runMigrations from "./migrations/runMigrations";
-import customerInvitationRoutes from "./model/customerInvitations/controller";
-import customerRoutes from "./model/customers/controller";
-import customerUserRoutes from "./model/customerUsers/controller";
-import customerDiscoveryPlugin from "./plugins/customerDiscoveryPlugin";
+import accountInvitationRoutes from "./model/accountInvitations/controller";
+import accountRoutes from "./model/accounts/controller";
+import accountUserRoutes from "./model/accountUsers/controller";
+import accountDiscoveryPlugin from "./plugins/accountDiscoveryPlugin";
 
 import type { FastifyInstance } from "fastify";
 
@@ -20,23 +20,23 @@ const plugin = FastifyPlugin(async (fastify: FastifyInstance) => {
 
   await runMigrations(config, slonik);
 
-  // Register customer discovery plugin
-  await fastify.register(customerDiscoveryPlugin);
+  // Register account discovery plugin
+  await fastify.register(accountDiscoveryPlugin);
 
   const { routePrefix, routes } = config.saas;
 
-  if (!routes?.customers?.disabled) {
-    await fastify.register(customerRoutes, { prefix: routePrefix });
+  if (!routes?.accounts?.disabled) {
+    await fastify.register(accountRoutes, { prefix: routePrefix });
   }
 
-  if (!routes?.customerInvitations?.disabled) {
-    await fastify.register(customerInvitationRoutes, {
+  if (!routes?.accountInvitations?.disabled) {
+    await fastify.register(accountInvitationRoutes, {
       prefix: routePrefix,
     });
   }
 
-  if (!routes?.customerUsers?.disabled) {
-    await fastify.register(customerUserRoutes, {
+  if (!routes?.accountUsers?.disabled) {
+    await fastify.register(accountUserRoutes, {
       prefix: routePrefix,
     });
   }

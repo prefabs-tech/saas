@@ -22,7 +22,6 @@
       "email": { "label": "Your email", "placeholder": "" },
       "individual": "Individual",
       "name": "Name",
-      "organizationName": "Organization name",
       "password": {
         "label": "Your password",
         "helper": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase"
@@ -45,7 +44,7 @@
     },
     "termsAndConditions": "I agree to all the <0>Terms and Conditions</0> by the user agreement.",
     "title": {
-      "customer": "Create a new account",
+      "account": "Create a new account",
       "user": "Signup"
     },
     "validations": {
@@ -63,9 +62,6 @@
       "name": {
         "invalid": "Name must be less than 255 characters",
         "required": "Name is required"
-      },
-      "organizationName": {
-        "invalid": "Organization name must be less than 255 characters"
       },
       "password": {
         "invalid": "Please enter valid password",
@@ -89,6 +85,28 @@
   "switcher": {
     "emptyLabel": "Choose account",
     "helper": "Accounts"
+  },
+  "table": {
+    "actions": {
+      "add": "Add",
+      "edit": "Edit",
+      "view": "View"
+    },
+    "columns": {
+      "name": "Name",
+      "registeredNumber": "Registered name",
+      "schema": "Schema",
+      "taxId": "Tax ID",
+      "tenant": "Tenant",
+      "type": "Type"
+    },
+    "emptyMessage": "Table is empty",
+    "pagination": {
+      "pageControl": "Go to",
+      "rowsPerPage": "Rows"
+    },
+    "searchPlaceholder": "",
+    "title": "Accounts"
   },
   "title": "My accounts"
 }

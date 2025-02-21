@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import getSaasConfig from "../../config";
-import { customerCreateInputSchema } from "../../schemas";
+import { accountCreateInputSchema } from "../../schemas";
 
 const saasConfig = getSaasConfig({
   saas: {
@@ -9,7 +9,7 @@ const saasConfig = getSaasConfig({
   },
 });
 
-const slugSchema = customerCreateInputSchema(saasConfig).shape.slug;
+const slugSchema = accountCreateInputSchema(saasConfig).shape.slug;
 
 describe.concurrent("slugSchema", () => {
   it.each([
