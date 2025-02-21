@@ -50,3 +50,5 @@ export interface User {
     userId: string;
   };
 }
+
+export type GetAccountResponse = Account;

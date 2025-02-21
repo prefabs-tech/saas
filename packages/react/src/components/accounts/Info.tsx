@@ -1,18 +1,22 @@
 import { useTranslation } from "@dzangolab/react-i18n";
-import { Data, GridContainer } from "@dzangolab/react-ui";
+import { Data, GridContainer, LoadingIcon } from "@dzangolab/react-ui";
 
-import { useConfig } from "@/hooks";
-
-import { Account } from "../../types";
+import { useConfig, useGetAccountQuery } from "@/hooks";
 
 interface Properties {
-  account: Account;
+  accountId: string;
 }
 
-export const AccountInfo = ({ account }: Properties) => {
+export const AccountInfo = ({ accountId }: Properties) => {
   const { t } = useTranslation("account");
 
   const { multiDatabase, subdomains } = useConfig();
+
+  const { data: account, loading } = useGetAccountQuery(accountId);
+
+  if (loading || !account) {
+    return <LoadingIcon />;
+  }
 
   return (
     <GridContainer>

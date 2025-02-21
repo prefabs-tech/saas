@@ -24,6 +24,7 @@ declare module "@dzangolab/react-config" {
     saas: SaasConfig;
   }
 }
+export * from "./api";
 
 export * from "./constants";
 
@@ -32,6 +33,8 @@ export * from "./hooks";
 export * from "./types";
 
 export * from "./utils";
+
+export * from "./views";
 
 export {
   // components
@@ -51,5 +54,3 @@ export {
   accountsContext,
   AccountsProvider,
 };
-
-export * from "./views";
