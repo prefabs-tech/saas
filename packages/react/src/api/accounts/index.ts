@@ -26,18 +26,18 @@ export const getMyAccounts = async ({
 
 export const signup = async ({
   apiBaseUrl,
-  signupPath,
+  path,
   data,
   accountSignup = true,
 }: {
   apiBaseUrl: string;
-  signupPath: string;
+  path: string;
   data: AccountSignupData | UserSignupData;
   accountSignup?: boolean;
 }): Promise<User> => {
   const payload = prepareSignupData({ data, accountSignup });
 
-  const response = await client(apiBaseUrl).post(signupPath, payload, {
+  const response = await client(apiBaseUrl).post(path, payload, {
     withCredentials: true,
   });
 

@@ -3,7 +3,7 @@ import { AuthPage } from "@dzangolab/react-ui";
 import { useState } from "react";
 
 import { signup } from "@/api/accounts";
-import { AccountSignupForm, UserSignupForm } from "@/components/accounts";
+import { AccountSignupForm, UserSignupForm } from "@/components/signup";
 import { SIGNUP_PATH_DEFAULT } from "@/constants";
 import { useAccounts, useConfig } from "@/hooks";
 import { AccountSignupData, UserSignupData } from "@/types/account";
@@ -24,7 +24,7 @@ export const SignupPage = ({
   } = useAccounts();
   const { apiBaseUrl, accounts, rootDomain } = useConfig();
 
-  const { path: signupPath = SIGNUP_PATH_DEFAULT, appRedirection = true } =
+  const { apiPath = SIGNUP_PATH_DEFAULT, appRedirection = true } =
     accounts?.signup || {};
 
   const [loading, setLoading] = useState(false);
@@ -32,7 +32,7 @@ export const SignupPage = ({
   const handleSubmit = (data: AccountSignupData | UserSignupData) => {
     setLoading(true);
 
-    signup({ apiBaseUrl, signupPath, data })
+    signup({ apiBaseUrl, path: apiPath, data })
       .then(async (result) => {
         if (result) {
           if (onSignupSuccess) {
