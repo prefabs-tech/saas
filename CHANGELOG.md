@@ -1,3 +1,13 @@
+# [0.13.0](https://github.com/12deg/saas/compare/v0.12.0...v0.13.0) (2025-02-24)
+
+
+### Features
+
+* **routes:** add routes from the package + refactor components ([a0f55b1](https://github.com/12deg/saas/commit/a0f55b1c85216d162d29eb7e0ab55e4acfe851aa))
+* **routes:** update my accounts page ([96ac9fd](https://github.com/12deg/saas/commit/96ac9fdba05b27e19e95d82c25977876ee5e21fe))
+
+
+
 # [0.12.0](https://github.com/12deg/saas/compare/v0.11.1...v0.12.0) (2025-02-21)
 
 
