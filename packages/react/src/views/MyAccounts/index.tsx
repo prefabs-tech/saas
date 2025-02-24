@@ -22,9 +22,18 @@ export const MyAccountsPage = ({ onAccountSwitch }: Properties) => {
     return <Navigate to={"/"} />;
   }
 
+  const handleSwitch = (account: Account) => {
+    // FIXME hack to force rtk query to refetch data on app
+    window.location.reload();
+
+    if (onAccountSwitch) {
+      onAccountSwitch(account);
+    }
+  };
+
   return (
     <Page title={t("title")} loading={loading}>
-      <MyAccounts onAccountSwitch={onAccountSwitch} />
+      <MyAccounts onAccountSwitch={handleSwitch} />
     </Page>
   );
 };
