@@ -2,7 +2,7 @@ import { useTranslation } from "@dzangolab/react-i18n";
 import { Page } from "@dzangolab/react-ui";
 import { Navigate } from "react-router-dom";
 
-import { MyAccounts } from "@/components/accounts";
+import { MyAccounts } from "@/components/my-accounts";
 import { useAccounts } from "@/hooks";
 import { Account } from "@/types";
 

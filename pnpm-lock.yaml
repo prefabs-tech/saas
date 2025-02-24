@@ -170,17 +170,17 @@ importers:
         specifier: 0.1.11
         version: 0.1.11(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.4.5)
       '@dzangolab/react-config':
-        specifier: 0.54.0
-        version: 0.54.0(react@18.3.1)
+        specifier: 0.55.0
+        version: 0.55.0(react@18.3.1)
       '@dzangolab/react-form':
-        specifier: 0.54.0
-        version: 0.54.0(@dzangolab/react-ui@0.54.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1))(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)
+        specifier: 0.55.0
+        version: 0.55.0(@dzangolab/react-ui@0.55.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1))(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)
       '@dzangolab/react-i18n':
-        specifier: 0.54.0
-        version: 0.54.0(@dzangolab/react-config@0.54.0(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        specifier: 0.55.0
+        version: 0.55.0(@dzangolab/react-config@0.55.0(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@dzangolab/react-ui':
-        specifier: 0.54.0
-        version: 0.54.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+        specifier: 0.55.0
+        version: 0.55.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@types/jsdom':
         specifier: 21.1.6
         version: 21.1.6
@@ -546,32 +546,32 @@ packages:
     engines: {node: '>10.17.0'}
     hasBin: true
 
-  '@dzangolab/react-config@0.54.0':
-    resolution: {integrity: sha512-2PW2x8EGd7KtSMX70Qmt3mJiqCtDCl4Lb8MoFKAqkqpJOGxelqKjyevwkwtT4Vhg1Qa19+eI/fYs+QOFXt/Ywg==}
+  '@dzangolab/react-config@0.55.0':
+    resolution: {integrity: sha512-xu2Ue/+09stxSfbpPuZu1S30qg1IZZPnwOdz1naYUKeF/SSRYLO8AnqTrtaiIsFCQh8VQRagXXaYGrdlO2FTIg==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
       react: '>=18.2'
 
-  '@dzangolab/react-form@0.54.0':
-    resolution: {integrity: sha512-6vy374Qwdy6yMhNhTd3QyMl+zzfFfxq5C4JISW+8Smouopm7vjxx3ZQYNqOgatKoZ9YT3ULvDQXDl5wa3kGA/A==}
+  '@dzangolab/react-form@0.55.0':
+    resolution: {integrity: sha512-IZk3zzGAc4JaRE0zkYu6d4rxeQkeXfnHo4bkaGk+4rpSioAdyES3KlmWzjqkFkSNfo16Nklug31PPpaUe6td3w==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@dzangolab/react-ui': 0.54.0
+      '@dzangolab/react-ui': 0.55.0
       primereact: 9.6.1
       react: '>=18.2'
       react-dom: '>=18.2'
       zod: '>=3.21.4'
 
-  '@dzangolab/react-i18n@0.54.0':
-    resolution: {integrity: sha512-8v0vE9p4TNXnhCItBiHfq9qyZM9nhyR1MlLn2WPyiTFzNG/pfgllwkUSRD5IDFR1y0rYWe5h4ERZgBgvgAOz0g==}
+  '@dzangolab/react-i18n@0.55.0':
+    resolution: {integrity: sha512-PSmpg2mcFz6eC5EJbUSgQ7/j22Kf1JiHkz/BL2Eh9WxORXyY7N5VHVnTg+jp2vehLuWZiaA916034WpS5KzHhw==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@dzangolab/react-config': 0.54.0
+      '@dzangolab/react-config': 0.55.0
       react: '>=18.2'
       react-dom: '>=18.2'
 
-  '@dzangolab/react-ui@0.54.0':
-    resolution: {integrity: sha512-mazuffxBgrD6r9P2Yzjsc6NSuXE0R+8b9W7t5ElRDez9SQLluVeAbpH0LAqGsKupFmy0Ulx0NzMCyPEhATOYrA==}
+  '@dzangolab/react-ui@0.55.0':
+    resolution: {integrity: sha512-fAsm37tJmPZQLewbjYQKDVpKscVhMjvlSL/UK0Hv45TxwrY49fu2M8yyksKUjtxgHZtobmnpMf+TuQVt1PNIeg==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
       react: '>=18.2'
@@ -5761,13 +5761,13 @@ snapshots:
     transitivePeerDependencies:
       - pg-native
 
-  '@dzangolab/react-config@0.54.0(react@18.3.1)':
+  '@dzangolab/react-config@0.55.0(react@18.3.1)':
     dependencies:
       react: 18.3.1
 
-  '@dzangolab/react-form@0.54.0(@dzangolab/react-ui@0.54.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1))(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)':
+  '@dzangolab/react-form@0.55.0(@dzangolab/react-ui@0.55.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1))(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)':
     dependencies:
-      '@dzangolab/react-ui': 0.54.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+      '@dzangolab/react-ui': 0.55.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@hookform/error-message': 2.0.1(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.53.2(react@18.3.1))(react@18.3.1)
       '@hookform/resolvers': 3.9.1(react-hook-form@7.53.2(react@18.3.1))
       primereact: 9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -5779,10 +5779,10 @@ snapshots:
       validator: 13.12.0
       zod: 3.23.8
 
-  '@dzangolab/react-i18n@0.54.0(@dzangolab/react-config@0.54.0(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@dzangolab/react-i18n@0.55.0(@dzangolab/react-config@0.55.0(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@dzangolab/react-config': 0.54.0(react@18.3.1)
-      '@dzangolab/react-ui': 0.54.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+      '@dzangolab/react-config': 0.55.0(react@18.3.1)
+      '@dzangolab/react-ui': 0.55.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       i18next: 23.16.8
       i18next-browser-languagedetector: 8.0.0
       i18next-chained-backend: 4.6.2
@@ -5794,7 +5794,7 @@ snapshots:
       - react-native
       - react-router-dom
 
-  '@dzangolab/react-ui@0.54.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+  '@dzangolab/react-ui@0.55.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@popperjs/core': 2.11.8
       '@tanstack/react-table': 8.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)

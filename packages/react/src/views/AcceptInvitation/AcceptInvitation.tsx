@@ -5,7 +5,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { UseMutationRequestObject } from "@/api";
-import { UserSignupForm } from "@/components/accounts";
+import { UserSignupForm } from "@/components/signup";
 import { useAcceptInvitationMutation, useGetInvitationQuery } from "@/hooks";
 import { AcceptInvitationResponse, UserSignupData } from "@/types";
 

@@ -52,3 +52,7 @@ export interface User {
 }
 
 export type GetAccountResponse = Account;
+
+export type AddAccountResponse = Account;
+
+export type EditAccountResponse = Account;

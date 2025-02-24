@@ -4,7 +4,7 @@ export type SaasConfig = {
     allowMultipleSessions?: boolean;
     accountStorageKey?: string;
     signup?: {
-      path?: string;
+      apiPath?: string;
       termsAndConditionsUrl?: string;
       appRedirection?: boolean;
     };

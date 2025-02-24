@@ -9,7 +9,10 @@ export const useAcceptInvitationMutation = <
 >(
   options?: UseMutationOptions<Response, Data>,
 ) => {
-  const { loading, trigger } = useMutation<Response, Data>(options);
+  const { loading, trigger } = useMutation<Response, Data>({
+    withCredentials: false,
+    ...options,
+  });
 
   const callMutation = useCallback(
     (token: string, data: Data, accountId?: string | null) => {

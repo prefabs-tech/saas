@@ -10,7 +10,7 @@ import {
   AccountsTable,
   MyAccounts,
   UserSignupForm,
-} from "@/components/accounts";
+} from "@/components";
 
 import AccountsProvider, { accountsContext } from "./contexts/AccountsProvider";
 import { SaasConfig } from "./types";
@@ -29,6 +29,8 @@ export * from "./api";
 export * from "./constants";
 
 export * from "./hooks";
+
+export * from "./routes";
 
 export * from "./types";
 
