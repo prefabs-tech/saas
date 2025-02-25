@@ -62,6 +62,12 @@ interface SaasOptions {
     accounts?: {
       name: string;
     };
+    accountTypes?: {
+      name: string;
+    };
+    accountTypesI18n?: {
+      name: string;
+    };
     accountUsers?: {
       name: string;
     };
