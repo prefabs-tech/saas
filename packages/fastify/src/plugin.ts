@@ -4,6 +4,7 @@ import createSaasRoles from "./lib/createSaasRoles";
 import runMigrations from "./migrations/runMigrations";
 import accountInvitationRoutes from "./model/accountInvitations/controller";
 import accountRoutes from "./model/accounts/controller";
+import accountTypeRoutes from "./model/accountTypes/controller";
 import accountUserRoutes from "./model/accountUsers/controller";
 import accountDiscoveryPlugin from "./plugins/accountDiscoveryPlugin";
 
@@ -37,6 +38,12 @@ const plugin = FastifyPlugin(async (fastify: FastifyInstance) => {
 
   if (!routes?.accountUsers?.disabled) {
     await fastify.register(accountUserRoutes, {
+      prefix: routePrefix,
+    });
+  }
+
+  if (!routes?.accountTypes?.disabled) {
+    await fastify.register(accountTypeRoutes, {
       prefix: routePrefix,
     });
   }
