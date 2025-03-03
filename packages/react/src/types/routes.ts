@@ -6,14 +6,14 @@ export type RouteOverwrite = {
   path?: string;
 };
 
-export type AdminProtectedRouteOverwrites = {
+export type AdminRouteOverwrites = {
   accountsAdd?: RouteOverwrite;
   accountsEdit?: RouteOverwrite;
   accountsView?: RouteOverwrite;
   // accounts?: RouteOverwrite; // TODO
 };
 
-export type AppProtectedRouteOverwrites = {
+export type AppRouteOverwrites = {
   // joinAccount?: RouteOverwrite; // TODO
   // myAccount?: RouteOverwrite; // TODO
   myAccounts?: RouteOverwrite;
@@ -23,12 +23,12 @@ export type AppPublicRouteOverwrites = {
   signup?: RouteOverwrite;
 };
 
-export type AdminProtectedRoutesProperties = {
-  routes?: AdminProtectedRouteOverwrites;
+export type AdminRoutesProperties = {
+  routes?: AdminRouteOverwrites;
 };
 
-export type AppProtectedRoutesProperties = {
-  routes?: AppProtectedRouteOverwrites;
+export type AppRoutesProperties = {
+  routes?: AppRouteOverwrites;
 };
 export type AppPublicRoutesProperties = {
   routes?: AppPublicRouteOverwrites;
