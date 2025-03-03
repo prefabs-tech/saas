@@ -1,3 +1,3 @@
-export * from "./getSaasAdminProtectedRoutes";
-export * from "./getSaasAppProtectedRoutes";
+export * from "./getSaasAdminRoutes";
 export * from "./getSaasAppPublicRoutes";
+export * from "./getSaasAppRoutes";

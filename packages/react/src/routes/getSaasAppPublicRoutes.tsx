@@ -9,7 +9,7 @@ export const getSaasAppPublicRoutes = (options?: AppPublicRoutesProperties) => {
 
   // TODO save path overwrites in config so that other components can use it.
 
-  const publicRoutes = [
+  const routes = [
     {
       path: acceptInvitation?.path || DEFAULT_PATHS.ACCEPT_INVITATION,
       element: acceptInvitation?.element || <AcceptInvitationPage />,
@@ -24,7 +24,7 @@ export const getSaasAppPublicRoutes = (options?: AppPublicRoutesProperties) => {
 
   return (
     <>
-      {publicRoutes.map((route) =>
+      {routes.map((route) =>
         !route.disabled ? (
           <Route key={route.path} path={route.path} element={route.element} />
         ) : null,
