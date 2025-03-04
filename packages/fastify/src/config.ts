@@ -39,6 +39,13 @@ const getSaasConfig = (config: ApiConfig) => {
       accounts: {
         name: saasConfig.tables?.accounts?.name || "__accounts",
       },
+      accountTypes: {
+        name: saasConfig.tables?.accountTypes?.name || "__account_types",
+      },
+      accountTypesI18n: {
+        name:
+          saasConfig.tables?.accountTypesI18n?.name || "__account_types_i18n",
+      },
       accountUsers: {
         name: saasConfig.tables?.accountUsers?.name || "__account_users",
       },

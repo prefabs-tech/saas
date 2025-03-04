@@ -9,17 +9,12 @@ import type { SqlFactory } from "@dzangolab/fastify-slonik";
 
 /* eslint-disable brace-style */
 class AccountUserSqlFactory<
-    AccountUser extends QueryResultRow,
-    AccountUserCreateInput extends QueryResultRow,
-    AccountUserUpdateInput extends QueryResultRow,
+    T extends QueryResultRow,
+    C extends QueryResultRow,
+    U extends QueryResultRow,
   >
-  extends DefaultSqlFactory<
-    AccountUser,
-    AccountUserCreateInput,
-    AccountUserUpdateInput
-  >
-  implements
-    SqlFactory<AccountUser, AccountUserCreateInput, AccountUserUpdateInput>
+  extends DefaultSqlFactory<T, C, U>
+  implements SqlFactory<T, C, U>
 {
   getUsersByAccountIdSql = (accountId: string): QuerySqlToken => {
     const usersTableFragment = createTableFragment(

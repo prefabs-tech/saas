@@ -3,6 +3,8 @@ import {
   createAccountInvitationsTableQuery,
   createAccountUsersTableQuery,
   createAccountsTableQuery,
+  createAccountTypesTableQuery,
+  createAccountTypesI18nTableQuery,
 } from "./queries";
 import getSaasConfig from "../config";
 
@@ -13,6 +15,12 @@ const runMigrations = async (config: ApiConfig, database: Database) => {
   const saasConfig = getSaasConfig(config);
   await database.connect(async (connection) => {
     await connection.transaction(async (transactionConnection) => {
+      await transactionConnection.query(
+        createAccountTypesTableQuery(saasConfig),
+      );
+      await transactionConnection.query(
+        createAccountTypesI18nTableQuery(saasConfig),
+      );
       await transactionConnection.query(createAccountsTableQuery(saasConfig));
       await transactionConnection.query(
         createAccountUsersTableQuery(saasConfig),

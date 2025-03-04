@@ -56,10 +56,19 @@ interface SaasOptions {
     accountUsers?: {
       disabled: boolean;
     };
+    accountTypes?: {
+      disabled: boolean;
+    };
   };
   subdomains: "disabled" | "required" | "optional";
   tables?: {
     accounts?: {
+      name: string;
+    };
+    accountTypes?: {
+      name: string;
+    };
+    accountTypesI18n?: {
       name: string;
     };
     accountUsers?: {
