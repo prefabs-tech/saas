@@ -12,7 +12,7 @@ const plugin = async (fastify: FastifyInstance) => {
         },
       },
     },
-    handlers.getAccountTypes,
+    handlers.all,
   );
 
   fastify.get(

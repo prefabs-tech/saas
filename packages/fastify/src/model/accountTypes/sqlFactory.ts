@@ -18,7 +18,7 @@ class AccountTypeSqlFactory<
   extends DefaultSqlFactory<T, C, U>
   implements SqlFactory<T, C, U>
 {
-  getAccountTypesSql = (locale = "en") => {
+  getAccountTypesSql = () => {
     const accountTypesI18nTable = createTableFragment(
       this.saasConfig.tables.accountTypesI18n.name,
       this.schema,
@@ -28,10 +28,17 @@ class AccountTypeSqlFactory<
       SELECT at.id, 
       at.for_individual, 
       at.for_organization,
-      i18n.name
+      COALESCE(
+        jsonb_object_agg(ati.locale, jsonb_build_object(
+          'id', ati.id,
+          'locale', ati.locale,
+          'name', ati.name
+        )) FILTER (WHERE ati.locale IS NOT NULL),
+        '{}'::jsonb
+      ) AS i18n
       FROM ${this.getTableFragment()} AS at
-      JOIN ${accountTypesI18nTable} AS i18n ON i18n.id = at.id
-      WHERE i18n.locale = ${locale}
+      LEFT JOIN ${accountTypesI18nTable} AS ati ON ati.id = at.id
+      GROUP BY at.id
       ORDER BY at.id ASC;
     `;
   };
@@ -48,22 +55,25 @@ class AccountTypeSqlFactory<
         at.for_individual, 
         at.for_organization, 
         COALESCE(
-          json_agg(
-            jsonb_build_object(
-              'locale', i18n.locale,
-              'name', i18n.name
-            )
-          ) FILTER (WHERE i18n.id IS NOT NULL), '[]'::json
-        ) AS i18ns
+          jsonb_object_agg(ati.locale, jsonb_build_object(
+            'id', ati.id,
+            'locale', ati.locale,
+            'name', ati.name
+          )) FILTER (WHERE ati.locale IS NOT NULL),
+          '{}'::jsonb
+        ) AS i18n
       FROM ${this.getTableFragment()} AS at
-      LEFT JOIN ${accountTypesI18nTable} AS i18n ON at.id = i18n.id
+      LEFT JOIN ${accountTypesI18nTable} AS ati ON at.id = ati.id
       WHERE at.id = ${id}
       GROUP BY at.id
       ORDER BY at.id ASC;
     `;
   };
 
-  getCreateI18nsSql = (id: number, i18ns: AccountTypeI18nCreateInput[]) => {
+  getCreateI18nsSql = (
+    id: number,
+    i18n: Record<string, AccountTypeI18nCreateInput>,
+  ) => {
     const accountTypesI18nTable = createTableFragment(
       this.saasConfig.tables.accountTypesI18n.name,
       this.schema,
@@ -72,8 +82,8 @@ class AccountTypeSqlFactory<
     return sql.unsafe`
       INSERT INTO ${accountTypesI18nTable} (id, locale, name) VALUES
       ${sql.join(
-        i18ns.map(
-          (i18n) => sql.fragment`(${id}, ${i18n.locale}, ${i18n.name})`,
+        Object.entries(i18n).map(
+          ([locale, data]) => sql.fragment`(${id}, ${locale}, ${data.name})`,
         ),
         sql.fragment`,`,
       )}

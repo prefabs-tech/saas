@@ -1,12 +1,12 @@
+import all from "./all";
 import create from "./create";
-import getAccountTypes from "./getAccountTypes";
 import getById from "./getById";
 import remove from "./remove";
 import update from "./update";
 
 export default {
   create,
-  getAccountTypes,
+  all,
   getById,
   remove,
   update,

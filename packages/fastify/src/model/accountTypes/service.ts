@@ -8,6 +8,7 @@ import type {
   AccountTypeCreateInput,
   AccountTypeUpdateInput,
   AccountTypeI18nCreateInput,
+  AccountTypeI18nUpdateInput,
 } from "../../types";
 import type { Service } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
@@ -25,17 +26,17 @@ class AccountTypeService<
   ): Promise<T | undefined> => {
     const result = await this.database.connect(async (connection) => {
       return connection.transaction(async (transactionConnection) => {
-        const { i18ns, ...accountTypeInput } = data;
+        const { i18n, ...accountTypeInput } = data;
 
         const accountType = await transactionConnection.maybeOne(
           this.factory.getCreateSql(accountTypeInput as unknown as C),
         );
 
-        if (accountType && i18ns) {
+        if (accountType && i18n) {
           await transactionConnection.query(
             this.factory.getCreateI18nsSql(
               accountType.id,
-              i18ns as unknown as AccountTypeI18nCreateInput[],
+              i18n as unknown as Record<string, AccountTypeI18nCreateInput>,
             ),
           );
 
@@ -49,8 +50,8 @@ class AccountTypeService<
     return result ? ((await this.findById(result.id)) ?? undefined) : undefined;
   };
 
-  getAccountTypes = async (locale = "en") => {
-    const query = this.factory.getAccountTypesSql(locale);
+  getAccountTypes = async () => {
+    const query = this.factory.getAccountTypesSql();
 
     const data = await this.database.connect((connection) => {
       return connection.any(query);
@@ -65,13 +66,13 @@ class AccountTypeService<
   ): Promise<T | undefined> => {
     const result = await this.database.connect(async (connection) => {
       return connection.transaction(async (transactionConnection) => {
-        const { i18ns, ...accountTypeInput } = data;
+        const { i18n, ...accountTypeInput } = data;
 
         const accountType = await transactionConnection.maybeOne(
           this.factory.getUpdateSql(id, accountTypeInput as unknown as U),
         );
 
-        if (accountType && i18ns) {
+        if (accountType && i18n) {
           await transactionConnection.query(
             this.factory.getDeleteI18nsSql(accountType.id),
           );
@@ -79,7 +80,7 @@ class AccountTypeService<
           await transactionConnection.query(
             this.factory.getCreateI18nsSql(
               accountType.id,
-              i18ns as unknown as AccountTypeI18nCreateInput[],
+              i18n as unknown as Record<string, AccountTypeI18nUpdateInput>,
             ),
           );
 
