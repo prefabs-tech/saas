@@ -1,3 +1,23 @@
+# [0.14.0](https://github.com/12deg/saas/compare/v0.13.0...v0.14.0) (2025-03-04)
+
+
+### Code Refactoring
+
+* **routes:** update protected route names ([f5d4660](https://github.com/12deg/saas/commit/f5d4660d56750481b1b119ddeed041cee92b104f))
+
+
+### Features
+
+* add account types models and migrations ([#71](https://github.com/12deg/saas/issues/71)) ([c7f77f1](https://github.com/12deg/saas/commit/c7f77f1d050eeb8ed172699932d9b858bf6a9b70))
+
+
+### BREAKING CHANGES
+
+* **routes:** getSaasAdminProtectedRoutes and getSaasAppProtectedRoutes have been renamed to
+getSaasAdminRoutes and getSaasAppRoutes, respectively.
+
+
+
 # [0.13.0](https://github.com/12deg/saas/compare/v0.12.0...v0.13.0) (2025-02-24)
 
 
