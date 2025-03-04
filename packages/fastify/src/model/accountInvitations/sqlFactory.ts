@@ -17,21 +17,12 @@ import type { QueryResultRow, QuerySqlToken } from "slonik";
 
 /* eslint-disable brace-style */
 class AccountInvitationSqlFactory<
-    AccountInvitation extends QueryResultRow,
-    AccountInvitationCreateInput extends QueryResultRow,
-    AccountInvitationUpdateInput extends QueryResultRow,
+    T extends QueryResultRow,
+    C extends QueryResultRow,
+    U extends QueryResultRow,
   >
-  extends DefaultSqlFactory<
-    AccountInvitation,
-    AccountInvitationCreateInput,
-    AccountInvitationUpdateInput
-  >
-  implements
-    SqlFactory<
-      AccountInvitation,
-      AccountInvitationCreateInput,
-      AccountInvitationUpdateInput
-    >
+  extends DefaultSqlFactory<T, C, U>
+  implements SqlFactory<T, C, U>
 {
   /* eslint-enabled */
   getDeleteByIdAndAccountIdSql = (

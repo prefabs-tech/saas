@@ -1,3 +1,4 @@
+/* eslint-disable brace-style */
 import { formatDate, BaseService } from "@dzangolab/fastify-slonik";
 
 import AccountInvitationSqlFactory from "./sqlFactory";
@@ -7,21 +8,17 @@ import type { FilterInput, Service } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
 
 class AccountInvitationService<
-    AccountInvitation extends QueryResultRow,
-    AccountInvitationCreateInput extends QueryResultRow,
-    AccountInvitationUpdateInput extends QueryResultRow,
+    T extends QueryResultRow,
+    C extends QueryResultRow,
+    U extends QueryResultRow,
   >
-  extends BaseService<
-    AccountInvitation,
-    AccountInvitationCreateInput,
-    AccountInvitationUpdateInput
-  >
-  // eslint-disable-next-line prettier/prettier
-  implements Service<AccountInvitation, AccountInvitationCreateInput, AccountInvitationUpdateInput> {
+  extends BaseService<T, C, U>
+  implements Service<T, C, U>
+{
   deleteByIdAndAccountId = async (
     id: number | string,
     accountId: string,
-  ): Promise<AccountInvitation | null> => {
+  ): Promise<T | null> => {
     const query = this.factory.getDeleteByIdAndAccountIdSql(id, accountId);
 
     const result = await this.database.connect((connection) => {
@@ -31,9 +28,7 @@ class AccountInvitationService<
     return result;
   };
 
-  create = async (
-    data: AccountInvitationCreateInput,
-  ): Promise<AccountInvitation | undefined> => {
+  create = async (data: C): Promise<T | undefined> => {
     const filters = {
       AND: [
         { key: "accountId", operator: "eq", value: data.accountId },
@@ -59,12 +54,12 @@ class AccountInvitationService<
       return connection.query(query).then((data) => {
         return data.rows[0];
       });
-    })) as AccountInvitation;
+    })) as T;
 
     return result ? this.postCreate(result) : undefined;
   };
 
-  findByToken = async (token: string): Promise<AccountInvitation | null> => {
+  findByToken = async (token: string): Promise<T | null> => {
     if (!this.validateUUID(token)) {
       // eslint-disable-next-line unicorn/no-null
       return null;
@@ -85,18 +80,10 @@ class AccountInvitationService<
     }
 
     if (!this._factory) {
-      this._factory = new AccountInvitationSqlFactory<
-        AccountInvitation,
-        AccountInvitationCreateInput,
-        AccountInvitationUpdateInput
-      >(this);
+      this._factory = new AccountInvitationSqlFactory<T, C, U>(this);
     }
 
-    return this._factory as AccountInvitationSqlFactory<
-      AccountInvitation,
-      AccountInvitationCreateInput,
-      AccountInvitationUpdateInput
-    >;
+    return this._factory as AccountInvitationSqlFactory<T, C, U>;
   }
 
   get saasConfig() {

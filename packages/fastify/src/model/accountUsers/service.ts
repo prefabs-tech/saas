@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier, brace-style */
+/* eslint-disable brace-style */
 import { BaseService } from "@dzangolab/fastify-slonik";
 
 import AccountUserSqlFactory from "./sqlFactory";
@@ -8,28 +8,21 @@ import type { Service } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
 
 class AccountUserService<
-    AccountUser extends QueryResultRow,
-    AccountUserCreateInput extends QueryResultRow,
-    AccountUserUpdateInput extends QueryResultRow
+    T extends QueryResultRow,
+    C extends QueryResultRow,
+    U extends QueryResultRow,
   >
-  extends BaseService<
-    AccountUser,
-    AccountUserCreateInput,
-    AccountUserUpdateInput
-  >
-  implements
-    Service<AccountUser, AccountUserCreateInput, AccountUserUpdateInput>
+  extends BaseService<T, C, U>
+  implements Service<T, C, U>
 {
-  getUsersByAccountId = async (
-    accountId: string,
-  ): Promise<readonly AccountUser[]> => {
+  getUsersByAccountId = async (accountId: string): Promise<readonly T[]> => {
     const query = this.factory.getUsersByAccountIdSql(accountId);
 
     const result = await this.database.connect((connection) => {
       return connection.any(query);
     });
 
-    return result as readonly AccountUser[];
+    return result as readonly T[];
   };
 
   get factory() {
@@ -38,18 +31,10 @@ class AccountUserService<
     }
 
     if (!this._factory) {
-      this._factory = new AccountUserSqlFactory<
-        AccountUser,
-        AccountUserCreateInput,
-        AccountUserUpdateInput
-      >(this);
+      this._factory = new AccountUserSqlFactory<T, C, U>(this);
     }
 
-    return this._factory as AccountUserSqlFactory<
-      AccountUser,
-      AccountUserCreateInput,
-      AccountUserUpdateInput
-    >;
+    return this._factory as AccountUserSqlFactory<T, C, U>;
   }
 
   get saasConfig() {

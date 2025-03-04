@@ -11,17 +11,12 @@ import type { SqlFactory } from "@dzangolab/fastify-slonik";
 
 /* eslint-disable brace-style */
 class AccountTypeSqlFactory<
-    AccountType extends QueryResultRow,
-    AccountTypeCreateInput extends QueryResultRow,
-    AccountTypeUpdateInput extends QueryResultRow,
+    T extends QueryResultRow,
+    C extends QueryResultRow,
+    U extends QueryResultRow,
   >
-  extends DefaultSqlFactory<
-    AccountType,
-    AccountTypeCreateInput,
-    AccountTypeUpdateInput
-  >
-  implements
-    SqlFactory<AccountType, AccountTypeCreateInput, AccountTypeUpdateInput>
+  extends DefaultSqlFactory<T, C, U>
+  implements SqlFactory<T, C, U>
 {
   getAccountTypesSql = (locale = "en") => {
     const accountTypesI18nTable = createTableFragment(
