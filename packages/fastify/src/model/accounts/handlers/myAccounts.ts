@@ -33,7 +33,14 @@ const myAccounts = async (request: SessionRequest, reply: FastifyReply) => {
       .join(","),
   });
 
-  reply.send(accounts);
+  const accountsWithRole = accounts.map((account) => ({
+    ...account,
+    role:
+      accountUsers.find((user) => user.accountId === account.id)?.roleId ||
+      undefined,
+  }));
+
+  reply.send(accountsWithRole);
 };
 
 export default myAccounts;
