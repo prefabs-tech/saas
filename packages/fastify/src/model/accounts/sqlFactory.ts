@@ -1,7 +1,4 @@
-import {
-  createTableFragment,
-  DefaultSqlFactory,
-} from "@dzangolab/fastify-slonik";
+import { DefaultSqlFactory } from "@dzangolab/fastify-slonik";
 import { sql } from "slonik";
 
 import getSaasConfig from "../../config";
@@ -11,12 +8,12 @@ import type { QueryResultRow, QuerySqlToken } from "slonik";
 
 /* eslint-disable brace-style */
 class AccountSqlFactory<
-    Account extends QueryResultRow,
-    AccountCreateInput extends QueryResultRow,
-    AccountUpdateInput extends QueryResultRow,
+    T extends QueryResultRow,
+    C extends QueryResultRow,
+    U extends QueryResultRow,
   >
-  extends DefaultSqlFactory<Account, AccountCreateInput, AccountUpdateInput>
-  implements SqlFactory<Account, AccountCreateInput, AccountUpdateInput>
+  extends DefaultSqlFactory<T, C, U>
+  implements SqlFactory<T, C, U>
 {
   getFindByHostnameSql = (
     hostname: string,
@@ -52,20 +49,6 @@ class AccountSqlFactory<
       WHERE
       ${slugIdentifier} = ${slug}
       ${domainFilterFragment};
-    `;
-  };
-
-  getFindByUserIdSql = (userId: string): QuerySqlToken => {
-    const accountUsersTable = createTableFragment(
-      this.saasConfig.tables.accountUsers.name,
-      this.schema,
-    );
-
-    return sql.type(this.validationSchema)`
-      SELECT c.*
-      FROM ${this.getTableFragment()} AS c
-      JOIN ${accountUsersTable} AS cu on c.id = cu.account_id
-      WHERE cu.user_id = ${userId};
     `;
   };
 

@@ -11,8 +11,8 @@ declare module "fastify" {
   }
 
   interface FastifyRequest {
-    authEmailPrefix?: string;
-    account?: Account;
+    authEmailPrefix: string | undefined;
+    account: Account | undefined;
   }
 
   interface FastifyContextConfig {

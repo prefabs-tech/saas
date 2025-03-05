@@ -8,6 +8,9 @@ import getHost from "../lib/getHost";
 import type { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 
 const plugin = async (fastify: FastifyInstance) => {
+  fastify.decorateRequest("account");
+  fastify.decorateRequest("authEmailPrefix");
+
   fastify.addHook(
     "onRequest",
     async (request: FastifyRequest, reply: FastifyReply) => {
