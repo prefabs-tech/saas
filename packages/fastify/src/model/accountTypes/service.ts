@@ -36,7 +36,7 @@ class AccountTypeService<
           await transactionConnection.query(
             this.factory.getCreateI18nsSql(
               accountType.id,
-              i18n as unknown as Record<string, AccountTypeI18nCreateInput>,
+              i18n as unknown as AccountTypeI18nCreateInput[],
             ),
           );
 
@@ -48,16 +48,6 @@ class AccountTypeService<
     });
 
     return result ? ((await this.findById(result.id)) ?? undefined) : undefined;
-  };
-
-  getAccountTypes = async () => {
-    const query = this.factory.getAccountTypesSql();
-
-    const data = await this.database.connect((connection) => {
-      return connection.any(query);
-    });
-
-    return data;
   };
 
   updateWithI18ns = async (
@@ -80,7 +70,7 @@ class AccountTypeService<
           await transactionConnection.query(
             this.factory.getCreateI18nsSql(
               accountType.id,
-              i18n as unknown as Record<string, AccountTypeI18nUpdateInput>,
+              i18n as unknown as AccountTypeI18nUpdateInput[],
             ),
           );
 
