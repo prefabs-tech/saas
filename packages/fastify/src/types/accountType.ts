@@ -1,4 +1,4 @@
-interface AccountTypesI18n {
+interface AccountTypeI18n {
   id: number;
   locale: string;
   name: string;
@@ -20,19 +20,19 @@ interface AccountType {
   name?: string;
   forIndividual: boolean;
   forOrganization: boolean;
-  i18n?: Record<string, AccountTypesI18n>[];
+  i18n?: AccountTypeI18n[];
 }
 
 type AccountTypeCreateInput = {
   forIndividual: boolean;
   forOrganization: boolean;
-  i18n?: Record<string, AccountTypesI18n>[];
+  i18n?: AccountTypeI18nCreateInput[];
 };
 
 interface AccountTypeUpdateInput {
   forIndividual: boolean;
   forOrganization: boolean;
-  i18n?: Record<string, AccountTypesI18n>[];
+  i18n?: AccountTypeI18nUpdateInput[];
 }
 
 export type {
@@ -41,5 +41,5 @@ export type {
   AccountTypeUpdateInput,
   AccountTypeI18nCreateInput,
   AccountTypeI18nUpdateInput,
-  AccountTypesI18n,
+  AccountTypeI18n,
 };

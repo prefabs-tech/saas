@@ -10,7 +10,7 @@ const getAccountTypes = async (
 
   const service = new Service(config, slonik);
 
-  const data = await service.getAccountTypes();
+  const data = await service.all(["id", "forOrganization", "forIndividual"]);
 
   reply.send(data);
 };

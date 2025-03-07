@@ -12,11 +12,23 @@ const plugin = async (fastify: FastifyInstance) => {
         },
       },
     },
+    handlers.list,
+  );
+
+  fastify.get(
+    "/account-types/all",
+    {
+      config: {
+        saas: {
+          exclude: true,
+        },
+      },
+    },
     handlers.all,
   );
 
   fastify.get(
-    String.raw`/account-types/:id`,
+    String.raw`/account-types/:id(^\d+)`,
     {
       config: {
         saas: {
@@ -41,7 +53,7 @@ const plugin = async (fastify: FastifyInstance) => {
   );
 
   fastify.put(
-    String.raw`/account-types/:id`,
+    String.raw`/account-types/:id(^\d+)`,
     {
       config: {
         saas: {
@@ -54,7 +66,7 @@ const plugin = async (fastify: FastifyInstance) => {
   );
 
   fastify.delete(
-    String.raw`/account-types/:id`,
+    String.raw`/account-types/:id(^\d+)`,
     {
       config: {
         saas: {
