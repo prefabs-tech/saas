@@ -42,6 +42,7 @@ export default defineConfig(({ mode }) => {
             "lodash.merge": "LodashMerge",
             graphql: "Graphql",
             "graphql-tag": "graphqlTag",
+            humps: "Humps",
             "node:fs": "NodeFs",
             nanoid: "NanoId",
             pg: "Pg",

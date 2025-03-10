@@ -3,7 +3,7 @@ import { User } from "@dzangolab/fastify-user";
 import accountHandlers from "../model/accounts/handlers";
 
 import type { AccountInvitation } from "./accountInvitation";
-import type { FastifyRequest } from "fastify";
+import type { FastifyInstance, FastifyRequest } from "fastify";
 
 interface SaasOptions {
   apps?: [
@@ -31,6 +31,15 @@ interface SaasOptions {
   };
   invitation?: {
     acceptLinkPath?: string;
+    emailOverrides?: {
+      subject?:
+        | string
+        | ((
+            fastify: FastifyInstance,
+            invitation: AccountInvitation,
+          ) => Promise<string>);
+      templateName?: string;
+    };
     postAccept?: (
       request: FastifyRequest,
       invitation: AccountInvitation,

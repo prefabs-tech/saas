@@ -61,20 +61,20 @@ importers:
         specifier: 0.1.11
         version: 0.1.11(@types/node@20.12.2)
       '@dzangolab/fastify-config':
-        specifier: 0.77.7
-        version: 0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0)
+        specifier: 0.78.0
+        version: 0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0)
       '@dzangolab/fastify-graphql':
-        specifier: 0.77.7
-        version: 0.77.7(@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0))(@dzangolab/fastify-slonik@0.77.7(@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@4.5.0)(fastify@4.29.0)(graphql@16.10.0)(mercurius@14.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+        specifier: 0.78.0
+        version: 0.78.0(@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0))(@dzangolab/fastify-slonik@0.78.0(@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@4.5.0)(fastify@4.29.0)(graphql@16.10.0)(mercurius@14.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       '@dzangolab/fastify-mailer':
-        specifier: 0.77.7
-        version: 0.77.7(@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(mjml@4.15.3)
+        specifier: 0.78.0
+        version: 0.78.0(@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(mjml@4.15.3)
       '@dzangolab/fastify-slonik':
-        specifier: 0.77.7
-        version: 0.77.7(@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+        specifier: 0.78.0
+        version: 0.78.0(@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       '@dzangolab/fastify-user':
-        specifier: 0.77.7
-        version: 0.77.7(cpjmy4sq25oykxbag45y25oh7u)
+        specifier: 0.78.0
+        version: 0.78.0(7sn7pyz3pt57jwxzlhqxxmcd6a)
       '@types/humps':
         specifier: 2.0.6
         version: 2.0.6
@@ -477,19 +477,19 @@ packages:
     resolution: {integrity: sha512-tpyc+7i6bPG9mvaBbtKUeghfyZSDgWquIDfMgqYtTbmZ9Y9VzEm2je9EYcQ0aoz5o7NvGS+rcDec93yO08MHYA==}
     engines: {node: '>=v18'}
 
-  '@dzangolab/fastify-config@0.77.7':
-    resolution: {integrity: sha512-HDWRbeQb4ZlLar/gcmdhj6SdIhEgr0Qa4PD/DigiiurXzp/8hdeohWUe3RV722RB2ZdcdZIau8W3MbQEbj1xmg==}
+  '@dzangolab/fastify-config@0.78.0':
+    resolution: {integrity: sha512-oO4iYq33st7Dscd/JpU6QUeiAwf85eFo138p/SqH5aJ41q1kWpBLK7IWq37zEUjCXCnJb62RFlBHY6NhGbtWjQ==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
       fastify: '>=4.29.0'
       fastify-plugin: '>=4.5.0'
 
-  '@dzangolab/fastify-graphql@0.77.7':
-    resolution: {integrity: sha512-ZDN2n1wmH3XB/UPf/zdg7ZOAfr9GYXiW8+2SwfVURdwVTrvlFC5hpjciBkJd01fQ3rgDwN36MGx1hlDFBgXqjQ==}
+  '@dzangolab/fastify-graphql@0.78.0':
+    resolution: {integrity: sha512-DxlC7xmMfLB8qzdFRIZLf2J0kxllWB8+Ick97buoTn6/AEZ79reCsvoWlSnMO4HARD32ZzelfipZQNBNMWN3dQ==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@dzangolab/fastify-config': 0.77.7
-      '@dzangolab/fastify-slonik': 0.77.7
+      '@dzangolab/fastify-config': 0.78.0
+      '@dzangolab/fastify-slonik': 0.78.0
       fastify: '>=4.29.0'
       fastify-plugin: '>=4.5.0'
       graphql: '>=16.9.0'
@@ -497,11 +497,11 @@ packages:
       slonik: '>=46.1.0'
       zod: '>=3.23.8'
 
-  '@dzangolab/fastify-mailer@0.77.7':
-    resolution: {integrity: sha512-NzuAgLx2L5gynn+8aH1gjWEDpjUllG+Pp0Tde+3GHS6WBiy18gbF/GuO1PKksA9WwuAOY3SdXDd4lEJffkPKKw==}
+  '@dzangolab/fastify-mailer@0.78.0':
+    resolution: {integrity: sha512-g7nMCWOHuCtH7IKuP1l8I0Yd2AKJCx1Y5eAyoQLxXC8m7MEUygdxoS5AREJQAdcHqPR00Xn+Gje0FGdGL9bMig==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@dzangolab/fastify-config': 0.77.7
+      '@dzangolab/fastify-config': 0.78.0
       fastify: '>=4.29.0'
       fastify-plugin: '>=4.5.0'
       mjml: '>=4.15.3'
@@ -509,11 +509,11 @@ packages:
       '@dzangolab/fastify-config':
         optional: true
 
-  '@dzangolab/fastify-slonik@0.77.7':
-    resolution: {integrity: sha512-Agunw12tZde/M+huRBOUrssl2mGs4+34cmlI0MZIvCU2brhPd73RxA/hkpiEP+9zSMjVw2pYvkLhF7QsIZyXSw==}
+  '@dzangolab/fastify-slonik@0.78.0':
+    resolution: {integrity: sha512-gyLog2UW5duNEXnIbCVDlQooaHiAX/ixgWC4dju7p8wHwJW37gTE9j+I6XTQi6z1S0G7rhbEZq1x2V+G/5AW4Q==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@dzangolab/fastify-config': 0.77.7
+      '@dzangolab/fastify-config': 0.78.0
       fastify: '>=4.29.0'
       fastify-plugin: '>=4.5.0'
       pg-mem: '>=3.0.2'
@@ -523,14 +523,14 @@ packages:
       pg-mem:
         optional: true
 
-  '@dzangolab/fastify-user@0.77.7':
-    resolution: {integrity: sha512-J/VMgnu6RNseKAs3fpfhUX4TfmKdDRon7bKSthR+28ATacrz08pwAnEE9wRWYalNCJT+KDbN7eIjx3cXB2bP3w==}
+  '@dzangolab/fastify-user@0.78.0':
+    resolution: {integrity: sha512-ZeviOT1q2IGC/fv1ufYKh7ual0cOIwR6FrUG5NgSMZop2N+DX+Ml/tZ234jHVoa8gYf8R2olFxIz9rQjLd9nmA==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@dzangolab/fastify-config': 0.77.7
-      '@dzangolab/fastify-graphql': 0.77.7
-      '@dzangolab/fastify-mailer': 0.77.7
-      '@dzangolab/fastify-slonik': 0.77.7
+      '@dzangolab/fastify-config': 0.78.0
+      '@dzangolab/fastify-graphql': 0.78.0
+      '@dzangolab/fastify-mailer': 0.78.0
+      '@dzangolab/fastify-slonik': 0.78.0
       '@fastify/cors': '>=8.5.0'
       '@fastify/formbody': '>=7.4.0'
       fastify: '>=4.29.0'
@@ -4006,11 +4006,6 @@ packages:
     resolution: {integrity: sha512-BM/Thnrw5jm2kKLE5uJkXqqExRUY/toLHda65XgFTBTFYZyopbKjBe29Ii3RbkvlsMoFwD+tHeGaCjjv0gHlyw==}
     engines: {node: '>=4'}
 
-  pg-pool@3.7.0:
-    resolution: {integrity: sha512-ZOBQForurqh4zZWjrgSwwAtzJ7QiRX0ovFkZr2klsen3Nm0aoh33Ls0fzfv3imeH/nw/O27cjdz5kzYJfeGp/g==}
-    peerDependencies:
-      pg: '>=8.0'
-
   pg-pool@3.7.1:
     resolution: {integrity: sha512-xIOsFoh7Vdhojas6q3596mXFsR8nwBQBXX5JiV7p9buEVAGqYL4yFzclON5P9vFrpu1u7Zwl2oriyDa89n0wbw==}
     peerDependencies:
@@ -5688,15 +5683,15 @@ snapshots:
       '@types/conventional-commits-parser': 5.0.0
       chalk: 5.3.0
 
-  '@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0)':
+  '@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0)':
     dependencies:
       fastify: 4.29.0
       fastify-plugin: 4.5.0
 
-  '@dzangolab/fastify-graphql@0.77.7(@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0))(@dzangolab/fastify-slonik@0.77.7(@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@4.5.0)(fastify@4.29.0)(graphql@16.10.0)(mercurius@14.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
+  '@dzangolab/fastify-graphql@0.78.0(@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0))(@dzangolab/fastify-slonik@0.78.0(@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@4.5.0)(fastify@4.29.0)(graphql@16.10.0)(mercurius@14.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
     dependencies:
-      '@dzangolab/fastify-config': 0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0)
-      '@dzangolab/fastify-slonik': 0.77.7(@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@dzangolab/fastify-config': 0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0)
+      '@dzangolab/fastify-slonik': 0.78.0(@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       '@graphql-tools/merge': 9.0.19(graphql@16.10.0)
       fastify: 4.29.0
       fastify-plugin: 4.5.0
@@ -5706,7 +5701,7 @@ snapshots:
       slonik: 46.1.0(zod@3.23.8)
       zod: 3.23.8
 
-  '@dzangolab/fastify-mailer@0.77.7(@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(mjml@4.15.3)':
+  '@dzangolab/fastify-mailer@0.78.0(@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(mjml@4.15.3)':
     dependencies:
       fastify: 4.29.0
       fastify-plugin: 4.5.0
@@ -5717,14 +5712,14 @@ snapshots:
       nodemailer-html-to-text: 3.2.0
       nodemailer-mjml: 1.4.12(nodemailer@6.9.16)
     optionalDependencies:
-      '@dzangolab/fastify-config': 0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0)
+      '@dzangolab/fastify-config': 0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0)
     transitivePeerDependencies:
       - encoding
       - htmlnano
 
-  '@dzangolab/fastify-slonik@0.77.7(@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
+  '@dzangolab/fastify-slonik@0.78.0(@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
     dependencies:
-      '@dzangolab/fastify-config': 0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0)
+      '@dzangolab/fastify-config': 0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0)
       '@dzangolab/postgres-migrations': 5.4.2
       fastify: 4.29.0
       fastify-plugin: 4.5.0
@@ -5738,12 +5733,12 @@ snapshots:
     transitivePeerDependencies:
       - pg-native
 
-  '@dzangolab/fastify-user@0.77.7(cpjmy4sq25oykxbag45y25oh7u)':
+  '@dzangolab/fastify-user@0.78.0(7sn7pyz3pt57jwxzlhqxxmcd6a)':
     dependencies:
-      '@dzangolab/fastify-config': 0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0)
-      '@dzangolab/fastify-graphql': 0.77.7(@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0))(@dzangolab/fastify-slonik@0.77.7(@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@4.5.0)(fastify@4.29.0)(graphql@16.10.0)(mercurius@14.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
-      '@dzangolab/fastify-mailer': 0.77.7(@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(mjml@4.15.3)
-      '@dzangolab/fastify-slonik': 0.77.7(@dzangolab/fastify-config@0.77.7(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@dzangolab/fastify-config': 0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0)
+      '@dzangolab/fastify-graphql': 0.78.0(@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0))(@dzangolab/fastify-slonik@0.78.0(@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@4.5.0)(fastify@4.29.0)(graphql@16.10.0)(mercurius@14.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@dzangolab/fastify-mailer': 0.78.0(@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(mjml@4.15.3)
+      '@dzangolab/fastify-slonik': 0.78.0(@dzangolab/fastify-config@0.78.0(fastify-plugin@4.5.0)(fastify@4.29.0))(fastify-plugin@4.5.0)(fastify@4.29.0)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       fastify: 4.29.0
       fastify-plugin: 4.5.0
       humps: 2.0.1
@@ -9720,7 +9715,7 @@ snapshots:
 
   pg-numeric@1.0.2: {}
 
-  pg-pool@3.7.0(pg@8.13.1):
+  pg-pool@3.7.1(pg@8.13.1):
     dependencies:
       pg: 8.13.1
 
@@ -9758,8 +9753,8 @@ snapshots:
   pg@8.13.1:
     dependencies:
       pg-connection-string: 2.7.0
-      pg-pool: 3.7.0(pg@8.13.1)
-      pg-protocol: 1.7.0
+      pg-pool: 3.7.1(pg@8.13.1)
+      pg-protocol: 1.7.1
       pg-types: 2.2.0
       pgpass: 1.0.5
     optionalDependencies:
