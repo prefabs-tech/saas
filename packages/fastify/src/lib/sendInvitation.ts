@@ -35,7 +35,7 @@ const sendEmail = async ({
 }: {
   fastify: FastifyInstance;
   subject: string;
-  templateData?: Record<string, string>;
+  templateData?: Record<never, never>;
   templateName: string;
   to: string;
 }) => {
@@ -63,14 +63,29 @@ const sendInvitation = async (
 ) => {
   const { config, log } = fastify;
 
+  let subject: string = "You're invited";
+
+  const emailSubject = config.saas.invitation?.emailOverrides?.subject;
+
+  if (emailSubject) {
+    subject =
+      typeof emailSubject === "function"
+        ? await emailSubject(fastify, invitation)
+        : emailSubject;
+  }
+
   if (origin) {
     sendEmail({
       fastify,
-      subject: "Invitation for Sign Up",
+      subject,
       templateData: {
         invitationLink: getInvitationLink(config, invitation, origin),
+        invitation,
       },
-      templateName: "user-invitation",
+      templateName:
+        config.saas.invitation?.emailOverrides?.templateName ||
+        config.user.emailOverrides?.invitation?.templateName ||
+        "user-invitation",
       to: invitation.email,
     });
   } else {
