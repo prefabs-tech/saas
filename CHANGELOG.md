@@ -1,3 +1,12 @@
+# [0.15.0](https://github.com/12deg/saas/compare/v0.14.0...v0.15.0) (2025-03-12)
+
+
+### Features
+
+* customizable email subject and templateName from config ([#76](https://github.com/12deg/saas/issues/76)) ([7eb48e0](https://github.com/12deg/saas/commit/7eb48e0d1472b19cc986f82780a39c70695483e1))
+
+
+
 # [0.14.0](https://github.com/12deg/saas/compare/v0.13.0...v0.14.0) (2025-03-04)
 
 
