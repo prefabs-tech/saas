@@ -1,20 +1,15 @@
 /* eslint-disable brace-style */
-import { BaseService } from "@dzangolab/fastify-slonik";
-
 import AccountUserSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
+import Service from "../../service";
 
-import type { Service } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
 
 class AccountUserService<
-    T extends QueryResultRow,
-    C extends QueryResultRow,
-    U extends QueryResultRow,
-  >
-  extends BaseService<T, C, U>
-  implements Service<T, C, U>
-{
+  T extends QueryResultRow,
+  C extends QueryResultRow,
+  U extends QueryResultRow,
+> extends Service<T, C, U> {
   getUsersByAccountId = async (accountId: string): Promise<readonly T[]> => {
     const query = this.factory.getUsersByAccountIdSql(accountId);
 
