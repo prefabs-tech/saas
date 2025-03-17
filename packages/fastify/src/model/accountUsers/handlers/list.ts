@@ -11,11 +11,8 @@ import type {
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
-const getUsersByAccountId = async (
-  request: SessionRequest,
-  reply: FastifyReply,
-) => {
-  const { config, slonik } = request;
+const list = async (request: SessionRequest, reply: FastifyReply) => {
+  const { config, slonik, query } = request;
 
   let account: Account | undefined | null = request.account;
 
@@ -51,11 +48,23 @@ const getUsersByAccountId = async (
 
   const dbSchema = account.database || undefined;
 
+  const { limit, offset, filters, sort } = query as {
+    limit: number;
+    offset?: number;
+    filters?: string;
+    sort?: string;
+  };
+
   const service = new Service(config, slonik, accountId, dbSchema);
 
-  const data = await service.getUsers();
+  const data = await service.list(
+    limit,
+    offset,
+    filters ? JSON.parse(filters) : undefined,
+    sort ? JSON.parse(sort) : undefined,
+  );
 
   reply.send(data);
 };
 
-export default getUsersByAccountId;
+export default list;

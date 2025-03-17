@@ -10,8 +10,8 @@ class AccountUserService<
   C extends QueryResultRow,
   U extends QueryResultRow,
 > extends AccountEnabledService<T, C, U> {
-  getUsersByAccountId = async (accountId: string): Promise<readonly T[]> => {
-    const query = this.factory.getUsersByAccountIdSql(accountId);
+  getUsers = async (): Promise<readonly T[]> => {
+    const query = this.factory.getUsersSql();
 
     const result = await this.database.connect((connection) => {
       return connection.any(query);

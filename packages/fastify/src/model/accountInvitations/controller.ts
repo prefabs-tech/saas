@@ -8,7 +8,7 @@ const plugin = async (fastify: FastifyInstance) => {
     {
       preHandler: fastify.verifySession(),
     },
-    handlers.list,
+    handlers.getByAccountId,
   );
 
   fastify.post(

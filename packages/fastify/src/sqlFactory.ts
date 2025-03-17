@@ -40,11 +40,11 @@ class AccountEnabledSqlFactory<
     return createTableIdentifier(this.table, this.schema);
   };
 
-  getAccountIdFilterFragment = (addWhere = true): FragmentSqlToken => {
+  getAccountIdFilterFragment = (addWhere: boolean): FragmentSqlToken => {
     return this.accountId && this.applyAccountIdFilter
       ? addWhere
-        ? sql.fragment`AND ${this.getTableIdentifier()}.account_id = ${this.accountId}`
-        : sql.fragment`WHERE ${this.getTableIdentifier()}.account_id = ${this.accountId}`
+        ? sql.fragment`WHERE ${this.getTableIdentifier()}.account_id = ${this.accountId}`
+        : sql.fragment`AND ${this.getTableIdentifier()}.account_id = ${this.accountId}`
       : sql.fragment``;
   };
 
@@ -65,8 +65,8 @@ class AccountEnabledSqlFactory<
 
     return sql.type(allSchema)`
       SELECT ${sql.join(identifiers, sql.fragment`, `)}
-      FROM ${this.getTableFragment()}
-      ${this.getAccountIdFilterFragment()}
+      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
+      ${this.getAccountIdFilterFragment(true)}
       ${createSortFragment(this.getTableIdentifier(), this.getSortInput(sort))}
     `;
   };
@@ -78,16 +78,16 @@ class AccountEnabledSqlFactory<
 
     return sql.type(countSchema)`
       SELECT COUNT(*)
-      FROM ${this.getTableFragment()}
+      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
       ${createFilterFragment(filters, this.getTableIdentifier())}
-      ${this.getAccountIdFilterFragment(!!filters)}
+      ${this.getAccountIdFilterFragment(!filters)}
       ;
     `;
   };
 
   getDeleteSql = (id: number | string): QuerySqlToken => {
     return sql.type(this.validationSchema)`
-      DELETE FROM ${this.getTableFragment()}
+      DELETE FROM ${this.getTableFragment()} 
       WHERE id = ${id}
       ${this.getAccountIdFilterFragment(false)}
       RETURNING *;
@@ -97,7 +97,7 @@ class AccountEnabledSqlFactory<
   getFindByIdSql = (id: number | string): QuerySqlToken => {
     return sql.type(this.validationSchema)`
       SELECT *
-      FROM ${this.getTableFragment()}
+      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
       WHERE id = ${id}
       ${this.getAccountIdFilterFragment(false)}
       ;
@@ -110,9 +110,9 @@ class AccountEnabledSqlFactory<
   ): QuerySqlToken => {
     return sql.type(this.validationSchema)`
       SELECT *
-      FROM ${this.getTableFragment()}
+      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
       ${createFilterFragment(filters, this.getTableIdentifier())}
-      ${this.getAccountIdFilterFragment(!!filters)}
+      ${this.getAccountIdFilterFragment(!filters)}
       ${createSortFragment(this.getTableIdentifier(), this.getSortInput(sort))}
       LIMIT 1;
     `;
@@ -121,9 +121,9 @@ class AccountEnabledSqlFactory<
   getFindSql = (filters?: FilterInput, sort?: SortInput[]): QuerySqlToken => {
     return sql.type(this.validationSchema)`
       SELECT *
-      FROM ${this.getTableFragment()}
+      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
       ${createFilterFragment(filters, this.getTableIdentifier())}
-      ${this.getAccountIdFilterFragment(!!filters)}
+      ${this.getAccountIdFilterFragment(!filters)}
       ${createSortFragment(this.getTableIdentifier(), this.getSortInput(sort))};
     `;
   };
@@ -136,30 +136,11 @@ class AccountEnabledSqlFactory<
   ): QuerySqlToken => {
     return sql.type(this.validationSchema)`
       SELECT *
-      FROM ${this.getTableFragment()}
+      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
       ${createFilterFragment(filters, this.getTableIdentifier())}
-      ${this.getAccountIdFilterFragment(!!filters)}
+      ${this.getAccountIdFilterFragment(!filters)}
       ${createSortFragment(this.getTableIdentifier(), this.getSortInput(sort))}
       ${createLimitFragment(limit, offset)};
-    `;
-  };
-
-  getUpdateSql = (id: number | string, data: U): QuerySqlToken => {
-    const columns = [];
-
-    for (const column in data) {
-      const value = data[column as keyof U];
-      columns.push(
-        sql.fragment`${sql.identifier([humps.decamelize(column)])} = ${value}`,
-      );
-    }
-
-    return sql.type(this.validationSchema)`
-      UPDATE ${this.getTableFragment()}
-      SET ${sql.join(columns, sql.fragment`, `)}
-      WHERE id = ${id}
-      ${this.getAccountIdFilterFragment(false)}
-      RETURNING *;
     `;
   };
 

@@ -89,22 +89,11 @@ const accept = async (request: SessionRequest, reply: FastifyReply) => {
       AccountInvitation & QueryResultRow,
       AccountInvitationCreateInput,
       AccountInvitationUpdateInput
-    >(config, slonik, dbSchema);
+    >(config, slonik, requestParameters.accountId, dbSchema);
 
-    const accountInvitation = await service.findOne({
-      AND: [
-        {
-          key: "token",
-          operator: "eq",
-          value: requestParameters.token,
-        },
-        {
-          key: "account_id",
-          operator: "eq",
-          value: requestParameters.accountId,
-        },
-      ],
-    });
+    const accountInvitation = await service.findOneByToken(
+      requestParameters.token,
+    );
 
     // validate the invitation
     if (!accountInvitation || !isInvitationValid(accountInvitation)) {
