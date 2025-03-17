@@ -1,14 +1,12 @@
 import { BaseService } from "@dzangolab/fastify-slonik";
 
-import AccountEnabledSqlFactory from "./sqlFactory";
-
-import type { Service } from "./types/service";
+import type { AccountEnabledService as Service } from "./types/service";
 import type { ApiConfig } from "@dzangolab/fastify-config";
 import type { Database } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
 
 /* eslint-disable brace-style */
-abstract class ExtendedBaseService<
+abstract class AccountEnabledService<
     T extends QueryResultRow,
     C extends QueryResultRow,
     U extends QueryResultRow,
@@ -30,21 +28,9 @@ abstract class ExtendedBaseService<
     this._accountId = accountId;
   }
 
-  get factory() {
-    if (!this.table) {
-      throw new Error(`Service table is not defined`);
-    }
-
-    if (!this._factory) {
-      this._factory = new AccountEnabledSqlFactory<T, C, U>(this);
-    }
-
-    return this._factory as AccountEnabledSqlFactory<T, C, U>;
-  }
-
   get accountId(): string | undefined {
-    return this.accountId;
+    return this._accountId;
   }
 }
 
-export default ExtendedBaseService;
+export default AccountEnabledService;

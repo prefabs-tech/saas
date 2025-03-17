@@ -8,22 +8,15 @@ import { NANOID_ALPHABET, NANOID_SIZE } from "../../constants";
 import { validateAccountInput } from "../../lib/validateAccountSchema";
 import runAccountMigrations from "../../migrations/runAccountMigrations";
 
-import type {
-  Account as BaseAccount,
-  AccountCreateInput as BaseAccountCreateInput,
-} from "../../types";
-import type { Service } from "@dzangolab/fastify-slonik";
+import type { Account, AccountCreateInput } from "../../types";
 import type { QueryResultRow } from "slonik";
 
 class AccountService<
-    Account extends QueryResultRow,
-    AccountCreateInput extends QueryResultRow,
-    AccountUpdateInput extends QueryResultRow,
-  >
-  extends BaseService<Account, AccountCreateInput, AccountUpdateInput>
-  implements Service<Account, AccountCreateInput, AccountUpdateInput>
-{
-  create = async (data: AccountCreateInput): Promise<Account | undefined> => {
+  T extends QueryResultRow,
+  C extends QueryResultRow,
+  U extends QueryResultRow,
+> extends BaseService<T, C, U> {
+  create = async (data: C): Promise<T | undefined> => {
     if (this.saasConfig.subdomains === "disabled" || data.slug === "") {
       delete data.slug;
       delete data.domain;
@@ -41,7 +34,7 @@ class AccountService<
     ) {
       const nanoid = customAlphabet(NANOID_ALPHABET, NANOID_SIZE);
       // [RL 2024-01-08] Added `s_` prefix to indicate that the database is a schema
-      (data as BaseAccountCreateInput).database = `s_${nanoid()}`;
+      (data as AccountCreateInput).database = `s_${nanoid()}`;
     }
 
     delete data.useSeparateDatabase;
@@ -61,12 +54,12 @@ class AccountService<
       return connection.query(query).then((data) => {
         return data.rows[0];
       });
-    })) as Account;
+    })) as T;
 
     return result ? this.postCreate(result) : undefined;
   };
 
-  findByHostname = async (hostname: string): Promise<Account | null> => {
+  findByHostname = async (hostname: string): Promise<T | null> => {
     const saasConfig = getSaasConfig(this.config);
 
     const query = this.factory.getFindByHostnameSql(
@@ -81,7 +74,7 @@ class AccountService<
     return account;
   };
 
-  findByUserId = async (userId: string): Promise<Account | null> => {
+  findByUserId = async (userId: string): Promise<T | null> => {
     const query = this.factory.getFindByUserIdSql(userId);
 
     const account = await this.database.connect(async (connection) => {
@@ -121,18 +114,10 @@ class AccountService<
     }
 
     if (!this._factory) {
-      this._factory = new AccountSqlFactory<
-        Account,
-        AccountCreateInput,
-        AccountUpdateInput
-      >(this);
+      this._factory = new AccountSqlFactory<T, C, U>(this);
     }
 
-    return this._factory as AccountSqlFactory<
-      Account,
-      AccountCreateInput,
-      AccountUpdateInput
-    >;
+    return this._factory as AccountSqlFactory<T, C, U>;
   }
 
   get saasConfig() {
@@ -143,7 +128,7 @@ class AccountService<
     return this.saasConfig.tables.accounts.name;
   }
 
-  protected postCreate = async (account: Account): Promise<Account> => {
+  protected postCreate = async (account: T): Promise<T> => {
     if (
       this.saasConfig.subdomains === "disabled" ||
       !this.saasConfig.multiDatabase?.enabled
@@ -151,7 +136,7 @@ class AccountService<
       return account;
     }
 
-    await runAccountMigrations(this.config, account as unknown as BaseAccount);
+    await runAccountMigrations(this.config, account as unknown as Account);
 
     return account;
   };

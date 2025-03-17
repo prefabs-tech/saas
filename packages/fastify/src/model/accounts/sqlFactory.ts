@@ -6,18 +6,14 @@ import { sql } from "slonik";
 
 import getSaasConfig from "../../config";
 
-import type { SqlFactory } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow, QuerySqlToken } from "slonik";
 
 /* eslint-disable brace-style */
 class AccountSqlFactory<
-    Account extends QueryResultRow,
-    AccountCreateInput extends QueryResultRow,
-    AccountUpdateInput extends QueryResultRow,
-  >
-  extends DefaultSqlFactory<Account, AccountCreateInput, AccountUpdateInput>
-  implements SqlFactory<Account, AccountCreateInput, AccountUpdateInput>
-{
+  T extends QueryResultRow,
+  C extends QueryResultRow,
+  U extends QueryResultRow,
+> extends DefaultSqlFactory<T, C, U> {
   getFindByHostnameSql = (
     hostname: string,
     rootDomain: string,

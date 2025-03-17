@@ -56,7 +56,7 @@ const list = async (request: SessionRequest, reply: FastifyReply) => {
       AccountInvitation & QueryResultRow,
       AccountInvitationCreateInput,
       AccountInvitationUpdateInput
-    >(config, slonik, dbSchema);
+    >(config, slonik, accountId, dbSchema);
 
     const invitations = await service.find({
       key: "accountId",

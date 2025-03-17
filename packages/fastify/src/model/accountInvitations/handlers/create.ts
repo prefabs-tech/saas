@@ -124,7 +124,7 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
       AccountInvitation & QueryResultRow,
       AccountInvitationCreateInput,
       AccountInvitationUpdateInput
-    >(config, slonik, dbSchema);
+    >(config, slonik, account.id, dbSchema);
 
     const invitationCreateInput: AccountInvitationCreateInput = {
       accountId: account.id,

@@ -2,14 +2,14 @@ import { createTableFragment } from "@dzangolab/fastify-slonik";
 import { TABLE_USERS } from "@dzangolab/fastify-user";
 import { sql, type QueryResultRow, type QuerySqlToken } from "slonik";
 
-import SqlFactory from "../../sqlFactory";
+import AccountEnabledSqlFactory from "../../sqlFactory";
 
 /* eslint-disable brace-style */
 class AccountUserSqlFactory<
   T extends QueryResultRow,
   C extends QueryResultRow,
   U extends QueryResultRow,
-> extends SqlFactory<T, C, U> {
+> extends AccountEnabledSqlFactory<T, C, U> {
   getUsersByAccountIdSql = (accountId: string): QuerySqlToken => {
     const usersTableFragment = createTableFragment(
       this.config.user.table?.name || TABLE_USERS,

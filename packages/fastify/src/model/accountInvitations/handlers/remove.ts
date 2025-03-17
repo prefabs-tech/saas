@@ -59,12 +59,9 @@ const remove = async (request: SessionRequest, reply: FastifyReply) => {
       AccountInvitation & QueryResultRow,
       AccountInvitationCreateInput,
       AccountInvitationUpdateInput
-    >(config, slonik, dbSchema);
+    >(config, slonik, accountId, dbSchema);
 
-    const accountInvitation = await service.deleteByIdAndAccountId(
-      requestParameters.id,
-      accountId,
-    );
+    const accountInvitation = await service.delete(requestParameters.id);
 
     if (!accountInvitation) {
       return reply.status(422).send({
