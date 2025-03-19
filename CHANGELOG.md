@@ -1,3 +1,12 @@
+# [0.16.0](https://github.com/12deg/saas/compare/v0.15.0...v0.16.0) (2025-03-19)
+
+
+### Features
+
+* add account aware base service and sql factory ([#78](https://github.com/12deg/saas/issues/78)) ([69903de](https://github.com/12deg/saas/commit/69903de578a2cab327e9a95b4093f1f6df8b0af6))
+
+
+
 # [0.15.0](https://github.com/12deg/saas/compare/v0.14.0...v0.15.0) (2025-03-12)
 
 
