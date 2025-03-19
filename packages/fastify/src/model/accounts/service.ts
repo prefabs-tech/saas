@@ -16,14 +16,14 @@ import type { Service } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
 
 class AccountService<
-    Account extends QueryResultRow,
-    AccountCreateInput extends QueryResultRow,
-    AccountUpdateInput extends QueryResultRow,
+    T extends QueryResultRow,
+    C extends QueryResultRow,
+    U extends QueryResultRow,
   >
-  extends BaseService<Account, AccountCreateInput, AccountUpdateInput>
-  implements Service<Account, AccountCreateInput, AccountUpdateInput>
+  extends BaseService<T, C, U>
+  implements Service<T, C, U>
 {
-  create = async (data: AccountCreateInput): Promise<Account | undefined> => {
+  create = async (data: C): Promise<T | undefined> => {
     if (this.saasConfig.subdomains === "disabled" || data.slug === "") {
       delete data.slug;
       delete data.domain;
@@ -61,28 +61,18 @@ class AccountService<
       return connection.query(query).then((data) => {
         return data.rows[0];
       });
-    })) as Account;
+    })) as T;
 
     return result ? this.postCreate(result) : undefined;
   };
 
-  findByHostname = async (hostname: string): Promise<Account | null> => {
+  findByHostname = async (hostname: string): Promise<T | null> => {
     const saasConfig = getSaasConfig(this.config);
 
     const query = this.factory.getFindByHostnameSql(
       hostname,
       saasConfig.rootDomain as string,
     );
-
-    const account = await this.database.connect(async (connection) => {
-      return connection.maybeOne(query);
-    });
-
-    return account;
-  };
-
-  findByUserId = async (userId: string): Promise<Account | null> => {
-    const query = this.factory.getFindByUserIdSql(userId);
 
     const account = await this.database.connect(async (connection) => {
       return connection.maybeOne(query);
@@ -121,18 +111,10 @@ class AccountService<
     }
 
     if (!this._factory) {
-      this._factory = new AccountSqlFactory<
-        Account,
-        AccountCreateInput,
-        AccountUpdateInput
-      >(this);
+      this._factory = new AccountSqlFactory<T, C, U>(this);
     }
 
-    return this._factory as AccountSqlFactory<
-      Account,
-      AccountCreateInput,
-      AccountUpdateInput
-    >;
+    return this._factory as AccountSqlFactory<T, C, U>;
   }
 
   get saasConfig() {
@@ -143,7 +125,7 @@ class AccountService<
     return this.saasConfig.tables.accounts.name;
   }
 
-  protected postCreate = async (account: Account): Promise<Account> => {
+  protected postCreate = async (account: T): Promise<T> => {
     if (
       this.saasConfig.subdomains === "disabled" ||
       !this.saasConfig.multiDatabase?.enabled
