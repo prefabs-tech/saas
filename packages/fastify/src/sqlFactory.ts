@@ -16,21 +16,21 @@ import {
 } from "slonik";
 import { z } from "zod";
 
-import type { AccountEnabledService } from "./types/service";
+import type { AccountAwareService } from "./types/service";
 
 /* eslint-disable brace-style */
-class AccountEnabledSqlFactory<
+class AccountAwareSqlFactory<
   T extends QueryResultRow,
   C extends QueryResultRow,
   U extends QueryResultRow,
 > extends DefaultSqlFactory<T, C, U> {
   /* eslint-enabled */
 
-  protected _service: AccountEnabledService<T, C, U>;
+  protected _service: AccountAwareService<T, C, U>;
 
   protected _applyAccountIdFilter: boolean = true;
 
-  constructor(service: AccountEnabledService<T, C, U>) {
+  constructor(service: AccountAwareService<T, C, U>) {
     super(service);
 
     this._service = service;
@@ -144,7 +144,7 @@ class AccountEnabledSqlFactory<
     `;
   };
 
-  get service(): AccountEnabledService<T, C, U> {
+  get service(): AccountAwareService<T, C, U> {
     return this._service;
   }
 
@@ -157,4 +157,4 @@ class AccountEnabledSqlFactory<
   }
 }
 
-export default AccountEnabledSqlFactory;
+export default AccountAwareSqlFactory;

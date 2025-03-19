@@ -3,7 +3,7 @@ import { formatDate } from "@dzangolab/fastify-slonik";
 
 import AccountInvitationSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
-import AccountEnabledService from "../../service";
+import AccountAwareBaseService from "../../service";
 
 import type { FilterInput } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
@@ -12,7 +12,7 @@ class AccountInvitationService<
   T extends QueryResultRow,
   C extends QueryResultRow,
   U extends QueryResultRow,
-> extends AccountEnabledService<T, C, U> {
+> extends AccountAwareBaseService<T, C, U> {
   create = async (data: C): Promise<T | undefined> => {
     const filters = {
       AND: [

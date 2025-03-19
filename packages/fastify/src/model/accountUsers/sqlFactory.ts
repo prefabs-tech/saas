@@ -15,14 +15,14 @@ import {
   type QuerySqlToken,
 } from "slonik";
 
-import AccountEnabledSqlFactory from "../../sqlFactory";
+import AccountAwareSqlFactory from "../../sqlFactory";
 
 /* eslint-disable brace-style */
 class AccountUserSqlFactory<
   T extends QueryResultRow,
   C extends QueryResultRow,
   U extends QueryResultRow,
-> extends AccountEnabledSqlFactory<T, C, U> {
+> extends AccountAwareSqlFactory<T, C, U> {
   getUsersSql = (): QuerySqlToken => {
     return sql.type(this.validationSchema)`
       SELECT

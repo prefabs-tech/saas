@@ -1,12 +1,12 @@
 import { BaseService } from "@dzangolab/fastify-slonik";
 
-import type { AccountEnabledService as Service } from "./types/service";
+import type { AccountAwareService as Service } from "./types/service";
 import type { ApiConfig } from "@dzangolab/fastify-config";
 import type { Database } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
 
 /* eslint-disable brace-style */
-abstract class AccountEnabledService<
+abstract class AccountAwareBaseService<
     T extends QueryResultRow,
     C extends QueryResultRow,
     U extends QueryResultRow,
@@ -33,4 +33,4 @@ abstract class AccountEnabledService<
   }
 }
 
-export default AccountEnabledService;
+export default AccountAwareBaseService;

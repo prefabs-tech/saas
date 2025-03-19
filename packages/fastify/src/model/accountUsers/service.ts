@@ -1,7 +1,7 @@
 /* eslint-disable brace-style */
 import AccountUserSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
-import AccountEnabledService from "../../service";
+import AccountAwareBaseService from "../../service";
 
 import type { QueryResultRow } from "slonik";
 
@@ -9,7 +9,7 @@ class AccountUserService<
   T extends QueryResultRow,
   C extends QueryResultRow,
   U extends QueryResultRow,
-> extends AccountEnabledService<T, C, U> {
+> extends AccountAwareBaseService<T, C, U> {
   getUsers = async (): Promise<readonly T[]> => {
     const query = this.factory.getUsersSql();
 

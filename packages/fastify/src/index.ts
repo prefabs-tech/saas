@@ -39,9 +39,13 @@ export { default as accountInvitationRoutes } from "./model/accountInvitations/c
 export { default as accountRoutes } from "./model/accounts/controller";
 export { default as accountResolver } from "./model/accounts/resolver";
 export { default as accountSchema } from "./model/accounts/schema";
-export { default as accountService } from "./model/accounts/service";
+export { default as AccountService } from "./model/accounts/service";
 export { default as accountMigrationPlugin } from "./plugins/migratePlugin";
 export { default as accountUserRoutes } from "./model/accountUsers/controller";
 export { default as supertokensRecipesConfig } from "./supertokens/recipes";
+export { default as AccountAwareBaseService } from "./service";
+export { default as AccountAwareSqlFactory } from "./sqlFactory";
 
 export { default } from "./plugin";
+
+export type * from "./types";

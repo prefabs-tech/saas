@@ -7,7 +7,7 @@ import {
 import { TABLE_USERS } from "@dzangolab/fastify-user";
 import { sql } from "slonik";
 
-import AccountEnabledSqlFactory from "../../sqlFactory";
+import AccountAwareSqlFactory from "../../sqlFactory";
 
 import type { FilterInput, SortInput } from "@dzangolab/fastify-slonik";
 import type {
@@ -22,7 +22,7 @@ class AccountInvitationSqlFactory<
   T extends QueryResultRow,
   C extends QueryResultRow,
   U extends QueryResultRow,
-> extends AccountEnabledSqlFactory<T, C, U> {
+> extends AccountAwareSqlFactory<T, C, U> {
   /* eslint-enabled */
   getListSql = (
     limit: number,
