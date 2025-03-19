@@ -1,35 +1,83 @@
 import {
+  createFilterFragment,
+  createLimitFragment,
+  createSortFragment,
   createTableFragment,
-  DefaultSqlFactory,
+  FilterInput,
+  SortInput,
 } from "@dzangolab/fastify-slonik";
 import { TABLE_USERS } from "@dzangolab/fastify-user";
-import { sql, type QueryResultRow, type QuerySqlToken } from "slonik";
+import {
+  FragmentSqlToken,
+  IdentifierSqlToken,
+  sql,
+  type QueryResultRow,
+  type QuerySqlToken,
+} from "slonik";
 
-import type { SqlFactory } from "@dzangolab/fastify-slonik";
+import AccountAwareSqlFactory from "../../sqlFactory";
 
 /* eslint-disable brace-style */
 class AccountUserSqlFactory<
-    T extends QueryResultRow,
-    C extends QueryResultRow,
-    U extends QueryResultRow,
-  >
-  extends DefaultSqlFactory<T, C, U>
-  implements SqlFactory<T, C, U>
-{
-  getUsersByAccountIdSql = (accountId: string): QuerySqlToken => {
-    const usersTableFragment = createTableFragment(
+  T extends QueryResultRow,
+  C extends QueryResultRow,
+  U extends QueryResultRow,
+> extends AccountAwareSqlFactory<T, C, U> {
+  getUsersSql = (): QuerySqlToken => {
+    return sql.type(this.validationSchema)`
+      SELECT
+        ${this.getUserTableIdentifier()}.*,
+        ${this.getTableIdentifier()}.role_id as role,
+        ${this.getTableIdentifier()}.date_start,
+        ${this.getTableIdentifier()}.date_end,
+        ${this.getTableIdentifier()}.created_at,
+        ${this.getTableIdentifier()}.updated_at,
+        ${this.getTableIdentifier()}.account_id
+      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
+      INNER JOIN ${this.getUserTableFragment()} AS ${this.getUserTableIdentifier()}
+        ON (${this.getUserTableIdentifier()}.id = ${this.getTableIdentifier()}.user_id)
+      ${this.getAccountIdFilterFragment(true)};
+    `;
+  };
+
+  getListSql = (
+    limit: number,
+    offset?: number,
+    filters?: FilterInput,
+    sort?: SortInput[],
+  ): QuerySqlToken => {
+    return sql.type(this.validationSchema)`
+      SELECT
+        ${this.getUserTableIdentifier()}.*,
+        ${this.getTableIdentifier()}.role_id as role,
+        ${this.getTableIdentifier()}.date_start,
+        ${this.getTableIdentifier()}.date_end,
+        ${this.getTableIdentifier()}.created_at,
+        ${this.getTableIdentifier()}.updated_at,
+        ${this.getTableIdentifier()}.account_id
+      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
+      INNER JOIN ${this.getUserTableFragment()} AS ${this.getUserTableIdentifier()}
+        ON (${this.getUserTableIdentifier()}.id = ${this.getTableIdentifier()}.user_id)
+      ${createFilterFragment(filters, this.getTableIdentifier())}
+      ${this.getAccountIdFilterFragment(!filters)}
+      ${createSortFragment(this.getTableIdentifier(), this.getSortInput(sort))}
+      ${createLimitFragment(limit, offset)};
+    `;
+  };
+
+  getTableIdentifier = (): IdentifierSqlToken => {
+    return sql.identifier(["customer_users"]);
+  };
+
+  getUserTableFragment = (): FragmentSqlToken => {
+    return createTableFragment(
       this.config.user.table?.name || TABLE_USERS,
       this.schema,
     );
+  };
 
-    return sql.type(this.validationSchema)`
-      SELECT
-        u.*, cu.role_id as role, cu.date_start,
-        cu.date_end, cu.created_at, cu.updated_at, cu.account_id
-      FROM ${this.getTableFragment()} AS cu
-      INNER JOIN ${usersTableFragment} AS u ON (u.id = cu.user_id)
-      WHERE cu.account_id = ${accountId}
-    `;
+  getUserTableIdentifier = (): IdentifierSqlToken => {
+    return sql.identifier(["users"]);
   };
 }
 

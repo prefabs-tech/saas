@@ -1,21 +1,18 @@
 import { QueryResultRow } from "slonik";
 
 import AccountService from "../../accounts/service";
-import AccountInvitationService from "../service";
+import Service from "../service";
 
 import type {
   Account,
   AccountCreateInput,
-  AccountInvitation,
-  AccountInvitationCreateInput,
-  AccountInvitationUpdateInput,
   AccountUpdateInput,
 } from "../../../types";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
 const list = async (request: SessionRequest, reply: FastifyReply) => {
-  const { config, log, slonik } = request;
+  const { config, slonik, query } = request;
 
   let account: Account | undefined | null = request.account;
 
@@ -51,32 +48,23 @@ const list = async (request: SessionRequest, reply: FastifyReply) => {
 
   const dbSchema = account.database || undefined;
 
-  try {
-    const service = new AccountInvitationService<
-      AccountInvitation & QueryResultRow,
-      AccountInvitationCreateInput,
-      AccountInvitationUpdateInput
-    >(config, slonik, accountId, dbSchema);
+  const { limit, offset, filters, sort } = query as {
+    limit: number;
+    offset?: number;
+    filters?: string;
+    sort?: string;
+  };
 
-    const invitations = await service.find({
-      key: "accountId",
-      operator: "eq",
-      value: accountId,
-    });
+  const service = new Service(config, slonik, accountId, dbSchema);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const sanitizedInvitations = invitations.map(({ token, ...rest }) => rest);
+  const data = await service.list(
+    limit,
+    offset,
+    filters ? JSON.parse(filters) : undefined,
+    sort ? JSON.parse(sort) : undefined,
+  );
 
-    reply.send(sanitizedInvitations);
-  } catch (error) {
-    log.error(error);
-
-    reply.status(500).send({
-      message: "Oops! Something went wrong",
-      status: "ERROR",
-      statusCode: 500,
-    });
-  }
+  reply.send(data);
 };
 
 export default list;

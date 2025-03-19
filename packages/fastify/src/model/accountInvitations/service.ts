@@ -1,33 +1,18 @@
 /* eslint-disable brace-style */
-import { formatDate, BaseService } from "@dzangolab/fastify-slonik";
+import { formatDate } from "@dzangolab/fastify-slonik";
 
 import AccountInvitationSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
+import AccountAwareBaseService from "../../service";
 
-import type { FilterInput, Service } from "@dzangolab/fastify-slonik";
+import type { FilterInput } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
 
 class AccountInvitationService<
-    T extends QueryResultRow,
-    C extends QueryResultRow,
-    U extends QueryResultRow,
-  >
-  extends BaseService<T, C, U>
-  implements Service<T, C, U>
-{
-  deleteByIdAndAccountId = async (
-    id: number | string,
-    accountId: string,
-  ): Promise<T | null> => {
-    const query = this.factory.getDeleteByIdAndAccountIdSql(id, accountId);
-
-    const result = await this.database.connect((connection) => {
-      return connection.maybeOne(query);
-    });
-
-    return result;
-  };
-
+  T extends QueryResultRow,
+  C extends QueryResultRow,
+  U extends QueryResultRow,
+> extends AccountAwareBaseService<T, C, U> {
   create = async (data: C): Promise<T | undefined> => {
     const filters = {
       AND: [
@@ -59,13 +44,17 @@ class AccountInvitationService<
     return result ? this.postCreate(result) : undefined;
   };
 
-  findByToken = async (token: string): Promise<T | null> => {
+  findOneByToken = async (token: string): Promise<T | null> => {
     if (!this.validateUUID(token)) {
       // eslint-disable-next-line unicorn/no-null
       return null;
     }
 
-    const query = this.factory.getFindByTokenSql(token);
+    const query = this.factory.getFindOneSql({
+      key: "token",
+      operator: "eq",
+      value: token,
+    });
 
     const result = await this.database.connect((connection) => {
       return connection.maybeOne(query);

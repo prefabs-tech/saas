@@ -51,9 +51,9 @@ const getUsersByAccountId = async (
 
   const dbSchema = account.database || undefined;
 
-  const service = new Service(config, slonik, dbSchema);
+  const service = new Service(config, slonik, accountId, dbSchema);
 
-  const data = await service.getUsersByAccountId(requestParameters.accountId);
+  const data = await service.getUsers();
 
   reply.send(data);
 };

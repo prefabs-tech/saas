@@ -39,22 +39,11 @@ const getByToken = async (request: FastifyRequest, reply: FastifyReply) => {
       AccountInvitation & QueryResultRow,
       AccountInvitationCreateInput,
       AccountInvitationUpdateInput
-    >(config, slonik, dbSchema);
+    >(config, slonik, accountId, dbSchema);
 
-    const accountInvitation = await service.findOne({
-      AND: [
-        {
-          key: "token",
-          operator: "eq",
-          value: requestParameters.token,
-        },
-        {
-          key: "account_id",
-          operator: "eq",
-          value: accountId,
-        },
-      ],
-    });
+    const accountInvitation = await service.findOneByToken(
+      requestParameters.token,
+    );
 
     reply.send(accountInvitation);
   } catch (error) {

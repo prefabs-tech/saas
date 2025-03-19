@@ -61,22 +61,9 @@ const resend = async (request: SessionRequest, reply: FastifyReply) => {
       AccountInvitation & QueryResultRow,
       AccountInvitationCreateInput,
       AccountInvitationUpdateInput
-    >(config, slonik, dbSchema);
+    >(config, slonik, accountId, dbSchema);
 
-    const accountInvitation = await service.findOne({
-      AND: [
-        {
-          key: "id",
-          operator: "eq",
-          value: requestParameters.id,
-        },
-        {
-          key: "account_id",
-          operator: "eq",
-          value: account.id,
-        },
-      ],
-    });
+    const accountInvitation = await service.findById(requestParameters.id);
 
     // check if invitation is valid
     if (!accountInvitation || !isInvitationValid(accountInvitation)) {

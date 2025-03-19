@@ -61,21 +61,8 @@ const revoke = async (request: SessionRequest, reply: FastifyReply) => {
       AccountInvitation & QueryResultRow,
       AccountInvitationCreateInput,
       AccountInvitationUpdateInput
-    >(config, slonik, dbSchema);
-    let accountInvitation = await service.findOne({
-      AND: [
-        {
-          key: "id",
-          operator: "eq",
-          value: requestParameters.id,
-        },
-        {
-          key: "account_id",
-          operator: "eq",
-          value: accountId,
-        },
-      ],
-    });
+    >(config, slonik, accountId, dbSchema);
+    let accountInvitation = await service.findById(requestParameters.id);
 
     // is invitation valid
     if (!accountInvitation || !isInvitationValid(accountInvitation)) {

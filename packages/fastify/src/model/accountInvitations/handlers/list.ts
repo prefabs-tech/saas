@@ -7,7 +7,7 @@ import type {
   AccountInvitationCreateInput,
   AccountInvitationUpdateInput,
 } from "../../../types";
-import type { FilterInput, PaginatedList } from "@dzangolab/fastify-slonik";
+import type { PaginatedList } from "@dzangolab/fastify-slonik";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
@@ -42,26 +42,16 @@ const list = async (request: SessionRequest, reply: FastifyReply) => {
       sort?: string;
     };
 
-    const accountIdFilter = {
-      key: "accountId",
-      operator: "eq",
-      value: accountId,
-    } as FilterInput;
-
-    const combinedFilter = {
-      AND: [accountIdFilter, ...(filters ? [filters] : [])],
-    } as FilterInput;
-
     const service = new AccountInvitationService<
       AccountInvitation & QueryResultRow,
       AccountInvitationCreateInput,
       AccountInvitationUpdateInput
-    >(config, slonik, dbSchema);
+    >(config, slonik, accountId, dbSchema);
 
     const invitations = (await service.list(
       limit,
       offset,
-      combinedFilter,
+      filters ? JSON.parse(filters) : undefined,
       sort ? JSON.parse(sort) : undefined,
     )) as PaginatedList<Partial<AccountInvitation>>;
 
