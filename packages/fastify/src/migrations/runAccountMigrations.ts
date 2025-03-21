@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 
 import { ApiConfig } from "@dzangolab/fastify-config";
+import { createUsersTableQuery } from "@dzangolab/fastify-user";
 import { migrate } from "@dzangolab/postgres-migrations";
 import * as pg from "pg";
 
@@ -42,6 +43,7 @@ const runAccountMigrations = async (
     // list of migrations that needs to be run from the package
     // for the accounts who uses separate database.
     const queries = [
+      createUsersTableQuery(config),
       createAccountUsersTableQuery(saasConfig),
       createAccountInvitationsTableQuery(saasConfig),
     ];
