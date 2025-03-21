@@ -50,7 +50,7 @@ class AccountInvitationSqlFactory<
 
   getUserTableFragment = (): FragmentSqlToken => {
     return createTableFragment(
-      this.config.user.table?.name || TABLE_USERS,
+      this.config.user.tables?.users?.name || TABLE_USERS,
       this.schema,
     );
   };
