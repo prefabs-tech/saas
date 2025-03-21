@@ -1,6 +1,6 @@
 {
   "name": "@12deg/saas-react",
-  "version": "0.16.1",
+  "version": "0.16.2",
   "description": "Saas plugin for react",
   "exports": {
     ".": {
