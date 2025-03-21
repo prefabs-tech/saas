@@ -1,3 +1,12 @@
+## [0.16.1](https://github.com/12deg/saas/compare/v0.16.0...v0.16.1) (2025-03-21)
+
+
+### Bug Fixes
+
+* **styles:** update export file ([c83721b](https://github.com/12deg/saas/commit/c83721b75ba00bb1c61fa75ee496e3f790fbf8f4))
+
+
+
 # [0.16.0](https://github.com/12deg/saas/compare/v0.15.0...v0.16.0) (2025-03-19)
 
 
