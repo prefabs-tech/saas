@@ -18,8 +18,8 @@ export const DEFAULT_PATHS = {
 
   // app protected routes
   ACCOUNT_SETTINGS: "/account-settings",
+  JOIN_ACCOUNT: "/join/token/:token",
   MY_ACCOUNTS: "/accounts",
-  // JOIN_ACCOUNT :'/join/token/:token', // TODO
 
   // app public routes
   ACCEPT_INVITATION: "/signup/token/:token",

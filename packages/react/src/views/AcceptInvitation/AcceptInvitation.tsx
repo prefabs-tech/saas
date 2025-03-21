@@ -1,11 +1,12 @@
 import { useTranslation } from "@dzangolab/react-i18n";
 import { AuthPage } from "@dzangolab/react-ui";
 import { useEffect } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { UseMutationRequestObject } from "@/api";
 import { UserSignupForm } from "@/components/signup";
+import { DEFAULT_PATHS } from "@/constants";
 import { useAcceptInvitationMutation, useGetInvitationQuery } from "@/hooks";
 import { AcceptInvitationResponse, UserSignupData } from "@/types";
 
@@ -13,7 +14,7 @@ export type AcceptInvitationProperties = {
   centered?: boolean;
   onAcceptInvitationSuccess?: (
     response?: AcceptInvitationResponse,
-    request?: UseMutationRequestObject<UserSignupData>,
+    request?: UseMutationRequestObject<UserSignupData | undefined>,
   ) => void;
 };
 
@@ -82,6 +83,11 @@ export const AcceptInvitationPage = ({
       />
     );
   };
+
+  if (invitation && invitation.userId) {
+    // FIXME use join account path from config
+    return <Navigate to={DEFAULT_PATHS.JOIN_ACCOUNT} replace={true} />;
+  }
 
   return (
     <AuthPage

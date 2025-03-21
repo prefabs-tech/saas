@@ -8,6 +8,20 @@
     "registeredNumber": "Registered number (fr)",
     "taxId": "Tax ID (fr)"
   },
+  "joinAccount": {
+    "actions": {
+      "accept": "Accept invitation (fr)",
+      "ignore": "Ignore (fr)"
+    },
+    "info": "You've been invited to join account: {{account}} (fr)",
+    "messages": {
+      "error": "Error accepting invitation (fr)",
+      "errorFetching": "Invalid token. Please contact your administrator (fr)",
+      "invalid": "Invitation is no longer valid (fr)",
+      "success": "Successfully accepted invitation (fr)"
+    },
+    "title": "Invitation to join (fr)"
+  },
   "signup": {
     "actions": {
       "cancel": "Cancel (fr)",
