@@ -7,7 +7,7 @@
       "import": "./dist/12degSaasReact.es.js",
       "require": "./dist/12degSaasReact.umd.js"
     },
-    "./dist/12degSaasReact.css": "./dist/style.css"
+    "./dist/12degSaasReact.css": "./dist/saas-react.css"
   },
   "main": "dist/12degSaasReact.umd.js",
   "module": "dist/12degSaasReact.es.js",
