@@ -26,6 +26,7 @@ export interface AccountsContextType {
     rootDomain: string;
     subdomain: string;
   };
+  refetchAccounts: () => void;
   switchAccount: (
     account: Account | null,
     options?: { clearState?: boolean },
@@ -170,21 +171,25 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
     [setLoading, switchAccount, computeNewActiveAccount],
   );
 
+  const fetchMyAccounts = useCallback(() => {
+    setLoading(true);
+
+    getMyAccounts({ apiBaseUrl })
+      .then((accounts) => {
+        updateAccounts(accounts);
+      })
+      .catch((error) => {
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [userId]);
+
   useEffect(() => {
     // ignore account discovery for admin app
     if (!isAdminApp && userId) {
-      setLoading(true);
-
-      getMyAccounts({ apiBaseUrl })
-        .then((accounts) => {
-          updateAccounts(accounts);
-        })
-        .catch((error) => {
-          setError(true);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      fetchMyAccounts();
     }
   }, [userId]);
 
@@ -203,6 +208,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
           rootDomain,
           subdomain,
         },
+        refetchAccounts: fetchMyAccounts,
         switchAccount,
         updateAccounts,
       }}

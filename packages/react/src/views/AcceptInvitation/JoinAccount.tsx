@@ -5,7 +5,11 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { UseMutationRequestObject } from "@/api";
-import { useAcceptInvitationMutation, useGetInvitationQuery } from "@/hooks";
+import {
+  useAcceptInvitationMutation,
+  useAccounts,
+  useGetInvitationQuery,
+} from "@/hooks";
 import { AcceptInvitationResponse } from "@/types";
 
 export type JoinAccountProperties = {
@@ -20,6 +24,8 @@ export const JoinAccountPage = ({
   centered = true,
   onJoinAccountSuccess,
 }: JoinAccountProperties) => {
+  const { refetchAccounts } = useAccounts();
+
   const { t } = useTranslation("accounts");
   const navigate = useNavigate();
 
@@ -41,7 +47,10 @@ export const JoinAccountPage = ({
       onSuccess: (response, request) => {
         onJoinAccountSuccess && onJoinAccountSuccess(response, request);
 
-        // TODO set this account as active account for the user
+        refetchAccounts();
+
+        // TODO find a way to switch to newly joined account. cannot use switchAccount
+
         navigate("/");
       },
       onError: () => {
@@ -60,7 +69,16 @@ export const JoinAccountPage = ({
       return;
     }
 
-    triggerAcceptInvitation(token, undefined, accountId);
+    // TODO remove dummy body, currently required by api
+    triggerAcceptInvitation(
+      token,
+      {
+        email: "xxx",
+        password: "xxx",
+        confirmPassword: "xxx",
+      },
+      accountId,
+    );
   };
 
   const handleIgnore = () => {
