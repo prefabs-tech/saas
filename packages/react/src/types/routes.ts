@@ -15,7 +15,7 @@ export type AdminRouteOverwrites = {
 
 export type AppRouteOverwrites = {
   // joinAccount?: RouteOverwrite; // TODO
-  // myAccount?: RouteOverwrite; // TODO
+  myAccount?: RouteOverwrite;
   myAccounts?: RouteOverwrite;
 };
 export type AppPublicRouteOverwrites = {

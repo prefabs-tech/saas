@@ -20,10 +20,11 @@ export interface AccountsContextType {
   error: boolean;
   accountLoading: boolean;
   meta: {
-    subdomain: string;
+    isAdminApp: boolean;
     isMainApp: boolean;
     mainAppSubdomain: string;
     rootDomain: string;
+    subdomain: string;
   };
   switchAccount: (
     account: Account | null,
@@ -197,10 +198,11 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         error,
         accountLoading,
         meta: {
-          subdomain,
+          isAdminApp,
           isMainApp,
           mainAppSubdomain,
           rootDomain,
+          subdomain,
         },
         switchAccount,
         updateAccounts,

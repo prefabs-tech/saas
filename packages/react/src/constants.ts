@@ -18,7 +18,7 @@ export const DEFAULT_PATHS = {
 
   // app protected routes
   MY_ACCOUNTS: "/accounts",
-  // MY_ACCOUNT :'/accounts/:slug' // TODO
+  MY_ACCOUNT: "/accounts/:id", // TODO use slug instead of id
   // JOIN_ACCOUNT :'/join/token/:token', // TODO
 
   // app public routes
