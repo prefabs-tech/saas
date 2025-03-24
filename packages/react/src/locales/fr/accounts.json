@@ -1,7 +1,8 @@
 {
   "account": {
     "actions": {
-      "switch": "Switch (fr)"
+      "switch": "Switch (fr)",
+      "view": "Settings (fr)"
     },
     "active": "Active (fr)",
     "name": "Name (fr)",
