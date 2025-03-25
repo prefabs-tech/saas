@@ -56,11 +56,8 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
     accounts: accountsConfig,
   } = config;
 
-  const {
-    autoSelectAccount = true,
-    accountStorageKey = STORAGE_KEY_DEFAULT,
-    allowMultipleSessions = true,
-  } = accountsConfig || {};
+  const { autoSelectAccount = true, allowMultipleSessions = true } =
+    accountsConfig || {};
 
   const subdomain = window.location.hostname.split(".")[0];
   const { isMainApp, isAdminApp } = useMemo(() => {
@@ -80,17 +77,17 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
       setActiveAccount(newAccount);
 
       if (newAccount) {
-        localStorage.setItem(accountStorageKey, `${newAccount.id}`);
+        localStorage.setItem(STORAGE_KEY_DEFAULT, `${newAccount.id}`);
 
         if (allowMultipleSessions) {
-          sessionStorage.setItem(accountStorageKey, `${newAccount.id}`);
+          sessionStorage.setItem(STORAGE_KEY_DEFAULT, `${newAccount.id}`);
         }
       } else if (clearState) {
         if (allowMultipleSessions) {
-          sessionStorage.removeItem(accountStorageKey);
+          sessionStorage.removeItem(STORAGE_KEY_DEFAULT);
         }
 
-        localStorage.removeItem(accountStorageKey);
+        localStorage.removeItem(STORAGE_KEY_DEFAULT);
       }
 
       setAccountLoading(false);
@@ -121,11 +118,11 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
 
       if (!activeAccount) {
         // check if saved accountId is present in newAccounts, return it if found
-        let savedAccountId = localStorage.getItem(accountStorageKey);
+        let savedAccountId = localStorage.getItem(STORAGE_KEY_DEFAULT);
 
         if (allowMultipleSessions) {
           const sessionSavedAccountId =
-            sessionStorage.getItem(accountStorageKey);
+            sessionStorage.getItem(STORAGE_KEY_DEFAULT);
 
           savedAccountId = sessionSavedAccountId
             ? sessionSavedAccountId
