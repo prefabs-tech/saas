@@ -2,7 +2,7 @@ import { Route } from "react-router-dom";
 
 import { DEFAULT_PATHS } from "@/constants";
 import { AppRoutesProperties } from "@/types/routes";
-import { AccountViewPage, MyAccountsPage } from "@/views";
+import { MyAccountPage, MyAccountsPage } from "@/views";
 
 export const getSaasAppRoutes = (options?: AppRoutesProperties) => {
   const { myAccount, myAccounts } = options?.routes || {};
@@ -17,7 +17,7 @@ export const getSaasAppRoutes = (options?: AppRoutesProperties) => {
     },
     {
       path: myAccount?.path || DEFAULT_PATHS.MY_ACCOUNT,
-      element: myAccount?.element || <AccountViewPage />,
+      element: myAccount?.element || <MyAccountPage />,
       disabled: myAccount?.disabled,
     },
   ];

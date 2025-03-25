@@ -1,7 +1,7 @@
 import { useTranslation } from "@dzangolab/react-i18n";
 import { Data, GridContainer, LoadingIcon } from "@dzangolab/react-ui";
 
-import { useConfig, useGetAccountQuery } from "@/hooks";
+import { useAccounts, useConfig, useGetAccountQuery } from "@/hooks";
 
 interface Properties {
   accountId: string;
@@ -11,6 +11,9 @@ export const AccountInfo = ({ accountId }: Properties) => {
   const { t } = useTranslation("account");
 
   const { multiDatabase, subdomains } = useConfig();
+  const {
+    meta: { isAdminApp },
+  } = useAccounts();
 
   const { data: account, loading } = useGetAccountQuery(accountId);
 
@@ -41,7 +44,7 @@ export const AccountInfo = ({ accountId }: Properties) => {
             label={t("form.fields.domain")}
             value={account.domain || "-"}
           ></Data>
-          {multiDatabase && account.database && (
+          {isAdminApp && multiDatabase && account.database && (
             <Data
               label={t("form.fields.database")}
               value={account.database}
