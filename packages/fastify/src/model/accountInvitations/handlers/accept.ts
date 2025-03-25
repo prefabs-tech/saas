@@ -28,7 +28,7 @@ import type { FastifyReply, FastifyRequest } from "fastify";
 const accept = async (request: SessionRequest, reply: FastifyReply) => {
   const { authEmailPrefix, body, config, log, slonik, user } =
     request as FastifyRequest<{
-      Body: {
+      Body?: {
         email: string;
         password: string;
       };
@@ -40,8 +40,8 @@ const accept = async (request: SessionRequest, reply: FastifyReply) => {
   };
 
   try {
-    const email = body.email;
-    const password = body.password;
+    const email = body?.email ?? "";
+    const password = body?.password ?? "";
 
     if (!user) {
       //  check if the email is valid
