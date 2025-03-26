@@ -17,8 +17,8 @@ export const DEFAULT_PATHS = {
   ACCOUNTS_EDIT: "/accounts/:id/edit",
 
   // app protected routes
+  ACCOUNT_SETTINGS: "/account-settings",
   MY_ACCOUNTS: "/accounts",
-  MY_ACCOUNT: "/my-account",
   // JOIN_ACCOUNT :'/join/token/:token', // TODO
 
   // app public routes

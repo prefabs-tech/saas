@@ -5,14 +5,14 @@ import { useGetMyAccountQuery } from "@/hooks";
 
 import { AccountShow } from "./_components";
 
-export const MyAccountPage = () => {
+export const AccountSettingsPage = () => {
   const { t } = useTranslation("account");
 
   const { data, loading } = useGetMyAccountQuery();
 
   return (
     <Page
-      className="account-show"
+      className="account-show account-settings"
       titleTag={
         data?.individual ? (
           <Tag label={t("form.fields.type.options.individual")} />
