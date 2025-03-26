@@ -7,7 +7,7 @@ import React, {
 } from "react";
 
 import { getMyAccounts } from "@/api/accounts";
-import { STORAGE_KEY_DEFAULT } from "@/constants";
+import { ACCOUNT_HEADER_NAME } from "@/constants";
 import { Account } from "@/types/account";
 import { SaasConfig } from "@/types/config";
 
@@ -56,6 +56,8 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
     accounts: accountsConfig,
   } = config;
 
+  const accountStorageKey = ACCOUNT_HEADER_NAME;
+
   const { autoSelectAccount = true, allowMultipleSessions = true } =
     accountsConfig || {};
 
@@ -77,17 +79,17 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
       setActiveAccount(newAccount);
 
       if (newAccount) {
-        localStorage.setItem(STORAGE_KEY_DEFAULT, `${newAccount.id}`);
+        localStorage.setItem(accountStorageKey, `${newAccount.id}`);
 
         if (allowMultipleSessions) {
-          sessionStorage.setItem(STORAGE_KEY_DEFAULT, `${newAccount.id}`);
+          sessionStorage.setItem(accountStorageKey, `${newAccount.id}`);
         }
       } else if (clearState) {
         if (allowMultipleSessions) {
-          sessionStorage.removeItem(STORAGE_KEY_DEFAULT);
+          sessionStorage.removeItem(accountStorageKey);
         }
 
-        localStorage.removeItem(STORAGE_KEY_DEFAULT);
+        localStorage.removeItem(accountStorageKey);
       }
 
       setAccountLoading(false);
@@ -118,11 +120,11 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
 
       if (!activeAccount) {
         // check if saved accountId is present in newAccounts, return it if found
-        let savedAccountId = localStorage.getItem(STORAGE_KEY_DEFAULT);
+        let savedAccountId = localStorage.getItem(accountStorageKey);
 
         if (allowMultipleSessions) {
           const sessionSavedAccountId =
-            sessionStorage.getItem(STORAGE_KEY_DEFAULT);
+            sessionStorage.getItem(accountStorageKey);
 
           savedAccountId = sessionSavedAccountId
             ? sessionSavedAccountId

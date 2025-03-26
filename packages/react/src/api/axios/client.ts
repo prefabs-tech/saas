@@ -1,9 +1,9 @@
 import axios from "axios";
 
-import { STORAGE_KEY_DEFAULT } from "@/constants";
+import { ACCOUNT_HEADER_NAME } from "@/constants";
 
 export const client = (baseURL: string) => {
-  const accountId = sessionStorage.getItem(STORAGE_KEY_DEFAULT);
+  const accountId = sessionStorage.getItem(ACCOUNT_HEADER_NAME);
 
   return axios.create({
     baseURL: baseURL,
@@ -11,7 +11,7 @@ export const client = (baseURL: string) => {
       post: {
         "Content-Type": "application/json",
       },
-      "x-account-id": accountId || "",
+      [ACCOUNT_HEADER_NAME]: accountId || "",
     },
   });
 };
