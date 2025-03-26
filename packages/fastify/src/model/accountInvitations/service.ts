@@ -4,6 +4,7 @@ import { formatDate } from "@dzangolab/fastify-slonik";
 import AccountInvitationSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
 import AccountAwareBaseService from "../../service";
+import AccountService from "../accounts/service";
 
 import type { FilterInput } from "@dzangolab/fastify-slonik";
 import type { QueryResultRow } from "slonik";
@@ -59,6 +60,16 @@ class AccountInvitationService<
     const result = await this.database.connect((connection) => {
       return connection.maybeOne(query);
     });
+
+    if (result) {
+      const accountService = new AccountService(this.config, this.database);
+
+      const account = await accountService.findById(result.accountId);
+
+      if (account) {
+        result.account = { id: account.id, name: account.name };
+      }
+    }
 
     return result;
   };

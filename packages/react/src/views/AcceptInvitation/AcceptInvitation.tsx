@@ -1,28 +1,11 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { AuthPage } from "@dzangolab/react-ui";
+import { LoadingPage } from "@dzangolab/react-ui";
 import { useEffect } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useParams, useSearchParams, Navigate } from "react-router-dom";
 
-import { UseMutationRequestObject } from "@/api";
-import { UserSignupForm } from "@/components/signup";
-import { useAcceptInvitationMutation, useGetInvitationQuery } from "@/hooks";
-import { AcceptInvitationResponse, UserSignupData } from "@/types";
+import { DEFAULT_PATHS } from "@/constants";
+import { useGetInvitationQuery } from "@/hooks";
 
-export type AcceptInvitationProperties = {
-  centered?: boolean;
-  onAcceptInvitationSuccess?: (
-    response?: AcceptInvitationResponse,
-    request?: UseMutationRequestObject<UserSignupData>,
-  ) => void;
-};
-
-export const AcceptInvitationPage = ({
-  centered = true,
-  onAcceptInvitationSuccess,
-}: AcceptInvitationProperties) => {
-  const { t } = useTranslation("invitations");
-
+export const AcceptInvitationPage = () => {
   const { token } = useParams();
   const [searchParameters] = useSearchParams();
   const accountId = searchParameters.get("accountId");
@@ -30,21 +13,10 @@ export const AcceptInvitationPage = ({
   const {
     data: invitation,
     loading: invitationLoading,
-    error,
     trigger,
   } = useGetInvitationQuery(token!, accountId, {
     lazy: true,
   });
-
-  const { loading: acceptLoading, trigger: triggerAcceptInvitation } =
-    useAcceptInvitationMutation({
-      onSuccess: (response, request) =>
-        onAcceptInvitationSuccess &&
-        onAcceptInvitationSuccess(response, request),
-      onError: () => {
-        toast.error(t("invitations.messages.errorAcceptingInvitation"));
-      },
-    });
 
   useEffect(() => {
     if (token) {
@@ -52,45 +24,21 @@ export const AcceptInvitationPage = ({
     }
   }, []);
 
-  const handleSubmit = (credential: UserSignupData) => {
-    if (!token) {
-      return;
-    }
+  if (invitationLoading || !invitation) {
+    return <LoadingPage />;
+  }
 
-    triggerAcceptInvitation(token, credential, accountId);
-  };
-
-  const renderPageContent = () => {
-    if (error || !invitation) {
-      return <p>{t(`invitations.messages.errorFetchingInvitation`)}</p>;
-    }
-
-    if (
-      invitation?.acceptedAt ||
-      invitation?.revokedAt ||
-      invitation?.expiresAt < Date.now()
-    ) {
-      return <p>{t(`invitations.messages.invalidInvitation`)}</p>;
-    }
-
-    return (
-      <UserSignupForm
-        key={invitation.id}
-        email={invitation.email || ""}
-        handleSubmit={handleSubmit}
-        loading={acceptLoading}
+  if (invitation) {
+    return invitation.userId ? (
+      <Navigate
+        to={`${DEFAULT_PATHS.INVITATION_JOIN.replace(":token", token!)}?accountId=${accountId}`}
+        replace={true}
+      />
+    ) : (
+      <Navigate
+        to={`${DEFAULT_PATHS.INVITATION_SIGNUP.replace(":token", token!)}?accountId=${accountId}`}
+        replace={true}
       />
     );
-  };
-
-  return (
-    <AuthPage
-      className="signup"
-      title={t("user:signup.title")}
-      loading={invitationLoading}
-      centered={centered}
-    >
-      {renderPageContent()}
-    </AuthPage>
-  );
+  }
 };

@@ -1,6 +1,6 @@
 const ACCOUNT_HEADER_NAME = "x-account-id";
 const ACCOUNT_INVITATION_ACCEPT_LINK_PATH =
-  "/signup/token/:token?accountId=:accountId";
+  "/invitation/token/:token?accountId=:accountId";
 const NANOID_ALPHABET = "abcdefghijklmnopqrstuvwxyz0123456789";
 const NANOID_SIZE = 8;
 const ROLE_SAAS_ACCOUNT_ADMIN = "SAAS_ACCOUNT_ADMIN";
