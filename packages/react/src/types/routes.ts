@@ -14,12 +14,11 @@ export type AdminRouteOverwrites = {
 };
 
 export type AppRouteOverwrites = {
-  // joinAccount?: RouteOverwrite; // TODO
-  // myAccount?: RouteOverwrite; // TODO
+  accountSettings?: RouteOverwrite;
+  invitationAccept?: RouteOverwrite;
+  invitationJoin?: RouteOverwrite;
+  invitationSignup?: RouteOverwrite;
   myAccounts?: RouteOverwrite;
-};
-export type AppPublicRouteOverwrites = {
-  acceptInvitation?: RouteOverwrite;
   signup?: RouteOverwrite;
 };
 
@@ -29,7 +28,4 @@ export type AdminRoutesProperties = {
 
 export type AppRoutesProperties = {
   routes?: AppRouteOverwrites;
-};
-export type AppPublicRoutesProperties = {
-  routes?: AppPublicRouteOverwrites;
 };

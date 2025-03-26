@@ -1,0 +1,13 @@
+.join-invitation .info {
+  margin-bottom: 1.5rem;
+}
+
+.join-invitation .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.join-invitation .actions > button {
+  width: 100%;
+}

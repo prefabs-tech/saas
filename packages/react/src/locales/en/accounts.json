@@ -8,6 +8,22 @@
     "registeredNumber": "Registered number",
     "taxId": "Tax ID"
   },
+  "joinInvitation": {
+    "actions": {
+      "accept": "Accept invitation",
+      "ignore": "Ignore"
+    },
+    "info": "You've been invited to join account: {{account}}",
+    "messages": {
+      "messages": {
+        "error": "Error accepting invitation",
+        "errorFetching": "Invalid token. Please contact your administrator",
+        "invalid": "Invitation is no longer valid",
+        "success": "Successfully accepted invitation"
+      }
+    },
+    "title": "Invitation to join"
+  },
   "signup": {
     "actions": {
       "cancel": "Cancel",
@@ -80,6 +96,14 @@
       "termsAndConditions": {
         "required": "Please agree to the terms and conditions"
       }
+    }
+  },
+  "signupInvitation": {
+    "messages": {
+      "error": "Error accepting invitation",
+      "errorFetching": "Invalid token. Please contact your administrator",
+      "invalid": "Invitation is no longer valid",
+      "success": "Successfully accepted invitation"
     }
   },
   "switcher": {

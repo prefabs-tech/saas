@@ -1,4 +1,4 @@
-export const STORAGE_KEY_DEFAULT = "x-account-id";
+export const ACCOUNT_HEADER_NAME = "x-account-id";
 
 export const SIGNUP_PATH_DEFAULT = "/auth/signup";
 
@@ -10,17 +10,17 @@ export const SAAS_ACCOUNT_ROLES_DEFAULT = [
 ];
 
 export const DEFAULT_PATHS = {
-  // admin protected routes
+  // admin routes
   ACCOUNTS: "/accounts",
   ACCOUNTS_VIEW: "/accounts/:id",
   ACCOUNTS_ADD: "/accounts/new",
   ACCOUNTS_EDIT: "/accounts/:id/edit",
 
-  // app protected routes
+  // app routes
+  ACCOUNT_SETTINGS: "/account-settings",
+  INVITATION_ACCEPT: "/invitation/token/:token",
+  INVITATION_JOIN: "/join/token/:token",
+  INVITATION_SIGNUP: "/signup/token/:token",
   MY_ACCOUNTS: "/accounts",
-  // MY_ACCOUNT :'/accounts/:slug' // TODO
-  // JOIN_ACCOUNT :'/join/token/:token', // TODO
-
-  // app public routes
-  ACCEPT_INVITATION: "/signup/token/:token",
+  SIGNUP: "/signup",
 };

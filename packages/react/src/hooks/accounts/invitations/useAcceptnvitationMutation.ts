@@ -5,7 +5,7 @@ import { AcceptInvitationResponse, UserSignupData } from "@/types";
 
 export const useAcceptInvitationMutation = <
   Response = AcceptInvitationResponse,
-  Data = UserSignupData,
+  Data = UserSignupData | undefined,
 >(
   options?: UseMutationOptions<Response, Data>,
 ) => {
@@ -15,7 +15,7 @@ export const useAcceptInvitationMutation = <
   });
 
   const callMutation = useCallback(
-    (token: string, data: Data, accountId?: string | null) => {
+    (token: string, data?: Data, accountId?: string | null) => {
       const url = accountId
         ? `accounts/${accountId}/invitations/token/${token}`
         : `invitations/token/${token}`;

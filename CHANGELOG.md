@@ -1,3 +1,27 @@
+# [0.17.0](https://github.com/12deg/saas/compare/v0.16.2...v0.17.0) (2025-03-26)
+
+
+### Bug Fixes
+
+* fix accept invitation route for authenticated user without request body ([c58de86](https://github.com/12deg/saas/commit/c58de861f9cadf8628e81125cb1deb9c857838cf))
+* remove unwanted comment ([23cb91f](https://github.com/12deg/saas/commit/23cb91f87395868333da21c9743bc85ac4b056a4))
+
+
+### Features
+
+* **account:** update my-account to account-settings ([cd55111](https://github.com/12deg/saas/commit/cd55111373b0c36ff340ec28db401e99d1888f34))
+* **config:** remove unwanted support for custom storage key ([a07ae3e](https://github.com/12deg/saas/commit/a07ae3e5153c61081aa77600ec8a7c58ad56cd22))
+* **join-acccount:** refetch accounts after accepting invitation ([b110bdd](https://github.com/12deg/saas/commit/b110bddb3dabae5ce4bf5ed63c671e97a4d4f6d8))
+* **join-account:** add join account page ([0ceb37e](https://github.com/12deg/saas/commit/0ceb37e3b4c0e8787fa78a589410485a782c4814))
+* **join-account:** add new accept-invitation route and page ([9e8ad6c](https://github.com/12deg/saas/commit/9e8ad6cbc7d771f1791d66f55c38e974e2f1aa0b))
+* **my-account:** add constant for account header name ([1db1478](https://github.com/12deg/saas/commit/1db14781a6a5c4c9557ca237319c42eafd7eaa27))
+* **my-account:** add my-account route for the app ([1b6ad99](https://github.com/12deg/saas/commit/1b6ad99020ea38e5f3f53e65d22e81b4a8f149e8))
+* **my-account:** add x-account-id header for all requests ([dc67d4f](https://github.com/12deg/saas/commit/dc67d4f6aa29437a4668f8ca7951086f6ecbc782))
+* **my-account:** update accounts page ([ecc2a98](https://github.com/12deg/saas/commit/ecc2a98c6eec1dbec3dfb110fd86685b4ddb28ef))
+* **my-account:** use my-account endpoint ([183c409](https://github.com/12deg/saas/commit/183c409d286c385cef84fa1d0b7b5653dcbe45aa))
+
+
+
 ## [0.16.2](https://github.com/12deg/saas/compare/v0.16.1...v0.16.2) (2025-03-21)
 
 

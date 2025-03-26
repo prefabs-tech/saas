@@ -17,18 +17,22 @@ export const Account = ({ account, active, loading, onSwitch }: Properties) => {
     <div className={`account${active ? " highlight" : ""}`}>
       <div className="header">
         {account.name}
-        {active ? (
-          <Tag label={t("account.active")}></Tag>
-        ) : (
-          <Button
-            onClick={onSwitch}
-            loading={loading}
-            size="small"
-            variant="outlined"
-          >
-            {t("account.actions.switch")}
-          </Button>
-        )}
+        <div className="actions">
+          {active ? (
+            <Tag label={t("account.active")}></Tag>
+          ) : (
+            <Button
+              onClick={onSwitch}
+              loading={loading}
+              iconLeft="pi pi-arrow-right-arrow-left"
+              size="small"
+              variant="outlined"
+              severity="secondary"
+            >
+              {t("account.actions.switch")}
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );
