@@ -2,7 +2,6 @@ export type SaasConfig = {
   accounts?: {
     autoSelectAccount?: boolean;
     allowMultipleSessions?: boolean;
-    accountStorageKey?: string;
     signup?: {
       apiPath?: string;
       termsAndConditionsUrl?: string;

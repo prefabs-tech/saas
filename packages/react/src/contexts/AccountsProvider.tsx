@@ -7,7 +7,7 @@ import React, {
 } from "react";
 
 import { getMyAccounts } from "@/api/accounts";
-import { STORAGE_KEY_DEFAULT } from "@/constants";
+import { ACCOUNT_HEADER_NAME } from "@/constants";
 import { Account } from "@/types/account";
 import { SaasConfig } from "@/types/config";
 
@@ -20,10 +20,11 @@ export interface AccountsContextType {
   error: boolean;
   accountLoading: boolean;
   meta: {
-    subdomain: string;
+    isAdminApp: boolean;
     isMainApp: boolean;
     mainAppSubdomain: string;
     rootDomain: string;
+    subdomain: string;
   };
   switchAccount: (
     account: Account | null,
@@ -55,11 +56,10 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
     accounts: accountsConfig,
   } = config;
 
-  const {
-    autoSelectAccount = true,
-    accountStorageKey = STORAGE_KEY_DEFAULT,
-    allowMultipleSessions = true,
-  } = accountsConfig || {};
+  const accountStorageKey = ACCOUNT_HEADER_NAME;
+
+  const { autoSelectAccount = true, allowMultipleSessions = true } =
+    accountsConfig || {};
 
   const subdomain = window.location.hostname.split(".")[0];
   const { isMainApp, isAdminApp } = useMemo(() => {
@@ -197,10 +197,11 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         error,
         accountLoading,
         meta: {
-          subdomain,
+          isAdminApp,
           isMainApp,
           mainAppSubdomain,
           rootDomain,
+          subdomain,
         },
         switchAccount,
         updateAccounts,

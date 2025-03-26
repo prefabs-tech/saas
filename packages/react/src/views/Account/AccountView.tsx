@@ -7,7 +7,11 @@ import { useGetAccountQuery } from "@/hooks";
 import { AccountShow } from "./_components";
 import { DEFAULT_PATHS } from "../../constants";
 
-export const AccountViewPage = () => {
+type Properties = {
+  showToolbar?: boolean;
+};
+
+export const AccountViewPage = ({ showToolbar }: Properties) => {
   const { t } = useTranslation("account");
 
   const parameters = useParams();
@@ -19,22 +23,27 @@ export const AccountViewPage = () => {
     <Page
       className="account-show"
       toolbar={
-        <>
-          <Button
-            onClick={() => navigate(DEFAULT_PATHS.ACCOUNTS)}
-            iconLeft={<i className="pi pi-chevron-left"></i>}
-            variant="textOnly"
-            label={t("toolbar.back")}
-          ></Button>
-          <Button
-            onClick={() => {
-              navigate(
-                DEFAULT_PATHS.ACCOUNTS_EDIT.replace(":id", parameters.id || ""),
-              );
-            }}
-            label={t("toolbar.edit")}
-          ></Button>
-        </>
+        showToolbar && (
+          <>
+            <Button
+              onClick={() => navigate(DEFAULT_PATHS.ACCOUNTS)}
+              iconLeft={<i className="pi pi-chevron-left"></i>}
+              variant="textOnly"
+              label={t("toolbar.back")}
+            ></Button>
+            <Button
+              onClick={() => {
+                navigate(
+                  DEFAULT_PATHS.ACCOUNTS_EDIT.replace(
+                    ":id",
+                    parameters.id || "",
+                  ),
+                );
+              }}
+              label={t("toolbar.edit")}
+            ></Button>
+          </>
+        )
       }
       titleTag={
         data?.individual ? (

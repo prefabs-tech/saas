@@ -1,4 +1,4 @@
-export const STORAGE_KEY_DEFAULT = "x-account-id";
+export const ACCOUNT_HEADER_NAME = "x-account-id";
 
 export const SIGNUP_PATH_DEFAULT = "/auth/signup";
 
@@ -17,8 +17,8 @@ export const DEFAULT_PATHS = {
   ACCOUNTS_EDIT: "/accounts/:id/edit",
 
   // app protected routes
+  ACCOUNT_SETTINGS: "/account-settings",
   MY_ACCOUNTS: "/accounts",
-  // MY_ACCOUNT :'/accounts/:slug' // TODO
   // JOIN_ACCOUNT :'/join/token/:token', // TODO
 
   // app public routes

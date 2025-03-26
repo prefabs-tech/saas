@@ -2,10 +2,10 @@ import { Route } from "react-router-dom";
 
 import { DEFAULT_PATHS } from "@/constants";
 import { AppRoutesProperties } from "@/types/routes";
-import { MyAccountsPage } from "@/views";
+import { AccountSettingsPage, MyAccountsPage } from "@/views";
 
 export const getSaasAppRoutes = (options?: AppRoutesProperties) => {
-  const { myAccounts } = options?.routes || {};
+  const { accountSettings, myAccounts } = options?.routes || {};
 
   // TODO save path overwrites in config so that other components can use it.
 
@@ -14,6 +14,11 @@ export const getSaasAppRoutes = (options?: AppRoutesProperties) => {
       path: myAccounts?.path || DEFAULT_PATHS.MY_ACCOUNTS,
       element: myAccounts?.element || <MyAccountsPage />,
       disabled: myAccounts?.disabled,
+    },
+    {
+      path: accountSettings?.path || DEFAULT_PATHS.ACCOUNT_SETTINGS,
+      element: accountSettings?.element || <AccountSettingsPage />,
+      disabled: accountSettings?.disabled,
     },
   ];
 
