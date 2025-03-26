@@ -71,7 +71,6 @@ export const JoinInvitationPage = ({
       return;
     }
 
-    // TODO remove dummy body, currently required by api
     triggerAcceptInvitation(token, undefined, accountId);
   };
 
