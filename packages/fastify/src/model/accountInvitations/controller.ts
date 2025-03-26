@@ -3,12 +3,14 @@ import handlers from "./handlers";
 import type { FastifyInstance } from "fastify";
 
 const plugin = async (fastify: FastifyInstance) => {
+  const handlersConfig = fastify.config.saas?.handlers?.accountInvitation;
+
   fastify.get(
     "/accounts/:accountId/invitations",
     {
       preHandler: fastify.verifySession(),
     },
-    handlers.getByAccountId,
+    handlersConfig?.getByAccountId || handlers.getByAccountId,
   );
 
   fastify.post(
@@ -16,7 +18,7 @@ const plugin = async (fastify: FastifyInstance) => {
     {
       preHandler: fastify.verifySession(),
     },
-    handlers.create,
+    handlersConfig?.create || handlers.create,
   );
 
   fastify.post(
@@ -24,7 +26,7 @@ const plugin = async (fastify: FastifyInstance) => {
     {
       preHandler: fastify.verifySession(),
     },
-    handlers.resend,
+    handlersConfig?.resend || handlers.resend,
   );
 
   fastify.post(
@@ -32,7 +34,7 @@ const plugin = async (fastify: FastifyInstance) => {
     {
       preHandler: fastify.verifySession(),
     },
-    handlers.revoke,
+    handlersConfig?.revoke || handlers.revoke,
   );
 
   fastify.get(
@@ -44,7 +46,7 @@ const plugin = async (fastify: FastifyInstance) => {
         },
       },
     },
-    handlers.getByToken,
+    handlersConfig?.getByToken || handlers.getByToken,
   );
 
   fastify.delete(
@@ -52,7 +54,7 @@ const plugin = async (fastify: FastifyInstance) => {
     {
       preHandler: fastify.verifySession(),
     },
-    handlers.remove,
+    handlersConfig?.remove || handlers.remove,
   );
 
   fastify.post(
@@ -65,7 +67,7 @@ const plugin = async (fastify: FastifyInstance) => {
       },
       preHandler: fastify.verifySession({ sessionRequired: false }),
     },
-    handlers.accept,
+    handlersConfig?.accept || handlers.accept,
   );
 };
 

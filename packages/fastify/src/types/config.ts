@@ -1,6 +1,9 @@
 import { User } from "@dzangolab/fastify-user";
 
+import accountInvitationHandlers from "../model/accountInvitations/handlers";
 import accountHandlers from "../model/accounts/handlers";
+import accountTypeHandlers from "../model/accountTypes/handlers";
+import accountUserHandlers from "../model/accountUsers/handlers";
 
 import type { AccountInvitation } from "./accountInvitation";
 import type { FastifyInstance, FastifyRequest } from "fastify";
@@ -23,6 +26,28 @@ interface SaasOptions {
       myAccounts?: typeof accountHandlers.myAccounts;
       update?: typeof accountHandlers.update;
       updateMyAccount?: typeof accountHandlers.updateMyAccount;
+    };
+    accountInvitation?: {
+      accept?: typeof accountInvitationHandlers.accept;
+      create?: typeof accountInvitationHandlers.create;
+      getByAccountId?: typeof accountInvitationHandlers.getByAccountId;
+      getByToken?: typeof accountInvitationHandlers.getByToken;
+      list?: typeof accountInvitationHandlers.list;
+      remove?: typeof accountInvitationHandlers.remove;
+      resend?: typeof accountInvitationHandlers.resend;
+      revoke?: typeof accountInvitationHandlers.revoke;
+    };
+    accountType?: {
+      all?: typeof accountTypeHandlers.all;
+      create?: typeof accountTypeHandlers.create;
+      remove?: typeof accountTypeHandlers.remove;
+      getById?: typeof accountTypeHandlers.getById;
+      list?: typeof accountTypeHandlers.list;
+      update?: typeof accountTypeHandlers.update;
+    };
+    accountUser?: {
+      getByAccountId?: typeof accountUserHandlers.getByAccountId;
+      list?: typeof accountUserHandlers.list;
     };
   };
   invalid?: {
