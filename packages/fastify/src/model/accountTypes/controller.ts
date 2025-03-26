@@ -3,6 +3,8 @@ import handlers from "./handlers";
 import type { FastifyInstance } from "fastify";
 
 const plugin = async (fastify: FastifyInstance) => {
+  const handlersConfig = fastify.config.saas?.handlers?.accountType;
+
   fastify.get(
     "/account-types",
     {
@@ -12,7 +14,7 @@ const plugin = async (fastify: FastifyInstance) => {
         },
       },
     },
-    handlers.list,
+    handlersConfig?.list || handlers.list,
   );
 
   fastify.get(
@@ -24,7 +26,7 @@ const plugin = async (fastify: FastifyInstance) => {
         },
       },
     },
-    handlers.all,
+    handlersConfig?.all || handlers.all,
   );
 
   fastify.get(
@@ -36,7 +38,7 @@ const plugin = async (fastify: FastifyInstance) => {
         },
       },
     },
-    handlers.getById,
+    handlersConfig?.getById || handlers.getById,
   );
 
   fastify.post(
@@ -49,7 +51,7 @@ const plugin = async (fastify: FastifyInstance) => {
       },
       preHandler: fastify.verifySession(),
     },
-    handlers.create,
+    handlersConfig?.create || handlers.create,
   );
 
   fastify.put(
@@ -62,7 +64,7 @@ const plugin = async (fastify: FastifyInstance) => {
       },
       preHandler: fastify.verifySession(),
     },
-    handlers.update,
+    handlersConfig?.update || handlers.update,
   );
 
   fastify.delete(
@@ -75,7 +77,7 @@ const plugin = async (fastify: FastifyInstance) => {
       },
       preHandler: fastify.verifySession(),
     },
-    handlers.remove,
+    handlersConfig?.remove || handlers.remove,
   );
 };
 
