@@ -8,12 +8,15 @@ import {
   AccountViewPage,
 } from "@/views/Account";
 
-export const getSaasAdminRoutes = (options?: AdminRoutesProperties) => {
+export const getSaasAdminRoutes = (
+  type: "authenticated" | "unauthenticated" | "public" = "authenticated",
+  options?: AdminRoutesProperties,
+) => {
   const { accountsAdd, accountsEdit, accountsView } = options?.routes || {};
 
   // TODO save path overwrites in config so that other components can use it.
 
-  const routes = [
+  let routes = [
     {
       path: accountsAdd?.path || DEFAULT_PATHS.ACCOUNTS_ADD,
       element: accountsAdd?.element || <AccountAddPage />,
@@ -30,6 +33,14 @@ export const getSaasAdminRoutes = (options?: AdminRoutesProperties) => {
       disabled: accountsView?.disabled,
     },
   ];
+
+  if (type === "unauthenticated") {
+    routes = [];
+  }
+
+  if (type === "public") {
+    routes = [];
+  }
 
   return (
     <>

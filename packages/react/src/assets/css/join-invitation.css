@@ -1,13 +1,13 @@
-.join-account .info {
+.join-invitation .info {
   margin-bottom: 1.5rem;
 }
 
-.join-account .actions {
+.join-invitation .actions {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.join-account .actions > button {
+.join-invitation .actions > button {
   width: 100%;
 }

@@ -96,6 +96,14 @@
       }
     }
   },
+  "signupInvitation": {
+    "messages": {
+      "error": "Error accepting invitation (fr)",
+      "errorFetching": "Invalid token. Please contact your administrator (fr)",
+      "invalid": "Invitation is no longer valid (fr)",
+      "success": "Successfully accepted invitation (fr)"
+    }
+  },
   "switcher": {
     "emptyLabel": "Choose account (fr)",
     "helper": "Accounts (fr)"

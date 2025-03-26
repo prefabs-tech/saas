@@ -1,2 +1,3 @@
 export * from "./AcceptInvitation";
-export * from "./JoinAccount";
+export * from "./JoinInvitation";
+export * from "./SignupInvitation";

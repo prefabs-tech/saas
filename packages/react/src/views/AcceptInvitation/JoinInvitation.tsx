@@ -12,18 +12,18 @@ import {
 } from "@/hooks";
 import { AcceptInvitationResponse } from "@/types";
 
-export type JoinAccountProperties = {
+export type JoinInvitationProperties = {
   centered?: boolean;
-  onJoinAccountSuccess?: (
+  onAcceptInvitationSuccess?: (
     response?: AcceptInvitationResponse,
     request?: UseMutationRequestObject<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
   ) => void;
 };
 
-export const JoinAccountPage = ({
+export const JoinInvitationPage = ({
   centered = true,
-  onJoinAccountSuccess,
-}: JoinAccountProperties) => {
+  onAcceptInvitationSuccess,
+}: JoinInvitationProperties) => {
   const { refetchAccounts } = useAccounts();
 
   const { t } = useTranslation("accounts");
@@ -45,16 +45,18 @@ export const JoinAccountPage = ({
   const { loading: acceptLoading, trigger: triggerAcceptInvitation } =
     useAcceptInvitationMutation({
       onSuccess: (response, request) => {
-        onJoinAccountSuccess && onJoinAccountSuccess(response, request);
+        onAcceptInvitationSuccess &&
+          onAcceptInvitationSuccess(response, request);
 
         refetchAccounts();
 
         // TODO find a way to switch to newly joined account. cannot use switchAccount
 
+        toast.success(t("joinInvitation.messages.success"));
         navigate("/");
       },
       onError: () => {
-        toast.error(t("joinAccount.messages.error"));
+        toast.error(t("joinInvitation.messages.error"));
       },
     });
 
@@ -70,15 +72,7 @@ export const JoinAccountPage = ({
     }
 
     // TODO remove dummy body, currently required by api
-    triggerAcceptInvitation(
-      token,
-      {
-        email: "xxx",
-        password: "xxx",
-        confirmPassword: "xxx",
-      },
-      accountId,
-    );
+    triggerAcceptInvitation(token, undefined, accountId);
   };
 
   const handleIgnore = () => {
@@ -87,7 +81,7 @@ export const JoinAccountPage = ({
 
   const renderPageContent = () => {
     if (error || !invitation) {
-      return <p>{t(`joinAccount.messages.errorFetching`)}</p>;
+      return <p>{t(`joinInvitation.messages.errorFetching`)}</p>;
     }
 
     if (
@@ -95,17 +89,17 @@ export const JoinAccountPage = ({
       invitation.revokedAt ||
       invitation.expiresAt < Date.now()
     ) {
-      return <p>{t(`joinAccount.messages.invalid`)}</p>;
+      return <p>{t(`joinInvitation.messages.invalid`)}</p>;
     }
 
     return (
       <>
         <p className="info">
-          {t("joinAccount.info", { account: invitation.account?.name })}
+          {t("joinInvitation.info", { account: invitation.account?.name })}
         </p>
         <div className="actions">
           <Button onClick={handleSubmit} loading={acceptLoading}>
-            {t(`joinAccount.actions.accept`)}
+            {t(`joinInvitation.actions.accept`)}
           </Button>
           <Button
             onClick={handleIgnore}
@@ -113,7 +107,7 @@ export const JoinAccountPage = ({
             severity="secondary"
             disabled={acceptLoading}
           >
-            {t(`joinAccount.actions.ignore`)}
+            {t(`joinInvitation.actions.ignore`)}
           </Button>
         </div>
       </>
@@ -122,8 +116,8 @@ export const JoinAccountPage = ({
 
   return (
     <AuthPage
-      className="join-account"
-      title={t("joinAccount.title")}
+      className="join-invitation"
+      title={t("joinInvitation.title")}
       loading={invitationLoading}
       centered={centered}
     >

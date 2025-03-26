@@ -8,7 +8,7 @@
     "registeredNumber": "Registered number",
     "taxId": "Tax ID"
   },
-  "joinAccount": {
+  "joinInvitation": {
     "actions": {
       "accept": "Accept invitation",
       "ignore": "Ignore"
@@ -96,6 +96,14 @@
       "termsAndConditions": {
         "required": "Please agree to the terms and conditions"
       }
+    }
+  },
+  "signupInvitation": {
+    "messages": {
+      "error": "Error accepting invitation",
+      "errorFetching": "Invalid token. Please contact your administrator",
+      "invalid": "Invitation is no longer valid",
+      "success": "Successfully accepted invitation"
     }
   },
   "switcher": {
