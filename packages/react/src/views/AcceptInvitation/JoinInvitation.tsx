@@ -79,14 +79,14 @@ export const JoinInvitationPage = ({
   };
 
   const renderPageContent = () => {
-    if (error || !invitation) {
+    if (error) {
       return <p>{t(`joinInvitation.messages.errorFetching`)}</p>;
     }
 
     if (
-      invitation.acceptedAt ||
-      invitation.revokedAt ||
-      invitation.expiresAt < Date.now()
+      invitation!.acceptedAt ||
+      invitation!.revokedAt ||
+      invitation!.expiresAt < Date.now()
     ) {
       return <p>{t(`joinInvitation.messages.invalid`)}</p>;
     }
@@ -94,7 +94,9 @@ export const JoinInvitationPage = ({
     return (
       <>
         <p className="info">
-          {t("joinInvitation.info", { account: invitation.account?.name })}
+          {t("joinInvitation.info", {
+            account: invitation!.account?.name || "",
+          })}
         </p>
         <div className="actions">
           <Button onClick={handleSubmit} loading={acceptLoading}>
@@ -117,7 +119,7 @@ export const JoinInvitationPage = ({
     <AuthPage
       className="join-invitation"
       title={t("joinInvitation.title")}
-      loading={invitationLoading}
+      loading={invitationLoading || !invitation}
       centered={centered}
     >
       {renderPageContent()}

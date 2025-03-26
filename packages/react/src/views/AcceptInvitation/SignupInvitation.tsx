@@ -64,22 +64,22 @@ export const SignupInvitationPage = ({
   };
 
   const renderPageContent = () => {
-    if (error || !invitation) {
+    if (error) {
       return <p>{t(`signupInvitation.messages.errorFetching`)}</p>;
     }
 
     if (
-      invitation?.acceptedAt ||
-      invitation?.revokedAt ||
-      invitation?.expiresAt < Date.now()
+      invitation!.acceptedAt ||
+      invitation!.revokedAt ||
+      invitation!.expiresAt < Date.now()
     ) {
       return <p>{t(`signupInvitation.messages.invalid`)}</p>;
     }
 
     return (
       <UserSignupForm
-        key={invitation.id}
-        email={invitation.email || ""}
+        key={invitation!.id}
+        email={invitation!.email || ""}
         handleSubmit={handleSubmit}
         loading={acceptLoading}
       />
@@ -90,7 +90,7 @@ export const SignupInvitationPage = ({
     <AuthPage
       className="signup"
       title={t("user:signup.title")}
-      loading={invitationLoading}
+      loading={invitationLoading || !invitation}
       centered={centered}
     >
       {renderPageContent()}
