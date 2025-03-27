@@ -36,6 +36,7 @@ interface SaasOptions {
       remove?: typeof accountInvitationHandlers.remove;
       resend?: typeof accountInvitationHandlers.resend;
       revoke?: typeof accountInvitationHandlers.revoke;
+      signup?: typeof accountInvitationHandlers.signup;
     };
     accountType?: {
       all?: typeof accountTypeHandlers.all;

@@ -6,6 +6,7 @@ import list from "./list";
 import remove from "./remove";
 import resend from "./resend";
 import revoke from "./revoke";
+import signup from "./signup";
 
 export default {
   accept,
@@ -16,4 +17,5 @@ export default {
   remove,
   resend,
   revoke,
+  signup,
 };

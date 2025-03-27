@@ -65,9 +65,21 @@ const plugin = async (fastify: FastifyInstance) => {
           exclude: true,
         },
       },
-      preHandler: fastify.verifySession({ sessionRequired: false }),
+      preHandler: fastify.verifySession(),
     },
     handlersConfig?.accept || handlers.accept,
+  );
+
+  fastify.post(
+    String.raw`/accounts/:accountId/invitations/signup/:token`,
+    {
+      config: {
+        saas: {
+          exclude: true,
+        },
+      },
+    },
+    handlersConfig?.signup || handlers.signup,
   );
 };
 
