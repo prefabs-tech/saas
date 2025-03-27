@@ -24,7 +24,7 @@ import type {
 import type { User } from "@dzangolab/fastify-user";
 import type { FastifyReply, FastifyRequest } from "fastify";
 
-const accept = async (request: SessionRequest, reply: FastifyReply) => {
+const signup = async (request: SessionRequest, reply: FastifyReply) => {
   const { authEmailPrefix, body, config, log, slonik } =
     request as FastifyRequest<{
       Body: {
@@ -162,4 +162,4 @@ const accept = async (request: SessionRequest, reply: FastifyReply) => {
   }
 };
 
-export default accept;
+export default signup;
