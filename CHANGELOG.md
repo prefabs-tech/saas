@@ -1,3 +1,12 @@
+## [0.17.1](https://github.com/12deg/saas/compare/v0.17.0...v0.17.1) (2025-03-27)
+
+
+### Bug Fixes
+
+* **invitations:** show error message correctly ([df04f12](https://github.com/12deg/saas/commit/df04f120714c4a14734bf77857842d02700fe4d6))
+
+
+
 # [0.17.0](https://github.com/12deg/saas/compare/v0.16.2...v0.17.0) (2025-03-26)
 
 
