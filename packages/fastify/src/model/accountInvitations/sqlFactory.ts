@@ -45,7 +45,7 @@ class AccountInvitationSqlFactory<
   };
 
   getTableIdentifier = (): IdentifierSqlToken => {
-    return sql.identifier(["customer_invitations"]);
+    return sql.identifier(["account_invitations"]);
   };
 
   getUserTableFragment = (): FragmentSqlToken => {

@@ -7,6 +7,7 @@ import {
   SortInput,
 } from "@dzangolab/fastify-slonik";
 import { TABLE_USERS } from "@dzangolab/fastify-user";
+import humps from "humps";
 import {
   FragmentSqlToken,
   IdentifierSqlToken,
@@ -23,6 +24,27 @@ class AccountUserSqlFactory<
   C extends QueryResultRow,
   U extends QueryResultRow,
 > extends AccountAwareSqlFactory<T, C, U> {
+  getCreateSql = (data: C): QuerySqlToken => {
+    const identifiers = [];
+    const values = [];
+
+    for (const column in data) {
+      const key = column as keyof C;
+      const value = data[key];
+      identifiers.push(sql.identifier([humps.decamelize(key as string)]));
+      values.push(value);
+    }
+
+    return sql.type(this.validationSchema)`
+      INSERT INTO ${this.getTableFragment()}
+        (${sql.join(identifiers, sql.fragment`, `)})
+      VALUES (${sql.join(values, sql.fragment`, `)})
+      ON CONFLICT (account_id, user_id)
+      DO NOTHING
+      RETURNING *;
+    `;
+  };
+
   getUsersSql = (): QuerySqlToken => {
     return sql.type(this.validationSchema)`
       SELECT
@@ -66,7 +88,7 @@ class AccountUserSqlFactory<
   };
 
   getTableIdentifier = (): IdentifierSqlToken => {
-    return sql.identifier(["customer_users"]);
+    return sql.identifier(["account_users"]);
   };
 
   getUserTableFragment = (): FragmentSqlToken => {
