@@ -66,7 +66,7 @@ class AccountUserSqlFactory<
   };
 
   getTableIdentifier = (): IdentifierSqlToken => {
-    return sql.identifier(["customer_users"]);
+    return sql.identifier(["account_users"]);
   };
 
   getUserTableFragment = (): FragmentSqlToken => {

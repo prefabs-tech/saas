@@ -87,7 +87,7 @@ class AccountAwareSqlFactory<
 
   getDeleteSql = (id: number | string): QuerySqlToken => {
     return sql.type(this.validationSchema)`
-      DELETE FROM ${this.getTableFragment()} 
+      DELETE FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
       WHERE id = ${id}
       ${this.getAccountIdFilterFragment(false)}
       RETURNING *;
