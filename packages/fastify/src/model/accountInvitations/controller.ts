@@ -58,6 +58,19 @@ const plugin = async (fastify: FastifyInstance) => {
   );
 
   fastify.post(
+    String.raw`/accounts/:accountId/invitations/join/:token`,
+    {
+      config: {
+        saas: {
+          exclude: true,
+        },
+      },
+      preHandler: fastify.verifySession(),
+    },
+    handlersConfig?.join || handlers.join,
+  );
+
+  fastify.post(
     String.raw`/accounts/:accountId/invitations/token/:token`,
     {
       config: {
@@ -65,9 +78,8 @@ const plugin = async (fastify: FastifyInstance) => {
           exclude: true,
         },
       },
-      preHandler: fastify.verifySession({ sessionRequired: false }),
     },
-    handlersConfig?.accept || handlers.accept,
+    handlersConfig?.signup || handlers.signup,
   );
 };
 

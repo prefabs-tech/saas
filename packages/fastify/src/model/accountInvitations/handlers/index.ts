@@ -1,14 +1,15 @@
-import accept from "./accept";
 import create from "./create";
 import getByAccountId from "./getByAccountId";
 import getByToken from "./getByToken";
+import join from "./join";
 import list from "./list";
 import remove from "./remove";
 import resend from "./resend";
 import revoke from "./revoke";
+import signup from "./signup";
 
 export default {
-  accept,
+  join,
   create,
   getByAccountId,
   getByToken,
@@ -16,4 +17,5 @@ export default {
   remove,
   resend,
   revoke,
+  signup,
 };

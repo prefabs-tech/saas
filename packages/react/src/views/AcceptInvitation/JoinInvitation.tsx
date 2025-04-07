@@ -6,9 +6,9 @@ import { toast } from "react-toastify";
 
 import { UseMutationRequestObject } from "@/api";
 import {
-  useAcceptInvitationMutation,
   useAccounts,
   useGetInvitationQuery,
+  useJoinInvitationMutation,
 } from "@/hooks";
 import { AcceptInvitationResponse } from "@/types";
 
@@ -43,7 +43,7 @@ export const JoinInvitationPage = ({
   });
 
   const { loading: acceptLoading, trigger: triggerAcceptInvitation } =
-    useAcceptInvitationMutation({
+    useJoinInvitationMutation({
       onSuccess: (response, request) => {
         onAcceptInvitationSuccess &&
           onAcceptInvitationSuccess(response, request);
@@ -71,7 +71,7 @@ export const JoinInvitationPage = ({
       return;
     }
 
-    triggerAcceptInvitation(token, undefined, accountId);
+    triggerAcceptInvitation(token, accountId);
   };
 
   const handleIgnore = () => {
@@ -84,9 +84,9 @@ export const JoinInvitationPage = ({
     }
 
     if (
-      invitation!.acceptedAt ||
-      invitation!.revokedAt ||
-      invitation!.expiresAt < Date.now()
+      invitation?.acceptedAt ||
+      invitation?.revokedAt ||
+      (invitation?.expiresAt && invitation.expiresAt < Date.now())
     ) {
       return <p>{t(`joinInvitation.messages.invalid`)}</p>;
     }
@@ -95,7 +95,7 @@ export const JoinInvitationPage = ({
       <>
         <p className="info">
           {t("joinInvitation.info", {
-            account: invitation!.account?.name || "",
+            account: invitation?.account?.name || "",
           })}
         </p>
         <div className="actions">

@@ -11,7 +11,6 @@ import { emailPasswordSignUp } from "supertokens-node/recipe/thirdpartyemailpass
 
 import isInvitationValid from "../../../lib/isInvitationValid";
 import AccountService from "../../accounts/service";
-import AccountUserService from "../../accountUsers/service";
 import AccountInvitationService from "../service";
 
 import type {
@@ -25,10 +24,10 @@ import type {
 import type { User } from "@dzangolab/fastify-user";
 import type { FastifyReply, FastifyRequest } from "fastify";
 
-const accept = async (request: SessionRequest, reply: FastifyReply) => {
-  const { authEmailPrefix, body, config, log, slonik, user } =
+const signup = async (request: SessionRequest, reply: FastifyReply) => {
+  const { authEmailPrefix, body, config, log, slonik } =
     request as FastifyRequest<{
-      Body?: {
+      Body: {
         email: string;
         password: string;
       };
@@ -43,28 +42,26 @@ const accept = async (request: SessionRequest, reply: FastifyReply) => {
     const email = body?.email ?? "";
     const password = body?.password ?? "";
 
-    if (!user) {
-      //  check if the email is valid
-      const emailResult = validateEmail(email, config);
+    //  check if the email is valid
+    const emailResult = validateEmail(email, config);
 
-      if (!emailResult.success) {
-        return reply.status(422).send({
-          statusCode: 422,
-          status: "ERROR",
-          message: emailResult.message,
-        });
-      }
+    if (!emailResult.success) {
+      return reply.status(422).send({
+        statusCode: 422,
+        status: "ERROR",
+        message: emailResult.message,
+      });
+    }
 
-      // password strength validation
-      const passwordStrength = validatePassword(password, config);
+    // password strength validation
+    const passwordStrength = validatePassword(password, config);
 
-      if (!passwordStrength.success) {
-        return reply.status(422).send({
-          statusCode: 422,
-          status: "ERROR",
-          message: passwordStrength.message,
-        });
-      }
+    if (!passwordStrength.success) {
+      return reply.status(422).send({
+        statusCode: 422,
+        status: "ERROR",
+        message: passwordStrength.message,
+      });
     }
 
     const accountService = new AccountService<
@@ -104,74 +101,28 @@ const accept = async (request: SessionRequest, reply: FastifyReply) => {
       });
     }
 
-    if (!user) {
-      // compare the FieldInput email to the invitation email
-      if (accountInvitation.email != email) {
-        return reply.status(422).send({
-          statusCode: 422,
-          status: "ERROR",
-          message: "Email do not match with the invitation",
-        });
-      }
-
-      // signup
-      const signUpResponse = await emailPasswordSignUp(email, password, {
-        roles: [config.user.role || ROLE_USER],
-        saasAccountRole: accountInvitation.role,
-        autoVerifyEmail: true,
-        account: account,
-        dbSchema: dbSchema,
-        authEmailPrefix: authEmailPrefix,
-      });
-
-      if (signUpResponse.status !== "OK") {
-        return reply.status(422).send({ statusCode: 422, ...signUpResponse });
-      }
-
-      // update invitation's acceptedAt value with current time
-      await service.update(accountInvitation.id, {
-        acceptedAt: formatDate(new Date(Date.now())),
-      });
-
-      // run post accept hook
-      try {
-        await config.saas.invitation?.postAccept?.(
-          request as FastifyRequest,
-          accountInvitation,
-          signUpResponse.user as unknown as User,
-        );
-      } catch (error) {
-        log.error(error);
-      }
-
-      // create new session so the user be logged in on signup
-      await createNewSession(request, reply, signUpResponse.user.id);
-
-      return reply.send({
-        ...signUpResponse,
-        user: {
-          ...signUpResponse.user,
-          roles: [config.user.role || ROLE_USER],
-        },
-      });
-    }
-
     // compare the FieldInput email to the invitation email
-    if (accountInvitation.userId != user.id) {
+    if (accountInvitation.email != email) {
       return reply.status(422).send({
         statusCode: 422,
         status: "ERROR",
-        message: "User do not match with the invitation",
+        message: "Email do not match with the invitation",
       });
     }
 
-    const accountUserService = new AccountUserService(config, slonik, dbSchema);
-
-    await accountUserService.create({
-      accountId: account.id,
-      userId: user.id,
-      role_id: accountInvitation.role,
+    // signup
+    const signUpResponse = await emailPasswordSignUp(email, password, {
+      roles: [config.user.role || ROLE_USER],
+      saasAccountRole: accountInvitation.role,
+      autoVerifyEmail: true,
+      account: account,
+      dbSchema: dbSchema,
+      authEmailPrefix: authEmailPrefix,
     });
+
+    if (signUpResponse.status !== "OK") {
+      return reply.status(422).send({ statusCode: 422, ...signUpResponse });
+    }
 
     // update invitation's acceptedAt value with current time
     await service.update(accountInvitation.id, {
@@ -183,14 +134,21 @@ const accept = async (request: SessionRequest, reply: FastifyReply) => {
       await config.saas.invitation?.postAccept?.(
         request as FastifyRequest,
         accountInvitation,
-        request.user as unknown as User,
+        signUpResponse.user as unknown as User,
       );
     } catch (error) {
       log.error(error);
     }
 
-    reply.send({
-      message: `User joined "${account.name}" account successfully`,
+    // create new session so the user be logged in on signup
+    await createNewSession(request, reply, signUpResponse.user.id);
+
+    return reply.send({
+      ...signUpResponse,
+      user: {
+        ...signUpResponse.user,
+        roles: [config.user.role || ROLE_USER],
+      },
     });
   } catch (error) {
     log.error(error);
@@ -204,4 +162,4 @@ const accept = async (request: SessionRequest, reply: FastifyReply) => {
   }
 };
 
-export default accept;
+export default signup;
