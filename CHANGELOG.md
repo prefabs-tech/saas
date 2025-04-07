@@ -1,3 +1,13 @@
+# [0.18.0](https://github.com/12deg/saas/compare/v0.17.1...v0.18.0) (2025-04-07)
+
+
+### Bug Fixes
+
+* fix create sql for account user sql factory ([b6cd9ed](https://github.com/12deg/saas/commit/b6cd9ed1424ff77ea3754e553203bcbbed5b6513))
+* fix deleteSql in AccountAwareSqlFactory ([b9d6d45](https://github.com/12deg/saas/commit/b9d6d45317604be56409b3c279ab39c2e956f46c))
+
+
+
 ## [0.17.1](https://github.com/12deg/saas/compare/v0.17.0...v0.17.1) (2025-03-27)
 
 
