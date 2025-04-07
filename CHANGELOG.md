@@ -1,3 +1,18 @@
+# [0.18.0](https://github.com/12deg/saas/compare/v0.17.1...v0.18.0) (2025-04-07)
+
+
+### BREAKING CHANGES
+
+* Requires Fastify >=5.2.1. See [V5 Migration Guide](https://fastify.dev/docs/latest/Guides/Migration-Guide-V5) for more details.
+* Only support Node.js v20+
+
+### Bug Fixes
+
+* fix create sql for account user sql factory ([b6cd9ed](https://github.com/12deg/saas/commit/b6cd9ed1424ff77ea3754e553203bcbbed5b6513))
+* fix deleteSql in AccountAwareSqlFactory ([b9d6d45](https://github.com/12deg/saas/commit/b9d6d45317604be56409b3c279ab39c2e956f46c))
+
+
+
 ## [0.17.1](https://github.com/12deg/saas/compare/v0.17.0...v0.17.1) (2025-03-27)
 
 
