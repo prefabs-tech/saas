@@ -28,10 +28,10 @@ interface SaasOptions {
       updateMyAccount?: typeof accountHandlers.updateMyAccount;
     };
     accountInvitation?: {
-      accept?: typeof accountInvitationHandlers.accept;
       create?: typeof accountInvitationHandlers.create;
       getByAccountId?: typeof accountInvitationHandlers.getByAccountId;
       getByToken?: typeof accountInvitationHandlers.getByToken;
+      join?: typeof accountInvitationHandlers.join;
       list?: typeof accountInvitationHandlers.list;
       remove?: typeof accountInvitationHandlers.remove;
       resend?: typeof accountInvitationHandlers.resend;

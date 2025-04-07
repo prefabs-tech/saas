@@ -17,7 +17,7 @@ export const useSignupInvitationMutation = <
   const callMutation = useCallback(
     (token: string, data: Data, accountId?: string | null) => {
       const url = accountId
-        ? `accounts/${accountId}/invitations/signup/${token}`
+        ? `accounts/${accountId}/invitations/token/${token}`
         : `invitations/token/${token}`;
 
       trigger(url, data);

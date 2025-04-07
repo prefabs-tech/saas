@@ -18,7 +18,7 @@ import type {
 import type { User } from "@dzangolab/fastify-user";
 import type { FastifyReply, FastifyRequest } from "fastify";
 
-const accept = async (request: SessionRequest, reply: FastifyReply) => {
+const join = async (request: SessionRequest, reply: FastifyReply) => {
   const { config, log, slonik, user } = request;
 
   const requestParameters = request.params as {
@@ -120,4 +120,4 @@ const accept = async (request: SessionRequest, reply: FastifyReply) => {
   }
 };
 
-export default accept;
+export default join;
