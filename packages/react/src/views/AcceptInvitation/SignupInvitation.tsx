@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 import { UseMutationRequestObject } from "@/api";
 import { UserSignupForm } from "@/components/signup";
-import { useAcceptInvitationMutation, useGetInvitationQuery } from "@/hooks";
+import { useGetInvitationQuery, useSignupInvitationMutation } from "@/hooks";
 import { AcceptInvitationResponse, UserSignupData } from "@/types";
 
 export type SignupInvitationProperties = {
@@ -37,7 +37,7 @@ export const SignupInvitationPage = ({
   });
 
   const { loading: acceptLoading, trigger: triggerAcceptInvitation } =
-    useAcceptInvitationMutation({
+    useSignupInvitationMutation({
       onSuccess: (response, request) => {
         onAcceptInvitationSuccess &&
           onAcceptInvitationSuccess(response, request);
@@ -69,17 +69,16 @@ export const SignupInvitationPage = ({
     }
 
     if (
-      invitation!.acceptedAt ||
-      invitation!.revokedAt ||
-      invitation!.expiresAt < Date.now()
+      invitation?.acceptedAt ||
+      invitation?.revokedAt ||
+      (invitation?.expiresAt && invitation.expiresAt < Date.now())
     ) {
       return <p>{t(`signupInvitation.messages.invalid`)}</p>;
     }
 
     return (
       <UserSignupForm
-        key={invitation!.id}
-        email={invitation!.email || ""}
+        email={invitation?.email || ""}
         handleSubmit={handleSubmit}
         loading={acceptLoading}
       />
