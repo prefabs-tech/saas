@@ -24,3 +24,18 @@ export const DEFAULT_PATHS = {
   MY_ACCOUNTS: "/accounts",
   SIGNUP: "/signup",
 };
+
+export const DEFAULT_ROUTES_CONFIG_ADMIN = {
+  accountsAdd: { disabled: false, path: DEFAULT_PATHS.ACCOUNTS_ADD },
+  accountsEdit: { disabled: false, path: DEFAULT_PATHS.ACCOUNTS_EDIT },
+  accountsView: { disabled: false, path: DEFAULT_PATHS.ACCOUNTS_EDIT },
+};
+
+export const DEFAULT_ROUTES_CONFIG_APP = {
+  accountSettings: { disabled: false, path: DEFAULT_PATHS.ACCOUNT_SETTINGS },
+  invitationAccept: { disabled: false, path: DEFAULT_PATHS.INVITATION_ACCEPT },
+  invitationJoin: { disabled: false, path: DEFAULT_PATHS.INVITATION_JOIN },
+  invitationSignup: { disabled: false, path: DEFAULT_PATHS.INVITATION_SIGNUP },
+  myAccounts: { disabled: false, path: DEFAULT_PATHS.MY_ACCOUNTS },
+  signup: { disabled: false, path: DEFAULT_PATHS.SIGNUP },
+};

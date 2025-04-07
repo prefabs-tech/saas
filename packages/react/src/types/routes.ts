@@ -29,3 +29,20 @@ export type AdminRoutesProperties = {
 export type AppRoutesProperties = {
   routes?: AppRouteOverwrites;
 };
+
+export interface AdminRoutesConfig {
+  accountsAdd: Pick<RouteOverwrite, "disabled" | "path">;
+  accountsEdit: Pick<RouteOverwrite, "disabled" | "path">;
+  accountsView: Pick<RouteOverwrite, "disabled" | "path">;
+}
+
+export interface AppRoutesConfig {
+  accountSettings: Pick<RouteOverwrite, "disabled" | "path">;
+  invitationAccept: Pick<RouteOverwrite, "disabled" | "path">;
+  invitationJoin: Pick<RouteOverwrite, "disabled" | "path">;
+  invitationSignup: Pick<RouteOverwrite, "disabled" | "path">;
+  myAccounts: Pick<RouteOverwrite, "disabled" | "path">;
+  signup: Pick<RouteOverwrite, "disabled" | "path">;
+}
+
+export type RoutesConfig = AdminRoutesConfig | AppRoutesConfig;
