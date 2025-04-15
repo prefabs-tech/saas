@@ -28,7 +28,7 @@ pnpm add --filter "@scope/project" @dzangolab/fastify-config @dzangolab/fastify-
 ## Configuration
 
 ```typescript
-import { SupertokensRecipesConfig } from "@12deg/saas-fastify";
+import { supertokensRecipesConfig } from "@12deg/saas-fastify";
 
 const config: ApiConfig = {
   ...
@@ -40,7 +40,7 @@ const config: ApiConfig = {
   user: {
     ...
     supertokens: {
-      recipes: SupertokensRecipesConfig,  
+      recipes: supertokensRecipesConfig,
     }
   } 
   ...
