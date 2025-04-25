@@ -1,0 +1,20 @@
+.role-modal .dialog > .header {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.table-roles .column-role {
+  width: 10rem;
+  min-width: 10rem;
+  max-width: 10rem;
+}
+
+.table-roles .column-permissions {
+  min-width: 10rem;
+}
+
+.table-roles .column-actions {
+  width: 4rem;
+  min-width: 4rem;
+  max-width: 4rem;
+}

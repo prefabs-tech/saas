@@ -1,0 +1,883 @@
+{
+  "en": {
+    "roles": {
+      "form": {
+        "actions": {
+          "cancel": "Cancel",
+          "create": "Create",
+          "update": "Update"
+        },
+        "label": {
+          "add": "Add a role",
+          "permissions": "Permissions",
+          "role": "Role",
+          "update": "Update permissions"
+        },
+        "messages": {
+          "add": {
+            "error": "Something went wrong",
+            "roleAlreadyExists": "Unable to create role as it already exists",
+            "success": "Role created successfully"
+          },
+          "invalidRole": "Invalid role",
+          "update": {
+            "error": "Something went wrong",
+            "success": "Role permissions updated successfully"
+          }
+        },
+        "placeholder": {
+          "permissions": "Select permissions"
+        }
+      },
+      "table": {
+        "actions": {
+          "addRole": "Add",
+          "deleteRole": "Delete",
+          "updatePermissions": "Update permissions"
+        },
+        "columns": {
+          "permissions": "Permissions",
+          "roles": "Roles"
+        },
+        "confirmation": {
+          "deleteRole": {
+            "header": "Confirm delete",
+            "message": "Are you sure you want to delete?"
+          }
+        },
+        "emptyMessage": "No results",
+        "messages": {
+          "delete": {
+            "error": "Something went wrong",
+            "success": "Role deleted successfully"
+          }
+        }
+      },
+      "title": "Roles"
+    },
+    "user": {
+      "changePassword": {
+        "form": {
+          "confirmPassword": {
+            "errors": {
+              "required": "Confirm password is required",
+              "unmatched": "Passwords must match"
+            },
+            "label": "Confirm password"
+          },
+          "currentPassword": {
+            "errors": {
+              "required": "Current password is required",
+              "weak": "Current password is required"
+            },
+            "label": "Current password"
+          },
+          "newPassword": {
+            "errors": {
+              "required": "New password is required",
+              "weak": "Password must contain at least 8 characters, an uppercase, a lowercase and a number"
+            },
+            "label": "New password"
+          },
+          "submit": {
+            "label": "Change password"
+          }
+        },
+        "title": "Change password"
+      },
+      "emailVerification": {
+        "button": {
+          "label": "Resend email"
+        },
+        "messages": {
+          "resend": {
+            "alreadyVerified": "Email is already verified. Please try refreshing the page.",
+            "error": "Something went wrong. Please try again",
+            "success": "Email resent successfully."
+          },
+          "verify": {
+            "alreadyVerified": "Email is already verified",
+            "invalidToken": "The token is invalid",
+            "success": "Email verified successfully"
+          },
+          "verifyEmail": "Please check your email for verification",
+          "verifyingEmail": "Verifying your email"
+        },
+        "title": "Email verification"
+      },
+      "firstUser": {
+        "title": "Register first user",
+        "login": {
+          "messages": {
+            "error": "Automatic login failed. Redirecting to login page for manual login"
+          }
+        },
+        "signup": {
+          "messages": {
+            "error": "Error signing up first user",
+            "success": "Succefully added first user. Automatically logging in ..."
+          }
+        }
+      },
+      "invitation": {
+        "messages": {
+          "invite": {
+            "errorFetchingInvitation": "Invalid token. Please contact your administrator.",
+            "invalidInvitation": "Invitation is no longer valid"
+          }
+        },
+        "table": {
+          "actions": {
+            "delete": "Delete",
+            "resend": "Resend",
+            "revoke": "Revoke"
+          },
+          "confirmation": {
+            "header": "Confirmation",
+            "delete": {
+              "message": "Are you sure you want to delete?"
+            },
+            "resend": {
+              "message": "Are you sure you want to resend?"
+            },
+            "revoke": {
+              "message": "Are you sure you want to revoke?"
+            }
+          },
+          "defaultColumns": {
+            "app": "App",
+            "email": "Email",
+            "expiresAt": "Expires at",
+            "invitedBy": "Invited by",
+            "role": "Role",
+            "status": "Status"
+          },
+          "emptyMessage": "Table is empty",
+          "inviteUser": "Invite user",
+          "pagination": {
+            "pageInputLabel": "Go to",
+            "rowsPerPage": "Rows"
+          },
+          "status": {
+            "accepted": "Accepted",
+            "expired": "Expired",
+            "pending": "Pending",
+            "revoked": "Revoked"
+          }
+        }
+      },
+      "loading": "Loading...",
+      "login": {
+        "errors": {
+          "401": "The credentials you input are invalid.",
+          "SOMETHING_WRONG": "Something went wrong. Please try again."
+        },
+        "form": {
+          "actions": {
+            "submit": "Sign in"
+          },
+          "email": {
+            "errors": {
+              "invalid": "Please provide a valid email address",
+              "required": "Your email adress is required"
+            },
+            "label": "Your email",
+            "placeholder": "john.doe{'@'}example.com"
+          },
+          "password": {
+            "errors": {
+              "invalid": "Your password should be at least 8 characters long",
+              "required": "Please provide a password"
+            },
+            "label": "Your password"
+          },
+          "username": {
+            "errors": {
+              "invalid": "Please provide a valid username",
+              "required": "Your username is required"
+            },
+            "label": "Your username",
+            "placeholder": "Username"
+          }
+        },
+        "instructions": "Enter your credentials to continue.",
+        "links": {
+          "forgotPassword": "Forgot password",
+          "signup": "Sign up"
+        },
+        "messages": {
+          "success": "Logged in successfully."
+        },
+        "social": {
+          "google": "Sign in with Google"
+        },
+        "title": "Login"
+      },
+      "menu": {
+        "signin": "Signin",
+        "signup": "Signup"
+      },
+      "passwordReset": {
+        "form": {
+          "actions": {
+            "submit": "Change Password"
+          },
+          "confirmation": {
+            "errors": {
+              "match": "The 2 passwords must match"
+            },
+            "label": "Re-enter password"
+          },
+          "password": {
+            "errors": {
+              "required": "Please provide a password",
+              "weak": "Your password should be at least 8 characters long"
+            },
+            "label": "Enter password"
+          }
+        },
+        "messages": {
+          "success": "Your password is changed successfully.",
+          "wrongPassword": "The password confirmation does not match"
+        },
+        "title": "Enter your new password."
+      },
+      "password-reset-acknowledge": {
+        "actions": {
+          "login": "Return to Login page"
+        },
+        "content": "We are processing your request to reset the password for email {0}. If a user account exists for this email address, it will receive in the next few minutes an email containing instructions on how to reset their password.",
+        "redirect": "Redirecting automatically in {0} seconds",
+        "title": "Resetting your password"
+      },
+      "passwordResetRequest": {
+        "form": {
+          "actions": {
+            "submit": "Email me"
+          },
+          "email": {
+            "errors": {
+              "invalid": "Please supply a valid email address",
+              "required": "Your email address is required"
+            },
+            "label": "Your email",
+            "placeholder": "john.doe{'@'}example.com"
+          }
+        },
+        "description": "We will send you an email to reset your password",
+        "messages": {
+          "success": "Please check your provided email to reset your password."
+        },
+        "title": "Reset your password"
+      },
+      "profile": {
+        "accountInfo": {
+          "actions": {
+            "update": "Update"
+          },
+          "label": "Email",
+          "newEmail": "New Email",
+          "messages": {
+            "alreadyExist": "Email already exists.",
+            "duplicate": "Email is same as the current one.",
+            "disabled": "Update email feature is currently disabled.",
+            "email": "Email is required.",
+            "emailSent": "A verification link has been sent to your email.",
+            "error": "An error occurred while updating the email.",
+            "invalid": "Invalid email",
+            "success": "Email updated successfully.",
+            "verify": "Verify email to complete the email update."
+          },
+          "title": "Update email"
+        },
+        "form": {
+          "firstName": {
+            "label": "First name",
+            "placeholder": "Enter your first name"
+          },
+          "lastName": {
+            "label": "Last name",
+            "placeholder": "Enter your last name"
+          },
+          "messages": {
+            "error": "Something went wrong. Please try again",
+            "success": "Profile updated successfully"
+          }
+        },
+        "title": "Profile"
+      },
+      "signup": {
+        "errors": {
+          "401": "Sorry! We could not register your account because of an unexpected error.",
+          "SOMETHING_WRONG": "Something went wrong. Please try again."
+        },
+        "form": {
+          "actions": {
+            "submit": "Create my account"
+          },
+          "confirmation": {
+            "errors": {
+              "match": "The 2 passwords must match"
+            },
+            "label": "Confirm your password"
+          },
+          "email": {
+            "errors": {
+              "invalid": "Please supply a valid email address",
+              "required": "Your email address is required"
+            },
+            "label": "Your email",
+            "placeholder": "john.doe{'@'}example.com"
+          },
+          "password": {
+            "errors": {
+              "required": "Please provide a password",
+              "weak": "Your password should be at least 8 characters long"
+            },
+            "label": "Your password"
+          },
+          "username": {
+            "errors": {
+              "invalid": "Please provide a valid username",
+              "required": "Your username is required"
+            },
+            "label": "Your username",
+            "placeholder": "Username"
+          }
+        },
+        "links": {
+          "forgotPassword": "Forgot password",
+          "login": "Login"
+        },
+        "messages": {
+          "success": "Signed up successfully."
+        },
+        "title": "Register"
+      },
+      "table": {
+        "actions": {
+          "disableUser": "Disable user",
+          "enableUser": "Enable user"
+        },
+        "confirmation": {
+          "disableUser": {
+            "message": "Are you sure you want to disable this user?"
+          },
+          "enableUser": {
+            "message": "Are you sure you want to enable this user?"
+          },
+          "header": "Confirmation"
+        },
+        "defaultColumns": {
+          "email": "Email",
+          "name": "Name",
+          "roles": "Roles",
+          "signedUpAt": "Signed up at",
+          "status": "Status"
+        },
+        "emptyMessage": "Table is empty",
+        "inviteUser": "Invite user",
+        "pagination": {
+          "pageInputLabel": "Go to",
+          "rowsPerPage": "Rows"
+        },
+        "status": {
+          "disabled": "Disabled",
+          "enabled": "Enable"
+        }
+      }
+    },
+    "invitations": {
+      "title": "Invitations",
+      "form": {
+        "actions": {
+          "cancel": "Cancel",
+          "create": "Create",
+          "update": "Update"
+        },
+        "label": {
+          "add": "Add invitation",
+          "email": "Email",
+          "role": "Role",
+          "update": "Update invitation"
+        },
+        "messages": {
+          "add": {
+            "error": "Something went wrong",
+            "success": "Invitation created successfully"
+          },
+          "invalidEmail": "Please provide a valid email address",
+          "invalidRole": "Invalid role",
+          "update": {
+            "error": "Something went wrong",
+            "success": "Invitation updated successfully"
+          }
+        },
+        "placeholder": {
+          "role": "Select role"
+        }
+      },
+      "table": {
+        "actions": {
+          "addInvitation": "Add invitation",
+          "deleteInvitation": "Delete",
+          "updateInvitation": "Update"
+        },
+        "columns": {
+          "email": "Email",
+          "role": "Role",
+          "status": "Status",
+          "expiresAt": "Expires at"
+        },
+        "confirmation": {
+          "deleteInvitation": {
+            "header": "Confirm delete",
+            "message": "Are you sure you want to delete this invitation?"
+          }
+        },
+        "emptyMessage": "No invitations found",
+        "messages": {
+          "delete": {
+            "error": "Something went wrong",
+            "success": "Invitation deleted successfully"
+          }
+        }
+      }
+    }
+  },
+  "fr": {
+    "roles": {
+      "form": {
+        "actions": {
+          "cancel": "Cancel",
+          "create": "Create",
+          "update": "Update"
+        },
+        "label": {
+          "add": "Add a role",
+          "permissions": "Permissions",
+          "role": "Role",
+          "update": "Update permissions"
+        },
+        "messages": {
+          "add": {
+            "error": "Something went wrong",
+            "roleAlreadyExists": "Unable to create role as it already exists",
+            "success": "Role created successfully"
+          },
+          "invalidRole": "Invalid role",
+          "update": {
+            "error": "Something went wrong",
+            "success": "Role permissions updated successfully"
+          }
+        },
+        "placeholder": {
+          "permissions": "Select permissions"
+        }
+      },
+      "table": {
+        "actions": {
+          "addRole": "Add",
+          "deleteRole": "Delete",
+          "updatePermissions": "Update permissions"
+        },
+        "columns": {
+          "permissions": "Permissions",
+          "roles": "Roles"
+        },
+        "confirmation": {
+          "deleteRole": {
+            "header": "Confirm delete",
+            "message": "Are you sure you want to delete?"
+          }
+        },
+        "emptyMessage": "No results",
+        "messages": {
+          "delete": {
+            "error": "Something went wrong",
+            "success": "Role deleted successfully"
+          }
+        }
+      },
+      "title": "Roles"
+    },
+    "user": {
+      "changePassword": {
+        "form": {
+          "confirmPassword": {
+            "errors": {
+              "required": "Confirm password is required",
+              "unmatched": "Passwords must match"
+            },
+            "label": "Confirm password"
+          },
+          "currentPassword": {
+            "errors": {
+              "required": "Current password is required",
+              "weak": "Current password is required"
+            },
+            "label": "Current password"
+          },
+          "newPassword": {
+            "errors": {
+              "required": "New password is required",
+              "weak": "Password must contain at least 8 characters, an uppercase, a lowercase and a number"
+            },
+            "label": "New password"
+          },
+          "submit": {
+            "label": "Change password"
+          }
+        },
+        "title": "Change password"
+      },
+      "emailVerification": {
+        "button": {
+          "label": "Resend email"
+        },
+        "messages": {
+          "resend": {
+            "alreadyVerified": "Email is already verified. Please try refreshing the page.",
+            "error": "Something went wrong. Please try again",
+            "success": "Email resent successfully"
+          },
+          "verify": {
+            "alreadyVerified": "Email is already verified",
+            "invalidToken": "The token is invalid",
+            "success": "Email verified successfully"
+          },
+          "verifyEmail": "Please check your email for verification",
+          "verifyingEmail": "Verifying your email"
+        },
+        "title": "Email verification"
+      },
+      "firstUser": {
+        "title": "Register first user",
+        "login": {
+          "messages": {
+            "error": "Automatic login failed. Redirecting to login page for manual login"
+          }
+        },
+        "signup": {
+          "messages": {
+            "error": "Error signing up first user",
+            "success": "Succefully added first user. Automatically logging in ..."
+          }
+        }
+      },
+      "invitation": {
+        "messages": {
+          "invite": {
+            "errorFetchingInvitation": "Invalid token. Please contact your administrator.",
+            "invalidInvitation": "Invitation is no longer valid"
+          }
+        },
+        "table": {
+          "actions": {
+            "delete": "Delete",
+            "resend": "Resend",
+            "revoke": "Revoke"
+          },
+          "confirmation": {
+            "header": "Confirmation",
+            "delete": {
+              "message": "Are you sure you want to delete?"
+            },
+            "resend": {
+              "message": "Are you sure you want to resend?"
+            },
+            "revoke": {
+              "message": "Are you sure you want to revoke?"
+            }
+          },
+          "defaultColumns": {
+            "app": "App",
+            "email": "Email",
+            "expiresAt": "Expires at",
+            "invitedBy": "Invited by",
+            "role": "Role",
+            "status": "Status"
+          },
+          "emptyMessage": "Table is empty",
+          "inviteUser": "Invite user",
+          "pagination": {
+            "pageInputLabel": "Go to",
+            "rowsPerPage": "Rows"
+          },
+          "status": {
+            "accepted": "Accepted",
+            "expired": "Expired",
+            "pending": "Pending",
+            "revoked": "Revoked"
+          }
+        }
+      },
+      "loading": "Loading...[fr]",
+      "login": {
+        "errors": {
+          "401": "Votre identifiant et/ou mot de passe sont invalides."
+        },
+        "form": {
+          "actions": {
+            "submit": "Connexion"
+          },
+          "email": {
+            "errors": {
+              "invalid": "Veuillez saisir une adresse courriel valide",
+              "required": "Veuillez saisir votre adresse courriel"
+            },
+            "label": "Votre adresse courriel",
+            "placeholder": "john.doe{'@'}example.com"
+          },
+          "password": {
+            "errors": {
+              "invalid": "Your password should be at least 8 characters long[fr]",
+              "required": "Veuillez saisir un mot de passe"
+            },
+            "label": "Votre mot de passe"
+          }
+        },
+        "links": {
+          "forgotPassword": "Mot de passe oublié",
+          "signup": "Inscription"
+        },
+        "messages": {
+          "success": "Vous êtes maintenant connecté(e)"
+        },
+        "social": {
+          "google": "Sign in with Google[fr]"
+        },
+        "title": "Connexion"
+      },
+      "menu": {
+        "signin": "Connexion",
+        "signup": "Inscription"
+      },
+      "passwordReset": {
+        "form": {
+          "actions": {
+            "submit": "Modifier votre mot de passe"
+          },
+          "confirmation": {
+            "errors": {
+              "match": "Les 2 mots de passe doivent être identiques"
+            },
+            "label": "Confirmation de votre nouveau mot de passe"
+          },
+          "password": {
+            "errors": {
+              "required": "Veuillez saisir un mot de passe",
+              "weak": "Votre mot de passe doit avoir au moins 8 caractères"
+            },
+            "label": "Nouveau mot de passe"
+          }
+        },
+        "messages": {
+          "success": "Votre mot de passe a été mis à jour.",
+          "wrongPassword": "The password confirmation doesnot match"
+        },
+        "title": "Réinitialisation de votre mot de passe"
+      },
+      "password-reset-acknowledge": {
+        "actions": {
+          "login": "Retourner à la page de connexion"
+        },
+        "content": "Nous traitons votre demande de réinitialisation du mot de passe pour l'adresse {0}. Si un compte existe pour cette adresse, elle recevra dans les minutes qui viennent un courriel contenant les instructions pour la réinitialisation de leur mot de passe.",
+        "redirect": "Retour automatique dans {0} secondes",
+        "title": "Réinitialisation de votre mot de passe"
+      },
+      "passwordResetRequest": {
+        "form": {
+          "actions": {
+            "submit": "Réinitialiser"
+          },
+          "email": {
+            "errors": {
+              "invalid": "Veuillez saisir une adresse courriel valide",
+              "required": "Veuillez saisir votre adresse courriel"
+            },
+            "label": "Votre adresse courriel",
+            "placeholder": "john.doe{'@'}example.com"
+          }
+        },
+        "description": "We will send you an email to reset your password",
+        "messages": {
+          "success": "Please check your provided email to reset your password."
+        },
+        "title": "Réinitialisation de votre mot de passe"
+      },
+      "profile": {
+        "accountInfo": {
+          "actions": {
+            "update": "Update"
+          },
+          "label": "Email",
+          "newEmail": "New Email",
+          "messages": {
+            "alreadyExist": "Email already exists.",
+            "duplicate": "Email is same as the current one.",
+            "disabled": "Update email feature is currently disabled.",
+            "email": "Email is required.",
+            "emailSent": "A verification link has been sent to your email.",
+            "error": "An error occurred while updating the email.",
+            "invalid": "Invalid email",
+            "success": "Email updated successfully.",
+            "verify": "Verify email to complete the email update."
+          },
+          "title": "Update email"
+        },
+        "form": {
+          "firstName": {
+            "label": "First name",
+            "placeholder": "Enter your first name"
+          },
+          "lastName": {
+            "label": "Last name",
+            "placeholder": "Enter your last name"
+          },
+          "messages": {
+            "error": "Something went wrong. Please try again",
+            "success": "Profile updated successfully"
+          }
+        },
+        "title": "Profil"
+      },
+      "signup": {
+        "errors": {
+          "409": "Désolé ! Nous n'avons pas pu enregistrer votre inscription à cause d'une erreur inopinée."
+        },
+        "form": {
+          "actions": {
+            "submit": "M'inscrire"
+          },
+          "confirmation": {
+            "errors": {
+              "match": "Les 2 mots de passe doivent être identiques"
+            },
+            "label": "Confirmez votre mot de passe"
+          },
+          "email": {
+            "errors": {
+              "invalid": "Veuillez saisir une adresse email valide",
+              "required": "Veuillez saisir votre adresse email"
+            },
+            "label": "Votre adresse e-mail",
+            "placeholder": "john.doe{'@'}example.com"
+          },
+          "password": {
+            "errors": {
+              "required": "Veuillez saisir un mot de passe",
+              "weak": "Votre mot de passe doit avoir au moins 8 caractères"
+            },
+            "label": "Votre mot de passe"
+          },
+          "username": {
+            "errors": {
+              "invalid": "Please provide a valid username",
+              "required": "Your username is required"
+            },
+            "label": "Your username",
+            "placeholder": "Username"
+          }
+        },
+        "links": {
+          "forgotPassword": "Mot de passe oublié",
+          "login": "Connexion"
+        },
+        "messages": {
+          "success": "Signed up successfully."
+        },
+        "title": "Inscription"
+      },
+      "table": {
+        "actions": {
+          "disableUser": "Disable user",
+          "enableUser": "Enable user"
+        },
+        "confirmation": {
+          "disableUser": {
+            "message": "Are you sure you want to disable this user?"
+          },
+          "enableUser": {
+            "message": "Are you sure you want to enable this user?"
+          },
+          "header": "Confirmation"
+        },
+        "defaultColumns": {
+          "email": "Email",
+          "name": "Name",
+          "roles": "Roles",
+          "signedUpAt": "Signed up at",
+          "status": "Status"
+        },
+        "emptyMessage": "Table is empty",
+        "inviteUser": "Invite user",
+        "pagination": {
+          "pageInputLabel": "Go to",
+          "rowsPerPage": "Rows"
+        },
+        "status": {
+          "disabled": "Disabled",
+          "enabled": "Enable"
+        }
+      }
+    },
+    "invitations": {
+      "title": "Invitations",
+      "form": {
+        "actions": {
+          "cancel": "Annuler",
+          "create": "Créer",
+          "update": "Mettre à jour"
+        },
+        "label": {
+          "add": "Ajouter une invitation",
+          "email": "Email",
+          "role": "Rôle",
+          "update": "Mettre à jour l'invitation"
+        },
+        "messages": {
+          "add": {
+            "error": "Une erreur s'est produite",
+            "success": "Invitation créée avec succès"
+          },
+          "invalidEmail": "Veuillez fournir une adresse email valide",
+          "invalidRole": "Rôle invalide",
+          "update": {
+            "error": "Une erreur s'est produite",
+            "success": "Invitation mise à jour avec succès"
+          }
+        },
+        "placeholder": {
+          "role": "Sélectionner un rôle"
+        }
+      },
+      "table": {
+        "actions": {
+          "addInvitation": "Ajouter une invitation",
+          "deleteInvitation": "Supprimer",
+          "updateInvitation": "Mettre à jour"
+        },
+        "columns": {
+          "email": "Email",
+          "role": "Rôle",
+          "status": "Statut",
+          "expiresAt": "Expire le"
+        },
+        "confirmation": {
+          "deleteInvitation": {
+            "header": "Confirmer la suppression",
+            "message": "Êtes-vous sûr de vouloir supprimer cette invitation ?"
+          }
+        },
+        "emptyMessage": "Aucune invitation trouvée",
+        "messages": {
+          "delete": {
+            "error": "Une erreur s'est produite",
+            "success": "Invitation supprimée avec succès"
+          }
+        }
+      }
+    }
+  }
+}

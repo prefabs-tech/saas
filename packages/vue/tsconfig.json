@@ -1,0 +1,14 @@
+{
+  "extends": "@12deg/tsconfig/vue",
+  "exclude": [
+    "src/**/__test__/**/*",
+  ],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/src"
+  },
+  "include": [
+    "src/**/*",
+    "src/**/*/*.vue"
+  ]
+}

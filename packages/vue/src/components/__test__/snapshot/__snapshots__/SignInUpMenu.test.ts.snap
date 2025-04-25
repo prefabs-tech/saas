@@ -1,0 +1,51 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SignInUpMenu > matches snapshot in en 1`] = `
+<nav
+  class="menu"
+>
+  <ul>
+    
+    <li
+      class=""
+    >
+      <a>
+        Signin
+      </a>
+    </li>
+    <li
+      class=""
+    >
+      <a>
+        Signup
+      </a>
+    </li>
+    
+  </ul>
+</nav>
+`;
+
+exports[`SignInUpMenu > matches snapshot in fr 1`] = `
+<nav
+  class="menu"
+>
+  <ul>
+    
+    <li
+      class=""
+    >
+      <a>
+        Connexion
+      </a>
+    </li>
+    <li
+      class=""
+    >
+      <a>
+        Inscription
+      </a>
+    </li>
+    
+  </ul>
+</nav>
+`;

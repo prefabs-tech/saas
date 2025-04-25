@@ -1,0 +1,31 @@
+.table-users .cell-roles > .badge {
+  margin: 0.1rem !important;
+}
+
+.table-users .column-email {
+  min-width: 20rem;
+}
+
+.table-users .column-name {
+  max-width: 15rem;
+  min-width: 15rem;
+  width: 15rem;
+}
+
+.table-users .column-roles {
+  max-width: 10rem;
+  min-width: 10rem;
+  width: 10rem;
+}
+
+.table-users .column-signedUpAt {
+  max-width: 10rem;
+  min-width: 10rem;
+  width: 10rem;
+}
+
+.table-users .column-status {
+  max-width: 10rem;
+  min-width: 10rem;
+  width: 10rem;
+}
