@@ -443,6 +443,70 @@
           }
         }
       }
+    },
+    "accounts": {
+      "form": {
+        "actions": {
+          "cancel": "Cancel",
+          "create": "Create",
+          "update": "Update"
+        },
+        "label": {
+          "add": "Add an account",
+          "name": "Name",
+          "registeredNumber": "Registered Number",
+          "taxId": "Tax ID",
+          "individual": "Individual",
+          "slug": "Slug",
+          "database": "Database",
+          "domain": "Domain",
+          "update": "Update account"
+        },
+        "messages": {
+          "add": {
+            "error": "Something went wrong",
+            "accountAlreadyExists": "Unable to create account as it already exists",
+            "success": "Account created successfully"
+          },
+          "invalidAccount": "Invalid account",
+          "update": {
+            "error": "Something went wrong",
+            "success": "Account updated successfully"
+          }
+        }
+      },
+      "table": {
+        "actions": {
+          "addAccount": "Add",
+          "deleteAccount": "Delete",
+          "updateAccount": "Update"
+        },
+        "columns": {
+          "name": "Name",
+          "registeredNumber": "Registered Number",
+          "taxId": "Tax ID",
+          "individual": "Individual",
+          "slug": "Slug",
+          "database": "Database",
+          "domain": "Domain",
+          "createdAt": "Created At",
+          "updatedAt": "Updated At"
+        },
+        "confirmation": {
+          "deleteAccount": {
+            "header": "Confirm delete",
+            "message": "Are you sure you want to delete this account?"
+          }
+        },
+        "emptyMessage": "No accounts found",
+        "messages": {
+          "delete": {
+            "error": "Something went wrong",
+            "success": "Account deleted successfully"
+          }
+        }
+      },
+      "title": "Accounts"
     }
   },
   "fr": {

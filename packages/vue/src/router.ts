@@ -16,6 +16,8 @@ import Roles from "./views/Roles/Index.vue";
 import Signup from "./views/Signup.vue";
 import SignupFirstUser from "./views/SignupFirstUser.vue";
 import VerifyEmail from "./views/VerifyEmail.vue";
+import Accounts from "./views/Accounts/Index.vue";
+import AccountForm from "./views/Accounts/Form.vue";
 
 import type {
   DzangolabVueUserConfig,
@@ -29,6 +31,22 @@ const _routes = {
     component: AcceptInvitation,
     name: "acceptInvitation",
     path: "/signup/token/:token?",
+  } as RouteRecordRaw,
+  accounts: {
+    meta: {
+      authenticated: true,
+    } as RouteMeta,
+    component: Accounts,
+    name: "accounts",
+    path: "/accounts",
+  } as RouteRecordRaw,
+  accountForm: {
+    meta: {
+      authenticated: true,
+    } as RouteMeta,
+    component: AccountForm,
+    name: "accountForm",
+    path: "/accounts/:id?",
   } as RouteRecordRaw,
   changePassword: {
     meta: {
@@ -141,6 +159,10 @@ const addRoutes = (router: Router, userConfig?: DzangolabVueUserConfig) => {
   router.addRoute(getRoute(_routes.profile, routes?.profile));
 
   router.addRoute(getRoute(_routes.roles, routes?.roles));
+
+  router.addRoute(getRoute(_routes.accounts, routes?.accounts));
+
+  router.addRoute(getRoute(_routes.accountForm, routes?.accountForm));
 
   router.addRoute(
     getRoute(

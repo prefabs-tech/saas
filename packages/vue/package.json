@@ -27,7 +27,16 @@
   },
   "dependencies": {
     "supertokens-web-js": "0.5.0",
-    "supertokens-website": "16.0.1"
+    "supertokens-website": "16.0.1",
+    "@dzangolab/vue-config": "workspace:*",
+    "@dzangolab/vue-i18n": "workspace:*",
+    "@dzangolab/vue-layout": "workspace:*",
+    "@dzangolab/vue-ui": "workspace:*",
+    "pinia": "^2.1.7",
+    "vue": "^3.3.4",
+    "vue-i18n": "^9.2.2",
+    "vue-router": "^4.2.4",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@12deg/eslint-config": "0.1.11",
@@ -60,17 +69,16 @@
     "eslint-plugin-unicorn": "56.0.1",
     "eslint-plugin-vue": "9.32.0",
     "mitt": "3.0.1",
-    "pinia": "3.0.1",
     "prettier": "3.5.2",
     "typescript": "5.5.4",
     "vee-validate": "4.15.0",
     "vite": "6.1.1",
     "vitest": "3.0.6",
-    "vue": "3.5.13",
-    "vue-eslint-parser": "9.4.3",
-    "vue-router": "4.5.0",
     "vue-tsc": "1.2.0",
-    "zod": "3.24.2"
+    "@rushstack/eslint-patch": "^1.3.3",
+    "@tsconfig/node18": "^18.2.2",
+    "@vitest/coverage-v8": "^0.34.5",
+    "jsdom": "^22.1.0"
   },
   "peerDependencies": {
     "@dzangolab/vue3-config": "0.10.10",
