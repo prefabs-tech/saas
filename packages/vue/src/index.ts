@@ -12,14 +12,14 @@ import type { LocaleMessages, VueMessageType } from "@dzangolab/vue3-i18n";
 import type { App, Plugin } from "vue";
 
 const __dzangolabVueUserTranslations = Symbol.for(
-  "dzangolab.vue-user.translations",
+  "dzangolab.vue-user.translations"
 );
 
 const emitter = mitt();
 
 const plugin: Plugin = {
   install: (app: App, options: DzangolabVueUserPluginOptions): void => {
-    updateRouter(options.router, options.config?.user);
+    updateRouter(options.router);
 
     const translations = options?.translations
       ? prependMessages(messages, options.translations)
@@ -38,7 +38,7 @@ const plugin: Plugin = {
 const useTranslations = () => {
   return inject<LocaleMessages<VueMessageType>>(
     __dzangolabVueUserTranslations,
-    messages,
+    messages
   );
 };
 
@@ -49,5 +49,3 @@ export { client, userStore, useTranslations, emitter };
 export * from "./api/accounts";
 
 export * from "./components";
-
-export * from "./views";

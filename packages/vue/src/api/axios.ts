@@ -1,4 +1,3 @@
-import { authConfig } from "../auth-provider";
 import { API_PATH_REFRESH } from "../constant";
 import axios from "axios";
 import SuperTokens from "supertokens-website";
@@ -19,17 +18,16 @@ const client = (baseURL: string) => {
     (response) => response,
     async (error) => {
       const originalRequest = error.config;
-      const refreshRoute = authConfig?.user?.apiRoutes?.refresh || API_PATH_REFRESH;
 
       if (
         error.response?.status === 401 &&
         !originalRequest._retry &&
-        !originalRequest.url.includes(refreshRoute)
+        !originalRequest.url.includes(API_PATH_REFRESH)
       ) {
         originalRequest._retry = true;
 
         try {
-          const refreshResponse = await instance.post(refreshRoute, {
+          const refreshResponse = await instance.post(API_PATH_REFRESH, {
             withCredentials: true,
           });
 
