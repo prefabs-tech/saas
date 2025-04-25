@@ -18,19 +18,9 @@ const addRoutes = (router: Router) => {
   router.addRoute(_routes.accounts);
 };
 
-const addAuthenticationGuard = (router: Router) => {
-  router.beforeEach(async (to) => {
-    const meta = to.meta as RouteMeta;
-
-    if (meta.authenticated) {
-      router.push({ name: "login" });
-    }
-  });
-};
 
 const updateRouter = (router: Router) => {
   addRoutes(router);
-  addAuthenticationGuard(router);
 };
 
 export default updateRouter;
