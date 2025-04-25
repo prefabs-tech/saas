@@ -9,20 +9,8 @@ interface RouteOverride {
 }
 
 interface RouteOverrides {
-  acceptInvitation: RouteOverride;
-  changePassword: RouteOverride;
-  google?: RouteOverride;
-  home?: string;
-  login: RouteOverride;
-  signup: RouteOverride & { disabled?: boolean };
-  signupFirstUser: RouteOverride & { disabled?: boolean };
-  passwordReset: RouteOverride;
-  passwordResetRequest: RouteOverride;
-  passwordResetRequestAcknowledge: RouteOverride;
-  profile?: RouteOverride;
-  roles?: RouteOverride;
-  verifyEmail?: RouteOverride;
-  verifyEmailReminder?: RouteOverride;
+  accounts?: RouteOverride;
+  accountForm?: RouteOverride;
 }
 
 export type { RouteOverride, RouteOverrides };
