@@ -3,7 +3,7 @@ import Accounts from "./views/Accounts/Index.vue";
 
 import type { RouteMeta, RouteRecordRaw } from "vue-router";
 
-const _routes = {
+export const routes = {
   accounts: {
     meta: {
       authenticated: true,
@@ -14,13 +14,16 @@ const _routes = {
   } as RouteRecordRaw,
 };
 
-const addRoutes = (router: Router) => {
-  router.addRoute(_routes.accounts);
+export const addRoutes = (router: Router) => {
+  router.addRoute(routes.accounts);
 };
 
-
-const updateRouter = (router: Router) => {
+export const updateRouter = (router: Router) => {
   addRoutes(router);
 };
 
-export default updateRouter;
+export default {
+  routes,
+  addRoutes,
+  updateRouter,
+};
