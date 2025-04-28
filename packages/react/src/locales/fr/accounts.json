@@ -130,5 +130,9 @@
     "searchPlaceholder": " (fr)",
     "title": "Accounts (fr)"
   },
-  "title": "My accounts (fr)"
+  "title": "My accounts (fr)",
+  "unregisteredDomain": {
+    "subtitle": "Please contact admin for more details. (fr)",
+    "title": "Sorry, The domain is not registered. (fr)"
+  }
 }

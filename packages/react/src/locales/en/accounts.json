@@ -132,5 +132,9 @@
     "searchPlaceholder": "",
     "title": "Accounts"
   },
-  "title": "My accounts"
+  "title": "My accounts",
+  "unregisteredDomain": {
+    "subtitle": "Please contact admin for more details.",
+    "title": "Sorry, The domain is not registered."
+  }
 }
