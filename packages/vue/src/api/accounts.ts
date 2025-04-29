@@ -1,5 +1,5 @@
-import client, { encodeURIParameter } from "./axios";
-import type { Account, AccountInput } from "../types/account";
+import client from "./axios";
+import type { Account, AccountInput, Accounts } from "../types/account";
 
 export const createAccount = async (
   data: AccountInput,
@@ -16,7 +16,7 @@ export const deleteAccount = async (
   id: string,
   apiBaseUrl: string
 ): Promise<void> => {
-  await client(apiBaseUrl).delete(`/accounts/${encodeURIParameter(id)}`, {
+  await client(apiBaseUrl).delete(`/accounts/${id}`, {
     withCredentials: true,
   });
 };
@@ -25,17 +25,14 @@ export const getAccount = async (
   id: string,
   apiBaseUrl: string
 ): Promise<Account> => {
-  const response = await client(apiBaseUrl).get(
-    `/accounts/${encodeURIParameter(id)}`,
-    {
-      withCredentials: true,
-    }
-  );
+  const response = await client(apiBaseUrl).get(`/accounts/${id}`, {
+    withCredentials: true,
+  });
 
   return response.data;
 };
 
-export const getAccounts = async (apiBaseUrl: string): Promise<Account[]> => {
+export const getAccounts = async (apiBaseUrl: string): Promise<Accounts> => {
   const response = await client(apiBaseUrl).get("/accounts", {
     withCredentials: true,
   });
@@ -48,13 +45,9 @@ export const updateAccount = async (
   data: AccountInput,
   apiBaseUrl: string
 ): Promise<Account> => {
-  const response = await client(apiBaseUrl).put(
-    `/accounts/${encodeURIParameter(id)}`,
-    data,
-    {
-      withCredentials: true,
-    }
-  );
+  const response = await client(apiBaseUrl).put(`/accounts/${id}`, data, {
+    withCredentials: true,
+  });
 
   return response.data;
 };

@@ -1,107 +1,128 @@
 <template>
-  <form class="account-form">
-    <h1>Account Form TODO</h1>
-  </form>
+  <div class="account-form">
+    <Form @submit="onCreateAccount">
+      <Input
+        v-model="formData.name"
+        :disabled="!!account"
+        :label="t('accounts.form.label.name')"
+        name="name"
+        type="text"
+      />
+      <Input
+        v-model="formData.registeredNumber"
+        :disabled="!!account"
+        :label="t('accounts.form.label.registeredNumber')"
+        name="registeredNumber"
+        type="text"
+      />
+      <Input
+        v-model="formData.taxId"
+        :disabled="!!account"
+        :label="t('accounts.form.label.taxId')"
+        name="taxId"
+        type="text"
+      />
+      <Input
+        v-model="formData.slug"
+        :disabled="!!account"
+        :label="t('accounts.form.label.slug')"
+        name="slug"
+        type="text"
+      />
+      <Input
+        v-model="formData.domain"
+        :disabled="!!account"
+        :label="t('accounts.form.label.domain')"
+        name="domain"
+        type="text"
+      />
+
+      <FormActions
+        alignment="filled"
+        :cancel-label="t('accounts.form.actions.cancel')"
+        :submit-label="
+          !!account
+            ? t('accounts.form.actions.update')
+            : t('accounts.form.actions.create')
+        "
+        :loading="loading"
+        flow-direction="vertical"
+        @cancel="$emit('cancel')"
+      />
+    </Form>
+  </div>
 </template>
 
 <script setup lang="ts">
-// import { ref, watch, computed } from "vue";
-// import { useI18n } from "@dzangolab/vue3-i18n";
-// import { useConfig } from "../../composables/useConfig";
-// import type { Account, AccountInput } from "../../types/account";
-// import type { PropType } from "vue";
+import { useConfig } from "@dzangolab/vue3-config";
+import { Form, FormActions, Input } from "@dzangolab/vue3-form";
+import { useI18n } from "@dzangolab/vue3-i18n";
+import { ref, watch, onMounted } from "vue";
 
-// const props = defineProps({
-//   loading: Boolean,
-//   account: {
-//     default: undefined,
-//     type: Object as PropType<Account>,
-//   },
-//   isEditForm: {
-//     default: false,
-//     type: Boolean,
-//   },
-// });
+import { useTranslations } from "../../index";
+import useAccountsStore from "../../stores/accounts";
 
-// const emit = defineEmits(["cancel", "submit"]);
+import type { Account } from "../../types/account";
+import type { AppConfig } from "@dzangolab/vue3-config";
+import type { PropType } from "vue";
 
-// const { t } = useI18n();
+const props = defineProps({
+  account: {
+    default: undefined,
+    type: Object as PropType<Account>,
+  },
+  loading: Boolean,
+});
 
-// const config = useConfig();
+defineEmits(["cancel", "submit"]);
 
-// const formData = ref<AccountInput>({
-//   name: props.account?.name || "",
-//   individual: props.account?.individual || false,
-//   registeredNumber: props.account?.registeredNumber || "",
-//   taxId: props.account?.taxId || "",
-//   slug: props.account?.slug || "",
-//   domain: props.account?.domain || "",
-//   useSeparateDatabase: !!props.account?.database,
-// });
+const config = useConfig() as AppConfig;
 
-// const errors = ref<Record<string, string>>({});
+const accountsStore = useAccountsStore();
+const { createAccount } = accountsStore;
 
-// const subdomains = computed(() => config.subdomains);
-// const multiDatabase = computed(() => config.multiDatabase);
+const messages = useTranslations();
 
-// watch(
-//   () => formData.value.slug,
-//   (newSlug) => {
-//     if (!newSlug) {
-//       formData.value.useSeparateDatabase = false;
-//       formData.value.domain = "";
-//     }
-//   }
-// );
+const { t } = useI18n({ messages });
 
-// const validateForm = () => {
-//   errors.value = {};
+const formData = ref<Account>({} as Account);
 
-//   if (!formData.value.name) {
-//     errors.value.name = t("form.validations.name.required");
-//   } else if (formData.value.name.length > 255) {
-//     errors.value.name = t("form.validations.name.invalid");
-//   }
+onMounted(() => {
+  prepareComponent();
+});
 
-//   if (
-//     formData.value.registeredNumber &&
-//     formData.value.registeredNumber.length > 255
-//   ) {
-//     errors.value.registeredNumber = t(
-//       "form.validations.registeredNumber.invalid"
-//     );
-//   }
+function onCreateAccount() {
+  createAccount(formData.value, config.apiBaseUrl);
+}
 
-//   if (formData.value.taxId && formData.value.taxId.length > 255) {
-//     errors.value.taxId = t("form.validations.taxId.invalid");
-//   }
+function prepareComponent() {
+  formData.value =
+    props.account ||
+    ({
+      name: "",
+      individual: false,
+      registeredNumber: "",
+      taxId: "",
+      slug: "",
+      domain: "",
+    } as Account);
+}
 
-//   if (formData.value.slug) {
-//     const slugRegex = /^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/;
-//     if (!slugRegex.test(formData.value.slug)) {
-//       errors.value.slug = t("form.validations.slug.invalid");
-//     }
-//   }
-
-//   if (formData.value.domain) {
-//     const domainRegex = /^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/;
-//     if (!domainRegex.test(formData.value.domain)) {
-//       errors.value.domain = t("form.validations.domain.invalid");
-//     }
-//   }
-
-//   return Object.keys(errors.value).length === 0;
-// };
-
-// const handleSubmit = () => {
-//   if (validateForm()) {
-//     emit("submit", formData.value);
-//   }
-// };
-
-// const handleCancel = () => {
-//   emit("cancel");
-// };
+watch(
+  () => props.account,
+  () => {
+    prepareComponent();
+  },
+  { immediate: true },
+);
 </script>
 
-<style></style>
+<style lang="css">
+.account-form button {
+  width: 100%;
+}
+
+.account-form .form-actions.direction-vertical {
+  flex-direction: column-reverse;
+}
+</style>

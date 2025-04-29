@@ -1,23 +1,31 @@
-export interface Account {
-  id: string;
-  name: string;
-  registeredNumber?: string | null;
-  taxId?: string | null;
-  individual: boolean;
-  slug?: string | null;
+interface Account {
+  createdAt: number;
   database?: string | null;
   domain?: string | null;
-  createdAt: number;
+  id: string;
+  individual: boolean;
+  name: string;
+  registeredNumber?: string | null;
+  slug?: string | null;
+  taxId?: string | null;
   updatedAt: number;
 }
 
-export interface AccountInput {
-  name: string;
-  registeredNumber?: string | null;
-  taxId?: string | null;
-  individual: boolean;
-  slug?: string | null;
+interface Accounts {
+  data: Account[];
+  filteredCount: number;
+  totalCount: number;
+}
+
+interface AccountInput {
   database?: string | null;
   domain?: string | null;
+  individual: boolean;
+  name: string;
+  registeredNumber?: string | null;
+  slug?: string | null;
+  taxId?: string | null;
   useSeparateDatabase?: boolean;
 }
+
+export type { Account, Accounts, AccountInput };
