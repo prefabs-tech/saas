@@ -11,8 +11,6 @@ import { ACCOUNT_HEADER_NAME } from "@/constants";
 import { Account } from "@/types/account";
 import { SaasConfig } from "@/types/config";
 
-import ConfigProvider from "./ConfigProvider";
-
 export interface AccountsContextType {
   accounts: Array<Account> | null;
   activeAccount: Account | null;
@@ -213,9 +211,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         updateAccounts,
       }}
     >
-      {loading ? null : (
-        <ConfigProvider config={config}>{children}</ConfigProvider>
-      )}
+      {loading ? null : children}
     </accountsContext.Provider>
   );
 };

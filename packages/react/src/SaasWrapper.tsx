@@ -1,0 +1,71 @@
+import { useTranslation } from "@dzangolab/react-i18n";
+import { LoadingIcon, Page } from "@dzangolab/react-ui";
+import { useEffect, useState } from "react";
+
+import { SaasConfig } from "@/types";
+
+import { doesAccountExist } from "./api";
+import AccountsProvider from "./contexts/AccountsProvider";
+import ConfigProvider from "./contexts/ConfigProvider";
+
+type SaasWrapperProperties = {
+  config: SaasConfig;
+  userId?: string;
+  children: React.ReactNode;
+};
+
+export const SaasWrapper = ({
+  config,
+  userId,
+  children,
+}: SaasWrapperProperties) => {
+  const [t] = useTranslation("accounts");
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<any>(); // eslint-disable-line @typescript-eslint/no-explicit-any
+
+  useEffect(() => {
+    doesAccountExist({ apiBaseUrl: config.apiBaseUrl })
+      .then()
+      .catch((error) => {
+        setError(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <LoadingIcon />;
+  }
+
+  if (error) {
+    if (error.status === 404) {
+      return (
+        <Page
+          className="error"
+          title={t("unregisteredDomain.title")}
+          subtitle={t("unregisteredDomain.message")}
+          centered
+        ></Page>
+      );
+    } else {
+      return (
+        <Page
+          className="error"
+          title={t("error.title")}
+          subtitle={t("error.message")}
+          centered
+        ></Page>
+      );
+    }
+  }
+
+  return (
+    <ConfigProvider config={config}>
+      <AccountsProvider config={config} userId={userId}>
+        {children}
+      </AccountsProvider>
+    </ConfigProvider>
+  );
+};

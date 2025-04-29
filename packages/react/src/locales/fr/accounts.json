@@ -8,6 +8,10 @@
     "registeredNumber": "Registered number (fr)",
     "taxId": "Tax ID (fr)"
   },
+  "error": {
+    "message": "Please visit again later. If the problem persists, please contact support. (fr)",
+    "title": "Sorry, something went wrong. (fr)"
+  },
   "joinAccount": {
     "actions": {
       "accept": "Accept invitation (fr)",
@@ -132,7 +136,7 @@
   },
   "title": "My accounts (fr)",
   "unregisteredDomain": {
-    "subtitle": "Please contact admin for more details. (fr)",
-    "title": "Sorry, The domain is not registered. (fr)"
+    "message": "Please visit again later. If the problem persists, please contact support. (fr)",
+    "title": "Sorry, the subdomain or domain is not registered. (fr)"
   }
 }
