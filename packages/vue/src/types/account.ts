@@ -19,4 +19,5 @@ export interface AccountInput {
   slug?: string | null;
   database?: string | null;
   domain?: string | null;
+  useSeparateDatabase?: boolean;
 }
