@@ -1,5 +1,5 @@
 export type { Account, AccountInput } from "./account";
 
-export type { RouteOverride, RouteOverrides } from "./router";
-
 export type { SaasVuePluginOptions } from "./plugin";
+
+export type { SaasConfig } from "./config";

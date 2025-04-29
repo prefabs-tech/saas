@@ -1,17 +1,9 @@
 import type { RouteComponent } from "vue-router";
 
-interface RouteOverrides {
-  accounts?: RouteOverride;
-  accountsAdd?: RouteOverride;
-  accountsEdit?: RouteOverride;
-  accountsView?: RouteOverride;
-}
-
 interface RouteOverride {
   component?: RouteComponent;
   name?: string;
   path?: string;
-  disabled?: boolean;
   meta?: {
     layout?: RouteComponent;
     authenticated?: boolean;
@@ -27,4 +19,4 @@ interface AdminRoutesProperties {
   };
 }
 
-export type { RouteOverride, RouteOverrides, AdminRoutesProperties };
+export type { RouteOverride, AdminRoutesProperties };

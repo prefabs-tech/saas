@@ -1,7 +1,6 @@
 import { Router } from "vue-router";
 import { DEFAULT_PATHS } from "./constant";
 import type { RouteMeta, RouteRecordRaw } from "vue-router";
-import type { AdminRoutesProperties, RouteOverride } from "./types/router";
 
 // Import components
 import Accounts from "./views/Accounts/Index.vue";
@@ -18,6 +17,7 @@ const _routes = {
     name: "accounts",
     path: DEFAULT_PATHS.ACCOUNTS,
   } as RouteRecordRaw,
+
   accountsAdd: {
     meta: {
       authenticated: true,
@@ -26,6 +26,7 @@ const _routes = {
     name: "accountsAdd",
     path: DEFAULT_PATHS.ACCOUNTS_ADD,
   } as RouteRecordRaw,
+
   accountsEdit: {
     meta: {
       authenticated: true,
@@ -34,6 +35,7 @@ const _routes = {
     name: "accountsEdit",
     path: DEFAULT_PATHS.ACCOUNTS_EDIT,
   } as RouteRecordRaw,
+
   accountsView: {
     meta: {
       authenticated: true,
@@ -44,39 +46,15 @@ const _routes = {
   } as RouteRecordRaw,
 };
 
-const getRoute = (
-  defaultRoute: RouteRecordRaw,
-  override?: RouteOverride
-): RouteRecordRaw => {
-  return {
-    ...defaultRoute,
-    ...override,
-    meta: {
-      ...defaultRoute.meta,
-      ...override?.meta,
-    },
-  } as RouteRecordRaw;
+const addRoutes = (router: Router) => {
+  router.addRoute(_routes.accounts);
+  router.addRoute(_routes.accountsAdd);
+  router.addRoute(_routes.accountsEdit);
+  router.addRoute(_routes.accountsView);
 };
 
-const addRoutes = (router: Router, options?: AdminRoutesProperties) => {
-  const routes = options?.routes;
-
-  if (routes?.accounts && !routes.accounts.disabled) {
-    router.addRoute(getRoute(_routes.accounts, routes.accounts));
-  }
-  if (routes?.accountsAdd && !routes.accountsAdd.disabled) {
-    router.addRoute(getRoute(_routes.accountsAdd, routes.accountsAdd));
-  }
-  if (routes?.accountsEdit && !routes.accountsEdit.disabled) {
-    router.addRoute(getRoute(_routes.accountsEdit, routes.accountsEdit));
-  }
-  if (routes?.accountsView && !routes.accountsView.disabled) {
-    router.addRoute(getRoute(_routes.accountsView, routes.accountsView));
-  }
-};
-
-const updateRouter = (router: Router, options?: AdminRoutesProperties) => {
-  addRoutes(router, options);
+const updateRouter = (router: Router) => {
+  addRoutes(router);
 };
 
 export default updateRouter;
