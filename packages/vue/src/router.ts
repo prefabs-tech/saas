@@ -1,7 +1,7 @@
 import { Router } from "vue-router";
 import { DEFAULT_PATHS } from "./constant";
 import type { RouteMeta, RouteRecordRaw } from "vue-router";
-import type { AdminRoutesProperties, RouteOptions } from "./types/router";
+import type { AdminRoutesProperties, RouteOverride } from "./types/router";
 
 // Import components
 import Accounts from "./views/Accounts/Index.vue";
@@ -46,7 +46,7 @@ const _routes = {
 
 const getRoute = (
   defaultRoute: RouteRecordRaw,
-  override?: RouteOptions
+  override?: RouteOverride
 ): RouteRecordRaw => {
   return {
     ...defaultRoute,

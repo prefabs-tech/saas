@@ -1,13 +1,5 @@
 import type { RouteComponent } from "vue-router";
 
-interface RouteOverride {
-  component?: RouteComponent;
-  meta?: {
-    layout?: RouteComponent;
-  };
-  path?: string;
-}
-
 interface RouteOverrides {
   accounts?: RouteOverride;
   accountsAdd?: RouteOverride;
@@ -15,7 +7,7 @@ interface RouteOverrides {
   accountsView?: RouteOverride;
 }
 
-export interface RouteOptions {
+interface RouteOverride {
   component?: RouteComponent;
   name?: string;
   path?: string;
@@ -26,13 +18,13 @@ export interface RouteOptions {
   };
 }
 
-export interface AdminRoutesProperties {
+interface AdminRoutesProperties {
   routes?: {
-    accounts?: RouteOptions;
-    accountsAdd?: RouteOptions;
-    accountsEdit?: RouteOptions;
-    accountsView?: RouteOptions;
+    accounts?: RouteOverride;
+    accountsAdd?: RouteOverride;
+    accountsEdit?: RouteOverride;
+    accountsView?: RouteOverride;
   };
 }
 
-export type { RouteOverride, RouteOverrides };
+export type { RouteOverride, RouteOverrides, AdminRoutesProperties };
