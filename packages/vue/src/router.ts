@@ -4,8 +4,8 @@ import type { RouteMeta, RouteRecordRaw } from "vue-router";
 
 // Import components
 import Accounts from "./views/Accounts/Index.vue";
-import AccountAdd from "./views/Accounts/Customerform.vue";
-import AccountEdit from "./views/Accounts/Customerform.vue";
+import AccountAdd from "./views/Accounts/Add.vue";
+import AccountEdit from "./views/Accounts/Edit.vue";
 import AccountView from "./views/Accounts/View.vue";
 
 const _routes = {

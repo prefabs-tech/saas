@@ -77,12 +77,9 @@ const props = defineProps({
 defineEmits(["cancel", "submit"]);
 
 const config = useConfig() as AppConfig;
-
 const accountsStore = useAccountsStore();
 const { createAccount } = accountsStore;
-
 const messages = useTranslations();
-
 const { t } = useI18n({ messages });
 
 const formData = ref<Account>({} as Account);

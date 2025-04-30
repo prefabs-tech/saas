@@ -78,6 +78,10 @@ const actionMenuData = [
   },
 ];
 
+onMounted(async () => {
+  await fetchAccounts();
+});
+
 async function fetchAccounts() {
   const response = await getAccounts(config.apiBaseUrl);
   accounts.value = response.data;
@@ -107,8 +111,4 @@ const onCreateAccount = () => {
   account.value = undefined;
   router.push({ name: "accountsAdd" });
 };
-
-onMounted(async () => {
-  await fetchAccounts();
-});
 </script>

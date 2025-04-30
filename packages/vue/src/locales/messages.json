@@ -1,6 +1,8 @@
 {
   "en": {
     "accounts": {
+      "add": "Add Account",
+      "edit": "Edit Account",
       "form": {
         "actions": {
           "cancel": "Cancel",
@@ -37,6 +39,8 @@
   },
   "fr": {
     "accounts": {
+      "add": "Ajouter un compte",
+      "edit": "Modifier un compte",
       "form": {
         "actions": {
           "annuler": "Annuler",
