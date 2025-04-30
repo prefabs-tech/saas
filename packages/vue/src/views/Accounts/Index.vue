@@ -96,7 +96,7 @@ function onActionSelect(rowData: { action: string; data: Account }) {
 
 function onEditAccount(accountData: Account) {
   account.value = accountData;
-  router.push({ name: "accountsAdd", params: { id: accountData.id } });
+  router.push({ name: "accountsEdit", params: { id: accountData.id } });
 }
 
 function onDeleteAccount(account: Account) {

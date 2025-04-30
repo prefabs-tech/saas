@@ -46,7 +46,7 @@
             : t('accounts.form.actions.create')
         "
         :loading="loading"
-        flow-direction="vertical"
+        flow-direction="horizontal"
         @cancel="$emit('cancel')"
       />
     </Form>
