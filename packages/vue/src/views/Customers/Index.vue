@@ -4,7 +4,7 @@
       <ButtonElement
         :label="t('customers.table.actions.addCustomer')"
         icon-left="pi pi-plus"
-        @click="onCreateAccount"
+        @click="onCreateCustomer"
       />
     </template>
 
@@ -72,7 +72,7 @@ const columns: TableColumnDefinition<Account>[] = [
 const actionMenuData = [
   {
     key: "editCustomer",
-    label: t("customers.table.actions.updateCustomer"),
+    label: t("customers.table.actions.editCustomer"),
   },
   {
     class: "danger",
@@ -97,26 +97,26 @@ async function fetchAccounts() {
 
 function onActionSelect(rowData: { action: string; data: Account }) {
   switch (rowData.action) {
-    case "editAccount":
-      onEditAccount(rowData.data);
+    case "editCustomer":
+      onEditCustomer(rowData.data);
       break;
-    case "deleteAccount":
-      onDeleteAccount(rowData.data);
+    case "deleteCustomer":
+      onDeleteCustomer(rowData.data);
       break;
   }
 }
 
-function onEditAccount(accountData: Account) {
-  account.value = accountData;
-  router.push({ name: "accountsEdit", params: { id: accountData.id } });
+function onEditCustomer(customerData: Account) {
+  account.value = customerData;
+  router.push({ name: "customersEdit", params: { id: customerData.id } });
 }
 
-function onDeleteAccount(account: Account) {
-  deleteAccount(account.id, config.apiBaseUrl);
+function onDeleteCustomer(customerData: Account) {
+  deleteAccount(customerData.id, config.apiBaseUrl);
 }
 
-const onCreateAccount = () => {
+const onCreateCustomer = () => {
   account.value = undefined;
-  router.push({ name: "accountsAdd" });
+  router.push({ name: "customersAdd" });
 };
 </script>

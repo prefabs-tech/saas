@@ -3,54 +3,54 @@ import { DEFAULT_PATHS } from "./constant";
 import type { RouteMeta, RouteRecordRaw } from "vue-router";
 
 // Import components
-import Accounts from "./views/Accounts/Index.vue";
-import AccountAdd from "./views/Accounts/Add.vue";
-import AccountEdit from "./views/Accounts/Edit.vue";
-import AccountView from "./views/Accounts/View.vue";
+import Customers from "./views/Customers/Index.vue";
+import CustomerAdd from "./views/Customers/Add.vue";
+import CustomerEdit from "./views/Customers/Edit.vue";
+import CustomerView from "./views/Customers/View.vue";
 
 const _routes = {
-  accounts: {
+  customers: {
     meta: {
       authenticated: true,
     } as RouteMeta,
-    component: Accounts,
-    name: "accounts",
-    path: DEFAULT_PATHS.ACCOUNTS,
+    component: Customers,
+    name: "customers",
+    path: DEFAULT_PATHS.CUSTOMERS,
   } as RouteRecordRaw,
 
-  accountsAdd: {
+  customersAdd: {
     meta: {
       authenticated: true,
     } as RouteMeta,
-    component: AccountAdd,
-    name: "accountsAdd",
-    path: DEFAULT_PATHS.ACCOUNTS_ADD,
+    component: CustomerAdd,
+    name: "customersAdd",
+    path: DEFAULT_PATHS.CUSTOMERS_ADD,
   } as RouteRecordRaw,
 
-  accountsEdit: {
+  customersEdit: {
     meta: {
       authenticated: true,
     } as RouteMeta,
-    component: AccountEdit,
-    name: "accountsEdit",
-    path: DEFAULT_PATHS.ACCOUNTS_EDIT,
+    component: CustomerEdit,
+    name: "customersEdit",
+    path: DEFAULT_PATHS.CUSTOMERS_EDIT,
   } as RouteRecordRaw,
 
-  accountsView: {
+  customersView: {
     meta: {
       authenticated: true,
     } as RouteMeta,
-    component: AccountView,
-    name: "accountsView",
-    path: DEFAULT_PATHS.ACCOUNTS_VIEW,
+    component: CustomerView,
+    name: "customersView",
+    path: DEFAULT_PATHS.CUSTOMERS_VIEW,
   } as RouteRecordRaw,
 };
 
 const addRoutes = (router: Router) => {
-  router.addRoute(_routes.accounts);
-  router.addRoute(_routes.accountsAdd);
-  router.addRoute(_routes.accountsEdit);
-  router.addRoute(_routes.accountsView);
+  router.addRoute(_routes.customers);
+  router.addRoute(_routes.customersAdd);
+  router.addRoute(_routes.customersEdit);
+  router.addRoute(_routes.customersView);
 };
 
 const updateRouter = (router: Router) => {

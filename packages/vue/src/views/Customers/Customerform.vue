@@ -7,37 +7,55 @@
         name="name"
         type="text"
       />
+
+      <SwitchInput
+        v-model="formData.individual"
+        :label="t('customers.form.label.individual')"
+        name="individual"
+      />
+
       <Input
         v-model="formData.registeredNumber"
         :label="t('customers.form.label.registeredNumber')"
         name="registeredNumber"
         type="text"
       />
+
       <Input
         v-model="formData.taxId"
         :label="t('customers.form.label.taxId')"
         name="taxId"
         type="text"
       />
+
       <Input
         v-model="formData.slug"
         :label="t('customers.form.label.slug')"
         name="slug"
         type="text"
       />
+
       <Input
         v-model="formData.domain"
-        :disabled="!!account"
+        :disabled="isSlugEmpty"
         :label="t('customers.form.label.domain')"
         name="domain"
         type="text"
+      />
+
+      <SwitchInput
+        v-if="!isUpdateMode"
+        v-model="formData.useSeparateDatabase"
+        :disabled="isSlugEmpty"
+        :label="t('customers.form.label.useSeparateDatabase')"
+        name="useSeparateDatabase"
       />
 
       <FormActions
         alignment="filled"
         :cancel-label="t('customers.form.actions.cancel')"
         :submit-label="
-          !!account
+          isUpdateMode
             ? t('customers.form.actions.update')
             : t('customers.form.actions.create')
         "
@@ -51,14 +69,14 @@
 
 <script setup lang="ts">
 import { useConfig } from "@dzangolab/vue3-config";
-import { Form, FormActions, Input } from "@dzangolab/vue3-form";
+import { Form, FormActions, Input, SwitchInput } from "@dzangolab/vue3-form";
 import { useI18n } from "@dzangolab/vue3-i18n";
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, computed } from "vue";
 
 import { useTranslations } from "../../index";
 import useAccountsStore from "../../stores/accounts";
 
-import type { Account } from "../../types/account";
+import type { Account, AccountInput } from "../../types/account";
 import type { AppConfig } from "@dzangolab/vue3-config";
 import type { PropType } from "vue";
 
@@ -79,7 +97,10 @@ const { createAccount, updateAccount } = accountsStore;
 const messages = useTranslations();
 const { t } = useI18n({ messages });
 
-const formData = ref<Account>({} as Account);
+const formData = ref({} as AccountInput);
+
+const isUpdateMode = computed(() => !!props.account);
+const isSlugEmpty = computed(() => !formData.value.slug);
 
 onMounted(() => {
   prepareComponent();
@@ -102,13 +123,14 @@ function onSubmit() {
 }
 
 const prepareComponent = () => {
-  const defaultFormData: Partial<Account> = {
+  const defaultFormData: Partial<AccountInput> = {
     name: "",
     individual: false,
     registeredNumber: "",
     taxId: "",
     slug: "",
     domain: "",
+    useSeparateDatabase: false,
   };
 
   if (props.account) {
@@ -120,12 +142,13 @@ const prepareComponent = () => {
       taxId: props.account.taxId,
       slug: props.account.slug,
       domain: props.account.domain,
-    } as Account;
+    } as AccountInput;
   } else {
     formData.value = {
       ...defaultFormData,
-      individual: true,
-    } as Account;
+      individual: false,
+      useSeparateDatabase: false,
+    } as AccountInput;
   }
 };
 

@@ -18,6 +18,7 @@ interface Accounts {
 }
 
 interface AccountInput {
+  id?: string;
   database?: string | null;
   domain?: string | null;
   individual: boolean;

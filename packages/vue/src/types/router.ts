@@ -12,10 +12,10 @@ interface RouteOverride {
 
 interface AdminRoutesProperties {
   routes?: {
-    accounts?: RouteOverride;
-    accountsAdd?: RouteOverride;
-    accountsEdit?: RouteOverride;
-    accountsView?: RouteOverride;
+    customers?: RouteOverride;
+    customersAdd?: RouteOverride;
+    customersEdit?: RouteOverride;
+    customersView?: RouteOverride;
   };
 }
 

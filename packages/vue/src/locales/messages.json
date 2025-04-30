@@ -11,17 +11,19 @@
         },
         "label": {
           "domain": "Domain",
+          "individual": "Individual",
           "name": "Name",
           "registeredNumber": "Registered Number",
           "slug": "Slug",
-          "taxId": "Tax ID"
+          "taxId": "Tax ID",
+          "useSeparateDatabase": "Use Separate Database"
         }
       },
       "table": {
         "actions": {
           "addCustomer": "Add",
           "deleteCustomer": "Delete",
-          "updateCustomer": "Update"
+          "editCustomer": "Edit"
         },
         "columns": {
           "name": "Name",
@@ -50,23 +52,26 @@
           "mettre à jour": "Mettre à jour"
         },
         "label": {
-          "domaine": "Domaine",
+          "domain": "Domaine",
+          "individual": "Individuel",
           "nom": "Nom",
           "numéro d'enregistrement": "Numéro d'enregistrement",
           "slug": "Slug",
-          "taxId": "Numéro d'identification fiscale"
+          "taxId": "Numéro d'identification fiscale",
+          "useSeparateDatabase": "Utiliser une base de données distincte"
         }
       },
       "table": {
         "actions": {
           "addCustomer": "Ajouter un client",
           "deleteCustomer": "Supprimer le client",
-          "updateCustomer": "Mettre à jour le client"
+          "editCustomer": "Modifier le client"
         },
         "columns": {
           "name": "Nom",
           "registeredNumber": "Numéro d'enregistrement",
-          "taxId": "Numéro d'identification fiscale"
+          "taxId": "Numéro d'identification fiscale",
+          "useSeparateDatabase": "Utiliser une base de données distincte"
         },
         "confirmation": {
           "deleteCustomer": {
