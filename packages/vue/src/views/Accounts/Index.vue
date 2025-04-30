@@ -1,21 +1,21 @@
 <template>
-  <Page :title="t('accounts.title')">
+  <Page :title="t('customers.title')">
     <template #toolbar>
       <ButtonElement
-        :label="t('accounts.table.actions.addAccount')"
+        :label="t('customers.table.actions.addCustomer')"
         icon-left="pi pi-plus"
         @click="onCreateAccount"
       />
     </template>
 
     <Table
-      id="accounts-table"
+      id="customers-table"
       :columns-data="columns"
       :data="accounts"
       :data-action-menu="actionMenuData"
-      :empty-table-message="t('accounts.table.emptyMessage')"
+      :empty-table-message="t('customers.table.emptyMessage')"
       :paginated="false"
-      class="table-accounts"
+      class="table-customers"
       :is-loading="isLoading"
       is-server-table
       @action:select="onActionSelect"
@@ -57,31 +57,31 @@ const account = ref<Account | undefined>(undefined);
 const columns: TableColumnDefinition<Account>[] = [
   {
     accessorKey: "name",
-    header: t("accounts.table.columns.name"),
+    header: t("customers.table.columns.name"),
   },
   {
     accessorKey: "registeredNumber",
-    header: t("accounts.table.columns.registeredNumber"),
+    header: t("customers.table.columns.registeredNumber"),
   },
   {
     accessorKey: "taxId",
-    header: t("accounts.table.columns.taxId"),
+    header: t("customers.table.columns.taxId"),
   },
 ];
 
 const actionMenuData = [
   {
-    key: "editAccount",
-    label: t("accounts.table.actions.updateAccount"),
+    key: "editCustomer",
+    label: t("customers.table.actions.updateCustomer"),
   },
   {
     class: "danger",
     confirmationOptions: {
-      body: t("accounts.table.confirmation.deleteAccount.message"),
-      header: t("accounts.table.confirmation.deleteAccount.header"),
+      body: t("customers.table.confirmation.deleteCustomer.message"),
+      header: t("customers.table.confirmation.deleteCustomer.header"),
     },
-    key: "deleteAccount",
-    label: t("accounts.table.actions.deleteAccount"),
+    key: "deleteCustomer",
+    label: t("customers.table.actions.deleteCustomer"),
     requireConfirmationModal: true,
   },
 ];

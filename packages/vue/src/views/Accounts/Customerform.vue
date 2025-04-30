@@ -3,43 +3,43 @@
     <Form @submit="onSubmit">
       <Input
         v-model="formData.name"
-        :label="t('accounts.form.label.name')"
+        :label="t('customers.form.label.name')"
         name="name"
         type="text"
       />
       <Input
         v-model="formData.registeredNumber"
-        :label="t('accounts.form.label.registeredNumber')"
+        :label="t('customers.form.label.registeredNumber')"
         name="registeredNumber"
         type="text"
       />
       <Input
         v-model="formData.taxId"
-        :label="t('accounts.form.label.taxId')"
+        :label="t('customers.form.label.taxId')"
         name="taxId"
         type="text"
       />
       <Input
         v-model="formData.slug"
-        :label="t('accounts.form.label.slug')"
+        :label="t('customers.form.label.slug')"
         name="slug"
         type="text"
       />
       <Input
         v-model="formData.domain"
         :disabled="!!account"
-        :label="t('accounts.form.label.domain')"
+        :label="t('customers.form.label.domain')"
         name="domain"
         type="text"
       />
 
       <FormActions
         alignment="filled"
-        :cancel-label="t('accounts.form.actions.cancel')"
+        :cancel-label="t('customers.form.actions.cancel')"
         :submit-label="
           !!account
-            ? t('accounts.form.actions.update')
-            : t('accounts.form.actions.create')
+            ? t('customers.form.actions.update')
+            : t('customers.form.actions.create')
         "
         :loading="loading"
         flow-direction="horizontal"

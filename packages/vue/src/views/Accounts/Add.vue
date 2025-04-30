@@ -1,5 +1,5 @@
 <template>
-  <Page :title="t('accounts.add')">
+  <Page :title="t('customers.add')">
     <CustomerForm />
   </Page>
 </template>
