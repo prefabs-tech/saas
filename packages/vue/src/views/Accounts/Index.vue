@@ -59,6 +59,14 @@ const columns: TableColumnDefinition<Account>[] = [
     accessorKey: "name",
     header: t("accounts.table.columns.name"),
   },
+  {
+    accessorKey: "registeredNumber",
+    header: t("accounts.table.columns.registeredNumber"),
+  },
+  {
+    accessorKey: "taxId",
+    header: t("accounts.table.columns.taxId"),
+  },
 ];
 
 const actionMenuData = [

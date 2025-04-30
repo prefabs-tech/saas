@@ -24,7 +24,9 @@
           "updateAccount": "Update Account"
         },
         "columns": {
-          "name": "Name"
+          "name": "Name",
+          "registeredNumber": "Registered Number",
+          "taxId": "Tax ID"
         },
         "confirmation": {
           "deleteAccount": {
@@ -62,7 +64,9 @@
           "updateAccount": "Mettre à jour le compte"
         },
         "columns": {
-          "name": "Nom"
+          "name": "Nom",
+          "registeredNumber": "Numéro d'enregistrement",
+          "taxId": "Numéro d'identification fiscale"
         },
         "confirmation": {
           "deleteAccount": {

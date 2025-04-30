@@ -3,28 +3,24 @@
     <Form @submit="onSubmit">
       <Input
         v-model="formData.name"
-        :disabled="!!account"
         :label="t('accounts.form.label.name')"
         name="name"
         type="text"
       />
       <Input
         v-model="formData.registeredNumber"
-        :disabled="!!account"
         :label="t('accounts.form.label.registeredNumber')"
         name="registeredNumber"
         type="text"
       />
       <Input
         v-model="formData.taxId"
-        :disabled="!!account"
         :label="t('accounts.form.label.taxId')"
         name="taxId"
         type="text"
       />
       <Input
         v-model="formData.slug"
-        :disabled="!!account"
         :label="t('accounts.form.label.slug')"
         name="slug"
         type="text"
