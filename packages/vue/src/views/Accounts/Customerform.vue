@@ -1,6 +1,6 @@
 <template>
   <div class="account-form">
-    <Form @submit="onCreateAccount">
+    <Form @submit="onSubmit">
       <Input
         v-model="formData.name"
         :disabled="!!account"
@@ -71,6 +71,7 @@ const props = defineProps({
     default: undefined,
     type: Object as PropType<Account>,
   },
+
   loading: Boolean,
 });
 
@@ -78,7 +79,7 @@ defineEmits(["cancel", "submit"]);
 
 const config = useConfig() as AppConfig;
 const accountsStore = useAccountsStore();
-const { createAccount } = accountsStore;
+const { createAccount, updateAccount } = accountsStore;
 const messages = useTranslations();
 const { t } = useI18n({ messages });
 
@@ -92,18 +93,45 @@ function onCreateAccount() {
   createAccount(formData.value, config.apiBaseUrl);
 }
 
-function prepareComponent() {
-  formData.value =
-    props.account ||
-    ({
-      name: "",
-      individual: false,
-      registeredNumber: "",
-      taxId: "",
-      slug: "",
-      domain: "",
-    } as Account);
+function onUpdateAccount() {
+  updateAccount(props.account?.id as string, formData.value, config.apiBaseUrl);
 }
+
+function onSubmit() {
+  if (props.account && props.account.id) {
+    onUpdateAccount();
+  } else {
+    onCreateAccount();
+  }
+}
+
+const prepareComponent = () => {
+  const defaultFormData: Partial<Account> = {
+    name: "",
+    individual: false,
+    registeredNumber: "",
+    taxId: "",
+    slug: "",
+    domain: "",
+  };
+
+  if (props.account) {
+    formData.value = {
+      ...defaultFormData,
+      id: props.account.id,
+      name: props.account.name,
+      registeredNumber: props.account.registeredNumber,
+      taxId: props.account.taxId,
+      slug: props.account.slug,
+      domain: props.account.domain,
+    } as Account;
+  } else {
+    formData.value = {
+      ...defaultFormData,
+      individual: true,
+    } as Account;
+  }
+};
 
 watch(
   () => props.account,
