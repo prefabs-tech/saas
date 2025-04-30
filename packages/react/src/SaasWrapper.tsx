@@ -7,6 +7,7 @@ import { SaasConfig } from "@/types";
 import { doesAccountExist } from "./api";
 import AccountsProvider from "./contexts/AccountsProvider";
 import ConfigProvider from "./contexts/ConfigProvider";
+import { checkIsAdminApp } from "./utils/common";
 
 type SaasWrapperProperties = {
   config: SaasConfig;
@@ -34,6 +35,8 @@ export const SaasWrapper = ({
         setLoading(false);
       });
   }, []);
+
+  const isAdminApp = checkIsAdminApp();
 
   if (loading) {
     return <LoadingIcon />;
@@ -63,9 +66,13 @@ export const SaasWrapper = ({
 
   return (
     <ConfigProvider config={config}>
-      <AccountsProvider config={config} userId={userId}>
-        {children}
-      </AccountsProvider>
+      {isAdminApp ? (
+        children
+      ) : (
+        <AccountsProvider config={config} userId={userId}>
+          {children}
+        </AccountsProvider>
+      )}
     </ConfigProvider>
   );
 };
