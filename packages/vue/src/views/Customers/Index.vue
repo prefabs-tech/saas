@@ -1,25 +1,24 @@
 <template>
   <Page :title="t('customers.title')">
-    <template #toolbar>
-      <ButtonElement
-        :label="t('customers.table.actions.addCustomer')"
-        icon-left="pi pi-plus"
-        @click="onCreateCustomer"
-      />
-    </template>
-
     <Table
       id="customers-table"
       :columns-data="columns"
       :data="accounts"
       :data-action-menu="actionMenuData"
       :empty-table-message="t('customers.table.emptyMessage')"
-      :paginated="false"
-      class="table-customers"
       :is-loading="isLoading"
       is-server-table
+      class="table-customers"
       @action:select="onActionSelect"
-    />
+    >
+      <template #toolbar>
+        <ButtonElement
+          :label="t('customers.table.actions.addCustomer')"
+          icon-left="pi pi-plus"
+          @click="onCreateCustomer"
+        />
+      </template>
+    </Table>
   </Page>
 </template>
 
