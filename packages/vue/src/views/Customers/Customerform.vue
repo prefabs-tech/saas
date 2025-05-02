@@ -89,7 +89,7 @@ const props = defineProps({
   loading: Boolean,
 });
 
-defineEmits(["cancel", "submit"]);
+const emit = defineEmits(["cancel", "submit"]);
 
 const config = useConfig() as AppConfig;
 const accountsStore = useAccountsStore();
@@ -120,6 +120,8 @@ function onSubmit() {
   } else {
     onCreateAccount();
   }
+
+  emit("submit");
 }
 
 const prepareComponent = () => {
@@ -135,7 +137,6 @@ const prepareComponent = () => {
 
   if (props.account) {
     formData.value = {
-      ...defaultFormData,
       id: props.account.id,
       name: props.account.name,
       registeredNumber: props.account.registeredNumber,
