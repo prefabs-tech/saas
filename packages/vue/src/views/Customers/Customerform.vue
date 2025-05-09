@@ -210,13 +210,3 @@ watch(
   { immediate: true },
 );
 </script>
-
-<style lang="css">
-.account-form button {
-  width: 100%;
-}
-
-.account-form .form-actions.direction-vertical {
-  flex-direction: column-reverse;
-}
-</style>
