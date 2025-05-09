@@ -45,7 +45,7 @@
         :label="t('customers.form.label.domain')"
         name="domain"
         type="text"
-        :schema="domainSchema"
+        :schema="domainSchema as z.ZodType"
       />
 
       <SwitchInput
@@ -103,10 +103,26 @@ const { createAccount, updateAccount } = accountsStore;
 const messages = useTranslations();
 const { t } = useI18n({ messages });
 
-const formData = ref({} as AccountInput);
+const formData = ref<AccountInput>({} as AccountInput);
 
-const isUpdateMode = computed(() => !!props.account);
-const isSlugEmpty = computed(() => !formData.value.slug);
+const isUpdateMode = computed(() => Boolean(props.account));
+const isSlugEmpty = computed(() => {
+  const slug = formData.value.slug;
+  return !slug || !/^[a-zA-Z0-9]+$/.test(slug);
+});
+
+const domainSchema = computed(() => {
+  if (isSlugEmpty.value) {
+    return z.string().optional();
+  }
+
+  return z
+    .string()
+    .max(255)
+    .regex(/^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/, {
+      message: t("customers.form.validations.domain.invalid"),
+    });
+});
 
 const nameSchema = z
   .string()
@@ -117,22 +133,13 @@ const registeredNumberSchema = z.string().max(255, {
   message: t("customers.form.validations.registeredNumber.invalid"),
 });
 
+const slugSchema = z.string().regex(/^$|^[a-zA-Z0-9]+$/, {
+  message: t("customers.form.validations.slug.invalid"),
+});
+
 const taxIdSchema = z
   .string()
   .max(255, { message: t("customers.form.validations.taxId.invalid") });
-
-const slugSchema = z
-  .string()
-  .regex(/^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/, {
-    message: t("customers.form.validations.slug.invalid"),
-  });
-
-const domainSchema = z
-  .string()
-  .max(255)
-  .regex(/^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/, {
-    message: t("customers.form.validations.domain.invalid"),
-  });
 
 onMounted(() => {
   prepareComponent();
@@ -189,6 +196,16 @@ watch(
   () => props.account,
   () => {
     prepareComponent();
+  },
+  { immediate: true },
+);
+
+watch(
+  () => formData.value.slug,
+  () => {
+    if (isSlugEmpty.value) {
+      formData.value.domain = "";
+    }
   },
   { immediate: true },
 );

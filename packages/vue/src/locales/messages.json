@@ -17,6 +17,24 @@
           "slug": "Slug",
           "taxId": "Tax ID",
           "useSeparateDatabase": "Use Separate Database"
+        },
+        "validations": {
+          "domain": {
+            "invalid": "Invalid domain format"
+          },
+          "name": {
+            "required": "Name is required",
+            "invalid": "Name must be less than 255 characters"
+          },
+          "registeredNumber": {
+            "invalid": "Registered number must be less than 255 characters"
+          },
+          "slug": {
+            "invalid": "Slug must contain only alphanumeric characters"
+          },
+          "taxId": {
+            "invalid": "Tax ID must be less than 255 characters"
+          }
         }
       },
       "table": {
@@ -59,6 +77,24 @@
           "slug": "Slug",
           "taxId": "Numéro d'identification fiscale",
           "useSeparateDatabase": "Utiliser une base de données distincte"
+        },
+        "validations": {
+          "domain": {
+            "invalid": "Format de domaine invalide"
+          },
+          "name": {
+            "required": "Le nom est requis",
+            "invalid": "Le nom doit contenir moins de 255 caractères"
+          },
+          "registeredNumber": {
+            "invalid": "Le numéro d'enregistrement doit contenir moins de 255 caractères"
+          },
+          "slug": {
+            "invalid": "Le slug doit contenir uniquement des caractères alphanumériques"
+          },
+          "taxId": {
+            "invalid": "Le numéro d'identification fiscale doit contenir moins de 255 caractères"
+          }
         }
       },
       "table": {
