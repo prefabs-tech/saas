@@ -6,6 +6,7 @@
         :label="t('customers.form.label.name')"
         name="name"
         type="text"
+        :schema="nameSchema"
       />
 
       <SwitchInput
@@ -19,6 +20,7 @@
         :label="t('customers.form.label.registeredNumber')"
         name="registeredNumber"
         type="text"
+        :schema="registeredNumberSchema"
       />
 
       <Input
@@ -26,6 +28,7 @@
         :label="t('customers.form.label.taxId')"
         name="taxId"
         type="text"
+        :schema="taxIdSchema"
       />
 
       <Input
@@ -33,6 +36,7 @@
         :label="t('customers.form.label.slug')"
         name="slug"
         type="text"
+        :schema="slugSchema"
       />
 
       <Input
@@ -41,6 +45,7 @@
         :label="t('customers.form.label.domain')"
         name="domain"
         type="text"
+        :schema="domainSchema"
       />
 
       <SwitchInput
@@ -72,6 +77,7 @@ import { useConfig } from "@dzangolab/vue3-config";
 import { Form, FormActions, Input, SwitchInput } from "@dzangolab/vue3-form";
 import { useI18n } from "@dzangolab/vue3-i18n";
 import { ref, watch, onMounted, computed } from "vue";
+import { z } from "zod";
 
 import { useTranslations } from "../../index";
 import useAccountsStore from "../../stores/accounts";
@@ -101,6 +107,32 @@ const formData = ref({} as AccountInput);
 
 const isUpdateMode = computed(() => !!props.account);
 const isSlugEmpty = computed(() => !formData.value.slug);
+
+const nameSchema = z
+  .string()
+  .min(1, { message: t("customers.form.validations.name.required") })
+  .max(255, { message: t("customers.form.validations.name.invalid") });
+
+const registeredNumberSchema = z.string().max(255, {
+  message: t("customers.form.validations.registeredNumber.invalid"),
+});
+
+const taxIdSchema = z
+  .string()
+  .max(255, { message: t("customers.form.validations.taxId.invalid") });
+
+const slugSchema = z
+  .string()
+  .regex(/^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/, {
+    message: t("customers.form.validations.slug.invalid"),
+  });
+
+const domainSchema = z
+  .string()
+  .max(255)
+  .regex(/^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/, {
+    message: t("customers.form.validations.domain.invalid"),
+  });
 
 onMounted(() => {
   prepareComponent();

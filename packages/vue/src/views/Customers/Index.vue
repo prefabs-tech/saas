@@ -7,7 +7,6 @@
       :data-action-menu="actionMenuData"
       :empty-table-message="t('customers.table.emptyMessage')"
       :is-loading="isLoading"
-      is-server-table
       class="table-customers"
       @action:select="onActionSelect"
     >
@@ -56,6 +55,9 @@ const account = ref<Account | undefined>(undefined);
 const columns: TableColumnDefinition<Account>[] = [
   {
     accessorKey: "name",
+    enableColumnFilter: true,
+    enableSorting: true,
+    filterPlaceholder: "Search by name...",
     header: t("customers.table.columns.name"),
   },
   {
