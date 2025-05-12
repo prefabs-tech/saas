@@ -1,14 +1,28 @@
 <template>
-  <Page :title="account.name">
+  <Page
+    v-if="account && account.id"
+    :title="account.name"
+    class="customer-view"
+  >
     <TabbedPanel>
-      <div :title="t('customers.view.info')">
-        <div>
-          <span>{{ account.name }}</span>
-        </div>
+      <div :title="t('customers.view.info')" class="customer-info">
+        <template v-if="!account.individual">
+          <Data caption="Name" :value="account.name" />
+          <Data
+            caption="Registered number"
+            :value="account.registeredNumber || '-'"
+          />
+          <Data caption="Tax ID" :value="account.taxId || '-'" />
+        </template>
+
+        <Data caption="Slug" :value="account.slug || '-'" />
+        <Data caption="Domain" :value="account.domain || '-'" />
+        <Data caption="Database" :value="account.database || '-'" />
       </div>
-      <div :title="t('customers.view.users')">
-        <div>
-          <span>Users</span>
+
+      <div :title="t('customers.view.users')" class="customer-users">
+        <div class="users-content">
+          <span>{{ t("customers.view.users") }}</span>
         </div>
       </div>
     </TabbedPanel>
@@ -18,7 +32,7 @@
 <script setup lang="ts">
 import { useConfig } from "@dzangolab/vue3-config";
 import { useI18n } from "@dzangolab/vue3-i18n";
-import { TabbedPanel } from "@dzangolab/vue3-ui";
+import { Data, TabbedPanel } from "@dzangolab/vue3-ui";
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 
@@ -49,3 +63,16 @@ async function prepareComponent() {
   account.value = response;
 }
 </script>
+
+<style lang="css">
+.customer-info {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  padding: 1rem;
+}
+
+.customer-info .tabbed-panel ul[role="tablist"] {
+  justify-self: unset !important;
+}
+</style>

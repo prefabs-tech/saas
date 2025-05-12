@@ -26,7 +26,7 @@ import { useConfig } from "@dzangolab/vue3-config";
 import { useI18n } from "@dzangolab/vue3-i18n";
 import { Table } from "@dzangolab/vue3-tanstack-table";
 import { ButtonElement } from "@dzangolab/vue3-ui";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, h } from "vue";
 import { useRouter } from "vue-router";
 
 import { useTranslations } from "../../index";
@@ -59,6 +59,27 @@ const columns: TableColumnDefinition<Account>[] = [
     enableSorting: true,
     filterPlaceholder: "Search by name...",
     header: t("customers.table.columns.name"),
+    cell: ({ row: { original } }) =>
+      h(
+        "div",
+        {
+          class: "cell-name",
+        },
+        [
+          h(
+            "a",
+            {
+              href: `/customers/${original.id}`,
+              class: "customer-link",
+              onClick: (event: Event) => {
+                event.preventDefault();
+                router.push(`/customers/${original.id}`);
+              },
+            },
+            original.name,
+          ),
+        ],
+      ),
   },
   {
     accessorKey: "registeredNumber",

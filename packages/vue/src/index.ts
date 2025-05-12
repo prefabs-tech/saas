@@ -1,6 +1,6 @@
 import type { App, Plugin } from "vue";
 import type { LocaleMessages, VueMessageType } from "@dzangolab/vue3-i18n";
-import type { SaasVuePluginOptions } from "./types";
+import type { SaasConfig, SaasVuePluginOptions } from "./types";
 import updateRouter from "./router";
 
 import { prependMessages } from "@dzangolab/vue3-i18n";
