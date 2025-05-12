@@ -56,7 +56,11 @@
         },
         "emptyMessage": "No customers found"
       },
-      "title": "Customers"
+      "title": "Customers",
+      "view": {
+        "info": "Info",
+        "users": "Users"
+      }
     }
   },
   "fr": {
@@ -117,7 +121,11 @@
         },
         "emptyMessage": "Aucun client trouvé"
       },
-      "title": "Clients"
+      "title": "Clients",
+      "view": {
+        "info": "Infos",
+        "users": "Utilisateurs"
+      }
     }
   }
 }
