@@ -8,7 +8,7 @@
 import { useI18n } from "@dzangolab/vue3-i18n";
 import { useRouter } from "vue-router";
 
-import CustomerForm from "./Customerform.vue";
+import CustomerForm from "./_components/Customerform.vue";
 import { useTranslations } from "../../index";
 
 const messages = useTranslations();

@@ -10,6 +10,7 @@ export type SaasConfig = {
   };
   apiBaseUrl: string;
   mainAppSubdomain: string;
+  entity: "both" | "individual" | "organization";
   rootDomain: string;
   multiDatabase: boolean;
   saasAccountRoles?: string[];

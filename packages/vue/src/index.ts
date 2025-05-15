@@ -15,10 +15,6 @@ const plugin: Plugin = {
   install: (app: App, options: SaasVuePluginOptions): void => {
     updateRouter(options.router);
 
-    console.log("===========OPTIONS===========");
-    console.log(options);
-    console.log("===========OPTIONS===========");
-
     app.provide(__saasConfig, options.saasConfig);
 
     const translations = options?.translations

@@ -10,7 +10,7 @@ import { useI18n } from "@dzangolab/vue3-i18n";
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import CustomerForm from "./Customerform.vue";
+import CustomerForm from "./_components/Customerform.vue";
 import { useTranslations } from "../../index";
 import useAccountsStore from "../../stores/accounts";
 
