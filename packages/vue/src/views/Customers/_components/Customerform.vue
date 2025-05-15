@@ -1,5 +1,5 @@
 <template>
-  <div class="account-form">
+  <div class="customer-form">
     <Form @submit="onSubmit">
       <Input
         v-model="formData.name"
@@ -63,7 +63,7 @@
       </template>
 
       <FormActions
-        alignment="fill"
+        alignment="filled"
         :cancel-label="t('customers.form.actions.cancel')"
         :submit-label="
           isUpdateMode
@@ -71,6 +71,7 @@
             : t('customers.form.actions.create')
         "
         :loading="loading"
+        flow-direction="horizontal"
         @cancel="$emit('cancel')"
       />
     </Form>
@@ -151,13 +152,17 @@ const onSubmit = async () => {
 </script>
 
 <style lang="css">
-.account-form {
+.customer-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.account-form .form-actions {
+.customer-form .form-actions {
   margin-top: 1rem;
+}
+
+.customer-form .form-actions.direction-horizontal {
+  flex-direction: row-reverse;
 }
 </style>
