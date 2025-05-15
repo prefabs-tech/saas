@@ -4,7 +4,7 @@ import type { Router } from "vue-router";
 import type { SaasConfig } from "./config";
 
 interface SaasVuePluginOptions {
-  config: SaasConfig;
+  saasConfig: SaasConfig;
   notification?: (message: object | string | unknown) => void;
   pinia: Pinia;
   router: Router;

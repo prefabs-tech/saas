@@ -9,6 +9,14 @@
           "create": "Create",
           "update": "Update"
         },
+        "fields": {
+          "name": "Name",
+          "registeredNumber": "Registered Number",
+          "taxId": "Tax ID",
+          "slug": "Slug",
+          "domain": "Domain",
+          "database": "Database"
+        },
         "label": {
           "domain": "Domain",
           "individual": "Individual",
@@ -72,6 +80,14 @@
           "annuler": "Annuler",
           "créer": "Créer",
           "mettre à jour": "Mettre à jour"
+        },
+        "fields": {
+          "name": "Nom",
+          "registeredNumber": "Numéro d'enregistrement",
+          "taxId": "Numéro d'identification fiscale",
+          "slug": "Slug",
+          "domain": "Domaine",
+          "database": "Base de données"
         },
         "label": {
           "domain": "Domaine",
