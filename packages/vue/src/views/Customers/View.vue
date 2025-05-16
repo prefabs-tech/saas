@@ -48,6 +48,14 @@
           <span>{{ t("customers.view.users") }}</span>
         </div>
       </div>
+      <div
+        :title="t('customers.view.invitations')"
+        class="customer-invitations"
+      >
+        <div class="invitations-content">
+          <Invitations />
+        </div>
+      </div>
     </TabbedPanel>
   </Page>
 </template>
@@ -61,6 +69,7 @@ import { useRoute } from "vue-router";
 
 import { useTranslations } from "../../index";
 import useAccountsStore from "../../stores/accounts";
+import Invitations from "../Invitations/_components/Invitations.vue";
 
 import type { Account } from "../../types/account";
 import type { SaasConfig } from "../../types/config";

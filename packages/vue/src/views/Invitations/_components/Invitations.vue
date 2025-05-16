@@ -1,0 +1,197 @@
+<template>
+  <Table
+    id="invitations-table"
+    :columns-data="columns"
+    :data="invitations"
+    :data-action-menu="actionMenuData"
+    :empty-table-message="t('invitations.table.emptyMessage')"
+    :is-loading="isLoading"
+    class="table-invitations"
+    @action:select="onActionSelect"
+  >
+    <template #toolbar>
+      <ButtonElement
+        :label="t('invitations.table.actions.addInvitation')"
+        icon-left="pi pi-plus"
+        @click="showInvitationModal = true"
+      />
+    </template>
+  </Table>
+
+  <InvitationModal
+    v-if="showInvitationModal"
+    :show="showInvitationModal"
+    @close="showInvitationModal = false"
+    @created="handleInvitationCreated"
+  />
+</template>
+
+<script setup lang="ts">
+import { useConfig } from "@dzangolab/vue3-config";
+import { useI18n } from "@dzangolab/vue3-i18n";
+import { Table } from "@dzangolab/vue3-tanstack-table";
+import { ButtonElement } from "@dzangolab/vue3-ui";
+import { ref, onMounted, h } from "vue";
+import { useRoute } from "vue-router";
+
+import InvitationModal from "./InvitationModal.vue";
+import { useTranslations } from "../../../index";
+import useInvitationStore from "../../../stores/invitation";
+
+import type { AccountInvitation } from "../../../types/accountInvitation";
+import type { AppConfig } from "@dzangolab/vue3-config";
+import type { TableColumnDefinition } from "@dzangolab/vue3-tanstack-table";
+
+defineProps({
+  isLoading: Boolean,
+});
+
+const config = useConfig() as AppConfig;
+const messages = useTranslations();
+const { t } = useI18n({ messages });
+const invitationStore = useInvitationStore();
+const { getInvitations } = invitationStore;
+const route = useRoute();
+
+const accountId = route.params.id as string;
+
+const actionMenuData = [
+  {
+    key: "resendInvitation",
+    label: t("invitations.table.actions.resendInvitation"),
+    show: (row: AccountInvitation) => !row.acceptedAt && !row.revokedAt,
+  },
+  {
+    key: "revokeInvitation",
+    label: t("invitations.table.actions.revokeInvitation"),
+    show: (row: AccountInvitation) => !row.acceptedAt && !row.revokedAt,
+  },
+  {
+    class: "danger",
+    confirmationOptions: {
+      body: t("invitations.table.confirmation.deleteInvitation.message"),
+      header: t("invitations.table.confirmation.deleteInvitation.header"),
+    },
+    key: "deleteInvitation",
+    label: t("invitations.table.actions.deleteInvitation"),
+    requireConfirmationModal: true,
+  },
+];
+
+const columns: TableColumnDefinition<AccountInvitation>[] = [
+  {
+    accessorKey: "email",
+    enableColumnFilter: true,
+    enableSorting: true,
+    filterPlaceholder: t("invitations.table.filter.email"),
+    header: t("invitations.table.columns.email"),
+  },
+  {
+    accessorKey: "role",
+    header: t("invitations.table.columns.role"),
+  },
+  {
+    accessorKey: "status",
+    header: t("invitations.table.columns.status"),
+    cell: ({ row: { original } }) =>
+      h(
+        "span",
+        {
+          class: {
+            "badge badge-success": original.acceptedAt,
+            "badge badge-warning": !original.acceptedAt && !original.revokedAt,
+            "badge badge-error": original.revokedAt,
+          },
+        },
+        original.acceptedAt
+          ? t("invitations.table.status.accepted")
+          : original.revokedAt
+            ? t("invitations.table.status.revoked")
+            : t("invitations.table.status.pending")
+      ),
+  },
+  {
+    accessorKey: "expiresAt",
+    header: t("invitations.table.columns.expiresAt"),
+    cell: ({ row: { original } }) =>
+      new Date(original.expiresAt).toLocaleDateString(),
+  },
+  {
+    accessorKey: "createdAt",
+    header: t("invitations.table.columns.createdAt"),
+    cell: ({ row: { original } }) =>
+      new Date(original.createdAt).toLocaleDateString(),
+  },
+];
+
+// Refs
+const invitations = ref<AccountInvitation[]>([]);
+const showInvitationModal = ref(false);
+
+// Functions
+async function fetchInvitations() {
+  try {
+    const response = await getInvitations(accountId, config.apiBaseUrl);
+    invitations.value = response;
+  } catch (error) {
+    console.error("Failed to fetch invitations:", error);
+  }
+}
+
+async function handleDelete(invitation: AccountInvitation) {
+  try {
+    console.log("handleDelete", invitation);
+    // TODO: Implement API call to delete invitation
+    // await api.deleteAccountInvitation(invitation.id)
+    await fetchInvitations();
+  } catch (error) {
+    console.error("Failed to delete invitation:", error);
+  }
+}
+
+const handleInvitationCreated = async () => {
+  showInvitationModal.value = false;
+  await fetchInvitations();
+};
+
+async function handleResend(invitation: AccountInvitation) {
+  try {
+    console.log("handleResend", invitation);
+    // TODO: Implement API call to resend invitation
+    // await api.resendAccountInvitation(invitation.id)
+    await fetchInvitations();
+  } catch (error) {
+    console.error("Failed to resend invitation:", error);
+  }
+}
+
+async function handleRevoke(invitation: AccountInvitation) {
+  try {
+    console.log("handleRevoke", invitation);
+    // TODO: Implement API call to revoke invitation
+    // await api.revokeAccountInvitation(invitation.id)
+    await fetchInvitations();
+  } catch (error) {
+    console.error("Failed to revoke invitation:", error);
+  }
+}
+
+function onActionSelect(rowData: { action: string; data: AccountInvitation }) {
+  switch (rowData.action) {
+    case "resendInvitation":
+      handleResend(rowData.data);
+      break;
+    case "revokeInvitation":
+      handleRevoke(rowData.data);
+      break;
+    case "deleteInvitation":
+      handleDelete(rowData.data);
+      break;
+  }
+}
+
+// Lifecycle hooks
+onMounted(async () => {
+  await fetchInvitations();
+});
+</script>
