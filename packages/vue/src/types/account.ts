@@ -29,4 +29,23 @@ interface AccountInput {
   useSeparateDatabase?: boolean;
 }
 
-export type { Account, Accounts, AccountInput };
+interface User {
+  id: string;
+  email: string;
+  timeJoined: number;
+  disabled?: boolean;
+  givenName: string | null;
+  isEmailVerified?: boolean;
+  isProfileCompleted?: boolean;
+  lastLoginAt: number;
+  middleNames: string | null;
+  roles: string[];
+  signedUpAt: number;
+  surname: string | null;
+  thirdParty?: {
+    id: string;
+    userId: string;
+  };
+}
+
+export type { Account, Accounts, AccountInput, User };
