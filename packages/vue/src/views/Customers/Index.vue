@@ -76,9 +76,9 @@ const columns: TableColumnDefinition<Account>[] = [
                 router.push(`/customers/${original.id}`);
               },
             },
-            original.name,
+            original.name
           ),
-        ],
+        ]
       ),
   },
   {

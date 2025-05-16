@@ -159,10 +159,11 @@ const onSubmit = async () => {
         slug: formData.value.slug,
         taxId: formData.value.taxId,
       } as AccountInput;
+
       await updateAccount(
         props.account.id,
         updateDataPayload,
-        config.apiBaseUrl,
+        config.apiBaseUrl
       );
     } else {
       await createAccount(formData.value, config.apiBaseUrl);
@@ -178,10 +179,10 @@ watch(
   () => formData.value.individual,
   (newValue: boolean) => {
     if (newValue) {
-      formData.value.registeredNumber = undefined;
-      formData.value.taxId = undefined;
+      formData.value.registeredNumber = "";
+      formData.value.taxId = "";
     }
-  },
+  }
 );
 
 watch(
@@ -195,7 +196,7 @@ watch(
       formData.value.taxId = newValue.taxId ?? undefined;
     }
   },
-  { immediate: true },
+  { immediate: true }
 );
 </script>
 
