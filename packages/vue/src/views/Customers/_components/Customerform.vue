@@ -17,7 +17,7 @@
         />
       </template>
 
-      <template v-if="!formData.individual">
+      <template v-if="shouldShowOrganizationFields">
         <Input
           v-model="formData.registeredNumber"
           :label="t('customers.form.label.registeredNumber')"
@@ -82,7 +82,7 @@
 import { useConfig } from "@dzangolab/vue3-config";
 import { Form, FormActions, Input, SwitchInput } from "@dzangolab/vue3-form";
 import { useI18n } from "@dzangolab/vue3-i18n";
-import { ref, computed, inject } from "vue";
+import { ref, computed, inject, watch } from "vue";
 
 import { useTranslations } from "../../../index";
 import useAccountsStore from "../../../stores/accounts";
@@ -97,6 +97,7 @@ const props = defineProps({
     default: undefined,
     type: Object as PropType<Account>,
   },
+
   loading: Boolean,
 });
 
@@ -134,12 +135,35 @@ const formData = ref<AccountInput>({
 
 const isUpdateMode = computed(() => Boolean(props.account));
 
+const shouldShowOrganizationFields = computed(() => {
+  if (saasConfig.entity === "organization") {
+    return true;
+  }
+
+  if (saasConfig.entity === "both") {
+    return !formData.value.individual;
+  }
+
+  return false;
+});
+
 const slugSchema = computed(() => createSlugSchema(saasConfig));
 
 const onSubmit = async () => {
   try {
     if (isUpdateMode.value && props.account?.id) {
-      await updateAccount(props.account.id, formData.value, config.apiBaseUrl);
+      const updateDataPayload = {
+        domain: formData.value.domain,
+        name: formData.value.name,
+        registeredNumber: formData.value.registeredNumber,
+        slug: formData.value.slug,
+        taxId: formData.value.taxId,
+      } as AccountInput;
+      await updateAccount(
+        props.account.id,
+        updateDataPayload,
+        config.apiBaseUrl,
+      );
     } else {
       await createAccount(formData.value, config.apiBaseUrl);
     }
@@ -149,6 +173,30 @@ const onSubmit = async () => {
     console.error("Form submission error:", error);
   }
 };
+
+watch(
+  () => formData.value.individual,
+  (newValue: boolean) => {
+    if (newValue) {
+      formData.value.registeredNumber = undefined;
+      formData.value.taxId = undefined;
+    }
+  },
+);
+
+watch(
+  () => props.account,
+  (newValue: Account | undefined) => {
+    if (newValue) {
+      formData.value.domain = newValue.domain ?? undefined;
+      formData.value.name = newValue.name;
+      formData.value.registeredNumber = newValue.registeredNumber ?? undefined;
+      formData.value.slug = newValue.slug ?? undefined;
+      formData.value.taxId = newValue.taxId ?? undefined;
+    }
+  },
+  { immediate: true },
+);
 </script>
 
 <style lang="css">
