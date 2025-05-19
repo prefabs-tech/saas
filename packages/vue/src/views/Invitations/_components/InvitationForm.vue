@@ -50,7 +50,7 @@ const emit = defineEmits(["cancel", "submit"]);
 // const config = useConfig();
 const messages = useTranslations();
 const saasConfig = inject<SaasConfig>(Symbol.for("saas.config"));
-const { t } = useI18n({ messages });
+const { t } = useI18n({ messages, locale: "en" });
 
 if (!saasConfig) {
   throw new Error("SAAS config not provided");

@@ -4,14 +4,14 @@
     :columns-data="columns"
     :data="invitations"
     :data-action-menu="actionMenuData"
-    :empty-table-message="t('invitations.table.emptyMessage')"
+    :empty-table-message="t('customers.invitations.table.emptyMessage')"
     :is-loading="isLoading"
     class="table-invitations"
     @action:select="onActionSelect"
   >
     <template #toolbar>
       <ButtonElement
-        :label="t('invitations.table.actions.addInvitation')"
+        :label="t('customers.invitations.table.actions.addInvitation')"
         icon-left="pi pi-plus"
         @click="showInvitationModal = true"
       />
@@ -58,22 +58,26 @@ const accountId = route.params.id as string;
 const actionMenuData = [
   {
     key: "resendInvitation",
-    label: t("invitations.table.actions.resendInvitation"),
+    label: t("customers.invitations.table.actions.resendInvitation"),
     show: (row: AccountInvitation) => !row.acceptedAt && !row.revokedAt,
   },
   {
     key: "revokeInvitation",
-    label: t("invitations.table.actions.revokeInvitation"),
+    label: t("customers.invitations.table.actions.revokeInvitation"),
     show: (row: AccountInvitation) => !row.acceptedAt && !row.revokedAt,
   },
   {
     class: "danger",
     confirmationOptions: {
-      body: t("invitations.table.confirmation.deleteInvitation.message"),
-      header: t("invitations.table.confirmation.deleteInvitation.header"),
+      body: t(
+        "customers.invitations.table.confirmation.deleteInvitation.message"
+      ),
+      header: t(
+        "customers.invitations.table.confirmation.deleteInvitation.header"
+      ),
     },
     key: "deleteInvitation",
-    label: t("invitations.table.actions.deleteInvitation"),
+    label: t("customers.invitations.table.actions.deleteInvitation"),
     requireConfirmationModal: true,
   },
 ];
@@ -83,16 +87,16 @@ const columns: TableColumnDefinition<AccountInvitation>[] = [
     accessorKey: "email",
     enableColumnFilter: true,
     enableSorting: true,
-    filterPlaceholder: t("invitations.table.filter.email"),
-    header: t("invitations.table.columns.email"),
+    filterPlaceholder: t("customers.invitations.table.filter.email"),
+    header: t("customers.invitations.table.columns.email"),
   },
   {
     accessorKey: "role",
-    header: t("invitations.table.columns.role"),
+    header: t("customers.invitations.table.columns.role"),
   },
   {
     accessorKey: "status",
-    header: t("invitations.table.columns.status"),
+    header: t("customers.invitations.table.columns.status"),
     cell: ({ row: { original } }) =>
       h(
         "span",
@@ -104,21 +108,21 @@ const columns: TableColumnDefinition<AccountInvitation>[] = [
           },
         },
         original.acceptedAt
-          ? t("invitations.table.status.accepted")
+          ? t("customers.invitations.table.status.accepted")
           : original.revokedAt
-            ? t("invitations.table.status.revoked")
-            : t("invitations.table.status.pending")
+            ? t("customers.invitations.table.status.revoked")
+            : t("customers.invitations.table.status.pending")
       ),
   },
   {
     accessorKey: "expiresAt",
-    header: t("invitations.table.columns.expiresAt"),
+    header: t("customers.invitations.table.columns.expiresAt"),
     cell: ({ row: { original } }) =>
       new Date(original.expiresAt).toLocaleDateString(),
   },
   {
     accessorKey: "createdAt",
-    header: t("invitations.table.columns.createdAt"),
+    header: t("customers.invitations.table.columns.createdAt"),
     cell: ({ row: { original } }) =>
       new Date(original.createdAt).toLocaleDateString(),
   },

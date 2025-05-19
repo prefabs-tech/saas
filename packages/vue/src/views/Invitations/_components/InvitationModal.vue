@@ -29,7 +29,7 @@ defineProps({
 const emit = defineEmits(["close", "created"]);
 
 const messages = useTranslations();
-const { t } = useI18n({ messages });
+const { t } = useI18n({ messages, locale: "en" });
 
 const handleSubmit = async () => {
   try {

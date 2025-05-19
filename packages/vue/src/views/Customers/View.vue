@@ -5,8 +5,14 @@
     class="customer-view"
   >
     <LoadingIcon v-if="loading" />
-    <TabbedPanel v-else>
-      <div :title="t('customers.view.info')" class="customer-info">
+
+    <TabView
+      id="tab-view-slot"
+      :tabs="tabList"
+      :visible-tabs="['info', 'users', 'invitations']"
+      active-key="['info']"
+    >
+      <div key="info" class="customer-info">
         <template v-if="!account.individual">
           <Data
             :caption="t('customers.form.fields.name')"
@@ -42,28 +48,24 @@
           />
         </template>
       </div>
-
-      <div :title="t('customers.view.users')" class="customer-users">
+      <div key="users" class="customer-users">
         <div class="users-content">
           <span>{{ t("customers.view.users") }}</span>
         </div>
       </div>
-      <div
-        :title="t('customers.view.invitations')"
-        class="customer-invitations"
-      >
+      <div key="invitations" class="customer-invitations">
         <div class="invitations-content">
           <Invitations />
         </div>
       </div>
-    </TabbedPanel>
+    </TabView>
   </Page>
 </template>
 
 <script setup lang="ts">
 import { useConfig } from "@dzangolab/vue3-config";
 import { useI18n } from "@dzangolab/vue3-i18n";
-import { Data, TabbedPanel, LoadingIcon } from "@dzangolab/vue3-ui";
+import { Data, TabView, LoadingIcon } from "@dzangolab/vue3-ui";
 import { ref, onMounted, computed, inject } from "vue";
 import { useRoute } from "vue-router";
 
@@ -84,6 +86,12 @@ const config = useConfig() as AppConfig;
 
 // Get the injected SAAS config
 const injectedSaasConfig = inject<SaasConfig>(Symbol.for("saas.config"));
+
+const tabList = [
+  { key: "info", label: t("customers.view.info") },
+  { key: "users", label: t("customers.view.users") },
+  { key: "invitations", label: t("customers.view.invitations") },
+];
 
 if (!injectedSaasConfig) {
   throw new Error("SAAS config not provided");
@@ -130,9 +138,5 @@ async function prepareComponent() {
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   padding: 1rem;
-}
-
-.customer-view .tabbed-panel ul[role="tablist"] {
-  justify-self: unset !important;
 }
 </style>
