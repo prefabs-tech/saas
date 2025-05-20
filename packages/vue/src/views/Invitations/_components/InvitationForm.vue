@@ -3,7 +3,7 @@
     <Form @submit="onSubmit">
       <Input
         v-model="formData.email"
-        :label="t('invitations.form.label.email')"
+        :label="t('customers.invitations.form.label.email')"
         name="email"
         type="email"
         :schema="emailSchema"
@@ -12,15 +12,15 @@
       <SelectInput
         v-model="formData.role"
         :options="roles"
-        label="Role"
-        placeholder="Select a role"
+        :label="t('customers.invitations.form.label.role')"
+        :placeholder="t('customers.invitations.form.placeholder.role')"
         :schema="roleSchema"
       />
 
       <FormActions
         alignment="filled"
-        :cancel-label="t('invitations.form.actions.cancel')"
-        :submit-label="t('invitations.form.actions.create')"
+        :cancel-label="t('customers.invitations.form.actions.cancel')"
+        :submit-label="t('customers.invitations.form.actions.create')"
         :loading="loading"
         flow-direction="horizontal"
         @cancel="$emit('cancel')"
@@ -31,9 +31,10 @@
 
 <script setup lang="ts">
 // import { useConfig } from "@dzangolab/vue3-config";
-import { Form, FormActions, Input } from "@dzangolab/vue3-form";
+import { Form, FormActions, Input, SelectInput } from "@dzangolab/vue3-form";
 import { useI18n } from "@dzangolab/vue3-i18n";
 import { ref, inject } from "vue";
+import { useRoute } from "vue-router";
 import * as z from "zod";
 
 import { useTranslations } from "../../../index";
@@ -56,19 +57,32 @@ if (!saasConfig) {
   throw new Error("SAAS config not provided");
 }
 
-const emailSchema = z.string().email(t("invitations.form.validation.email"));
-const roleSchema = z.string().min(1, t("invitations.form.validation.role"));
+const emailSchema = z
+  .string()
+  .email(t("customers.invitations.form.validation.email"));
+const roleSchema = z
+  .string()
+  .min(1, t("customers.invitations.form.validation.role"));
 
 const roles = [
-  { value: "admin", label: t("invitations.form.roles.admin") },
-  { value: "user", label: t("invitations.form.roles.user") },
+  {
+    label: t("customers.invitations.form.roles.admin"),
+    value: "admin",
+  },
+  {
+    label: t("customers.invitations.form.roles.user"),
+    value: "user",
+  },
 ];
+
+const route = useRoute();
+const accountId = route.params.id as string;
 
 const formData = ref<AccountInvitationCreateInput>({
   email: "",
   role: "user",
-  accountId: "", // This should be set from the current account context
-  invitedById: "", // This should be set from the current user context
+  accountId: accountId,
+  invitedById: "",
   expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days from now
 });
 
