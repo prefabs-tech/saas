@@ -50,7 +50,7 @@
         "form": {
           "actions": {
             "cancel": "Cancel",
-            "create": "Create invitation"
+            "create": "Invite user"
           },
           "email": {
             "label": "Email",
@@ -70,7 +70,7 @@
           }
         },
         "modal": {
-          "title": "Create invitation"
+          "title": "Invite an user"
         },
         "table": {
           "actions": {
@@ -105,7 +105,7 @@
       },
       "table": {
         "actions": {
-          "addCustomer": "Add",
+          "addCustomer": "Invite an user",
           "deleteCustomer": "Delete",
           "editCustomer": "Edit"
         },
@@ -180,7 +180,7 @@
         "form": {
           "actions": {
             "cancel": "Annuler",
-            "create": "Créer une invitation"
+            "create": "Inviter un utilisateur"
           },
           "label": {
             "email": "Email",
@@ -199,7 +199,7 @@
           }
         },
         "modal": {
-          "title": "Créer une invitation"
+          "title": "Inviter un utilisateur"
         },
         "table": {
           "actions": {
@@ -234,7 +234,7 @@
       },
       "table": {
         "actions": {
-          "addCustomer": "Ajouter un client",
+          "addCustomer": "Inviter un utilisateur",
           "deleteCustomer": "Supprimer le client",
           "editCustomer": "Modifier le client"
         },
