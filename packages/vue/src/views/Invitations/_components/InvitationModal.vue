@@ -37,3 +37,15 @@ const handleSubmit = async () => {
   }
 };
 </script>
+
+<style lang="css">
+.modal .dialog.active {
+  min-width: 350px;
+}
+
+@media (min-width: 768px) {
+  .modal .dialog.active {
+    min-width: 500px;
+  }
+}
+</style>

@@ -48,15 +48,13 @@
           />
         </template>
       </div>
-      <div key="users" class="customer-users">
-        <div class="users-content">
-          <span>{{ t("customers.view.users") }}</span>
-        </div>
+      <div key="users">
+        <span>{{ t("customers.view.users") }}</span>
+        <Users />
       </div>
-      <div key="invitations" class="customer-invitations">
-        <div class="invitations-content">
-          <Invitations />
-        </div>
+      <div key="invitations">
+        <span>{{ t("customers.view.invitations") }}</span>
+        <Invitations />
       </div>
     </TabView>
   </Page>
