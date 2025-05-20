@@ -30,7 +30,7 @@
 import { useConfig } from "@dzangolab/vue3-config";
 import { useI18n } from "@dzangolab/vue3-i18n";
 import { Table } from "@dzangolab/vue3-tanstack-table";
-import { ButtonElement } from "@dzangolab/vue3-ui";
+import { BadgeComponent, ButtonElement } from "@dzangolab/vue3-ui";
 import { ref, onMounted, h } from "vue";
 import { useRoute } from "vue-router";
 
@@ -50,7 +50,7 @@ const config = useConfig() as AppConfig;
 const messages = useTranslations();
 const { t } = useI18n({ messages });
 const invitationStore = useInvitationStore();
-const { getInvitations } = invitationStore;
+const { deleteInvitation, getInvitations } = invitationStore;
 const route = useRoute();
 
 const accountId = route.params.id as string;
@@ -93,26 +93,29 @@ const columns: TableColumnDefinition<AccountInvitation>[] = [
   {
     accessorKey: "role",
     header: t("customers.invitations.table.columns.role"),
+    cell: ({ row: { original } }) =>
+      h(BadgeComponent, {
+        label: original.role,
+        severity: original.role === "admin" ? "primary" : "success",
+      }),
   },
   {
     accessorKey: "status",
     header: t("customers.invitations.table.columns.status"),
     cell: ({ row: { original } }) =>
-      h(
-        "span",
-        {
-          class: {
-            "badge badge-success": original.acceptedAt,
-            "badge badge-warning": !original.acceptedAt && !original.revokedAt,
-            "badge badge-error": original.revokedAt,
-          },
-        },
-        original.acceptedAt
+      h(BadgeComponent, {
+        label: original.acceptedAt
           ? t("customers.invitations.table.status.accepted")
           : original.revokedAt
             ? t("customers.invitations.table.status.revoked")
-            : t("customers.invitations.table.status.pending")
-      ),
+            : t("customers.invitations.table.status.pending"),
+
+        severity: original.acceptedAt
+          ? "success"
+          : original.revokedAt
+            ? "danger"
+            : "warning",
+      }),
   },
   {
     accessorKey: "expiresAt",
@@ -144,9 +147,8 @@ async function fetchInvitations() {
 
 async function handleDelete(invitation: AccountInvitation) {
   try {
-    console.log("handleDelete", invitation);
-    // TODO: Implement API call to delete invitation
-    // await api.deleteAccountInvitation(invitation.id)
+    await deleteInvitation(accountId, invitation.id, config.apiBaseUrl);
+
     await fetchInvitations();
   } catch (error) {
     console.error("Failed to delete invitation:", error);
