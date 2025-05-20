@@ -74,10 +74,10 @@
         },
         "table": {
           "actions": {
-            "addInvitation": "Add invitation",
-            "deleteInvitation": "Delete invitation",
-            "resendInvitation": "Resend invitation",
-            "revokeInvitation": "Revoke invitation"
+            "addInvitation": "Add",
+            "deleteInvitation": "Delete",
+            "resendInvitation": "Resend",
+            "revokeInvitation": "Revoke"
           },
           "columns": {
             "createdAt": "Created at",
@@ -203,10 +203,10 @@
         },
         "table": {
           "actions": {
-            "addInvitation": "Ajouter une invitation",
-            "deleteInvitation": "Supprimer l'invitation",
-            "resendInvitation": "Renvoyer l'invitation",
-            "revokeInvitation": "Révoquer l'invitation"
+            "addInvitation": "Ajouter",
+            "deleteInvitation": "Supprimer",
+            "resendInvitation": "Renvoyer",
+            "revokeInvitation": "Révoquer"
           },
           "columns": {
             "createdAt": "Créé le",

@@ -50,7 +50,8 @@ const config = useConfig() as AppConfig;
 const messages = useTranslations();
 const { t } = useI18n({ messages });
 const invitationStore = useInvitationStore();
-const { deleteInvitation, getInvitations } = invitationStore;
+const { deleteInvitation, getInvitations, resendInvitation, revokeInvitation } =
+  invitationStore;
 const route = useRoute();
 
 const accountId = route.params.id as string;
@@ -131,11 +132,13 @@ const columns: TableColumnDefinition<AccountInvitation>[] = [
   },
 ];
 
-// Refs
 const invitations = ref<AccountInvitation[]>([]);
 const showInvitationModal = ref(false);
 
-// Functions
+onMounted(async () => {
+  await fetchInvitations();
+});
+
 async function fetchInvitations() {
   try {
     const response = await getInvitations(accountId, config.apiBaseUrl);
@@ -162,9 +165,8 @@ const handleInvitationCreated = async () => {
 
 async function handleResend(invitation: AccountInvitation) {
   try {
-    console.log("handleResend", invitation);
-    // TODO: Implement API call to resend invitation
-    // await api.resendAccountInvitation(invitation.id)
+    await resendInvitation(accountId, invitation.id, config.apiBaseUrl);
+
     await fetchInvitations();
   } catch (error) {
     console.error("Failed to resend invitation:", error);
@@ -173,9 +175,7 @@ async function handleResend(invitation: AccountInvitation) {
 
 async function handleRevoke(invitation: AccountInvitation) {
   try {
-    console.log("handleRevoke", invitation);
-    // TODO: Implement API call to revoke invitation
-    // await api.revokeAccountInvitation(invitation.id)
+    await revokeInvitation(accountId, invitation.id, config.apiBaseUrl);
     await fetchInvitations();
   } catch (error) {
     console.error("Failed to revoke invitation:", error);
@@ -195,9 +195,4 @@ function onActionSelect(rowData: { action: string; data: AccountInvitation }) {
       break;
   }
 }
-
-// Lifecycle hooks
-onMounted(async () => {
-  await fetchInvitations();
-});
 </script>
