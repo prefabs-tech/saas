@@ -52,8 +52,13 @@
             "cancel": "Cancel",
             "create": "Create invitation"
           },
-          "label": {
-            "email": "Email"
+          "email": {
+            "label": "Email",
+            "placeholder": "Enter email address"
+          },
+          "role": {
+            "label": "Role",
+            "placeholder": "Select a role"
           },
           "roles": {
             "admin": "Administrator",
@@ -178,7 +183,11 @@
             "create": "Créer une invitation"
           },
           "label": {
-            "email": "Email"
+            "email": "Email",
+            "role": "Rôle"
+          },
+          "placeholder": {
+            "role": "Sélectionner un rôle"
           },
           "roles": {
             "admin": "Administrateur",
