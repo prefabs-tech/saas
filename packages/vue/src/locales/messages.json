@@ -74,7 +74,7 @@
         },
         "table": {
           "actions": {
-            "addInvitation": "Add",
+            "addInvitation": "Invite user",
             "deleteInvitation": "Delete",
             "resendInvitation": "Resend",
             "revokeInvitation": "Revoke"
@@ -105,7 +105,7 @@
       },
       "table": {
         "actions": {
-          "addCustomer": "Invite an user",
+          "addCustomer": "Add",
           "deleteCustomer": "Delete",
           "editCustomer": "Edit"
         },
@@ -203,7 +203,7 @@
         },
         "table": {
           "actions": {
-            "addInvitation": "Ajouter",
+            "addInvitation": "Inviter un utilisateur",
             "deleteInvitation": "Supprimer",
             "resendInvitation": "Renvoyer",
             "revokeInvitation": "Révoquer"
@@ -234,7 +234,7 @@
       },
       "table": {
         "actions": {
-          "addCustomer": "Inviter un utilisateur",
+          "addCustomer": "Ajouter un client",
           "deleteCustomer": "Supprimer le client",
           "editCustomer": "Modifier le client"
         },
