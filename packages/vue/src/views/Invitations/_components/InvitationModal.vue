@@ -16,7 +16,7 @@
 import { useI18n } from "@dzangolab/vue3-i18n";
 import { Modal } from "@dzangolab/vue3-ui";
 
-import InvitationForm from "./InvitationForm.vue";
+import InvitationForm from "./Form.vue";
 import { useTranslations } from "../../../index";
 
 import type { AddAccountInvitationResponse } from "../../../types/accountInvitation";

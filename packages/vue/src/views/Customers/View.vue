@@ -69,7 +69,7 @@ import { useRoute } from "vue-router";
 
 import { useTranslations } from "../../index";
 import useAccountsStore from "../../stores/accounts";
-import Invitations from "../Invitations/_components/Invitations.vue";
+import Invitations from "../Invitations/Index.vue";
 
 import type { Account } from "../../types/account";
 import type { SaasConfig } from "../../types/config";

@@ -35,11 +35,11 @@ import { BadgeComponent, ButtonElement } from "@dzangolab/vue3-ui";
 import { ref, onMounted, h } from "vue";
 import { useRoute } from "vue-router";
 
-import InvitationModal from "./InvitationModal.vue";
-import { useTranslations } from "../../../index";
-import useInvitationStore from "../../../stores/invitation";
+import InvitationModal from "./_components/InvitationModal.vue";
+import { useTranslations } from "../../index";
+import useInvitationStore from "../../stores/invitation";
 
-import type { AccountInvitation } from "../../../types/accountInvitation";
+import type { AccountInvitation } from "../../types/accountInvitation";
 import type { AppConfig } from "@dzangolab/vue3-config";
 import type { TableColumnDefinition } from "@dzangolab/vue3-tanstack-table";
 

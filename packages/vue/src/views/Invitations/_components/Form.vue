@@ -41,11 +41,14 @@ import { Form, FormActions, Input, SelectInput } from "@dzangolab/vue3-form";
 import { useI18n } from "@dzangolab/vue3-i18n";
 import { computed, inject, ref } from "vue";
 import { useRoute } from "vue-router";
-import * as z from "zod";
 
 import { SAAS_ACCOUNT_ROLES_DEFAULT } from "../../../constant";
 import { useTranslations } from "../../../index";
 import useInvitationStore from "../../../stores/invitation";
+import {
+  createEmailSchema,
+  createRoleSchema,
+} from "../validations/invitationValidation";
 
 import type { AccountInvitationCreateInput } from "../../../types/accountInvitation";
 import type { SaasConfig } from "../../../types/config";
@@ -64,13 +67,8 @@ const saasConfig = inject<SaasConfig>(Symbol.for("saas.config"));
 const { t } = useI18n({ messages, locale: "en" });
 const route = useRoute();
 
-const emailSchema = z
-  .string()
-  .email(t("customers.invitations.form.validation.email"));
-
-const roleSchema = z
-  .string()
-  .min(1, t("customers.invitations.form.validation.role"));
+const emailSchema = createEmailSchema(t);
+const roleSchema = createRoleSchema(t);
 
 const accountId = route.params.id as string;
 const formData = ref<AccountInvitationCreateInput>({
