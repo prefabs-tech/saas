@@ -49,11 +49,9 @@
         </template>
       </div>
       <div key="users">
-        <span>{{ t("customer.view.users") }}</span>
         <Users />
       </div>
       <div key="invitations">
-        <span>{{ t("customer.view.invitations") }}</span>
         <Invitations />
       </div>
     </TabView>
@@ -70,6 +68,7 @@ import { useRoute } from "vue-router";
 import { useTranslations } from "../../index";
 import useAccountsStore from "../../stores/accounts";
 import Invitations from "../Invitations/Index.vue";
+import Users from "./Users/Index.vue";
 
 import type { Account } from "../../types/account";
 import type { SaasConfig } from "../../types/config";

@@ -57,6 +57,34 @@
       }
     }
   },
+  "users": {
+    "table": {
+      "actions": {
+        "disable": "Disable",
+        "enable": "Enable",
+        "invite": "Invite user"
+      },
+      "columns": {
+        "email": "Email",
+        "name": "Name",
+        "roles": "Roles",
+        "signedUpOn": "Signed up on",
+        "status": "Status"
+      },
+      "emptyMessage": "No users found",
+      "filter": {
+        "email": "Filter by email"
+      },
+      "roles": {
+        "owner": "Owner",
+        "member": "Member"
+      },
+      "status": {
+        "disabled": "Disabled",
+        "enabled": "Enabled"
+      }
+    }
+  },
   "view": {
     "info": "Info",
     "invitations": "Invitations",

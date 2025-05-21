@@ -57,6 +57,34 @@
       }
     }
   },
+  "users": {
+    "table": {
+      "actions": {
+        "disable": "Désactiver",
+        "enable": "Activer",
+        "invite": "Inviter un utilisateur"
+      },
+      "columns": {
+        "email": "Email",
+        "name": "Nom",
+        "roles": "Rôles",
+        "signedUpOn": "Inscrit le",
+        "status": "Statut"
+      },
+      "emptyMessage": "Aucun utilisateur trouvé",
+      "filter": {
+        "email": "Filtrer par email"
+      },
+      "roles": {
+        "owner": "Propriétaire",
+        "member": "Membre"
+      },
+      "status": {
+        "disabled": "Désactivé",
+        "enabled": "Activé"
+      }
+    }
+  },
   "view": {
     "info": "Informations",
     "invitations": "Invitations",
