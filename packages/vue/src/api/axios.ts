@@ -1,8 +1,4 @@
-import { API_PATH_REFRESH } from "../constant";
 import axios from "axios";
-import SuperTokens from "supertokens-website";
-
-SuperTokens.addAxiosInterceptors(axios);
 
 const client = (baseURL: string) => {
   const instance = axios.create({
@@ -12,36 +8,6 @@ const client = (baseURL: string) => {
       Accept: "application/json",
     },
   });
-
-  // Response interceptor: Handle token expiration
-  instance.interceptors.response.use(
-    (response) => response,
-    async (error) => {
-      const originalRequest = error.config;
-
-      if (
-        error.response?.status === 401 &&
-        !originalRequest._retry &&
-        !originalRequest.url.includes(API_PATH_REFRESH)
-      ) {
-        originalRequest._retry = true;
-
-        try {
-          const refreshResponse = await instance.post(API_PATH_REFRESH, {
-            withCredentials: true,
-          });
-
-          if (refreshResponse.status === 200) {
-            return instance(originalRequest);
-          }
-        } catch (refreshError) {
-          return Promise.reject(refreshError);
-        }
-      }
-
-      return Promise.reject(error);
-    },
-  );
 
   return instance;
 };
