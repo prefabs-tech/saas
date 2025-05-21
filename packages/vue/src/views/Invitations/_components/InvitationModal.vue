@@ -31,13 +31,13 @@ const emit = defineEmits(["close", "created"]);
 const messages = useTranslations();
 const { t } = useI18n({ messages, locale: "en" });
 
-const handleSubmit = async (response: AddAccountInvitationResponse) => {
+async function handleSubmit(response: AddAccountInvitationResponse) {
   try {
     emit("created", response);
   } catch (error) {
     console.error("Failed to create invitation:", error);
   }
-};
+}
 </script>
 
 <style lang="css">
