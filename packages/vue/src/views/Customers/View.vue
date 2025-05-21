@@ -82,7 +82,6 @@ const messages = useTranslations();
 const { t } = useI18n({ messages });
 const config = useConfig() as AppConfig;
 
-// Get the injected SAAS config
 const injectedSaasConfig = inject<SaasConfig>(Symbol.for("saas.config"));
 
 const tabList = [
@@ -95,7 +94,6 @@ if (!injectedSaasConfig) {
   throw new Error("SAAS config not provided");
 }
 
-// Create a computed ref that returns the config
 const saasConfig = computed(() => {
   return {
     ...injectedSaasConfig,
@@ -105,7 +103,6 @@ const saasConfig = computed(() => {
 const accountsStore = useAccountsStore();
 const { getAccount } = accountsStore;
 
-// Determine if we're in admin app based on current subdomain
 const isAdminApp = computed(() => {
   const subdomain = window.location.hostname.split(".")[0];
   return subdomain === "admin";

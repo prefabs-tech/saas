@@ -101,7 +101,7 @@ const props = defineProps({
   loading: Boolean,
 });
 
-const emit = defineEmits(["cancel", "submit"]);
+const emit = defineEmits(["cancel", "customer:created", "customer:updated"]);
 
 const {
   nameSchema,
@@ -164,12 +164,16 @@ const onSubmit = async () => {
         props.account.id,
         updateDataPayload,
         config.apiBaseUrl
-      );
+      ).then((response) => {
+        emit("customer:updated", response);
+      });
     } else {
-      await createAccount(formData.value, config.apiBaseUrl);
+      await createAccount(formData.value, config.apiBaseUrl).then(
+        (response) => {
+          emit("customer:created", response);
+        }
+      );
     }
-
-    emit("submit");
   } catch (error) {
     console.error("Form submission error:", error);
   }
