@@ -18,9 +18,9 @@ interface Accounts {
 }
 
 interface AccountInput {
-  id?: string;
   database?: string | null;
   domain?: string | null;
+  id?: string;
   individual: boolean;
   name: string;
   registeredNumber?: string | null;
@@ -30,11 +30,10 @@ interface AccountInput {
 }
 
 interface User {
-  id: string;
-  email: string;
-  timeJoined: number;
   disabled?: boolean;
+  email: string;
   givenName: string | null;
+  id: string;
   isEmailVerified?: boolean;
   isProfileCompleted?: boolean;
   lastLoginAt: number;
@@ -46,6 +45,7 @@ interface User {
     id: string;
     userId: string;
   };
+  timeJoined: number;
 }
 
 export type { Account, Accounts, AccountInput, User };

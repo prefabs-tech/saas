@@ -1,9 +1,8 @@
 export type AccountUser = {
-  id: string;
-  email: string;
-  timeJoined: number;
   disabled?: boolean;
+  email: string;
   givenName: string | null;
+  id: string;
   isEmailVerified?: boolean;
   isProfileCompleted?: boolean;
   lastLoginAt: number;
@@ -11,6 +10,7 @@ export type AccountUser = {
   role: string;
   signedUpAt: number;
   surname: string | null;
+  timeJoined: number;
 };
 
 export type GetAccountUsersResponse = AccountUser[];

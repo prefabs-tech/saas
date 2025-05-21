@@ -1,14 +1,14 @@
 import client from "./axios";
 import type {
+  AcceptInvitationResponse,
   AccountInvitation,
   AccountInvitationCreateInput,
-  GetAccountInvitationsResponse,
   AddAccountInvitationResponse,
   DeleteAccountInvitationResponse,
+  GetAccountInvitationsResponse,
+  GetInvitationResponse,
   ResendAccountInvitationResponse,
   RevokeAccountInvitationResponse,
-  GetInvitationResponse,
-  AcceptInvitationResponse,
 } from "../types/accountInvitation";
 
 export const addInvitation = async (
@@ -125,9 +125,9 @@ export const signupInvitation = async (
   token: string,
   data: {
     email: string;
-    password: string;
     givenName?: string;
     middleNames?: string;
+    password: string;
     surname?: string;
   },
   accountId: string | null | undefined,

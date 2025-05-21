@@ -1,18 +1,18 @@
 export type SaasConfig = {
   accounts?: {
-    autoSelectAccount?: boolean;
     allowMultipleSessions?: boolean;
+    autoSelectAccount?: boolean;
     signup?: {
       apiPath?: string;
-      termsAndConditionsUrl?: string;
       appRedirection?: boolean;
+      termsAndConditionsUrl?: string;
     };
   };
   apiBaseUrl: string;
-  mainAppSubdomain: string;
   entity: "both" | "individual" | "organization";
-  rootDomain: string;
+  mainAppSubdomain: string;
   multiDatabase: boolean;
+  rootDomain: string;
   saasAccountRoles?: string[];
   subdomains: "required" | "optional" | "disabled";
 };

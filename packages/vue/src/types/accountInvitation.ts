@@ -1,22 +1,22 @@
 import type { Account, User } from "./account";
 
 export interface AccountInvitation {
-  id: number;
   acceptedAt?: number;
   account?: Account;
   accountId: string;
+  createdAt: number;
   email: string;
   expiresAt: number;
+  id: number;
   invitedBy?: User;
   invitedById: string;
   payload?: Record<string, unknown>;
   revokedAt?: number;
   role: string;
   token: string;
+  updatedAt: number;
   user?: User;
   userId?: string;
-  createdAt: number;
-  updatedAt: number;
 }
 
 export type AccountInvitationCreateInput = Omit<

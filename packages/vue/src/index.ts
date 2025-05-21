@@ -40,6 +40,5 @@ const useTranslations = (): LocaleMessages<VueMessageType> => {
 
 export default plugin;
 export { useTranslations };
-export * from "./components";
 export * from "./router";
 export { default as router } from "./router";

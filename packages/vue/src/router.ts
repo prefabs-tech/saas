@@ -2,7 +2,6 @@ import { Router } from "vue-router";
 import { DEFAULT_PATHS } from "./constant";
 import type { RouteMeta, RouteRecordRaw } from "vue-router";
 
-// Import components
 import Customers from "./views/Customers/Index.vue";
 import CustomerAdd from "./views/Customers/Add.vue";
 import CustomerEdit from "./views/Customers/Edit.vue";
