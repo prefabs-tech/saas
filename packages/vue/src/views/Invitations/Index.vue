@@ -43,19 +43,16 @@ import type { AccountInvitation } from "../../types/accountInvitation";
 import type { AppConfig } from "@dzangolab/vue3-config";
 import type { TableColumnDefinition } from "@dzangolab/vue3-tanstack-table";
 
-// Props
 defineProps({
   isLoading: Boolean,
 });
 
-// Emits
 const emit = defineEmits([
   "invitation:deleted",
   "invitation:resent",
   "invitation:revoked",
 ]);
 
-// Composables
 const config = useConfig() as AppConfig;
 const messages = useTranslations();
 const { t } = useI18n({ messages });
@@ -64,7 +61,6 @@ const { deleteInvitation, getInvitations, resendInvitation, revokeInvitation } =
   invitationStore;
 const route = useRoute();
 
-// Constants
 const accountId = route.params.id as string;
 
 const actionMenuData = [
@@ -142,16 +138,13 @@ const columns: TableColumnDefinition<AccountInvitation>[] = [
   },
 ];
 
-// State
 const invitations = ref<AccountInvitation[]>([]);
 const showInvitationModal = ref(false);
 
-// Lifecycle Hooks
 onMounted(async () => {
   await fetchInvitations();
 });
 
-// Methods
 async function fetchInvitations() {
   try {
     const response = await getInvitations(accountId, config.apiBaseUrl);
