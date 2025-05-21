@@ -6,10 +6,16 @@ import updateRouter from "./router";
 import { prependMessages } from "@dzangolab/vue3-i18n";
 import { inject } from "vue";
 
-import messages from "./locales/messages.json";
+import enMessages from "./locales/en/index";
+import frMessages from "./locales/fr/index";
 
 const __saasVueTranslations = Symbol.for("saas.vue.translations");
 const __saasConfig = Symbol.for("saas.config");
+
+const defaultMessages = {
+  en: enMessages,
+  fr: frMessages,
+};
 
 const plugin: Plugin = {
   install: (app: App, options: SaasVuePluginOptions): void => {
@@ -18,8 +24,8 @@ const plugin: Plugin = {
     app.provide(__saasConfig, options.saasConfig);
 
     const translations = options?.translations
-      ? prependMessages(messages, options.translations)
-      : messages;
+      ? prependMessages(defaultMessages, options.translations)
+      : defaultMessages;
 
     app.provide(__saasVueTranslations, translations);
   },
@@ -28,7 +34,7 @@ const plugin: Plugin = {
 const useTranslations = (): LocaleMessages<VueMessageType> => {
   return inject<LocaleMessages<VueMessageType>>(
     __saasVueTranslations,
-    messages
+    defaultMessages
   );
 };
 

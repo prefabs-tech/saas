@@ -3,8 +3,8 @@
     <Form @submit="onSubmit">
       <Input
         v-model="formData.email"
-        :label="t('customers.invitations.form.email.label')"
-        :placeholder="t('customers.invitations.form.email.placeholder')"
+        :label="t('customer.invitations.form.email.label')"
+        :placeholder="t('customer.invitations.form.email.placeholder')"
         :schema="emailSchema"
         name="email"
         type="email"
@@ -12,21 +12,21 @@
 
       <SelectInput
         v-model="formData.role"
-        :label="t('customers.invitations.form.role.label')"
+        :label="t('customer.invitations.form.role.label')"
         :options="
           roles.map((role) => ({
-            label: t(`customers.invitations.form.roles.${role}`),
+            label: t(`customer.invitations.form.roles.${role}`),
             value: role,
           }))
         "
-        :placeholder="t('customers.invitations.form.role.placeholder')"
+        :placeholder="t('customer.invitations.form.role.placeholder')"
         :schema="roleSchema"
       />
 
       <FormActions
         alignment="filled"
-        :cancel-label="t('customers.invitations.form.actions.cancel')"
-        :submit-label="t('customers.invitations.form.actions.create')"
+        :cancel-label="t('customer.invitations.form.actions.cancel')"
+        :submit-label="t('customer.invitations.form.actions.create')"
         :loading="loading"
         flow-direction="horizontal"
         @cancel="$emit('cancel')"

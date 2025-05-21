@@ -1,0 +1,65 @@
+{
+  "invitations": {
+    "addInvitation": "Add invitation",
+    "form": {
+      "actions": {
+        "cancel": "Cancel",
+        "create": "Invite user"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter email address"
+      },
+      "role": {
+        "label": "Role",
+        "placeholder": "Select a role"
+      },
+      "roles": {
+        "SAAS_ACCOUNT_MEMBER": "Member",
+        "SAAS_ACCOUNT_OWNER": "Owner"
+      },
+      "validation": {
+        "email": "Please enter a valid email address",
+        "role": "Please select a role"
+      }
+    },
+    "modal": {
+      "title": "Invite an user"
+    },
+    "table": {
+      "actions": {
+        "addInvitation": "Invite user",
+        "deleteInvitation": "Delete",
+        "resendInvitation": "Resend",
+        "revokeInvitation": "Revoke"
+      },
+      "columns": {
+        "createdAt": "Created at",
+        "email": "Email",
+        "expiresAt": "Expires at",
+        "role": "Role",
+        "status": "Status"
+      },
+      "confirmation": {
+        "deleteInvitation": {
+          "header": "Delete invitation",
+          "message": "Are you sure you want to delete this invitation?"
+        }
+      },
+      "emptyMessage": "No invitations found",
+      "filter": {
+        "email": "Filter by email"
+      },
+      "status": {
+        "accepted": "Accepted",
+        "pending": "Pending",
+        "revoked": "Revoked"
+      }
+    }
+  },
+  "view": {
+    "info": "Info",
+    "invitations": "Invitations",
+    "users": "Users"
+  }
+}

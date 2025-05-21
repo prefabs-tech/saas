@@ -57,7 +57,7 @@ const columns: TableColumnDefinition<Account>[] = [
     accessorKey: "name",
     enableColumnFilter: true,
     enableSorting: true,
-    filterPlaceholder: "Search by name...",
+    filterPlaceholder: t("customers.table.columns.name"),
     header: t("customers.table.columns.name"),
     cell: ({ row: { original } }) =>
       h(

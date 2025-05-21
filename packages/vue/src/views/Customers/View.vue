@@ -49,11 +49,11 @@
         </template>
       </div>
       <div key="users">
-        <span>{{ t("customers.view.users") }}</span>
+        <span>{{ t("customer.view.users") }}</span>
         <Users />
       </div>
       <div key="invitations">
-        <span>{{ t("customers.view.invitations") }}</span>
+        <span>{{ t("customer.view.invitations") }}</span>
         <Invitations />
       </div>
     </TabView>
@@ -85,9 +85,9 @@ const config = useConfig() as AppConfig;
 const injectedSaasConfig = inject<SaasConfig>(Symbol.for("saas.config"));
 
 const tabList = [
-  { key: "info", label: t("customers.view.info") },
-  { key: "users", label: t("customers.view.users") },
-  { key: "invitations", label: t("customers.view.invitations") },
+  { key: "info", label: t("customer.view.info") },
+  { key: "users", label: t("customer.view.users") },
+  { key: "invitations", label: t("customer.view.invitations") },
 ];
 
 if (!injectedSaasConfig) {

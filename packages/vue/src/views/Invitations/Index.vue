@@ -4,14 +4,14 @@
     :columns-data="columns"
     :data="invitations"
     :data-action-menu="actionMenuData"
-    :empty-table-message="t('customers.invitations.table.emptyMessage')"
+    :empty-table-message="t('customer.invitations.table.emptyMessage')"
     :is-loading="isLoading"
     class="table-invitations"
     @action:select="onActionSelect"
   >
     <template #toolbar>
       <ButtonElement
-        :label="t('customers.invitations.table.actions.addInvitation')"
+        :label="t('customer.invitations.table.actions.addInvitation')"
         icon-left="pi pi-plus"
         @click="showInvitationModal = true"
       />
@@ -43,16 +43,19 @@ import type { AccountInvitation } from "../../types/accountInvitation";
 import type { AppConfig } from "@dzangolab/vue3-config";
 import type { TableColumnDefinition } from "@dzangolab/vue3-tanstack-table";
 
+// Props
 defineProps({
   isLoading: Boolean,
 });
 
+// Emits
 const emit = defineEmits([
   "invitation:deleted",
   "invitation:resent",
   "invitation:revoked",
 ]);
 
+// Composables
 const config = useConfig() as AppConfig;
 const messages = useTranslations();
 const { t } = useI18n({ messages });
@@ -61,31 +64,32 @@ const { deleteInvitation, getInvitations, resendInvitation, revokeInvitation } =
   invitationStore;
 const route = useRoute();
 
+// Constants
 const accountId = route.params.id as string;
 
 const actionMenuData = [
   {
     key: "resendInvitation",
-    label: t("customers.invitations.table.actions.resendInvitation"),
+    label: t("customer.invitations.table.actions.resendInvitation"),
     show: (row: AccountInvitation) => !row.acceptedAt && !row.revokedAt,
   },
   {
     key: "revokeInvitation",
-    label: t("customers.invitations.table.actions.revokeInvitation"),
+    label: t("customer.invitations.table.actions.revokeInvitation"),
     show: (row: AccountInvitation) => !row.acceptedAt && !row.revokedAt,
   },
   {
     class: "danger",
     confirmationOptions: {
       body: t(
-        "customers.invitations.table.confirmation.deleteInvitation.message"
+        "customer.invitations.table.confirmation.deleteInvitation.message"
       ),
       header: t(
-        "customers.invitations.table.confirmation.deleteInvitation.header"
+        "customer.invitations.table.confirmation.deleteInvitation.header"
       ),
     },
     key: "deleteInvitation",
-    label: t("customers.invitations.table.actions.deleteInvitation"),
+    label: t("customer.invitations.table.actions.deleteInvitation"),
     requireConfirmationModal: true,
   },
 ];
@@ -95,12 +99,12 @@ const columns: TableColumnDefinition<AccountInvitation>[] = [
     accessorKey: "email",
     enableColumnFilter: true,
     enableSorting: true,
-    filterPlaceholder: t("customers.invitations.table.filter.email"),
-    header: t("customers.invitations.table.columns.email"),
+    filterPlaceholder: t("customer.invitations.table.filter.email"),
+    header: t("customer.invitations.table.columns.email"),
   },
   {
     accessorKey: "role",
-    header: t("customers.invitations.table.columns.role"),
+    header: t("customer.invitations.table.columns.role"),
     cell: ({ row: { original } }) =>
       h(BadgeComponent, {
         label: original.role,
@@ -109,14 +113,14 @@ const columns: TableColumnDefinition<AccountInvitation>[] = [
   },
   {
     accessorKey: "status",
-    header: t("customers.invitations.table.columns.status"),
+    header: t("customer.invitations.table.columns.status"),
     cell: ({ row: { original } }) =>
       h(BadgeComponent, {
         label: original.acceptedAt
-          ? t("customers.invitations.table.status.accepted")
+          ? t("customer.invitations.table.status.accepted")
           : original.revokedAt
-            ? t("customers.invitations.table.status.revoked")
-            : t("customers.invitations.table.status.pending"),
+            ? t("customer.invitations.table.status.revoked")
+            : t("customer.invitations.table.status.pending"),
         severity: original.acceptedAt
           ? "success"
           : original.revokedAt
@@ -126,25 +130,28 @@ const columns: TableColumnDefinition<AccountInvitation>[] = [
   },
   {
     accessorKey: "expiresAt",
-    header: t("customers.invitations.table.columns.expiresAt"),
+    header: t("customer.invitations.table.columns.expiresAt"),
     cell: ({ row: { original } }) =>
       new Date(original.expiresAt).toLocaleDateString(),
   },
   {
     accessorKey: "createdAt",
-    header: t("customers.invitations.table.columns.createdAt"),
+    header: t("customer.invitations.table.columns.createdAt"),
     cell: ({ row: { original } }) =>
       new Date(original.createdAt).toLocaleDateString(),
   },
 ];
 
+// State
 const invitations = ref<AccountInvitation[]>([]);
 const showInvitationModal = ref(false);
 
+// Lifecycle Hooks
 onMounted(async () => {
   await fetchInvitations();
 });
 
+// Methods
 async function fetchInvitations() {
   try {
     const response = await getInvitations(accountId, config.apiBaseUrl);
