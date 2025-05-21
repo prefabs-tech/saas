@@ -9,34 +9,19 @@
     class="table-users"
     @action:select="onActionSelect"
   >
-    <template #toolbar>
-      <ButtonElement
-        :label="t('customer.users.table.actions.invite')"
-        icon-left="pi pi-plus"
-        @click="showInvitationModal = true"
-      />
-    </template>
   </Table>
-
-  <InvitationModal
-    v-if="showInvitationModal"
-    :show="showInvitationModal"
-    @close="showInvitationModal = false"
-    @created="handleInvitationCreated"
-  />
 </template>
 
 <script setup lang="ts">
 import { useConfig } from "@dzangolab/vue3-config";
 import { useI18n } from "@dzangolab/vue3-i18n";
 import { Table } from "@dzangolab/vue3-tanstack-table";
-import { BadgeComponent, ButtonElement } from "@dzangolab/vue3-ui";
+import { BadgeComponent } from "@dzangolab/vue3-ui";
 import { ref, onMounted, h } from "vue";
 import { useRoute } from "vue-router";
 
 import { useTranslations } from "../../../index";
 import useUsersStore from "../../../stores/users";
-import InvitationModal from "../../Invitations/_components/InvitationModal.vue";
 
 import type { AccountUser } from "../../../types/accountUser";
 import type { AppConfig } from "@dzangolab/vue3-config";
@@ -137,7 +122,6 @@ const columns: TableColumnDefinition<AccountUser>[] = [
 ];
 
 const users = ref<AccountUser[]>([]);
-const showInvitationModal = ref(false);
 
 onMounted(async () => {
   await fetchUsers();
@@ -169,11 +153,6 @@ async function handleDisable(user: AccountUser) {
     console.error("Failed to disable user:", error);
   }
 }
-
-const handleInvitationCreated = async () => {
-  showInvitationModal.value = false;
-  await fetchUsers();
-};
 
 function onActionSelect(rowData: { action: string; data: AccountUser }) {
   switch (rowData.action) {
