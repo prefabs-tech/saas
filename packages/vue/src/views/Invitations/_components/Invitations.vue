@@ -27,6 +27,7 @@
 </template>
 
 <script setup lang="ts">
+// Imports
 import { useConfig } from "@dzangolab/vue3-config";
 import { useI18n } from "@dzangolab/vue3-i18n";
 import { Table } from "@dzangolab/vue3-tanstack-table";
@@ -45,6 +46,12 @@ import type { TableColumnDefinition } from "@dzangolab/vue3-tanstack-table";
 defineProps({
   isLoading: Boolean,
 });
+
+const emit = defineEmits([
+  "invitation:deleted",
+  "invitation:resent",
+  "invitation:revoked",
+]);
 
 const config = useConfig() as AppConfig;
 const messages = useTranslations();
@@ -110,7 +117,6 @@ const columns: TableColumnDefinition<AccountInvitation>[] = [
           : original.revokedAt
             ? t("customers.invitations.table.status.revoked")
             : t("customers.invitations.table.status.pending"),
-
         severity: original.acceptedAt
           ? "success"
           : original.revokedAt
@@ -151,8 +157,8 @@ async function fetchInvitations() {
 async function handleDelete(invitation: AccountInvitation) {
   try {
     await deleteInvitation(accountId, invitation.id, config.apiBaseUrl);
-
     await fetchInvitations();
+    emit("invitation:deleted", invitation);
   } catch (error) {
     console.error("Failed to delete invitation:", error);
   }
@@ -166,8 +172,8 @@ const handleInvitationCreated = async () => {
 async function handleResend(invitation: AccountInvitation) {
   try {
     await resendInvitation(accountId, invitation.id, config.apiBaseUrl);
-
     await fetchInvitations();
+    emit("invitation:resent", invitation);
   } catch (error) {
     console.error("Failed to resend invitation:", error);
   }
@@ -177,6 +183,7 @@ async function handleRevoke(invitation: AccountInvitation) {
   try {
     await revokeInvitation(accountId, invitation.id, config.apiBaseUrl);
     await fetchInvitations();
+    emit("invitation:revoked", invitation);
   } catch (error) {
     console.error("Failed to revoke invitation:", error);
   }

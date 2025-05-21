@@ -61,8 +61,8 @@
             "placeholder": "Select a role"
           },
           "roles": {
-            "admin": "Administrator",
-            "user": "User"
+            "SAAS_ACCOUNT_MEMBER": "Member",
+            "SAAS_ACCOUNT_OWNER": "Owner"
           },
           "validation": {
             "email": "Please enter a valid email address",
@@ -190,8 +190,8 @@
             "role": "Sélectionner un rôle"
           },
           "roles": {
-            "admin": "Administrateur",
-            "user": "Utilisateur"
+            "SAAS_ACCOUNT_MEMBER": "Membre",
+            "SAAS_ACCOUNT_OWNER": "Propriétaire"
           },
           "validation": {
             "email": "Veuillez entrer une adresse email valide",

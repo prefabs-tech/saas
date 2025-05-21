@@ -15,7 +15,7 @@
         :label="t('customers.invitations.form.role.label')"
         :options="
           roles.map((role) => ({
-            label: t(`users.roles.${role}`),
+            label: t(`customers.invitations.form.roles.${role}`),
             value: role,
           }))
         "
@@ -75,8 +75,8 @@ const roleSchema = z
 const accountId = route.params.id as string;
 const formData = ref<AccountInvitationCreateInput>({
   email: "",
-  role: "user",
   expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days from now
+  role: "",
 });
 
 const roles = computed(() => {
@@ -85,8 +85,11 @@ const roles = computed(() => {
 
 async function onSubmit() {
   try {
-    await addInvitation(accountId, formData.value, config.apiBaseUrl);
-    emit("submit");
+    await addInvitation(accountId, formData.value, config.apiBaseUrl).then(
+      (response) => {
+        emit("submit", response);
+      }
+    );
   } catch (error) {
     console.error("Form submission error:", error);
   }

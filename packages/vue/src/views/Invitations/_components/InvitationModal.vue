@@ -19,6 +19,8 @@ import { Modal } from "@dzangolab/vue3-ui";
 import InvitationForm from "./InvitationForm.vue";
 import { useTranslations } from "../../../index";
 
+import type { AddAccountInvitationResponse } from "../../../types/accountInvitation";
+
 defineProps({
   show: Boolean,
   loading: Boolean,
@@ -29,9 +31,9 @@ const emit = defineEmits(["close", "created"]);
 const messages = useTranslations();
 const { t } = useI18n({ messages, locale: "en" });
 
-const handleSubmit = async () => {
+const handleSubmit = async (response: AddAccountInvitationResponse) => {
   try {
-    emit("created");
+    emit("created", response);
   } catch (error) {
     console.error("Failed to create invitation:", error);
   }
