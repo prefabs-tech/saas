@@ -1,9 +1,9 @@
 <template>
-  <div class="customer-form">
+  <div class="account-form">
     <Form @submit="onSubmit">
       <Input
         v-model="formData.name"
-        :label="t('customers.form.label.name')"
+        :label="t('accounts.form.label.name')"
         name="name"
         type="text"
         :schema="nameSchema"
@@ -12,7 +12,7 @@
       <template v-if="saasConfig.entity === 'both'">
         <SwitchInput
           v-model="formData.individual"
-          :label="t('customers.form.label.individual')"
+          :label="t('accounts.form.label.individual')"
           name="individual"
         />
       </template>
@@ -20,7 +20,7 @@
       <template v-if="shouldShowOrganizationFields">
         <Input
           v-model="formData.registeredNumber"
-          :label="t('customers.form.label.registeredNumber')"
+          :label="t('accounts.form.label.registeredNumber')"
           name="registeredNumber"
           type="text"
           :schema="registeredNumberSchema"
@@ -28,7 +28,7 @@
 
         <Input
           v-model="formData.taxId"
-          :label="t('customers.form.label.taxId')"
+          :label="t('accounts.form.label.taxId')"
           name="taxId"
           type="text"
           :schema="taxIdSchema"
@@ -38,7 +38,7 @@
       <template v-if="saasConfig.subdomains !== 'disabled'">
         <Input
           v-model="formData.slug"
-          :label="t('customers.form.label.slug')"
+          :label="t('accounts.form.label.slug')"
           name="slug"
           type="text"
           :schema="slugSchema"
@@ -47,7 +47,7 @@
         <Input
           v-model="formData.domain"
           :disabled="!formData.slug"
-          :label="t('customers.form.label.domain')"
+          :label="t('accounts.form.label.domain')"
           name="domain"
           type="text"
           :schema="domainSchema"
@@ -57,18 +57,18 @@
           v-if="saasConfig.multiDatabase && !isUpdateMode"
           v-model="formData.useSeparateDatabase"
           :disabled="!formData.slug"
-          :label="t('customers.form.label.useSeparateDatabase')"
+          :label="t('accounts.form.label.useSeparateDatabase')"
           name="useSeparateDatabase"
         />
       </template>
 
       <FormActions
         alignment="filled"
-        :cancel-label="t('customers.form.actions.cancel')"
+        :cancel-label="t('accounts.form.actions.cancel')"
         :submit-label="
           isUpdateMode
-            ? t('customers.form.actions.update')
-            : t('customers.form.actions.create')
+            ? t('accounts.form.actions.update')
+            : t('accounts.form.actions.create')
         "
         :loading="loading"
         flow-direction="horizontal"
@@ -86,7 +86,7 @@ import { ref, computed, inject, watch } from "vue";
 
 import { useTranslations } from "../../../index";
 import useAccountsStore from "../../../stores/accounts";
-import { createValidationSchemas } from "../validations/customerValidations";
+import { createValidationSchemas } from "../validations/accountValidations";
 
 import type { Account, AccountInput } from "../../../types/account";
 import type { SaasConfig } from "../../../types/config";
@@ -101,7 +101,7 @@ const props = defineProps({
   loading: Boolean,
 });
 
-const emit = defineEmits(["cancel", "customer:created", "customer:updated"]);
+const emit = defineEmits(["cancel", "account:created", "account:updated"]);
 
 const {
   nameSchema,
@@ -165,12 +165,12 @@ const onSubmit = async () => {
         updateDataPayload,
         config.apiBaseUrl
       ).then((response) => {
-        emit("customer:updated", response);
+        emit("account:updated", response);
       });
     } else {
       await createAccount(formData.value, config.apiBaseUrl).then(
         (response) => {
-          emit("customer:created", response);
+          emit("account:created", response);
         }
       );
     }
@@ -205,17 +205,17 @@ watch(
 </script>
 
 <style lang="css">
-.customer-form {
+.account-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.customer-form .form-actions {
+.account-form .form-actions {
   margin-top: 1rem;
 }
 
-.customer-form .form-actions.direction-horizontal {
+.account-form .form-actions.direction-horizontal {
   flex-direction: row-reverse;
 }
 </style>

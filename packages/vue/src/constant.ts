@@ -16,10 +16,10 @@ export const SAAS_ACCOUNT_ROLES_DEFAULT = [
 
 export const DEFAULT_PATHS = {
   // admin routes
-  CUSTOMERS: "/customers",
-  CUSTOMERS_VIEW: "/customers/:id",
-  CUSTOMERS_ADD: "/customers/new",
-  CUSTOMERS_EDIT: "/customers/:id/edit",
+  ACCOUNTS: "/accounts",
+  ACCOUNTS_VIEW: "/accounts/:id",
+  ACCOUNTS_ADD: "/accounts/new",
+  ACCOUNTS_EDIT: "/accounts/:id/edit",
 
   // app routes
   ACCOUNT_SETTINGS: "/account-settings",

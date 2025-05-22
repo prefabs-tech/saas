@@ -1,18 +1,18 @@
 <template>
-  <Page :title="t('customers.title')">
+  <Page :title="t('accounts.title')">
     <Table
-      id="customers-table"
+      id="accounts-table"
       :columns-data="columns"
       :data="accounts"
       :data-action-menu="actionMenuData"
-      :empty-table-message="t('customers.table.emptyMessage')"
+      :empty-table-message="t('accounts.table.emptyMessage')"
       :is-loading="isLoading"
-      class="table-customers"
+      class="table-accounts"
       @action:select="onActionSelect"
     >
       <template #toolbar>
         <ButtonElement
-          :label="t('customers.table.actions.addCustomer')"
+          :label="t('accounts.table.actions.addCustomer')"
           icon-left="pi pi-plus"
           @click="onCreateCustomer"
         />
@@ -57,8 +57,8 @@ const columns: TableColumnDefinition<Account>[] = [
     accessorKey: "name",
     enableColumnFilter: true,
     enableSorting: true,
-    filterPlaceholder: t("customers.table.columns.name"),
-    header: t("customers.table.columns.name"),
+    filterPlaceholder: t("accounts.table.columns.name"),
+    header: t("accounts.table.columns.name"),
     cell: ({ row: { original } }) =>
       h(
         "div",
@@ -69,11 +69,11 @@ const columns: TableColumnDefinition<Account>[] = [
           h(
             "a",
             {
-              href: `/customers/${original.id}`,
+              href: `/accounts/${original.id}`,
               class: "customer-link",
               onClick: (event: Event) => {
                 event.preventDefault();
-                router.push(`/customers/${original.id}`);
+                router.push(`/accounts/${original.id}`);
               },
             },
             original.name
@@ -83,27 +83,27 @@ const columns: TableColumnDefinition<Account>[] = [
   },
   {
     accessorKey: "registeredNumber",
-    header: t("customers.table.columns.registeredNumber"),
+    header: t("accounts.table.columns.registeredNumber"),
   },
   {
     accessorKey: "taxId",
-    header: t("customers.table.columns.taxId"),
+    header: t("accounts.table.columns.taxId"),
   },
 ];
 
 const actionMenuData = [
   {
     key: "editCustomer",
-    label: t("customers.table.actions.editCustomer"),
+    label: t("accounts.table.actions.editCustomer"),
   },
   {
     class: "danger",
     confirmationOptions: {
-      body: t("customers.table.confirmation.deleteCustomer.message"),
-      header: t("customers.table.confirmation.deleteCustomer.header"),
+      body: t("accounts.table.confirmation.deleteCustomer.message"),
+      header: t("accounts.table.confirmation.deleteCustomer.header"),
     },
     key: "deleteCustomer",
-    label: t("customers.table.actions.deleteCustomer"),
+    label: t("accounts.table.actions.deleteCustomer"),
     requireConfirmationModal: true,
   },
 ];
@@ -130,7 +130,7 @@ function onActionSelect(rowData: { action: string; data: Account }) {
 
 function onEditCustomer(customerData: Account) {
   account.value = customerData;
-  router.push({ name: "customersEdit", params: { id: customerData.id } });
+  router.push({ name: "accountsEdit", params: { id: customerData.id } });
 }
 
 function onDeleteCustomer(customerData: Account) {
@@ -139,6 +139,6 @@ function onDeleteCustomer(customerData: Account) {
 
 const onCreateCustomer = () => {
   account.value = undefined;
-  router.push({ name: "customersAdd" });
+  router.push({ name: "accountsAdd" });
 };
 </script>

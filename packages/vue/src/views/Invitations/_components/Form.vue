@@ -3,8 +3,8 @@
     <Form @submit="onSubmit">
       <Input
         v-model="formData.email"
-        :label="t('customer.invitations.form.email.label')"
-        :placeholder="t('customer.invitations.form.email.placeholder')"
+        :label="t('account.invitations.form.email.label')"
+        :placeholder="t('account.invitations.form.email.placeholder')"
         :schema="emailSchema"
         name="email"
         type="email"
@@ -12,21 +12,21 @@
 
       <SelectInput
         v-model="formData.role"
-        :label="t('customer.invitations.form.role.label')"
+        :label="t('account.invitations.form.role.label')"
         :options="
           roles.map((role) => ({
-            label: t(`customer.invitations.form.roles.${role}`),
+            label: t(`account.invitations.form.roles.${role}`),
             value: role,
           }))
         "
-        :placeholder="t('customer.invitations.form.role.placeholder')"
+        :placeholder="t('account.invitations.form.role.placeholder')"
         :schema="roleSchema"
       />
 
       <FormActions
         alignment="filled"
-        :cancel-label="t('customer.invitations.form.actions.cancel')"
-        :submit-label="t('customer.invitations.form.actions.create')"
+        :cancel-label="t('account.invitations.form.actions.cancel')"
+        :submit-label="t('account.invitations.form.actions.create')"
         :loading="loading"
         flow-direction="horizontal"
         @cancel="$emit('cancel')"
@@ -44,7 +44,7 @@ import { useRoute } from "vue-router";
 
 import { SAAS_ACCOUNT_ROLES_DEFAULT } from "../../../constant";
 import { useTranslations } from "../../../index";
-import useInvitationStore from "../../../stores/invitation";
+import useInvitationStore from "../../../stores/accountInvitations";
 import {
   createEmailSchema,
   createRoleSchema,

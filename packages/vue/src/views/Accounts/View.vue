@@ -1,9 +1,5 @@
 <template>
-  <Page
-    v-if="account && account.id"
-    :title="account.name"
-    class="customer-view"
-  >
+  <Page v-if="account && account.id" :title="account.name" class="account-view">
     <LoadingIcon v-if="loading" />
 
     <TabView
@@ -12,38 +8,38 @@
       :visible-tabs="['info', 'users', 'invitations']"
       active-key="['info']"
     >
-      <div key="info" class="customer-info">
+      <div key="info" class="account-info">
         <template v-if="!account.individual">
           <Data
-            :caption="t('customers.form.fields.name')"
+            :caption="t('accounts.form.fields.name')"
             :value="account.name"
           />
 
           <Data
-            :caption="t('customers.form.fields.registeredNumber')"
+            :caption="t('accounts.form.fields.registeredNumber')"
             :value="account.registeredNumber || '-'"
           />
 
           <Data
-            :caption="t('customers.form.fields.taxId')"
+            :caption="t('accounts.form.fields.taxId')"
             :value="account.taxId || '-'"
           />
         </template>
 
         <template v-if="saasConfig.subdomains !== 'disabled'">
           <Data
-            :caption="t('customers.form.fields.slug')"
+            :caption="t('accounts.form.fields.slug')"
             :value="account.slug || '-'"
           />
 
           <Data
-            :caption="t('customers.form.fields.domain')"
+            :caption="t('accounts.form.fields.domain')"
             :value="account.domain || '-'"
           />
 
           <Data
             v-if="isAdminApp && saasConfig.multiDatabase && account.database"
-            :caption="t('customers.form.fields.database')"
+            :caption="t('accounts.form.fields.database')"
             :value="account.database"
           />
         </template>
@@ -68,7 +64,7 @@ import { useRoute } from "vue-router";
 import { useTranslations } from "../../index";
 import useAccountsStore from "../../stores/accounts";
 import Invitations from "../Invitations/Index.vue";
-import Users from "./Users/Index.vue";
+import Users from "../Users/Index.vue";
 
 import type { Account } from "../../types/account";
 import type { SaasConfig } from "../../types/config";
@@ -84,9 +80,9 @@ const config = useConfig() as AppConfig;
 const injectedSaasConfig = inject<SaasConfig>(Symbol.for("saas.config"));
 
 const tabList = [
-  { key: "info", label: t("customer.view.info") },
-  { key: "users", label: t("customer.view.users") },
-  { key: "invitations", label: t("customer.view.invitations") },
+  { key: "info", label: t("account.view.info") },
+  { key: "users", label: t("account.view.users") },
+  { key: "invitations", label: t("account.view.invitations") },
 ];
 
 if (!injectedSaasConfig) {
@@ -127,7 +123,7 @@ async function prepareComponent() {
 </script>
 
 <style lang="css">
-.customer-info {
+.account-info {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));

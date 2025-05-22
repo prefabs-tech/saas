@@ -1,6 +1,6 @@
 <template>
-  <Page :title="t('customers.edit')">
-    <CustomerForm :account="account" @submit="onSubmit" @cancel="onCancel" />
+  <Page :title="t('accounts.edit')">
+    <AccountForm :account="account" @submit="onSubmit" @cancel="onCancel" />
   </Page>
 </template>
 
@@ -10,7 +10,7 @@ import { useI18n } from "@dzangolab/vue3-i18n";
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import CustomerForm from "./_components/Customerform.vue";
+import AccountForm from "./_components/Accountform.vue";
 import { useTranslations } from "../../index";
 import useAccountsStore from "../../stores/accounts";
 
@@ -35,11 +35,11 @@ onMounted(async () => {
 });
 
 const onCancel = () => {
-  router.push({ name: "customers" });
+  router.push({ name: "accounts" });
 };
 
 const onSubmit = () => {
-  router.push({ name: "customers" });
+  router.push({ name: "accounts" });
 };
 
 async function prepareComponent() {

@@ -1,7 +1,7 @@
 <template>
   <Modal
     :show="show"
-    :title="t('customer.invitations.modal.title')"
+    :title="t('account.invitations.modal.title')"
     @on:close="$emit('close')"
   >
     <InvitationForm

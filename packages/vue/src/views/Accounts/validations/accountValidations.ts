@@ -11,7 +11,7 @@ export const createValidationSchemas = () => {
     const baseSchema = z
       .string()
       .regex(/^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/, {
-        message: t("customers.form.validations.slug.invalid"),
+        message: t("accounts.form.validations.slug.invalid"),
       });
 
     return saasConfig.subdomains === "required"
@@ -23,25 +23,25 @@ export const createValidationSchemas = () => {
     .string()
     .max(255)
     .regex(/^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/, {
-      message: t("customers.form.validations.domain.invalid"),
+      message: t("accounts.form.validations.domain.invalid"),
     })
     .or(z.literal(""));
 
   const nameSchema = z
     .string()
-    .min(1, { message: t("customers.form.validations.name.required") })
-    .max(255, { message: t("customers.form.validations.name.invalid") });
+    .min(1, { message: t("accounts.form.validations.name.required") })
+    .max(255, { message: t("accounts.form.validations.name.invalid") });
 
   const registeredNumberSchema = z
     .string()
     .max(255, {
-      message: t("customers.form.validations.registeredNumber.invalid"),
+      message: t("accounts.form.validations.registeredNumber.invalid"),
     })
     .or(z.literal(""));
 
   const taxIdSchema = z
     .string()
-    .max(255, { message: t("customers.form.validations.taxId.invalid") })
+    .max(255, { message: t("accounts.form.validations.taxId.invalid") })
     .or(z.literal(""));
 
   return {

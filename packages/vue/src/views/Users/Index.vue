@@ -4,7 +4,7 @@
     :columns-data="columns"
     :data="users"
     :data-action-menu="actionMenuData"
-    :empty-table-message="t('customer.users.table.emptyMessage')"
+    :empty-table-message="t('account.users.table.emptyMessage')"
     :is-loading="isLoading"
     class="table-users"
     @action:select="onActionSelect"
@@ -20,10 +20,10 @@ import { BadgeComponent } from "@dzangolab/vue3-ui";
 import { ref, onMounted, h } from "vue";
 import { useRoute } from "vue-router";
 
-import { useTranslations } from "../../../index";
-import useUsersStore from "../../../stores/users";
+import { useTranslations } from "../../index";
+import useUsersStore from "../../stores/accountUsers";
 
-import type { AccountUser } from "../../../types/accountUser";
+import type { AccountUser } from "../../types/accountUser";
 import type { AppConfig } from "@dzangolab/vue3-config";
 import type {
   TableColumnDefinition,
@@ -48,13 +48,13 @@ const accountId = route.params.id as string;
 const actionMenuData: DataActionsMenuItem[] = [
   {
     key: "enable",
-    label: t("customer.users.table.actions.enable"),
+    label: t("account.users.table.actions.enable"),
     icon: "pi pi-check",
     disabled: (data: AccountUser) => Boolean(!data.disabled),
   },
   {
     key: "disable",
-    label: t("customer.users.table.actions.disable"),
+    label: t("account.users.table.actions.disable"),
     icon: "pi pi-times",
     class: "danger",
     disabled: (data: AccountUser) => Boolean(data.disabled),
@@ -66,12 +66,12 @@ const columns: TableColumnDefinition<AccountUser>[] = [
     accessorKey: "email",
     enableColumnFilter: true,
     enableSorting: true,
-    filterPlaceholder: t("customer.users.table.filter.email"),
-    header: t("customer.users.table.columns.email"),
+    filterPlaceholder: t("account.users.table.filter.email"),
+    header: t("account.users.table.columns.email"),
   },
   {
     id: "name",
-    header: t("customer.users.table.columns.name"),
+    header: t("account.users.table.columns.name"),
     accessorFn: (original) => {
       return (
         (original.givenName ? original.givenName : "") +
@@ -88,18 +88,18 @@ const columns: TableColumnDefinition<AccountUser>[] = [
   {
     align: "center",
     id: "roles",
-    header: t("customer.users.table.columns.roles"),
+    header: t("account.users.table.columns.roles"),
     cell: ({ row: { original } }) => {
       const role = original.role || "";
       return h(BadgeComponent, {
-        label: t(`customer.users.roles.${role}`),
+        label: t(`account.users.roles.${role}`),
         severity: role === "owner" ? "primary" : "success",
       });
     },
   },
   {
     accessorKey: "signedUpAt",
-    header: t("customer.users.table.columns.signedUpOn"),
+    header: t("account.users.table.columns.signedUpOn"),
     cell: ({ row: { original } }) => {
       if (original.signedUpAt) {
         return new Date(original.signedUpAt).toLocaleDateString();
@@ -110,12 +110,12 @@ const columns: TableColumnDefinition<AccountUser>[] = [
   {
     align: "center",
     accessorKey: "status",
-    header: t("customer.users.table.columns.status"),
+    header: t("account.users.table.columns.status"),
     cell: ({ row: { original } }) =>
       h(BadgeComponent, {
         label: original.disabled
-          ? t("customer.users.status.disabled")
-          : t("customer.users.status.enabled"),
+          ? t("account.users.status.disabled")
+          : t("account.users.status.enabled"),
         severity: original.disabled ? "danger" : "success",
       }),
   },

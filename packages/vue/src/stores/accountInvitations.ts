@@ -9,7 +9,7 @@ import {
   resendInvitation,
   revokeInvitation,
   signupInvitation,
-} from "../api/invitation";
+} from "../api/accountInvitations";
 
 import type { AccountInvitationCreateInput } from "../types/accountInvitation";
 
