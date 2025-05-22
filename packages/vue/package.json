@@ -23,10 +23,7 @@
     "sort-package": "npx sort-package-json",
     "typecheck": "vue-tsc --noEmit -p tsconfig.json --composite false"
   },
-  "dependencies": {
-    "supertokens-web-js": "0.5.0",
-    "supertokens-website": "16.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@12deg/eslint-config": "0.1.11",
     "@12deg/tsconfig": "0.1.11",
@@ -71,10 +68,10 @@
     "zod": "3.24.2"
   },
   "peerDependencies": {
-    "@dzangolab/vue3-config": "0.10.10",
-    "@dzangolab/vue3-i18n": "0.10.10",
-    "@dzangolab/vue3-layout": "0.10.10",
-    "@dzangolab/vue3-ui": "0.10.10",
+    "@dzangolab/vue3-config": "0.10.12",
+    "@dzangolab/vue3-i18n": "0.10.12",
+    "@dzangolab/vue3-layout": "0.10.12",
+    "@dzangolab/vue3-ui": "0.10.12",
     "@vee-validate/i18n": ">=4.7.1",
     "@vee-validate/rules": ">=4.7.1",
     "@vueuse/core": ">=9.4.0",

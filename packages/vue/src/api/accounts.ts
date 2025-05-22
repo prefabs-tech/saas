@@ -1,4 +1,4 @@
-import client from "./axios";
+import { client } from "./axios";
 import type { Account, AccountInput, Accounts } from "../types/account";
 
 export const createAccount = async (

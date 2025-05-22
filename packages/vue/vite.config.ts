@@ -34,8 +34,6 @@ export default defineConfig(({ mode }) => {
             pinia: "Pinia",
             vue: "Vue",
             "vue-router": "VueRouter",
-            "supertokens-web-js": "SupertokensWebJs",
-            "supertokens-website": "SupertokensWebsite",
             "@vueuse/core": "VueuseCore",
             "vee-validate": "Veevalidate",
             yup: "Yup",
