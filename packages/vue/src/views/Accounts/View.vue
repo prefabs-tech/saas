@@ -78,7 +78,6 @@ const { t } = useI18n({ messages });
 const config = useConfig() as AppConfig;
 
 const injectedSaasConfig = inject<SaasConfig>(Symbol.for("saas.config"));
-
 const tabList = [
   { key: "info", label: t("account.view.info") },
   { key: "users", label: t("account.view.users") },

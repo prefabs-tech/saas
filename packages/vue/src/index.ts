@@ -11,6 +11,7 @@ import frMessages from "./locales/fr/index";
 
 const __saasVueTranslations = Symbol.for("saas.vue.translations");
 const __saasConfig = Symbol.for("saas.config");
+const __saasEventHandlers = Symbol.for("saas.eventHandlers");
 
 const defaultMessages = {
   en: enMessages,
@@ -28,6 +29,10 @@ const plugin: Plugin = {
       : defaultMessages;
 
     app.provide(__saasVueTranslations, translations);
+
+    app.provide(__saasEventHandlers, {
+      notification: options.notification,
+    });
   },
 };
 

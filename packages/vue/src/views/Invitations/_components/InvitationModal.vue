@@ -4,11 +4,7 @@
     :title="t('account.invitations.modal.title')"
     @on:close="$emit('close')"
   >
-    <InvitationForm
-      :loading="loading"
-      @submit="handleSubmit"
-      @cancel="$emit('close')"
-    />
+    <InvitationForm :loading="loading" @cancel="$emit('close')" />
   </Modal>
 </template>
 
@@ -19,25 +15,15 @@ import { Modal } from "@dzangolab/vue3-ui";
 import InvitationForm from "./Form.vue";
 import { useTranslations } from "../../../index";
 
-import type { AddAccountInvitationResponse } from "../../../types/accountInvitation";
-
 defineProps({
   show: Boolean,
   loading: Boolean,
 });
 
-const emit = defineEmits(["close", "created"]);
+defineEmits(["close"]);
 
 const messages = useTranslations();
 const { t } = useI18n({ messages, locale: "en" });
-
-async function handleSubmit(response: AddAccountInvitationResponse) {
-  try {
-    emit("created", response);
-  } catch (error) {
-    console.error("Failed to create invitation:", error);
-  }
-}
 </script>
 
 <style lang="css">

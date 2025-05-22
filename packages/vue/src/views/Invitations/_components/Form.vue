@@ -52,12 +52,13 @@ import {
 
 import type { AccountInvitationCreateInput } from "../../../types/accountInvitation";
 import type { SaasConfig } from "../../../types/config";
+import type { SaasEventHandlers, EventMessage } from "../../../types/plugin";
 
 defineProps({
   loading: Boolean,
 });
 
-const emit = defineEmits(["cancel", "submit"]);
+defineEmits(["cancel"]);
 
 const config = useConfig();
 const invitationStore = useInvitationStore();
@@ -81,11 +82,24 @@ const roles = computed(() => {
   return saasConfig?.saasAccountRoles || SAAS_ACCOUNT_ROLES_DEFAULT;
 });
 
+const eventHandlers = inject<SaasEventHandlers>(
+  Symbol.for("saas.eventHandlers"),
+  { notification: undefined }
+);
+
 async function onSubmit() {
   try {
     await addInvitation(accountId, formData.value, config.apiBaseUrl).then(
       (response) => {
-        emit("submit", response);
+        const message: EventMessage = {
+          type: "success",
+          message: t("account.invitations.messages.created"),
+          details: {
+            invitation: response,
+          },
+        };
+
+        eventHandlers?.notification?.(message);
       }
     );
   } catch (error) {

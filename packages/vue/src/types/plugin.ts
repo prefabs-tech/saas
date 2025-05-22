@@ -3,8 +3,20 @@ import type { Pinia } from "pinia";
 import type { Router } from "vue-router";
 import type { SaasConfig } from "./config";
 
+export type MessageType = "success" | "error";
+
+export interface EventMessage {
+  type: MessageType;
+  message: string;
+  details?: Record<string, unknown>;
+}
+
+export type SaasEventHandlers = {
+  notification?: (message: EventMessage) => void;
+};
+
 interface SaasVuePluginOptions {
-  notification?: (message: object | string | unknown) => void;
+  notification?: (message: EventMessage) => void;
   pinia: Pinia;
   router: Router;
   saasConfig: SaasConfig;

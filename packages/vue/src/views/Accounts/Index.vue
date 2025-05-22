@@ -26,13 +26,14 @@ import { useConfig } from "@dzangolab/vue3-config";
 import { useI18n } from "@dzangolab/vue3-i18n";
 import { Table } from "@dzangolab/vue3-tanstack-table";
 import { ButtonElement } from "@dzangolab/vue3-ui";
-import { ref, onMounted, h } from "vue";
+import { inject, ref, onMounted, h } from "vue";
 import { useRouter } from "vue-router";
 
 import { useTranslations } from "../../index";
 import useAccountsStore from "../../stores/accounts";
 
 import type { Account } from "../../types/account";
+import type { SaasEventHandlers, EventMessage } from "../../types/plugin";
 import type { AppConfig } from "@dzangolab/vue3-config";
 import type { TableColumnDefinition } from "@dzangolab/vue3-tanstack-table";
 
@@ -108,6 +109,11 @@ const actionMenuData = [
   },
 ];
 
+const eventHandlers = inject<SaasEventHandlers>(
+  Symbol.for("saas.eventHandlers"),
+  { notification: undefined }
+);
+
 onMounted(async () => {
   await fetchAccounts();
 });
@@ -128,17 +134,24 @@ function onActionSelect(rowData: { action: string; data: Account }) {
   }
 }
 
-function onEditCustomer(customerData: Account) {
-  account.value = customerData;
-  router.push({ name: "accountsEdit", params: { id: customerData.id } });
+function onCreateCustomer() {
+  account.value = undefined;
+  router.push({ name: "accountsAdd" });
 }
 
 function onDeleteCustomer(customerData: Account) {
   deleteAccount(customerData.id, config.apiBaseUrl);
+
+  const message: EventMessage = {
+    type: "success",
+    message: t("accounts.messages.deleted"),
+  };
+
+  eventHandlers?.notification?.(message);
 }
 
-const onCreateCustomer = () => {
-  account.value = undefined;
-  router.push({ name: "accountsAdd" });
-};
+function onEditCustomer(customerData: Account) {
+  account.value = customerData;
+  router.push({ name: "accountsEdit", params: { id: customerData.id } });
+}
 </script>

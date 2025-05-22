@@ -43,6 +43,10 @@
       }
     }
   },
+  "messages": {
+    "created": "Client créé avec succès",
+    "updated": "Client mis à jour avec succès"
+  },
   "table": {
     "actions": {
       "addCustomer": "Ajouter",

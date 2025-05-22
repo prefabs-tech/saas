@@ -43,6 +43,10 @@
       }
     }
   },
+  "messages": {
+    "created": "Account created successfully",
+    "updated": "Account updated successfully"
+  },
   "table": {
     "actions": {
       "addCustomer": "Add",
