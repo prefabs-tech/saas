@@ -14,11 +14,9 @@ import AccountInvitationService from "../service";
 
 import type {
   Account,
-  AccountCreateInput,
   AccountInvitation,
   AccountInvitationCreateInput,
   AccountInvitationUpdateInput,
-  AccountUpdateInput,
 } from "../../../types";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
@@ -47,11 +45,7 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
     }
 
     if (!account) {
-      const accountService = new AccountService<
-        Account & QueryResultRow,
-        AccountCreateInput,
-        AccountUpdateInput
-      >(config, slonik);
+      const accountService = new AccountService(config, slonik);
 
       account = await accountService.findById(requestParameters.accountId);
     }

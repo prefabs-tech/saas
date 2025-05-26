@@ -7,11 +7,9 @@ import AccountInvitationService from "../service";
 
 import type {
   Account,
-  AccountCreateInput,
   AccountInvitation,
   AccountInvitationCreateInput,
   AccountInvitationUpdateInput,
-  AccountUpdateInput,
 } from "../../../types";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
@@ -37,11 +35,7 @@ const revoke = async (request: SessionRequest, reply: FastifyReply) => {
   const accountId = account ? account.id : requestParameters.accountId;
 
   if (!account) {
-    const accountService = new AccountService<
-      Account & QueryResultRow,
-      AccountCreateInput,
-      AccountUpdateInput
-    >(config, slonik);
+    const accountService = new AccountService(config, slonik);
 
     account = await accountService.findById(accountId);
   }

@@ -14,7 +14,7 @@ class AccountInvitationService<
   C extends QueryResultRow,
   U extends QueryResultRow,
 > extends AccountAwareBaseService<T, C, U> {
-  create = async (data: C): Promise<T | undefined> => {
+  async create(data: C): Promise<T | undefined> {
     const filters = {
       AND: [
         { key: "accountId", operator: "eq", value: data.accountId },
@@ -43,9 +43,9 @@ class AccountInvitationService<
     })) as T;
 
     return result ? this.postCreate(result) : undefined;
-  };
+  }
 
-  findOneByToken = async (token: string): Promise<T | null> => {
+  async findOneByToken(token: string): Promise<T | null> {
     if (!this.validateUUID(token)) {
       // eslint-disable-next-line unicorn/no-null
       return null;
@@ -72,33 +72,29 @@ class AccountInvitationService<
     }
 
     return result;
-  };
+  }
 
   get factory() {
-    if (!this.table) {
-      throw new Error(`Service table is not defined`);
-    }
-
-    if (!this._factory) {
-      this._factory = new AccountInvitationSqlFactory<T, C, U>(this);
-    }
-
-    return this._factory as AccountInvitationSqlFactory<T, C, U>;
+    return super.factory as AccountInvitationSqlFactory;
   }
 
   get saasConfig() {
     return getSaasConfig(this.config);
   }
 
+  get sqlFactoryClass() {
+    return AccountInvitationSqlFactory;
+  }
+
   get table() {
     return this.saasConfig.tables.accountInvitations.name;
   }
 
-  protected validateUUID = (uuid: string): boolean => {
+  protected validateUUID(uuid: string): boolean {
     const regexp = /^[\da-f]{8}(?:\b-[\da-f]{4}){3}\b-[\da-f]{12}$/gi;
 
     return regexp.test(uuid);
-  };
+  }
 }
 
 export default AccountInvitationService;

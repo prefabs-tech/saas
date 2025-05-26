@@ -1,7 +1,4 @@
 import {
-  createFilterFragment,
-  createLimitFragment,
-  createSortFragment,
   createTableFragment,
   FilterInput,
   SortInput,
@@ -12,26 +9,26 @@ import {
   FragmentSqlToken,
   IdentifierSqlToken,
   sql,
-  type QueryResultRow,
   type QuerySqlToken,
 } from "slonik";
 
+import getSaasConfig from "../../config";
 import AccountAwareSqlFactory from "../../sqlFactory";
 
-/* eslint-disable brace-style */
-class AccountUserSqlFactory<
-  T extends QueryResultRow,
-  C extends QueryResultRow,
-  U extends QueryResultRow,
-> extends AccountAwareSqlFactory<T, C, U> {
-  getCreateSql = (data: C): QuerySqlToken => {
+import type { AccountUserCreateInput } from "../../types";
+class AccountUserSqlFactory extends AccountAwareSqlFactory {
+  getCreateSql(data: AccountUserCreateInput): QuerySqlToken {
     const identifiers = [];
     const values = [];
 
     for (const column in data) {
-      const key = column as keyof C;
-      const value = data[key];
-      identifiers.push(sql.identifier([humps.decamelize(key as string)]));
+      const value = data[column as keyof AccountUserCreateInput];
+
+      if (!value) {
+        continue;
+      }
+
+      identifiers.push(sql.identifier([humps.decamelize(column)]));
       values.push(value);
     }
 
@@ -43,64 +40,72 @@ class AccountUserSqlFactory<
       DO NOTHING
       RETURNING *;
     `;
-  };
+  }
 
-  getUsersSql = (): QuerySqlToken => {
+  getUsersSql(): QuerySqlToken {
     return sql.type(this.validationSchema)`
       SELECT
         ${this.getUserTableIdentifier()}.*,
-        ${this.getTableIdentifier()}.role_id as role,
-        ${this.getTableIdentifier()}.date_start,
-        ${this.getTableIdentifier()}.date_end,
-        ${this.getTableIdentifier()}.created_at,
-        ${this.getTableIdentifier()}.updated_at,
-        ${this.getTableIdentifier()}.account_id
-      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
+        ${this.tableIdentifier}.role_id as role,
+        ${this.tableIdentifier}.date_start,
+        ${this.tableIdentifier}.date_end,
+        ${this.tableIdentifier}.created_at,
+        ${this.tableIdentifier}.updated_at,
+        ${this.tableIdentifier}.account_id
+      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
       INNER JOIN ${this.getUserTableFragment()} AS ${this.getUserTableIdentifier()}
-        ON (${this.getUserTableIdentifier()}.id = ${this.getTableIdentifier()}.user_id)
+        ON (${this.getUserTableIdentifier()}.id = ${this.tableIdentifier}.user_id)
       ${this.getAccountIdFilterFragment(true)};
     `;
-  };
+  }
 
-  getListSql = (
+  getListSql(
     limit: number,
     offset?: number,
     filters?: FilterInput,
     sort?: SortInput[],
-  ): QuerySqlToken => {
+  ): QuerySqlToken {
     return sql.type(this.validationSchema)`
       SELECT
         ${this.getUserTableIdentifier()}.*,
-        ${this.getTableIdentifier()}.role_id as role,
-        ${this.getTableIdentifier()}.date_start,
-        ${this.getTableIdentifier()}.date_end,
-        ${this.getTableIdentifier()}.created_at,
-        ${this.getTableIdentifier()}.updated_at,
-        ${this.getTableIdentifier()}.account_id
-      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
+        ${this.tableIdentifier}.role_id as role,
+        ${this.tableIdentifier}.date_start,
+        ${this.tableIdentifier}.date_end,
+        ${this.tableIdentifier}.created_at,
+        ${this.tableIdentifier}.updated_at,
+        ${this.tableIdentifier}.account_id
+      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
       INNER JOIN ${this.getUserTableFragment()} AS ${this.getUserTableIdentifier()}
-        ON (${this.getUserTableIdentifier()}.id = ${this.getTableIdentifier()}.user_id)
-      ${createFilterFragment(filters, this.getTableIdentifier())}
-      ${this.getAccountIdFilterFragment(!filters)}
-      ${createSortFragment(this.getTableIdentifier(), this.getSortInput(sort))}
-      ${createLimitFragment(limit, offset)};
+        ON (${this.getUserTableIdentifier()}.id = ${this.tableIdentifier}.user_id)
+        ${this.getFilterFragment(filters)}
+        ${this.getAccountIdFilterFragment(!filters)}
+        ${this.getSortFragment(sort)}
+        ${this.getLimitFragment(limit, offset)};
     `;
-  };
+  }
 
-  getTableIdentifier = (): IdentifierSqlToken => {
+  get saasConfig() {
+    return getSaasConfig(this.config);
+  }
+
+  get table() {
+    return this.saasConfig.tables.accountUsers.name;
+  }
+
+  get tableIdentifier(): IdentifierSqlToken {
     return sql.identifier(["account_users"]);
-  };
+  }
 
-  getUserTableFragment = (): FragmentSqlToken => {
+  protected getUserTableFragment(): FragmentSqlToken {
     return createTableFragment(
       this.config.user.tables?.users?.name || TABLE_USERS,
       this.schema,
     );
-  };
+  }
 
-  getUserTableIdentifier = (): IdentifierSqlToken => {
+  protected getUserTableIdentifier(): IdentifierSqlToken {
     return sql.identifier(["users"]);
-  };
+  }
 }
 
 export default AccountUserSqlFactory;

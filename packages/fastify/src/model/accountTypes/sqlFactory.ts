@@ -1,7 +1,4 @@
 import {
-  createFilterFragment,
-  createLimitFragment,
-  createSortFragment,
   createTableFragment,
   DefaultSqlFactory,
 } from "@dzangolab/fastify-slonik";
@@ -10,41 +7,18 @@ import {
   FragmentSqlToken,
   IdentifierSqlToken,
   sql,
-  type QueryResultRow,
   type QuerySqlToken,
 } from "slonik";
 
 import getSaasConfig from "../../config";
 
 import type { AccountTypeI18nCreateInput } from "../../types";
-import type {
-  FilterInput,
-  SortInput,
-  SqlFactory,
-} from "@dzangolab/fastify-slonik";
+import type { FilterInput, SortInput } from "@dzangolab/fastify-slonik";
 
 /* eslint-disable brace-style */
-class AccountTypeSqlFactory<
-    T extends QueryResultRow,
-    C extends QueryResultRow,
-    U extends QueryResultRow,
-  >
-  extends DefaultSqlFactory<T, C, U>
-  implements SqlFactory<T, C, U>
-{
-  getAccountTypesI18nTableIdentifier = (): IdentifierSqlToken => {
-    return sql.identifier(["ati"]);
-  };
-
-  getAccountTypesI18nTableFragment = (): FragmentSqlToken => {
-    return createTableFragment(
-      this.saasConfig.tables.accountTypesI18n.name,
-      this.schema,
-    );
-  };
-  getAllSql = (fields: string[], sort?: SortInput[]): QuerySqlToken => {
+class AccountTypeSqlFactory extends DefaultSqlFactory {
+  getAllSql(fields: string[], sort?: SortInput[]): QuerySqlToken {
     const identifiers = [];
-
     const fieldsObject: Record<string, true> = {};
 
     for (const field of fields) {
@@ -59,22 +33,22 @@ class AccountTypeSqlFactory<
     return sql.unsafe`
       SELECT ${sql.join(identifiers, sql.fragment`, `)},
       ${this.getTableWithI18nFragment()}
-      GROUP BY ${this.getTableIdentifier()}.id
-      ${createSortFragment(this.getTableIdentifier(), this.getSortInput(sort))};
+      GROUP BY ${this.tableIdentifier}.id
+      ${this.getSortFragment(sort)};
     `;
-  };
+  }
 
-  getFindByIdSql = (id: number | string): QuerySqlToken => {
+  getFindByIdSql(id: number | string): QuerySqlToken {
     return sql.unsafe`
       SELECT 
-        ${this.getTableIdentifier()}.*,
+        ${this.tableIdentifier}.*,
         ${this.getTableWithI18nFragment()}
-      WHERE ${this.getTableIdentifier()}.id = ${id}
-      GROUP BY ${this.getTableIdentifier()}.id;
+      WHERE ${this.tableIdentifier}.id = ${id}
+      GROUP BY ${this.tableIdentifier}.id;
     `;
-  };
+  }
 
-  getCreateI18nsSql = (id: number, i18n: AccountTypeI18nCreateInput[]) => {
+  getCreateI18nsSql(id: number, i18n: AccountTypeI18nCreateInput[]) {
     return sql.unsafe`
       INSERT INTO ${this.getAccountTypesI18nTableFragment()} (id, locale, name) VALUES
       ${sql.join(
@@ -83,9 +57,9 @@ class AccountTypeSqlFactory<
       )}
       RETURNING *;
     `;
-  };
+  }
 
-  getDeleteI18nsSql = (id: number) => {
+  getDeleteI18nsSql(id: number) {
     const accountTypesI18nTable = createTableFragment(
       this.saasConfig.tables.accountTypesI18n.name,
       this.schema,
@@ -96,29 +70,25 @@ class AccountTypeSqlFactory<
       WHERE id = ${id}
       RETURNING *;
     `;
-  };
+  }
 
-  getListSql = (
+  getListSql(
     limit: number,
     offset?: number,
     filters?: FilterInput,
     sort?: SortInput[],
-  ): QuerySqlToken => {
+  ): QuerySqlToken {
     return sql.unsafe`
-      SELECT ${this.getTableIdentifier()}.*,
+      SELECT ${this.tableIdentifier}.*,
       ${this.getTableWithI18nFragment()}
-      ${createFilterFragment(filters, this.getTableIdentifier())}
-      GROUP BY ${this.getTableIdentifier()}.id
-      ${createSortFragment(this.getTableIdentifier(), this.getSortInput(sort))}
-      ${createLimitFragment(limit, offset)};
+      ${this.getFilterFragment(filters)}
+      GROUP BY ${this.tableIdentifier}.id
+      ${this.getSortFragment(sort)}
+      ${this.getLimitFragment(limit, offset)};
     `;
-  };
+  }
 
-  getTableIdentifier = (): IdentifierSqlToken => {
-    return sql.identifier(["at"]);
-  };
-
-  getTableWithI18nFragment = (): FragmentSqlToken => {
+  getTableWithI18nFragment(): FragmentSqlToken {
     return sql.fragment`
       COALESCE(
         json_agg(
@@ -129,14 +99,33 @@ class AccountTypeSqlFactory<
           )
         ) FILTER (WHERE ${this.getAccountTypesI18nTableIdentifier()}.id IS NOT NULL), '[]'::json
       ) AS i18n
-      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
+      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
       LEFT JOIN ${this.getAccountTypesI18nTableFragment()} AS ${this.getAccountTypesI18nTableIdentifier()}
-        ON ${this.getTableIdentifier()}.id = ${this.getAccountTypesI18nTableIdentifier()}.id
+        ON ${this.tableIdentifier}.id = ${this.getAccountTypesI18nTableIdentifier()}.id
     `;
-  };
+  }
 
   get saasConfig() {
     return getSaasConfig(this.config);
+  }
+
+  get table() {
+    return this.saasConfig.tables.accountTypes.name;
+  }
+
+  get tableIdentifier(): IdentifierSqlToken {
+    return sql.identifier(["at"]);
+  }
+
+  protected getAccountTypesI18nTableIdentifier(): IdentifierSqlToken {
+    return sql.identifier(["ati"]);
+  }
+
+  protected getAccountTypesI18nTableFragment(): FragmentSqlToken {
+    return createTableFragment(
+      this.saasConfig.tables.accountTypesI18n.name,
+      this.schema,
+    );
   }
 }
 

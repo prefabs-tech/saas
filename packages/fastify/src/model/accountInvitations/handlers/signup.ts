@@ -14,12 +14,9 @@ import AccountService from "../../accounts/service";
 import AccountInvitationService from "../service";
 
 import type {
-  Account,
-  AccountCreateInput,
   AccountInvitation,
   AccountInvitationCreateInput,
   AccountInvitationUpdateInput,
-  AccountUpdateInput,
 } from "../../../types";
 import type { User } from "@dzangolab/fastify-user";
 import type { FastifyReply, FastifyRequest } from "fastify";
@@ -64,11 +61,7 @@ const signup = async (request: SessionRequest, reply: FastifyReply) => {
       });
     }
 
-    const accountService = new AccountService<
-      Account & QueryResultRow,
-      AccountCreateInput,
-      AccountUpdateInput
-    >(config, slonik);
+    const accountService = new AccountService(config, slonik);
 
     const account = await accountService.findById(requestParameters.accountId);
 

@@ -8,15 +8,18 @@ import { NANOID_ALPHABET, NANOID_SIZE } from "../../constants";
 import { validateAccountInput } from "../../lib/validateAccountSchema";
 import runAccountMigrations from "../../migrations/runAccountMigrations";
 
-import type { Account, AccountCreateInput } from "../../types";
-import type { QueryResultRow } from "slonik";
+import type {
+  Account,
+  AccountCreateInput,
+  AccountUpdateInput,
+} from "../../types";
 
-class AccountService<
-  T extends QueryResultRow,
-  C extends QueryResultRow,
-  U extends QueryResultRow,
-> extends BaseService<T, C, U> {
-  create = async (data: C): Promise<T | undefined> => {
+class AccountService extends BaseService<
+  Account,
+  AccountCreateInput,
+  AccountUpdateInput
+> {
+  async create(data: AccountCreateInput): Promise<Account | undefined> {
     if (this.saasConfig.subdomains === "disabled" || data.slug === "") {
       delete data.slug;
       delete data.domain;
@@ -54,12 +57,12 @@ class AccountService<
       return connection.query(query).then((data) => {
         return data.rows[0];
       });
-    })) as T;
+    })) as Account;
 
     return result ? this.postCreate(result) : undefined;
-  };
+  }
 
-  findByHostname = async (hostname: string): Promise<T | null> => {
+  async findByHostname(hostname: string): Promise<Account | null> {
     const saasConfig = getSaasConfig(this.config);
 
     const query = this.factory.getFindByHostnameSql(
@@ -72,9 +75,9 @@ class AccountService<
     });
 
     return account;
-  };
+  }
 
-  findByUserId = async (userId: string): Promise<T | null> => {
+  async findByUserId(userId: string): Promise<Account | null> {
     const query = this.factory.getFindByUserIdSql(userId);
 
     const account = await this.database.connect(async (connection) => {
@@ -82,9 +85,9 @@ class AccountService<
     });
 
     return account;
-  };
+  }
 
-  validateSlugOrDomain = async (slug: string, domain?: string) => {
+  async validateSlugOrDomain(slug: string, domain?: string) {
     const query = this.factory.getFindBySlugOrDomainSql(slug, domain);
 
     const accounts = await this.database.connect(async (connection) => {
@@ -106,29 +109,25 @@ class AccountService<
         statusCode: 422,
       };
     }
-  };
+  }
 
   get factory() {
-    if (!this.table) {
-      throw new Error(`Service table is not defined`);
-    }
-
-    if (!this._factory) {
-      this._factory = new AccountSqlFactory<T, C, U>(this);
-    }
-
-    return this._factory as AccountSqlFactory<T, C, U>;
+    return super.factory as AccountSqlFactory;
   }
 
   get saasConfig() {
     return getSaasConfig(this.config);
   }
 
+  get sqlFactoryClass() {
+    return AccountSqlFactory;
+  }
+
   get table() {
     return this.saasConfig.tables.accounts.name;
   }
 
-  protected postCreate = async (account: T): Promise<T> => {
+  protected async postCreate(account: Account): Promise<Account> {
     if (
       this.saasConfig.subdomains === "disabled" ||
       !this.saasConfig.multiDatabase?.enabled
@@ -139,7 +138,7 @@ class AccountService<
     await runAccountMigrations(this.config, account as unknown as Account);
 
     return account;
-  };
+  }
 }
 
 export default AccountService;

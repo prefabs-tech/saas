@@ -8,12 +8,9 @@ import AccountUserService from "../../accountUsers/service";
 import AccountInvitationService from "../service";
 
 import type {
-  Account,
-  AccountCreateInput,
   AccountInvitation,
   AccountInvitationCreateInput,
   AccountInvitationUpdateInput,
-  AccountUpdateInput,
 } from "../../../types";
 import type { User } from "@dzangolab/fastify-user";
 import type { FastifyReply, FastifyRequest } from "fastify";
@@ -35,11 +32,7 @@ const join = async (request: SessionRequest, reply: FastifyReply) => {
   }
 
   try {
-    const accountService = new AccountService<
-      Account & QueryResultRow,
-      AccountCreateInput,
-      AccountUpdateInput
-    >(config, slonik);
+    const accountService = new AccountService(config, slonik);
 
     const account = await accountService.findById(requestParameters.accountId);
 
@@ -86,7 +79,7 @@ const join = async (request: SessionRequest, reply: FastifyReply) => {
     await accountUserService.create({
       accountId: account.id,
       userId: user.id,
-      role_id: accountInvitation.role,
+      roleId: accountInvitation.role,
     });
 
     // update invitation's acceptedAt value with current time
