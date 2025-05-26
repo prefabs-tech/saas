@@ -6,19 +6,10 @@ import { sql } from "slonik";
 
 import getSaasConfig from "../../config";
 
-import type { QueryResultRow, QuerySqlToken } from "slonik";
-
-/* eslint-disable brace-style */
-class AccountSqlFactory<
-  T extends QueryResultRow,
-  C extends QueryResultRow,
-  U extends QueryResultRow,
-> extends DefaultSqlFactory<T, C, U> {
-  getFindByHostnameSql = (
-    hostname: string,
-    rootDomain: string,
-  ): QuerySqlToken => {
-    const query = sql.type(this.validationSchema)`
+import type { QuerySqlToken } from "slonik";
+class AccountSqlFactory extends DefaultSqlFactory {
+  getFindByHostnameSql(hostname: string, rootDomain: string): QuerySqlToken {
+    return sql.type(this.validationSchema)`
       SELECT *
       FROM ${this.getTableFragment()}
       WHERE domain = ${hostname}
@@ -26,13 +17,12 @@ class AccountSqlFactory<
         ${sql.identifier(["slug"])}
         || '.' ||
         ${rootDomain}
-      ) = ${hostname};
+      ) = ${hostname}
+      ${this.getSoftDeleteFilterFragment(false)};
     `;
+  }
 
-    return query;
-  };
-
-  getFindBySlugOrDomainSql = (slug: string, domain?: string): QuerySqlToken => {
+  getFindBySlugOrDomainSql(slug: string, domain?: string): QuerySqlToken {
     const domainIdentifier = sql.identifier(["domain"]);
     const slugIdentifier = sql.identifier(["slug"]);
 
@@ -47,11 +37,12 @@ class AccountSqlFactory<
       FROM ${this.getTableFragment()}
       WHERE
       ${slugIdentifier} = ${slug}
-      ${domainFilterFragment};
+      ${domainFilterFragment}
+      ${this.getSoftDeleteFilterFragment(false)};
     `;
-  };
+  }
 
-  getFindByUserIdSql = (userId: string): QuerySqlToken => {
+  getFindByUserIdSql(userId: string): QuerySqlToken {
     const accountUsersTable = createTableFragment(
       this.saasConfig.tables.accountUsers.name,
       this.schema,
@@ -59,14 +50,19 @@ class AccountSqlFactory<
 
     return sql.type(this.validationSchema)`
       SELECT c.*
-      FROM ${this.getTableFragment()} AS c
-      JOIN ${accountUsersTable} AS cu on c.id = cu.account_id
-      WHERE cu.user_id = ${userId};
+      FROM ${this.getTableFragment()} AS a
+      JOIN ${accountUsersTable} AS au on a.id = au.account_id
+      WHERE au.user_id = ${userId}
+      ${this.getSoftDeleteFilterFragment(false)};
     `;
-  };
+  }
 
   get saasConfig() {
     return getSaasConfig(this.config);
+  }
+
+  get table() {
+    return this.saasConfig.tables.accounts.name;
   }
 }
 

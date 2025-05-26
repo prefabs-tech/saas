@@ -1,4 +1,3 @@
-/* eslint-disable brace-style */
 import { BaseService } from "@dzangolab/fastify-slonik";
 
 import AccountTypeSqlFactory from "./sqlFactory";
@@ -9,34 +8,30 @@ import type {
   AccountTypeUpdateInput,
   AccountTypeI18nCreateInput,
   AccountTypeI18nUpdateInput,
+  AccountType,
 } from "../../types";
-import type { Service } from "@dzangolab/fastify-slonik";
-import type { QueryResultRow } from "slonik";
 
-class AccountTypeService<
-    T extends QueryResultRow,
-    C extends QueryResultRow,
-    U extends QueryResultRow,
-  >
-  extends BaseService<T, C, U>
-  implements Service<T, C, U>
-{
-  createWithI18ns = async (
+class AccountTypeService extends BaseService<
+  AccountType,
+  AccountTypeCreateInput,
+  AccountTypeUpdateInput & Record<string, unknown>
+> {
+  async createWithI18ns(
     data: AccountTypeCreateInput,
-  ): Promise<T | undefined> => {
+  ): Promise<AccountType | undefined> {
     const result = await this.database.connect(async (connection) => {
       return connection.transaction(async (transactionConnection) => {
         const { i18n, ...accountTypeInput } = data;
 
         const accountType = await transactionConnection.maybeOne(
-          this.factory.getCreateSql(accountTypeInput as unknown as C),
+          this.factory.getCreateSql(accountTypeInput as AccountTypeCreateInput),
         );
 
         if (accountType && i18n) {
           await transactionConnection.query(
             this.factory.getCreateI18nsSql(
               accountType.id,
-              i18n as unknown as AccountTypeI18nCreateInput[],
+              i18n as AccountTypeI18nCreateInput[],
             ),
           );
 
@@ -48,18 +43,21 @@ class AccountTypeService<
     });
 
     return result ? ((await this.findById(result.id)) ?? undefined) : undefined;
-  };
+  }
 
-  updateWithI18ns = async (
+  async updateWithI18ns(
     id: number,
     data: AccountTypeUpdateInput,
-  ): Promise<T | undefined> => {
+  ): Promise<AccountType | undefined> {
     const result = await this.database.connect(async (connection) => {
       return connection.transaction(async (transactionConnection) => {
         const { i18n, ...accountTypeInput } = data;
 
         const accountType = await transactionConnection.maybeOne(
-          this.factory.getUpdateSql(id, accountTypeInput as unknown as U),
+          this.factory.getUpdateSql(
+            id,
+            accountTypeInput as Record<string, unknown>,
+          ),
         );
 
         if (accountType && i18n) {
@@ -70,7 +68,7 @@ class AccountTypeService<
           await transactionConnection.query(
             this.factory.getCreateI18nsSql(
               accountType.id,
-              i18n as unknown as AccountTypeI18nUpdateInput[],
+              i18n as AccountTypeI18nUpdateInput[],
             ),
           );
 
@@ -82,26 +80,18 @@ class AccountTypeService<
     });
 
     return result ? ((await this.findById(result.id)) ?? undefined) : undefined;
-  };
+  }
 
   get factory() {
-    if (!this.table) {
-      throw new Error(`Service table is not defined`);
-    }
+    return super.factory as AccountTypeSqlFactory;
+  }
 
-    if (!this._factory) {
-      this._factory = new AccountTypeSqlFactory<T, C, U>(this);
-    }
-
-    return this._factory as AccountTypeSqlFactory<T, C, U>;
+  get sqlFactoryClass() {
+    return AccountTypeSqlFactory;
   }
 
   get saasConfig() {
     return getSaasConfig(this.config);
-  }
-
-  get table() {
-    return this.saasConfig.tables.accountTypes.name;
   }
 }
 

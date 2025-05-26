@@ -1,12 +1,6 @@
 import AccountInvitationService from "../service";
 
-import type {
-  AccountInvitation,
-  AccountInvitationCreateInput,
-  AccountInvitationUpdateInput,
-} from "../../../types";
 import type { FastifyReply, FastifyRequest } from "fastify";
-import type { QueryResultRow } from "slonik";
 
 const getByToken = async (request: FastifyRequest, reply: FastifyReply) => {
   const { config, account, dbSchema, log, slonik } = request;
@@ -35,11 +29,12 @@ const getByToken = async (request: FastifyRequest, reply: FastifyReply) => {
   }
 
   try {
-    const service = new AccountInvitationService<
-      AccountInvitation & QueryResultRow,
-      AccountInvitationCreateInput,
-      AccountInvitationUpdateInput
-    >(config, slonik, accountId, dbSchema);
+    const service = new AccountInvitationService(
+      config,
+      slonik,
+      accountId,
+      dbSchema,
+    );
 
     const accountInvitation = await service.findOneByToken(
       requestParameters.token,

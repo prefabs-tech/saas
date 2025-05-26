@@ -3,7 +3,6 @@ import {
   getUserService,
   validateEmail,
 } from "@dzangolab/fastify-user";
-import { QueryResultRow } from "slonik";
 
 import getSaasConfig from "../../../config";
 import { ROLE_SAAS_ACCOUNT_MEMBER } from "../../../constants";
@@ -14,11 +13,8 @@ import AccountInvitationService from "../service";
 
 import type {
   Account,
-  AccountCreateInput,
   AccountInvitation,
   AccountInvitationCreateInput,
-  AccountInvitationUpdateInput,
-  AccountUpdateInput,
 } from "../../../types";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
@@ -47,11 +43,7 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
     }
 
     if (!account) {
-      const accountService = new AccountService<
-        Account & QueryResultRow,
-        AccountCreateInput,
-        AccountUpdateInput
-      >(config, slonik);
+      const accountService = new AccountService(config, slonik);
 
       account = await accountService.findById(requestParameters.accountId);
     }
@@ -120,11 +112,12 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
       }
     }
 
-    const service = new AccountInvitationService<
-      AccountInvitation & QueryResultRow,
-      AccountInvitationCreateInput,
-      AccountInvitationUpdateInput
-    >(config, slonik, account.id, dbSchema);
+    const service = new AccountInvitationService(
+      config,
+      slonik,
+      account.id,
+      dbSchema,
+    );
 
     const invitationCreateInput: AccountInvitationCreateInput = {
       accountId: account.id,

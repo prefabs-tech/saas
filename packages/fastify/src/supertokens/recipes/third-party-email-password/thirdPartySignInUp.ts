@@ -109,7 +109,7 @@ const thirdPartySignInUp = (
         await accountUserService.create({
           accountId: account.id,
           userId: originalResponse.user.id,
-          role_id: ROLE_SAAS_ACCOUNT_MEMBER,
+          roleId: ROLE_SAAS_ACCOUNT_MEMBER,
         });
       }
     } else {

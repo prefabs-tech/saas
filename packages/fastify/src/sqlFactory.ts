@@ -1,54 +1,18 @@
 import {
-  createFilterFragment,
-  createLimitFragment,
-  createSortFragment,
-  createTableIdentifier,
   DefaultSqlFactory,
   FilterInput,
   SortInput,
 } from "@dzangolab/fastify-slonik";
 import humps from "humps";
-import {
-  FragmentSqlToken,
-  QuerySqlToken,
-  sql,
-  type QueryResultRow,
-} from "slonik";
+import { FragmentSqlToken, QuerySqlToken, sql } from "slonik";
 import { z } from "zod";
 
-import type { AccountAwareService } from "./types/service";
-
-/* eslint-disable brace-style */
-class AccountAwareSqlFactory<
-  T extends QueryResultRow,
-  C extends QueryResultRow,
-  U extends QueryResultRow,
-> extends DefaultSqlFactory<T, C, U> {
-  /* eslint-enabled */
-
-  protected _service: AccountAwareService<T, C, U>;
+class AccountAwareSqlFactory extends DefaultSqlFactory {
+  protected _accountId: string | undefined;
 
   protected _applyAccountIdFilter: boolean = true;
 
-  constructor(service: AccountAwareService<T, C, U>) {
-    super(service);
-
-    this._service = service;
-  }
-
-  getTableIdentifier = () => {
-    return createTableIdentifier(this.table, this.schema);
-  };
-
-  getAccountIdFilterFragment = (addWhere: boolean): FragmentSqlToken => {
-    return this.accountId && this.applyAccountIdFilter
-      ? addWhere
-        ? sql.fragment`WHERE ${this.getTableIdentifier()}.account_id = ${this.accountId}`
-        : sql.fragment`AND ${this.getTableIdentifier()}.account_id = ${this.accountId}`
-      : sql.fragment``;
-  };
-
-  getAllSql = (fields: string[], sort?: SortInput[]): QuerySqlToken => {
+  getAllSql(fields: string[], sort?: SortInput[]): QuerySqlToken {
     const identifiers = [];
 
     const fieldsObject: Record<string, true> = {};
@@ -65,95 +29,100 @@ class AccountAwareSqlFactory<
 
     return sql.type(allSchema)`
       SELECT ${sql.join(identifiers, sql.fragment`, `)}
-      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
+      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
       ${this.getAccountIdFilterFragment(true)}
-      ${createSortFragment(this.getTableIdentifier(), this.getSortInput(sort))}
+      ${this.getSortFragment(sort)}
     `;
-  };
+  }
 
-  getCountSql = (filters?: FilterInput): QuerySqlToken => {
+  getCountSql(filters?: FilterInput): QuerySqlToken {
     const countSchema = z.object({
       count: z.number(),
     });
 
     return sql.type(countSchema)`
       SELECT COUNT(*)
-      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
-      ${createFilterFragment(filters, this.getTableIdentifier())}
+      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
+      ${this.getFilterFragment(filters)}
       ${this.getAccountIdFilterFragment(!filters)}
       ;
     `;
-  };
+  }
 
-  getDeleteSql = (id: number | string): QuerySqlToken => {
+  getDeleteSql(id: number | string): QuerySqlToken {
     return sql.type(this.validationSchema)`
-      DELETE FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
+      DELETE FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
       WHERE id = ${id}
       ${this.getAccountIdFilterFragment(false)}
       RETURNING *;
     `;
-  };
+  }
 
-  getFindByIdSql = (id: number | string): QuerySqlToken => {
+  getFindByIdSql(id: number | string): QuerySqlToken {
     return sql.type(this.validationSchema)`
       SELECT *
-      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
+      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
       WHERE id = ${id}
       ${this.getAccountIdFilterFragment(false)}
       ;
     `;
-  };
+  }
 
-  getFindOneSql = (
-    filters?: FilterInput,
-    sort?: SortInput[],
-  ): QuerySqlToken => {
+  getFindOneSql(filters?: FilterInput, sort?: SortInput[]): QuerySqlToken {
     return sql.type(this.validationSchema)`
       SELECT *
-      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
-      ${createFilterFragment(filters, this.getTableIdentifier())}
+      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
+      ${this.getFilterFragment(filters)}
       ${this.getAccountIdFilterFragment(!filters)}
-      ${createSortFragment(this.getTableIdentifier(), this.getSortInput(sort))}
+      ${this.getSortFragment(sort)}
       LIMIT 1;
     `;
-  };
+  }
 
-  getFindSql = (filters?: FilterInput, sort?: SortInput[]): QuerySqlToken => {
+  getFindSql(filters?: FilterInput, sort?: SortInput[]): QuerySqlToken {
     return sql.type(this.validationSchema)`
       SELECT *
-      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
-      ${createFilterFragment(filters, this.getTableIdentifier())}
+      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
+      ${this.getFilterFragment(filters)}
       ${this.getAccountIdFilterFragment(!filters)}
-      ${createSortFragment(this.getTableIdentifier(), this.getSortInput(sort))};
+      ${this.getSortFragment(sort)}
     `;
-  };
+  }
 
-  getListSql = (
+  getListSql(
     limit: number,
     offset?: number,
     filters?: FilterInput,
     sort?: SortInput[],
-  ): QuerySqlToken => {
+  ): QuerySqlToken {
     return sql.type(this.validationSchema)`
       SELECT *
-      FROM ${this.getTableFragment()} AS ${this.getTableIdentifier()}
-      ${createFilterFragment(filters, this.getTableIdentifier())}
+      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
+      ${this.getFilterFragment(filters)}
       ${this.getAccountIdFilterFragment(!filters)}
-      ${createSortFragment(this.getTableIdentifier(), this.getSortInput(sort))}
-      ${createLimitFragment(limit, offset)};
+      ${this.getSortFragment(sort)}
+      ${this.getLimitFragment(limit, offset)};
     `;
-  };
-
-  get service(): AccountAwareService<T, C, U> {
-    return this._service;
   }
 
   get accountId(): string | undefined {
-    return this.service.accountId;
+    return this._accountId;
   }
 
   get applyAccountIdFilter(): boolean {
     return this._applyAccountIdFilter;
+  }
+
+  set accountId(accountId: string | undefined) {
+    this._accountId = accountId;
+  }
+
+  protected getAccountIdFilterFragment(addWhere: boolean): FragmentSqlToken {
+    return this.accountId && this.applyAccountIdFilter
+      ? addWhere
+        ? sql.fragment`WHERE ${this.tableIdentifier}.account_id = ${this.accountId}`
+        : sql.fragment`AND ${this.tableIdentifier}.account_id = ${this.accountId}`
+      : sql.fragment``;
   }
 }
 

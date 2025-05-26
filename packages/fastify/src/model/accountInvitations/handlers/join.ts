@@ -1,5 +1,4 @@
 import { formatDate } from "@dzangolab/fastify-slonik";
-import { QueryResultRow } from "slonik";
 import { SessionRequest } from "supertokens-node/framework/fastify";
 
 import isInvitationValid from "../../../lib/isInvitationValid";
@@ -7,14 +6,6 @@ import AccountService from "../../accounts/service";
 import AccountUserService from "../../accountUsers/service";
 import AccountInvitationService from "../service";
 
-import type {
-  Account,
-  AccountCreateInput,
-  AccountInvitation,
-  AccountInvitationCreateInput,
-  AccountInvitationUpdateInput,
-  AccountUpdateInput,
-} from "../../../types";
 import type { User } from "@dzangolab/fastify-user";
 import type { FastifyReply, FastifyRequest } from "fastify";
 
@@ -35,11 +26,7 @@ const join = async (request: SessionRequest, reply: FastifyReply) => {
   }
 
   try {
-    const accountService = new AccountService<
-      Account & QueryResultRow,
-      AccountCreateInput,
-      AccountUpdateInput
-    >(config, slonik);
+    const accountService = new AccountService(config, slonik);
 
     const account = await accountService.findById(requestParameters.accountId);
 
@@ -53,11 +40,12 @@ const join = async (request: SessionRequest, reply: FastifyReply) => {
 
     const dbSchema = account.database || undefined;
 
-    const service = new AccountInvitationService<
-      AccountInvitation & QueryResultRow,
-      AccountInvitationCreateInput,
-      AccountInvitationUpdateInput
-    >(config, slonik, requestParameters.accountId, dbSchema);
+    const service = new AccountInvitationService(
+      config,
+      slonik,
+      requestParameters.accountId,
+      dbSchema,
+    );
 
     const accountInvitation = await service.findOneByToken(
       requestParameters.token,
@@ -86,7 +74,7 @@ const join = async (request: SessionRequest, reply: FastifyReply) => {
     await accountUserService.create({
       accountId: account.id,
       userId: user.id,
-      role_id: accountInvitation.role,
+      roleId: accountInvitation.role,
     });
 
     // update invitation's acceptedAt value with current time

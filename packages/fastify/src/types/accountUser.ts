@@ -2,7 +2,7 @@ interface AccountUser {
   id: number;
   accountId: string;
   userId: string;
-  role: string;
+  roleId: string;
 }
 
 type AccountUserCreateInput = Partial<Omit<AccountUser, "id">> & {

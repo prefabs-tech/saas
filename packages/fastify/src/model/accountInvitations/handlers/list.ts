@@ -1,12 +1,6 @@
-import { QueryResultRow } from "slonik";
-
 import AccountInvitationService from "../service";
 
-import type {
-  AccountInvitation,
-  AccountInvitationCreateInput,
-  AccountInvitationUpdateInput,
-} from "../../../types";
+import type { AccountInvitation } from "../../../types";
 import type { PaginatedList } from "@dzangolab/fastify-slonik";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
@@ -42,11 +36,12 @@ const list = async (request: SessionRequest, reply: FastifyReply) => {
       sort?: string;
     };
 
-    const service = new AccountInvitationService<
-      AccountInvitation & QueryResultRow,
-      AccountInvitationCreateInput,
-      AccountInvitationUpdateInput
-    >(config, slonik, accountId, dbSchema);
+    const service = new AccountInvitationService(
+      config,
+      slonik,
+      accountId,
+      dbSchema,
+    );
 
     const invitations = (await service.list(
       limit,

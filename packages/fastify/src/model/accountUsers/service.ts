@@ -1,43 +1,37 @@
-/* eslint-disable brace-style */
 import AccountUserSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
 import AccountAwareBaseService from "../../service";
+import {
+  AccountUser,
+  AccountUserCreateInput,
+  AccountUserUpdateInput,
+} from "../../types";
 
-import type { QueryResultRow } from "slonik";
-
-class AccountUserService<
-  T extends QueryResultRow,
-  C extends QueryResultRow,
-  U extends QueryResultRow,
-> extends AccountAwareBaseService<T, C, U> {
-  getUsers = async (): Promise<readonly T[]> => {
+class AccountUserService extends AccountAwareBaseService<
+  AccountUser,
+  AccountUserCreateInput,
+  AccountUserUpdateInput
+> {
+  async getUsers(): Promise<readonly AccountUser[]> {
     const query = this.factory.getUsersSql();
 
     const result = await this.database.connect((connection) => {
       return connection.any(query);
     });
 
-    return result as readonly T[];
-  };
+    return result as readonly AccountUser[];
+  }
 
   get factory() {
-    if (!this.table) {
-      throw new Error(`Service table is not defined`);
-    }
-
-    if (!this._factory) {
-      this._factory = new AccountUserSqlFactory<T, C, U>(this);
-    }
-
-    return this._factory as AccountUserSqlFactory<T, C, U>;
+    return super.factory as AccountUserSqlFactory;
   }
 
   get saasConfig() {
     return getSaasConfig(this.config);
   }
 
-  get table() {
-    return this.saasConfig.tables.accountUsers.name;
+  get sqlFactoryClass() {
+    return AccountUserSqlFactory;
   }
 }
 

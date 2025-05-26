@@ -1,15 +1,16 @@
 import { BaseService } from "@dzangolab/fastify-slonik";
 
+import SqlFactory from "./sqlFactory";
+
 import type { AccountAwareService as Service } from "./types/service";
 import type { ApiConfig } from "@dzangolab/fastify-config";
 import type { Database } from "@dzangolab/fastify-slonik";
-import type { QueryResultRow } from "slonik";
 
 /* eslint-disable brace-style */
 abstract class AccountAwareBaseService<
-    T extends QueryResultRow,
-    C extends QueryResultRow,
-    U extends QueryResultRow,
+    T,
+    C extends Record<string, unknown>,
+    U extends Record<string, unknown>,
   >
   extends BaseService<T, C, U>
   implements Service<T, C, U>
@@ -30,6 +31,17 @@ abstract class AccountAwareBaseService<
 
   get accountId(): string | undefined {
     return this._accountId;
+  }
+
+  get factory(): SqlFactory {
+    const factory = super.factory as SqlFactory;
+    factory.accountId = this.accountId;
+
+    return factory;
+  }
+
+  get sqlFactoryClass() {
+    return SqlFactory;
   }
 }
 
