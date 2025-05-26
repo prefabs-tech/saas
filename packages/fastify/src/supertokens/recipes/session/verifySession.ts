@@ -16,6 +16,16 @@ const verifySession = (
     if (originalResponse) {
       const user = input.userContext._default.request.request.user;
 
+      if (user?.deletedAt) {
+        await originalResponse.revokeSession();
+
+        throw {
+          name: "SESSION_VERIFICATION_FAILED",
+          message: "user not found",
+          statusCode: 401,
+        } as FastifyError;
+      }
+
       if (user?.disabled) {
         await originalResponse.revokeSession();
 
