@@ -1,6 +1,6 @@
 {
   "name": "@12deg/saas-fastify",
-  "version": "0.18.1",
+  "version": "0.19.0",
   "description": "saas plugin for fastify",
   "homepage": "https://github.com/12deg/saas/tree/main/packages/fastify#readme",
   "repository": {
