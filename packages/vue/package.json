@@ -1,6 +1,6 @@
 {
   "name": "@12deg/saas-vue",
-  "version": "0.18.0",
+  "version": "0.18.1",
   "description": "Saas plugin for vue",
   "type": "module",
   "exports": {
