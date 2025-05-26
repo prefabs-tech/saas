@@ -1,0 +1,70 @@
+{
+  "add": "Ajouter un client",
+  "edit": "Modifier un client",
+  "form": {
+    "actions": {
+      "cancel": "Annuler",
+      "create": "Créer",
+      "update": "Mettre à jour"
+    },
+    "fields": {
+      "database": "Base de données",
+      "domain": "Domaine",
+      "name": "Nom",
+      "registeredNumber": "Numéro d'enregistrement",
+      "slug": "Slug",
+      "taxId": "Numéro d'identification fiscale"
+    },
+    "label": {
+      "domain": "Domaine",
+      "individual": "Individuel",
+      "name": "Nom",
+      "registeredNumber": "Numéro d'enregistrement",
+      "slug": "Slug",
+      "taxId": "Numéro d'identification fiscale",
+      "useSeparateDatabase": "Utiliser une base de données distincte"
+    },
+    "validations": {
+      "domain": {
+        "invalid": "Format de domaine invalide"
+      },
+      "name": {
+        "invalid": "Le nom doit contenir moins de 255 caractères",
+        "required": "Le nom est requis"
+      },
+      "registeredNumber": {
+        "invalid": "Le numéro d'enregistrement doit contenir moins de 255 caractères"
+      },
+      "slug": {
+        "invalid": "Le slug doit contenir uniquement des caractères alphanumériques"
+      },
+      "taxId": {
+        "invalid": "Le numéro d'identification fiscale doit contenir moins de 255 caractères"
+      }
+    }
+  },
+  "messages": {
+    "created": "Client créé avec succès",
+    "updated": "Client mis à jour avec succès"
+  },
+  "table": {
+    "actions": {
+      "addCustomer": "Ajouter",
+      "deleteCustomer": "Supprimer",
+      "editCustomer": "Modifier"
+    },
+    "columns": {
+      "name": "Nom",
+      "registeredNumber": "Numéro d'enregistrement",
+      "taxId": "Numéro d'identification fiscale"
+    },
+    "confirmation": {
+      "deleteCustomer": {
+        "header": "Supprimer le client",
+        "message": "Êtes-vous sûr de vouloir supprimer ce client ?"
+      }
+    },
+    "emptyMessage": "Aucun client trouvé"
+  },
+  "title": "Clients"
+}

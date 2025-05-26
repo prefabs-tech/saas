@@ -1,0 +1,93 @@
+{
+  "invitations": {
+    "addInvitation": "Ajouter une invitation",
+    "form": {
+      "actions": {
+        "cancel": "Annuler",
+        "create": "Inviter un utilisateur"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Entrez l'adresse email"
+      },
+      "role": {
+        "label": "Rôle",
+        "placeholder": "Sélectionnez un rôle"
+      },
+      "roles": {
+        "SAAS_ACCOUNT_MEMBER": "Membre",
+        "SAAS_ACCOUNT_OWNER": "Propriétaire"
+      },
+      "validation": {
+        "email": "Veuillez entrer une adresse email valide",
+        "role": "Veuillez sélectionner un rôle"
+      }
+    },
+    "modal": {
+      "title": "Inviter un utilisateur"
+    },
+    "table": {
+      "actions": {
+        "addInvitation": "Inviter un utilisateur",
+        "deleteInvitation": "Supprimer",
+        "resendInvitation": "Renvoyer",
+        "revokeInvitation": "Révoquer"
+      },
+      "columns": {
+        "createdAt": "Créé le",
+        "email": "Email",
+        "expiresAt": "Expire le",
+        "role": "Rôle",
+        "status": "Statut"
+      },
+      "confirmation": {
+        "deleteInvitation": {
+          "header": "Supprimer l'invitation",
+          "message": "Êtes-vous sûr de vouloir supprimer cette invitation ?"
+        }
+      },
+      "emptyMessage": "Aucune invitation trouvée",
+      "filter": {
+        "email": "Filtrer par email"
+      },
+      "status": {
+        "accepted": "Acceptée",
+        "pending": "En attente",
+        "revoked": "Révoquée"
+      }
+    }
+  },
+  "users": {
+    "table": {
+      "actions": {
+        "disable": "Désactiver",
+        "enable": "Activer",
+        "invite": "Inviter un utilisateur"
+      },
+      "columns": {
+        "email": "Email",
+        "name": "Nom",
+        "roles": "Rôles",
+        "signedUpOn": "Inscrit le",
+        "status": "Statut"
+      },
+      "emptyMessage": "Aucun utilisateur trouvé",
+      "filter": {
+        "email": "Filtrer par email"
+      },
+      "roles": {
+        "owner": "Propriétaire",
+        "member": "Membre"
+      },
+      "status": {
+        "disabled": "Désactivé",
+        "enabled": "Activé"
+      }
+    }
+  },
+  "view": {
+    "info": "Informations",
+    "invitations": "Invitations",
+    "users": "Utilisateurs"
+  }
+}
