@@ -1,0 +1,70 @@
+{
+  "add": "Add customer",
+  "edit": "Edit customer",
+  "form": {
+    "actions": {
+      "cancel": "Cancel",
+      "create": "Create",
+      "update": "Update"
+    },
+    "fields": {
+      "database": "Database",
+      "domain": "Domain",
+      "name": "Name",
+      "registeredNumber": "Registered number",
+      "slug": "Slug",
+      "taxId": "Tax ID"
+    },
+    "label": {
+      "domain": "Domain",
+      "individual": "Individual",
+      "name": "Name",
+      "registeredNumber": "Registered number",
+      "slug": "Slug",
+      "taxId": "Tax ID",
+      "useSeparateDatabase": "Use separate database"
+    },
+    "validations": {
+      "domain": {
+        "invalid": "Invalid domain format"
+      },
+      "name": {
+        "invalid": "Name must be less than 255 characters",
+        "required": "Name is required"
+      },
+      "registeredNumber": {
+        "invalid": "Registered number must be less than 255 characters"
+      },
+      "slug": {
+        "invalid": "Slug must contain only alphanumeric characters"
+      },
+      "taxId": {
+        "invalid": "Tax ID must be less than 255 characters"
+      }
+    }
+  },
+  "messages": {
+    "created": "Account created successfully",
+    "updated": "Account updated successfully"
+  },
+  "table": {
+    "actions": {
+      "addCustomer": "Add",
+      "deleteCustomer": "Delete",
+      "editCustomer": "Edit"
+    },
+    "columns": {
+      "name": "Name",
+      "registeredNumber": "Registered number",
+      "taxId": "Tax ID"
+    },
+    "confirmation": {
+      "deleteCustomer": {
+        "header": "Delete customer",
+        "message": "Are you sure you want to delete this customer?"
+      }
+    },
+    "emptyMessage": "No customers found"
+  },
+  "title": "Customers"
+}
