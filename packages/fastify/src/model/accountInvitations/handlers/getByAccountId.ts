@@ -1,14 +1,7 @@
-import { QueryResultRow } from "slonik";
-
 import AccountService from "../../accounts/service";
 import AccountInvitationService from "../service";
 
-import type {
-  Account,
-  AccountInvitation,
-  AccountInvitationCreateInput,
-  AccountInvitationUpdateInput,
-} from "../../../types";
+import type { Account } from "../../../types";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
@@ -46,11 +39,12 @@ const list = async (request: SessionRequest, reply: FastifyReply) => {
   const dbSchema = account.database || undefined;
 
   try {
-    const service = new AccountInvitationService<
-      AccountInvitation & QueryResultRow,
-      AccountInvitationCreateInput,
-      AccountInvitationUpdateInput
-    >(config, slonik, accountId, dbSchema);
+    const service = new AccountInvitationService(
+      config,
+      slonik,
+      accountId,
+      dbSchema,
+    );
 
     const invitations = await service.find({
       key: "accountId",

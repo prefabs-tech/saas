@@ -12,9 +12,7 @@ import type {
   QuerySqlToken,
 } from "slonik";
 
-/* eslint-disable brace-style */
 class AccountInvitationSqlFactory extends AccountAwareSqlFactory {
-  /* eslint-enabled */
   getListSql(
     limit: number,
     offset?: number,

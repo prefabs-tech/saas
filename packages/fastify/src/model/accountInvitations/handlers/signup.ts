@@ -4,7 +4,6 @@ import {
   validateEmail,
   validatePassword,
 } from "@dzangolab/fastify-user";
-import { QueryResultRow } from "slonik";
 import { SessionRequest } from "supertokens-node/framework/fastify";
 import { createNewSession } from "supertokens-node/recipe/session";
 import { emailPasswordSignUp } from "supertokens-node/recipe/thirdpartyemailpassword";
@@ -13,11 +12,6 @@ import isInvitationValid from "../../../lib/isInvitationValid";
 import AccountService from "../../accounts/service";
 import AccountInvitationService from "../service";
 
-import type {
-  AccountInvitation,
-  AccountInvitationCreateInput,
-  AccountInvitationUpdateInput,
-} from "../../../types";
 import type { User } from "@dzangolab/fastify-user";
 import type { FastifyReply, FastifyRequest } from "fastify";
 
@@ -75,11 +69,12 @@ const signup = async (request: SessionRequest, reply: FastifyReply) => {
 
     const dbSchema = account.database || undefined;
 
-    const service = new AccountInvitationService<
-      AccountInvitation & QueryResultRow,
-      AccountInvitationCreateInput,
-      AccountInvitationUpdateInput
-    >(config, slonik, requestParameters.accountId, dbSchema);
+    const service = new AccountInvitationService(
+      config,
+      slonik,
+      requestParameters.accountId,
+      dbSchema,
+    );
 
     const accountInvitation = await service.findOneByToken(
       requestParameters.token,

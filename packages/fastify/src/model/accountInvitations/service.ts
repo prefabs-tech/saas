@@ -1,4 +1,3 @@
-/* eslint-disable brace-style */
 import { formatDate } from "@dzangolab/fastify-slonik";
 
 import AccountInvitationSqlFactory from "./sqlFactory";
@@ -6,15 +5,21 @@ import getSaasConfig from "../../config";
 import AccountAwareBaseService from "../../service";
 import AccountService from "../accounts/service";
 
+import type {
+  AccountInvitation,
+  AccountInvitationCreateInput,
+  AccountInvitationUpdateInput,
+} from "../../types";
 import type { FilterInput } from "@dzangolab/fastify-slonik";
-import type { QueryResultRow } from "slonik";
 
-class AccountInvitationService<
-  T extends QueryResultRow,
-  C extends QueryResultRow,
-  U extends QueryResultRow,
-> extends AccountAwareBaseService<T, C, U> {
-  async create(data: C): Promise<T | undefined> {
+class AccountInvitationService extends AccountAwareBaseService<
+  AccountInvitation,
+  AccountInvitationCreateInput,
+  AccountInvitationUpdateInput
+> {
+  async create(
+    data: AccountInvitationCreateInput,
+  ): Promise<AccountInvitation | undefined> {
     const filters = {
       AND: [
         { key: "accountId", operator: "eq", value: data.accountId },
@@ -40,12 +45,12 @@ class AccountInvitationService<
       return connection.query(query).then((data) => {
         return data.rows[0];
       });
-    })) as T;
+    })) as AccountInvitation;
 
     return result ? this.postCreate(result) : undefined;
   }
 
-  async findOneByToken(token: string): Promise<T | null> {
+  async findOneByToken(token: string): Promise<AccountInvitation | null> {
     if (!this.validateUUID(token)) {
       // eslint-disable-next-line unicorn/no-null
       return null;

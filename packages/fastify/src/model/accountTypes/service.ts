@@ -31,7 +31,7 @@ class AccountTypeService extends BaseService<
           await transactionConnection.query(
             this.factory.getCreateI18nsSql(
               accountType.id,
-              i18n as unknown as AccountTypeI18nCreateInput[],
+              i18n as AccountTypeI18nCreateInput[],
             ),
           );
 
@@ -68,7 +68,7 @@ class AccountTypeService extends BaseService<
           await transactionConnection.query(
             this.factory.getCreateI18nsSql(
               accountType.id,
-              i18n as unknown as AccountTypeI18nUpdateInput[],
+              i18n as AccountTypeI18nUpdateInput[],
             ),
           );
 
