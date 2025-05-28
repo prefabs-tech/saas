@@ -9,9 +9,10 @@ import { inject } from "vue";
 import enMessages from "./locales/en/index";
 import frMessages from "./locales/fr/index";
 
-const __saasVueTranslations = Symbol.for("saas.vue.translations");
 const __saasConfig = Symbol.for("saas.config");
 const __saasEventHandlers = Symbol.for("saas.eventHandlers");
+const __saasAccountTabs = Symbol.for("saas.accountTabs");
+const __saasVueTranslations = Symbol.for("saas.vue.translations");
 
 const defaultMessages = {
   en: enMessages,
@@ -33,6 +34,8 @@ const plugin: Plugin = {
     app.provide(__saasEventHandlers, {
       notification: options.notification,
     });
+
+    app.provide(__saasAccountTabs, options.accountTabs);
   },
 };
 
