@@ -23,6 +23,12 @@
         "role": "Veuillez sélectionner un rôle"
       }
     },
+    "messages": {
+      "created": "Invitation envoyée à {email}.",
+      "deleted": "Invitation supprimée pour {email}.",
+      "resend": "Invitation renvoyée à {email}.",
+      "revoked": "Invitation révoquée pour {email}."
+    },
     "modal": {
       "title": "Inviter un utilisateur"
     },
