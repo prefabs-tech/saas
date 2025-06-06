@@ -1,14 +1,21 @@
 import type { LocaleMessages, VueMessageType } from "@dzangolab/vue3-i18n";
 import type { Pinia } from "pinia";
+import type { Component } from "vue";
 import type { Router } from "vue-router";
 import type { SaasConfig } from "./config";
 
-export type MessageType = "success" | "error";
+export type MessageType = "error" | "success";
 
 export interface EventMessage {
-  type: MessageType;
-  message: string;
   details?: Record<string, unknown>;
+  message: string;
+  type: MessageType;
+}
+
+export interface Tab {
+  component: Component;
+  key: string;
+  label: string;
 }
 
 export type SaasEventHandlers = {
@@ -16,6 +23,7 @@ export type SaasEventHandlers = {
 };
 
 interface SaasVuePluginOptions {
+  accountTabs?: (defaultTabs: Tab[]) => Tab[];
   notification?: (message: EventMessage) => void;
   pinia: Pinia;
   router: Router;

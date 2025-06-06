@@ -1,3 +1,12 @@
+## [0.19.1](https://github.com/12deg/saas/compare/v0.19.0...v0.19.1) (2025-05-29)
+
+
+### Features
+
+* add custom tabs on account view page ([10f12c6](https://github.com/12deg/saas/commit/10f12c6ef3cf578181ca535c8ff7f07580a008d2))
+
+
+
 # [0.19.0](https://github.com/12deg/saas/compare/v0.18.1...v0.19.0) (2025-05-26)
 
 ### BREAKING CHANGES

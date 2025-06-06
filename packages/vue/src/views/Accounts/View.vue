@@ -1,54 +1,17 @@
 <template>
-  <Page v-if="account && account.id" :title="account.name" class="account-view">
+  <Page v-if="account?.id" :title="account.name" class="account-view">
     <LoadingIcon v-if="loading" />
 
     <TabView
+      v-if="processedTabs.length > 0 && visibleTabs.length > 0"
       id="tab-view-slot"
-      :tabs="tabList"
-      :visible-tabs="['info', 'users', 'invitations']"
-      active-key="['info']"
+      :tabs="processedTabs"
+      :visible-tabs="visibleTabs"
+      :active-key="activeTab"
+      @update:active-key="activeTab = $event"
     >
-      <div key="info" class="account-info">
-        <template v-if="!account.individual">
-          <Data
-            :caption="t('accounts.form.fields.name')"
-            :value="account.name"
-          />
-
-          <Data
-            :caption="t('accounts.form.fields.registeredNumber')"
-            :value="account.registeredNumber || '-'"
-          />
-
-          <Data
-            :caption="t('accounts.form.fields.taxId')"
-            :value="account.taxId || '-'"
-          />
-        </template>
-
-        <template v-if="saasConfig.subdomains !== 'disabled'">
-          <Data
-            :caption="t('accounts.form.fields.slug')"
-            :value="account.slug || '-'"
-          />
-
-          <Data
-            :caption="t('accounts.form.fields.domain')"
-            :value="account.domain || '-'"
-          />
-
-          <Data
-            v-if="isAdminApp && saasConfig.multiDatabase && account.database"
-            :caption="t('accounts.form.fields.database')"
-            :value="account.database"
-          />
-        </template>
-      </div>
-      <div key="users">
-        <Users />
-      </div>
-      <div key="invitations">
-        <Invitations />
+      <div v-for="tab in processedTabs" :key="tab.key">
+        <component :is="getComponentByTabKey(tab.key)" :account="account" />
       </div>
     </TabView>
   </Page>
@@ -57,75 +20,86 @@
 <script setup lang="ts">
 import { useConfig } from "@dzangolab/vue3-config";
 import { useI18n } from "@dzangolab/vue3-i18n";
-import { Data, TabView, LoadingIcon } from "@dzangolab/vue3-ui";
+import { TabView, LoadingIcon } from "@dzangolab/vue3-ui";
 import { ref, onMounted, computed, inject } from "vue";
 import { useRoute } from "vue-router";
 
 import { useTranslations } from "../../index";
+import AccountDetails from "./_components/AccountDetails.vue";
 import useAccountsStore from "../../stores/accounts";
 import Invitations from "../Invitations/Index.vue";
 import Users from "../Users/Index.vue";
 
 import type { Account } from "../../types/account";
-import type { SaasConfig } from "../../types/config";
 import type { AppConfig } from "@dzangolab/vue3-config";
+import type { Component } from "vue";
 
 const route = useRoute();
-const accountId = route.params.id as string;
-
 const messages = useTranslations();
 const { t } = useI18n({ messages });
 const config = useConfig() as AppConfig;
-
-const injectedSaasConfig = inject<SaasConfig>(Symbol.for("saas.config"));
-const tabList = [
-  { key: "info", label: t("account.view.info") },
-  { key: "users", label: t("account.view.users") },
-  { key: "invitations", label: t("account.view.invitations") },
-];
-
-if (!injectedSaasConfig) {
-  throw new Error("SAAS config not provided");
-}
-
-const saasConfig = computed(() => {
-  return {
-    ...injectedSaasConfig,
-  };
-});
-
 const accountsStore = useAccountsStore();
 const { getAccount } = accountsStore;
 
-const isAdminApp = computed(() => {
-  const subdomain = window.location.hostname.split(".")[0];
-  return subdomain === "admin";
+const __saasAccountTabs = Symbol.for("saas.accountTabs");
+
+const accountId = route.params.id as string;
+const account = ref<Account>({} as Account);
+const loading = ref(true);
+const activeTab = ref("info");
+
+const defaultTabList = [
+  {
+    component: AccountDetails,
+    key: "info",
+    label: t("account.view.info"),
+  },
+  {
+    component: Users,
+    key: "users",
+    label: t("account.view.users"),
+  },
+  {
+    component: Invitations,
+    key: "invitations",
+    label: t("account.view.invitations"),
+  },
+];
+
+const tabConfig = inject<(() => typeof defaultTabList) | typeof defaultTabList>(
+  __saasAccountTabs,
+  defaultTabList
+);
+
+const processedTabs = computed(() => {
+  const additionalTabs =
+    typeof tabConfig === "function"
+      ? tabConfig()
+      : Array.isArray(tabConfig)
+        ? tabConfig
+        : [];
+  return [...defaultTabList, ...additionalTabs];
 });
 
-const account = ref({} as Account);
-const loading = ref(true);
+const visibleTabs = computed(() => processedTabs.value.map((tab) => tab.key));
 
 onMounted(async () => {
   await prepareComponent();
 });
 
+function getComponentByTabKey(tabKey: string): Component {
+  return (
+    processedTabs.value.find((tab) => tab.key === tabKey)?.component ||
+    AccountDetails
+  );
+}
+
 async function prepareComponent() {
   loading.value = true;
-
   try {
-    const response = await getAccount(accountId, config.apiBaseUrl);
-    account.value = response;
+    account.value = await getAccount(accountId, config.apiBaseUrl);
   } finally {
     loading.value = false;
   }
 }
 </script>
-
-<style lang="css">
-.account-info {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-  padding: 1rem;
-}
-</style>

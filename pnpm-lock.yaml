@@ -263,23 +263,23 @@ importers:
         specifier: 0.1.11
         version: 0.1.11(@types/node@22.13.5)
       '@dzangolab/vue3-config':
-        specifier: 0.10.12
-        version: 0.10.12(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+        specifier: 0.10.13
+        version: 0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
       '@dzangolab/vue3-form':
-        specifier: 0.10.12
-        version: 0.10.12(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
+        specifier: 0.10.13
+        version: 0.10.13(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
       '@dzangolab/vue3-i18n':
-        specifier: 0.10.12
-        version: 0.10.12(@dzangolab/vue3-config@0.10.12(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+        specifier: 0.10.13
+        version: 0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
       '@dzangolab/vue3-layout':
-        specifier: 0.10.12
-        version: 0.10.12(@dzangolab/vue3-config@0.10.12(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@dzangolab/vue3-i18n@0.10.12(@dzangolab/vue3-config@0.10.12(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@dzangolab/vue3-ui@0.10.12(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+        specifier: 0.10.13
+        version: 0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@dzangolab/vue3-i18n@0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@dzangolab/vue3-ui@0.10.13(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
       '@dzangolab/vue3-tanstack-table':
-        specifier: 0.10.12
-        version: 0.10.12(@dzangolab/vue3-form@0.10.12(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(@dzangolab/vue3-ui@0.10.12(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+        specifier: 0.10.13
+        version: 0.10.13(@dzangolab/vue3-form@0.10.13(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(@dzangolab/vue3-ui@0.10.13(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
       '@dzangolab/vue3-ui':
-        specifier: 0.10.12
-        version: 0.10.12(vue@3.5.13(typescript@5.5.4))
+        specifier: 0.10.13
+        version: 0.10.13(vue@3.5.13(typescript@5.5.4))
       '@iconify/vue':
         specifier: 4.3.0
         version: 4.3.0(vue@3.5.13(typescript@5.5.4))
@@ -814,15 +814,15 @@ packages:
       react-dom: '>=18.2'
       react-router-dom: '>=6.9'
 
-  '@dzangolab/vue3-config@0.10.12':
-    resolution: {integrity: sha512-etgP6mHMHTrzdrNV89+ngcHtQRjM9xtyuiv02NbdXVYwysJKeYsB40zMpoOTYLLXrMbaBBPXnn+jVKz7VL6Izg==}
+  '@dzangolab/vue3-config@0.10.13':
+    resolution: {integrity: sha512-7j2phMX+ttn2NKaNcW4DdKXU0iXE1g6PkhXPDswhLgzWQtDPEeBRlnVLSHTXF6Rcv/vxazdrOd/WTFVV4RSoOg==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
       vue: '>=3.2'
       vue-router: '>=4.0'
 
-  '@dzangolab/vue3-form@0.10.12':
-    resolution: {integrity: sha512-vJDVst3/jSKFF6H6Tb/bgOvbACkf+RU1PrmdtaWhVkLZzeEsBSBG7Ywz0rlm86tgRs7NnhB/al9A48qbsR3awA==}
+  '@dzangolab/vue3-form@0.10.13':
+    resolution: {integrity: sha512-bFXSL8QEX+dpegZZjO4s/z8wkEaFyl9UEh1h8YqzOKu7HKQGet5PfzkLRyo7TB6FCEF8ITkybI3K2nvO8JUQqg==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
       '@vee-validate/i18n': '>=4.7.4'
@@ -832,36 +832,36 @@ packages:
       vue: '>=3.2'
       zod: '>=3.20.6'
 
-  '@dzangolab/vue3-i18n@0.10.12':
-    resolution: {integrity: sha512-XDQDZr7D8TSQOanXZDSX0Rr0gfGDClLmguSawPilO7NsU1Ky7X7msyRj6nUmxKLlp3BrTcEAimbnztZm0WHGNA==}
+  '@dzangolab/vue3-i18n@0.10.13':
+    resolution: {integrity: sha512-Sw9QGxBDqtfdS04QgtaCmGsVUAzoG6Ceh8STllcwd3BDC85qwYkOdfb/EoR4VWJn0lEoIJt+6RZGIPITvAqwiw==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@dzangolab/vue3-config': 0.10.12
+      '@dzangolab/vue3-config': 0.10.13
       '@vueuse/core': '>=9.4.0'
       pinia: '>=2.0'
       vue: '>=3.2'
 
-  '@dzangolab/vue3-layout@0.10.12':
-    resolution: {integrity: sha512-qEeYgOUSOdh3uxntvb7WQGNHU6EKd3pOwnYwAZeS12Rhr6YxnkmsELHPNxJ8o5Z+16TXkMyHjNSucibKbj5P/w==}
+  '@dzangolab/vue3-layout@0.10.13':
+    resolution: {integrity: sha512-yAYmR94FXu3c34izhDwskkxU3oQbn14qLxIkbE2ZKergT5KpuGjqjT2QaXRCS1tA29lMwTDGsr4CMNDYzRZZPA==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@dzangolab/vue3-config': 0.10.12
-      '@dzangolab/vue3-i18n': 0.10.12
-      '@dzangolab/vue3-ui': 0.10.12
+      '@dzangolab/vue3-config': 0.10.13
+      '@dzangolab/vue3-i18n': 0.10.13
+      '@dzangolab/vue3-ui': 0.10.13
       '@vueuse/core': '>=9.4.0'
       vue: '>=3.2'
       vue-router: '>=4.0'
 
-  '@dzangolab/vue3-tanstack-table@0.10.12':
-    resolution: {integrity: sha512-4BB70P9+htNgf2aOvCfenk34eAbxrLz5e3slt7HvmaLd6wJ8GO9d5ww1WKEThTv+HoDGF1kzNMY5uUIBjerB+A==}
+  '@dzangolab/vue3-tanstack-table@0.10.13':
+    resolution: {integrity: sha512-ZvauBtkW1hPCnc9xYzVIBnp6+ZMYpfnOXUGlONd4wH2aJv2BpfwUel9RUaVuh8Kg8cnaqASVjBqQcoZ5tYHjOA==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@dzangolab/vue3-form': 0.10.12
-      '@dzangolab/vue3-ui': 0.10.12
+      '@dzangolab/vue3-form': 0.10.13
+      '@dzangolab/vue3-ui': 0.10.13
       vue: '>=3.2'
 
-  '@dzangolab/vue3-ui@0.10.12':
-    resolution: {integrity: sha512-4QeJRyEeP8Ubq7ikmlImtdWQ5ITmtIPPwD/IQVrOtHzATYCNZ3mBW3SHZ2lgGxByxPOGd5DDawzcF6LeKM7lRA==}
+  '@dzangolab/vue3-ui@0.10.13':
+    resolution: {integrity: sha512-1oNF74tUxXO7fHp+kG7YvRIiT8d09ZNmYMILeAuI36dUxZFWvWhcjCg936pu32CRQp1xs1SUnbMda9TRazQDSA==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
       vue: '>=3.2'
@@ -6440,7 +6440,7 @@ snapshots:
       react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-router-dom: 6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
-  '@dzangolab/vue3-config@0.10.12(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
+  '@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
     dependencies:
       '@sentry/core': 9.1.0
       '@sentry/vue': 9.1.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
@@ -6449,7 +6449,7 @@ snapshots:
     transitivePeerDependencies:
       - pinia
 
-  '@dzangolab/vue3-form@0.10.12(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)':
+  '@dzangolab/vue3-form@0.10.13(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)':
     dependencies:
       '@vee-validate/i18n': 4.15.0
       '@vee-validate/rules': 4.15.0(vue@3.5.13(typescript@5.5.4))
@@ -6459,31 +6459,31 @@ snapshots:
       vue: 3.5.13(typescript@5.5.4)
       zod: 3.24.2
 
-  '@dzangolab/vue3-i18n@0.10.12(@dzangolab/vue3-config@0.10.12(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
+  '@dzangolab/vue3-i18n@0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
     dependencies:
-      '@dzangolab/vue3-config': 0.10.12(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@dzangolab/vue3-config': 0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
       '@vueuse/core': 12.7.0(typescript@5.5.4)
       pinia: 3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4))
       vue: 3.5.13(typescript@5.5.4)
       vue-i18n: 9.1.10(vue@3.5.13(typescript@5.5.4))
 
-  '@dzangolab/vue3-layout@0.10.12(@dzangolab/vue3-config@0.10.12(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@dzangolab/vue3-i18n@0.10.12(@dzangolab/vue3-config@0.10.12(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@dzangolab/vue3-ui@0.10.12(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
+  '@dzangolab/vue3-layout@0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@dzangolab/vue3-i18n@0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@dzangolab/vue3-ui@0.10.13(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
     dependencies:
-      '@dzangolab/vue3-config': 0.10.12(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@dzangolab/vue3-i18n': 0.10.12(@dzangolab/vue3-config@0.10.12(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@dzangolab/vue3-ui': 0.10.12(vue@3.5.13(typescript@5.5.4))
+      '@dzangolab/vue3-config': 0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@dzangolab/vue3-i18n': 0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@dzangolab/vue3-ui': 0.10.13(vue@3.5.13(typescript@5.5.4))
       '@vueuse/core': 12.7.0(typescript@5.5.4)
       vue: 3.5.13(typescript@5.5.4)
       vue-router: 4.5.0(vue@3.5.13(typescript@5.5.4))
 
-  '@dzangolab/vue3-tanstack-table@0.10.12(@dzangolab/vue3-form@0.10.12(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(@dzangolab/vue3-ui@0.10.12(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
+  '@dzangolab/vue3-tanstack-table@0.10.13(@dzangolab/vue3-form@0.10.13(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(@dzangolab/vue3-ui@0.10.13(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
     dependencies:
-      '@dzangolab/vue3-form': 0.10.12(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
-      '@dzangolab/vue3-ui': 0.10.12(vue@3.5.13(typescript@5.5.4))
+      '@dzangolab/vue3-form': 0.10.13(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
+      '@dzangolab/vue3-ui': 0.10.13(vue@3.5.13(typescript@5.5.4))
       '@tanstack/vue-table': 8.21.2(vue@3.5.13(typescript@5.5.4))
       vue: 3.5.13(typescript@5.5.4)
 
-  '@dzangolab/vue3-ui@0.10.12(vue@3.5.13(typescript@5.5.4))':
+  '@dzangolab/vue3-ui@0.10.13(vue@3.5.13(typescript@5.5.4))':
     dependencies:
       vue: 3.5.13(typescript@5.5.4)
 
