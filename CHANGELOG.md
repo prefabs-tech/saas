@@ -1,3 +1,7 @@
+## [0.19.2](https://github.com/12deg/saas/compare/v0.19.1...v0.19.2) (2025-06-06)
+
+
+
 ## [0.19.1](https://github.com/12deg/saas/compare/v0.19.0...v0.19.1) (2025-05-29)
 
 
