@@ -26,7 +26,10 @@ class AccountTypeSqlFactory extends DefaultSqlFactory {
         continue;
       }
 
-      identifiers.push(sql.identifier(["at", humps.decamelize(field)]));
+      identifiers.push(
+        sql.identifier(["account_types", humps.decamelize(field)]),
+      );
+
       fieldsObject[humps.camelize(field)] = true;
     }
 
@@ -114,11 +117,11 @@ class AccountTypeSqlFactory extends DefaultSqlFactory {
   }
 
   get tableIdentifier(): IdentifierSqlToken {
-    return sql.identifier(["at"]);
+    return sql.identifier(["account_types"]);
   }
 
   protected getAccountTypesI18nTableIdentifier(): IdentifierSqlToken {
-    return sql.identifier(["ati"]);
+    return sql.identifier(["account_types_i18n"]);
   }
 
   protected getAccountTypesI18nTableFragment(): FragmentSqlToken {

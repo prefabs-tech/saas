@@ -1,10 +1,16 @@
 import {
+  createTableIdentifier,
   DefaultSqlFactory,
   FilterInput,
   SortInput,
 } from "@dzangolab/fastify-slonik";
 import humps from "humps";
-import { FragmentSqlToken, QuerySqlToken, sql } from "slonik";
+import {
+  FragmentSqlToken,
+  IdentifierSqlToken,
+  QuerySqlToken,
+  sql,
+} from "slonik";
 import { z } from "zod";
 
 class AccountAwareSqlFactory extends DefaultSqlFactory {
@@ -111,6 +117,10 @@ class AccountAwareSqlFactory extends DefaultSqlFactory {
 
   get applyAccountIdFilter(): boolean {
     return this._applyAccountIdFilter;
+  }
+
+  get tableIdentifier(): IdentifierSqlToken {
+    return createTableIdentifier(this.table);
   }
 
   set accountId(accountId: string | undefined) {
