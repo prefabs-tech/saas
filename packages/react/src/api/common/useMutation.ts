@@ -46,11 +46,12 @@ export const useMutation = <MutationResponse = any, MutationData = any>( // esli
 
     client(apiBaseUrl)
       .request(requestObject)
-      .then(({ data }) => {
-        if ("status" in data && data.status === "ERROR") {
-          onError && onError(data, data);
+      .then((response) => {
+        if ("status" in response.data && response.data.status === "ERROR") {
+          onError && onError(response, requestObject);
         } else {
-          onSuccess && onSuccess(data as MutationResponse, requestObject);
+          onSuccess &&
+            onSuccess(response.data as MutationResponse, requestObject);
         }
       })
       .catch((error) => onError && onError(error))

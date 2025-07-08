@@ -1,7 +1,8 @@
 import { useTranslation } from "@dzangolab/react-i18n";
 import { Data, GridContainer, LoadingIcon } from "@dzangolab/react-ui";
 
-import { useAccounts, useConfig, useGetAccountQuery } from "@/hooks";
+import { useConfig, useGetAccountQuery } from "@/hooks";
+import { checkIsAdminApp } from "@/utils/common";
 
 interface Properties {
   accountId: string;
@@ -11,9 +12,8 @@ export const AccountInfo = ({ accountId }: Properties) => {
   const { t } = useTranslation("account");
 
   const { multiDatabase, subdomains } = useConfig();
-  const {
-    meta: { isAdminApp },
-  } = useAccounts();
+
+  const isAdminApp = checkIsAdminApp();
 
   const { data: account, loading } = useGetAccountQuery(accountId);
 

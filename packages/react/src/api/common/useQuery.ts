@@ -19,7 +19,7 @@ export const useQuery = <QueryResponse>(
   options?: UseQueryOptions<QueryResponse>,
 ) => {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<any>(); // eslint-disable-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<QueryResponse>();
 
   const { apiBaseUrl } = useConfig();
@@ -38,17 +38,17 @@ export const useQuery = <QueryResponse>(
       .get(url, {
         params: parametersString,
       })
-      .then(({ data }) => {
-        if ("status" in data && data.status === "ERROR") {
-          setError(data.message);
-          onError && onError(data);
+      .then((response) => {
+        if ("status" in response.data && response.data.status === "ERROR") {
+          setError(response);
+          onError && onError(response);
         } else {
-          setData(data as QueryResponse);
-          onSuccess && onSuccess(data as QueryResponse);
+          setData(response.data as QueryResponse);
+          onSuccess && onSuccess(response.data as QueryResponse);
         }
       })
       .catch((error) => {
-        setError(error.message);
+        setError(error);
         onError && onError(error);
       })
       .finally(() => setLoading(false));

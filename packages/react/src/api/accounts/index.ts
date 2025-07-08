@@ -8,6 +8,22 @@ import { prepareSignupData } from "@/utils";
 
 import { client } from "../axios";
 
+export const doesAccountExist = async ({
+  apiBaseUrl,
+}: {
+  apiBaseUrl: string;
+}): Promise<boolean> => {
+  const response = await client(apiBaseUrl).get(`/`, {
+    withCredentials: true,
+  });
+
+  if (response.data.status === "ERROR") {
+    throw new Error(response.data.message);
+  }
+
+  return response.data;
+};
+
 export const getMyAccounts = async ({
   apiBaseUrl,
 }: {

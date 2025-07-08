@@ -8,6 +8,10 @@
     "registeredNumber": "Registered number",
     "taxId": "Tax ID"
   },
+  "error": {
+    "message": "Please visit again later. If the problem persists, please contact support.",
+    "title": "Sorry, something went wrong."
+  },
   "joinInvitation": {
     "actions": {
       "accept": "Accept invitation",
@@ -132,5 +136,9 @@
     "searchPlaceholder": "",
     "title": "Accounts"
   },
-  "title": "My accounts"
+  "title": "My accounts",
+  "unregisteredDomain": {
+    "message": "Please visit again later. If the problem persists, please contact support.",
+    "title": "Sorry, the subdomain or domain is not registered. "
+  }
 }

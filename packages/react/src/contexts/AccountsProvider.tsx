@@ -11,8 +11,6 @@ import { ACCOUNT_HEADER_NAME } from "@/constants";
 import { Account } from "@/types/account";
 import { SaasConfig } from "@/types/config";
 
-import ConfigProvider from "./ConfigProvider";
-
 export interface AccountsContextType {
   accounts: Array<Account> | null;
   activeAccount: Account | null;
@@ -20,7 +18,6 @@ export interface AccountsContextType {
   error: boolean;
   accountLoading: boolean;
   meta: {
-    isAdminApp: boolean;
     isMainApp: boolean;
     mainAppSubdomain: string;
     rootDomain: string;
@@ -63,11 +60,8 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
     accountsConfig || {};
 
   const subdomain = window.location.hostname.split(".")[0];
-  const { isMainApp, isAdminApp } = useMemo(() => {
-    return {
-      isMainApp: subdomain === mainAppSubdomain,
-      isAdminApp: subdomain === "admin",
-    };
+  const isMainApp = useMemo(() => {
+    return subdomain === mainAppSubdomain;
   }, [subdomain]);
 
   const switchAccount = useCallback(
@@ -187,8 +181,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
   }, [userId]);
 
   useEffect(() => {
-    // ignore account discovery for admin app
-    if (!isAdminApp && userId) {
+    if (userId) {
       fetchMyAccounts();
     }
   }, [userId]);
@@ -202,7 +195,6 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         error,
         accountLoading,
         meta: {
-          isAdminApp,
           isMainApp,
           mainAppSubdomain,
           rootDomain,
@@ -213,9 +205,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         updateAccounts,
       }}
     >
-      {loading ? null : (
-        <ConfigProvider config={config}>{children}</ConfigProvider>
-      )}
+      {loading ? null : children}
     </accountsContext.Provider>
   );
 };
