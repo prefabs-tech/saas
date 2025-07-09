@@ -1,16 +1,10 @@
 import {
-  createTableIdentifier,
   DefaultSqlFactory,
   FilterInput,
   SortInput,
 } from "@dzangolab/fastify-slonik";
 import humps from "humps";
-import {
-  FragmentSqlToken,
-  IdentifierSqlToken,
-  QuerySqlToken,
-  sql,
-} from "slonik";
+import { FragmentSqlToken, QuerySqlToken, sql } from "slonik";
 import { z } from "zod";
 
 class AccountAwareSqlFactory extends DefaultSqlFactory {
@@ -35,8 +29,8 @@ class AccountAwareSqlFactory extends DefaultSqlFactory {
 
     return sql.type(allSchema)`
       SELECT ${sql.join(identifiers, sql.fragment`, `)}
-      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
-      ${this.getAccountIdFilterFragment(true)}
+      FROM ${this.tableFragment} AS ${this.tableIdentifier}
+      ${this.getWhereFragment()}
       ${this.getSortFragment(sort)}
     `;
   }
@@ -48,18 +42,24 @@ class AccountAwareSqlFactory extends DefaultSqlFactory {
 
     return sql.type(countSchema)`
       SELECT COUNT(*)
-      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
-      ${this.getFilterFragment(filters)}
-      ${this.getAccountIdFilterFragment(!filters)}
-      ;
+      FROM ${this.tableFragment} AS ${this.tableIdentifier}
+      ${this.getWhereFragment({ filters })};
     `;
   }
 
-  getDeleteSql(id: number | string): QuerySqlToken {
+  getDeleteSql(id: number | string, force: boolean = false): QuerySqlToken {
+    if (this.softDeleteEnabled && !force) {
+      return sql.type(this.validationSchema)`
+        UPDATE ${this.tableFragment}
+        SET deleted_at = NOW()
+        ${this.getWhereFragment({ filterFragment: sql.fragment`id = ${id}` })};
+        RETURNING *;
+      `;
+    }
+
     return sql.type(this.validationSchema)`
-      DELETE FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
-      WHERE id = ${id}
-      ${this.getAccountIdFilterFragment(false)}
+      DELETE FROM ${this.tableFragment} AS ${this.tableIdentifier}
+      ${this.getWhereFragment({ filterFragment: sql.fragment`id = ${id}` })};
       RETURNING *;
     `;
   }
@@ -67,19 +67,16 @@ class AccountAwareSqlFactory extends DefaultSqlFactory {
   getFindByIdSql(id: number | string): QuerySqlToken {
     return sql.type(this.validationSchema)`
       SELECT *
-      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
-      WHERE id = ${id}
-      ${this.getAccountIdFilterFragment(false)}
-      ;
+      FROM ${this.tableFragment} AS ${this.tableIdentifier}
+      ${this.getWhereFragment({ filterFragment: sql.fragment`id = ${id}` })};
     `;
   }
 
   getFindOneSql(filters?: FilterInput, sort?: SortInput[]): QuerySqlToken {
     return sql.type(this.validationSchema)`
       SELECT *
-      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
-      ${this.getFilterFragment(filters)}
-      ${this.getAccountIdFilterFragment(!filters)}
+      FROM ${this.tableFragment} AS ${this.tableIdentifier}
+      ${this.getWhereFragment({ filters })}
       ${this.getSortFragment(sort)}
       LIMIT 1;
     `;
@@ -88,9 +85,8 @@ class AccountAwareSqlFactory extends DefaultSqlFactory {
   getFindSql(filters?: FilterInput, sort?: SortInput[]): QuerySqlToken {
     return sql.type(this.validationSchema)`
       SELECT *
-      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
-      ${this.getFilterFragment(filters)}
-      ${this.getAccountIdFilterFragment(!filters)}
+      FROM ${this.tableFragment} AS ${this.tableIdentifier}
+      ${this.getWhereFragment({ filters })}
       ${this.getSortFragment(sort)}
     `;
   }
@@ -103,9 +99,8 @@ class AccountAwareSqlFactory extends DefaultSqlFactory {
   ): QuerySqlToken {
     return sql.type(this.validationSchema)`
       SELECT *
-      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
-      ${this.getFilterFragment(filters)}
-      ${this.getAccountIdFilterFragment(!filters)}
+      FROM ${this.tableFragment} AS ${this.tableIdentifier}
+      ${this.getWhereFragment({ filters })}
       ${this.getSortFragment(sort)}
       ${this.getLimitFragment(limit, offset)};
     `;
@@ -119,19 +114,17 @@ class AccountAwareSqlFactory extends DefaultSqlFactory {
     return this._applyAccountIdFilter;
   }
 
-  get tableIdentifier(): IdentifierSqlToken {
-    return createTableIdentifier(this.table);
-  }
-
   set accountId(accountId: string | undefined) {
     this._accountId = accountId;
   }
 
-  protected getAccountIdFilterFragment(addWhere: boolean): FragmentSqlToken {
+  protected getAdditionalFilterFragments(): FragmentSqlToken[] {
+    return [this.getAccountIdFilterFragment()];
+  }
+
+  protected getAccountIdFilterFragment(): FragmentSqlToken {
     return this.accountId && this.applyAccountIdFilter
-      ? addWhere
-        ? sql.fragment`WHERE ${this.tableIdentifier}.account_id = ${this.accountId}`
-        : sql.fragment`AND ${this.tableIdentifier}.account_id = ${this.accountId}`
+      ? sql.fragment`${this.tableIdentifier}.account_id = ${this.accountId}`
       : sql.fragment``;
   }
 }
