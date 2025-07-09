@@ -22,7 +22,7 @@ export const AccountFormFields = ({
 }: Properties) => {
   const { t } = useTranslation("account");
 
-  const { multiDatabase, subdomains, entity } = useConfig();
+  const { entity, multiDatabase, subdomains } = useConfig();
 
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
