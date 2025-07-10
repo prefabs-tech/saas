@@ -6,7 +6,11 @@
     "active": "Active",
     "name": "Name",
     "registeredNumber": "Registered number",
-    "taxId": "Tax ID"
+    "taxId": "Tax ID",
+    "type": {
+      "individual": "Individual",
+      "organization": "Organization"
+    }
   },
   "error": {
     "message": "Please visit again later. If the problem persists, please contact support.",

@@ -6,7 +6,11 @@
     "active": "Active (fr)",
     "name": "Name (fr)",
     "registeredNumber": "Registered number (fr)",
-    "taxId": "Tax ID (fr)"
+    "taxId": "Tax ID (fr)",
+    "type": {
+      "individual": "Individual (fr)",
+      "organization": "Organization (fr)"
+    }
   },
   "error": {
     "message": "Please visit again later. If the problem persists, please contact support. (fr)",
