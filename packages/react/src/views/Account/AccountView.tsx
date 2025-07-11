@@ -4,14 +4,23 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { useGetAccountQuery } from "@/hooks";
 
-import { AccountShow } from "./_components";
+import { AccountShow, AccountTab } from "./_components";
 import { DEFAULT_PATHS } from "../../constants";
 
 type Properties = {
   showToolbar?: boolean;
+  id?: string;
+  tabs?: Array<AccountTab>;
+  activeKey?: string;
+  persistState?: boolean;
+  visibleTabs?: Array<string>;
+  onVisibleTabsChange?: (visibleTabs: Array<string>) => void;
 };
 
-export const AccountViewPage = ({ showToolbar }: Properties) => {
+export const AccountViewPage = ({
+  showToolbar,
+  ...accountShowOptions
+}: Properties) => {
   const { t } = useTranslation("account");
 
   const parameters = useParams();
@@ -58,7 +67,7 @@ export const AccountViewPage = ({ showToolbar }: Properties) => {
       title={data?.name}
       loading={loading}
     >
-      {data && <AccountShow account={data} />}
+      {data && <AccountShow account={data} {...accountShowOptions} />}
     </Page>
   );
 };
