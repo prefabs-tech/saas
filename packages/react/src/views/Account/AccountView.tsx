@@ -2,7 +2,7 @@ import { useTranslation } from "@dzangolab/react-i18n";
 import { Button, Page, Tag } from "@dzangolab/react-ui";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { useGetAccountQuery } from "@/hooks";
+import { useConfig, useGetAccountQuery } from "@/hooks";
 
 import { AccountShow } from "./_components";
 import { DEFAULT_PATHS } from "../../constants";
@@ -14,10 +14,26 @@ type Properties = {
 export const AccountViewPage = ({ showToolbar }: Properties) => {
   const { t } = useTranslation("account");
 
+  const { entity } = useConfig();
+
   const parameters = useParams();
   const navigate = useNavigate();
 
   const { data, loading } = useGetAccountQuery(parameters.id!);
+
+  const renderTitleTag = () => {
+    if (entity !== "both") {
+      return null;
+    }
+
+    if (data?.individual) {
+      return <Tag label={t("form.fields.type.options.individual")} />;
+    }
+
+    return (
+      <Tag label={t("form.fields.type.options.organization")} color="green" />
+    );
+  };
 
   return (
     <Page
@@ -45,16 +61,7 @@ export const AccountViewPage = ({ showToolbar }: Properties) => {
           </>
         )
       }
-      titleTag={
-        data?.individual ? (
-          <Tag label={t("form.fields.type.options.individual")} />
-        ) : (
-          <Tag
-            label={t("form.fields.type.options.organization")}
-            color="green"
-          />
-        )
-      }
+      titleTag={renderTitleTag()}
       title={data?.name}
       loading={loading}
     >
