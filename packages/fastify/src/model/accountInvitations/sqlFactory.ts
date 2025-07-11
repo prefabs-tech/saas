@@ -23,11 +23,10 @@ class AccountInvitationSqlFactory extends AccountAwareSqlFactory {
       SELECT 
         ${this.tableIdentifier}.*,
         ROW_TO_JSON(${this.getUserTableIdentifier()}) AS invited_by
-      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
+      FROM ${this.tableFragment} AS ${this.tableIdentifier}
       JOIN ${this.getUserTableFragment()} AS ${this.getUserTableIdentifier()}
         ON ${this.tableIdentifier}.invited_by_id = ${this.getUserTableIdentifier()}.id
-      ${this.getFilterFragment(filters)}
-      ${this.getAccountIdFilterFragment(!filters)}
+      ${this.getWhereFragment({ filters })}
       ${this.getSortFragment(sort)}
       ${this.getLimitFragment(limit, offset)};
     `;

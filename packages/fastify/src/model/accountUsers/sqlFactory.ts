@@ -33,7 +33,7 @@ class AccountUserSqlFactory extends AccountAwareSqlFactory {
     }
 
     return sql.type(this.validationSchema)`
-      INSERT INTO ${this.getTableFragment()}
+      INSERT INTO ${this.tableFragment}
         (${sql.join(identifiers, sql.fragment`, `)})
       VALUES (${sql.join(values, sql.fragment`, `)})
       ON CONFLICT (account_id, user_id)
@@ -52,10 +52,10 @@ class AccountUserSqlFactory extends AccountAwareSqlFactory {
         ${this.tableIdentifier}.created_at,
         ${this.tableIdentifier}.updated_at,
         ${this.tableIdentifier}.account_id
-      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
+      FROM ${this.tableFragment} AS ${this.tableIdentifier}
       INNER JOIN ${this.getUserTableFragment()} AS ${this.getUserTableIdentifier()}
         ON (${this.getUserTableIdentifier()}.id = ${this.tableIdentifier}.user_id)
-      ${this.getAccountIdFilterFragment(true)};
+      ${this.getWhereFragment()};
     `;
   }
 
@@ -74,11 +74,10 @@ class AccountUserSqlFactory extends AccountAwareSqlFactory {
         ${this.tableIdentifier}.created_at,
         ${this.tableIdentifier}.updated_at,
         ${this.tableIdentifier}.account_id
-      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
+      FROM ${this.tableFragment} AS ${this.tableIdentifier}
       INNER JOIN ${this.getUserTableFragment()} AS ${this.getUserTableIdentifier()}
         ON (${this.getUserTableIdentifier()}.id = ${this.tableIdentifier}.user_id)
-        ${this.getFilterFragment(filters)}
-        ${this.getAccountIdFilterFragment(!filters)}
+        ${this.getWhereFragment({ filters })}
         ${this.getSortFragment(sort)}
         ${this.getLimitFragment(limit, offset)};
     `;

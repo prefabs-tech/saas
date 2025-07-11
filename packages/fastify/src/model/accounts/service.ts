@@ -1,4 +1,3 @@
-/* eslint-disable brace-style */
 import { BaseService } from "@dzangolab/fastify-slonik";
 import { customAlphabet } from "nanoid";
 
@@ -19,49 +18,6 @@ class AccountService extends BaseService<
   AccountCreateInput,
   AccountUpdateInput
 > {
-  async create(data: AccountCreateInput): Promise<Account | undefined> {
-    if (this.saasConfig.subdomains === "disabled" || data.slug === "") {
-      delete data.slug;
-      delete data.domain;
-    }
-
-    if (this.saasConfig.subdomains === "disabled" || data.domain === "") {
-      delete data.domain;
-    }
-
-    if (
-      this.saasConfig.subdomains !== "disabled" &&
-      this.saasConfig.multiDatabase?.enabled &&
-      data.slug &&
-      data.useSeparateDatabase
-    ) {
-      const nanoid = customAlphabet(NANOID_ALPHABET, NANOID_SIZE);
-      // [RL 2024-01-08] Added `s_` prefix to indicate that the database is a schema
-      (data as AccountCreateInput).database = `s_${nanoid()}`;
-    }
-
-    delete data.useSeparateDatabase;
-
-    validateAccountInput(this.config, data);
-
-    if (data.slug) {
-      await this.validateSlugOrDomain(
-        data.slug as string,
-        data.domain as string,
-      );
-    }
-
-    const query = this.factory.getCreateSql(data);
-
-    const result = (await this.database.connect(async (connection) => {
-      return connection.query(query).then((data) => {
-        return data.rows[0];
-      });
-    })) as Account;
-
-    return result ? this.postCreate(result) : undefined;
-  }
-
   async findByHostname(hostname: string): Promise<Account | null> {
     const saasConfig = getSaasConfig(this.config);
 
@@ -138,6 +94,43 @@ class AccountService extends BaseService<
     await runAccountMigrations(this.config, account as unknown as Account);
 
     return account;
+  }
+
+  protected async preCreate(
+    data: AccountCreateInput,
+  ): Promise<AccountCreateInput> {
+    if (this.saasConfig.subdomains === "disabled" || data.slug === "") {
+      delete data.slug;
+      delete data.domain;
+    }
+
+    if (this.saasConfig.subdomains === "disabled" || data.domain === "") {
+      delete data.domain;
+    }
+
+    if (
+      this.saasConfig.subdomains !== "disabled" &&
+      this.saasConfig.multiDatabase?.enabled &&
+      data.slug &&
+      data.useSeparateDatabase
+    ) {
+      const nanoid = customAlphabet(NANOID_ALPHABET, NANOID_SIZE);
+      // [RL 2024-01-08] Added `s_` prefix to indicate that the database is a schema
+      (data as AccountCreateInput).database = `s_${nanoid()}`;
+    }
+
+    delete data.useSeparateDatabase;
+
+    validateAccountInput(this.config, data);
+
+    if (data.slug) {
+      await this.validateSlugOrDomain(
+        data.slug as string,
+        data.domain as string,
+      );
+    }
+
+    return data;
   }
 }
 

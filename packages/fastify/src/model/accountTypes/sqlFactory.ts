@@ -36,6 +36,7 @@ class AccountTypeSqlFactory extends DefaultSqlFactory {
     return sql.unsafe`
       SELECT ${sql.join(identifiers, sql.fragment`, `)},
       ${this.getTableWithI18nFragment()}
+      ${this.getWhereFragment()}
       GROUP BY ${this.tableIdentifier}.id
       ${this.getSortFragment(sort)};
     `;
@@ -46,7 +47,7 @@ class AccountTypeSqlFactory extends DefaultSqlFactory {
       SELECT 
         ${this.tableIdentifier}.*,
         ${this.getTableWithI18nFragment()}
-      WHERE ${this.tableIdentifier}.id = ${id}
+      ${this.getWhereFragment({ filterFragment: sql.fragment`${this.tableIdentifier}.id = ${id}` })}
       GROUP BY ${this.tableIdentifier}.id;
     `;
   }
@@ -84,7 +85,7 @@ class AccountTypeSqlFactory extends DefaultSqlFactory {
     return sql.unsafe`
       SELECT ${this.tableIdentifier}.*,
       ${this.getTableWithI18nFragment()}
-      ${this.getFilterFragment(filters)}
+      ${this.getWhereFragment({ filters })}
       GROUP BY ${this.tableIdentifier}.id
       ${this.getSortFragment(sort)}
       ${this.getLimitFragment(limit, offset)};
@@ -102,7 +103,7 @@ class AccountTypeSqlFactory extends DefaultSqlFactory {
           )
         ) FILTER (WHERE ${this.getAccountTypesI18nTableIdentifier()}.id IS NOT NULL), '[]'::json
       ) AS i18n
-      FROM ${this.getTableFragment()} AS ${this.tableIdentifier}
+      FROM ${this.tableFragment} AS ${this.tableIdentifier}
       LEFT JOIN ${this.getAccountTypesI18nTableFragment()} AS ${this.getAccountTypesI18nTableIdentifier()}
         ON ${this.tableIdentifier}.id = ${this.getAccountTypesI18nTableIdentifier()}.id
     `;
