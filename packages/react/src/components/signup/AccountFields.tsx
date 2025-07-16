@@ -7,7 +7,7 @@ import { useConfig } from "@/hooks";
 export const AccountFields = () => {
   const { t } = useTranslation("accounts");
 
-  const { multiDatabase, subdomains } = useConfig();
+  const { entity, multiDatabase, subdomains } = useConfig();
 
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -25,12 +25,29 @@ export const AccountFields = () => {
     }
   }, [slug]);
 
-  return (
-    <>
-      <TextInput label={t("signup.fields.name")} name="name" />
+  const renderEntityFields = () => {
+    if (entity === "both") {
+      return (
+        <>
+          <SwitchInput
+            label={t("signup.fields.individual")}
+            name="individual"
+          />
+          {!individual && (
+            <>
+              <TextInput
+                label={t("signup.fields.registeredNumber")}
+                name="registeredNumber"
+              />
+              <TextInput label={t("signup.fields.taxId")} name="taxId" />
+            </>
+          )}
+        </>
+      );
+    }
 
-      <SwitchInput label={t("signup.fields.individual")} name="individual" />
-      {!individual && (
+    if (entity === "organization") {
+      return (
         <>
           <TextInput
             label={t("signup.fields.registeredNumber")}
@@ -38,8 +55,16 @@ export const AccountFields = () => {
           />
           <TextInput label={t("signup.fields.taxId")} name="taxId" />
         </>
-      )}
+      );
+    }
 
+    return null;
+  };
+
+  return (
+    <>
+      <TextInput label={t("signup.fields.name")} name="name" />
+      {renderEntityFields()}
       {subdomains !== "disabled" && (
         <>
           <TextInput label={t("signup.fields.slug")} name="slug" />

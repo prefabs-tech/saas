@@ -9,6 +9,7 @@ export type SaasConfig = {
     };
   };
   apiBaseUrl: string;
+  entity: "both" | "individual" | "organization";
   mainAppSubdomain: string;
   rootDomain: string;
   multiDatabase: boolean;

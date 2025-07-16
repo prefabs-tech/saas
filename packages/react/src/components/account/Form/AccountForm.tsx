@@ -25,7 +25,7 @@ export const AccountForm = ({
 }: Properties) => {
   const { t } = useTranslation("account");
 
-  const { subdomains } = useConfig();
+  const { entity, subdomains } = useConfig();
 
   const accountValidationSchema = z.object({
     name: z
@@ -83,7 +83,7 @@ export const AccountForm = ({
     <Provider
       onSubmit={handleSubmit}
       defaultValues={{
-        individual: account?.individual || false,
+        individual: account?.individual || entity === "individual", // if entity is individual, default to true
         name: account?.name || "",
         registeredNumber: account?.registeredNumber || "",
         slug: account?.slug || "",

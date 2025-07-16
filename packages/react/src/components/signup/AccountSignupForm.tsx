@@ -23,7 +23,7 @@ export const AccountSignupForm = ({
 
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const { accounts, subdomains } = useConfig();
+  const { accounts, entity, subdomains } = useConfig();
   const { termsAndConditionsUrl } = accounts?.signup || {};
 
   const accountSchema = z.object({
@@ -126,7 +126,7 @@ export const AccountSignupForm = ({
         onSubmit={onSubmit}
         defaultValues={{
           // account fields
-          individual: false,
+          individual: entity === "individual", // if entity is individual, default to true
           name: "",
           registeredNumber: "",
           slug: "",

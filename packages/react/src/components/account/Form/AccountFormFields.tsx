@@ -22,7 +22,7 @@ export const AccountFormFields = ({
 }: Properties) => {
   const { t } = useTranslation("account");
 
-  const { multiDatabase, subdomains } = useConfig();
+  const { entity, multiDatabase, subdomains } = useConfig();
 
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -57,13 +57,31 @@ export const AccountFormFields = ({
     },
   ];
 
-  return (
-    <>
-      <TextInput label={t("form.fields.name")} name="name" />
-      {!isEditForm && (
-        <SwitchInput label={t("form.fields.type.label")} name="individual" />
-      )}
-      {!individual && (
+  const renderEntityFields = () => {
+    if (entity === "both") {
+      return (
+        <>
+          {!isEditForm && (
+            <SwitchInput
+              label={t("form.fields.type.label")}
+              name="individual"
+            />
+          )}
+          {!individual && (
+            <>
+              <TextInput
+                label={t("form.fields.registeredNumber")}
+                name="registeredNumber"
+              />
+              <TextInput label={t("form.fields.taxId")} name="taxId" />
+            </>
+          )}
+        </>
+      );
+    }
+
+    if (entity === "organization") {
+      return (
         <>
           <TextInput
             label={t("form.fields.registeredNumber")}
@@ -71,7 +89,16 @@ export const AccountFormFields = ({
           />
           <TextInput label={t("form.fields.taxId")} name="taxId" />
         </>
-      )}
+      );
+    }
+
+    return null;
+  };
+
+  return (
+    <>
+      <TextInput label={t("form.fields.name")} name="name" />
+      {renderEntityFields()}
       {subdomains !== "disabled" && (
         <>
           <TextInput label={t("form.fields.slug")} name="slug" />

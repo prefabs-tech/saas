@@ -8,6 +8,8 @@ import {
 } from "@dzangolab/react-ui";
 import React from "react";
 
+import { useConfig } from "@/hooks";
+
 import type { Account } from "@/types";
 
 type VisibleColumn = "name" | "taxId" | "type" | string;
@@ -32,17 +34,14 @@ export const AccountsTable = ({
 }: AccountsTableProperties) => {
   const { t } = useTranslation("accounts");
 
-  const defaultColumns: Array<TableColumnDefinition<Account>> = [
-    {
-      accessorKey: "name",
-      header: t("table.columns.name"),
-      enableSorting: true,
-      enableColumnFilter: true,
-      enableGlobalFilter: true,
-    },
+  const { entity } = useConfig();
+
+  const entityColumnsOrg: Array<TableColumnDefinition<Account>> = [
     {
       accessorKey: "registeredNumber",
       header: t("table.columns.registeredNumber"),
+      enableSorting: true,
+      enableColumnFilter: true,
       cell: ({ row: { original } }) => {
         if (!original.registeredNumber) {
           return <code>&#8212;</code>;
@@ -54,6 +53,8 @@ export const AccountsTable = ({
     {
       accessorKey: "taxId",
       header: t("table.columns.taxId"),
+      enableSorting: true,
+      enableColumnFilter: true,
       cell: ({ row: { original } }) => {
         if (!original.taxId) {
           return <code>&#8212;</code>;
@@ -62,26 +63,35 @@ export const AccountsTable = ({
         return original.taxId;
       },
     },
+  ];
+
+  const entityColumnsInd: Array<TableColumnDefinition<Account>> = [
     {
       align: "center",
-      accessorKey: "individual",
+      accessorKey: "type",
       header: t("table.columns.type"),
       cell({ row: { original } }) {
         if (original.individual) {
-          return (
-            <Tag fullWidth label={t("form.fields.type.options.individual")} />
-          );
+          return <Tag fullWidth label={t("account.type.individual")} />;
         }
 
         return (
-          <Tag
-            fullWidth
-            label={t("form.fields.type.options.organization")}
-            color="green"
-          />
+          <Tag fullWidth label={t("account.type.organization")} color="green" />
         );
       },
     },
+  ];
+
+  const defaultColumns: Array<TableColumnDefinition<Account>> = [
+    {
+      accessorKey: "name",
+      header: t("table.columns.name"),
+      enableSorting: true,
+      enableColumnFilter: true,
+      enableGlobalFilter: true,
+    },
+    ...(entity === "both" || entity === "organization" ? entityColumnsOrg : []),
+    ...(entity === "both" ? entityColumnsInd : []),
   ];
 
   return (
@@ -97,6 +107,7 @@ export const AccountsTable = ({
         pageInputLabel: t("table.pagination.pageControl"),
         itemsPerPageControlLabel: t("table.pagination.rowsPerPage"),
       }}
+      initialSorting={[{ id: "name", desc: false }]}
       {...tableOptions}
     ></DataTable>
   );
