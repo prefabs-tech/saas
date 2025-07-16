@@ -104,8 +104,10 @@ const thirdPartySignInUp = (
         const accountUserService = new AccountUserService(
           config,
           slonik,
+          account.id,
           input.userContext?.dbSchema,
         );
+
         await accountUserService.create({
           accountId: account.id,
           userId: originalResponse.user.id,

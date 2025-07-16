@@ -81,8 +81,10 @@ const emailPasswordSignUp = (
         const accountUserService = new AccountUserService(
           config,
           slonik,
+          input.userContext.account.id,
           input.userContext.dbSchema,
         );
+
         await accountUserService.create({
           accountId: input.userContext.account.id,
           userId: originalResponse.user.id,

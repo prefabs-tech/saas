@@ -6,19 +6,20 @@ import { sql } from "slonik";
 
 import getSaasConfig from "../../config";
 
-import type { QuerySqlToken } from "slonik";
+import type { IdentifierSqlToken, QuerySqlToken } from "slonik";
 class AccountSqlFactory extends DefaultSqlFactory {
   getFindByHostnameSql(hostname: string, rootDomain: string): QuerySqlToken {
-    return sql.type(this.validationSchema)`
-      SELECT *
-      FROM ${this.getTableFragment()}
-      WHERE domain = ${hostname}
+    const filterFragment = sql.fragment`domain = ${hostname}
       OR (
         ${sql.identifier(["slug"])}
         || '.' ||
         ${rootDomain}
-      ) = ${hostname}
-      ${this.getSoftDeleteFilterFragment(false)};
+      ) = ${hostname}`;
+
+    return sql.type(this.validationSchema)`
+      SELECT *
+      FROM ${this.tableFragment}
+      ${this.getWhereFragment({ filterFragment: filterFragment })}
     `;
   }
 
@@ -32,13 +33,12 @@ class AccountSqlFactory extends DefaultSqlFactory {
       `
       : sql.fragment``;
 
+    const filterFragment = sql.fragment`${slugIdentifier} = ${slug} ${domainFilterFragment}`;
+
     return sql.type(this.validationSchema)`
       SELECT *
-      FROM ${this.getTableFragment()}
-      WHERE
-      ${slugIdentifier} = ${slug}
-      ${domainFilterFragment}
-      ${this.getSoftDeleteFilterFragment(false)};
+      FROM ${this.tableFragment}
+      ${this.getWhereFragment({ filterFragment })};
     `;
   }
 
@@ -49,12 +49,18 @@ class AccountSqlFactory extends DefaultSqlFactory {
     );
 
     return sql.type(this.validationSchema)`
-      SELECT c.*
-      FROM ${this.getTableFragment()} AS a
-      JOIN ${accountUsersTable} AS au on a.id = au.account_id
-      WHERE au.user_id = ${userId}
-      ${this.getSoftDeleteFilterFragment(false)};
+      SELECT ${this.tableIdentifier}.*
+      FROM ${this.tableFragment} AS ${this.tableIdentifier}
+      JOIN ${accountUsersTable} AS ${this.getAccountUserTableIdentifier} 
+        on ${this.tableIdentifier}.id = ${this.getAccountUserTableIdentifier}.account_id
+      ${this.getWhereFragment({
+        filterFragment: sql.fragment`${this.getAccountUserTableIdentifier}.user_id = ${userId}`,
+      })};
     `;
+  }
+
+  get getAccountUserTableIdentifier(): IdentifierSqlToken {
+    return sql.identifier(["account_users"]);
   }
 
   get saasConfig() {

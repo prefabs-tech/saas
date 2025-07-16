@@ -84,22 +84,14 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
       const accountUserService = new AccountUserService(
         config,
         slonik,
+        account.id,
         dbSchema,
       );
 
       const accountUserCount = await accountUserService.count({
-        AND: [
-          {
-            key: "user_id",
-            operator: "eq",
-            value: invitedUser.id,
-          },
-          {
-            key: "account_id",
-            operator: "eq",
-            value: account.id,
-          },
-        ],
+        key: "user_id",
+        operator: "eq",
+        value: invitedUser.id,
       });
 
       // check if user of the email already exists for the account
