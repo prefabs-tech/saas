@@ -1,3 +1,15 @@
+# [0.20.0](https://github.com/12deg/saas/compare/v0.19.2...v0.20.0) (2025-07-16)
+
+
+### Features
+
+* **account-types:** add entity config ([#114](https://github.com/12deg/saas/issues/114)) ([dc98296](https://github.com/12deg/saas/commit/dc982969c23fdefc703db1c6c08fa53f90fe8f71))
+* **react/subdomains:** show error message for unregistered subdomains ([c0d75aa](https://github.com/12deg/saas/commit/c0d75aa406ac7a8bbea58ea35024ea423a5dbbe9))
+* **react/unregistered-domain:** add page and translations ([c216ccb](https://github.com/12deg/saas/commit/c216ccb0deff1ee1ed6146bb2f7e5bae8cf35a98))
+* **subdomains:** update config usage for admin app ([37697ae](https://github.com/12deg/saas/commit/37697ae6f33c25f23025de6e1febd42f0e50d207))
+
+
+
 ## [0.19.2](https://github.com/12deg/saas/compare/v0.19.1...v0.19.2) (2025-06-06)
 
 
