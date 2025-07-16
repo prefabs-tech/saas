@@ -69,7 +69,12 @@ const join = async (request: SessionRequest, reply: FastifyReply) => {
       });
     }
 
-    const accountUserService = new AccountUserService(config, slonik, dbSchema);
+    const accountUserService = new AccountUserService(
+      config,
+      slonik,
+      account.id,
+      dbSchema,
+    );
 
     await accountUserService.create({
       accountId: account.id,

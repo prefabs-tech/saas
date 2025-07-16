@@ -16,7 +16,12 @@ const myAccounts = async (request: SessionRequest, reply: FastifyReply) => {
     });
   }
 
-  const accountUserService = new AccountUserService(config, slonik, dbSchema);
+  const accountUserService = new AccountUserService(
+    config,
+    slonik,
+    undefined,
+    dbSchema,
+  );
   const accountService = new Service(request.config, request.slonik);
 
   const accountUsers = await accountUserService.find({
