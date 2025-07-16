@@ -1,6 +1,7 @@
 import {
   DefaultSqlFactory,
   FilterInput,
+  isValueExpression,
   SortInput,
 } from "@dzangolab/fastify-slonik";
 import humps from "humps";
@@ -31,7 +32,7 @@ class AccountAwareSqlFactory extends DefaultSqlFactory {
       SELECT ${sql.join(identifiers, sql.fragment`, `)}
       FROM ${this.tableFragment} AS ${this.tableIdentifier}
       ${this.getWhereFragment()}
-      ${this.getSortFragment(sort)}
+      ${this.getSortFragment(sort)};
     `;
   }
 
@@ -52,14 +53,14 @@ class AccountAwareSqlFactory extends DefaultSqlFactory {
       return sql.type(this.validationSchema)`
         UPDATE ${this.tableFragment}
         SET deleted_at = NOW()
-        ${this.getWhereFragment({ filterFragment: sql.fragment`id = ${id}` })};
+        ${this.getWhereFragment({ filterFragment: sql.fragment`id = ${id}` })}
         RETURNING *;
       `;
     }
 
     return sql.type(this.validationSchema)`
       DELETE FROM ${this.tableFragment} AS ${this.tableIdentifier}
-      ${this.getWhereFragment({ filterFragment: sql.fragment`id = ${id}` })};
+      ${this.getWhereFragment({ filterFragment: sql.fragment`id = ${id}` })}
       RETURNING *;
     `;
   }
@@ -87,7 +88,7 @@ class AccountAwareSqlFactory extends DefaultSqlFactory {
       SELECT *
       FROM ${this.tableFragment} AS ${this.tableIdentifier}
       ${this.getWhereFragment({ filters })}
-      ${this.getSortFragment(sort)}
+      ${this.getSortFragment(sort)};
     `;
   }
 
@@ -103,6 +104,32 @@ class AccountAwareSqlFactory extends DefaultSqlFactory {
       ${this.getWhereFragment({ filters })}
       ${this.getSortFragment(sort)}
       ${this.getLimitFragment(limit, offset)};
+    `;
+  }
+
+  getUpdateSql(
+    id: number | string,
+    data: Record<string, unknown>,
+  ): QuerySqlToken {
+    const columns = [];
+
+    for (const column in data) {
+      const value = data[column];
+
+      if (!isValueExpression(value)) {
+        continue;
+      }
+
+      columns.push(
+        sql.fragment`${sql.identifier([humps.decamelize(column)])} = ${value}`,
+      );
+    }
+
+    return sql.type(this.validationSchema)`
+      UPDATE ${this.tableFragment} AS ${this.tableIdentifier}
+      SET ${sql.join(columns, sql.fragment`, `)}
+      ${this.getWhereFragment({ filterFragment: sql.fragment`id = ${id}` })}
+      RETURNING *;
     `;
   }
 
