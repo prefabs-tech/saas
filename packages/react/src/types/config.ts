@@ -1,4 +1,6 @@
-export type SaasConfig = {
+import { RoutesConfig } from "./routes";
+
+export interface SaasConfig {
   accounts?: {
     autoSelectAccount?: boolean;
     allowMultipleSessions?: boolean;
@@ -14,5 +16,6 @@ export type SaasConfig = {
   rootDomain: string;
   multiDatabase: boolean;
   saasAccountRoles?: string[];
+  routes?: Partial<RoutesConfig>;
   subdomains: "required" | "optional" | "disabled";
-};
+}
