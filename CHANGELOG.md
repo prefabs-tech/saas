@@ -1,3 +1,12 @@
+# [0.21.0](https://github.com/12deg/saas/compare/v0.20.0...v0.21.0) (2025-07-31)
+
+
+### Features
+
+* **account-tabs:** allow to customize tabs ([#115](https://github.com/12deg/saas/issues/115)) ([f122991](https://github.com/12deg/saas/commit/f1229917f2053143960beba002c049fbab2dfc8f))
+
+
+
 # [0.20.0](https://github.com/12deg/saas/compare/v0.19.2...v0.20.0) (2025-07-16)
 
 
