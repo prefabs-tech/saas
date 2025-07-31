@@ -1,7 +1,7 @@
 import {
   createTableFragment,
   DefaultSqlFactory,
-} from "@dzangolab/fastify-slonik";
+} from "@prefabs.tech/fastify-slonik";
 import humps from "humps";
 import {
   FragmentSqlToken,
@@ -13,7 +13,7 @@ import {
 import getSaasConfig from "../../config";
 
 import type { AccountTypeI18nCreateInput } from "../../types";
-import type { FilterInput, SortInput } from "@dzangolab/fastify-slonik";
+import type { FilterInput, SortInput } from "@prefabs.tech/fastify-slonik";
 
 /* eslint-disable brace-style */
 class AccountTypeSqlFactory extends DefaultSqlFactory {

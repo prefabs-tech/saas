@@ -3,8 +3,8 @@ import getSaasConfig from "../config";
 import AccountService from "../model/accounts/service";
 
 import type { Account } from "../types";
-import type { ApiConfig } from "@dzangolab/fastify-config";
-import type { Database } from "@dzangolab/fastify-slonik";
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
+import type { Database } from "@prefabs.tech/fastify-slonik";
 
 const getAccountByHostname = async (
   config: ApiConfig,

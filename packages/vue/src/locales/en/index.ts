@@ -1,4 +1,4 @@
-import type { LocaleMessages, VueMessageType } from "@dzangolab/vue3-i18n";
+import type { LocaleMessages, VueMessageType } from "@prefabs.tech/vue3-i18n";
 
 function getLocaleMessages(): LocaleMessages<VueMessageType> {
   const contexts = import.meta.glob("./*.json", { eager: true }) as Record<

@@ -3,7 +3,7 @@ import {
   getUserService,
   sendEmail,
   verifyEmail,
-} from "@dzangolab/fastify-user";
+} from "@prefabs.tech/fastify-user";
 import { deleteUser } from "supertokens-node";
 import EmailVerification from "supertokens-node/recipe/emailverification";
 import UserRoles from "supertokens-node/recipe/userroles";
@@ -12,7 +12,7 @@ import { ROLE_SAAS_ACCOUNT_MEMBER } from "../../../constants";
 import AccountUserService from "../../../model/accountUsers/service";
 import Email from "../../utils/email";
 
-import type { User } from "@dzangolab/fastify-user";
+import type { User } from "@prefabs.tech/fastify-user";
 import type { FastifyInstance, FastifyError } from "fastify";
 import type { RecipeInterface } from "supertokens-node/recipe/thirdpartyemailpassword";
 

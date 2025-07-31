@@ -1,4 +1,4 @@
-import { useTranslation } from "@dzangolab/react-i18n";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 

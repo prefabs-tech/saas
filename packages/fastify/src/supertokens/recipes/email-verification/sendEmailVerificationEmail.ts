@@ -2,7 +2,7 @@ import {
   EMAIL_VERIFICATION_PATH,
   getOrigin,
   sendEmail,
-} from "@dzangolab/fastify-user";
+} from "@prefabs.tech/fastify-user";
 import emailVerification from "supertokens-node/recipe/emailverification";
 
 import Email from "../../utils/email";

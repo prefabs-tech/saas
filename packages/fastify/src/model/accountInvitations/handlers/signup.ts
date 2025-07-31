@@ -1,9 +1,9 @@
-import { formatDate } from "@dzangolab/fastify-slonik";
+import { formatDate } from "@prefabs.tech/fastify-slonik";
 import {
   ROLE_USER,
   validateEmail,
   validatePassword,
-} from "@dzangolab/fastify-user";
+} from "@prefabs.tech/fastify-user";
 import { SessionRequest } from "supertokens-node/framework/fastify";
 import { createNewSession } from "supertokens-node/recipe/session";
 import { emailPasswordSignUp } from "supertokens-node/recipe/thirdpartyemailpassword";
@@ -12,7 +12,7 @@ import isInvitationValid from "../../../lib/isInvitationValid";
 import AccountService from "../../accounts/service";
 import AccountInvitationService from "../service";
 
-import type { User } from "@dzangolab/fastify-user";
+import type { User } from "@prefabs.tech/fastify-user";
 import type { FastifyReply, FastifyRequest } from "fastify";
 
 const signup = async (request: SessionRequest, reply: FastifyReply) => {

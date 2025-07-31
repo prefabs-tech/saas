@@ -1,7 +1,7 @@
 import {
   createTableFragment,
   DefaultSqlFactory,
-} from "@dzangolab/fastify-slonik";
+} from "@prefabs.tech/fastify-slonik";
 import { sql } from "slonik";
 
 import getSaasConfig from "../../config";

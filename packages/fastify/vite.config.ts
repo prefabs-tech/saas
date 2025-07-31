@@ -29,12 +29,12 @@ export default defineConfig(({ mode }) => {
         output: {
           exports: "named",
           globals: {
-            "@dzangolab/fastify-config": "DzangolabFastifyConfig",
-            "@dzangolab/fastify-graphql": "DzangolabFastifyGraphql",
-            "@dzangolab/fastify-mailer": "DzangolabFastifyMailer",
-            "@dzangolab/fastify-slonik": "DzangolabFastifySlonik",
-            "@dzangolab/fastify-user": "DzangolabFastifyUser",
-            "@dzangolab/postgres-migrations": "DzangolabPostgresMigrations",
+            "@prefabs.tech/fastify-config": "DzangolabFastifyConfig",
+            "@prefabs.tech/fastify-graphql": "DzangolabFastifyGraphql",
+            "@prefabs.tech/fastify-mailer": "DzangolabFastifyMailer",
+            "@prefabs.tech/fastify-slonik": "DzangolabFastifySlonik",
+            "@prefabs.tech/fastify-user": "DzangolabFastifyUser",
+            "@prefabs.tech/postgres-migrations": "DzangolabPostgresMigrations",
             "@graphql-tools/merge": "graphqlToolsMerge",
             fastify: "Fastify",
             "fastify-plugin": "FastifyPlugin",

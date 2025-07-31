@@ -17,7 +17,7 @@ import type {
   EmailVerificationRecipe,
   ThirdPartyEmailPasswordRecipe,
   SessionRecipe,
-} from "@dzangolab/fastify-user";
+} from "@prefabs.tech/fastify-user";
 
 const emailVerificationConfig: EmailVerificationRecipe = {
   sendEmail: sendEmailVerificationEmail,

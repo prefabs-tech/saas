@@ -9,8 +9,8 @@
 </template>
 
 <script setup lang="ts">
-import { useConfig } from "@dzangolab/vue3-config";
-import { useI18n } from "@dzangolab/vue3-i18n";
+import { useConfig } from "@prefabs.tech/vue3-config";
+import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { inject, ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
@@ -20,7 +20,7 @@ import useAccountsStore from "../../stores/accounts";
 
 import type { Account } from "../../types/account";
 import type { SaasEventHandlers, EventMessage } from "../../types/plugin";
-import type { AppConfig } from "@dzangolab/vue3-config";
+import type { AppConfig } from "@prefabs.tech/vue3-config";
 
 const route = useRoute();
 const accountId = route.params.id as string;

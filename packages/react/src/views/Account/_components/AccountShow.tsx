@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { TabView } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { TabView } from "@prefabs.tech/react-ui";
 
 import {
   AccountInfo,

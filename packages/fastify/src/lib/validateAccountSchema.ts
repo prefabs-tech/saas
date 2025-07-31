@@ -4,7 +4,7 @@ import getInvalidSlugs from "./getInvalidSlugs";
 import getSaasConfig from "../config";
 
 import type { AccountCreateInput } from "../types";
-import type { ApiConfig } from "@dzangolab/fastify-config";
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
 
 const validateAccountInput = (
   config: ApiConfig,

@@ -13,10 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import { useConfig } from "@dzangolab/vue3-config";
-import { useI18n } from "@dzangolab/vue3-i18n";
-import { Table } from "@dzangolab/vue3-tanstack-table";
-import { BadgeComponent } from "@dzangolab/vue3-ui";
+import { useConfig } from "@prefabs.tech/vue3-config";
+import { useI18n } from "@prefabs.tech/vue3-i18n";
+import { Table } from "@prefabs.tech/vue3-tanstack-table";
+import { BadgeComponent } from "@prefabs.tech/vue3-ui";
 import { ref, onMounted, h } from "vue";
 import { useRoute } from "vue-router";
 
@@ -24,11 +24,11 @@ import { useTranslations } from "../../index";
 import useUsersStore from "../../stores/accountUsers";
 
 import type { AccountUser } from "../../types/accountUser";
-import type { AppConfig } from "@dzangolab/vue3-config";
+import type { AppConfig } from "@prefabs.tech/vue3-config";
 import type {
   TableColumnDefinition,
   DataActionsMenuItem,
-} from "@dzangolab/vue3-tanstack-table";
+} from "@prefabs.tech/vue3-tanstack-table";
 
 defineProps({
   isLoading: Boolean,

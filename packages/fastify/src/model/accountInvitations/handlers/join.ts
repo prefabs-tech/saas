@@ -1,4 +1,4 @@
-import { formatDate } from "@dzangolab/fastify-slonik";
+import { formatDate } from "@prefabs.tech/fastify-slonik";
 import { SessionRequest } from "supertokens-node/framework/fastify";
 
 import isInvitationValid from "../../../lib/isInvitationValid";
@@ -6,7 +6,7 @@ import AccountService from "../../accounts/service";
 import AccountUserService from "../../accountUsers/service";
 import AccountInvitationService from "../service";
 
-import type { User } from "@dzangolab/fastify-user";
+import type { User } from "@prefabs.tech/fastify-user";
 import type { FastifyReply, FastifyRequest } from "fastify";
 
 const join = async (request: SessionRequest, reply: FastifyReply) => {

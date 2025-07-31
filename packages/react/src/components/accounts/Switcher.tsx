@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { DropdownMenu, LoadingIcon } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { DropdownMenu, LoadingIcon } from "@prefabs.tech/react-ui";
 
 import { useAccounts } from "@/hooks";
 import { Account } from "@/types/account";

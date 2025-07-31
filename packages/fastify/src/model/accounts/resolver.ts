@@ -1,7 +1,7 @@
 import Service from "./service";
 
 import type { AccountCreateInput, AccountUpdateInput } from "../../types";
-import type { FilterInput, SortInput } from "@dzangolab/fastify-slonik";
+import type { FilterInput, SortInput } from "@prefabs.tech/fastify-slonik";
 import type { MercuriusContext } from "mercurius";
 
 const Mutation = {

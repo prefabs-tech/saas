@@ -1,8 +1,8 @@
 /* istanbul ignore file */
 import type { SaasConfig } from "../../../types";
-import type { ApiConfig } from "@dzangolab/fastify-config";
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
 
-declare module "@dzangolab/fastify-config" {
+declare module "@prefabs.tech/fastify-config" {
   interface ApiConfig {
     saas?: SaasConfig;
   }

@@ -1,4 +1,4 @@
-import { formatDate } from "@dzangolab/fastify-slonik";
+import { formatDate } from "@prefabs.tech/fastify-slonik";
 
 import isInvitationValid from "../../../lib/isInvitationValid";
 import AccountService from "../../accounts/service";

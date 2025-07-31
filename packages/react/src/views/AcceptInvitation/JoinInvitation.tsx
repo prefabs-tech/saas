@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { AuthPage, Button } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { AuthPage, Button } from "@prefabs.tech/react-ui";
 import { useEffect } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { useI18n } from "@dzangolab/vue3-i18n";
+import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { useTranslations } from "../../../index";
 import type { SaasConfig } from "../../../types/config";
 

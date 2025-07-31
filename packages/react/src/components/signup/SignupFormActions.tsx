@@ -1,5 +1,9 @@
-import { FormActions, useFormContext, useWatch } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import {
+  FormActions,
+  useFormContext,
+  useWatch,
+} from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 
 import { useConfig } from "@/hooks";
 

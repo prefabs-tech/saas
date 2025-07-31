@@ -1,4 +1,4 @@
-import { formatDate } from "@dzangolab/fastify-slonik";
+import { formatDate } from "@prefabs.tech/fastify-slonik";
 
 import AccountInvitationSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
@@ -10,7 +10,7 @@ import type {
   AccountInvitationCreateInput,
   AccountInvitationUpdateInput,
 } from "../../types";
-import type { FilterInput } from "@dzangolab/fastify-slonik";
+import type { FilterInput } from "@prefabs.tech/fastify-slonik";
 
 class AccountInvitationService extends AccountAwareBaseService<
   AccountInvitation,

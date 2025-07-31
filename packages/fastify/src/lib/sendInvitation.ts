@@ -1,9 +1,9 @@
 import { ACCOUNT_INVITATION_ACCEPT_LINK_PATH } from "../constants";
 
 import type { AccountInvitation } from "../types";
-import type { ApiConfig } from "@dzangolab/fastify-config";
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { FastifyMailer } from "@dzangolab/fastify-mailer";
+import type { FastifyMailer } from "@prefabs.tech/fastify-mailer";
 import type { FastifyInstance } from "fastify";
 
 const getInvitationLink = (

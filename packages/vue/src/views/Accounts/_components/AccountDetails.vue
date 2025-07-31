@@ -35,8 +35,8 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from "@dzangolab/vue3-i18n";
-import { Data } from "@dzangolab/vue3-ui";
+import { useI18n } from "@prefabs.tech/vue3-i18n";
+import { Data } from "@prefabs.tech/vue3-ui";
 import { computed, inject, PropType } from "vue";
 
 import { useTranslations } from "../../../index";

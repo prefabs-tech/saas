@@ -1,10 +1,10 @@
-import { BaseService } from "@dzangolab/fastify-slonik";
+import { BaseService } from "@prefabs.tech/fastify-slonik";
 
 import SqlFactory from "./sqlFactory";
 
 import type { AccountAwareService as Service } from "./types/service";
-import type { ApiConfig } from "@dzangolab/fastify-config";
-import type { Database } from "@dzangolab/fastify-slonik";
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
+import type { Database } from "@prefabs.tech/fastify-slonik";
 
 /* eslint-disable brace-style */
 abstract class AccountAwareBaseService<

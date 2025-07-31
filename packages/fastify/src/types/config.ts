@@ -1,4 +1,4 @@
-import { User } from "@dzangolab/fastify-user";
+import { User } from "@prefabs.tech/fastify-user";
 
 import accountInvitationHandlers from "../model/accountInvitations/handlers";
 import accountHandlers from "../model/accounts/handlers";

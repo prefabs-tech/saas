@@ -4,10 +4,10 @@ A [Fastify](https://github.com/fastify/fastify) plugin that provides an easy int
 
 ## Requirements
 
-* [@dzangolab/fastify-config](https://github.com/dzangolab/fastify/tree/main/packages/config)
-* [@dzangolab/fastify-mailer](https://github.com/dzangolab/fastify/tree/main/packages/mailer)
-* [@dzangolab/fastify-slonik](https://github.com/dzangolab/fastify/tree/main/packages/slonik)
-* [@dzangolab/fastify-user](https://github.com/dzangolab/fastify/tree/main/packages/user)
+* [@prefabs.tech/fastify-config](https://github.com/prefabs-tech/fastify/tree/main/packages/config)
+* [@prefabs.tech/fastify-mailer](https://github.com/prefabs-tech/fastify/tree/main/packages/mailer)
+* [@prefabs.tech/fastify-slonik](https://github.com/prefabs-tech/fastify/tree/main/packages/slonik)
+* [@prefabs.tech/fastify-user](https://github.com/prefabs-tech/fastify/tree/main/packages/user)
 * [slonik](https://github.com/spa5k/fastify-slonik)
 * [supertokens-node](https://github.com/supertokens/supertokens-node)
 
@@ -16,13 +16,13 @@ A [Fastify](https://github.com/fastify/fastify) plugin that provides an easy int
 Install with npm:
 
 ```bash
-npm install @dzangolab/fastify-config @dzangolab/fastify-mailer @dzangolab/fastify-slonik @dzangolab/fastify-user slonik supertokens-node @12deg/saas-fastify
+npm install @prefabs.tech/fastify-config @prefabs.tech/fastify-mailer @prefabs.tech/fastify-slonik @prefabs.tech/fastify-user slonik supertokens-node @12deg/saas-fastify
 ```
 
 Install with pnpm:
 
 ```bash
-pnpm add --filter "@scope/project" @dzangolab/fastify-config @dzangolab/fastify-mailer @dzangolab/fastify-slonik @dzangolab/fastify-user slonik supertokens-node @12deg/saas-fastify
+pnpm add --filter "@scope/project" @prefabs.tech/fastify-config @prefabs.tech/fastify-mailer @prefabs.tech/fastify-slonik @prefabs.tech/fastify-user slonik supertokens-node @12deg/saas-fastify
 ```
 
 ## Configuration
@@ -53,15 +53,15 @@ Register the saas plugin with your Fastify instance:
 
 ```typescript
 import saasPlugin, { accountMigrationPlugin } from "@12deg/saas-fastify";
-import configPlugin from "@dzangolab/fastify-config";
-import mailerPlugin from "@dzangolab/fastify-mailer";
-import slonikPlugin, { migrationPlugin } from "@dzangolab/fastify-slonik";
-import userPlugin from "@dzangolab/fastify-user";
+import configPlugin from "@prefabs.tech/fastify-config";
+import mailerPlugin from "@prefabs.tech/fastify-mailer";
+import slonikPlugin, { migrationPlugin } from "@prefabs.tech/fastify-slonik";
+import userPlugin from "@prefabs.tech/fastify-user";
 import Fastify from "fastify";
 
 import config from "./config";
 
-import type { ApiConfig } from "@dzangolab/fastify-config";
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
 import type { FastifyInstance } from "fastify";
 
 const start = async () => {

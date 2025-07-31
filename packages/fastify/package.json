@@ -31,7 +31,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.json --composite false"
   },
   "dependencies": {
-    "@dzangolab/postgres-migrations": "5.4.2",
+    "@prefabs.tech/postgres-migrations": "5.4.3",
     "@graphql-tools/merge": "9.0.19",
     "graphql": "16.10.0",
     "graphql-tag": "2.12.6",
@@ -42,11 +42,11 @@
   "devDependencies": {
     "@12deg/eslint-config": "0.1.11",
     "@12deg/tsconfig": "0.1.11",
-    "@dzangolab/fastify-config": "0.86.1",
-    "@dzangolab/fastify-graphql": "0.86.1",
-    "@dzangolab/fastify-mailer": "0.86.1",
-    "@dzangolab/fastify-slonik": "0.86.1",
-    "@dzangolab/fastify-user": "0.86.1",
+    "@prefabs.tech/fastify-config": "0.88.1",
+    "@prefabs.tech/fastify-graphql": "0.88.1",
+    "@prefabs.tech/fastify-mailer": "0.88.1",
+    "@prefabs.tech/fastify-slonik": "0.88.1",
+    "@prefabs.tech/fastify-user": "0.88.1",
     "@types/humps": "2.0.6",
     "@types/node": "20.12.2",
     "@types/pg": "8.11.10",
@@ -76,11 +76,11 @@
     "zod": "3.23.8"
   },
   "peerDependencies": {
-    "@dzangolab/fastify-config": ">=0.80.0",
-    "@dzangolab/fastify-graphql": ">=0.80.0",
-    "@dzangolab/fastify-mailer": ">=0.80.0",
-    "@dzangolab/fastify-slonik": ">=0.80.0",
-    "@dzangolab/fastify-user": ">=0.80.0",
+    "@prefabs.tech/fastify-config": ">=0.80.0",
+    "@prefabs.tech/fastify-graphql": ">=0.80.0",
+    "@prefabs.tech/fastify-mailer": ">=0.80.0",
+    "@prefabs.tech/fastify-slonik": ">=0.80.0",
+    "@prefabs.tech/fastify-user": ">=0.80.0",
     "fastify": ">=5.2.1",
     "fastify-plugin": ">=5.0.1",
     "mercurius": ">=16.1.0",

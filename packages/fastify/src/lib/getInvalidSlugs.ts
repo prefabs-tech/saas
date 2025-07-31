@@ -1,6 +1,6 @@
 import getSaasConfig from "../config";
 
-import type { ApiConfig } from "@dzangolab/fastify-config";
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
 
 const getInvalidSlugs = (config: ApiConfig) => {
   const saasConfig = getSaasConfig(config);

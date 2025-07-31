@@ -32,12 +32,12 @@ importers:
 
   packages/fastify:
     dependencies:
-      '@dzangolab/postgres-migrations':
-        specifier: 5.4.2
-        version: 5.4.2
       '@graphql-tools/merge':
         specifier: 9.0.19
         version: 9.0.19(graphql@16.10.0)
+      '@prefabs.tech/postgres-migrations':
+        specifier: 5.4.3
+        version: 5.4.3
       graphql:
         specifier: 16.10.0
         version: 16.10.0
@@ -60,21 +60,21 @@ importers:
       '@12deg/tsconfig':
         specifier: 0.1.11
         version: 0.1.11(@types/node@20.12.2)
-      '@dzangolab/fastify-config':
-        specifier: 0.86.1
-        version: 0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1)
-      '@dzangolab/fastify-graphql':
-        specifier: 0.86.1
-        version: 0.86.1(@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@dzangolab/fastify-slonik@0.86.1(@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
-      '@dzangolab/fastify-mailer':
-        specifier: 0.86.1
-        version: 0.86.1(@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(mjml@4.15.3)
-      '@dzangolab/fastify-slonik':
-        specifier: 0.86.1
-        version: 0.86.1(@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
-      '@dzangolab/fastify-user':
-        specifier: 0.86.1
-        version: 0.86.1(iv43emm2eogdqt37rxlm3xgh5q)
+      '@prefabs.tech/fastify-config':
+        specifier: 0.88.1
+        version: 0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1)
+      '@prefabs.tech/fastify-graphql':
+        specifier: 0.88.1
+        version: 0.88.1(@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.88.1(@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@prefabs.tech/fastify-mailer':
+        specifier: 0.88.1
+        version: 0.88.1(@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(mjml@4.15.3)
+      '@prefabs.tech/fastify-slonik':
+        specifier: 0.88.1
+        version: 0.88.1(@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@prefabs.tech/fastify-user':
+        specifier: 0.88.1
+        version: 0.88.1(y7khpqq23bgp2nrzuoiq5ayosu)
       '@types/humps':
         specifier: 2.0.6
         version: 2.0.6
@@ -169,18 +169,18 @@ importers:
       '@12deg/eslint-config':
         specifier: 0.1.11
         version: 0.1.11(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.4.5)(vue-eslint-parser@9.4.3(eslint@8.57.1))
-      '@dzangolab/react-config':
-        specifier: 0.55.0
-        version: 0.55.0(react@18.3.1)
-      '@dzangolab/react-form':
-        specifier: 0.55.0
-        version: 0.55.0(@dzangolab/react-ui@0.55.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1))(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)
-      '@dzangolab/react-i18n':
-        specifier: 0.55.0
-        version: 0.55.0(@dzangolab/react-config@0.55.0(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@dzangolab/react-ui':
-        specifier: 0.55.0
-        version: 0.55.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+      '@prefabs.tech/react-config':
+        specifier: 0.61.0
+        version: 0.61.0(react@18.3.1)
+      '@prefabs.tech/react-form':
+        specifier: 0.61.0
+        version: 0.61.0(@prefabs.tech/react-ui@0.61.0(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1))(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)
+      '@prefabs.tech/react-i18n':
+        specifier: 0.61.0
+        version: 0.61.0(@prefabs.tech/react-config@0.61.0(react@18.3.1))(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(typescript@5.4.5)
+      '@prefabs.tech/react-ui':
+        specifier: 0.61.0
+        version: 0.61.0(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@types/jsdom':
         specifier: 21.1.6
         version: 21.1.6
@@ -262,27 +262,27 @@ importers:
       '@12deg/tsconfig':
         specifier: 0.1.11
         version: 0.1.11(@types/node@22.13.5)
-      '@dzangolab/vue3-config':
-        specifier: 0.10.13
-        version: 0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@dzangolab/vue3-form':
-        specifier: 0.10.13
-        version: 0.10.13(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
-      '@dzangolab/vue3-i18n':
-        specifier: 0.10.13
-        version: 0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@dzangolab/vue3-layout':
-        specifier: 0.10.13
-        version: 0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@dzangolab/vue3-i18n@0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@dzangolab/vue3-ui@0.10.13(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@dzangolab/vue3-tanstack-table':
-        specifier: 0.10.13
-        version: 0.10.13(@dzangolab/vue3-form@0.10.13(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(@dzangolab/vue3-ui@0.10.13(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@dzangolab/vue3-ui':
-        specifier: 0.10.13
-        version: 0.10.13(vue@3.5.13(typescript@5.5.4))
       '@iconify/vue':
         specifier: 4.3.0
         version: 4.3.0(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-config':
+        specifier: 0.12.0
+        version: 0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-form':
+        specifier: 0.12.0
+        version: 0.12.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
+      '@prefabs.tech/vue3-i18n':
+        specifier: 0.12.0
+        version: 0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-layout':
+        specifier: 0.12.0
+        version: 0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-i18n@0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-ui@0.12.0(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-tanstack-table':
+        specifier: 0.12.0
+        version: 0.12.0(@prefabs.tech/vue3-form@0.12.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(@prefabs.tech/vue3-ui@0.12.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-ui':
+        specifier: 0.12.0
+        version: 0.12.0(vue@3.5.13(typescript@5.5.4))
       '@types/node':
         specifier: 22.13.5
         version: 22.13.5
@@ -604,6 +604,10 @@ packages:
     resolution: {integrity: sha512-7dRy4DwXwtzBrPbZflqxnvfxLF8kdZXPkhymtDeFoFqE6ldzjQFgYTtYIFARcLEYDrqfBfYcZt1WqFxRoyC9Rw==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/runtime@7.28.2':
+    resolution: {integrity: sha512-KHp2IflsnGywDjBWDkR9iEqiWSpc8GIi0lgTT3mOElT0PP1tG26P4tmFI2YvAdzgq9RGyoHZQEIEdZy6Ec5xCA==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/template@7.25.0':
     resolution: {integrity: sha512-aOOgh1/5XzKvg1jvVz7AVrx2piJ2XBi227DHmbY6y+bM9H2FlN+IfecYu4Xl0cNiiVejlsCri89LUsbj8vJD9Q==}
     engines: {node: '>=6.9.0'}
@@ -712,159 +716,6 @@ packages:
   '@commitlint/types@19.0.3':
     resolution: {integrity: sha512-tpyc+7i6bPG9mvaBbtKUeghfyZSDgWquIDfMgqYtTbmZ9Y9VzEm2je9EYcQ0aoz5o7NvGS+rcDec93yO08MHYA==}
     engines: {node: '>=v18'}
-
-  '@dzangolab/fastify-config@0.86.1':
-    resolution: {integrity: sha512-pdEcKtFc+QDJiIrgUf8z5gIw1LDqkFufSxOLbjNimQq+sghYe4o2bNTdOWOI74wSax+aExcF8le37lrVgZafbg==}
-    engines: {node: '>=20'}
-    peerDependencies:
-      fastify: '>=5.2.1'
-      fastify-plugin: '>=5.0.1'
-
-  '@dzangolab/fastify-graphql@0.86.1':
-    resolution: {integrity: sha512-iWfjngbQvSKQt3NTMdvDmR22KUbiQRrUXSn/iBVclKd/yXS8zJ9Gs722S7xjfNN+OBKJsFC7RB5y6fXfNzwV2w==}
-    engines: {node: '>=20'}
-    peerDependencies:
-      '@dzangolab/fastify-config': 0.86.1
-      '@dzangolab/fastify-slonik': 0.86.1
-      fastify: '>=5.2.1'
-      fastify-plugin: '>=5.0.1'
-      graphql: '>=16.9.0'
-      mercurius: '>=16.1.0'
-      slonik: '>=46.1.0'
-      zod: '>=3.23.8'
-
-  '@dzangolab/fastify-mailer@0.86.1':
-    resolution: {integrity: sha512-elRJ+TxDRuXzYqWleU/YN4d+iCx3zBYksFR0ks3jqsdQaUnWgIyhjxgNQ3N18cs+kU88TfDC7BfR7CBhb2eOcA==}
-    engines: {node: '>=20'}
-    peerDependencies:
-      '@dzangolab/fastify-config': 0.86.1
-      fastify: '>=5.2.1'
-      fastify-plugin: '>=5.0.1'
-      mjml: '>=4.15.3'
-    peerDependenciesMeta:
-      '@dzangolab/fastify-config':
-        optional: true
-
-  '@dzangolab/fastify-slonik@0.86.1':
-    resolution: {integrity: sha512-j+Fta/6/wRZz/sEu324HL5W1AadiR5G3orGNSLIUf09HkaiEDVAj3ITbdK5SaLSDeAKcHbYjcu5O0l4IrHEOvQ==}
-    engines: {node: '>=20'}
-    peerDependencies:
-      '@dzangolab/fastify-config': 0.86.1
-      fastify: '>=5.2.1'
-      fastify-plugin: '>=5.0.1'
-      pg-mem: '>=3.0.2'
-      slonik: '>=46.1.0'
-      zod: '>=3.23.8'
-    peerDependenciesMeta:
-      pg-mem:
-        optional: true
-
-  '@dzangolab/fastify-user@0.86.1':
-    resolution: {integrity: sha512-mj7iok0PsPQFuUTMwCtbYkcJUEWD3+Th11AD3tVjgBFP2FRoNR0fBIpQoYcyD1BClESxN1vWHm9Ggt5PzhiSSw==}
-    engines: {node: '>=20'}
-    peerDependencies:
-      '@dzangolab/fastify-config': 0.86.1
-      '@dzangolab/fastify-graphql': 0.86.1
-      '@dzangolab/fastify-mailer': 0.86.1
-      '@dzangolab/fastify-slonik': 0.86.1
-      '@fastify/cors': '>=11.0.1'
-      '@fastify/formbody': '>=8.0.2'
-      fastify: '>=5.2.1'
-      fastify-plugin: '>=5.0.1'
-      mercurius: '>=16.1.0'
-      mercurius-auth: '>=6.0.0'
-      slonik: '>=46.1.0'
-      supertokens-node: '>=14.1.3'
-      zod: '>=3.23.8'
-
-  '@dzangolab/postgres-migrations@5.4.2':
-    resolution: {integrity: sha512-cQ0XUWwgZ2+z3/ma2IE67Kq+1b1jDWCeIcBCmwHI7+igxABiacxHdiC1aZxTlgqCITogdxzPyzyR2h//KYnTXA==}
-    engines: {node: '>10.17.0'}
-    hasBin: true
-
-  '@dzangolab/react-config@0.55.0':
-    resolution: {integrity: sha512-xu2Ue/+09stxSfbpPuZu1S30qg1IZZPnwOdz1naYUKeF/SSRYLO8AnqTrtaiIsFCQh8VQRagXXaYGrdlO2FTIg==}
-    engines: {node: '>=18', pnpm: '>=9'}
-    peerDependencies:
-      react: '>=18.2'
-
-  '@dzangolab/react-form@0.55.0':
-    resolution: {integrity: sha512-IZk3zzGAc4JaRE0zkYu6d4rxeQkeXfnHo4bkaGk+4rpSioAdyES3KlmWzjqkFkSNfo16Nklug31PPpaUe6td3w==}
-    engines: {node: '>=18', pnpm: '>=9'}
-    peerDependencies:
-      '@dzangolab/react-ui': 0.55.0
-      primereact: 9.6.1
-      react: '>=18.2'
-      react-dom: '>=18.2'
-      zod: '>=3.21.4'
-
-  '@dzangolab/react-i18n@0.55.0':
-    resolution: {integrity: sha512-PSmpg2mcFz6eC5EJbUSgQ7/j22Kf1JiHkz/BL2Eh9WxORXyY7N5VHVnTg+jp2vehLuWZiaA916034WpS5KzHhw==}
-    engines: {node: '>=18', pnpm: '>=9'}
-    peerDependencies:
-      '@dzangolab/react-config': 0.55.0
-      react: '>=18.2'
-      react-dom: '>=18.2'
-
-  '@dzangolab/react-ui@0.55.0':
-    resolution: {integrity: sha512-fAsm37tJmPZQLewbjYQKDVpKscVhMjvlSL/UK0Hv45TxwrY49fu2M8yyksKUjtxgHZtobmnpMf+TuQVt1PNIeg==}
-    engines: {node: '>=18', pnpm: '>=9'}
-    peerDependencies:
-      react: '>=18.2'
-      react-dom: '>=18.2'
-      react-router-dom: '>=6.9'
-
-  '@dzangolab/vue3-config@0.10.13':
-    resolution: {integrity: sha512-7j2phMX+ttn2NKaNcW4DdKXU0iXE1g6PkhXPDswhLgzWQtDPEeBRlnVLSHTXF6Rcv/vxazdrOd/WTFVV4RSoOg==}
-    engines: {node: '>=18', pnpm: '>=9'}
-    peerDependencies:
-      vue: '>=3.2'
-      vue-router: '>=4.0'
-
-  '@dzangolab/vue3-form@0.10.13':
-    resolution: {integrity: sha512-bFXSL8QEX+dpegZZjO4s/z8wkEaFyl9UEh1h8YqzOKu7HKQGet5PfzkLRyo7TB6FCEF8ITkybI3K2nvO8JUQqg==}
-    engines: {node: '>=18', pnpm: '>=9'}
-    peerDependencies:
-      '@vee-validate/i18n': '>=4.7.4'
-      '@vee-validate/rules': '>=4.7.4'
-      '@vee-validate/zod': '>=4.7.4'
-      vee-validate: '>=4.7.4'
-      vue: '>=3.2'
-      zod: '>=3.20.6'
-
-  '@dzangolab/vue3-i18n@0.10.13':
-    resolution: {integrity: sha512-Sw9QGxBDqtfdS04QgtaCmGsVUAzoG6Ceh8STllcwd3BDC85qwYkOdfb/EoR4VWJn0lEoIJt+6RZGIPITvAqwiw==}
-    engines: {node: '>=18', pnpm: '>=9'}
-    peerDependencies:
-      '@dzangolab/vue3-config': 0.10.13
-      '@vueuse/core': '>=9.4.0'
-      pinia: '>=2.0'
-      vue: '>=3.2'
-
-  '@dzangolab/vue3-layout@0.10.13':
-    resolution: {integrity: sha512-yAYmR94FXu3c34izhDwskkxU3oQbn14qLxIkbE2ZKergT5KpuGjqjT2QaXRCS1tA29lMwTDGsr4CMNDYzRZZPA==}
-    engines: {node: '>=18', pnpm: '>=9'}
-    peerDependencies:
-      '@dzangolab/vue3-config': 0.10.13
-      '@dzangolab/vue3-i18n': 0.10.13
-      '@dzangolab/vue3-ui': 0.10.13
-      '@vueuse/core': '>=9.4.0'
-      vue: '>=3.2'
-      vue-router: '>=4.0'
-
-  '@dzangolab/vue3-tanstack-table@0.10.13':
-    resolution: {integrity: sha512-ZvauBtkW1hPCnc9xYzVIBnp6+ZMYpfnOXUGlONd4wH2aJv2BpfwUel9RUaVuh8Kg8cnaqASVjBqQcoZ5tYHjOA==}
-    engines: {node: '>=18', pnpm: '>=9'}
-    peerDependencies:
-      '@dzangolab/vue3-form': 0.10.13
-      '@dzangolab/vue3-ui': 0.10.13
-      vue: '>=3.2'
-
-  '@dzangolab/vue3-ui@0.10.13':
-    resolution: {integrity: sha512-1oNF74tUxXO7fHp+kG7YvRIiT8d09ZNmYMILeAuI36dUxZFWvWhcjCg936pu32CRQp1xs1SUnbMda9TRazQDSA==}
-    engines: {node: '>=18', pnpm: '>=9'}
-    peerDependencies:
-      vue: '>=3.2'
 
   '@esbuild/aix-ppc64@0.24.2':
     resolution: {integrity: sha512-thpVCb/rhxE/BnMLQ7GReQLLN8q9qbHmI55F4489/ByVg2aQaQ6kbcLb6FHkocZzQhxc4gx0sCk0tJkKBFzDhA==}
@@ -1073,8 +924,8 @@ packages:
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
 
-  '@graphql-tools/merge@9.0.24':
-    resolution: {integrity: sha512-NzWx/Afl/1qHT3Nm1bghGG2l4jub28AdvtG11PoUlmjcIjnFBJMv4vqL0qnxWe8A82peWo4/TkVdjJRLXwgGEw==}
+  '@graphql-tools/merge@9.1.1':
+    resolution: {integrity: sha512-BJ5/7Y7GOhTuvzzO5tSBFL4NGr7PVqTJY3KeIDlVTT8YLcTXtBR+hlrC3uyEym7Ragn+zyWdHeJ9ev+nRX1X2w==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
@@ -1085,8 +936,8 @@ packages:
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
 
-  '@graphql-tools/utils@10.8.6':
-    resolution: {integrity: sha512-Alc9Vyg0oOsGhRapfL3xvqh1zV8nKoFUdtLhXX7Ki4nClaIJXckrA86j+uxEuG3ic6j4jlM1nvcWXRn/71AVLQ==}
+  '@graphql-tools/utils@10.9.1':
+    resolution: {integrity: sha512-B1wwkXk9UvU7LCBkPs8513WxOQ2H8Fo5p8HR1+Id9WmYE5+bd51vqN+MbrqvWczHCH2gwkREgHJN88tE0n1FCw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
@@ -1266,6 +1117,161 @@ packages:
 
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+
+  '@prefabs.tech/fastify-config@0.88.1':
+    resolution: {integrity: sha512-3OoxcjhFfM0p/6HzSctpLvP2V6YY73Ngr3VqS9y4eXXbNydO5+O85Ok2wIN0KFHKezW7FC8HSQoeSaspTYqEng==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      fastify: '>=5.2.1'
+      fastify-plugin: '>=5.0.1'
+
+  '@prefabs.tech/fastify-graphql@0.88.1':
+    resolution: {integrity: sha512-pDDWlNb4Rf6RuYdnxc7tzxVn9hSTb9qmTfDZr6etabez7+pK4sqtRFuPde/KhT7D6aPv9YKRUtK2TVAVPz3/nQ==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@prefabs.tech/fastify-config': 0.88.1
+      '@prefabs.tech/fastify-slonik': 0.88.1
+      fastify: '>=5.2.1'
+      fastify-plugin: '>=5.0.1'
+      graphql: '>=16.9.0'
+      mercurius: '>=16.1.0'
+      slonik: '>=46.1.0'
+      zod: '>=3.23.8'
+
+  '@prefabs.tech/fastify-mailer@0.88.1':
+    resolution: {integrity: sha512-ojsOs23Z4/sx4Vo+QRQSBJWu6uujj/yZX/einjL+QmoJTNnj+CPlyUPoB0k5Z/WXTDy+d/Rm4lS5KN1HOi3Tlg==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@prefabs.tech/fastify-config': 0.88.1
+      fastify: '>=5.2.1'
+      fastify-plugin: '>=5.0.1'
+      mjml: '>=4.15.3'
+    peerDependenciesMeta:
+      '@prefabs.tech/fastify-config':
+        optional: true
+
+  '@prefabs.tech/fastify-slonik@0.88.1':
+    resolution: {integrity: sha512-7IEeMna2qDTwC/E9LlqbHwzxoAmlgivq/1Gh1h3gm6NV7g2X4M+qKwuBIvhBBpPL6fdqtZhrNc4vI2t9hfaJXA==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@prefabs.tech/fastify-config': 0.88.1
+      fastify: '>=5.2.1'
+      fastify-plugin: '>=5.0.1'
+      pg-mem: '>=3.0.2'
+      slonik: '>=46.1.0'
+      zod: '>=3.23.8'
+    peerDependenciesMeta:
+      pg-mem:
+        optional: true
+
+  '@prefabs.tech/fastify-user@0.88.1':
+    resolution: {integrity: sha512-UuM0PSL3n9YfJL7GN1z1OuHaYWHajQVJbAUL6Q9GR2sTWnItJMb9k15dnPg79V04PByNhhDWBfUH+h4Uf5mPQg==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@fastify/cors': '>=11.0.1'
+      '@fastify/formbody': '>=8.0.2'
+      '@prefabs.tech/fastify-config': 0.88.1
+      '@prefabs.tech/fastify-graphql': 0.88.1
+      '@prefabs.tech/fastify-mailer': 0.88.1
+      '@prefabs.tech/fastify-s3': 0.88.1
+      '@prefabs.tech/fastify-slonik': 0.88.1
+      fastify: '>=5.2.1'
+      fastify-plugin: '>=5.0.1'
+      mercurius: '>=16.1.0'
+      mercurius-auth: '>=6.0.0'
+      slonik: '>=46.1.0'
+      supertokens-node: '>=14.1.3'
+      zod: '>=3.23.8'
+
+  '@prefabs.tech/postgres-migrations@5.4.3':
+    resolution: {integrity: sha512-9cpcwgI0nZaUWmmybYuqhvroCEZHXy9IQmjdM83UF/yUXNu25ASZ09xfw96Q5Ixq0nYwtqkivorvpayBm+/XXg==}
+    engines: {node: '>10.17.0'}
+    hasBin: true
+
+  '@prefabs.tech/react-config@0.61.0':
+    resolution: {integrity: sha512-gaAtSlFokZ9oWDtZg4qf+gpNJC00pSbWmlpPagKmtbIp2kX1EZDX4LugHKkIIerQ6HYVlzMHByl6ytG2ZEJMfQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      react: '>=18.2'
+
+  '@prefabs.tech/react-form@0.61.0':
+    resolution: {integrity: sha512-h4IH9ol3I4h0JbiaLYJWmg5O5wXZhNhkGaTpqAHr/x6utGky+Fc2ZpAv3zgBruR8m7kLcHoFr3M6nLeK9K74AQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@prefabs.tech/react-ui': 0.61.0
+      primereact: 9.6.1
+      react: '>=18.2'
+      react-dom: '>=18.2'
+      zod: '>=3.21.4'
+
+  '@prefabs.tech/react-i18n@0.61.0':
+    resolution: {integrity: sha512-1Bal5mEEV5Z4hreiscQA8jTON9XPHZOXyZk8YWAZMn9LTiZkH5Bt18lzY39Eq4fRTDkNvWT6A1IPS9MfRAr9jg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      '@prefabs.tech/react-config': 0.61.0
+      react: '>=18.2'
+      react-dom: '>=18.2'
+
+  '@prefabs.tech/react-ui@0.61.0':
+    resolution: {integrity: sha512-hiDSetQMDM2TlVraZH+BiN0e7ymhVA7NgcURzNogyHI+xg6KKiq7EL68v+ucNWJs+CYXSq9UQ0bgDqRtY+Ledg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      primereact: 9.6.1
+      react: '>=18.2'
+      react-dom: '>=18.2'
+      react-router-dom: '>=6.9'
+
+  '@prefabs.tech/vue3-config@0.12.0':
+    resolution: {integrity: sha512-LW4EY5VJU91p3VP4verDzCBFSmIa5FKbPhdW0vzqrO4cRii6JjivPmu0z1ukdBHC+7miw8uMy7KEcx+yt61bhg==}
+    engines: {node: '>=18', pnpm: '>=9'}
+    peerDependencies:
+      vue: '>=3.2'
+      vue-router: '>=4.0'
+
+  '@prefabs.tech/vue3-form@0.12.0':
+    resolution: {integrity: sha512-fLdPRfKeePydc4zy6rQ5PPjJsxnpqV7ius+hLijYkl7hGKWB6LdwEKjPinmNSOdeaufZ6pQmI7Wv4JkEz+9d3Q==}
+    engines: {node: '>=18', pnpm: '>=9'}
+    peerDependencies:
+      '@vee-validate/i18n': '>=4.7.4'
+      '@vee-validate/rules': '>=4.7.4'
+      '@vee-validate/zod': '>=4.7.4'
+      vee-validate: '>=4.7.4'
+      vue: '>=3.2'
+      zod: '>=3.20.6'
+
+  '@prefabs.tech/vue3-i18n@0.12.0':
+    resolution: {integrity: sha512-jbejUmTMYTHTVoJsJsoEwWJvTus2uuZ+4VWe55OkjiiB2vezo3ap6iJ9yIaPusDAynbQmxrVuYnQHZLC6Qe2FA==}
+    engines: {node: '>=18', pnpm: '>=9'}
+    peerDependencies:
+      '@prefabs.tech/vue3-config': 0.12.0
+      '@vueuse/core': '>=9.4.0'
+      pinia: '>=2.0'
+      vue: '>=3.2'
+
+  '@prefabs.tech/vue3-layout@0.12.0':
+    resolution: {integrity: sha512-dQo3EzefCGnjLESy8QUmRYqENihgJAh1nf9Gb8ZlgSKmPZAKX/6wU5YzMWS687fyu3Mqn/uHLuoVY3rUOrXQCQ==}
+    engines: {node: '>=18', pnpm: '>=9'}
+    peerDependencies:
+      '@prefabs.tech/vue3-config': 0.12.0
+      '@prefabs.tech/vue3-i18n': 0.12.0
+      '@prefabs.tech/vue3-ui': 0.12.0
+      '@vueuse/core': '>=9.4.0'
+      vue: '>=3.2'
+      vue-router: '>=4.0'
+
+  '@prefabs.tech/vue3-tanstack-table@0.12.0':
+    resolution: {integrity: sha512-GoSbGHHSSCjUSeZpn2LCafM2XD8QXpLS+W1NrWbBMCorW3qKMcit7dafiyouX0LZQDmabOAQxbzr6sLH5hWFBA==}
+    engines: {node: '>=18', pnpm: '>=9'}
+    peerDependencies:
+      '@prefabs.tech/vue3-form': 0.12.0
+      '@prefabs.tech/vue3-ui': 0.12.0
+      vue: '>=3.2'
+
+  '@prefabs.tech/vue3-ui@0.12.0':
+    resolution: {integrity: sha512-kZKb5q3+DrSW+Q5DI+k8J+MeDQ1xv73dvNesIAWTUTmz/DIJTwfsjkRFwU0rWW8CZiGlNNf9rNdNpiylKVDn9Q==}
+    engines: {node: '>=18', pnpm: '>=9'}
+    peerDependencies:
+      vue: '>=3.2'
 
   '@remix-run/router@1.19.1':
     resolution: {integrity: sha512-S45oynt/WH19bHbIXjtli6QmwNYvaz+vtnubvNpNDvUOoA/OWh6j1OikIP3G+v5GHdxyC6EXoChG3HgYGEUfcg==}
@@ -1450,19 +1456,19 @@ packages:
     peerDependencies:
       zod: ^3
 
-  '@tanstack/react-table@8.20.5':
-    resolution: {integrity: sha512-WEHopKw3znbUZ61s9i0+i9g8drmDo6asTWbrQh8Us63DAk/M0FkmIqERew6P71HI75ksZ2Pxyuf4vvKh9rAkiA==}
+  '@tanstack/react-table@8.21.3':
+    resolution: {integrity: sha512-5nNMTSETP4ykGegmVkhjcS8tTLW6Vl4axfEGQN3v0zdHYbK4UfoqfPChclTrJ4EoK9QynqAu9oUf8VEmrpZ5Ww==}
     engines: {node: '>=12'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
 
-  '@tanstack/table-core@8.20.5':
-    resolution: {integrity: sha512-P9dF7XbibHph2PFRz8gfBKEXEY/HJPOhym8CHmjF8y3q5mWpKx9xtZapXQUWCgkqvsK0R46Azuz+VaxD4Xl+Tg==}
-    engines: {node: '>=12'}
-
   '@tanstack/table-core@8.21.2':
     resolution: {integrity: sha512-uvXk/U4cBiFMxt+p9/G7yUWI/UbHYbyghLCjlpWZ3mLeIZiUBSKcUnw9UnKkdRz7Z/N4UBuFLWQdJCjUe7HjvA==}
+    engines: {node: '>=12'}
+
+  '@tanstack/table-core@8.21.3':
+    resolution: {integrity: sha512-ldZXEhOBb8Is7xLs01fR3YEc3DERiz5silj8tnGkFZytt1abEvl/GhUmCE0PMLaMPTa3Jk4HbKmRlHmu+gCftg==}
     engines: {node: '>=12'}
 
   '@tanstack/vue-table@8.21.2':
@@ -3259,8 +3265,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  i18next-browser-languagedetector@8.0.0:
-    resolution: {integrity: sha512-zhXdJXTTCoG39QsrOCiOabnWj2jecouOqbchu3EfhtSHxIB5Uugnm9JaizenOy39h7ne3+fLikIjeW88+rgszw==}
+  i18next-browser-languagedetector@8.0.5:
+    resolution: {integrity: sha512-OstebRKqKiQw8xEvQF5aRyUujsCatanj7Q9eo5iiH2gJpoXGZ7483ol3sVBwfqbobTQPNH1J+NAyJ1aCQoEC+w==}
 
   i18next-chained-backend@4.6.2:
     resolution: {integrity: sha512-2P092fR+nAPQlGzPUoIIxbwo7PTBqQYgLxwv1XhSTQUAUoelLo5LkX+FqRxxSDg9WEAsrc8+2WL6mJtMGIa6WQ==}
@@ -3268,8 +3274,13 @@ packages:
   i18next-resources-to-backend@1.2.1:
     resolution: {integrity: sha512-okHbVA+HZ7n1/76MsfhPqDou0fptl2dAlhRDu2ideXloRRduzHsqDOznJBef+R3DFZnbvWoBW+KxJ7fnFjd6Yw==}
 
-  i18next@23.16.8:
-    resolution: {integrity: sha512-06r/TitrM88Mg5FdUXAKL96dJMzgqLE5dv3ryBAra4KCwD9mJ4ndOTS95ZuymIGoE+2hzfdaMak2X11/es7ZWg==}
+  i18next@24.2.3:
+    resolution: {integrity: sha512-lfbf80OzkocvX7nmZtu7nSTNbrTYR52sLWxPtlXX1zAhVw8WEnFk4puUkCR4B1dNQwbSpEHHHemcZu//7EcB7A==}
+    peerDependencies:
+      typescript: ^5
+    peerDependenciesMeta:
+      typescript:
+        optional: true
 
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
@@ -4070,8 +4081,8 @@ packages:
     resolution: {integrity: sha512-RJUC6640QV1PzTHHapOrc6IzrAJUZtk2BdVdINZ9VTLm+mcQNyBO9LYyhrnufkzqiD9l8hPLJ97rSyK4WanPNg==}
     engines: {node: '>= 10.23.0'}
 
-  nodemailer-mjml@1.4.12:
-    resolution: {integrity: sha512-81oec7DQ3xMgojHMRwvOaxOqjIi0SrQnlpa2/667i7SAiLxxc5kU6ZiXwxBXa+D8KExUyBg63inT4BY+nRgMaw==}
+  nodemailer-mjml@1.6.0:
+    resolution: {integrity: sha512-oVCYSRFZ+6LlrCvKSBL0AHZ7ZFuD8FqptjcJyuvoWQr+cdHNF7OXLF3xhxfOIQ8YXg1XbrP+4eh0ZyRTGZ71Uw==}
     peerDependencies:
       htmlnano: '*'
       nodemailer: '*'
@@ -4343,8 +4354,14 @@ packages:
   pg-cloudflare@1.1.1:
     resolution: {integrity: sha512-xWPagP/4B6BgFO+EKz3JONXv3YDgvkbVrGw2mTo3D6tVDQRh1e7cqVGvyR3BE+eQgAvx1XhW/iEASj4/jCWl3Q==}
 
+  pg-cloudflare@1.2.7:
+    resolution: {integrity: sha512-YgCtzMH0ptvZJslLM1ffsY4EuGaU0cx4XSdXLRFae8bPP4dS5xL1tNB3k2o/N64cHJpwU7dxKli/nZ2lUa5fLg==}
+
   pg-connection-string@2.7.0:
     resolution: {integrity: sha512-PI2W9mv53rXJQEOb8xNR8lH7Hr+EKa6oJa38zsK0S/ky2er16ios1wLKhZyxzD7jUReiWokc9WK5nxSnC7W1TA==}
+
+  pg-connection-string@2.9.1:
+    resolution: {integrity: sha512-nkc6NpDcvPVpZXxrreI/FOtX3XemeLl8E0qFr6F2Lrm/I8WOnaWNhIPK2Z7OHpw7gh5XJThi6j6ppgNoaT1w4w==}
 
   pg-cursor@2.12.1:
     resolution: {integrity: sha512-V13tEaA9Oq1w+V6Q3UBIB/blxJrwbbr35/dY54r/86soBJ7xkP236bXaORUTVXUPt9B6Ql2BQu+uwQiuMfRVgg==}
@@ -4394,10 +4411,18 @@ packages:
     resolution: {integrity: sha512-BM/Thnrw5jm2kKLE5uJkXqqExRUY/toLHda65XgFTBTFYZyopbKjBe29Ii3RbkvlsMoFwD+tHeGaCjjv0gHlyw==}
     engines: {node: '>=4'}
 
+  pg-pool@3.10.1:
+    resolution: {integrity: sha512-Tu8jMlcX+9d8+QVzKIvM/uJtp07PKr82IUOYEphaWcoBhIYkoHpLXN3qO59nAI11ripznDsEzEv8nUxBVWajGg==}
+    peerDependencies:
+      pg: '>=8.0'
+
   pg-pool@3.7.1:
     resolution: {integrity: sha512-xIOsFoh7Vdhojas6q3596mXFsR8nwBQBXX5JiV7p9buEVAGqYL4yFzclON5P9vFrpu1u7Zwl2oriyDa89n0wbw==}
     peerDependencies:
       pg: '>=8.0'
+
+  pg-protocol@1.10.3:
+    resolution: {integrity: sha512-6DIBgBQaTKDJyxnXaLiLR8wBpQQcGWuAESkRBX/t6OwA8YsqP+iVSiond2EDy6Y/dsGk8rh/jtax3js5NeV7JQ==}
 
   pg-protocol@1.7.0:
     resolution: {integrity: sha512-hTK/mE36i8fDDhgDFjy6xNOG+LCorxLG3WO17tku+ij6sVHXh1jQUJ8hYAnRhNla4QVD2H8er/FOjc/+EgC6yQ==}
@@ -4418,8 +4443,8 @@ packages:
     resolution: {integrity: sha512-cRL3JpS3lKMGsKaWndugWQoLOCoP+Cic8oseVcbr0qhPzYD5DWXK+RZ9LY9wxRf7RQia4SCwQlXk0q6FCPrVng==}
     engines: {node: '>=10'}
 
-  pg@8.13.1:
-    resolution: {integrity: sha512-OUir1A0rPNZlX//c7ksiu7crsGZTKSOXJPgtNiHGIlC9H0lO+NC6ZDYksSgBYY/thSWhnSRBv8w1lieNNGATNQ==}
+  pg@8.13.3:
+    resolution: {integrity: sha512-P6tPt9jXbL9HVu/SSRERNYaYG++MjnscnegFh9pPHihfoBSujsrka0hyuymMzeJKFWrcG8wvCKy8rCe8e5nDUQ==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
       pg-native: '>=3.0.1'
@@ -4427,9 +4452,9 @@ packages:
       pg-native:
         optional: true
 
-  pg@8.13.3:
-    resolution: {integrity: sha512-P6tPt9jXbL9HVu/SSRERNYaYG++MjnscnegFh9pPHihfoBSujsrka0hyuymMzeJKFWrcG8wvCKy8rCe8e5nDUQ==}
-    engines: {node: '>= 8.0.0'}
+  pg@8.16.3:
+    resolution: {integrity: sha512-enxc1h0jA/aq5oSDMvqyW3q89ra6XIIDZgCX9vkMrnz5DFTw/Ny3Li2lFQ+pt3L6MCgm/5o2o8HW9hiJji+xvw==}
+    engines: {node: '>= 16.0.0'}
     peerDependencies:
       pg-native: '>=3.0.1'
     peerDependenciesMeta:
@@ -4667,14 +4692,14 @@ packages:
   react-fast-compare@3.2.2:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
 
-  react-hook-form@7.53.2:
-    resolution: {integrity: sha512-YVel6fW5sOeedd1524pltpHX+jgU2u3DSDtXEaBORNdqiNrsX/nUI/iGXONegttg0mJVnfrIkiV0cmTU6Oo2xw==}
+  react-hook-form@7.54.2:
+    resolution: {integrity: sha512-eHpAUgUjWbZocoQYUHposymRb4ZP6d0uwUnooL2uOybA9/3tPUvoAKqEWK1WaSiTxxOfTpffNZP7QwlnM3/gEg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
 
-  react-i18next@15.4.0:
-    resolution: {integrity: sha512-Py6UkX3zV08RTvL6ZANRoBh9sL/ne6rQq79XlkHEdd82cZr2H9usbWpUNVadJntIZP2pu3M2rL1CN+5rQYfYFw==}
+  react-i18next@15.4.1:
+    resolution: {integrity: sha512-ahGab+IaSgZmNPYXdV1n+OYky95TGpFwnKRflX/16dY04DsYYKHtVLjeny7sBSCREEcoMbAgSkFiGLF5g5Oofw==}
     peerDependencies:
       i18next: '>= 23.2.3'
       react: '>= 16.8.0'
@@ -5485,6 +5510,10 @@ packages:
     resolution: {integrity: sha512-c1Q0mCiPlgdTVVVIJIrBuxNicYE+t/7oKeI9MWLj3fh/uq2Pxh/3eeWbVZ4OcGW1TUf53At0njHw5SMdA3tmMg==}
     engines: {node: '>= 0.10'}
 
+  validator@13.15.15:
+    resolution: {integrity: sha512-BgWVbCI72aIQy937xbawcs+hrVaN/CZ2UwutgaJ36hGqRrLNM+f5LUT/YPRbo8IV/ASeFzXszezV+y2+rq3l8A==}
+    engines: {node: '>= 0.10'}
+
   vee-validate@4.15.0:
     resolution: {integrity: sha512-PGJh1QCFwCBjbHu5aN6vB8macYVWrajbDvgo1Y/8fz9n/RVIkLmZCJDpUgu7+mUmCOPMxeyq7vXUOhbwAqdXcA==}
     peerDependencies:
@@ -6155,6 +6184,8 @@ snapshots:
     dependencies:
       regenerator-runtime: 0.14.1
 
+  '@babel/runtime@7.28.2': {}
+
   '@babel/template@7.25.0':
     dependencies:
       '@babel/code-frame': 7.24.7
@@ -6338,171 +6369,6 @@ snapshots:
       '@types/conventional-commits-parser': 5.0.0
       chalk: 5.3.0
 
-  '@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1)':
-    dependencies:
-      fastify: 5.2.1
-      fastify-plugin: 5.0.1
-
-  '@dzangolab/fastify-graphql@0.86.1(@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@dzangolab/fastify-slonik@0.86.1(@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
-    dependencies:
-      '@dzangolab/fastify-config': 0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1)
-      '@dzangolab/fastify-slonik': 0.86.1(@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
-      '@graphql-tools/merge': 9.0.24(graphql@16.10.0)
-      fastify: 5.2.1
-      fastify-plugin: 5.0.1
-      graphql: 16.10.0
-      graphql-tag: 2.12.6(graphql@16.10.0)
-      mercurius: 16.1.0(graphql@16.10.0)
-      slonik: 46.1.0(zod@3.23.8)
-      zod: 3.23.8
-
-  '@dzangolab/fastify-mailer@0.86.1(@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(mjml@4.15.3)':
-    dependencies:
-      fastify: 5.2.1
-      fastify-plugin: 5.0.1
-      html-to-text: 9.0.5
-      mjml: 4.15.3
-      mustache: 4.2.0
-      nodemailer: 6.10.1
-      nodemailer-html-to-text: 3.2.0
-      nodemailer-mjml: 1.4.12(nodemailer@6.10.1)
-    optionalDependencies:
-      '@dzangolab/fastify-config': 0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1)
-    transitivePeerDependencies:
-      - encoding
-      - htmlnano
-
-  '@dzangolab/fastify-slonik@0.86.1(@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
-    dependencies:
-      '@dzangolab/fastify-config': 0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1)
-      '@dzangolab/postgres-migrations': 5.4.2
-      fastify: 5.2.1
-      fastify-plugin: 5.0.1
-      humps: 2.0.1
-      pg: 8.13.1
-      slonik: 46.1.0(zod@3.23.8)
-      slonik-interceptor-query-logging: 46.8.0(slonik@46.1.0(zod@3.23.8))
-      zod: 3.23.8
-    optionalDependencies:
-      pg-mem: 3.0.4(slonik@46.1.0(zod@3.23.8))
-    transitivePeerDependencies:
-      - pg-native
-
-  '@dzangolab/fastify-user@0.86.1(iv43emm2eogdqt37rxlm3xgh5q)':
-    dependencies:
-      '@dzangolab/fastify-config': 0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1)
-      '@dzangolab/fastify-graphql': 0.86.1(@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@dzangolab/fastify-slonik@0.86.1(@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
-      '@dzangolab/fastify-mailer': 0.86.1(@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(mjml@4.15.3)
-      '@dzangolab/fastify-slonik': 0.86.1(@dzangolab/fastify-config@0.86.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
-      fastify: 5.2.1
-      fastify-plugin: 5.0.1
-      humps: 2.0.1
-      mercurius: 16.1.0(graphql@16.10.0)
-      mercurius-auth: 6.0.0
-      slonik: 46.1.0(zod@3.23.8)
-      supertokens-node: 14.1.3
-      validator: 13.12.0
-      zod: 3.23.8
-
-  '@dzangolab/postgres-migrations@5.4.2':
-    dependencies:
-      pg: 8.13.3
-      sql-template-strings: 2.2.2
-    transitivePeerDependencies:
-      - pg-native
-
-  '@dzangolab/react-config@0.55.0(react@18.3.1)':
-    dependencies:
-      react: 18.3.1
-
-  '@dzangolab/react-form@0.55.0(@dzangolab/react-ui@0.55.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1))(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)':
-    dependencies:
-      '@dzangolab/react-ui': 0.55.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      '@hookform/error-message': 2.0.1(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.53.2(react@18.3.1))(react@18.3.1)
-      '@hookform/resolvers': 3.9.1(react-hook-form@7.53.2(react@18.3.1))
-      primereact: 9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react: 18.3.1
-      react-debounce-input: 3.3.0(react@18.3.1)
-      react-dom: 18.3.1(react@18.3.1)
-      react-dropzone: 14.3.5(react@18.3.1)
-      react-hook-form: 7.53.2(react@18.3.1)
-      validator: 13.12.0
-      zod: 3.23.8
-
-  '@dzangolab/react-i18n@0.55.0(@dzangolab/react-config@0.55.0(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@dzangolab/react-config': 0.55.0(react@18.3.1)
-      '@dzangolab/react-ui': 0.55.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      i18next: 23.16.8
-      i18next-browser-languagedetector: 8.0.0
-      i18next-chained-backend: 4.6.2
-      i18next-resources-to-backend: 1.2.1
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-i18next: 15.4.0(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-    transitivePeerDependencies:
-      - react-native
-      - react-router-dom
-
-  '@dzangolab/react-ui@0.55.0(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@popperjs/core': 2.11.8
-      '@tanstack/react-table': 8.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      file-saver: 2.0.5
-      node-xlsx: 0.24.0
-      react: 18.3.1
-      react-debounce-input: 3.3.0(react@18.3.1)
-      react-dom: 18.3.1(react@18.3.1)
-      react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-router-dom: 6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-
-  '@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
-    dependencies:
-      '@sentry/core': 9.1.0
-      '@sentry/vue': 9.1.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      vue: 3.5.13(typescript@5.5.4)
-      vue-router: 4.5.0(vue@3.5.13(typescript@5.5.4))
-    transitivePeerDependencies:
-      - pinia
-
-  '@dzangolab/vue3-form@0.10.13(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)':
-    dependencies:
-      '@vee-validate/i18n': 4.15.0
-      '@vee-validate/rules': 4.15.0(vue@3.5.13(typescript@5.5.4))
-      '@vee-validate/zod': 4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
-      validator: 13.12.0
-      vee-validate: 4.15.0(vue@3.5.13(typescript@5.5.4))
-      vue: 3.5.13(typescript@5.5.4)
-      zod: 3.24.2
-
-  '@dzangolab/vue3-i18n@0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
-    dependencies:
-      '@dzangolab/vue3-config': 0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@vueuse/core': 12.7.0(typescript@5.5.4)
-      pinia: 3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4))
-      vue: 3.5.13(typescript@5.5.4)
-      vue-i18n: 9.1.10(vue@3.5.13(typescript@5.5.4))
-
-  '@dzangolab/vue3-layout@0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@dzangolab/vue3-i18n@0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@dzangolab/vue3-ui@0.10.13(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
-    dependencies:
-      '@dzangolab/vue3-config': 0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@dzangolab/vue3-i18n': 0.10.13(@dzangolab/vue3-config@0.10.13(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@dzangolab/vue3-ui': 0.10.13(vue@3.5.13(typescript@5.5.4))
-      '@vueuse/core': 12.7.0(typescript@5.5.4)
-      vue: 3.5.13(typescript@5.5.4)
-      vue-router: 4.5.0(vue@3.5.13(typescript@5.5.4))
-
-  '@dzangolab/vue3-tanstack-table@0.10.13(@dzangolab/vue3-form@0.10.13(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(@dzangolab/vue3-ui@0.10.13(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
-    dependencies:
-      '@dzangolab/vue3-form': 0.10.13(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
-      '@dzangolab/vue3-ui': 0.10.13(vue@3.5.13(typescript@5.5.4))
-      '@tanstack/vue-table': 8.21.2(vue@3.5.13(typescript@5.5.4))
-      vue: 3.5.13(typescript@5.5.4)
-
-  '@dzangolab/vue3-ui@0.10.13(vue@3.5.13(typescript@5.5.4))':
-    dependencies:
-      vue: 3.5.13(typescript@5.5.4)
-
   '@esbuild/aix-ppc64@0.24.2':
     optional: true
 
@@ -6662,9 +6528,9 @@ snapshots:
       graphql: 16.10.0
       tslib: 2.8.1
 
-  '@graphql-tools/merge@9.0.24(graphql@16.10.0)':
+  '@graphql-tools/merge@9.1.1(graphql@16.10.0)':
     dependencies:
-      '@graphql-tools/utils': 10.8.6(graphql@16.10.0)
+      '@graphql-tools/utils': 10.9.1(graphql@16.10.0)
       graphql: 16.10.0
       tslib: 2.8.1
 
@@ -6676,7 +6542,7 @@ snapshots:
       graphql: 16.10.0
       tslib: 2.8.1
 
-  '@graphql-tools/utils@10.8.6(graphql@16.10.0)':
+  '@graphql-tools/utils@10.9.1(graphql@16.10.0)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.10.0)
       '@whatwg-node/promise-helpers': 1.3.2
@@ -6689,15 +6555,15 @@ snapshots:
     dependencies:
       graphql: 16.10.0
 
-  '@hookform/error-message@2.0.1(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.53.2(react@18.3.1))(react@18.3.1)':
+  '@hookform/error-message@2.0.1(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.54.2(react@18.3.1))(react@18.3.1)':
     dependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      react-hook-form: 7.53.2(react@18.3.1)
+      react-hook-form: 7.54.2(react@18.3.1)
 
-  '@hookform/resolvers@3.9.1(react-hook-form@7.53.2(react@18.3.1))':
+  '@hookform/resolvers@3.9.1(react-hook-form@7.54.2(react@18.3.1))':
     dependencies:
-      react-hook-form: 7.53.2(react@18.3.1)
+      react-hook-form: 7.54.2(react@18.3.1)
 
   '@humanwhocodes/config-array@0.13.0':
     dependencies:
@@ -6891,6 +6757,174 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
+  '@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1)':
+    dependencies:
+      fastify: 5.2.1
+      fastify-plugin: 5.0.1
+
+  '@prefabs.tech/fastify-graphql@0.88.1(@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.88.1(@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
+    dependencies:
+      '@graphql-tools/merge': 9.1.1(graphql@16.10.0)
+      '@prefabs.tech/fastify-config': 0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1)
+      '@prefabs.tech/fastify-slonik': 0.88.1(@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      fastify: 5.2.1
+      fastify-plugin: 5.0.1
+      graphql: 16.10.0
+      graphql-tag: 2.12.6(graphql@16.10.0)
+      mercurius: 16.1.0(graphql@16.10.0)
+      slonik: 46.1.0(zod@3.23.8)
+      zod: 3.23.8
+
+  '@prefabs.tech/fastify-mailer@0.88.1(@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(mjml@4.15.3)':
+    dependencies:
+      fastify: 5.2.1
+      fastify-plugin: 5.0.1
+      html-to-text: 9.0.5
+      mjml: 4.15.3
+      mustache: 4.2.0
+      nodemailer: 6.10.1
+      nodemailer-html-to-text: 3.2.0
+      nodemailer-mjml: 1.6.0(nodemailer@6.10.1)
+    optionalDependencies:
+      '@prefabs.tech/fastify-config': 0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1)
+    transitivePeerDependencies:
+      - encoding
+      - htmlnano
+
+  '@prefabs.tech/fastify-slonik@0.88.1(@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
+    dependencies:
+      '@prefabs.tech/fastify-config': 0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1)
+      '@prefabs.tech/postgres-migrations': 5.4.3
+      fastify: 5.2.1
+      fastify-plugin: 5.0.1
+      humps: 2.0.1
+      pg: 8.16.3
+      slonik: 46.1.0(zod@3.23.8)
+      slonik-interceptor-query-logging: 46.8.0(slonik@46.1.0(zod@3.23.8))
+      zod: 3.23.8
+    optionalDependencies:
+      pg-mem: 3.0.4(slonik@46.1.0(zod@3.23.8))
+    transitivePeerDependencies:
+      - pg-native
+
+  '@prefabs.tech/fastify-user@0.88.1(y7khpqq23bgp2nrzuoiq5ayosu)':
+    dependencies:
+      '@prefabs.tech/fastify-config': 0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1)
+      '@prefabs.tech/fastify-graphql': 0.88.1(@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.88.1(@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@prefabs.tech/fastify-mailer': 0.88.1(@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(mjml@4.15.3)
+      '@prefabs.tech/fastify-slonik': 0.88.1(@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      fastify: 5.2.1
+      fastify-plugin: 5.0.1
+      humps: 2.0.1
+      mercurius: 16.1.0(graphql@16.10.0)
+      mercurius-auth: 6.0.0
+      slonik: 46.1.0(zod@3.23.8)
+      supertokens-node: 14.1.3
+      validator: 13.15.15
+      zod: 3.23.8
+
+  '@prefabs.tech/postgres-migrations@5.4.3':
+    dependencies:
+      pg: 8.13.3
+      sql-template-strings: 2.2.2
+    transitivePeerDependencies:
+      - pg-native
+
+  '@prefabs.tech/react-config@0.61.0(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+
+  '@prefabs.tech/react-form@0.61.0(@prefabs.tech/react-ui@0.61.0(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1))(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(zod@3.23.8)':
+    dependencies:
+      '@hookform/error-message': 2.0.1(react-dom@18.3.1(react@18.3.1))(react-hook-form@7.54.2(react@18.3.1))(react@18.3.1)
+      '@hookform/resolvers': 3.9.1(react-hook-form@7.54.2(react@18.3.1))
+      '@prefabs.tech/react-ui': 0.61.0(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+      primereact: 9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+      react-debounce-input: 3.3.0(react@18.3.1)
+      react-dom: 18.3.1(react@18.3.1)
+      react-dropzone: 14.3.5(react@18.3.1)
+      react-hook-form: 7.54.2(react@18.3.1)
+      validator: 13.12.0
+      zod: 3.23.8
+
+  '@prefabs.tech/react-i18n@0.61.0(@prefabs.tech/react-config@0.61.0(react@18.3.1))(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)(typescript@5.4.5)':
+    dependencies:
+      '@prefabs.tech/react-config': 0.61.0(react@18.3.1)
+      '@prefabs.tech/react-ui': 0.61.0(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+      i18next: 24.2.3(typescript@5.4.5)
+      i18next-browser-languagedetector: 8.0.5
+      i18next-chained-backend: 4.6.2
+      i18next-resources-to-backend: 1.2.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-i18next: 15.4.1(i18next@24.2.3(typescript@5.4.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+    transitivePeerDependencies:
+      - primereact
+      - react-native
+      - react-router-dom
+      - typescript
+
+  '@prefabs.tech/react-ui@0.61.0(primereact@9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react-router-dom@6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@popperjs/core': 2.11.8
+      '@tanstack/react-table': 8.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      file-saver: 2.0.5
+      node-xlsx: 0.24.0
+      primereact: 9.6.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+      react-debounce-input: 3.3.0(react@18.3.1)
+      react-dom: 18.3.1(react@18.3.1)
+      react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-router-dom: 6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+
+  '@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
+    dependencies:
+      '@sentry/core': 9.1.0
+      '@sentry/vue': 9.1.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      vue: 3.5.13(typescript@5.5.4)
+      vue-router: 4.5.0(vue@3.5.13(typescript@5.5.4))
+    transitivePeerDependencies:
+      - pinia
+
+  '@prefabs.tech/vue3-form@0.12.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)':
+    dependencies:
+      '@vee-validate/i18n': 4.15.0
+      '@vee-validate/rules': 4.15.0(vue@3.5.13(typescript@5.5.4))
+      '@vee-validate/zod': 4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
+      validator: 13.12.0
+      vee-validate: 4.15.0(vue@3.5.13(typescript@5.5.4))
+      vue: 3.5.13(typescript@5.5.4)
+      zod: 3.24.2
+
+  '@prefabs.tech/vue3-i18n@0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
+    dependencies:
+      '@prefabs.tech/vue3-config': 0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@vueuse/core': 12.7.0(typescript@5.5.4)
+      pinia: 3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4))
+      vue: 3.5.13(typescript@5.5.4)
+      vue-i18n: 9.1.10(vue@3.5.13(typescript@5.5.4))
+
+  '@prefabs.tech/vue3-layout@0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-i18n@0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-ui@0.12.0(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
+    dependencies:
+      '@prefabs.tech/vue3-config': 0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-i18n': 0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-ui': 0.12.0(vue@3.5.13(typescript@5.5.4))
+      '@vueuse/core': 12.7.0(typescript@5.5.4)
+      vue: 3.5.13(typescript@5.5.4)
+      vue-router: 4.5.0(vue@3.5.13(typescript@5.5.4))
+
+  '@prefabs.tech/vue3-tanstack-table@0.12.0(@prefabs.tech/vue3-form@0.12.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(@prefabs.tech/vue3-ui@0.12.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
+    dependencies:
+      '@prefabs.tech/vue3-form': 0.12.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
+      '@prefabs.tech/vue3-ui': 0.12.0(vue@3.5.13(typescript@5.5.4))
+      '@tanstack/vue-table': 8.21.2(vue@3.5.13(typescript@5.5.4))
+      vue: 3.5.13(typescript@5.5.4)
+
+  '@prefabs.tech/vue3-ui@0.12.0(vue@3.5.13(typescript@5.5.4))':
+    dependencies:
+      vue: 3.5.13(typescript@5.5.4)
+
   '@remix-run/router@1.19.1': {}
 
   '@rollup/rollup-android-arm-eabi@4.34.8':
@@ -7051,15 +7085,15 @@ snapshots:
       roarr: 7.21.1
       zod: 3.23.8
 
-  '@tanstack/react-table@8.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@tanstack/react-table@8.21.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@tanstack/table-core': 8.20.5
+      '@tanstack/table-core': 8.21.3
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@tanstack/table-core@8.20.5': {}
-
   '@tanstack/table-core@8.21.2': {}
+
+  '@tanstack/table-core@8.21.3': {}
 
   '@tanstack/vue-table@8.21.2(vue@3.5.13(typescript@5.5.4))':
     dependencies:
@@ -9497,7 +9531,7 @@ snapshots:
 
   husky@9.1.4: {}
 
-  i18next-browser-languagedetector@8.0.0:
+  i18next-browser-languagedetector@8.0.5:
     dependencies:
       '@babel/runtime': 7.25.0
 
@@ -9509,9 +9543,11 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.0
 
-  i18next@23.16.8:
+  i18next@24.2.3(typescript@5.4.5):
     dependencies:
-      '@babel/runtime': 7.25.0
+      '@babel/runtime': 7.28.2
+    optionalDependencies:
+      typescript: 5.4.5
 
   iconv-lite@0.4.24:
     dependencies:
@@ -10482,7 +10518,7 @@ snapshots:
     dependencies:
       html-to-text: 7.1.1
 
-  nodemailer-mjml@1.4.12(nodemailer@6.10.1):
+  nodemailer-mjml@1.6.0(nodemailer@6.10.1):
     dependencies:
       mjml: 4.15.3
       mustache: 4.2.0
@@ -10741,7 +10777,12 @@ snapshots:
   pg-cloudflare@1.1.1:
     optional: true
 
+  pg-cloudflare@1.2.7:
+    optional: true
+
   pg-connection-string@2.7.0: {}
+
+  pg-connection-string@2.9.1: {}
 
   pg-cursor@2.12.1(pg@8.13.3):
     dependencies:
@@ -10763,13 +10804,15 @@ snapshots:
 
   pg-numeric@1.0.2: {}
 
-  pg-pool@3.7.1(pg@8.13.1):
+  pg-pool@3.10.1(pg@8.16.3):
     dependencies:
-      pg: 8.13.1
+      pg: 8.16.3
 
   pg-pool@3.7.1(pg@8.13.3):
     dependencies:
       pg: 8.13.3
+
+  pg-protocol@1.10.3: {}
 
   pg-protocol@1.7.0: {}
 
@@ -10798,16 +10841,6 @@ snapshots:
       postgres-interval: 3.0.0
       postgres-range: 1.1.4
 
-  pg@8.13.1:
-    dependencies:
-      pg-connection-string: 2.7.0
-      pg-pool: 3.7.1(pg@8.13.1)
-      pg-protocol: 1.7.1
-      pg-types: 2.2.0
-      pgpass: 1.0.5
-    optionalDependencies:
-      pg-cloudflare: 1.1.1
-
   pg@8.13.3:
     dependencies:
       pg-connection-string: 2.7.0
@@ -10817,6 +10850,16 @@ snapshots:
       pgpass: 1.0.5
     optionalDependencies:
       pg-cloudflare: 1.1.1
+
+  pg@8.16.3:
+    dependencies:
+      pg-connection-string: 2.9.1
+      pg-pool: 3.10.1(pg@8.16.3)
+      pg-protocol: 1.10.3
+      pg-types: 2.2.0
+      pgpass: 1.0.5
+    optionalDependencies:
+      pg-cloudflare: 1.2.7
 
   pgpass@1.0.5:
     dependencies:
@@ -11010,15 +11053,15 @@ snapshots:
 
   react-fast-compare@3.2.2: {}
 
-  react-hook-form@7.53.2(react@18.3.1):
+  react-hook-form@7.54.2(react@18.3.1):
     dependencies:
       react: 18.3.1
 
-  react-i18next@15.4.0(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-i18next@15.4.1(i18next@24.2.3(typescript@5.4.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.25.0
       html-parse-stringify: 3.0.1
-      i18next: 23.16.8
+      i18next: 24.2.3(typescript@5.4.5)
       react: 18.3.1
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
@@ -11856,6 +11899,8 @@ snapshots:
       spdx-expression-parse: 3.0.1
 
   validator@13.12.0: {}
+
+  validator@13.15.15: {}
 
   vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)):
     dependencies:

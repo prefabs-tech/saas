@@ -6,8 +6,8 @@ import {
   useFormContext,
   RenderAdditionalFormFields,
   FormActions,
-} from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+} from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 
 import { InvitationExpiryDateField } from "@/types";

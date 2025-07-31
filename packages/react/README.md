@@ -177,7 +177,7 @@ These components and pages can be imported and used directly in your application
 
 ### i18n support
 
-This package uses `@dzangolab/react-i18n` for translations. By default, it uses the following namespaces:
+This package uses `@prefabs.tech/react-i18n` for translations. By default, it uses the following namespaces:
 
 - `account`
 - `accounts`
