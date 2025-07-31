@@ -36,9 +36,9 @@
 </template>
 
 <script setup lang="ts">
-import { useConfig } from "@dzangolab/vue3-config";
-import { Form, FormActions, Input, SelectInput } from "@dzangolab/vue3-form";
-import { useI18n } from "@dzangolab/vue3-i18n";
+import { useConfig } from "@prefabs.tech/vue3-config";
+import { Form, FormActions, Input, SelectInput } from "@prefabs.tech/vue3-form";
+import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { computed, inject, ref } from "vue";
 import { useRoute } from "vue-router";
 

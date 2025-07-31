@@ -1,5 +1,9 @@
-import { SwitchInput, TextInput, useFormContext } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import {
+  SwitchInput,
+  TextInput,
+  useFormContext,
+} from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import { useEffect } from "react";
 
 import { useConfig } from "@/hooks";

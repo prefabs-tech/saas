@@ -1,4 +1,4 @@
-import { GridContainer } from "@dzangolab/react-ui";
+import { GridContainer } from "@prefabs.tech/react-ui";
 
 import { useAccounts } from "@/hooks";
 import { Account as AccountType } from "@/types";

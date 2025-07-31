@@ -26,10 +26,10 @@ export default defineConfig(({ mode }) => {
         output: {
           exports: "named",
           globals: {
-            "@dzangolab/vue3-config": "DzangolabVue3Config",
-            "@dzangolab/vue3-i18n": "DzangolabVue3I18n",
-            "@dzangolab/vue3-layout": "DzangolabVue3Layout",
-            "@dzangolab/vue3-ui": "DzangolabVue3UI",
+            "@prefabs.tech/vue3-config": "DzangolabVue3Config",
+            "@prefabs.tech/vue3-i18n": "DzangolabVue3I18n",
+            "@prefabs.tech/vue3-layout": "DzangolabVue3Layout",
+            "@prefabs.tech/vue3-ui": "DzangolabVue3UI",
             axios: "Axios",
             pinia: "Pinia",
             vue: "Vue",

@@ -2,8 +2,8 @@ import {
   createTableFragment,
   FilterInput,
   SortInput,
-} from "@dzangolab/fastify-slonik";
-import { TABLE_USERS } from "@dzangolab/fastify-user";
+} from "@prefabs.tech/fastify-slonik";
+import { TABLE_USERS } from "@prefabs.tech/fastify-user";
 import humps from "humps";
 import {
   FragmentSqlToken,

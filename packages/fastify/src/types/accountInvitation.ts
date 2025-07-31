@@ -1,5 +1,5 @@
 import type { Account } from "./account";
-import type { User } from "@dzangolab/fastify-user";
+import type { User } from "@prefabs.tech/fastify-user";
 
 interface AccountInvitation {
   id: number;

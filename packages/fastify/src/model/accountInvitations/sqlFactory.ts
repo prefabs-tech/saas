@@ -1,11 +1,11 @@
-import { createTableFragment } from "@dzangolab/fastify-slonik";
-import { TABLE_USERS } from "@dzangolab/fastify-user";
+import { createTableFragment } from "@prefabs.tech/fastify-slonik";
+import { TABLE_USERS } from "@prefabs.tech/fastify-user";
 import { sql } from "slonik";
 
 import getSaasConfig from "../../config";
 import AccountAwareSqlFactory from "../../sqlFactory";
 
-import type { FilterInput, SortInput } from "@dzangolab/fastify-slonik";
+import type { FilterInput, SortInput } from "@prefabs.tech/fastify-slonik";
 import type {
   FragmentSqlToken,
   IdentifierSqlToken,

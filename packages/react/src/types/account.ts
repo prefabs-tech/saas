@@ -31,7 +31,7 @@ export type AccountSignupData = UserSignupData & {
   useSeparateDatabase: boolean | null;
 };
 
-// copied from @dzangolab/react-user pacakge
+// copied from @prefabs.tech/react-user pacakge
 export interface User {
   id: string;
   email: string;

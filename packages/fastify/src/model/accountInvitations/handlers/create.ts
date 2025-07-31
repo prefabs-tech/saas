@@ -2,7 +2,7 @@ import {
   computeInvitationExpiresAt,
   getUserService,
   validateEmail,
-} from "@dzangolab/fastify-user";
+} from "@prefabs.tech/fastify-user";
 
 import getSaasConfig from "../../../config";
 import { ROLE_SAAS_ACCOUNT_MEMBER } from "../../../constants";

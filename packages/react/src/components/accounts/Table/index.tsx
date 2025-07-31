@@ -1,11 +1,11 @@
-import { useTranslation } from "@dzangolab/react-i18n";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import {
   TDataTable as DataTable,
   TDataTableProperties,
   TRequestJSON,
   TableColumnDefinition,
   Tag,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 import React from "react";
 
 import { useConfig } from "@/hooks";

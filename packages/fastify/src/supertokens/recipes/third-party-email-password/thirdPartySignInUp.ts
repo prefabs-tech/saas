@@ -2,7 +2,7 @@ import {
   areRolesExist,
   formatDate,
   getUserService,
-} from "@dzangolab/fastify-user";
+} from "@prefabs.tech/fastify-user";
 import { deleteUser } from "supertokens-node";
 import { getUserByThirdPartyInfo } from "supertokens-node/recipe/thirdpartyemailpassword";
 import UserRoles from "supertokens-node/recipe/userroles";
@@ -11,7 +11,7 @@ import { ROLE_SAAS_ACCOUNT_MEMBER } from "../../../constants";
 import AccountUserService from "../../../model/accountUsers/service";
 
 import type { Account } from "../../../types";
-import type { User } from "@dzangolab/fastify-user";
+import type { User } from "@prefabs.tech/fastify-user";
 import type { FastifyInstance, FastifyError } from "fastify";
 import type { RecipeInterface } from "supertokens-node/recipe/thirdpartyemailpassword";
 

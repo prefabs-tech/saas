@@ -2,12 +2,12 @@ import {
   RESET_PASSWORD_PATH,
   getOrigin,
   sendEmail,
-} from "@dzangolab/fastify-user";
+} from "@prefabs.tech/fastify-user";
 import ThirdPartyEmailPassword from "supertokens-node/recipe/thirdpartyemailpassword";
 
 import Email from "../../utils/email";
 
-import type { AppConfig } from "@dzangolab/fastify-config";
+import type { AppConfig } from "@prefabs.tech/fastify-config";
 import type { FastifyInstance, FastifyRequest } from "fastify";
 import type { EmailDeliveryInterface } from "supertokens-node/lib/build/ingredients/emaildelivery/types";
 import type { TypeEmailPasswordPasswordResetEmailDeliveryInput } from "supertokens-node/lib/build/recipe/emailpassword/types";

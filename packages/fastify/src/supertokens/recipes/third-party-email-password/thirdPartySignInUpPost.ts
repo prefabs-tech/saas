@@ -1,4 +1,4 @@
-import { getUserService, ROLE_USER } from "@dzangolab/fastify-user";
+import { getUserService, ROLE_USER } from "@prefabs.tech/fastify-user";
 
 import type { FastifyInstance, FastifyRequest } from "fastify";
 import type { APIInterface } from "supertokens-node/recipe/thirdpartyemailpassword/types";

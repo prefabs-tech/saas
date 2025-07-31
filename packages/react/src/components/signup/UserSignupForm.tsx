@@ -1,5 +1,9 @@
-import { emailSchema, passwordSchema, Provider } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import {
+  emailSchema,
+  passwordSchema,
+  Provider,
+} from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import { z } from "zod";
 
 import { useConfig } from "@/hooks";

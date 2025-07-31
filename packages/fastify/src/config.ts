@@ -1,4 +1,4 @@
-import { ApiConfig } from "@dzangolab/fastify-config";
+import { ApiConfig } from "@prefabs.tech/fastify-config";
 
 const getSaasConfig = (config: ApiConfig) => {
   const saasConfig = config.saas;

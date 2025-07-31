@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import configPlugin from "@dzangolab/fastify-config";
+import configPlugin from "@prefabs.tech/fastify-config";
 import Fastify, { FastifyInstance, FastifyReply } from "fastify";
 import FastifyPlugin from "fastify-plugin";
 import { SessionRequest } from "supertokens-node/framework/fastify";
@@ -10,7 +10,7 @@ import plugin from "../src/index";
 
 vi.mock("../src/migrations/runMigrations");
 
-vi.mock("@dzangolab/fastify-user", () => ({
+vi.mock("@prefabs.tech/fastify-user", () => ({
   __esModule: true,
   default: FastifyPlugin(
     async (fastify: FastifyInstance, options: unknown, done: () => void) => {},

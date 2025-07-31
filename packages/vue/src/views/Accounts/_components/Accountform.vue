@@ -79,9 +79,9 @@
 </template>
 
 <script setup lang="ts">
-import { useConfig } from "@dzangolab/vue3-config";
-import { Form, FormActions, Input, SwitchInput } from "@dzangolab/vue3-form";
-import { useI18n } from "@dzangolab/vue3-i18n";
+import { useConfig } from "@prefabs.tech/vue3-config";
+import { Form, FormActions, Input, SwitchInput } from "@prefabs.tech/vue3-form";
+import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { ref, computed, inject, watch } from "vue";
 
 import { useTranslations } from "../../../index";

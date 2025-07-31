@@ -17,9 +17,9 @@ import { SaasConfig } from "./types";
 import "./assets/css/index.css";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-import type { AppConfig } from "@dzangolab/react-config";
+import type { AppConfig } from "@prefabs.tech/react-config";
 
-declare module "@dzangolab/react-config" {
+declare module "@prefabs.tech/react-config" {
   export interface AppConfig {
     saas: SaasConfig;
   }

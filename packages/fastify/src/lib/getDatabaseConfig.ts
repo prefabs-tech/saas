@@ -1,4 +1,4 @@
-import type { SlonikOptions } from "@dzangolab/fastify-slonik";
+import type { SlonikOptions } from "@prefabs.tech/fastify-slonik";
 import type { ClientConfig } from "pg";
 
 const getDatabaseConfig = (slonikOptions: SlonikOptions): ClientConfig => {

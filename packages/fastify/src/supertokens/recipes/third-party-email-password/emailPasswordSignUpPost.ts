@@ -1,4 +1,4 @@
-import { ROLE_USER } from "@dzangolab/fastify-user";
+import { ROLE_USER } from "@prefabs.tech/fastify-user";
 
 import getSaasConfig from "../../../config";
 import {

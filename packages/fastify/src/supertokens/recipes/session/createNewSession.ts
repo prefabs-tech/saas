@@ -1,7 +1,7 @@
 import {
   getUserService,
   ProfileValidationClaim,
-} from "@dzangolab/fastify-user";
+} from "@prefabs.tech/fastify-user";
 import { getRequestFromUserContext } from "supertokens-node";
 
 import type { Account } from "../../../types";

@@ -1,4 +1,4 @@
-import { sendEmail } from "@dzangolab/fastify-user";
+import { sendEmail } from "@prefabs.tech/fastify-user";
 import { getUserById } from "supertokens-node/recipe/thirdpartyemailpassword";
 
 import type { FastifyInstance } from "fastify";

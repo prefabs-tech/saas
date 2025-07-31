@@ -3,7 +3,7 @@ import {
   FilterInput,
   isValueExpression,
   SortInput,
-} from "@dzangolab/fastify-slonik";
+} from "@prefabs.tech/fastify-slonik";
 import humps from "humps";
 import { FragmentSqlToken, QuerySqlToken, sql } from "slonik";
 import { z } from "zod";

@@ -1,8 +1,8 @@
 import { existsSync } from "node:fs";
 
-import { ApiConfig } from "@dzangolab/fastify-config";
-import { createUsersTableQuery } from "@dzangolab/fastify-user";
-import { migrate } from "@dzangolab/postgres-migrations";
+import { ApiConfig } from "@prefabs.tech/fastify-config";
+import { createUsersTableQuery } from "@prefabs.tech/fastify-user";
+import { migrate } from "@prefabs.tech/postgres-migrations";
 import * as pg from "pg";
 
 import {

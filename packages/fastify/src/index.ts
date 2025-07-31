@@ -2,8 +2,8 @@ import { verifySession } from "supertokens-node/recipe/session/framework/fastify
 
 import type { SaasConfig, Account } from "./types";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { ApiConfig } from "@dzangolab/fastify-config";
-import type { Database } from "@dzangolab/fastify-slonik";
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
+import type { Database } from "@prefabs.tech/fastify-slonik";
 
 declare module "fastify" {
   interface FastifyInstance {
@@ -29,7 +29,7 @@ declare module "mercurius" {
   }
 }
 
-declare module "@dzangolab/fastify-config" {
+declare module "@prefabs.tech/fastify-config" {
   interface ApiConfig {
     saas: SaasConfig;
   }

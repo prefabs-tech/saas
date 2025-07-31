@@ -22,10 +22,10 @@
 </template>
 
 <script setup lang="ts">
-import { useConfig } from "@dzangolab/vue3-config";
-import { useI18n } from "@dzangolab/vue3-i18n";
-import { Table } from "@dzangolab/vue3-tanstack-table";
-import { ButtonElement } from "@dzangolab/vue3-ui";
+import { useConfig } from "@prefabs.tech/vue3-config";
+import { useI18n } from "@prefabs.tech/vue3-i18n";
+import { Table } from "@prefabs.tech/vue3-tanstack-table";
+import { ButtonElement } from "@prefabs.tech/vue3-ui";
 import { inject, ref, onMounted, h } from "vue";
 import { useRouter } from "vue-router";
 
@@ -34,8 +34,8 @@ import useAccountsStore from "../../stores/accounts";
 
 import type { Account } from "../../types/account";
 import type { SaasEventHandlers, EventMessage } from "../../types/plugin";
-import type { AppConfig } from "@dzangolab/vue3-config";
-import type { TableColumnDefinition } from "@dzangolab/vue3-tanstack-table";
+import type { AppConfig } from "@prefabs.tech/vue3-config";
+import type { TableColumnDefinition } from "@prefabs.tech/vue3-tanstack-table";
 
 defineProps({
   isLoading: Boolean,

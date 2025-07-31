@@ -1,5 +1,5 @@
-import { AdditionalFormFields } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import { AdditionalFormFields } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import {
   TDataTable as DataTable,
   TDataTableProperties,
@@ -7,7 +7,7 @@ import {
   TableColumnDefinition,
   Tag,
   formatDateTime,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 import { useCallback } from "react";
 import { toast } from "react-toastify";
 

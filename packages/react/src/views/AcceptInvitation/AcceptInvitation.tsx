@@ -1,4 +1,4 @@
-import { LoadingPage } from "@dzangolab/react-ui";
+import { LoadingPage } from "@prefabs.tech/react-ui";
 import { useEffect } from "react";
 import { useParams, useSearchParams, Navigate } from "react-router-dom";
 

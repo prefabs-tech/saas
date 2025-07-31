@@ -3,8 +3,8 @@ import {
   Email,
   Password,
   useFormContext,
-} from "@dzangolab/react-form";
-import { Trans, useTranslation } from "@dzangolab/react-i18n";
+} from "@prefabs.tech/react-form";
+import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 
 import { useConfig } from "@/hooks";

@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { LoadingIcon, Page } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { LoadingIcon, Page } from "@prefabs.tech/react-ui";
 import { useEffect, useState } from "react";
 
 import { SaasConfig } from "@/types";

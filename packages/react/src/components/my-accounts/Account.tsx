@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button, Tag } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button, Tag } from "@prefabs.tech/react-ui";
 
 import { Account as AccountType } from "@/types";
 

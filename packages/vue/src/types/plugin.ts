@@ -1,4 +1,4 @@
-import type { LocaleMessages, VueMessageType } from "@dzangolab/vue3-i18n";
+import type { LocaleMessages, VueMessageType } from "@prefabs.tech/vue3-i18n";
 import type { Pinia } from "pinia";
 import type { Component } from "vue";
 import type { Router } from "vue-router";
