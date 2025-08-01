@@ -54,12 +54,9 @@ importers:
         specifier: 8.13.3
         version: 8.13.3
     devDependencies:
-      '@12deg/eslint-config':
-        specifier: 0.1.11
-        version: 0.1.11(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.5.4)(vue-eslint-parser@9.4.3(eslint@8.57.1))
-      '@12deg/tsconfig':
-        specifier: 0.1.11
-        version: 0.1.11(@types/node@20.12.2)
+      '@prefabs.tech/eslint-config':
+        specifier: 0.2.0
+        version: 0.2.0(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.5.4)(vue-eslint-parser@9.4.3(eslint@8.57.1))
       '@prefabs.tech/fastify-config':
         specifier: 0.88.1
         version: 0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1)
@@ -75,6 +72,9 @@ importers:
       '@prefabs.tech/fastify-user':
         specifier: 0.88.1
         version: 0.88.1(y7khpqq23bgp2nrzuoiq5ayosu)
+      '@prefabs.tech/tsconfig':
+        specifier: 0.2.0
+        version: 0.2.0(@types/node@20.12.2)
       '@types/humps':
         specifier: 2.0.6
         version: 2.0.6
@@ -166,9 +166,9 @@ importers:
         specifier: 3.23.8
         version: 3.23.8
     devDependencies:
-      '@12deg/eslint-config':
-        specifier: 0.1.11
-        version: 0.1.11(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.4.5)(vue-eslint-parser@9.4.3(eslint@8.57.1))
+      '@prefabs.tech/eslint-config':
+        specifier: 0.2.0
+        version: 0.2.0(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.4.5)(vue-eslint-parser@9.4.3(eslint@8.57.1))
       '@prefabs.tech/react-config':
         specifier: 0.61.0
         version: 0.61.0(react@18.3.1)
@@ -256,15 +256,15 @@ importers:
 
   packages/vue:
     devDependencies:
-      '@12deg/eslint-config':
-        specifier: 0.1.11
-        version: 0.1.11(@typescript-eslint/eslint-plugin@8.24.1(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.5.4))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.8.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.3(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.2))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.2)(typescript@5.5.4)(vue-eslint-parser@9.4.3(eslint@8.57.1))
-      '@12deg/tsconfig':
-        specifier: 0.1.11
-        version: 0.1.11(@types/node@22.13.5)
       '@iconify/vue':
         specifier: 4.3.0
         version: 4.3.0(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/eslint-config':
+        specifier: 0.2.0
+        version: 0.2.0(@typescript-eslint/eslint-plugin@8.24.1(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.5.4))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.8.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.3(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.2))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.2)(typescript@5.5.4)(vue-eslint-parser@9.4.3(eslint@8.57.1))
+      '@prefabs.tech/tsconfig':
+        specifier: 0.2.0
+        version: 0.2.0(@types/node@22.13.5)
       '@prefabs.tech/vue3-config':
         specifier: 0.12.0
         version: 0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
@@ -381,43 +381,6 @@ importers:
         version: 3.24.2
 
 packages:
-
-  '@12deg/eslint-config@0.1.11':
-    resolution: {integrity: sha512-g7OhBCEVQO/JeHrXQtf9wpzNpu4TixGQry2EO+lqeVYQQy1T67BneUdip+VqtTWWG7oKZ7qffHcrk7UDhTZxhg==}
-    peerDependencies:
-      '@typescript-eslint/eslint-plugin': '>=8.14.0'
-      '@typescript-eslint/parser': '>=8.14.0'
-      eslint: '>=8.57.1 <9.0.0'
-      eslint-config-prettier: '>=9.1.0'
-      eslint-config-react-app: '>=7.0.1'
-      eslint-import-resolver-alias: '>=1.1.2'
-      eslint-import-resolver-typescript: '>=3.6.3'
-      eslint-plugin-cypress: '>=3.6.0'
-      eslint-plugin-import: '>=2.31.0'
-      eslint-plugin-n: '>=14.0.0'
-      eslint-plugin-prettier: '>=5.2.1'
-      eslint-plugin-promise: '>=7.1.0'
-      eslint-plugin-unicorn: '>=56.0.1'
-      eslint-plugin-vue: '>=9.29.0'
-      prettier: '>=3.3.3'
-      typescript: '>=4.9.5'
-      vue-eslint-parser: '>=9.4.3'
-    peerDependenciesMeta:
-      eslint-config-react-app:
-        optional: true
-      eslint-plugin-cypress:
-        optional: true
-      eslint-plugin-n:
-        optional: true
-      eslint-plugin-promise:
-        optional: true
-      eslint-plugin-vue:
-        optional: true
-      vue-eslint-parser:
-        optional: true
-
-  '@12deg/tsconfig@0.1.11':
-    resolution: {integrity: sha512-r/q6ZRX4sl7IMUNYlvPTjPZQAyBhcjepduoqP69owZG+SZbu75+Cfw6KfYphpm1LWzf6Y7eAv7ee8BLAPoojPg==}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -1118,6 +1081,40 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
+  '@prefabs.tech/eslint-config@0.2.0':
+    resolution: {integrity: sha512-ILmLo3T7XkCo4Yrxs+LanzETwn+MRtq4LAz3EzAAB5WyvJ0vJHZcwovR7QFfsmQffMD3/Y3U69eDKT2iCPIYHA==}
+    peerDependencies:
+      '@typescript-eslint/eslint-plugin': '>=8.14.0'
+      '@typescript-eslint/parser': '>=8.14.0'
+      eslint: '>=8.57.1 <9.0.0'
+      eslint-config-prettier: '>=9.1.0'
+      eslint-config-react-app: '>=7.0.1'
+      eslint-import-resolver-alias: '>=1.1.2'
+      eslint-import-resolver-typescript: '>=3.6.3'
+      eslint-plugin-cypress: '>=3.6.0'
+      eslint-plugin-import: '>=2.31.0'
+      eslint-plugin-n: '>=14.0.0'
+      eslint-plugin-prettier: '>=5.2.1'
+      eslint-plugin-promise: '>=7.1.0'
+      eslint-plugin-unicorn: '>=56.0.1'
+      eslint-plugin-vue: '>=9.29.0'
+      prettier: '>=3.3.3'
+      typescript: '>=4.9.5'
+      vue-eslint-parser: '>=9.4.3'
+    peerDependenciesMeta:
+      eslint-config-react-app:
+        optional: true
+      eslint-plugin-cypress:
+        optional: true
+      eslint-plugin-n:
+        optional: true
+      eslint-plugin-promise:
+        optional: true
+      eslint-plugin-vue:
+        optional: true
+      vue-eslint-parser:
+        optional: true
+
   '@prefabs.tech/fastify-config@0.88.1':
     resolution: {integrity: sha512-3OoxcjhFfM0p/6HzSctpLvP2V6YY73Ngr3VqS9y4eXXbNydO5+O85Ok2wIN0KFHKezW7FC8HSQoeSaspTYqEng==}
     engines: {node: '>=20'}
@@ -1220,6 +1217,9 @@ packages:
       react: '>=18.2'
       react-dom: '>=18.2'
       react-router-dom: '>=6.9'
+
+  '@prefabs.tech/tsconfig@0.2.0':
+    resolution: {integrity: sha512-AUsEmP7j7NnfEYa18u4bkXJlijk2duaKaEhhhfeTCOj01nNRMhaqGWYkYaphdiUR4mSU3e1+wkVvJBbX8Ri3fg==}
 
   '@prefabs.tech/vue3-config@0.12.0':
     resolution: {integrity: sha512-LW4EY5VJU91p3VP4verDzCBFSmIa5FKbPhdW0vzqrO4cRii6JjivPmu0z1ukdBHC+7miw8uMy7KEcx+yt61bhg==}
@@ -5861,75 +5861,6 @@ packages:
 
 snapshots:
 
-  '@12deg/eslint-config@0.1.11(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.4.5)(vue-eslint-parser@9.4.3(eslint@8.57.1))':
-    dependencies:
-      '@typescript-eslint/eslint-plugin': 8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5)
-      '@typescript-eslint/parser': 8.14.0(eslint@8.57.1)(typescript@5.4.5)
-      eslint: 8.57.1
-      eslint-config-prettier: 9.1.0(eslint@8.57.1)
-      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.31.0)
-      eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-plugin-import@2.31.0)(eslint@8.57.1)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
-      eslint-plugin-prettier: 5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)
-      eslint-plugin-unicorn: 56.0.1(eslint@8.57.1)
-      prettier: 3.3.3
-      typescript: 5.4.5
-    optionalDependencies:
-      eslint-plugin-n: 14.0.0(eslint@8.57.1)
-      eslint-plugin-promise: 7.1.0(eslint@8.57.1)
-      eslint-plugin-vue: 9.32.0(eslint@8.57.1)
-      vue-eslint-parser: 9.4.3(eslint@8.57.1)
-
-  '@12deg/eslint-config@0.1.11(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.5.4)(vue-eslint-parser@9.4.3(eslint@8.57.1))':
-    dependencies:
-      '@typescript-eslint/eslint-plugin': 8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4)
-      '@typescript-eslint/parser': 8.14.0(eslint@8.57.1)(typescript@5.5.4)
-      eslint: 8.57.1
-      eslint-config-prettier: 9.1.0(eslint@8.57.1)
-      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.31.0)
-      eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-plugin-import@2.31.0)(eslint@8.57.1)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
-      eslint-plugin-prettier: 5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)
-      eslint-plugin-unicorn: 56.0.1(eslint@8.57.1)
-      prettier: 3.3.3
-      typescript: 5.5.4
-    optionalDependencies:
-      eslint-plugin-n: 14.0.0(eslint@8.57.1)
-      eslint-plugin-promise: 7.1.0(eslint@8.57.1)
-      eslint-plugin-vue: 9.32.0(eslint@8.57.1)
-      vue-eslint-parser: 9.4.3(eslint@8.57.1)
-
-  '@12deg/eslint-config@0.1.11(@typescript-eslint/eslint-plugin@8.24.1(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.5.4))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.8.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.3(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.2))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.2)(typescript@5.5.4)(vue-eslint-parser@9.4.3(eslint@8.57.1))':
-    dependencies:
-      '@typescript-eslint/eslint-plugin': 8.24.1(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4)
-      '@typescript-eslint/parser': 8.24.1(eslint@8.57.1)(typescript@5.5.4)
-      eslint: 8.57.1
-      eslint-config-prettier: 9.1.0(eslint@8.57.1)
-      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.31.0)
-      eslint-import-resolver-typescript: 3.8.3(eslint-plugin-import@2.31.0)(eslint@8.57.1)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.5.4))(eslint-import-resolver-typescript@3.8.3)(eslint@8.57.1)
-      eslint-plugin-prettier: 5.2.3(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.2)
-      eslint-plugin-unicorn: 56.0.1(eslint@8.57.1)
-      prettier: 3.5.2
-      typescript: 5.5.4
-    optionalDependencies:
-      eslint-plugin-n: 14.0.0(eslint@8.57.1)
-      eslint-plugin-promise: 7.1.0(eslint@8.57.1)
-      eslint-plugin-vue: 9.32.0(eslint@8.57.1)
-      vue-eslint-parser: 9.4.3(eslint@8.57.1)
-
-  '@12deg/tsconfig@0.1.11(@types/node@20.12.2)':
-    dependencies:
-      '@vue/tsconfig': 0.1.3(@types/node@20.12.2)
-    transitivePeerDependencies:
-      - '@types/node'
-
-  '@12deg/tsconfig@0.1.11(@types/node@22.13.5)':
-    dependencies:
-      '@vue/tsconfig': 0.1.3(@types/node@22.13.5)
-    transitivePeerDependencies:
-      - '@types/node'
-
   '@ampproject/remapping@2.3.0':
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
@@ -6757,6 +6688,63 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
+  '@prefabs.tech/eslint-config@0.2.0(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.4.5)(vue-eslint-parser@9.4.3(eslint@8.57.1))':
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint@8.57.1)(typescript@5.4.5)
+      '@typescript-eslint/parser': 8.14.0(eslint@8.57.1)(typescript@5.4.5)
+      eslint: 8.57.1
+      eslint-config-prettier: 9.1.0(eslint@8.57.1)
+      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.31.0)
+      eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-plugin-import@2.31.0)(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.4.5))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
+      eslint-plugin-prettier: 5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)
+      eslint-plugin-unicorn: 56.0.1(eslint@8.57.1)
+      prettier: 3.3.3
+      typescript: 5.4.5
+    optionalDependencies:
+      eslint-plugin-n: 14.0.0(eslint@8.57.1)
+      eslint-plugin-promise: 7.1.0(eslint@8.57.1)
+      eslint-plugin-vue: 9.32.0(eslint@8.57.1)
+      vue-eslint-parser: 9.4.3(eslint@8.57.1)
+
+  '@prefabs.tech/eslint-config@0.2.0(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.5.4)(vue-eslint-parser@9.4.3(eslint@8.57.1))':
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4)
+      '@typescript-eslint/parser': 8.14.0(eslint@8.57.1)(typescript@5.5.4)
+      eslint: 8.57.1
+      eslint-config-prettier: 9.1.0(eslint@8.57.1)
+      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.31.0)
+      eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-plugin-import@2.31.0)(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-import-resolver-typescript@3.6.3)(eslint@8.57.1)
+      eslint-plugin-prettier: 5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)
+      eslint-plugin-unicorn: 56.0.1(eslint@8.57.1)
+      prettier: 3.3.3
+      typescript: 5.5.4
+    optionalDependencies:
+      eslint-plugin-n: 14.0.0(eslint@8.57.1)
+      eslint-plugin-promise: 7.1.0(eslint@8.57.1)
+      eslint-plugin-vue: 9.32.0(eslint@8.57.1)
+      vue-eslint-parser: 9.4.3(eslint@8.57.1)
+
+  '@prefabs.tech/eslint-config@0.2.0(@typescript-eslint/eslint-plugin@8.24.1(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.5.4))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.8.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.3(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.2))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.2)(typescript@5.5.4)(vue-eslint-parser@9.4.3(eslint@8.57.1))':
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 8.24.1(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4)
+      '@typescript-eslint/parser': 8.24.1(eslint@8.57.1)(typescript@5.5.4)
+      eslint: 8.57.1
+      eslint-config-prettier: 9.1.0(eslint@8.57.1)
+      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.31.0)
+      eslint-import-resolver-typescript: 3.8.3(eslint-plugin-import@2.31.0)(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.5.4))(eslint-import-resolver-typescript@3.8.3)(eslint@8.57.1)
+      eslint-plugin-prettier: 5.2.3(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.2)
+      eslint-plugin-unicorn: 56.0.1(eslint@8.57.1)
+      prettier: 3.5.2
+      typescript: 5.5.4
+    optionalDependencies:
+      eslint-plugin-n: 14.0.0(eslint@8.57.1)
+      eslint-plugin-promise: 7.1.0(eslint@8.57.1)
+      eslint-plugin-vue: 9.32.0(eslint@8.57.1)
+      vue-eslint-parser: 9.4.3(eslint@8.57.1)
+
   '@prefabs.tech/fastify-config@0.88.1(fastify-plugin@5.0.1)(fastify@5.2.1)':
     dependencies:
       fastify: 5.2.1
@@ -6877,6 +6865,18 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-router-dom: 6.26.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+
+  '@prefabs.tech/tsconfig@0.2.0(@types/node@20.12.2)':
+    dependencies:
+      '@vue/tsconfig': 0.1.3(@types/node@20.12.2)
+    transitivePeerDependencies:
+      - '@types/node'
+
+  '@prefabs.tech/tsconfig@0.2.0(@types/node@22.13.5)':
+    dependencies:
+      '@vue/tsconfig': 0.1.3(@types/node@22.13.5)
+    transitivePeerDependencies:
+      - '@types/node'
 
   '@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
     dependencies:

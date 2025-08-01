@@ -1,16 +1,16 @@
 {
-  "name": "@12deg/saas-react",
+  "name": "@prefabs.tech/saas-react",
   "version": "0.21.0",
   "description": "Saas plugin for react",
   "exports": {
     ".": {
-      "import": "./dist/12degSaasReact.es.js",
-      "require": "./dist/12degSaasReact.umd.js"
+      "import": "./dist/PrefabsTechSaasReact.es.js",
+      "require": "./dist/PrefabsTechSaasReact.umd.js"
     },
-    "./dist/12degSaasReact.css": "./dist/saas-react.css"
+    "./dist/PrefabsTechSaasReact.css": "./dist/saas-react.css"
   },
-  "main": "dist/12degSaasReact.umd.js",
-  "module": "dist/12degSaasReact.es.js",
+  "main": "dist/PrefabsTechSaasReact.umd.js",
+  "module": "dist/PrefabsTechSaasReact.es.js",
   "types": "./dist/src/index.d.ts",
   "files": [
     "dist"
@@ -32,7 +32,7 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@12deg/eslint-config": "0.1.11",
+    "@prefabs.tech/eslint-config": "0.2.0",
     "@prefabs.tech/react-config": "0.61.0",
     "@prefabs.tech/react-form": "0.61.0",
     "@prefabs.tech/react-i18n": "0.61.0",

@@ -14,18 +14,18 @@ export default defineConfig(({ mode }) => {
     build: {
       lib: {
         entry: resolve(dirname(fileURLToPath(import.meta.url)), "src/index.ts"),
-        fileName: (format) => `12degSaasReact.${format}.js`,
-        name: "12degSaasReact",
+        fileName: (format) => `PrefabsTechSaasReact.${format}.js`,
+        name: "PrefabsTechSaasReact",
       },
       rollupOptions: {
         external: [...Object.keys(peerDependencies)],
         output: {
           exports: "named",
           globals: {
-            "@prefabs.tech/react-config": "DzangolabReactConfig",
-            "@prefabs.tech/react-form": "DzangolabReactForm",
-            "@prefabs.tech/react-i18n": "DzangolabReactI18n",
-            "@prefabs.tech/react-ui": "DzangolabReactUi",
+            "@prefabs.tech/react-config": "PrefabsTechReactConfig",
+            "@prefabs.tech/react-form": "PrefabsTechReactForm",
+            "@prefabs.tech/react-i18n": "PrefabsTechReactI18n",
+            "@prefabs.tech/react-ui": "PrefabsTechReactUi",
             react: "React",
             "react-dom": "ReactDom",
             "react-router-dom": "ReactRouterDom",

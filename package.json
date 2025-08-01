@@ -1,10 +1,10 @@
 {
-  "name": "@12deg/saas",
+  "name": "@prefabs.tech/saas",
   "version": "0.21.0",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/12deg/saas.git"
+    "url": "git+https://github.com/prefabs-tech/saas.git"
   },
   "workspaces": [
     "packages/*"

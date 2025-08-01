@@ -1,23 +1,23 @@
 {
-  "name": "@12deg/saas-fastify",
+  "name": "@prefabs.tech/saas-fastify",
   "version": "0.21.0",
   "description": "saas plugin for fastify",
-  "homepage": "https://github.com/12deg/saas/tree/main/packages/fastify#readme",
+  "homepage": "https://github.com/prefabs-tech/saas/tree/main/packages/fastify#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/12deg/saas.git",
+    "url": "git+https://github.com/prefabs-tech/saas.git",
     "directory": "packages/fastify"
   },
   "license": "MIT",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/12deg-saas-fastify.js",
-      "require": "./dist/12deg-saas-fastify.umd.cjs"
+      "import": "./dist/prefabs-tech-saas-fastify.js",
+      "require": "./dist/prefabs-tech-saas-fastify.umd.cjs"
     }
   },
-  "main": "./dist/12deg-saas-fastify.umd.cjs",
-  "module": "./dist/12deg-saas-fastify.js",
+  "main": "./dist/prefabs-tech-saas-fastify.umd.cjs",
+  "module": "./dist/prefabs-tech-saas-fastify.js",
   "types": "./dist/types/index.d.ts",
   "files": [
     "dist"
@@ -40,8 +40,8 @@
     "pg": "8.13.3"
   },
   "devDependencies": {
-    "@12deg/eslint-config": "0.1.11",
-    "@12deg/tsconfig": "0.1.11",
+    "@prefabs.tech/eslint-config": "0.2.0",
+    "@prefabs.tech/tsconfig": "0.2.0",
     "@prefabs.tech/fastify-config": "0.88.1",
     "@prefabs.tech/fastify-graphql": "0.88.1",
     "@prefabs.tech/fastify-mailer": "0.88.1",

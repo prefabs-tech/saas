@@ -1,4 +1,4 @@
-# @12deg/saas-react
+# @prefabs.tech/saas-react
 
 This package provides essential tools and components to support SaaS functionality in React applications. It simplifies account management, routing, and configuration for multi-tenant SaaS platforms.
 
@@ -7,13 +7,13 @@ This package provides essential tools and components to support SaaS functionali
 Install with npm:
 
 ```bash
-npm install @12deg/saas-react
+npm install @prefabs.tech/saas-react
 ```
 
 Install with pnpm:
 
 ```bash
-pnpm add --filter "@scope/project" @12deg/saas-react
+pnpm add --filter "@scope/project" @prefabs.tech/saas-react
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ To use this package, wrap your application with the `AccountsProvider` component
 
 ```typescript
 // src/App.tsx
-import { AccountsProvider } from "@12deg/saas-react";
+import { AccountsProvider } from "@prefabs.tech/saas-react";
 import config from "./config";
 
 function App() {
@@ -125,7 +125,7 @@ This package provides pre-configured routes for SaaS applications, designed to s
 ### Example usage
 
 ```typescript
-import { getSaasAdminRoutes, getSaasAppRoutes } from "@12deg/saas-react/routes";
+import { getSaasAdminRoutes, getSaasAppRoutes } from "@prefabs.tech/saas-react/routes";
 
 // Admin App
 const adminRoutes = getSaasAdminRoutes();

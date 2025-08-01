@@ -1,17 +1,17 @@
 {
-  "name": "@12deg/saas-vue",
+  "name": "@prefabs.tech/saas-vue",
   "version": "0.21.0",
   "description": "Saas plugin for vue",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/12degSaasVue.es.js",
-      "require": "./dist/12degSaasVue.umd.js"
+      "import": "./dist/PrefabsTechSaasVue.es.js",
+      "require": "./dist/PrefabsTechSaasVue.umd.js"
     },
-    "./dist/12degSaasVue.css": "./dist/saas-vue.css"
+    "./dist/PrefabsTechSaasVue.css": "./dist/saas-vue.css"
   },
-  "main": "dist/12degSaasVue.umd.js",
-  "module": "dist/12degSaasVue.es.js",
+  "main": "dist/PrefabsTechSaasVue.umd.js",
+  "module": "dist/PrefabsTechSaasVue.es.js",
   "types": "./dist/src/index.d.ts",
   "files": [
     "dist"
@@ -25,8 +25,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@12deg/eslint-config": "0.1.11",
-    "@12deg/tsconfig": "0.1.11",
+    "@prefabs.tech/eslint-config": "0.2.0",
+    "@prefabs.tech/tsconfig": "0.2.0",
     "@prefabs.tech/vue3-config": "0.12.0",
     "@prefabs.tech/vue3-form": "0.12.0",
     "@prefabs.tech/vue3-i18n": "0.12.0",

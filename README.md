@@ -1,9 +1,9 @@
-# @12deg/saas
-A set of saas libraries by 12deg.
+# @prefabs.tech/saas
+A set of saas libraries by prefabs.tech.
 
 ## Packages
-  - @12deg/saas-fastify (https://www.npmjs.com/package/@12deg/saas-fastify)
-  - @12deg/saas-react (https://www.npmjs.com/package/@12deg/saas-react)
+  - @prefabs.tech/saas-fastify (https://www.npmjs.com/package/@prefabs.tech/saas-fastify)
+  - @prefabs.tech/saas-react (https://www.npmjs.com/package/@prefabs.tech/saas-react)
 
 # Installation & Usage
 ## Install dependencies
