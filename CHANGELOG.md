@@ -1,3 +1,7 @@
+# [0.22.0](https://github.com/prefabs-tech/saas/compare/v0.21.0...v0.22.0) (2025-08-01)
+
+
+
 # [0.21.0](https://github.com/12deg/saas/compare/v0.20.0...v0.21.0) (2025-07-31)
 
 
