@@ -1,5 +1,5 @@
 module.exports = {
-  appName: "@12deg/saas",
+  appName: "@prefabs.tech/saas",
   buildCommand: ({ isYarn, version }) => {
     return "pnpm build";
   },

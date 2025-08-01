@@ -14,8 +14,8 @@ export default defineConfig(({ mode }) => {
     build: {
       lib: {
         entry: resolve(dirname(fileURLToPath(import.meta.url)), "src/index.ts"),
-        fileName: (format) => `12degSaasVue.${format}.js`,
-        name: "@12deg/saas-vue",
+        fileName: (format) => `PrefabsTechSaasVue.${format}.js`,
+        name: "PrefabsTechSaasVue",
       },
       rollupOptions: {
         external: [
@@ -26,10 +26,10 @@ export default defineConfig(({ mode }) => {
         output: {
           exports: "named",
           globals: {
-            "@prefabs.tech/vue3-config": "DzangolabVue3Config",
-            "@prefabs.tech/vue3-i18n": "DzangolabVue3I18n",
-            "@prefabs.tech/vue3-layout": "DzangolabVue3Layout",
-            "@prefabs.tech/vue3-ui": "DzangolabVue3UI",
+            "@prefabs.tech/vue3-config": "PrefabsTechVue3Config",
+            "@prefabs.tech/vue3-i18n": "PrefabsTechVue3I18n",
+            "@prefabs.tech/vue3-layout": "PrefabsTechVue3Layout",
+            "@prefabs.tech/vue3-ui": "PrefabsTechVue3UI",
             axios: "Axios",
             pinia: "Pinia",
             vue: "Vue",

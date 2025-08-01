@@ -16,8 +16,8 @@ export default defineConfig(({ mode }) => {
           path.dirname(fileURLToPath(import.meta.url)),
           "src/index.ts",
         ),
-        fileName: "12deg-saas-fastify",
-        name: "12degSaasFastify",
+        fileName: "prefabs-tech-saas-fastify",
+        name: "PrefabsTechSaasFastify",
       },
       rollupOptions: {
         external: [
@@ -29,12 +29,13 @@ export default defineConfig(({ mode }) => {
         output: {
           exports: "named",
           globals: {
-            "@prefabs.tech/fastify-config": "DzangolabFastifyConfig",
-            "@prefabs.tech/fastify-graphql": "DzangolabFastifyGraphql",
-            "@prefabs.tech/fastify-mailer": "DzangolabFastifyMailer",
-            "@prefabs.tech/fastify-slonik": "DzangolabFastifySlonik",
-            "@prefabs.tech/fastify-user": "DzangolabFastifyUser",
-            "@prefabs.tech/postgres-migrations": "DzangolabPostgresMigrations",
+            "@prefabs.tech/fastify-config": "PrefabsTechFastifyConfig",
+            "@prefabs.tech/fastify-graphql": "PrefabsTechFastifyGraphql",
+            "@prefabs.tech/fastify-mailer": "PrefabsTechFastifyMailer",
+            "@prefabs.tech/fastify-slonik": "PrefabsTechFastifySlonik",
+            "@prefabs.tech/fastify-user": "PrefabsTechFastifyUser",
+            "@prefabs.tech/postgres-migrations":
+              "PrefabsTechPostgresMigrations",
             "@graphql-tools/merge": "graphqlToolsMerge",
             fastify: "Fastify",
             "fastify-plugin": "FastifyPlugin",

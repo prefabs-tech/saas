@@ -1,4 +1,4 @@
-# @12deg/saas-fastify
+# @prefabs.tech/saas-fastify
 
 A [Fastify](https://github.com/fastify/fastify) plugin that provides an easy integration of saas.
 
@@ -16,19 +16,19 @@ A [Fastify](https://github.com/fastify/fastify) plugin that provides an easy int
 Install with npm:
 
 ```bash
-npm install @prefabs.tech/fastify-config @prefabs.tech/fastify-mailer @prefabs.tech/fastify-slonik @prefabs.tech/fastify-user slonik supertokens-node @12deg/saas-fastify
+npm install @prefabs.tech/fastify-config @prefabs.tech/fastify-mailer @prefabs.tech/fastify-slonik @prefabs.tech/fastify-user slonik supertokens-node @prefabs.tech/saas-fastify
 ```
 
 Install with pnpm:
 
 ```bash
-pnpm add --filter "@scope/project" @prefabs.tech/fastify-config @prefabs.tech/fastify-mailer @prefabs.tech/fastify-slonik @prefabs.tech/fastify-user slonik supertokens-node @12deg/saas-fastify
+pnpm add --filter "@scope/project" @prefabs.tech/fastify-config @prefabs.tech/fastify-mailer @prefabs.tech/fastify-slonik @prefabs.tech/fastify-user slonik supertokens-node @prefabs.tech/saas-fastify
 ```
 
 ## Configuration
 
 ```typescript
-import { supertokensRecipesConfig } from "@12deg/saas-fastify";
+import { supertokensRecipesConfig } from "@prefabs.tech/saas-fastify";
 
 const config: ApiConfig = {
   ...
@@ -52,7 +52,7 @@ const config: ApiConfig = {
 Register the saas plugin with your Fastify instance:
 
 ```typescript
-import saasPlugin, { accountMigrationPlugin } from "@12deg/saas-fastify";
+import saasPlugin, { accountMigrationPlugin } from "@prefabs.tech/saas-fastify";
 import configPlugin from "@prefabs.tech/fastify-config";
 import mailerPlugin from "@prefabs.tech/fastify-mailer";
 import slonikPlugin, { migrationPlugin } from "@prefabs.tech/fastify-slonik";
