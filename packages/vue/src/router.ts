@@ -2,9 +2,6 @@ import { Router } from "vue-router";
 
 import { DEFAULT_PATHS } from "./constant";
 
-import AcceptInvitation from "./views/AcceptInvitation/AcceptInvitation.vue";
-import JoinInvitation from "./views/AcceptInvitation/JoinInvitation.vue";
-import SignupInvitation from "./views/AcceptInvitation/SignupInvitation.vue";
 import AccountAdd from "./views/Accounts/Add.vue";
 import AccountEdit from "./views/Accounts/Edit.vue";
 import Accounts from "./views/Accounts/Index.vue";
@@ -48,34 +45,6 @@ const _routes = {
     name: "accountsView",
     path: DEFAULT_PATHS.ACCOUNTS_VIEW,
   } as RouteRecordRaw,
-
-  // Invitation routes
-  InvitationAccept: {
-    meta: {
-      authenticated: false,
-    } as RouteMeta,
-    component: AcceptInvitation,
-    name: "invitationAccept",
-    path: DEFAULT_PATHS.INVITATION_ACCEPT,
-  } as RouteRecordRaw,
-
-  InvitationJoin: {
-    meta: {
-      authenticated: false,
-    } as RouteMeta,
-    component: JoinInvitation,
-    name: "invitationJoin",
-    path: DEFAULT_PATHS.INVITATION_JOIN,
-  } as RouteRecordRaw,
-
-  InvitationSignup: {
-    meta: {
-      authenticated: false,
-    } as RouteMeta,
-    component: SignupInvitation,
-    name: "invitationSignup",
-    path: DEFAULT_PATHS.INVITATION_SIGNUP,
-  } as RouteRecordRaw,
 };
 
 const addRoutes = (router: Router) => {
@@ -83,9 +52,6 @@ const addRoutes = (router: Router) => {
   router.addRoute(_routes.AccountsAdd);
   router.addRoute(_routes.AccountsEdit);
   router.addRoute(_routes.AccountsView);
-  router.addRoute(_routes.InvitationAccept);
-  router.addRoute(_routes.InvitationJoin);
-  router.addRoute(_routes.InvitationSignup);
 };
 
 const updateRouter = (router: Router) => {

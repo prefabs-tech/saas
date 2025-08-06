@@ -23,8 +23,5 @@ export const DEFAULT_PATHS = {
 
   // app routes
   ACCOUNT_SETTINGS: "/account-settings",
-  INVITATION_ACCEPT: "/invitation/token/:token",
-  INVITATION_JOIN: "/join/token/:token",
-  INVITATION_SIGNUP: "/signup/token/:token",
   MY_ACCOUNTS: "/accounts",
 };

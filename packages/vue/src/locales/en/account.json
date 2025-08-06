@@ -57,64 +57,6 @@
       }
     }
   },
-  "joinInvitation": {
-    "title": "Join Account",
-    "info": "You have been invited to join {account}",
-    "actions": {
-      "accept": "Accept Invitation",
-      "ignore": "Ignore"
-    },
-    "messages": {
-      "success": "Successfully joined the account!",
-      "error": "Failed to join the account. Please try again.",
-      "errorFetching": "Failed to load invitation details.",
-      "invalid": "This invitation is no longer valid."
-    }
-  },
-  "signup": {
-    "actions": {
-      "cancel": "Cancel",
-      "signup": "Signup"
-    },
-    "fields": {
-      "email": {
-        "label": "Your email",
-        "placeholder": "Enter your email address"
-      },
-      "password": {
-        "label": "Your password",
-        "placeholder": "Enter your password",
-        "helper": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase"
-      },
-      "confirmPassword": "Confirm password"
-    },
-    "termsAndConditions": "I agree to all the Terms and Conditions by the user agreement.",
-    "title": {
-      "user": "Sign up"
-    },
-    "validations": {
-      "confirmPassword": {
-        "mustMatch": "Passwords must match",
-        "required": "Confirm password is required"
-      },
-      "email": {
-        "invalid": "Please enter valid email address",
-        "required": "Email is required"
-      },
-      "password": {
-        "invalid": "Please enter valid password",
-        "required": "Password is required"
-      }
-    }
-  },
-  "signupInvitation": {
-    "messages": {
-      "success": "Account created successfully! Please sign in.",
-      "error": "Failed to create account. Please try again.",
-      "errorFetching": "Failed to load invitation details.",
-      "invalid": "This invitation is no longer valid."
-    }
-  },
   "users": {
     "table": {
       "actions": {
