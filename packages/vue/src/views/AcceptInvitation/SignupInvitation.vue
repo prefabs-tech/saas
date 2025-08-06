@@ -127,7 +127,10 @@ async function handleSubmit(userData: UserSignupData) {
 
     // Navigate to home or login page
     router.push("/auth/signin");
-  } catch {
+  } catch (error) {
+    // Log error for debugging
+    // eslint-disable-next-line no-console
+    console.error("Signup failed:", error);
     // Show error notification
     if (eventHandlers?.notification) {
       eventHandlers.notification({

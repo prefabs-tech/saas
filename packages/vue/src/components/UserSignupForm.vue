@@ -1,62 +1,29 @@
 <template>
   <div class="user-signup-form">
-    <Form :validation-schema="validationSchema" @submit="onSubmit">
+    <Form @submit="onSubmit">
       <Email
         v-model="formData.email"
-        :disabled="!!email"
+        :disabled="!!props.email"
         :label="t('account.signup.fields.email.label')"
         :placeholder="t('account.signup.fields.email.placeholder')"
-      />
-      <!-- <Input
-        v-model="formData.email"
-        :label="t('account.signup.fields.email.label')"
-        :placeholder="t('account.signup.fields.email.placeholder')"
-        :schema="emailSchema"
         name="email"
-        type="email"
-        :disabled="!!email"
-      /> -->
+        :schema="emailSchemaField"
+      />
 
       <Password
         v-model="formData.password"
         :label="t('account.signup.fields.password.label')"
+        :helper="t('account.signup.fields.password.helper')"
         name="password"
+        :schema="passwordSchemaField"
       />
-
-      <!-- <Input
-        v-model="formData.password"
-        :label="t('account.signup.fields.password.label')"
-        :placeholder="t('account.signup.fields.password.placeholder')"
-        :schema="passwordSchema"
-        name="password"
-        type="password"
-      /> -->
 
       <Password
-        :label="t('account.signup.fields.confirmPassword')"
-        name="confirmation"
-      />
-
-      <!-- <Input
         v-model="formData.confirmPassword"
         :label="t('account.signup.fields.confirmPassword')"
-        :placeholder="t('account.signup.fields.confirmPassword')"
-        :schema="confirmPasswordSchema"
         name="confirmPassword"
-        type="password"
-      /> -->
-
-      <!-- <div class="terms-checkbox">
-        <input
-          id="termsAndConditions"
-          v-model="formData.termsAndConditions"
-          type="checkbox"
-          name="termsAndConditions"
-        />
-        <label for="termsAndConditions">
-          {{ t("account.signup.termsAndConditions") }}
-        </label>
-      </div> -->
+        :schema="confirmPasswordSchemaField"
+      />
 
       <template v-if="termsAndConditionsConfig?.display">
         <TermsAndConditions
@@ -71,16 +38,6 @@
         </TermsAndConditions>
       </template>
 
-      <!-- <TermsAndConditions
-        :has-checkbox="!!termsAndConditionsConfig?.showCheckbox"
-        @update:check="disableButton = !$event"
-      >
-        <component
-          :is="customTermsAndCondition"
-          v-if="!!customTermsAndCondition"
-        />
-      </TermsAndConditions> -->
-
       <div class="actions">
         <LoadingButton
           :disabled="
@@ -88,19 +45,11 @@
             termsAndConditionsConfig?.display &&
             termsAndConditionsConfig?.showCheckbox
           "
+          :loading="props.loading"
           :label="t('account.signup.actions.signup')"
+          type="submit"
         />
       </div>
-
-      <!-- <ButtonElement
-        type="submit"
-        class="submit-button"
-        :label="t('account.signup.actions.signup')"
-        :loading="loading"
-        @click="onSubmit"
-      >
-        {{ t("account.signup.actions.signup") }}
-      </ButtonElement> -->
     </Form>
   </div>
 </template>
@@ -110,14 +59,14 @@ import { useConfig } from "@prefabs.tech/vue3-config";
 import {
   Email,
   emailSchema,
+  Form,
   Password,
   passwordSchema,
 } from "@prefabs.tech/vue3-form";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { LoadingButton } from "@prefabs.tech/vue3-ui";
 import { TermsAndConditions } from "@prefabs.tech/vue3-user";
-import { toFormValidator } from "@vee-validate/zod";
-import { inject, ref, watch } from "vue";
+import { inject, ref, computed, watch } from "vue";
 import { z } from "zod";
 
 import { useTranslations } from "../index";
@@ -157,51 +106,45 @@ const formData = ref({
   termsAndConditions: false,
 });
 
-// Watch for email prop changes
+// Create individual schemas for each field
+const emailSchemaField = computed(() =>
+  emailSchema(
+    {
+      invalid: t("account.user.signup.form.email.errors.invalid"),
+      required: t("account.user.signup.form.email.errors.required"),
+    },
+    config?.user?.options?.email
+  )
+);
+
+const passwordSchemaField = computed(() =>
+  passwordSchema(
+    {
+      required: t("account.user.signup.form.password.errors.required"),
+      weak: t("account.user.signup.form.password.errors.weak"),
+    },
+    config?.user?.options?.password
+  )
+);
+
+const confirmPasswordSchemaField = computed(() =>
+  z
+    .string()
+    .min(1, t("account.user.signup.form.password.errors.required"))
+    .refine((value) => value === formData.value.password, {
+      message: t("account.user.signup.form.confirmation.errors.match"),
+    })
+);
+
+// Watch for changes to the email prop and update formData
 watch(
   () => props.email,
   (newEmail) => {
     if (newEmail) {
       formData.value.email = newEmail;
     }
-  }
-);
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let fieldSchema: Record<string, any> = {
-  email: emailSchema(
-    {
-      invalid: t("user.signup.form.email.errors.invalid"),
-      required: t("user.signup.form.email.errors.required"),
-    },
-    config?.user?.options?.email
-  ),
-  password: passwordSchema(
-    {
-      required: t("user.signup.form.password.errors.required"),
-      weak: t("user.signup.form.password.errors.weak"),
-    },
-    config?.user?.options?.password
-  ),
-  confirmation: passwordSchema(
-    {
-      required: t("user.signup.form.password.errors.required"),
-      weak: t("user.signup.form.password.errors.weak"),
-    },
-    { minLength: 0 }
-  ),
-};
-
-const validationSchema = toFormValidator(
-  z.object(fieldSchema).refine(
-    (data) => {
-      return data.password === data.confirmation;
-    },
-    {
-      message: t("user.signup.form.confirmation.errors.match"),
-      path: ["confirmation"],
-    }
-  )
+  },
+  { immediate: true }
 );
 
 function onSubmit() {

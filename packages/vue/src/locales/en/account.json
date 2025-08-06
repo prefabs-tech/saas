@@ -107,6 +107,29 @@
       }
     }
   },
+  "user": {
+    "signup": {
+      "form": {
+        "email": {
+          "errors": {
+            "invalid": "Please enter valid email address",
+            "required": "Email is required"
+          }
+        },
+        "password": {
+          "errors": {
+            "required": "Password is required",
+            "weak": "Please enter valid password"
+          }
+        },
+        "confirmation": {
+          "errors": {
+            "match": "Passwords must match"
+          }
+        }
+      }
+    }
+  },
   "signupInvitation": {
     "messages": {
       "success": "Account created successfully! Please sign in.",
