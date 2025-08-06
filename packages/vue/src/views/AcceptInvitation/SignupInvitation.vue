@@ -3,7 +3,7 @@
     class="signup-invitation"
     :title="t('account.signup.title.user')"
     :loading="invitationLoading || !invitation"
-    :centered="centered"
+    :centered="true"
   >
     <div v-if="error" class="error-message">
       <p>{{ t("account.signupInvitation.messages.errorFetching") }}</p>
@@ -16,7 +16,7 @@
     <div v-else class="invitation-content">
       <UserSignupForm
         :email="invitation?.email || ''"
-        :loading="acceptLoading"
+        :loading="loading"
         @submit="handleSubmit"
       />
     </div>
@@ -65,7 +65,7 @@ const accountId = route.query.accountId as string | undefined;
 
 const invitation = ref<AccountInvitation | null>(null);
 const invitationLoading = ref(true);
-const acceptLoading = ref(false);
+const loading = ref(false);
 const error = ref(false);
 
 const isInvalidInvitation = computed(() => {
@@ -109,7 +109,7 @@ async function handleSubmit(userData: UserSignupData) {
   }
 
   try {
-    acceptLoading.value = true;
+    loading.value = true;
     await signupInvitation(
       token,
       userData,
@@ -139,14 +139,16 @@ async function handleSubmit(userData: UserSignupData) {
       });
     }
   } finally {
-    acceptLoading.value = false;
+    loading.value = false;
   }
 }
 </script>
 
 <style lang="css">
 .signup-invitation {
-  max-width: 400px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
 }
 

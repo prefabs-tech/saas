@@ -39,15 +39,21 @@
       </template>
 
       <div class="actions">
-        <LoadingButton
+        <FormActions
+          :actions="[
+            {
+              id: 'submit',
+              label: t('account.signup.actions.signup'),
+            },
+          ]"
           :disabled="
             disableButton &&
             termsAndConditionsConfig?.display &&
             termsAndConditionsConfig?.showCheckbox
           "
-          :loading="props.loading"
-          :label="t('account.signup.actions.signup')"
-          type="submit"
+          :loading="loading"
+          alignment="filled"
+          tabindex="0"
         />
       </div>
     </Form>
@@ -59,12 +65,12 @@ import { useConfig } from "@prefabs.tech/vue3-config";
 import {
   Email,
   emailSchema,
+  FormActions,
   Form,
   Password,
   passwordSchema,
 } from "@prefabs.tech/vue3-form";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
-import { LoadingButton } from "@prefabs.tech/vue3-ui";
 import { TermsAndConditions } from "@prefabs.tech/vue3-user";
 import { inject, ref, computed, watch } from "vue";
 import { z } from "zod";
@@ -162,26 +168,7 @@ function onSubmit() {
   width: 100%;
 }
 
-.user-signup-form .submit-button {
-  width: 100%;
-  margin-top: 1rem;
-}
-
-.user-signup-form .terms-checkbox {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  margin: 1rem 0;
-}
-
-.user-signup-form .terms-checkbox input[type="checkbox"] {
-  margin-top: 0.25rem;
-}
-
-.user-signup-form .terms-checkbox label {
-  flex: 1;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  cursor: pointer;
+.user-signup-form .actions {
+  display: contents;
 }
 </style>
