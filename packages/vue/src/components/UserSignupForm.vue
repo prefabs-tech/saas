@@ -116,8 +116,8 @@ const formData = ref({
 const emailSchemaField = computed(() =>
   emailSchema(
     {
-      invalid: t("account.user.signup.form.email.errors.invalid"),
-      required: t("account.user.signup.form.email.errors.required"),
+      invalid: t("account.signup.validations.email.invalid"),
+      required: t("account.signup.validations.email.required"),
     },
     config?.user?.options?.email
   )
@@ -126,8 +126,8 @@ const emailSchemaField = computed(() =>
 const passwordSchemaField = computed(() =>
   passwordSchema(
     {
-      required: t("account.user.signup.form.password.errors.required"),
-      weak: t("account.user.signup.form.password.errors.weak"),
+      required: t("account.signup.validations.password.required"),
+      weak: t("account.signup.validations.password.weak"),
     },
     config?.user?.options?.password
   )
@@ -136,9 +136,9 @@ const passwordSchemaField = computed(() =>
 const confirmPasswordSchemaField = computed(() =>
   z
     .string()
-    .min(1, t("account.user.signup.form.password.errors.required"))
+    .min(1, t("account.signup.validations.confirmPassword.required"))
     .refine((value) => value === formData.value.password, {
-      message: t("account.user.signup.form.confirmation.errors.match"),
+      message: t("account.signup.validations.confirmPassword.match"),
     })
 );
 

@@ -94,7 +94,7 @@
     },
     "validations": {
       "confirmPassword": {
-        "mustMatch": "Les mots de passe doivent correspondre",
+        "match": "Les mots de passe doivent correspondre",
         "required": "La confirmation du mot de passe est requise"
       },
       "email": {
@@ -102,31 +102,8 @@
         "required": "L'email est requis"
       },
       "password": {
-        "invalid": "Veuillez entrer un mot de passe valide",
-        "required": "Le mot de passe est requis"
-      }
-    }
-  },
-  "user": {
-    "signup": {
-      "form": {
-        "email": {
-          "errors": {
-            "invalid": "Veuillez entrer une adresse email valide",
-            "required": "L'email est requis"
-          }
-        },
-        "password": {
-          "errors": {
-            "required": "Le mot de passe est requis",
-            "weak": "Veuillez entrer un mot de passe valide"
-          }
-        },
-        "confirmation": {
-          "errors": {
-            "match": "Les mots de passe doivent correspondre"
-          }
-        }
+        "required": "Le mot de passe est requis",
+        "weak": "Veuillez entrer un mot de passe valide"
       }
     }
   },

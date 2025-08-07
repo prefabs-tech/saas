@@ -94,39 +94,16 @@
     },
     "validations": {
       "confirmPassword": {
-        "mustMatch": "Passwords must match",
+        "match": "The 2 passwords must match",
         "required": "Confirm password is required"
       },
       "email": {
-        "invalid": "Please enter valid email address",
-        "required": "Email is required"
+        "invalid": "Please supply a valid email address",
+        "required": "Your email address is required"
       },
       "password": {
-        "invalid": "Please enter valid password",
-        "required": "Password is required"
-      }
-    }
-  },
-  "user": {
-    "signup": {
-      "form": {
-        "email": {
-          "errors": {
-            "invalid": "Please enter valid email address",
-            "required": "Email is required"
-          }
-        },
-        "password": {
-          "errors": {
-            "required": "Password is required",
-            "weak": "Please enter valid password"
-          }
-        },
-        "confirmation": {
-          "errors": {
-            "match": "Passwords must match"
-          }
-        }
+        "required": "Please provide a password",
+        "weak": "Your password should be at least 8 characters long"
       }
     }
   },
