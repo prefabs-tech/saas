@@ -24,22 +24,20 @@
 
       <div class="actions">
         <ButtonElement
-          @click="handleSubmit"
-          :loading="acceptLoading"
+          :label="t('account.joinInvitation.actions.accept')"
+          :loading="loading"
           class="accept-button"
-        >
-          {{ t("account.joinInvitation.actions.accept") }}
-        </ButtonElement>
+          @click="handleSubmit"
+        />
 
         <ButtonElement
-          @click="handleIgnore"
           variant="outlined"
           severity="secondary"
-          :disabled="acceptLoading"
           class="ignore-button"
-        >
-          {{ t("account.joinInvitation.actions.ignore") }}
-        </ButtonElement>
+          :disabled="loading"
+          :label="t('account.joinInvitation.actions.ignore')"
+          @click="handleIgnore"
+        />
       </div>
     </div>
   </Page>
@@ -85,7 +83,7 @@ const accountId = route.query.accountId as string | undefined;
 
 const invitation = ref<AccountInvitation | null>(null);
 const invitationLoading = ref(true);
-const acceptLoading = ref(false);
+const loading = ref(false);
 const error = ref(false);
 
 const isInvalidInvitation = computed(() => {
@@ -129,7 +127,7 @@ async function handleSubmit() {
   }
 
   try {
-    acceptLoading.value = true;
+    loading.value = true;
     await joinInvitation(token, accountId || null, config.apiBaseUrl);
 
     // Show success notification
@@ -151,7 +149,7 @@ async function handleSubmit() {
       });
     }
   } finally {
-    acceptLoading.value = false;
+    loading.value = false;
   }
 }
 
