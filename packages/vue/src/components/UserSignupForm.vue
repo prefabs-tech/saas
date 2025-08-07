@@ -1,13 +1,12 @@
 <template>
   <div class="user-signup-form">
-    <Form @submit="onSubmit">
+    <Form :validation-schema="validationSchema" @submit="onSubmit">
       <Email
         v-model="formData.email"
         :disabled="!!props.email"
         :label="t('account.signup.fields.email.label')"
         :placeholder="t('account.signup.fields.email.placeholder')"
         name="email"
-        :schema="emailSchemaField"
       />
 
       <Password
@@ -15,14 +14,12 @@
         :label="t('account.signup.fields.password.label')"
         :helper="t('account.signup.fields.password.helper')"
         name="password"
-        :schema="passwordSchemaField"
       />
 
       <Password
         v-model="formData.confirmPassword"
         :label="t('account.signup.fields.confirmPassword')"
         name="confirmPassword"
-        :schema="confirmPasswordSchemaField"
       />
 
       <template v-if="termsAndConditionsConfig?.display">
@@ -66,13 +63,14 @@ import {
   Email,
   emailSchema,
   FormActions,
-  Form,
   Password,
   passwordSchema,
 } from "@prefabs.tech/vue3-form";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { TermsAndConditions } from "@prefabs.tech/vue3-user";
-import { inject, ref, computed, watch } from "vue";
+import { toFormValidator } from "@vee-validate/zod";
+import { Form } from "vee-validate";
+import { inject, ref, watch } from "vue";
 import { z } from "zod";
 
 import { useTranslations } from "../index";
@@ -112,34 +110,42 @@ const formData = ref({
   termsAndConditions: false,
 });
 
-// Create individual schemas for each field
-const emailSchemaField = computed(() =>
-  emailSchema(
+// Create validation schema like the working example
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let fieldSchema: Record<string, any> = {
+  email: emailSchema(
     {
       invalid: t("account.signup.validations.email.invalid"),
       required: t("account.signup.validations.email.required"),
     },
     config?.user?.options?.email
-  )
-);
-
-const passwordSchemaField = computed(() =>
-  passwordSchema(
+  ),
+  password: passwordSchema(
     {
       required: t("account.signup.validations.password.required"),
       weak: t("account.signup.validations.password.weak"),
     },
     config?.user?.options?.password
-  )
-);
+  ),
+  confirmPassword: passwordSchema(
+    {
+      required: t("account.signup.validations.password.required"),
+      weak: t("account.signup.validations.password.weak"),
+    },
+    { minLength: 0 }
+  ),
+};
 
-const confirmPasswordSchemaField = computed(() =>
-  z
-    .string()
-    .min(1, t("account.signup.validations.confirmPassword.required"))
-    .refine((value) => value === formData.value.password, {
+const validationSchema = toFormValidator(
+  z.object(fieldSchema).refine(
+    (data) => {
+      return data.password === data.confirmPassword;
+    },
+    {
       message: t("account.signup.validations.confirmPassword.match"),
-    })
+      path: ["confirmPassword"],
+    }
+  )
 );
 
 // Watch for changes to the email prop and update formData
@@ -153,10 +159,10 @@ watch(
   { immediate: true }
 );
 
-function onSubmit() {
+function onSubmit(validatedData: Record<string, unknown>) {
   const userData: UserSignupData = {
-    email: formData.value.email,
-    password: formData.value.password,
+    email: validatedData.email as string,
+    password: validatedData.password as string,
   };
 
   emit("submit", userData);

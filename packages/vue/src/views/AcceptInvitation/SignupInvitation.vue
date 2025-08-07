@@ -1,7 +1,7 @@
 <template>
   <Page
     class="signup-invitation"
-    :title="t('account.signup.title.user')"
+    :title="error || isInvalidInvitation ? '' : t('account.signup.title.user')"
     :loading="invitationLoading || !invitation"
     :centered="true"
   >
@@ -117,7 +117,6 @@ async function handleSubmit(userData: UserSignupData) {
       config.apiBaseUrl
     );
 
-    // Show success notification
     if (eventHandlers?.notification) {
       eventHandlers.notification({
         type: "success",
@@ -125,13 +124,11 @@ async function handleSubmit(userData: UserSignupData) {
       });
     }
 
-    // Navigate to home or login page
     router.push("/auth/signin");
   } catch (error) {
-    // Log error for debugging
     // eslint-disable-next-line no-console
     console.error("Signup failed:", error);
-    // Show error notification
+
     if (eventHandlers?.notification) {
       eventHandlers.notification({
         type: "error",
