@@ -124,7 +124,7 @@ async function handleSubmit(userData: UserSignupData) {
       });
     }
 
-    router.push("/auth/signin");
+    router.push({ name: "login" });
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error("Signup failed:", error);
