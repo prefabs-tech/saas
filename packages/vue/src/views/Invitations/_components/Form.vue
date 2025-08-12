@@ -12,13 +12,9 @@
 
       <SelectInput
         v-model="formData.role"
+        name="role"
         :label="t('account.invitations.form.role.label')"
-        :options="
-          roles.map((role) => ({
-            label: t(`account.invitations.form.roles.${role}`),
-            value: role,
-          }))
-        "
+        :options="roleOptions"
         :placeholder="t('account.invitations.form.role.placeholder')"
         :schema="roleSchema"
       />
@@ -75,11 +71,21 @@ const accountId = route.params.id as string;
 const formData = ref<AccountInvitationCreateInput>({
   email: "",
   expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days from now
-  role: "",
+  role: undefined as unknown as string,
 });
 
 const roles = computed(() => {
   return saasConfig?.saasAccountRoles || SAAS_ACCOUNT_ROLES_DEFAULT;
+});
+
+// Build safe options for SelectInput
+const roleOptions = computed(() => {
+  return (roles.value || [])
+    .filter((r): r is string => typeof r === "string" && r.length > 0)
+    .map((role) => ({
+      label: t(`account.invitations.form.roles.${role}`),
+      value: role,
+    }));
 });
 
 const eventHandlers = inject<SaasEventHandlers>(
@@ -103,6 +109,7 @@ async function onSubmit() {
       }
     );
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Form submission error:", error);
   }
 }
