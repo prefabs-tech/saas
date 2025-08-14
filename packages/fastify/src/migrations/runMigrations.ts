@@ -5,6 +5,7 @@ import {
   createAccountsTableQuery,
   createAccountTypesTableQuery,
   createAccountTypesI18nTableQuery,
+  createFilesTableQuery,
 } from "./queries";
 import getSaasConfig from "../config";
 
@@ -22,6 +23,7 @@ const runMigrations = async (config: ApiConfig, database: Database) => {
         createAccountTypesI18nTableQuery(saasConfig),
       );
       await transactionConnection.query(createAccountsTableQuery(saasConfig));
+      await transactionConnection.query(createFilesTableQuery());
       await transactionConnection.query(
         createAccountUsersTableQuery(saasConfig),
       );

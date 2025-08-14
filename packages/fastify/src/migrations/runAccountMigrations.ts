@@ -8,6 +8,7 @@ import * as pg from "pg";
 import {
   createAccountInvitationsTableQuery,
   createAccountUsersTableQuery,
+  createFilesTableQuery,
 } from "./queries";
 import getSaasConfig from "../config";
 import changeSchema from "../lib/changeSchema";
@@ -43,6 +44,7 @@ const runAccountMigrations = async (
     // list of migrations that needs to be run from the package
     // for the accounts who uses separate database.
     const queries = [
+      createFilesTableQuery(),
       createUsersTableQuery(config),
       createAccountUsersTableQuery(saasConfig),
       createAccountInvitationsTableQuery(saasConfig),
