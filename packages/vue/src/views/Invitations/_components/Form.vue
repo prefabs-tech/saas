@@ -54,7 +54,7 @@ defineProps({
   loading: Boolean,
 });
 
-defineEmits(["cancel"]);
+const emit = defineEmits(["cancel", "success"]);
 
 const config = useConfig();
 const invitationStore = useInvitationStore();
@@ -106,6 +106,8 @@ async function onSubmit() {
         };
 
         eventHandlers?.notification?.(message);
+
+        emit("success", response);
       }
     );
   } catch (error) {
