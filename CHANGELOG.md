@@ -1,3 +1,12 @@
+## [0.22.1](https://github.com/prefabs-tech/saas/compare/v0.22.0...v0.22.1) (2025-08-14)
+
+
+### Bug Fixes
+
+* add files migration ([773e3ef](https://github.com/prefabs-tech/saas/commit/773e3ef4b6672b0b7aec56a94cf41f59b11f33ae))
+
+
+
 # [0.22.0](https://github.com/prefabs-tech/saas/compare/v0.21.0...v0.22.0) (2025-08-01)
 
 
