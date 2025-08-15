@@ -50,6 +50,10 @@
       "filter": {
         "email": "Filtrer par email"
       },
+      "roles": {
+        "SAAS_ACCOUNT_MEMBER": "Membre",
+        "SAAS_ACCOUNT_OWNER": "Propriétaire"
+      },
       "status": {
         "accepted": "Acceptée",
         "pending": "En attente",
