@@ -58,23 +58,23 @@ importers:
         specifier: 0.2.0
         version: 0.2.0(@typescript-eslint/eslint-plugin@8.14.0(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(typescript@5.5.4))(@typescript-eslint/parser@8.14.0(eslint@8.57.1)(typescript@5.5.4))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.6.3)(eslint-plugin-import@2.31.0)(eslint-plugin-n@14.0.0(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3))(eslint-plugin-promise@7.1.0(eslint@8.57.1))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint-plugin-vue@9.32.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)(typescript@5.5.4)(vue-eslint-parser@9.4.3(eslint@8.57.1))
       '@prefabs.tech/fastify-config':
-        specifier: 0.89.1
-        version: 0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1)
+        specifier: 0.89.2
+        version: 0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1)
       '@prefabs.tech/fastify-graphql':
-        specifier: 0.89.1
-        version: 0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+        specifier: 0.89.2
+        version: 0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       '@prefabs.tech/fastify-mailer':
-        specifier: 0.89.1
-        version: 0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(mjml@4.15.3)
+        specifier: 0.89.2
+        version: 0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(mjml@4.15.3)
       '@prefabs.tech/fastify-s3':
-        specifier: 0.89.1
-        version: 0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-graphql@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(@prefabs.tech/fastify-slonik@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+        specifier: 0.89.2
+        version: 0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-graphql@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(@prefabs.tech/fastify-slonik@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       '@prefabs.tech/fastify-slonik':
-        specifier: 0.89.1
-        version: 0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+        specifier: 0.89.2
+        version: 0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       '@prefabs.tech/fastify-user':
-        specifier: 0.89.1
-        version: 0.89.1(p6r7pp62hxm73jnwqtpyj3jxke)
+        specifier: 0.89.2
+        version: 0.89.2(2mzfwxvaeqhq3j52if3so6wncq)
       '@prefabs.tech/tsconfig':
         specifier: 0.2.0
         version: 0.2.0(@types/node@20.12.2)
@@ -1292,19 +1292,19 @@ packages:
       vue-eslint-parser:
         optional: true
 
-  '@prefabs.tech/fastify-config@0.89.1':
-    resolution: {integrity: sha512-Df4WkxF7BQQKe1IoHTZVE/WHMY49exLThG5vWfb6SAJn4cjkc6BazcgPnkooGXbPlk/DQOxc276TiR1QhAS/HA==}
+  '@prefabs.tech/fastify-config@0.89.2':
+    resolution: {integrity: sha512-2xyMSPceDONX/qk/TEp7Vw2TxHqUZtxZUn6kx8oFBh7HAnug0CxYWtGJ3HadIx2Xu6mEiEV8EwM7RzKfXjUhZA==}
     engines: {node: '>=20'}
     peerDependencies:
       fastify: '>=5.2.1'
       fastify-plugin: '>=5.0.1'
 
-  '@prefabs.tech/fastify-graphql@0.89.1':
-    resolution: {integrity: sha512-pi6gaid7U8qSRpPQdiChacRi7lEDrppz2cgVeZRYh4loxCsZIRuQ6DY4YG1ZWfuIFNre8RICq2WfGsK63MkRXA==}
+  '@prefabs.tech/fastify-graphql@0.89.2':
+    resolution: {integrity: sha512-F9edslfA6g+C4rnPenZNI1k59TlZ/G+cLYI3HwiaPmohw2Iwuc7Uk6HaCpl8Ng1VR4W5lxOr838RFMMIZrr/PA==}
     engines: {node: '>=20'}
     peerDependencies:
-      '@prefabs.tech/fastify-config': 0.89.1
-      '@prefabs.tech/fastify-slonik': 0.89.1
+      '@prefabs.tech/fastify-config': 0.89.2
+      '@prefabs.tech/fastify-slonik': 0.89.2
       fastify: '>=5.2.1'
       fastify-plugin: '>=5.0.1'
       graphql: '>=16.9.0'
@@ -1312,11 +1312,11 @@ packages:
       slonik: '>=46.1.0'
       zod: '>=3.23.8'
 
-  '@prefabs.tech/fastify-mailer@0.89.1':
-    resolution: {integrity: sha512-WwZxwBvtDDFbACNHrPlqTpJ8zjHF8qK2fn6yN611wccRRI9EWGgUjC9xxl4tYN/DO9S/kzh5QmgBIYpepTug/Q==}
+  '@prefabs.tech/fastify-mailer@0.89.2':
+    resolution: {integrity: sha512-k6au+WpgZ/4oy13pt19/b7hINCsc0BFGCN0tKAWclibu68zEh/KlfGZOPfIVHasPZTAlJaz9a3bV75z9QtI1VQ==}
     engines: {node: '>=20'}
     peerDependencies:
-      '@prefabs.tech/fastify-config': 0.89.1
+      '@prefabs.tech/fastify-config': 0.89.2
       fastify: '>=5.2.1'
       fastify-plugin: '>=5.0.1'
       mjml: '>=4.15.3'
@@ -1324,23 +1324,23 @@ packages:
       '@prefabs.tech/fastify-config':
         optional: true
 
-  '@prefabs.tech/fastify-s3@0.89.1':
-    resolution: {integrity: sha512-LO/w0YkBKxgWnJTrovkGGx9QjLX4Yj7RXUwj1Mats7i6DN/2XdJ9IiMh8NFu472hTL6iWiS+02113/JLEXN6cA==}
+  '@prefabs.tech/fastify-s3@0.89.2':
+    resolution: {integrity: sha512-fles694UBMZsXAZkncjrGS+hIcC/mv1fcGkSPyfFX8TWMboouoeQrDVgxeOwu0pcbgz94LSehBa4HzPZe7mCoQ==}
     engines: {node: '>=20'}
     peerDependencies:
-      '@prefabs.tech/fastify-config': 0.89.1
-      '@prefabs.tech/fastify-graphql': 0.89.1
-      '@prefabs.tech/fastify-slonik': 0.89.1
+      '@prefabs.tech/fastify-config': 0.89.2
+      '@prefabs.tech/fastify-graphql': 0.89.2
+      '@prefabs.tech/fastify-slonik': 0.89.2
       fastify: '>=5.2.1'
       fastify-plugin: '>=5.0.1'
       slonik: '>=46.1.0'
       zod: '>=3.23.8'
 
-  '@prefabs.tech/fastify-slonik@0.89.1':
-    resolution: {integrity: sha512-eAaFF4A653s68ttN7u2zwndmX6MgWw1VVMbQPZ20gUA3LLf/Qg5ecmx/AKCshf0JY5kqjkEJywxDbxaq5yDXKg==}
+  '@prefabs.tech/fastify-slonik@0.89.2':
+    resolution: {integrity: sha512-ILV/jctVvCSCNF5ErRpIe3cZl22W8KpbAVdoHtui5FGI7A5guUndVW25x/m83tGy2e6Eu/QRUpSwJzAuD+pSFg==}
     engines: {node: '>=20'}
     peerDependencies:
-      '@prefabs.tech/fastify-config': 0.89.1
+      '@prefabs.tech/fastify-config': 0.89.2
       fastify: '>=5.2.1'
       fastify-plugin: '>=5.0.1'
       pg-mem: '>=3.0.2'
@@ -1350,17 +1350,17 @@ packages:
       pg-mem:
         optional: true
 
-  '@prefabs.tech/fastify-user@0.89.1':
-    resolution: {integrity: sha512-clxHs9dKdCfpIRNWU+FVU8VDVCVRAmyZcQvss47J2mhuO5b5Ymk2F6o7BpYKxZ1oFOjlvUv6rX4yCZBqCAkDVw==}
+  '@prefabs.tech/fastify-user@0.89.2':
+    resolution: {integrity: sha512-ekkSNVVL8azAWZ/NP4KCApohYES5McdDfFg3qeXQrly+/X3UTlgR4qslY9wOBcXCqmnyiqjSVYhgEuDGcq6k9Q==}
     engines: {node: '>=20'}
     peerDependencies:
       '@fastify/cors': '>=11.0.1'
       '@fastify/formbody': '>=8.0.2'
-      '@prefabs.tech/fastify-config': 0.89.1
-      '@prefabs.tech/fastify-graphql': 0.89.1
-      '@prefabs.tech/fastify-mailer': 0.89.1
-      '@prefabs.tech/fastify-s3': 0.89.1
-      '@prefabs.tech/fastify-slonik': 0.89.1
+      '@prefabs.tech/fastify-config': 0.89.2
+      '@prefabs.tech/fastify-graphql': 0.89.2
+      '@prefabs.tech/fastify-mailer': 0.89.2
+      '@prefabs.tech/fastify-s3': 0.89.2
+      '@prefabs.tech/fastify-slonik': 0.89.2
       fastify: '>=5.2.1'
       fastify-plugin: '>=5.0.1'
       mercurius: '>=16.1.0'
@@ -7693,16 +7693,16 @@ snapshots:
       eslint-plugin-vue: 9.32.0(eslint@8.57.1)
       vue-eslint-parser: 9.4.3(eslint@8.57.1)
 
-  '@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1)':
+  '@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1)':
     dependencies:
       fastify: 5.2.1
       fastify-plugin: 5.0.1
 
-  '@prefabs.tech/fastify-graphql@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
+  '@prefabs.tech/fastify-graphql@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
     dependencies:
       '@graphql-tools/merge': 9.1.1(graphql@16.10.0)
-      '@prefabs.tech/fastify-config': 0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1)
-      '@prefabs.tech/fastify-slonik': 0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@prefabs.tech/fastify-config': 0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1)
+      '@prefabs.tech/fastify-slonik': 0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       fastify: 5.2.1
       fastify-plugin: 5.0.1
       graphql: 16.10.0
@@ -7711,7 +7711,7 @@ snapshots:
       slonik: 46.1.0(zod@3.23.8)
       zod: 3.23.8
 
-  '@prefabs.tech/fastify-mailer@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(mjml@4.15.3)':
+  '@prefabs.tech/fastify-mailer@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(mjml@4.15.3)':
     dependencies:
       fastify: 5.2.1
       fastify-plugin: 5.0.1
@@ -7722,20 +7722,20 @@ snapshots:
       nodemailer-html-to-text: 3.2.0
       nodemailer-mjml: 1.6.0(nodemailer@6.10.1)
     optionalDependencies:
-      '@prefabs.tech/fastify-config': 0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1)
+      '@prefabs.tech/fastify-config': 0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1)
     transitivePeerDependencies:
       - encoding
       - htmlnano
 
-  '@prefabs.tech/fastify-s3@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-graphql@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(@prefabs.tech/fastify-slonik@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
+  '@prefabs.tech/fastify-s3@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-graphql@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(@prefabs.tech/fastify-slonik@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
     dependencies:
       '@aws-sdk/client-s3': 3.850.0
       '@aws-sdk/lib-storage': 3.850.0(@aws-sdk/client-s3@3.850.0)
       '@aws-sdk/s3-request-presigner': 3.850.0
       '@fastify/multipart': 9.0.3
-      '@prefabs.tech/fastify-config': 0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1)
-      '@prefabs.tech/fastify-graphql': 0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
-      '@prefabs.tech/fastify-slonik': 0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@prefabs.tech/fastify-config': 0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1)
+      '@prefabs.tech/fastify-graphql': 0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@prefabs.tech/fastify-slonik': 0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       '@types/busboy': 1.5.4
       '@types/uuid': 9.0.8
       ajv: 8.17.1
@@ -7750,9 +7750,9 @@ snapshots:
       - aws-crt
       - graphql
 
-  '@prefabs.tech/fastify-slonik@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
+  '@prefabs.tech/fastify-slonik@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)':
     dependencies:
-      '@prefabs.tech/fastify-config': 0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1)
+      '@prefabs.tech/fastify-config': 0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1)
       '@prefabs.tech/postgres-migrations': 5.4.3
       fastify: 5.2.1
       fastify-plugin: 5.0.1
@@ -7766,13 +7766,13 @@ snapshots:
     transitivePeerDependencies:
       - pg-native
 
-  '@prefabs.tech/fastify-user@0.89.1(p6r7pp62hxm73jnwqtpyj3jxke)':
+  '@prefabs.tech/fastify-user@0.89.2(2mzfwxvaeqhq3j52if3so6wncq)':
     dependencies:
-      '@prefabs.tech/fastify-config': 0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1)
-      '@prefabs.tech/fastify-graphql': 0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
-      '@prefabs.tech/fastify-mailer': 0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(mjml@4.15.3)
-      '@prefabs.tech/fastify-s3': 0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-graphql@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(@prefabs.tech/fastify-slonik@0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
-      '@prefabs.tech/fastify-slonik': 0.89.1(@prefabs.tech/fastify-config@0.89.1(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@prefabs.tech/fastify-config': 0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1)
+      '@prefabs.tech/fastify-graphql': 0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@prefabs.tech/fastify-mailer': 0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(mjml@4.15.3)
+      '@prefabs.tech/fastify-s3': 0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-graphql@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(@prefabs.tech/fastify-slonik@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(mercurius@16.1.0(graphql@16.10.0))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(@prefabs.tech/fastify-slonik@0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8))(fastify-plugin@5.0.1)(fastify@5.2.1)(graphql@16.10.0)(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
+      '@prefabs.tech/fastify-slonik': 0.89.2(@prefabs.tech/fastify-config@0.89.2(fastify-plugin@5.0.1)(fastify@5.2.1))(fastify-plugin@5.0.1)(fastify@5.2.1)(pg-mem@3.0.4(slonik@46.1.0(zod@3.23.8)))(slonik@46.1.0(zod@3.23.8))(zod@3.23.8)
       fastify: 5.2.1
       fastify-plugin: 5.0.1
       humps: 2.0.1
