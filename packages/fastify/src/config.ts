@@ -12,6 +12,7 @@ const getSaasConfig = (config: ApiConfig) => {
       },
     ],
     excludeRoutePatterns: [
+      /^\/$/,
       /^\/auth\//,
       "/me",
       ...(saasConfig.excludeRoutePatterns || []),
