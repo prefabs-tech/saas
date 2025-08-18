@@ -1,3 +1,12 @@
+## [0.22.2](https://github.com/prefabs-tech/saas/compare/v0.22.1...v0.22.2) (2025-08-18)
+
+
+### Bug Fixes
+
+* exclude / route by default from account discovery for main app ([f4457b0](https://github.com/prefabs-tech/saas/commit/f4457b06f4179e3cb904b7a0d8a3da520ea3df0b))
+
+
+
 ## [0.22.1](https://github.com/prefabs-tech/saas/compare/v0.22.0...v0.22.1) (2025-08-14)
 
 
