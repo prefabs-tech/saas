@@ -32,6 +32,7 @@ export default defineConfig(({ mode }) => {
             "@prefabs.tech/fastify-config": "PrefabsTechFastifyConfig",
             "@prefabs.tech/fastify-graphql": "PrefabsTechFastifyGraphql",
             "@prefabs.tech/fastify-mailer": "PrefabsTechFastifyMailer",
+            "@prefabs.tech/fastify-s3": "PrefabsTechFastifyS3",
             "@prefabs.tech/fastify-slonik": "PrefabsTechFastifySlonik",
             "@prefabs.tech/fastify-user": "PrefabsTechFastifyUser",
             "@prefabs.tech/postgres-migrations":
