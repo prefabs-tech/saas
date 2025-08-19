@@ -34,6 +34,7 @@
     "@prefabs.tech/vue3-layout": "0.12.0",
     "@prefabs.tech/vue3-tanstack-table": "0.12.0",
     "@prefabs.tech/vue3-ui": "0.12.0",
+    "@prefabs.tech/vue3-user": "0.12.0",
     "@types/node": "22.13.5",
     "@typescript-eslint/eslint-plugin": "8.24.1",
     "@typescript-eslint/parser": "8.24.1",

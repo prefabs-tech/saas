@@ -1,11 +1,13 @@
 import { Router } from "vue-router";
-import { DEFAULT_PATHS } from "./constant";
-import type { RouteMeta, RouteRecordRaw } from "vue-router";
 
-import Accounts from "./views/Accounts/Index.vue";
+import { DEFAULT_PATHS } from "./constant";
+
 import AccountAdd from "./views/Accounts/Add.vue";
 import AccountEdit from "./views/Accounts/Edit.vue";
+import Accounts from "./views/Accounts/Index.vue";
 import AccountView from "./views/Accounts/View.vue";
+
+import type { RouteMeta, RouteRecordRaw } from "vue-router";
 
 const _routes = {
   Accounts: {
