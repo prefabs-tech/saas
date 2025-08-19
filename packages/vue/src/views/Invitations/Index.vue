@@ -103,7 +103,7 @@ const columns: TableColumnDefinition<AccountInvitation>[] = [
     header: t("account.invitations.table.columns.role"),
     cell: ({ row: { original } }) =>
       h(BadgeComponent, {
-        label: original.role,
+        label: t(`account.invitations.table.roles.${original.role}`),
         severity: original.role === "admin" ? "primary" : "success",
       }),
   },
