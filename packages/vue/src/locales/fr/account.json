@@ -130,8 +130,8 @@
         "email": "Filtrer par email"
       },
       "roles": {
-        "owner": "Propriétaire",
-        "member": "Membre"
+        "SAAS_ACCOUNT_MEMBER": "Membre",
+        "SAAS_ACCOUNT_OWNER": "Propriétaire"
       },
       "status": {
         "disabled": "Désactivé",
