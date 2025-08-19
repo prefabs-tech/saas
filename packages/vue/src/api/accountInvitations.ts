@@ -121,6 +121,22 @@ export const revokeInvitation = async (
   return response.data;
 };
 
+export const getInvitationByToken = async (
+  token: string,
+  accountId: string | null | undefined,
+  apiBaseUrl: string
+): Promise<GetInvitationResponse> => {
+  const url = accountId
+    ? `/accounts/${accountId}/invitations/token/${token}`
+    : `/invitations/token/${token}`;
+
+  const response = await client(apiBaseUrl).get(url, {
+    withCredentials: false,
+  });
+
+  return response.data;
+};
+
 export const signupInvitation = async (
   token: string,
   data: {

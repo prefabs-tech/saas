@@ -92,7 +92,7 @@ const columns: TableColumnDefinition<AccountUser>[] = [
     cell: ({ row: { original } }) => {
       const role = original.role || "";
       return h(BadgeComponent, {
-        label: t(`account.users.roles.${role}`),
+        label: t(`account.users.table.roles.${role}`),
         severity: role === "owner" ? "primary" : "success",
       });
     },
@@ -114,8 +114,8 @@ const columns: TableColumnDefinition<AccountUser>[] = [
     cell: ({ row: { original } }) =>
       h(BadgeComponent, {
         label: original.disabled
-          ? t("account.users.status.disabled")
-          : t("account.users.status.enabled"),
+          ? t("account.users.table.status.disabled")
+          : t("account.users.table.status.enabled"),
         severity: original.disabled ? "danger" : "success",
       }),
   },

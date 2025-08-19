@@ -64,6 +64,53 @@
       }
     }
   },
+  "joinInvitation": {
+    "title": "Rejoindre le compte"
+  },
+  "signup": {
+    "actions": {
+      "cancel": "Annuler",
+      "signup": "S'inscrire"
+    },
+    "fields": {
+      "email": {
+        "label": "Votre email",
+        "placeholder": "Entrez votre adresse email"
+      },
+      "password": {
+        "label": "Votre mot de passe",
+        "placeholder": "Entrez votre mot de passe",
+        "helper": "Le mot de passe doit contenir au moins 8 caractères, incluant un chiffre, une minuscule et une majuscule"
+      },
+      "confirmPassword": "Confirmer le mot de passe"
+    },
+    "termsAndConditions": "J'accepte tous les Termes et Conditions de l'accord utilisateur.",
+    "title": {
+      "user": "S'inscrire"
+    },
+    "validations": {
+      "confirmPassword": {
+        "match": "Les mots de passe doivent correspondre",
+        "required": "La confirmation du mot de passe est requise"
+      },
+      "email": {
+        "invalid": "Veuillez entrer une adresse email valide",
+        "required": "L'email est requis"
+      },
+      "password": {
+        "required": "Le mot de passe est requis",
+        "weak": "Veuillez entrer un mot de passe valide"
+      }
+    }
+  },
+  "signupInvitation": {
+    "messages": {
+      "success": "Compte créé avec succès ! Veuillez vous connecter.",
+      "error": "Échec de création du compte. Veuillez réessayer.",
+      "errorFetching": "Échec du chargement des détails de l'invitation.",
+      "invalid": "Cette invitation n'est plus valide."
+    }
+  },
   "users": {
     "table": {
       "actions": {
@@ -83,8 +130,8 @@
         "email": "Filtrer par email"
       },
       "roles": {
-        "owner": "Propriétaire",
-        "member": "Membre"
+        "SAAS_ACCOUNT_MEMBER": "Membre",
+        "SAAS_ACCOUNT_OWNER": "Propriétaire"
       },
       "status": {
         "disabled": "Désactivé",

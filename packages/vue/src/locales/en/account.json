@@ -64,6 +64,53 @@
       }
     }
   },
+  "joinInvitation": {
+    "title": "Join Account"
+  },
+  "signup": {
+    "actions": {
+      "cancel": "Cancel",
+      "signup": "Signup"
+    },
+    "fields": {
+      "email": {
+        "label": "Your email",
+        "placeholder": "Enter your email address"
+      },
+      "password": {
+        "label": "Your password",
+        "placeholder": "Enter your password",
+        "helper": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase"
+      },
+      "confirmPassword": "Confirm password"
+    },
+    "termsAndConditions": "I agree to all the Terms and Conditions by the user agreement.",
+    "title": {
+      "user": "Sign up"
+    },
+    "validations": {
+      "confirmPassword": {
+        "match": "The 2 passwords must match",
+        "required": "Confirm password is required"
+      },
+      "email": {
+        "invalid": "Please supply a valid email address",
+        "required": "Your email address is required"
+      },
+      "password": {
+        "required": "Please provide a password",
+        "weak": "Your password should be at least 8 characters long"
+      }
+    }
+  },
+  "signupInvitation": {
+    "messages": {
+      "success": "Account created successfully! Please sign in.",
+      "error": "Failed to create account. Please try again.",
+      "errorFetching": "Failed to load invitation details.",
+      "invalid": "This invitation is no longer valid."
+    }
+  },
   "users": {
     "table": {
       "actions": {
@@ -83,8 +130,8 @@
         "email": "Filter by email"
       },
       "roles": {
-        "owner": "Owner",
-        "member": "Member"
+        "SAAS_ACCOUNT_MEMBER": "Member",
+        "SAAS_ACCOUNT_OWNER": "Owner"
       },
       "status": {
         "disabled": "Disabled",
