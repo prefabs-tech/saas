@@ -23,6 +23,9 @@
         "role": "Please select a role"
       }
     },
+    "messages": {
+      "created": "Invitation created successfully"
+    },
     "modal": {
       "title": "Invite an user"
     },
@@ -49,6 +52,10 @@
       "emptyMessage": "No invitations found",
       "filter": {
         "email": "Filter by email"
+      },
+      "roles": {
+        "SAAS_ACCOUNT_MEMBER": "Member",
+        "SAAS_ACCOUNT_OWNER": "Owner"
       },
       "status": {
         "accepted": "Accepted",
