@@ -48,13 +48,11 @@ async function fetchInvitation() {
     // Redirect based on whether user exists
     if (invitation.value) {
       if (invitation.value.userId) {
-        // User exists, redirect to join
         router.replace({
           path: DEFAULT_PATHS.INVITATION_JOIN.replace(":token", token),
           query: accountId ? { accountId } : {},
         });
       } else {
-        // User doesn't exist, redirect to signup
         router.replace({
           path: DEFAULT_PATHS.INVITATION_SIGNUP.replace(":token", token),
           query: accountId ? { accountId } : {},

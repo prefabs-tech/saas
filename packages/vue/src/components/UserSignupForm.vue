@@ -110,7 +110,6 @@ const formData = ref({
   termsAndConditions: false,
 });
 
-// Create validation schema like the working example
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let fieldSchema: Record<string, any> = {
   email: emailSchema(
@@ -148,7 +147,6 @@ const validationSchema = toFormValidator(
   )
 );
 
-// Watch for changes to the email prop and update formData
 watch(
   () => props.email,
   (newEmail) => {
