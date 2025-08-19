@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 
 import { ApiConfig } from "@prefabs.tech/fastify-config";
+import { createFilesTableQuery } from "@prefabs.tech/fastify-s3";
 import { createUsersTableQuery } from "@prefabs.tech/fastify-user";
 import { migrate } from "@prefabs.tech/postgres-migrations";
 import * as pg from "pg";
@@ -43,6 +44,7 @@ const runAccountMigrations = async (
     // list of migrations that needs to be run from the package
     // for the accounts who uses separate database.
     const queries = [
+      createFilesTableQuery(config),
       createUsersTableQuery(config),
       createAccountUsersTableQuery(saasConfig),
       createAccountInvitationsTableQuery(saasConfig),
