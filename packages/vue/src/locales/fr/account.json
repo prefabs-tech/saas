@@ -23,6 +23,9 @@
         "role": "Veuillez sélectionner un rôle"
       }
     },
+    "messages": {
+      "created": "Invitation créée avec succès"
+    },
     "modal": {
       "title": "Inviter un utilisateur"
     },

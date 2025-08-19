@@ -4,7 +4,11 @@
     :title="t('account.invitations.modal.title')"
     @on:close="$emit('close')"
   >
-    <InvitationForm :loading="loading" @cancel="$emit('close')" />
+    <InvitationForm
+      :loading="loading"
+      @cancel="$emit('close')"
+      @success="$emit('created', $event)"
+    />
   </Modal>
 </template>
 
@@ -20,7 +24,7 @@ defineProps({
   loading: Boolean,
 });
 
-defineEmits(["close"]);
+defineEmits(["close", "created"]);
 
 const messages = useTranslations();
 const { t } = useI18n({ messages, locale: "en" });
