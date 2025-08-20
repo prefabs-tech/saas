@@ -24,7 +24,13 @@
       }
     },
     "messages": {
-      "created": "Invitation créée avec succès"
+      "created": "Invitation créée avec succès",
+      "deleted": "Invitation supprimée avec succès",
+      "deleteError": "Échec de la suppression de l'invitation",
+      "resent": "Invitation renvoyée avec succès",
+      "resendError": "Échec du renvoi de l'invitation",
+      "revoked": "Invitation révoquée avec succès",
+      "revokeError": "Échec de la révocation de l'invitation"
     },
     "modal": {
       "title": "Inviter un utilisateur"

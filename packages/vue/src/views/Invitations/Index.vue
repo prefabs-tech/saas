@@ -32,7 +32,7 @@ import { useConfig } from "@prefabs.tech/vue3-config";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { Table } from "@prefabs.tech/vue3-tanstack-table";
 import { BadgeComponent, ButtonElement } from "@prefabs.tech/vue3-ui";
-import { ref, onMounted, h } from "vue";
+import { ref, onMounted, h, inject } from "vue";
 import { useRoute } from "vue-router";
 
 import InvitationModal from "./_components/InvitationModal.vue";
@@ -40,6 +40,7 @@ import { useTranslations } from "../../index";
 import useInvitationStore from "../../stores/accountInvitations";
 
 import type { AccountInvitation } from "../../types/accountInvitation";
+import type { SaasEventHandlers } from "../../types/plugin";
 import type { AppConfig } from "@prefabs.tech/vue3-config";
 import type { TableColumnDefinition } from "@prefabs.tech/vue3-tanstack-table";
 
@@ -60,6 +61,11 @@ const invitationStore = useInvitationStore();
 const { deleteInvitation, getInvitations, resendInvitation, revokeInvitation } =
   invitationStore;
 const route = useRoute();
+
+const eventHandlers = inject<SaasEventHandlers>(
+  Symbol.for("saas.eventHandlers"),
+  { notification: undefined }
+);
 
 const accountId = route.params.id as string;
 
@@ -178,8 +184,22 @@ async function handleDelete(invitation: AccountInvitation) {
     await deleteInvitation(accountId, invitation.id, config.apiBaseUrl);
     await fetchInvitations();
     emit("invitation:deleted", invitation);
+
+    if (eventHandlers?.notification) {
+      eventHandlers.notification({
+        type: "success",
+        message: t("account.invitations.messages.deleted"),
+      });
+    }
   } catch (error) {
     console.error("Failed to delete invitation:", error);
+
+    if (eventHandlers?.notification) {
+      eventHandlers.notification({
+        type: "error",
+        message: t("account.invitations.messages.deleteError"),
+      });
+    }
   }
 }
 
@@ -193,8 +213,22 @@ async function handleResend(invitation: AccountInvitation) {
     await resendInvitation(accountId, invitation.id, config.apiBaseUrl);
     await fetchInvitations();
     emit("invitation:resent", invitation);
+
+    if (eventHandlers?.notification) {
+      eventHandlers.notification({
+        type: "success",
+        message: t("account.invitations.messages.resent"),
+      });
+    }
   } catch (error) {
     console.error("Failed to resend invitation:", error);
+
+    if (eventHandlers?.notification) {
+      eventHandlers.notification({
+        type: "error",
+        message: t("account.invitations.messages.resendError"),
+      });
+    }
   }
 }
 
@@ -203,8 +237,22 @@ async function handleRevoke(invitation: AccountInvitation) {
     await revokeInvitation(accountId, invitation.id, config.apiBaseUrl);
     await fetchInvitations();
     emit("invitation:revoked", invitation);
+
+    if (eventHandlers?.notification) {
+      eventHandlers.notification({
+        type: "success",
+        message: t("account.invitations.messages.revoked"),
+      });
+    }
   } catch (error) {
     console.error("Failed to revoke invitation:", error);
+
+    if (eventHandlers?.notification) {
+      eventHandlers.notification({
+        type: "error",
+        message: t("account.invitations.messages.revokeError"),
+      });
+    }
   }
 }
 
