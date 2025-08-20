@@ -17,13 +17,14 @@ import { useConfig } from "@prefabs.tech/vue3-config";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { Table } from "@prefabs.tech/vue3-tanstack-table";
 import { BadgeComponent } from "@prefabs.tech/vue3-ui";
-import { ref, onMounted, h } from "vue";
+import { ref, onMounted, h, inject } from "vue";
 import { useRoute } from "vue-router";
 
 import { useTranslations } from "../../index";
 import useUsersStore from "../../stores/accountUsers";
 
 import type { AccountUser } from "../../types/accountUser";
+import type { SaasEventHandlers } from "../../types/plugin";
 import type { AppConfig } from "@prefabs.tech/vue3-config";
 import type {
   TableColumnDefinition,
@@ -40,8 +41,13 @@ const config = useConfig() as AppConfig;
 const messages = useTranslations();
 const { t } = useI18n({ messages });
 const usersStore = useUsersStore();
-const { getUsers } = usersStore;
+const { getUsers, enableUser, disableUser } = usersStore;
 const route = useRoute();
+
+const eventHandlers = inject<SaasEventHandlers>(
+  Symbol.for("saas.eventHandlers"),
+  { notification: undefined }
+);
 
 const accountId = route.params.id as string;
 
@@ -51,6 +57,11 @@ const actionMenuData: DataActionsMenuItem[] = [
     label: t("account.users.table.actions.enable"),
     icon: "pi pi-check",
     disabled: (data: AccountUser) => Boolean(!data.disabled),
+    requireConfirmationModal: true,
+    confirmationOptions: {
+      header: t("account.users.table.confirmation.header"),
+      body: t("account.users.table.confirmation.messages.enable"),
+    },
   },
   {
     key: "disable",
@@ -58,6 +69,11 @@ const actionMenuData: DataActionsMenuItem[] = [
     icon: "pi pi-times",
     class: "danger",
     disabled: (data: AccountUser) => Boolean(data.disabled),
+    requireConfirmationModal: true,
+    confirmationOptions: {
+      header: t("account.users.table.confirmation.header"),
+      body: t("account.users.table.confirmation.messages.disable"),
+    },
   },
 ];
 
@@ -138,19 +154,49 @@ async function fetchUsers() {
 
 async function handleEnable(user: AccountUser) {
   try {
+    await enableUser(user.id, config.apiBaseUrl);
     await fetchUsers();
     emit("user:enabled", user);
+
+    if (eventHandlers?.notification) {
+      eventHandlers.notification({
+        type: "success",
+        message: t("account.users.messages.enable.success"),
+      });
+    }
   } catch (error) {
     console.error("Failed to enable user:", error);
+
+    if (eventHandlers?.notification) {
+      eventHandlers.notification({
+        type: "error",
+        message: t("account.users.messages.enable.error"),
+      });
+    }
   }
 }
 
 async function handleDisable(user: AccountUser) {
   try {
+    await disableUser(user.id, config.apiBaseUrl);
     await fetchUsers();
     emit("user:disabled", user);
+
+    if (eventHandlers?.notification) {
+      eventHandlers.notification({
+        type: "success",
+        message: t("account.users.messages.disable.success"),
+      });
+    }
   } catch (error) {
     console.error("Failed to disable user:", error);
+
+    if (eventHandlers?.notification) {
+      eventHandlers.notification({
+        type: "error",
+        message: t("account.users.messages.disable.error"),
+      });
+    }
   }
 }
 
