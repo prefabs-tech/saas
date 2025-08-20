@@ -79,17 +79,7 @@
     }
   },
   "joinInvitation": {
-    "title": "Join Account",
-    "greeting": "You're invited!",
-    "description": "You've been invited to join {accountName}. Would you like to accept this invitation?",
-    "joinButton": "Join Account",
-    "joining": "Joining...",
-    "ignoreButton": "Ignore",
-    "messages": {
-      "success": "Successfully joined the account!",
-      "error": "Failed to join the account. Please try again.",
-      "errorFetching": "Failed to load invitation details.",
-      "invalid": "This invitation is no longer valid."
+    "title": "Join Account"
     }
   },
   "signup": {

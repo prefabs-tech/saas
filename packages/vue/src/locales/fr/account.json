@@ -79,18 +79,7 @@
     }
   },
   "joinInvitation": {
-    "title": "Rejoindre le compte",
-    "greeting": "Vous êtes invité !",
-    "description": "Vous avez été invité à rejoindre {accountName}. Souhaitez-vous accepter cette invitation ?",
-    "joinButton": "Rejoindre le compte",
-    "joining": "Rejoindre...",
-    "ignoreButton": "Ignorer",
-    "messages": {
-      "success": "Vous avez rejoint le compte avec succès !",
-      "error": "Échec de la connexion au compte. Veuillez réessayer.",
-      "errorFetching": "Échec du chargement des détails de l'invitation.",
-      "invalid": "Cette invitation n'est plus valide."
-    }
+    "title": "Rejoindre le compte"
   },
   "signup": {
     "actions": {
