@@ -24,7 +24,13 @@
       }
     },
     "messages": {
-      "created": "Invitation created successfully"
+      "created": "Invitation created successfully",
+      "deleted": "Invitation deleted successfully",
+      "deleteError": "Failed to delete invitation",
+      "resent": "Invitation resent successfully",
+      "resendError": "Failed to resend invitation",
+      "revoked": "Invitation revoked successfully",
+      "revokeError": "Failed to revoke invitation"
     },
     "modal": {
       "title": "Invite an user"
@@ -47,6 +53,14 @@
         "deleteInvitation": {
           "header": "Delete invitation",
           "message": "Are you sure you want to delete this invitation?"
+        },
+        "resendInvitation": {
+          "header": "Resend invitation",
+          "message": "Are you sure you want to resend this invitation?"
+        },
+        "revokeInvitation": {
+          "header": "Revoke invitation",
+          "message": "Are you sure you want to revoke this invitation?"
         }
       },
       "emptyMessage": "No invitations found",
