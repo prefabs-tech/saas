@@ -47,6 +47,14 @@
         "deleteInvitation": {
           "header": "Supprimer l'invitation",
           "message": "Êtes-vous sûr de vouloir supprimer cette invitation ?"
+        },
+        "resendInvitation": {
+          "header": "Renvoyer l'invitation",
+          "message": "Êtes-vous sûr de vouloir renvoyer cette invitation ?"
+        },
+        "revokeInvitation": {
+          "header": "Révoquer l'invitation",
+          "message": "Êtes-vous sûr de vouloir révoquer cette invitation ?"
         }
       },
       "emptyMessage": "Aucune invitation trouvée",
@@ -65,7 +73,18 @@
     }
   },
   "joinInvitation": {
-    "title": "Rejoindre le compte"
+    "title": "Rejoindre le compte",
+    "greeting": "Vous êtes invité !",
+    "description": "Vous avez été invité à rejoindre {accountName}. Souhaitez-vous accepter cette invitation ?",
+    "joinButton": "Rejoindre le compte",
+    "joining": "Rejoindre...",
+    "ignoreButton": "Ignorer",
+    "messages": {
+      "success": "Vous avez rejoint le compte avec succès !",
+      "error": "Échec de la connexion au compte. Veuillez réessayer.",
+      "errorFetching": "Échec du chargement des détails de l'invitation.",
+      "invalid": "Cette invitation n'est plus valide."
+    }
   },
   "signup": {
     "actions": {

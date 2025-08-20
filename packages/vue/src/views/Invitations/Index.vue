@@ -65,13 +65,32 @@ const accountId = route.params.id as string;
 
 const actionMenuData = [
   {
+    confirmationOptions: {
+      body: t(
+        "account.invitations.table.confirmation.resendInvitation.message"
+      ),
+      header: t(
+        "account.invitations.table.confirmation.resendInvitation.header"
+      ),
+    },
     key: "resendInvitation",
     label: t("account.invitations.table.actions.resendInvitation"),
+    requireConfirmationModal: true,
     show: (row: AccountInvitation) => !row.acceptedAt && !row.revokedAt,
   },
   {
+    class: "warning",
+    confirmationOptions: {
+      body: t(
+        "account.invitations.table.confirmation.revokeInvitation.message"
+      ),
+      header: t(
+        "account.invitations.table.confirmation.revokeInvitation.header"
+      ),
+    },
     key: "revokeInvitation",
     label: t("account.invitations.table.actions.revokeInvitation"),
+    requireConfirmationModal: true,
     show: (row: AccountInvitation) => !row.acceptedAt && !row.revokedAt,
   },
   {
