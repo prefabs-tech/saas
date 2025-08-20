@@ -5,15 +5,14 @@ import type {
   GetAccountUsersResponse,
 } from "../types/accountUser";
 
-export const getUsers = async (
-  accountId: string,
-  apiBaseUrl: string,
-  params?: object
-): Promise<GetAccountUsersResponse> => {
-  const response = await client(apiBaseUrl).get(
-    `/accounts/${accountId}/users`,
+export const disableUser = async (
+  userId: string,
+  apiBaseUrl: string
+): Promise<DisableAccountUserResponse> => {
+  const response = await client(apiBaseUrl).put(
+    `/users/${userId}/disable`,
+    {},
     {
-      params,
       withCredentials: true,
     }
   );
@@ -36,14 +35,15 @@ export const enableUser = async (
   return response.data;
 };
 
-export const disableUser = async (
-  userId: string,
-  apiBaseUrl: string
-): Promise<DisableAccountUserResponse> => {
-  const response = await client(apiBaseUrl).put(
-    `/users/${userId}/disable`,
-    {},
+export const getUsers = async (
+  accountId: string,
+  apiBaseUrl: string,
+  params?: object
+): Promise<GetAccountUsersResponse> => {
+  const response = await client(apiBaseUrl).get(
+    `/accounts/${accountId}/users`,
     {
+      params,
       withCredentials: true,
     }
   );
