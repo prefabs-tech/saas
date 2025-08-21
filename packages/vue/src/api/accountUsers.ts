@@ -1,5 +1,39 @@
 import { client } from "./axios";
-import type { GetAccountUsersResponse } from "../types/accountUser";
+import type {
+  DisableAccountUserResponse,
+  EnableAccountUserResponse,
+  GetAccountUsersResponse,
+} from "../types/accountUser";
+
+export const disableUser = async (
+  userId: string,
+  apiBaseUrl: string
+): Promise<DisableAccountUserResponse> => {
+  const response = await client(apiBaseUrl).put(
+    `/users/${userId}/disable`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+
+  return response.data;
+};
+
+export const enableUser = async (
+  userId: string,
+  apiBaseUrl: string
+): Promise<EnableAccountUserResponse> => {
+  const response = await client(apiBaseUrl).put(
+    `/users/${userId}/enable`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
+
+  return response.data;
+};
 
 export const getUsers = async (
   accountId: string,

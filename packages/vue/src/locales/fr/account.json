@@ -126,6 +126,16 @@
     }
   },
   "users": {
+    "messages": {
+      "enable": {
+        "success": "Utilisateur activé avec succès",
+        "error": "Erreur lors de l'activation de l'utilisateur"
+      },
+      "disable": {
+        "success": "Utilisateur désactivé avec succès",
+        "error": "Erreur lors de la désactivation de l'utilisateur"
+      }
+    },
     "table": {
       "actions": {
         "disable": "Désactiver",
@@ -138,6 +148,13 @@
         "roles": "Rôles",
         "signedUpOn": "Inscrit le",
         "status": "Statut"
+      },
+      "confirmation": {
+        "header": "Confirmation",
+        "messages": {
+          "disable": "Êtes-vous sûr de vouloir désactiver cet utilisateur ?",
+          "enable": "Êtes-vous sûr de vouloir activer cet utilisateur ?"
+        }
       },
       "emptyMessage": "Aucun utilisateur trouvé",
       "filter": {

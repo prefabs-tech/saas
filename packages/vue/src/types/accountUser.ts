@@ -15,6 +15,6 @@ export type AccountUser = {
 
 export type GetAccountUsersResponse = AccountUser[];
 
-export type DisableAccountUserResponse = AccountUser;
-
 export type EnableAccountUserResponse = AccountUser;
+
+export type DisableAccountUserResponse = AccountUser;

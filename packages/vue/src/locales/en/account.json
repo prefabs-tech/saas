@@ -126,6 +126,16 @@
     }
   },
   "users": {
+    "messages": {
+      "enable": {
+        "success": "User enabled successfully",
+        "error": "Error enabling user"
+      },
+      "disable": {
+        "success": "User disabled successfully",
+        "error": "Error disabling user"
+      }
+    },
     "table": {
       "actions": {
         "disable": "Disable",
@@ -138,6 +148,13 @@
         "roles": "Roles",
         "signedUpOn": "Signed up on",
         "status": "Status"
+      },
+      "confirmation": {
+        "header": "Confirmation",
+        "messages": {
+          "disable": "Are you sure you want to disable this user?",
+          "enable": "Are you sure you want to enable this user?"
+        }
       },
       "emptyMessage": "No users found",
       "filter": {
