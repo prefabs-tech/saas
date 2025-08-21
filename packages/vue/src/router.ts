@@ -61,7 +61,7 @@ const _routes = {
 
   InvitationJoin: {
     meta: {
-      authenticated: false,
+      authenticated: true,
     } as RouteMeta,
     component: JoinInvitation,
     name: "invitationJoin",

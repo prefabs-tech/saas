@@ -80,7 +80,7 @@ export const joinInvitation = async (
 ): Promise<AccountInvitation> => {
   const response = await client(apiBaseUrl).post(
     `/accounts/${accountId}/invitations/join/${token}`,
-    null,
+    {},
     {
       withCredentials: true,
     }
@@ -126,9 +126,7 @@ export const getInvitationByToken = async (
   accountId: string | null | undefined,
   apiBaseUrl: string
 ): Promise<GetInvitationResponse> => {
-  const url = accountId
-    ? `/accounts/${accountId}/invitations/token/${token}`
-    : `/invitations/token/${token}`;
+  const url = `/accounts/${accountId}/invitations/token/${token}`;
 
   const response = await client(apiBaseUrl).get(url, {
     withCredentials: false,
@@ -149,9 +147,7 @@ export const signupInvitation = async (
   accountId: string | null | undefined,
   apiBaseUrl: string
 ): Promise<AcceptInvitationResponse> => {
-  const url = accountId
-    ? `/accounts/${accountId}/invitations/token/${token}`
-    : `/invitations/token/${token}`;
+  const url = `/accounts/${accountId}/invitations/token/${token}`;
 
   const response = await client(apiBaseUrl).post(url, data, {
     withCredentials: false,

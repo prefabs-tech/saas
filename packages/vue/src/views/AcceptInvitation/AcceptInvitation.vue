@@ -10,7 +10,6 @@ import { LoadingIcon } from "@prefabs.tech/vue3-ui";
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import { DEFAULT_PATHS } from "../../constant";
 import useInvitationStore from "../../stores/accountInvitations";
 
 import type { AccountInvitation } from "../../types/accountInvitation";
@@ -45,17 +44,22 @@ async function fetchInvitation() {
     );
     invitation.value = response;
 
-    // Redirect based on whether user exists
+    // Redirect based on whether user exists (matching React logic exactly)
     if (invitation.value) {
       if (invitation.value.userId) {
+        // For existing users, redirect to join invitation page
+        // Vue Router's authentication framework will handle auth checks and redirects
         router.replace({
-          path: DEFAULT_PATHS.INVITATION_JOIN.replace(":token", token),
-          query: accountId ? { accountId } : {},
+          name: "invitationJoin",
+          params: { token: token },
+          query: { accountId: accountId },
         });
       } else {
+        // For new users, redirect to signup invitation page
         router.replace({
-          path: DEFAULT_PATHS.INVITATION_SIGNUP.replace(":token", token),
-          query: accountId ? { accountId } : {},
+          name: "invitationSignup",
+          params: { token: token },
+          query: { accountId: accountId },
         });
       }
     }
