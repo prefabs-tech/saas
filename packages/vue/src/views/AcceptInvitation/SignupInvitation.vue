@@ -31,7 +31,6 @@ import { ref, onMounted, computed, inject } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import UserSignupForm from "../../components/UserSignupForm.vue";
-import { REDIRECT_AFTER_LOGIN_KEY } from "../../constant";
 import { useTranslations } from "../../index";
 import useInvitationStore from "../../stores/accountInvitations";
 
@@ -124,15 +123,6 @@ async function handleSubmit(userData: UserSignupData) {
         message: t("account.signupInvitation.messages.success"),
       });
     }
-
-    // After signup, ask host app to send user to login; preserve invite join target after login
-    const joinPath = router.resolve({
-      name: "invitationJoin",
-      params: { token },
-      query: { accountId },
-    }).href;
-
-    sessionStorage.setItem(REDIRECT_AFTER_LOGIN_KEY, joinPath);
 
     router.push({ name: "login" });
   } catch (error) {
