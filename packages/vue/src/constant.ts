@@ -28,3 +28,6 @@ export const DEFAULT_PATHS = {
   INVITATION_SIGNUP: "/signup/token/:token",
   MY_ACCOUNTS: "/accounts",
 };
+
+// Used to persist the intended route when auth redirects to login
+export const REDIRECT_AFTER_LOGIN_KEY = "saas.redirectAfterLogin";

@@ -48,6 +48,7 @@ import { ButtonElement, Page } from "@prefabs.tech/vue3-ui";
 import { ref, onMounted, computed, inject } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
+import { REDIRECT_AFTER_LOGIN_KEY } from "../../constant";
 import { useTranslations } from "../../index";
 import useInvitationStore from "../../stores/accountInvitations";
 
@@ -98,6 +99,8 @@ onMounted(async () => {
   if (token) {
     await fetchInvitation();
   }
+
+  sessionStorage.removeItem(REDIRECT_AFTER_LOGIN_KEY);
 });
 
 async function fetchInvitation() {

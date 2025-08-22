@@ -10,6 +10,7 @@ import { LoadingIcon } from "@prefabs.tech/vue3-ui";
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
+import { REDIRECT_AFTER_LOGIN_KEY } from "../../constant";
 import useInvitationStore from "../../stores/accountInvitations";
 
 import type { AccountInvitation } from "../../types/accountInvitation";
@@ -48,19 +49,24 @@ async function fetchInvitation() {
     if (invitation.value) {
       if (invitation.value.userId) {
         // For existing users, redirect to join invitation page
-        // Vue Router's authentication framework will handle auth checks and redirects
-        router.replace({
+        // If not authenticated, persist redirect target for host app login guard
+        const joinPath = router.resolve({
           name: "invitationJoin",
-          params: { token: token },
-          query: { accountId: accountId },
-        });
+          params: { token },
+          query: { accountId },
+        }).href;
+        sessionStorage.setItem(REDIRECT_AFTER_LOGIN_KEY, joinPath);
+
+        router.replace(joinPath);
       } else {
         // For new users, redirect to signup invitation page
-        router.replace({
+        const signupPath = router.resolve({
           name: "invitationSignup",
-          params: { token: token },
-          query: { accountId: accountId },
-        });
+          params: { token },
+          query: { accountId },
+        }).href;
+
+        router.replace(signupPath);
       }
     }
   } catch (error) {

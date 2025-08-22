@@ -1,4 +1,5 @@
 import { client } from "./axios";
+
 import type {
   AcceptInvitationResponse,
   AccountInvitation,
@@ -60,12 +61,12 @@ export const getInvitation = async (
 export const getInvitations = async (
   accountId: string,
   apiBaseUrl: string,
-  params?: object
+  parameters?: object
 ): Promise<GetAccountInvitationsResponse> => {
   const response = await client(apiBaseUrl).get(
     `/accounts/${accountId}/invitations`,
     {
-      params,
+      params: parameters,
       withCredentials: true,
     }
   );
@@ -126,7 +127,9 @@ export const getInvitationByToken = async (
   accountId: string | null | undefined,
   apiBaseUrl: string
 ): Promise<GetInvitationResponse> => {
-  const url = `/accounts/${accountId}/invitations/token/${token}`;
+  const url = accountId
+    ? `/accounts/${accountId}/invitations/token/${token}`
+    : `/invitations/token/${token}`;
 
   const response = await client(apiBaseUrl).get(url, {
     withCredentials: false,
@@ -147,7 +150,9 @@ export const signupInvitation = async (
   accountId: string | null | undefined,
   apiBaseUrl: string
 ): Promise<AcceptInvitationResponse> => {
-  const url = `/accounts/${accountId}/invitations/token/${token}`;
+  const url = accountId
+    ? `/accounts/${accountId}/invitations/token/${token}`
+    : `/invitations/token/${token}`;
 
   const response = await client(apiBaseUrl).post(url, data, {
     withCredentials: false,
