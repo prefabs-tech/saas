@@ -1,7 +1,6 @@
 import { Router } from "vue-router";
 
 import { DEFAULT_PATHS } from "./constant";
-
 import AcceptInvitation from "./views/AcceptInvitation/AcceptInvitation.vue";
 import JoinInvitation from "./views/AcceptInvitation/JoinInvitation.vue";
 import SignupInvitation from "./views/AcceptInvitation/SignupInvitation.vue";
@@ -61,7 +60,7 @@ const _routes = {
 
   InvitationJoin: {
     meta: {
-      authenticated: false,
+      authenticated: true,
     } as RouteMeta,
     component: JoinInvitation,
     name: "invitationJoin",

@@ -10,7 +10,7 @@ import { LoadingIcon } from "@prefabs.tech/vue3-ui";
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import { DEFAULT_PATHS } from "../../constant";
+import { REDIRECT_AFTER_LOGIN_KEY } from "../../constant";
 import useInvitationStore from "../../stores/accountInvitations";
 
 import type { AccountInvitation } from "../../types/accountInvitation";
@@ -48,19 +48,31 @@ async function fetchInvitation() {
     // Redirect based on whether user exists
     if (invitation.value) {
       if (invitation.value.userId) {
-        router.replace({
-          path: DEFAULT_PATHS.INVITATION_JOIN.replace(":token", token),
-          query: accountId ? { accountId } : {},
-        });
+        // For existing users, redirect to join invitation page
+        // If not authenticated, persist redirect target for host app login guard
+        const joinPath = router.resolve({
+          name: "invitationJoin",
+          params: { token },
+          query: { accountId },
+        }).href;
+        sessionStorage.setItem(REDIRECT_AFTER_LOGIN_KEY, joinPath);
+
+        router.replace(joinPath);
       } else {
-        router.replace({
-          path: DEFAULT_PATHS.INVITATION_SIGNUP.replace(":token", token),
-          query: accountId ? { accountId } : {},
-        });
+        // For new users, redirect to signup invitation page
+        const signupPath = router.resolve({
+          name: "invitationSignup",
+          params: { token },
+          query: { accountId },
+        }).href;
+
+        router.replace(signupPath);
       }
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Failed to fetch invitation:", error);
+
     loading.value = false;
   }
 }
