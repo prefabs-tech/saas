@@ -45,7 +45,7 @@ async function fetchInvitation() {
     );
     invitation.value = response;
 
-    // Redirect based on whether user exists (matching React logic exactly)
+    // Redirect based on whether user exists
     if (invitation.value) {
       if (invitation.value.userId) {
         // For existing users, redirect to join invitation page
@@ -70,7 +70,9 @@ async function fetchInvitation() {
       }
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Failed to fetch invitation:", error);
+
     loading.value = false;
   }
 }
