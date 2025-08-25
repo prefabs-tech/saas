@@ -1,6 +1,7 @@
 import { Router } from "vue-router";
 
 import { DEFAULT_PATHS } from "./constant";
+import { addSaasAdminRoutes, addSaasAppRoutes } from "./routes";
 import AcceptInvitation from "./views/AcceptInvitation/AcceptInvitation.vue";
 import JoinInvitation from "./views/AcceptInvitation/JoinInvitation.vue";
 import SignupInvitation from "./views/AcceptInvitation/SignupInvitation.vue";
@@ -9,6 +10,10 @@ import AccountEdit from "./views/Accounts/Edit.vue";
 import Accounts from "./views/Accounts/Index.vue";
 import AccountView from "./views/Accounts/View.vue";
 
+import type {
+  AdminRoutesProperties,
+  AppRoutesProperties,
+} from "./types/routes";
 import type { RouteMeta, RouteRecordRaw } from "vue-router";
 
 const _routes = {
@@ -87,6 +92,24 @@ const addRoutes = (router: Router) => {
   router.addRoute(_routes.InvitationSignup);
 };
 
+// New separate route functions for admin and app (recommended approach)
+export const updateAdminRouter = (
+  router: Router,
+  type: "authenticated" | "unauthenticated" | "public" = "authenticated",
+  options?: AdminRoutesProperties
+) => {
+  addSaasAdminRoutes(router, type, options);
+};
+
+export const updateAppRouter = (
+  router: Router,
+  type: "authenticated" | "unauthenticated" | "public" = "authenticated",
+  options?: AppRoutesProperties
+) => {
+  addSaasAppRoutes(router, type, options);
+};
+
+// Legacy function for backward compatibility (deprecated)
 const updateRouter = (router: Router) => {
   addRoutes(router);
 };

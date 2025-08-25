@@ -49,4 +49,8 @@ const useTranslations = (): LocaleMessages<VueMessageType> => {
 export default plugin;
 export { useTranslations };
 export * from "./router";
+export * from "./routes";
+export * from "./types/routes";
+export * from "./composables/useSaasRoutes";
+export * from "./plugins/saasRouter";
 export { default as router } from "./router";
