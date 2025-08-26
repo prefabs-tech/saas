@@ -1,3 +1,40 @@
+# [0.23.0](https://github.com/prefabs-tech/saas/compare/v0.22.2...v0.23.0) (2025-08-26)
+
+
+### Bug Fixes
+
+* add removed translations ([4f769f5](https://github.com/prefabs-tech/saas/commit/4f769f530c71bd749f576750e89124d99eb92cc4))
+* change the validation messages ([9e2f3cd](https://github.com/prefabs-tech/saas/commit/9e2f3cd53e2ec960809f25a1467b15ea802c4255))
+* code standard ([8f7ec1a](https://github.com/prefabs-tech/saas/commit/8f7ec1a0e61561e687bac15d5d4d0a5bb1cb84af))
+* fix the role picked in the invitation form ([2ac6abd](https://github.com/prefabs-tech/saas/commit/2ac6abdcce34594e54785d6d97ac3b7b891d96d5))
+* fix the success message for when invitation is created ([4dc2493](https://github.com/prefabs-tech/saas/commit/4dc2493e43361e69a5c29d1d068838bb38dacace))
+* fix the translation for role values in invitations table ([fbf9aa5](https://github.com/prefabs-tech/saas/commit/fbf9aa59bd5e6f262a1815f78047ba5c50630406))
+* fix the UserSignupForm ([d783222](https://github.com/prefabs-tech/saas/commit/d7832224c6ababf810fdf9e0c97e271a096fd970))
+* remove unnecessary comemnts and type definitions ([0c13d88](https://github.com/prefabs-tech/saas/commit/0c13d8832bbd9ea80648e64611d6d3123d77f801))
+* the roles and status translation in users table ([ed731ed](https://github.com/prefabs-tech/saas/commit/ed731ed39c7cfbbb08f220c0e7e6eb92a15c7f70))
+
+
+### Features
+
+* accept join invitation ([3510452](https://github.com/prefabs-tech/saas/commit/3510452352bc7338b361e2f77e2a799fd6e337ba))
+* add redirect handling after login for invitation acceptance ([6cc56bd](https://github.com/prefabs-tech/saas/commit/6cc56bd960e3b452d8beac68a85e56808634d8a6))
+* close invitation form and update table after invitation created ([9f047e6](https://github.com/prefabs-tech/saas/commit/9f047e65f3b06c0fdba192451cf1e2fd3c9da666))
+* enhance join invitation messages and actions in English and French locales ([434d88a](https://github.com/prefabs-tech/saas/commit/434d88aa93714d657e703130168d65bb485ba056))
+* implement enable and disable user ([c1d9f65](https://github.com/prefabs-tech/saas/commit/c1d9f65b700cde204465abf226cebdcd94c6805d))
+* refactor the invitation signup form ([3900f83](https://github.com/prefabs-tech/saas/commit/3900f832279bc449c596846b9dbaabd72ae17cfc))
+* remove JoinInvitation related files ([8d850a4](https://github.com/prefabs-tech/saas/commit/8d850a4b09108e863c6bfc24f0bcd98b9cd2f9cf))
+* **routes:** add invitation routes for token-based access ([ca00054](https://github.com/prefabs-tech/saas/commit/ca00054bf90ea254167f6022f3083405ce20d73e))
+* show confimation modal during resend and revoke of invitations ([a9883d1](https://github.com/prefabs-tech/saas/commit/a9883d1f3986d39ec90913879fc84313bfb9ac4f))
+* show join invitation form ([a09d08b](https://github.com/prefabs-tech/saas/commit/a09d08beab5e645a732bbc3d3430864f47a22a7e))
+* show notification toast for resend, revoke and delete of invitation ([e912bf7](https://github.com/prefabs-tech/saas/commit/e912bf7d216c2716095a7a848fd2f34f008c1d4f))
+* translate the invitation created message for french ([354a601](https://github.com/prefabs-tech/saas/commit/354a60148fcd0ac765a9a93f19f37cd6644e38bc))
+* update form ([b8ef9c3](https://github.com/prefabs-tech/saas/commit/b8ef9c30fa8ec163a0d5c340ae4a12e9f77c9fc9))
+* update join invitation titles and success messages in English and French locales ([c79c1fc](https://github.com/prefabs-tech/saas/commit/c79c1fc6fad0f0e4b456108c6d893e53eca57e84))
+* update styling of signup form ([65fc39a](https://github.com/prefabs-tech/saas/commit/65fc39a6998654bad584e6d125606f9d9f4c055b))
+* update vue page for integration with app ([7d31e5d](https://github.com/prefabs-tech/saas/commit/7d31e5dc972a230232146687ff665bd36cbae16a))
+
+
+
 ## [0.22.2](https://github.com/prefabs-tech/saas/compare/v0.22.1...v0.22.2) (2025-08-18)
 
 

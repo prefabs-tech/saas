@@ -45,7 +45,7 @@ async function fetchInvitation() {
     );
     invitation.value = response;
 
-    // Redirect based on whether user exists (matching React logic exactly)
+    // Redirect based on whether user exists
     if (invitation.value) {
       if (invitation.value.userId) {
         // For existing users, redirect to join invitation page

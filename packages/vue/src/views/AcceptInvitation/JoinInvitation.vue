@@ -1,11 +1,11 @@
 <template>
   <Page
-    class="join-invitation"
     :title="
       error || isInvalidInvitation ? '' : t('account.joinInvitation.title')
     "
     :loading="invitationLoading || !invitation"
     :centered="true"
+    class="join-invitation"
   >
     <div v-if="error" class="error-message">
       <p>{{ t("account.joinInvitation.messages.errorFetching") }}</p>
@@ -31,9 +31,9 @@
         />
         <ButtonElement
           :label="t('account.joinInvitation.actions.ignore')"
-          variant="outlined"
-          severity="secondary"
           :disabled="loading"
+          severity="secondary"
+          variant="outlined"
           @click="handleIgnore"
         />
       </div>
@@ -107,14 +107,18 @@ async function fetchInvitation() {
   try {
     invitationLoading.value = true;
     error.value = false;
+
     const response = await getInvitationByToken(
       token,
       accountId || null,
       config.apiBaseUrl
     );
+
     invitation.value = response;
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error("Failed to fetch invitation:", err);
+
     error.value = true;
   } finally {
     invitationLoading.value = false;
@@ -143,6 +147,7 @@ async function handleSubmit() {
     // Navigate to home or dashboard
     router.push("/");
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error("Failed to join invitation:", err);
 
     const message: EventMessage = {
