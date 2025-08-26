@@ -55,6 +55,7 @@ async function fetchInvitation() {
           params: { token },
           query: { accountId },
         }).href;
+
         sessionStorage.setItem(REDIRECT_AFTER_LOGIN_KEY, joinPath);
 
         router.replace(joinPath);
@@ -70,7 +71,9 @@ async function fetchInvitation() {
       }
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Failed to fetch invitation:", error);
+
     loading.value = false;
   }
 }
