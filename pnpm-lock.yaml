@@ -269,26 +269,26 @@ importers:
         specifier: 0.2.0
         version: 0.2.0(@types/node@22.13.5)
       '@prefabs.tech/vue3-config':
-        specifier: 0.12.0
-        version: 0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+        specifier: 0.16.0
+        version: 0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
       '@prefabs.tech/vue3-form':
-        specifier: 0.12.0
-        version: 0.12.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
+        specifier: 0.16.0
+        version: 0.16.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
       '@prefabs.tech/vue3-i18n':
-        specifier: 0.12.0
-        version: 0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+        specifier: 0.16.0
+        version: 0.16.0(@prefabs.tech/vue3-config@0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
       '@prefabs.tech/vue3-layout':
-        specifier: 0.12.0
-        version: 0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-i18n@0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-ui@0.12.0(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+        specifier: 0.16.0
+        version: 0.16.0(@prefabs.tech/vue3-config@0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-i18n@0.16.0(@prefabs.tech/vue3-config@0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-ui@0.16.0(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
       '@prefabs.tech/vue3-tanstack-table':
-        specifier: 0.12.0
-        version: 0.12.0(@prefabs.tech/vue3-form@0.12.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(@prefabs.tech/vue3-ui@0.12.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+        specifier: 0.16.0
+        version: 0.16.0(@prefabs.tech/vue3-form@0.16.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(@prefabs.tech/vue3-ui@0.16.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
       '@prefabs.tech/vue3-ui':
-        specifier: 0.12.0
-        version: 0.12.0(vue@3.5.13(typescript@5.5.4))
+        specifier: 0.16.0
+        version: 0.16.0(vue@3.5.13(typescript@5.5.4))
       '@prefabs.tech/vue3-user':
-        specifier: 0.12.0
-        version: 0.12.0(3aacgmhcwppjarq3u2iqytbhdm)
+        specifier: 0.16.0
+        version: 0.16.0(h7dbiqqdtpyef7o6cpolt4zpe4)
       '@types/node':
         specifier: 22.13.5
         version: 22.13.5
@@ -1413,15 +1413,15 @@ packages:
   '@prefabs.tech/tsconfig@0.2.0':
     resolution: {integrity: sha512-AUsEmP7j7NnfEYa18u4bkXJlijk2duaKaEhhhfeTCOj01nNRMhaqGWYkYaphdiUR4mSU3e1+wkVvJBbX8Ri3fg==}
 
-  '@prefabs.tech/vue3-config@0.12.0':
-    resolution: {integrity: sha512-LW4EY5VJU91p3VP4verDzCBFSmIa5FKbPhdW0vzqrO4cRii6JjivPmu0z1ukdBHC+7miw8uMy7KEcx+yt61bhg==}
+  '@prefabs.tech/vue3-config@0.16.0':
+    resolution: {integrity: sha512-27y14GeKK5GH/s/YZ5j68Rj5GHNF2gfVzwttmDmx2+r0gjY6qhi+rI+AxeE3YLYa5xNHt/VWE6Hiti34ImW1Uw==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
       vue: '>=3.2'
       vue-router: '>=4.0'
 
-  '@prefabs.tech/vue3-form@0.12.0':
-    resolution: {integrity: sha512-fLdPRfKeePydc4zy6rQ5PPjJsxnpqV7ius+hLijYkl7hGKWB6LdwEKjPinmNSOdeaufZ6pQmI7Wv4JkEz+9d3Q==}
+  '@prefabs.tech/vue3-form@0.16.0':
+    resolution: {integrity: sha512-uF6qXVa3sttaEUxMV0jNGSK1Nd5YuoDSHn4Ge6mlwN6YBvhByVssJhN5ILuUzEvLJB/7voVt8pxrh0s0X2zdIA==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
       '@vee-validate/i18n': '>=4.7.4'
@@ -1431,48 +1431,48 @@ packages:
       vue: '>=3.2'
       zod: '>=3.20.6'
 
-  '@prefabs.tech/vue3-i18n@0.12.0':
-    resolution: {integrity: sha512-jbejUmTMYTHTVoJsJsoEwWJvTus2uuZ+4VWe55OkjiiB2vezo3ap6iJ9yIaPusDAynbQmxrVuYnQHZLC6Qe2FA==}
+  '@prefabs.tech/vue3-i18n@0.16.0':
+    resolution: {integrity: sha512-rTfLZPqeT/fOd8TamMxdl+xVlLiyvhm2EXrlq6ePE0LH1U9zEJgmEh6/S4xRi8w7thSWULa2TWBTMO84RaSyTg==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@prefabs.tech/vue3-config': 0.12.0
+      '@prefabs.tech/vue3-config': 0.16.0
       '@vueuse/core': '>=9.4.0'
       pinia: '>=2.0'
       vue: '>=3.2'
 
-  '@prefabs.tech/vue3-layout@0.12.0':
-    resolution: {integrity: sha512-dQo3EzefCGnjLESy8QUmRYqENihgJAh1nf9Gb8ZlgSKmPZAKX/6wU5YzMWS687fyu3Mqn/uHLuoVY3rUOrXQCQ==}
+  '@prefabs.tech/vue3-layout@0.16.0':
+    resolution: {integrity: sha512-0r+SgrVeo3nuHJ0VtLV365j/bcfpvRykZK18qQJpZ9eMisShIHbpWD/0QR/RYaX8H8OEriGP1ubqv7cuI6YB5A==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@prefabs.tech/vue3-config': 0.12.0
-      '@prefabs.tech/vue3-i18n': 0.12.0
-      '@prefabs.tech/vue3-ui': 0.12.0
+      '@prefabs.tech/vue3-config': 0.16.0
+      '@prefabs.tech/vue3-i18n': 0.16.0
+      '@prefabs.tech/vue3-ui': 0.16.0
       '@vueuse/core': '>=9.4.0'
       vue: '>=3.2'
       vue-router: '>=4.0'
 
-  '@prefabs.tech/vue3-tanstack-table@0.12.0':
-    resolution: {integrity: sha512-GoSbGHHSSCjUSeZpn2LCafM2XD8QXpLS+W1NrWbBMCorW3qKMcit7dafiyouX0LZQDmabOAQxbzr6sLH5hWFBA==}
+  '@prefabs.tech/vue3-tanstack-table@0.16.0':
+    resolution: {integrity: sha512-5JtjzPXGCgSEctYUJDx1ni5tX67we4VzrkUDXeUjx2Bhtetu3dJEXmIkACTDSxseAT8zUYJMVoE6CELH63b18g==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@prefabs.tech/vue3-form': 0.12.0
-      '@prefabs.tech/vue3-ui': 0.12.0
+      '@prefabs.tech/vue3-form': 0.16.0
+      '@prefabs.tech/vue3-ui': 0.16.0
       vue: '>=3.2'
 
-  '@prefabs.tech/vue3-ui@0.12.0':
-    resolution: {integrity: sha512-kZKb5q3+DrSW+Q5DI+k8J+MeDQ1xv73dvNesIAWTUTmz/DIJTwfsjkRFwU0rWW8CZiGlNNf9rNdNpiylKVDn9Q==}
+  '@prefabs.tech/vue3-ui@0.16.0':
+    resolution: {integrity: sha512-ziHB3HHkOxEsPn1uA61QFJaCP1NuOIOMjbgBChvOyC//e0yd+phDQtVxVe1Ypq9urewpf2UDX1mkxjvF7I4m1A==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
       vue: '>=3.2'
 
-  '@prefabs.tech/vue3-user@0.12.0':
-    resolution: {integrity: sha512-f03jvNfkG3XRe0QDne0MPiP0uW5ew+RbM/O0ppuBQ0pho7z0csi3XH6vbu825dIkhxZTcZJkdk/LEdXoyfU0Bw==}
+  '@prefabs.tech/vue3-user@0.16.0':
+    resolution: {integrity: sha512-KOG3/mudXUOvRpQ4lP7TLb5H4vEIcJED1T2iRYcUWNxJzYLCjg3nR9f/alFHuHY4bJH/3cdJTjDyT4efrX42/A==}
     engines: {node: '>=18', pnpm: '>=9'}
     peerDependencies:
-      '@prefabs.tech/vue3-config': 0.12.0
-      '@prefabs.tech/vue3-i18n': 0.12.0
-      '@prefabs.tech/vue3-layout': 0.12.0
-      '@prefabs.tech/vue3-ui': 0.12.0
+      '@prefabs.tech/vue3-config': 0.16.0
+      '@prefabs.tech/vue3-i18n': 0.16.0
+      '@prefabs.tech/vue3-layout': 0.16.0
+      '@prefabs.tech/vue3-ui': 0.16.0
       '@vee-validate/i18n': '>=4.7.1'
       '@vee-validate/rules': '>=4.7.1'
       '@vueuse/core': '>=9.4.0'
@@ -7880,7 +7880,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
+  '@prefabs.tech/vue3-config@0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
     dependencies:
       '@sentry/core': 9.1.0
       '@sentry/vue': 9.1.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
@@ -7889,7 +7889,7 @@ snapshots:
     transitivePeerDependencies:
       - pinia
 
-  '@prefabs.tech/vue3-form@0.12.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)':
+  '@prefabs.tech/vue3-form@0.16.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)':
     dependencies:
       '@vee-validate/i18n': 4.15.0
       '@vee-validate/rules': 4.15.0(vue@3.5.13(typescript@5.5.4))
@@ -7899,40 +7899,40 @@ snapshots:
       vue: 3.5.13(typescript@5.5.4)
       zod: 3.24.2
 
-  '@prefabs.tech/vue3-i18n@0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
+  '@prefabs.tech/vue3-i18n@0.16.0(@prefabs.tech/vue3-config@0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
     dependencies:
-      '@prefabs.tech/vue3-config': 0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-config': 0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
       '@vueuse/core': 12.7.0(typescript@5.5.4)
       pinia: 3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4))
       vue: 3.5.13(typescript@5.5.4)
       vue-i18n: 9.1.10(vue@3.5.13(typescript@5.5.4))
 
-  '@prefabs.tech/vue3-layout@0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-i18n@0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-ui@0.12.0(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
+  '@prefabs.tech/vue3-layout@0.16.0(@prefabs.tech/vue3-config@0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-i18n@0.16.0(@prefabs.tech/vue3-config@0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-ui@0.16.0(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
     dependencies:
-      '@prefabs.tech/vue3-config': 0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@prefabs.tech/vue3-i18n': 0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@prefabs.tech/vue3-ui': 0.12.0(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-config': 0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-i18n': 0.16.0(@prefabs.tech/vue3-config@0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-ui': 0.16.0(vue@3.5.13(typescript@5.5.4))
       '@vueuse/core': 12.7.0(typescript@5.5.4)
       vue: 3.5.13(typescript@5.5.4)
       vue-router: 4.5.0(vue@3.5.13(typescript@5.5.4))
 
-  '@prefabs.tech/vue3-tanstack-table@0.12.0(@prefabs.tech/vue3-form@0.12.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(@prefabs.tech/vue3-ui@0.12.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
+  '@prefabs.tech/vue3-tanstack-table@0.16.0(@prefabs.tech/vue3-form@0.16.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(@prefabs.tech/vue3-ui@0.16.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))':
     dependencies:
-      '@prefabs.tech/vue3-form': 0.12.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
-      '@prefabs.tech/vue3-ui': 0.12.0(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-form': 0.16.0(@vee-validate/i18n@4.15.0)(@vee-validate/rules@4.15.0(vue@3.5.13(typescript@5.5.4)))(@vee-validate/zod@4.15.0(vue@3.5.13(typescript@5.5.4))(zod@3.24.2))(vee-validate@4.15.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))(zod@3.24.2)
+      '@prefabs.tech/vue3-ui': 0.16.0(vue@3.5.13(typescript@5.5.4))
       '@tanstack/vue-table': 8.21.2(vue@3.5.13(typescript@5.5.4))
       vue: 3.5.13(typescript@5.5.4)
 
-  '@prefabs.tech/vue3-ui@0.12.0(vue@3.5.13(typescript@5.5.4))':
+  '@prefabs.tech/vue3-ui@0.16.0(vue@3.5.13(typescript@5.5.4))':
     dependencies:
       vue: 3.5.13(typescript@5.5.4)
 
-  '@prefabs.tech/vue3-user@0.12.0(3aacgmhcwppjarq3u2iqytbhdm)':
+  '@prefabs.tech/vue3-user@0.16.0(h7dbiqqdtpyef7o6cpolt4zpe4)':
     dependencies:
-      '@prefabs.tech/vue3-config': 0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@prefabs.tech/vue3-i18n': 0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@prefabs.tech/vue3-layout': 0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-i18n@0.12.0(@prefabs.tech/vue3-config@0.12.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-ui@0.12.0(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
-      '@prefabs.tech/vue3-ui': 0.12.0(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-config': 0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-i18n': 0.16.0(@prefabs.tech/vue3-config@0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-layout': 0.16.0(@prefabs.tech/vue3-config@0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-i18n@0.16.0(@prefabs.tech/vue3-config@0.16.0(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(pinia@3.0.1(typescript@5.5.4)(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4)))(@prefabs.tech/vue3-ui@0.16.0(vue@3.5.13(typescript@5.5.4)))(@vueuse/core@12.7.0(typescript@5.5.4))(vue-router@4.5.0(vue@3.5.13(typescript@5.5.4)))(vue@3.5.13(typescript@5.5.4))
+      '@prefabs.tech/vue3-ui': 0.16.0(vue@3.5.13(typescript@5.5.4))
       '@vee-validate/i18n': 4.15.0
       '@vee-validate/rules': 4.15.0(vue@3.5.13(typescript@5.5.4))
       '@vueuse/core': 12.7.0(typescript@5.5.4)
