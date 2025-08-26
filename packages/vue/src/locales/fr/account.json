@@ -79,18 +79,18 @@
     }
   },
   "joinInvitation": {
-    "title": "Rejoindre le compte",
     "actions": {
       "accept": "Accepter l'invitation",
       "ignore": "Ignorer"
     },
     "info": "Vous avez été invité à rejoindre le compte : {account}",
     "messages": {
-      "success": "Compte rejoint avec succès !",
       "error": "Échec de la connexion au compte. Veuillez réessayer.",
       "errorFetching": "Échec du chargement des détails de l'invitation.",
-      "invalid": "Cette invitation n'est plus valide."
-    }
+      "invalid": "Cette invitation n'est plus valide.",
+      "success": "Compte rejoint avec succès !"
+    },
+    "title": "Rejoindre le compte"
   },
   "signup": {
     "actions": {
