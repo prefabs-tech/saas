@@ -1,6 +1,6 @@
 {
   "name": "@prefabs.tech/saas-react",
-  "version": "0.22.2",
+  "version": "0.23.0",
   "description": "Saas plugin for react",
   "exports": {
     ".": {
