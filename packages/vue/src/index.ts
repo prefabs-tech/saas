@@ -1,7 +1,6 @@
 import type { App, Plugin } from "vue";
 import type { LocaleMessages, VueMessageType } from "@prefabs.tech/vue3-i18n";
 import type { SaasVuePluginOptions } from "./types";
-import updateRouter from "./router";
 
 import { prependMessages } from "@prefabs.tech/vue3-i18n";
 import { inject } from "vue";
@@ -21,8 +20,6 @@ const defaultMessages = {
 
 const plugin: Plugin = {
   install: (app: App, options: SaasVuePluginOptions): void => {
-    updateRouter(options.router);
-
     app.provide(__saasConfig, options.saasConfig);
 
     const translations = options?.translations
@@ -48,9 +45,5 @@ const useTranslations = (): LocaleMessages<VueMessageType> => {
 
 export default plugin;
 export { useTranslations };
-export * from "./router";
 export * from "./routes";
 export * from "./types/routes";
-export * from "./composables/useSaasRoutes";
-export * from "./plugins/saasRouter";
-export { default as router } from "./router";
