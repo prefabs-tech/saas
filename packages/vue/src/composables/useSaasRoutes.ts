@@ -11,7 +11,7 @@ import AccountView from "../views/Accounts/View.vue";
 
 import type { Router, RouteRecordRaw } from "vue-router";
 
-export type AppType = "admin" | "user" | "hybrid";
+export type AppType = "admin" | "user";
 export type AuthState = "authenticated" | "unauthenticated" | "public";
 
 export interface SaasRouteConfig {
@@ -23,52 +23,52 @@ export interface SaasRouteConfig {
 }
 
 const originalRoutes = {
-  // Admin routes (only available in admin and hybrid apps)
+  // Admin routes (only available in admin apps)
   accounts: {
-    meta: { authenticated: true, appType: ["admin", "hybrid"] },
+    meta: { authenticated: true, appType: ["admin"] },
     component: Accounts,
     name: "accounts",
     path: DEFAULT_PATHS.ACCOUNTS,
   } as RouteRecordRaw & { meta: { appType: AppType[] } },
 
   accountsAdd: {
-    meta: { authenticated: true, appType: ["admin", "hybrid"] },
+    meta: { authenticated: true, appType: ["admin"] },
     component: AccountAdd,
     name: "accountsAdd",
     path: DEFAULT_PATHS.ACCOUNTS_ADD,
   } as RouteRecordRaw & { meta: { appType: AppType[] } },
 
   accountsEdit: {
-    meta: { authenticated: true, appType: ["admin", "hybrid"] },
+    meta: { authenticated: true, appType: ["admin"] },
     component: AccountEdit,
     name: "accountsEdit",
     path: DEFAULT_PATHS.ACCOUNTS_EDIT,
   } as RouteRecordRaw & { meta: { appType: AppType[] } },
 
   accountsView: {
-    meta: { authenticated: true, appType: ["admin", "hybrid"] },
+    meta: { authenticated: true, appType: ["admin"] },
     component: AccountView,
     name: "accountsView",
     path: DEFAULT_PATHS.ACCOUNTS_VIEW,
   } as RouteRecordRaw & { meta: { appType: AppType[] } },
 
-  // User app routes (only available in user and hybrid apps)
+  // User app routes (only available in user apps)
   accountSettings: {
-    meta: { authenticated: true, appType: ["user", "hybrid"] },
+    meta: { authenticated: true, appType: ["user"] },
     component: AccountView,
     name: "accountSettings",
     path: DEFAULT_PATHS.ACCOUNT_SETTINGS,
   } as RouteRecordRaw & { meta: { appType: AppType[] } },
 
   myAccounts: {
-    meta: { authenticated: true, appType: ["user", "hybrid"] },
+    meta: { authenticated: true, appType: ["user"] },
     component: Accounts,
     name: "myAccounts",
     path: DEFAULT_PATHS.MY_ACCOUNTS,
   } as RouteRecordRaw & { meta: { appType: AppType[] } },
 
   invitationJoin: {
-    meta: { authenticated: true, appType: ["user", "hybrid"] },
+    meta: { authenticated: true, appType: ["user"] },
     component: JoinInvitation,
     name: "invitationJoin",
     path: DEFAULT_PATHS.INVITATION_JOIN,
@@ -76,7 +76,7 @@ const originalRoutes = {
 
   // Unauthenticated routes
   invitationSignup: {
-    meta: { authenticated: false, appType: ["user", "hybrid"] },
+    meta: { authenticated: false, appType: ["user"] },
     component: SignupInvitation,
     name: "invitationSignup",
     path: DEFAULT_PATHS.INVITATION_SIGNUP,
@@ -84,7 +84,7 @@ const originalRoutes = {
 
   // Public routes (available to all)
   invitationAccept: {
-    meta: { authenticated: false, appType: ["admin", "user", "hybrid"] },
+    meta: { authenticated: false, appType: ["admin", "user"] },
     component: AcceptInvitation,
     name: "invitationAccept",
     path: DEFAULT_PATHS.INVITATION_ACCEPT,

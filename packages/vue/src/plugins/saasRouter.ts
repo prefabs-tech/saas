@@ -1,5 +1,3 @@
-import { watch } from "vue";
-
 import { useSaasRoutes } from "../composables/useSaasRoutes";
 
 import type {
@@ -88,7 +86,7 @@ export const createAdminSaasRouter = (
   });
 };
 
-export const createUserSaasRouter = (
+export const createAppSaasRouter = (
   router: Router,
   getAuthState: () => AuthState | AuthState[],
   options?: Partial<SaasRouterOptions>
@@ -96,19 +94,6 @@ export const createUserSaasRouter = (
   return createSaasRouter({
     router,
     appType: "user",
-    getAuthState,
-    ...options,
-  });
-};
-
-export const createHybridSaasRouter = (
-  router: Router,
-  getAuthState: () => AuthState | AuthState[],
-  options?: Partial<SaasRouterOptions>
-) => {
-  return createSaasRouter({
-    router,
-    appType: "hybrid",
     getAuthState,
     ...options,
   });
