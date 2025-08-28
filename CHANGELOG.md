@@ -1,3 +1,12 @@
+# [0.24.0](https://github.com/prefabs-tech/saas/compare/v0.23.0...v0.24.0) (2025-08-28)
+
+
+### Features
+
+* seperate routes ([2e9b954](https://github.com/prefabs-tech/saas/commit/2e9b954534401ba0527e99f21607bed29e167e7c))
+
+
+
 # [0.23.0](https://github.com/prefabs-tech/saas/compare/v0.22.2...v0.23.0) (2025-08-26)
 
 
