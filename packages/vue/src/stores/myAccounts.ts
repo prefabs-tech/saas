@@ -99,44 +99,67 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
   };
 
   const computeNewActiveAccount = (accountsList: Account[]): Account | null => {
-    if (!config.value) return null;
+    if (!config.value || !accountsList?.length) return null;
 
     const { autoSelectAccount = true, allowMultipleSessions = true } =
       config.value.accounts || {};
 
-    let persistedAccountId: string | null = null;
+    const subdomain = window.location.hostname.split(".")[0];
+    const isMainApp = subdomain === config.value.mainAppSubdomain;
 
-    if (allowMultipleSessions) {
-      persistedAccountId = sessionStorage.getItem(accountStorageKey);
+    // For non-main apps, find account by subdomain (like React implementation)
+    if (!isMainApp) {
+      const accountBySubdomain = accountsList.find(
+        (account) => account.slug === subdomain
+      );
+      if (!accountBySubdomain) {
+        throw new Error("Account not found for user");
+      }
+      return accountBySubdomain;
     }
 
-    if (!persistedAccountId) {
-      persistedAccountId = localStorage.getItem(accountStorageKey);
+    // For main app, use auto-selection logic
+    const defaultAccount: Account | null =
+      autoSelectAccount || accountsList.length === 1 ? accountsList[0] : null;
+
+    if (!activeAccount.value) {
+      // Check for saved account ID
+      let savedAccountId = localStorage.getItem(accountStorageKey);
+
+      if (allowMultipleSessions) {
+        const sessionSavedAccountId = sessionStorage.getItem(accountStorageKey);
+        savedAccountId = sessionSavedAccountId || savedAccountId;
+      }
+
+      if (!savedAccountId) {
+        return defaultAccount;
+      }
+
+      const savedAccount = accountsList.find(
+        (account) => account.id === savedAccountId
+      );
+
+      return savedAccount || defaultAccount;
     }
 
-    let newActiveAccount: Account | null = null;
+    // If there's already an active account, try to preserve it
+    const previousAccount = accountsList.find(
+      (account) => account.id === activeAccount.value?.id
+    );
 
-    if (persistedAccountId) {
-      newActiveAccount =
-        accountsList.find((account) => account.id === persistedAccountId) ||
-        null;
-    }
-
-    if (!newActiveAccount && autoSelectAccount && accountsList.length > 0) {
-      newActiveAccount = accountsList[0];
-    }
-
-    return newActiveAccount;
+    return previousAccount || defaultAccount;
   };
 
   const updateAccounts = (newAccounts: Account[]) => {
+    loading.value = true;
+
     accounts.value = newAccounts;
 
     const newActiveAccount = computeNewActiveAccount(newAccounts);
 
-    if (newActiveAccount) {
-      switchAccount(newActiveAccount, { clearState: false });
-    }
+    switchAccount(newActiveAccount, { clearState: false });
+
+    loading.value = false;
   };
 
   const fetchMyAccounts = async (): Promise<void> => {

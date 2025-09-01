@@ -1,46 +1,40 @@
 <template>
-  <LoadingIcon v-if="loading" />
-  <slot v-else />
+  <!-- Show children only when not loading (same as React implementation) -->
+  <slot v-if="!loading" />
 </template>
 
 <script setup lang="ts">
-import { LoadingIcon } from "@prefabs.tech/vue3-ui";
-import { onMounted, watch } from "vue";
+import { watch } from "vue";
 
-import { useMyAccounts } from "../composables/useMyAccounts";
+import { useMyAccountsStore } from "../stores/myAccounts";
+
+import type { SaasConfig } from "../types/config";
 
 export interface SaasAccountsProviderProperties {
+  config: SaasConfig;
   userId?: string;
 }
 
 const props = defineProps<SaasAccountsProviderProperties>();
 
-const myAccountsStore = useMyAccounts();
-const { loading, fetchMyAccounts, accounts } = myAccountsStore;
+const myAccountsStore = useMyAccountsStore();
+const { loading } = myAccountsStore;
 
-// Fetch accounts when user ID is available
-onMounted(async () => {
-  if (props.userId) {
-    try {
-      await fetchMyAccounts();
-    } catch {
-      // Error is handled by the store's error state
-    }
-  }
-});
+// Initialize store with config
+myAccountsStore.setConfig(props.config);
 
-// Watch for userId changes
+// Fetch accounts when userId changes (matches React useEffect)
 watch(
   () => props.userId,
   async (newUserId) => {
-    if (newUserId && (!accounts || accounts.length === 0)) {
+    if (newUserId) {
       try {
-        await fetchMyAccounts();
+        await myAccountsStore.fetchMyAccounts();
       } catch {
         // Error is handled by the store's error state
       }
     }
   },
-  { immediate: false }
+  { immediate: true }
 );
 </script>

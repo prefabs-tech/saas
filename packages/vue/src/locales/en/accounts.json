@@ -70,5 +70,13 @@
     "emptyLabel": "Select Account",
     "helper": "Select an account"
   },
-  "title": "Customers"
+  "title": "Customers",
+  "error": {
+    "message": "Please visit again later. If the problem persists, please contact support.",
+    "title": "Sorry, something went wrong."
+  },
+  "unregisteredDomain": {
+    "message": "Please visit again later. If the problem persists, please contact support.",
+    "title": "Sorry, the subdomain or domain is not registered."
+  }
 }

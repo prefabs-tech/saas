@@ -5,6 +5,8 @@ export { STATUS_OK, API_PATH_REFRESH };
 
 export const ACCOUNT_HEADER_NAME = "x-account-id";
 
+export const ADMIN_SUBDOMAIN_DEFAULT = "admin";
+
 export const SIGNUP_PATH_DEFAULT = "/auth/signup";
 
 export const SAAS_ACCOUNT_MEMBER = "SAAS_ACCOUNT_MEMBER";

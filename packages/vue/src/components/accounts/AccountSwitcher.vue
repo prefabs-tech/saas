@@ -1,6 +1,8 @@
 <template>
   <div class="account-switcher">
-    <small v-if="!noHelperText">{{ t("switcher.helper") }}</small>
+    <small v-if="!noHelperText && !loading && accounts">{{
+      t("switcher.helper")
+    }}</small>
 
     <LoadingIcon v-if="loading || !accounts" />
 
@@ -23,7 +25,7 @@
 <script setup lang="ts">
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { LoadingIcon } from "@prefabs.tech/vue3-ui";
-import { defineProps, defineEmits, ref, watch } from "vue";
+import { defineProps, defineEmits, ref, watch, computed } from "vue";
 
 import { useTranslations } from "../../index";
 import { useMyAccountsStore } from "../../stores/myAccounts";
@@ -50,13 +52,17 @@ const messages = useTranslations();
 const { t } = useI18n({ messages });
 
 const myAccountsStore = useMyAccountsStore();
-const { accounts, activeAccount, loading, switchAccount } = myAccountsStore;
+// Don't destructure to maintain reactivity
+const accounts = computed(() => myAccountsStore.accounts);
+const activeAccount = computed(() => myAccountsStore.activeAccount);
+const loading = computed(() => myAccountsStore.loading);
+const { switchAccount } = myAccountsStore;
 
 const selectedAccountId = ref<string>("");
 
 // Watch for changes in activeAccount to sync with select
 watch(
-  () => activeAccount?.id,
+  () => activeAccount.value?.id,
   (newAccountId) => {
     selectedAccountId.value = newAccountId || "";
   },
@@ -66,11 +72,11 @@ watch(
 const handleSelectChange = () => {
   const accountId = selectedAccountId.value;
 
-  if (!accountId || accountId === activeAccount?.id) {
+  if (!accountId || accountId === activeAccount.value?.id) {
     return;
   }
 
-  const newActiveAccount = accounts?.find(
+  const newActiveAccount = accounts.value?.find(
     (account) => account.id === accountId
   );
 

@@ -53,3 +53,8 @@ export { default as useMyAccountsStore } from "./stores/myAccounts";
 export { useMyAccounts } from "./composables/useMyAccounts";
 export { default as AccountSwitcher } from "./components/accounts/AccountSwitcher.vue";
 export { default as SaasAccountsProvider } from "./components/SaasAccountsProvider.vue";
+export { default as SaasWrapper } from "./components/SaasWrapper.vue";
+export { default as ConfigProvider } from "./components/ConfigProvider.vue";
+
+// Utilities
+export { checkIsAdminApp } from "./utils/common";

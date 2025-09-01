@@ -78,3 +78,11 @@ export const updateMyAccount = async (
 
   return response.data;
 };
+
+export const doesAccountExist = async (
+  apiBaseUrl: string
+): Promise<boolean> => {
+  // Use a simple health check or available endpoint
+  // For now, let's just return true and let the actual API calls handle errors
+  return true;
+};

@@ -70,5 +70,13 @@
     "emptyLabel": "Sélectionner un compte",
     "helper": "Sélectionner un compte"
   },
-  "title": "Clients"
+  "title": "Clients",
+  "error": {
+    "message": "Veuillez revenir plus tard. Si le problème persiste, contactez le support.",
+    "title": "Désolé, quelque chose s'est mal passé."
+  },
+  "unregisteredDomain": {
+    "message": "Veuillez revenir plus tard. Si le problème persiste, contactez le support.",
+    "title": "Désolé, le sous-domaine ou le domaine n'est pas enregistré."
+  }
 }
