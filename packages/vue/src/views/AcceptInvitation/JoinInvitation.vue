@@ -115,8 +115,10 @@ async function fetchInvitation() {
     );
 
     invitation.value = response;
-  } catch {
-    // Error is handled by the component's error state
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error("Failed to fetch invitation:", err);
+
     error.value = true;
   } finally {
     invitationLoading.value = false;
@@ -144,8 +146,10 @@ async function handleSubmit() {
 
     // Navigate to home or dashboard
     router.push("/");
-  } catch {
-    // Error is handled by the component's error state
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error("Failed to join invitation:", err);
+
     const message: EventMessage = {
       type: "error",
       message: t("account.joinInvitation.messages.error"),

@@ -125,8 +125,10 @@ async function handleSubmit(userData: UserSignupData) {
     }
 
     router.push({ name: "login" });
-  } catch {
-    // Error is handled by the component's error state
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Signup failed:", error);
+
     if (eventHandlers?.notification) {
       eventHandlers.notification({
         type: "error",

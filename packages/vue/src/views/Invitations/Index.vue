@@ -174,8 +174,9 @@ async function fetchInvitations() {
   try {
     const response = await getInvitations(accountId, config.apiBaseUrl);
     invitations.value = response;
-  } catch {
-    // Error is handled by the component's error state
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Failed to fetch invitations:", error);
   }
 }
 
@@ -191,8 +192,10 @@ async function handleDelete(invitation: AccountInvitation) {
         message: t("account.invitations.messages.deleted"),
       });
     }
-  } catch {
-    // Error is handled by the component's error state
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Failed to delete invitation:", error);
+
     if (eventHandlers?.notification) {
       eventHandlers.notification({
         type: "error",
@@ -219,8 +222,10 @@ async function handleResend(invitation: AccountInvitation) {
         message: t("account.invitations.messages.resent"),
       });
     }
-  } catch {
-    // Error is handled by the component's error state
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Failed to resend invitation:", error);
+
     if (eventHandlers?.notification) {
       eventHandlers.notification({
         type: "error",
@@ -242,8 +247,10 @@ async function handleRevoke(invitation: AccountInvitation) {
         message: t("account.invitations.messages.revoked"),
       });
     }
-  } catch {
-    // Error is handled by the component's error state
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Failed to revoke invitation:", error);
+
     if (eventHandlers?.notification) {
       eventHandlers.notification({
         type: "error",

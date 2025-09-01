@@ -70,9 +70,9 @@ async function fetchInvitation() {
         router.replace(signupPath);
       }
     }
-  } catch {
-    // Error is handled by the component's error state
-    loading.value = false;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Failed to fetch invitation:", error);
   }
 }
 </script>

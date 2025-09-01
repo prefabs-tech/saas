@@ -25,17 +25,16 @@ const loading = computed(() => myAccountsStore.loading);
 // Initialize store with config
 myAccountsStore.setConfig(props.config);
 
-// Fetch accounts when userId changes (matches React useEffect)
+// Fetch accounts when userId changes
 watch(
   () => props.userId,
   async (newUserId, oldUserId) => {
     if (newUserId) {
-      // Only fetch if user actually changed
       if (newUserId !== oldUserId) {
         try {
           await myAccountsStore.fetchMyAccounts();
         } catch {
-          // Error is handled by the store's error state
+          // TODO [RKS 2025-09-01]: Handle error
         }
       }
     } else {
