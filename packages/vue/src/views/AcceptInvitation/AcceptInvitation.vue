@@ -70,10 +70,8 @@ async function fetchInvitation() {
         router.replace(signupPath);
       }
     }
-  } catch (error) {
-    // eslint-disable-next-line no-console
+  } catch {
     // Error is handled by the component's error state
-
     loading.value = false;
   }
 }

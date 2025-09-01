@@ -115,10 +115,8 @@ async function fetchInvitation() {
     );
 
     invitation.value = response;
-  } catch (err) {
-    // eslint-disable-next-line no-console
+  } catch {
     // Error is handled by the component's error state
-
     error.value = true;
   } finally {
     invitationLoading.value = false;
@@ -146,10 +144,8 @@ async function handleSubmit() {
 
     // Navigate to home or dashboard
     router.push("/");
-  } catch (err) {
-    // eslint-disable-next-line no-console
+  } catch {
     // Error is handled by the component's error state
-
     const message: EventMessage = {
       type: "error",
       message: t("account.joinInvitation.messages.error"),

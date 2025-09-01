@@ -174,7 +174,7 @@ const onSubmit = async () => {
         }
       );
     }
-  } catch (error) {
+  } catch {
     // Error handling is done by the form component
   }
 };

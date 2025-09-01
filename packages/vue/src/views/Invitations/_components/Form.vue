@@ -110,8 +110,7 @@ async function onSubmit() {
         emit("success", response);
       }
     );
-  } catch (error) {
-    // eslint-disable-next-line no-console
+  } catch {
     // Error is handled by the component's error state
   }
 }

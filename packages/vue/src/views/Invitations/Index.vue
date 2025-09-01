@@ -174,7 +174,7 @@ async function fetchInvitations() {
   try {
     const response = await getInvitations(accountId, config.apiBaseUrl);
     invitations.value = response;
-  } catch (error) {
+  } catch {
     // Error is handled by the component's error state
   }
 }
@@ -191,9 +191,8 @@ async function handleDelete(invitation: AccountInvitation) {
         message: t("account.invitations.messages.deleted"),
       });
     }
-  } catch (error) {
+  } catch {
     // Error is handled by the component's error state
-
     if (eventHandlers?.notification) {
       eventHandlers.notification({
         type: "error",
@@ -220,9 +219,8 @@ async function handleResend(invitation: AccountInvitation) {
         message: t("account.invitations.messages.resent"),
       });
     }
-  } catch (error) {
+  } catch {
     // Error is handled by the component's error state
-
     if (eventHandlers?.notification) {
       eventHandlers.notification({
         type: "error",
@@ -244,9 +242,8 @@ async function handleRevoke(invitation: AccountInvitation) {
         message: t("account.invitations.messages.revoked"),
       });
     }
-  } catch (error) {
+  } catch {
     // Error is handled by the component's error state
-
     if (eventHandlers?.notification) {
       eventHandlers.notification({
         type: "error",
