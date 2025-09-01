@@ -1,0 +1,202 @@
+{
+  "addTitle": "Add customer",
+  "editTitle": "Edit customer",
+  "form": {
+    "actions": {
+      "cancel": "Cancel",
+      "save": "Save",
+      "submit": "Save"
+    },
+    "fields": {
+      "billingAddress": "Billing address",
+      "database": "Database",
+      "domain": "Domain",
+      "name": "Name",
+      "registeredNumber": "Registered number",
+      "slug": "Slug",
+      "taxId": "Tax ID",
+      "type": {
+        "label": "Individual",
+        "options": {
+          "individual": "Individual",
+          "organization": "Organization"
+        }
+      },
+      "useSeparateDb": "Use separate database"
+    },
+    "messages": {
+      "error": {
+        "create": "Failed to create account",
+        "edit": "Failed to update account"
+      },
+      "success": {
+        "create": "Account created successfully",
+        "edit": "Account updated successfully"
+      }
+    },
+    "validations": {
+      "domain": {
+        "invalid": "Domain must be less than 255 characters"
+      },
+      "name": {
+        "invalid": "Name must be less than 255 characters",
+        "required": "Name is required"
+      },
+      "registeredNumber": {
+        "invalid": "Registered number must be less than 255 characters"
+      },
+      "slug": {
+        "invalid": "Slug must be less than 24 characters",
+        "required": "Slug is required"
+      },
+      "taxId": {
+        "invalid": "Tax id must be less than 255 characters"
+      }
+    }
+  },
+  "info": {
+    "title": "Info"
+  },
+  "invitations": {
+    "form": {
+      "actions": {
+        "cancel": "Cancel",
+        "submit": "Invite user"
+      },
+      "fields": {
+        "email": {
+          "label": "Email",
+          "placeholder": ""
+        },
+        "expiresAfter": {
+          "label": "Expires after",
+          "placeholder": "Enter number of days"
+        },
+        "expiresAt": {
+          "label": "Expires at",
+          "placeholder": "Select a date"
+        },
+        "role": {
+          "label": "Role",
+          "placeholder": "Select role"
+        }
+      },
+      "title": "Invite an user",
+      "validation": {
+        "messages": {
+          "email": "Email is required",
+          "expiresAt": "Expiry date is required",
+          "requiredField": "This field is required",
+          "role": "Role is required",
+          "validEmail": "Email must be a valid email"
+        }
+      }
+    },
+    "messages": {
+      "delete": {
+        "error": "Error deleting invitation",
+        "success": "Successfully deleted invitation"
+      },
+      "invite": {
+        "error": "Error inviting user",
+        "success": "Successfully invited user"
+      },
+      "resend": {
+        "error": "Error resending invitation",
+        "success": "Successfully resent invitation"
+      },
+      "revoke": {
+        "error": "Error revoking invitation",
+        "success": "Successfully revoked invitation"
+      }
+    },
+    "status": {
+      "accepted": "Accepted",
+      "expired": "Expired",
+      "pending": "Pending",
+      "revoked": "Revoked"
+    },
+    "table": {
+      "actions": {
+        "delete": "Delete",
+        "invite": "Invite an user",
+        "resend": "Resend",
+        "revoke": "Revoke"
+      },
+      "columns": {
+        "email": "Email",
+        "expiresAt": "Expires at",
+        "invitedBy": "Invited by",
+        "role": "Role",
+        "status": "Status"
+      },
+      "confirmation": {
+        "header": "Confirmation",
+        "messages": {
+          "delete": "Are you sure you want to delete?",
+          "resend": "Are you sure you want to resend?",
+          "revoke": "Are you sure you want to revoke?"
+        }
+      },
+      "emptyMessage": "Table is empty",
+      "pagination": {
+        "pageControl": "Go to",
+        "rowsPerPage": "Rows"
+      },
+      "searchPlaceholder": ""
+    },
+    "title": "Invitations"
+  },
+  "toolbar": {
+    "back": "Back",
+    "edit": "Edit"
+  },
+  "users": {
+    "messages": {
+      "enable": {
+        "error": "Error enabling user",
+        "success": "User enabled successfully"
+      },
+      "disable": {
+        "error": "Error disabling user",
+        "success": "User disabled successfully"
+      }
+    },
+    "roles": {
+      "SAAS_ACCOUNT_MEMBER": "Member",
+      "SAAS_ACCOUNT_OWNER": "Owner"
+    },
+    "status": {
+      "active": "Active",
+      "disabled": "Disabled",
+      "enabled": "Enabled"
+    },
+    "table": {
+      "actions": {
+        "disable": "Disable user",
+        "enable": "Enable user",
+        "invite": "Invite an user"
+      },
+      "columns": {
+        "email": "Email",
+        "name": "Name",
+        "roles": "Roles",
+        "signedUpOn": "Signed up on",
+        "status": "Status"
+      },
+      "confirmation": {
+        "header": "Confirmation",
+        "messages": {
+          "disable": "Are you sure you want to disable this user?",
+          "enable": "Are you sure you want to enable this user?"
+        }
+      },
+      "pagination": {
+        "pageControl": "Go to",
+        "rowsPerPage": "Rows"
+      },
+      "searchPlaceholder": "Search"
+    },
+    "title": "Users"
+  }
+}
