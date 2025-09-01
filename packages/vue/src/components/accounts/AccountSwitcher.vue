@@ -1,10 +1,9 @@
 <template>
-  <div class="account-switcher">
-    <small v-if="!noHelperText && !loading && accounts">{{
-      t("switcher.helper")
-    }}</small>
+  <!-- Only render when there are accounts (user is authenticated and has accounts) -->
+  <div v-if="accounts && accounts.length > 0" class="account-switcher">
+    <small v-if="!noHelperText">{{ t("switcher.helper") }}</small>
 
-    <LoadingIcon v-if="loading || !accounts" />
+    <LoadingIcon v-if="loading" />
 
     <select
       v-else

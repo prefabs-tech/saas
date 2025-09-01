@@ -1,10 +1,11 @@
 <template>
   <!-- Show children only when not loading (same as React implementation) -->
-  <slot v-if="!loading" />
+  <!-- If no user, show children immediately. If user exists, wait for accounts to load -->
+  <slot v-if="!props.userId || !loading" />
 </template>
 
 <script setup lang="ts">
-import { watch } from "vue";
+import { watch, computed, defineProps } from "vue";
 
 import { useMyAccountsStore } from "../stores/myAccounts";
 
@@ -18,7 +19,8 @@ export interface SaasAccountsProviderProperties {
 const props = defineProps<SaasAccountsProviderProperties>();
 
 const myAccountsStore = useMyAccountsStore();
-const { loading } = myAccountsStore;
+// Use computed to maintain reactivity
+const loading = computed(() => myAccountsStore.loading);
 
 // Initialize store with config
 myAccountsStore.setConfig(props.config);
@@ -26,13 +28,21 @@ myAccountsStore.setConfig(props.config);
 // Fetch accounts when userId changes (matches React useEffect)
 watch(
   () => props.userId,
-  async (newUserId) => {
+  async (newUserId, oldUserId) => {
     if (newUserId) {
-      try {
-        await myAccountsStore.fetchMyAccounts();
-      } catch {
-        // Error is handled by the store's error state
+      // Only fetch if user actually changed
+      if (newUserId !== oldUserId) {
+        try {
+          await myAccountsStore.fetchMyAccounts();
+        } catch {
+          // Error is handled by the store's error state
+        }
       }
+    } else {
+      // Clear accounts when user signs out
+      myAccountsStore.accounts = null;
+      myAccountsStore.activeAccount = null;
+      myAccountsStore.error = false;
     }
   },
   { immediate: true }
