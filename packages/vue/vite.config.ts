@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => {
         external: [
           ...Object.keys(peerDependencies),
           ...Object.keys(dependencies),
-          /supertokens-w+/,
+          /^supertokens-.*/,
         ],
         output: {
           exports: "named",

@@ -72,7 +72,7 @@ async function fetchInvitation() {
     }
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error("Failed to fetch invitation:", error);
+    // Error is handled by the component's error state
 
     loading.value = false;
   }

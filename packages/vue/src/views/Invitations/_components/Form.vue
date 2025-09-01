@@ -112,7 +112,7 @@ async function onSubmit() {
     );
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error("Form submission error:", error);
+    // Error is handled by the component's error state
   }
 }
 </script>

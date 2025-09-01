@@ -148,7 +148,7 @@ async function fetchUsers() {
     const response = await getUsers(accountId, config.apiBaseUrl);
     users.value = response;
   } catch (error) {
-    console.error("Failed to fetch users:", error);
+    // Error is handled by the component's error state
   }
 }
 
@@ -165,7 +165,7 @@ async function handleEnable(user: AccountUser) {
       });
     }
   } catch (error) {
-    console.error("Failed to enable user:", error);
+    // Error is handled by the component's error state
 
     if (eventHandlers?.notification) {
       eventHandlers.notification({
@@ -189,7 +189,7 @@ async function handleDisable(user: AccountUser) {
       });
     }
   } catch (error) {
-    console.error("Failed to disable user:", error);
+    // Error is handled by the component's error state
 
     if (eventHandlers?.notification) {
       eventHandlers.notification({

@@ -136,6 +136,10 @@
       "invalid": "This invitation is no longer valid."
     }
   },
+  "switcher": {
+    "emptyLabel": "Select Account",
+    "helper": "Select an account"
+  },
   "users": {
     "messages": {
       "enable": {

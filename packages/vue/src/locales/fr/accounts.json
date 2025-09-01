@@ -66,5 +66,9 @@
     },
     "emptyMessage": "Aucun client trouvé"
   },
+  "switcher": {
+    "emptyLabel": "Sélectionner un compte",
+    "helper": "Sélectionner un compte"
+  },
   "title": "Clients"
 }

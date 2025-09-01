@@ -66,5 +66,9 @@
     },
     "emptyMessage": "No customers found"
   },
+  "switcher": {
+    "emptyLabel": "Select Account",
+    "helper": "Select an account"
+  },
   "title": "Customers"
 }
