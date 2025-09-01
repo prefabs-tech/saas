@@ -175,7 +175,6 @@ async function fetchInvitations() {
     const response = await getInvitations(accountId, config.apiBaseUrl);
     invitations.value = response;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error("Failed to fetch invitations:", error);
   }
 }
@@ -193,7 +192,6 @@ async function handleDelete(invitation: AccountInvitation) {
       });
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error("Failed to delete invitation:", error);
 
     if (eventHandlers?.notification) {
@@ -223,7 +221,6 @@ async function handleResend(invitation: AccountInvitation) {
       });
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error("Failed to resend invitation:", error);
 
     if (eventHandlers?.notification) {
@@ -248,7 +245,6 @@ async function handleRevoke(invitation: AccountInvitation) {
       });
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error("Failed to revoke invitation:", error);
 
     if (eventHandlers?.notification) {
