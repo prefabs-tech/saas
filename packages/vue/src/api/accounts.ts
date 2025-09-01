@@ -1,4 +1,5 @@
 import { client } from "./axios";
+
 import type { Account, AccountInput, Accounts } from "../types/account";
 
 export const createAccount = async (
@@ -82,7 +83,9 @@ export const updateMyAccount = async (
 export const doesAccountExist = async (
   apiBaseUrl: string
 ): Promise<boolean> => {
-  // Use a simple health check or available endpoint
-  // For now, let's just return true and let the actual API calls handle errors
-  return true;
+  const response = await client(apiBaseUrl).get(`/`, {
+    withCredentials: true,
+  });
+
+  return response.data;
 };

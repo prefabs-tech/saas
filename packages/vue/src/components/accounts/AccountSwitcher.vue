@@ -1,6 +1,6 @@
 <template>
   <div v-if="accounts && accounts.length > 0" class="account-switcher">
-    <small v-if="!noHelperText">{{ t("switcher.helper") }}</small>
+    <small v-if="!noHelperText">{{ t("accounts.switcher.helper") }}</small>
 
     <LoadingIcon v-if="loading" />
 
