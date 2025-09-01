@@ -4,8 +4,8 @@ export type SaasConfig = {
     allowMultipleSessions?: boolean;
     signup?: {
       apiPath?: string;
-      termsAndConditionsUrl?: string;
       appRedirection?: boolean;
+      termsAndConditionsUrl?: string;
     };
   };
   apiBaseUrl: string;

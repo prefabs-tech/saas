@@ -6,11 +6,17 @@ import { signup } from "@/api/accounts";
 import { AccountSignupForm, UserSignupForm } from "@/components/signup";
 import { SIGNUP_PATH_DEFAULT } from "@/constants";
 import { useAccounts, useConfig } from "@/hooks";
-import { AccountSignupData, UserSignupData } from "@/types/account";
+import { AccountSignupData, User, UserSignupData } from "@/types/account";
 
 type SignupProperties = {
-  onSignupFailure?: (err: any) => Promise<void> | void; // eslint-disable-line @typescript-eslint/no-explicit-any
-  onSignupSuccess?: (res: any) => Promise<void> | void; // eslint-disable-line @typescript-eslint/no-explicit-any
+  onSignupFailure?: (
+    err?: any, // eslint-disable-line @typescript-eslint/no-explicit-any
+    data?: UserSignupData | AccountSignupData,
+  ) => Promise<void> | void;
+  onSignupSuccess?: (
+    res?: User,
+    data?: UserSignupData | AccountSignupData,
+  ) => Promise<void> | void;
 };
 
 export const SignupPage = ({
@@ -36,19 +42,20 @@ export const SignupPage = ({
       .then(async (result) => {
         if (result) {
           if (onSignupSuccess) {
-            await onSignupSuccess(result);
+            await onSignupSuccess(result, data);
           }
 
           if (appRedirection && "slug" in data && data.slug) {
-            const appUrl = `http://${data.slug}.${rootDomain}`; // FIXME http used to support local testing
+            const appUrl = `${window.location.protocol}//${data.slug}.${rootDomain}`;
 
-            window.open(appUrl, "_blank");
+            // FIXME Quick solution. Use a better way to handle redirection
+            window.location.replace(appUrl);
           }
         }
       })
       .catch(async (error) => {
         if (onSignupFailure) {
-          await onSignupFailure(error);
+          await onSignupFailure(error, data);
         }
       })
       .finally(() => setLoading(false));
