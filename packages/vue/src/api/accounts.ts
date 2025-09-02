@@ -22,6 +22,16 @@ export const deleteAccount = async (
   });
 };
 
+export const doesAccountExist = async (
+  apiBaseUrl: string
+): Promise<boolean> => {
+  const response = await client(apiBaseUrl).get(`/`, {
+    withCredentials: true,
+  });
+
+  return response.data;
+};
+
 export const getAccount = async (
   id: string,
   apiBaseUrl: string
@@ -41,12 +51,8 @@ export const getAccounts = async (apiBaseUrl: string): Promise<Accounts> => {
   return response.data;
 };
 
-export const updateAccount = async (
-  id: string,
-  data: AccountInput,
-  apiBaseUrl: string
-): Promise<Account> => {
-  const response = await client(apiBaseUrl).put(`/accounts/${id}`, data, {
+export const getMyAccount = async (apiBaseUrl: string): Promise<Account> => {
+  const response = await client(apiBaseUrl).get("/my-account", {
     withCredentials: true,
   });
 
@@ -61,8 +67,12 @@ export const getMyAccounts = async (apiBaseUrl: string): Promise<Account[]> => {
   return response.data;
 };
 
-export const getMyAccount = async (apiBaseUrl: string): Promise<Account> => {
-  const response = await client(apiBaseUrl).get("/my-account", {
+export const updateAccount = async (
+  id: string,
+  data: AccountInput,
+  apiBaseUrl: string
+): Promise<Account> => {
+  const response = await client(apiBaseUrl).put(`/accounts/${id}`, data, {
     withCredentials: true,
   });
 
@@ -74,16 +84,6 @@ export const updateMyAccount = async (
   apiBaseUrl: string
 ): Promise<Account> => {
   const response = await client(apiBaseUrl).put("/my-account", data, {
-    withCredentials: true,
-  });
-
-  return response.data;
-};
-
-export const doesAccountExist = async (
-  apiBaseUrl: string
-): Promise<boolean> => {
-  const response = await client(apiBaseUrl).get(`/`, {
     withCredentials: true,
   });
 
