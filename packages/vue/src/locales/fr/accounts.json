@@ -1,6 +1,10 @@
 {
   "add": "Ajouter un client",
   "edit": "Modifier un client",
+  "error": {
+    "message": "Veuillez revenir plus tard. Si le problème persiste, contactez le support.",
+    "title": "Désolé, quelque chose s'est mal passé."
+  },
   "form": {
     "actions": {
       "cancel": "Annuler",
@@ -66,14 +70,10 @@
     },
     "emptyMessage": "Aucun client trouvé"
   },
+  "title": "Clients",
   "switcher": {
     "emptyLabel": "Sélectionner un compte",
     "helper": "Sélectionner un compte"
-  },
-  "title": "Clients",
-  "error": {
-    "message": "Veuillez revenir plus tard. Si le problème persiste, contactez le support.",
-    "title": "Désolé, quelque chose s'est mal passé."
   },
   "unregisteredDomain": {
     "message": "Veuillez revenir plus tard. Si le problème persiste, contactez le support.",
