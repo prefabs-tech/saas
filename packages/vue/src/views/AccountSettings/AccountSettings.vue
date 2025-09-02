@@ -1,12 +1,12 @@
 <template>
   <Page
+    :loading="loading"
     :title="account?.name"
     :title-tag="
       t(
         `account.type.${account?.individual ? 'individual' : 'organization'}.label`
       )
     "
-    :loading="loading"
     class="account-show account-settings"
   >
     <AccountShow v-if="account && !loading" :account="account" />

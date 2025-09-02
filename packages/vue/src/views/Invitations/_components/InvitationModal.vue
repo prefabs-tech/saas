@@ -21,13 +21,13 @@ import InvitationForm from "./Form.vue";
 import { useTranslations } from "../../../index";
 
 defineProps({
-  show: Boolean,
-  loading: Boolean,
   account: {
+    default: null,
     required: false,
     type: Object,
-    default: null,
   },
+  loading: Boolean,
+  show: Boolean,
 });
 
 defineEmits(["close", "created"]);

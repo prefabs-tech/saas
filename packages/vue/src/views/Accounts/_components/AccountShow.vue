@@ -1,10 +1,10 @@
 <template>
   <TabView
     v-if="processedTabs.length > 0 && visibleTabs.length > 0"
+    :active-key="activeTabKey"
     :id="id"
     :tabs="processedTabs"
     :visible-tabs="visibleTabs"
-    :active-key="activeTabKey"
     @update:active-key="handleTabChange"
   >
     <div v-for="tab in processedTabs" :key="tab.key">
@@ -27,10 +27,10 @@ import type { Account } from "../../../types/account";
 import type { Component, PropType } from "vue";
 
 export interface AccountTab {
-  key: string;
-  label?: string;
   component?: Component;
   display?: boolean;
+  key: string;
+  label?: string;
 }
 
 const props = defineProps({
@@ -38,25 +38,25 @@ const props = defineProps({
     required: true,
     type: Object as PropType<Account>,
   },
+  activeKey: {
+    default: "info",
+    type: String,
+  },
   id: {
     default: "account-show",
     type: String,
+  },
+  persistState: {
+    default: false,
+    type: Boolean,
   },
   tabs: {
     default: () => [],
     type: Array as PropType<AccountTab[]>,
   },
-  activeKey: {
-    default: "info",
-    type: String,
-  },
   visibleTabs: {
     default: () => ["info", "users", "invitations"],
     type: Array as PropType<string[]>,
-  },
-  persistState: {
-    default: false,
-    type: Boolean,
   },
 });
 

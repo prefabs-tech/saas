@@ -32,12 +32,12 @@ import type {
 } from "@prefabs.tech/vue3-tanstack-table";
 
 const props = defineProps({
-  isLoading: Boolean,
   account: {
+    default: null,
     required: false,
     type: Object,
-    default: null,
   },
+  isLoading: Boolean,
 });
 
 const emit = defineEmits(["user:disabled", "user:enabled"]);

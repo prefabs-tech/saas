@@ -51,12 +51,12 @@ import type { SaasConfig } from "../../../types/config";
 import type { SaasEventHandlers, EventMessage } from "../../../types/plugin";
 
 const props = defineProps({
-  loading: Boolean,
   account: {
+    default: null,
     required: false,
     type: Object,
-    default: null,
   },
+  loading: Boolean,
 });
 
 const emit = defineEmits(["cancel", "success"]);

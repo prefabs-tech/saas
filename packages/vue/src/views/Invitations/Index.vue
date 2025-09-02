@@ -46,12 +46,12 @@ import type { AppConfig } from "@prefabs.tech/vue3-config";
 import type { TableColumnDefinition } from "@prefabs.tech/vue3-tanstack-table";
 
 const props = defineProps({
-  isLoading: Boolean,
   account: {
+    default: null,
     required: false,
     type: Object,
-    default: null,
   },
+  isLoading: Boolean,
 });
 
 const emit = defineEmits([
