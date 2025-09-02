@@ -51,6 +51,10 @@
     "created": "Client créé avec succès",
     "updated": "Client mis à jour avec succès"
   },
+  "switcher": {
+    "emptyLabel": "Sélectionner un compte",
+    "helper": "Sélectionner un compte"
+  },
   "table": {
     "actions": {
       "addCustomer": "Ajouter",
@@ -71,10 +75,6 @@
     "emptyMessage": "Aucun client trouvé"
   },
   "title": "Clients",
-  "switcher": {
-    "emptyLabel": "Sélectionner un compte",
-    "helper": "Sélectionner un compte"
-  },
   "unregisteredDomain": {
     "message": "Veuillez revenir plus tard. Si le problème persiste, contactez le support.",
     "title": "Désolé, le sous-domaine ou le domaine n'est pas enregistré."

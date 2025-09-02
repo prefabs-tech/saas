@@ -51,6 +51,10 @@
     "created": "Account created successfully",
     "updated": "Account updated successfully"
   },
+  "switcher": {
+    "emptyLabel": "Select Account",
+    "helper": "Select an account"
+  },
   "table": {
     "actions": {
       "addCustomer": "Add",
@@ -71,10 +75,6 @@
     "emptyMessage": "No customers found"
   },
   "title": "Customers",
-  "switcher": {
-    "emptyLabel": "Select Account",
-    "helper": "Select an account"
-  },
   "unregisteredDomain": {
     "message": "Please visit again later. If the problem persists, please contact support.",
     "title": "Sorry, the subdomain or domain is not registered."
