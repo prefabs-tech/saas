@@ -17,7 +17,7 @@ import { useConfig } from "@prefabs.tech/vue3-config";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { Table } from "@prefabs.tech/vue3-tanstack-table";
 import { BadgeComponent } from "@prefabs.tech/vue3-ui";
-import { ref, onMounted, h, inject } from "vue";
+import { ref, onMounted, h, inject, watch } from "vue";
 import { useRoute } from "vue-router";
 
 import { useTranslations } from "../../index";
@@ -148,6 +148,16 @@ const users = ref<AccountUser[]>([]);
 onMounted(async () => {
   await fetchUsers();
 });
+
+// Watch for account changes and refetch data
+watch(
+  () => props.account?.id,
+  async (newAccountId, oldAccountId) => {
+    if (newAccountId && newAccountId !== oldAccountId) {
+      await fetchUsers();
+    }
+  }
+);
 
 async function fetchUsers() {
   try {
