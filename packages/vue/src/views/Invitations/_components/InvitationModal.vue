@@ -6,6 +6,7 @@
   >
     <InvitationForm
       :loading="loading"
+      :account="account || undefined"
       @cancel="$emit('close')"
       @success="$emit('created', $event)"
     />
@@ -22,6 +23,11 @@ import { useTranslations } from "../../../index";
 defineProps({
   show: Boolean,
   loading: Boolean,
+  account: {
+    required: false,
+    type: Object,
+    default: null,
+  },
 });
 
 defineEmits(["close", "created"]);

@@ -1,28 +1,26 @@
 <template>
   <Page
-    v-if="account?.id"
-    :title="account.name"
+    :title="account?.name"
     :title-tag="
       t(
-        `account.type.${account.individual ? 'individual' : 'organization'}.label`
+        `account.type.${account?.individual ? 'individual' : 'organization'}.label`
       )
     "
-    class="account-settings"
+    :loading="loading"
+    class="account-show account-settings"
   >
-    <LoadingIcon v-if="loading" />
-
-    <AccountDetails v-if="account && !loading" :account="account" />
+    <AccountShow v-if="account && !loading" :account="account" />
   </Page>
 </template>
 
 <script setup lang="ts">
 import { useI18n } from "@prefabs.tech/vue3-i18n";
-import { LoadingIcon, Page } from "@prefabs.tech/vue3-ui";
+import { Page } from "@prefabs.tech/vue3-ui";
 import { ref, onMounted } from "vue";
 
 import { useTranslations } from "../../index";
 import { useMyAccountsStore } from "../../stores/myAccounts";
-import AccountDetails from "../Accounts/_components/AccountDetails.vue";
+import AccountShow from "../Accounts/_components/AccountShow.vue";
 
 import type { Account } from "../../types/account";
 
@@ -31,7 +29,7 @@ const { t } = useI18n({ messages });
 const myAccountsStore = useMyAccountsStore();
 const { fetchMyAccount } = myAccountsStore;
 
-const account = ref<Account>({} as Account);
+const account = ref<Account | null>(null);
 const loading = ref(true);
 
 onMounted(async () => {

@@ -21,6 +21,7 @@
   <InvitationModal
     v-if="showInvitationModal"
     :show="showInvitationModal"
+    :account="account"
     @close="showInvitationModal = false"
     @created="handleInvitationCreated"
   />
@@ -44,8 +45,13 @@ import type { SaasEventHandlers } from "../../types/plugin";
 import type { AppConfig } from "@prefabs.tech/vue3-config";
 import type { TableColumnDefinition } from "@prefabs.tech/vue3-tanstack-table";
 
-defineProps({
+const props = defineProps({
   isLoading: Boolean,
+  account: {
+    required: false,
+    type: Object,
+    default: null,
+  },
 });
 
 const emit = defineEmits([
@@ -67,7 +73,8 @@ const eventHandlers = inject<SaasEventHandlers>(
   { notification: undefined }
 );
 
-const accountId = route.params.id as string;
+// Support both admin app (route params) and user app (props)
+const accountId = props.account?.id || (route.params.id as string);
 
 const actionMenuData = [
   {

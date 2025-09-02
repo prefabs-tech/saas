@@ -31,8 +31,13 @@ import type {
   DataActionsMenuItem,
 } from "@prefabs.tech/vue3-tanstack-table";
 
-defineProps({
+const props = defineProps({
   isLoading: Boolean,
+  account: {
+    required: false,
+    type: Object,
+    default: null,
+  },
 });
 
 const emit = defineEmits(["user:disabled", "user:enabled"]);
@@ -49,7 +54,8 @@ const eventHandlers = inject<SaasEventHandlers>(
   { notification: undefined }
 );
 
-const accountId = route.params.id as string;
+// Support both admin app (route params) and user app (props)
+const accountId = props.account?.id || (route.params.id as string);
 
 const actionMenuData: DataActionsMenuItem[] = [
   {
