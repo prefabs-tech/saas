@@ -3,9 +3,11 @@ import { Page, Tag } from "@prefabs.tech/react-ui";
 
 import { useGetMyAccountQuery } from "@/hooks";
 
-import { AccountShow } from "./_components";
+import { AccountShow, AccountShowProperties } from "./_components";
 
-export const AccountSettingsPage = () => {
+type Properties = Omit<AccountShowProperties, "account">;
+
+export const AccountSettingsPage = ({ ...accountShowOptions }: Properties) => {
   const { t } = useTranslation("account");
 
   const { data, loading } = useGetMyAccountQuery();
@@ -26,7 +28,7 @@ export const AccountSettingsPage = () => {
       title={data?.name}
       loading={loading}
     >
-      {data && <AccountShow account={data} />}
+      {data && <AccountShow account={data} {...accountShowOptions} />}
     </Page>
   );
 };
