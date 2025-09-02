@@ -132,6 +132,17 @@ class AccountService extends BaseService<
 
     return data;
   }
+
+  protected async preUpdate(
+    data: AccountUpdateInput,
+  ): Promise<AccountUpdateInput> {
+    if (this.saasConfig.subdomains === "disabled") {
+      delete data.slug;
+      delete data.domain;
+    }
+
+    return data;
+  }
 }
 
 export default AccountService;
