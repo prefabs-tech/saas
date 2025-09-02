@@ -1,6 +1,10 @@
 {
   "add": "Add customer",
   "edit": "Edit customer",
+  "error": {
+    "message": "Please visit again later. If the problem persists, please contact support.",
+    "title": "Sorry, something went wrong."
+  },
   "form": {
     "actions": {
       "cancel": "Cancel",
@@ -47,6 +51,10 @@
     "created": "Account created successfully",
     "updated": "Account updated successfully"
   },
+  "switcher": {
+    "emptyLabel": "Select Account",
+    "helper": "Select an account"
+  },
   "table": {
     "actions": {
       "addCustomer": "Add",
@@ -66,5 +74,9 @@
     },
     "emptyMessage": "No customers found"
   },
-  "title": "Customers"
+  "title": "Customers",
+  "unregisteredDomain": {
+    "message": "Please visit again later. If the problem persists, please contact support.",
+    "title": "Sorry, the subdomain or domain is not registered."
+  }
 }
