@@ -14,8 +14,6 @@ type AccountCreateInput = Partial<Omit<Account, "id">> & {
   useSeparateDatabase?: boolean;
 };
 
-type AccountUpdateInput = Partial<
-  Omit<Account, "id" | "database" | "name" | "slug">
->;
+type AccountUpdateInput = Partial<Omit<Account, "id" | "database" | "name">>;
 
 export type { Account, AccountCreateInput, AccountUpdateInput };
