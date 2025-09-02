@@ -3,7 +3,7 @@ import AcceptInvitation from "../views/AcceptInvitation/AcceptInvitation.vue";
 import JoinInvitation from "../views/AcceptInvitation/JoinInvitation.vue";
 import SignupInvitation from "../views/AcceptInvitation/SignupInvitation.vue";
 import Accounts from "../views/Accounts/Index.vue";
-import AccountView from "../views/Accounts/View.vue";
+import AccountSettings from "../views/AccountSettings/AccountSettings.vue";
 
 import type { AppRoutesProperties, RouteOverwrite } from "../types/routes";
 import type { Router, RouteRecordRaw } from "vue-router";
@@ -14,7 +14,7 @@ const _appRoutes = {
     meta: {
       authenticated: true,
     },
-    component: AccountView,
+    component: AccountSettings,
     name: "accountSettings",
     path: DEFAULT_PATHS.ACCOUNT_SETTINGS,
   } as RouteRecordRaw,
