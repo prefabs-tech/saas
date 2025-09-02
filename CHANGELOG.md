@@ -1,3 +1,26 @@
+# [0.25.0](https://github.com/prefabs-tech/saas/compare/v0.24.0...v0.25.0) (2025-09-02)
+
+
+### Bug Fixes
+
+* **fastify:** remove slug and domain from account update input for edit operation ([#141](https://github.com/prefabs-tech/saas/issues/141)) ([7b51d48](https://github.com/prefabs-tech/saas/commit/7b51d48b7820815223ceeb760bfcd91775460f94))
+* fix the alphabetical order ([f4335ec](https://github.com/prefabs-tech/saas/commit/f4335ec863adfa8a5a1489f3743395277bffa2a5))
+* update account existence check and improve localization ([674c457](https://github.com/prefabs-tech/saas/commit/674c4570b26f976bcd88307330d90fa4d7122356))
+
+
+### Features
+
+* add correct Vue implementation and fix user reactivity issues ([5628023](https://github.com/prefabs-tech/saas/commit/5628023cfea908b6eb9eae9ee51ccf715c2a039d))
+* enhance AccountSwitcher with dropdown functionality and improved styling ([2b39fb9](https://github.com/prefabs-tech/saas/commit/2b39fb942d2b5034a6b3a67bcedb46796d2f3f6a))
+* implement account settings page and show account details ([ac0789a](https://github.com/prefabs-tech/saas/commit/ac0789a312f780a510e07fc59cdf109eb5f783cf))
+* implement accounts dropdown feature with complete functionality and bug fixes ([a57e9ed](https://github.com/prefabs-tech/saas/commit/a57e9ed0be53e282100b54b2f62dea77fd0cde41))
+* implement accounts dropdown with SuperTokens dependency fixes and linting improvements ([a69b544](https://github.com/prefabs-tech/saas/commit/a69b54428a5b82846de0d37afac85e2d66fdd306))
+* replace AccountSetting.vue and add necessary translations ([cac93de](https://github.com/prefabs-tech/saas/commit/cac93dea00ec6499bb94d7dc8e241b000fca6e15))
+* show the accounts dropdown ([3e9c176](https://github.com/prefabs-tech/saas/commit/3e9c17613eef0b47304dd783d8fc6101d516cd54))
+* updated account tab components to use in the main app ([074f769](https://github.com/prefabs-tech/saas/commit/074f769a374dea2148c46780151be8cc0579f015))
+
+
+
 # [0.24.0](https://github.com/prefabs-tech/saas/compare/v0.23.0...v0.24.0) (2025-08-28)
 
 
