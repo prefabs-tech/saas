@@ -2,8 +2,8 @@ import { DEFAULT_PATHS } from "../constant";
 import AcceptInvitation from "../views/AcceptInvitation/AcceptInvitation.vue";
 import JoinInvitation from "../views/AcceptInvitation/JoinInvitation.vue";
 import SignupInvitation from "../views/AcceptInvitation/SignupInvitation.vue";
+import AccountSettings from "../views/Accounts/AccountSettings.vue";
 import Accounts from "../views/Accounts/Index.vue";
-import AccountSettings from "../views/AccountSettings/AccountSettings.vue";
 
 import type { AppRoutesProperties, RouteOverwrite } from "../types/routes";
 import type { Router, RouteRecordRaw } from "vue-router";

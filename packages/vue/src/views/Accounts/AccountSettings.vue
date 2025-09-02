@@ -3,9 +3,9 @@
     v-if="account?.id"
     :title="account.name"
     :title-tag="
-      account.individual
-        ? t('account.form.fields.type.options.individual')
-        : t('account.form.fields.type.options.organization')
+      t(
+        `account.type.${account.individual ? 'individual' : 'organization'}.label`
+      )
     "
     class="account-settings"
   >
