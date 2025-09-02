@@ -6,6 +6,7 @@
   >
     <InvitationForm
       :loading="loading"
+      :account="account || undefined"
       @cancel="$emit('close')"
       @success="$emit('created', $event)"
     />
@@ -20,8 +21,13 @@ import InvitationForm from "./Form.vue";
 import { useTranslations } from "../../../index";
 
 defineProps({
-  show: Boolean,
+  account: {
+    default: null,
+    required: false,
+    type: Object,
+  },
   loading: Boolean,
+  show: Boolean,
 });
 
 defineEmits(["close", "created"]);

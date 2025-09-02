@@ -1,12 +1,12 @@
-import type { App, Plugin } from "vue";
-import type { LocaleMessages, VueMessageType } from "@prefabs.tech/vue3-i18n";
-import type { SaasVuePluginOptions } from "./types";
-
 import { prependMessages } from "@prefabs.tech/vue3-i18n";
 import { inject } from "vue";
 
 import enMessages from "./locales/en/index";
 import frMessages from "./locales/fr/index";
+
+import type { SaasVuePluginOptions } from "./types";
+import type { LocaleMessages, VueMessageType } from "@prefabs.tech/vue3-i18n";
+import type { App, Plugin } from "vue";
 
 const __saasConfig = Symbol.for("saas.config");
 const __saasEventHandlers = Symbol.for("saas.eventHandlers");
@@ -55,6 +55,11 @@ export { default as AccountSwitcher } from "./components/accounts/AccountSwitche
 export { default as SaasAccountsProvider } from "./components/SaasAccountsProvider.vue";
 export { default as SaasWrapper } from "./components/SaasWrapper.vue";
 export { default as ConfigProvider } from "./components/ConfigProvider.vue";
+
+// Views
+export { default as AccountSettings } from "./views/AccountSettings/AccountSettings.vue";
+export { default as AccountShow } from "./views/Accounts/_components/AccountShow.vue";
+export { DEFAULT_PATHS } from "./constant";
 
 // Utilities
 export { checkIsAdminApp } from "./utils/common";

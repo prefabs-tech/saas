@@ -136,6 +136,14 @@
       "invalid": "This invitation is no longer valid."
     }
   },
+  "type": {
+    "individual": {
+      "label": "Individual"
+    },
+    "organization": {
+      "label": "Organization"
+    }
+  },
   "users": {
     "messages": {
       "enable": {
