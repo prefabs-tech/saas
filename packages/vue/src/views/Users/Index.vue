@@ -54,7 +54,7 @@ const eventHandlers = inject<SaasEventHandlers>(
   { notification: undefined }
 );
 
-// Reactive accountId - automatically updates when props.account?.id changes
+// Reactive accountId
 const accountId = computed(() => {
   return props.account?.id || (route.params.id as string);
 });

@@ -26,7 +26,6 @@ const messages = useTranslations();
 const { t } = useI18n({ messages });
 const myAccountsStore = useMyAccountsStore();
 
-// Get activeAccount directly from store
 const activeAccount = computed(() => myAccountsStore.activeAccount);
 const loading = ref(true);
 
@@ -38,7 +37,6 @@ async function prepareComponent() {
   loading.value = true;
 
   try {
-    // If no activeAccount, fetch it
     if (!activeAccount.value) {
       await myAccountsStore.fetchMyAccount();
     }
