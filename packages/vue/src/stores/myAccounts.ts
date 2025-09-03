@@ -78,10 +78,6 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
     const { clearState = true } = options;
     accountLoading.value = true;
 
-    console.log("Store switchAccount called:", {
-      from: activeAccount.value?.id,
-      to: newAccount?.id,
-    });
     activeAccount.value = newAccount;
 
     const { allowMultipleSessions = true } = config.value?.accounts || {};

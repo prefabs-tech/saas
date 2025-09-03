@@ -49,10 +49,6 @@ watch(
   activeAccount,
   async (newActiveAccount, oldActiveAccount) => {
     if (newActiveAccount && newActiveAccount.id !== oldActiveAccount?.id) {
-      console.log("ActiveAccount changed:", {
-        old: oldActiveAccount?.id,
-        new: newActiveAccount.id,
-      });
       await prepareComponent();
     }
   },
@@ -64,10 +60,8 @@ async function prepareComponent() {
   try {
     // If we have an activeAccount, use it directly, otherwise fetch from API
     if (activeAccount.value) {
-      console.log("Using activeAccount from store:", activeAccount.value.id);
       account.value = activeAccount.value;
     } else {
-      console.log("Fetching account from API");
       account.value = await fetchMyAccount();
     }
   } finally {

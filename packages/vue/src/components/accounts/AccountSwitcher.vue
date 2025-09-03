@@ -99,17 +99,15 @@ const toggle = () => {
 
 // Select account and close dropdown
 const selectAccount = (account: Account) => {
-  console.log("AccountSwitcher selectAccount called:", account.id);
-
   if (account.id === activeAccount.value?.id) {
     console.log("Same account selected, ignoring");
     expanded.value = false;
     return;
   }
 
-  console.log("Switching to account:", account.id);
   switchAccount(account);
   emit("switch", account);
+
   expanded.value = false;
 };
 
