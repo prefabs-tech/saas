@@ -1,6 +1,13 @@
 {
+  "account": {
+    "actions": {
+      "switch": "Switch"
+    },
+    "active": "Active"
+  },
   "add": "Add customer",
   "edit": "Edit customer",
+  "empty": "No accounts found",
   "error": {
     "message": "Please visit again later. If the problem persists, please contact support.",
     "title": "Sorry, something went wrong."
@@ -74,7 +81,7 @@
     },
     "emptyMessage": "No customers found"
   },
-  "title": "Customers",
+  "title": "My Accounts",
   "unregisteredDomain": {
     "message": "Please visit again later. If the problem persists, please contact support.",
     "title": "Sorry, the subdomain or domain is not registered."
