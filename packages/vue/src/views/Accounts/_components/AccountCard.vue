@@ -1,12 +1,24 @@
 <template>
   <div class="account-card" :class="{ 'account-card--active': active }">
-    <div class="account-card__header">
-      <h3 class="account-card__title">{{ account.name }}</h3>
-      <div class="account-card__actions">
+    <div class="account-card__main">
+      <div class="account-card__info">
+        <h3 class="account-card__name">{{ account.name }}</h3>
+        <BadgeComponent
+          :label="
+            t(
+              `account.type.${account.individual ? 'individual' : 'organization'}.label`
+            )
+          "
+          :severity="'info'"
+          size="small"
+        />
+      </div>
+      <div class="account-card__action">
         <BadgeComponent
           v-if="active"
           :label="t('accounts.account.active')"
           severity="success"
+          size="small"
         />
         <ButtonElement
           v-else
@@ -16,22 +28,10 @@
           size="small"
           variant="outlined"
           severity="secondary"
+          class="account-card__button"
           @click="$emit('switch', account)"
         />
       </div>
-    </div>
-
-    <div class="account-card__content">
-      <p class="account-card__type">
-        {{
-          t(
-            `account.type.${account.individual ? "individual" : "organization"}.label`
-          )
-        }}
-      </p>
-      <p v-if="account.slug" class="account-card__slug">
-        {{ account.slug }}
-      </p>
     </div>
   </div>
 </template>
@@ -71,54 +71,91 @@ defineEmits<{
 <style scoped>
 .account-card {
   border: 1px solid var(--surface-border);
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
+  border-radius: 12px;
+  padding: 1rem;
   background: var(--surface-card);
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .account-card:hover {
   border-color: var(--primary-color);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
 }
 
-.account-card--active {
-  border-color: var(--primary-color);
-  background: var(--primary-color-text);
-}
-
-.account-card__header {
+.account-card__main {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.account-card__title {
+.account-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.account-card__name {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--text-color);
+  line-height: 1.4;
+  word-break: break-word;
 }
 
-.account-card__actions {
-  flex-shrink: 0;
-  margin-left: 1rem;
+.account-card__action {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-.account-card__content {
-  color: var(--text-color-secondary);
+.account-card__button {
+  min-width: auto;
+  white-space: nowrap;
 }
 
-.account-card__type {
-  margin: 0 0 0.5rem 0;
-  font-weight: 500;
+.account-card .badge {
+  margin-bottom: 0;
 }
 
-.account-card__slug {
-  margin: 0;
-  font-family: monospace;
-  font-size: 0.875rem;
-  opacity: 0.8;
+@media (min-width: 768px) {
+  .account-card {
+    padding: 1.5rem;
+  }
+
+  .account-card__main {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .account-card__info {
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .account-card__name {
+    font-size: 1.25rem;
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 992px) {
+  .account-card {
+    padding: 2rem;
+  }
+
+  .account-card__name {
+    font-size: 1.375rem;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .account-card--active {
+    background: rgba(var(--primary-color-rgb), 0.1);
+  }
 }
 </style>

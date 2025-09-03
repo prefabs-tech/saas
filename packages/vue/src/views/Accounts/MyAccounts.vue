@@ -47,14 +47,54 @@ const handleSwitch = (account: Account) => {
 <style scoped>
 .accounts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .empty-state {
   text-align: center;
-  padding: 2rem;
+  padding: 3rem 1rem;
   color: var(--text-color-secondary);
+}
+
+.empty-state p {
+  font-size: 1.125rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .accounts-grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .empty-state {
+    padding: 4rem 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .accounts-grid {
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 2rem;
+  }
+
+  .empty-state {
+    padding: 5rem 3rem;
+  }
+
+  .empty-state p {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .accounts-grid {
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2.5rem;
+  }
 }
 </style>
