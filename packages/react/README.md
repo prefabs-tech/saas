@@ -52,19 +52,19 @@ The `AccountsProvider` accepts a `config` prop to customize its behavior. Below 
 ```typescript
 config: {
   accounts?: {
-    autoSelectAccount?: boolean; // (default: true) 
-    allowMultipleSessions?: boolean; // (default: true) 
+    autoSelectAccount?: boolean; // (default: true)
+    allowMultipleSessions?: boolean; // (default: true)
     signup?: {
       apiPath?: string;
-      termsAndConditionsUrl?: string; 
+      termsAndConditionsUrl?: string;
       appRedirection?: boolean;
     };
   };
   apiBaseUrl: string;
   mainAppSubdomain: string;
-  rootDomain: string; 
+  rootDomain: string;
   multiDatabase: boolean;
-  saasAccountRoles?: string[]; 
+  saasAccountRoles?: string[];
   subdomains: "required" | "optional" | "disabled";
 };
 ```
@@ -88,12 +88,12 @@ config: {
   - `"optional"`: Subdomains are optional and can be used if needed.
   - `"disabled"`: Subdomains are not used in the SaaS platform.
 
-
 ### Routing
 
 This package provides pre-configured routes for SaaS applications, designed to simplify navigation in multi-tenant platforms. The two main methods for generating routes are:
 
 #### `getSaasAdminRoutes`
+
 - **Purpose**: Generates routes for the admin section of a SaaS application.
 - **Ideal use case**: Use this method in your **Admin App**.
 - **Parameters**:
@@ -107,6 +107,7 @@ This package provides pre-configured routes for SaaS applications, designed to s
     - `accountsView`: Customizes the "Viefw Account" route.
 
 #### `getSaasAppRoutes`
+
 - **Purpose**: Generates routes for the main application section of a SaaS platform.
 - **Ideal use case**: Use this method in your **Main App**.
 - **Parameters**:
@@ -125,7 +126,10 @@ This package provides pre-configured routes for SaaS applications, designed to s
 ### Example usage
 
 ```typescript
-import { getSaasAdminRoutes, getSaasAppRoutes } from "@prefabs.tech/saas-react/routes";
+import {
+  getSaasAdminRoutes,
+  getSaasAppRoutes,
+} from "@prefabs.tech/saas-react/routes";
 
 // Admin App
 const adminRoutes = getSaasAdminRoutes();
@@ -141,6 +145,7 @@ These methods allow you to easily define and manage routes for different section
 This package provides several reusable components and pages to simplify SaaS application development. Below is a list of all exported components and pages:
 
 #### Components
+
 - **Account components**:
   - `AccountSwitcher`: Allows users to switch between accounts.
   - `AccountForm`: A form for creating or editing account details.
@@ -155,18 +160,22 @@ This package provides several reusable components and pages to simplify SaaS app
   - `UserSignupForm`: A form for user signup.
 
 #### Pages
+
 - **AcceptInvitation pages**:
-  - `AcceptInvitation`: Handles the process of accepting an invitation to join or signup to an account.
-  - `JoinInvitation`: Manages the process of joining an account via an invitation.
-  - `SignupInvitation`: Facilitates signing up for an account through an invitation.
+
+  - `AcceptInvitationPage`: Handles the process of accepting an invitation to join or signup to an account.
+  - `JoinInvitationPage`: Manages the process of joining an account via an invitation.
+  - `SignupInvitationPage`: Facilitates signing up for an account through an invitation.
 
 - **Account pages**:
-  - `AccountAdd`: Provides a page for adding a new account.
-  - `AccountEdit`: Allows editing of existing account details.
-  - `AccountSettings`: Displays and manages account information including user and invitations.
-  - `AccountView`: Shows detailed information about a specific account.
+
+  - `AccountAddPage`: Provides a page for adding a new account.
+  - `AccountEditPage`: Allows editing of existing account details.
+  - `AccountSettingsPage`: Displays and manages account information including user and invitations.
+  - `AccountViewPage`: Shows detailed information about a specific account.
 
 - **MyAccounts pages**:
+
   - `MyAccountsPage`: Displays a list of accounts associated with the user and allows account switching or management.
 
 - **Signup pages**:
@@ -174,6 +183,40 @@ This package provides several reusable components and pages to simplify SaaS app
 
 These components and pages can be imported and used directly in your application.
 
+### Customizing tabs in `AccountViewPage` and `AccountSettingsPage`
+
+To cutomize the tabs in `AccountViewPage` in admin app and `AccountSettingsPage` in user app, you can import these page components in your app and pass it as custom element to the route option in `getSaasAdminRoutes` or `getSaasAppRoutes`. Then you can use the page props to customize the tabs in the page along with other attributes.
+
+```{typescript}
+{getSaasAdminRoutes("authenticated", {
+  routes: {
+    // accountSettings in case of user app
+    accountsView: {
+      element: (
+        <AccountViewPage // <AccountSettingsPage /> in case of user app
+          showToolbar={true} // to show/hide page toolbar, supported only in AccountViewPage
+          tabs={[
+            {
+              key: "newTab",
+              label: "New tab",
+              children: <div>Content of new tab</div>,
+            },
+          ]}
+          activeTab="info"
+          visibleTabs={["info", "users", "invitations", "newTab"]}
+        />
+      ),
+    },
+  },
+})}
+```
+
+- To add new tab, add new tab (type: AccountTab) object in `tabs` prop
+- To change the default tab when opening the page, update value in the `activeTab` prop
+- To change the order of tabs, change order of elements in the `visibleTabs` prop
+- To customize existing tab, add an object in tabs with its key and update any attribute. for example `{key: "info", label: "Information"}`
+
+See component to check prop types and other options: [AccountViewPage](https://github.com/prefabs-tech/saas/blob/main/packages/react/src/views/Account/AccountView.tsx) [AccountSettingsPage](https://github.com/prefabs-tech/saas/blob/main/packages/react/src/views/Account/AccountSettings.tsx)
 
 ### i18n support
 

@@ -1,4 +1,4 @@
-import path from "node:path";
+import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { defineConfig, loadEnv } from "vite";
@@ -12,11 +12,9 @@ export default defineConfig(({ mode }) => {
   return {
     build: {
       lib: {
-        entry: path.resolve(
-          path.dirname(fileURLToPath(import.meta.url)),
-          "src/index.ts",
-        ),
+        entry: resolve(dirname(fileURLToPath(import.meta.url)), "src/index.ts"),
         fileName: "prefabs-tech-saas-fastify",
+        formats: ["cjs", "es"],
         name: "PrefabsTechSaasFastify",
       },
       rollupOptions: {

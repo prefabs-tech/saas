@@ -4,17 +4,11 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { useConfig, useGetAccountQuery } from "@/hooks";
 
-import { AccountShow, AccountTab } from "./_components";
+import { AccountShow, AccountShowProperties } from "./_components";
 import { DEFAULT_PATHS } from "../../constants";
 
-type Properties = {
+type Properties = Omit<AccountShowProperties, "account"> & {
   showToolbar?: boolean;
-  id?: string;
-  tabs?: Array<AccountTab>;
-  activeKey?: string;
-  persistState?: boolean;
-  visibleTabs?: Array<string>;
-  onVisibleTabsChange?: (visibleTabs: Array<string>) => void;
 };
 
 export const AccountViewPage = ({

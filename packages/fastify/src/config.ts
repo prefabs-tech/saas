@@ -15,6 +15,7 @@ const getSaasConfig = (config: ApiConfig) => {
       /^\/$/,
       /^\/auth\//,
       "/me",
+      "/invitation/token/",
       ...(saasConfig.excludeRoutePatterns || []),
     ],
     handlers: saasConfig.handlers,

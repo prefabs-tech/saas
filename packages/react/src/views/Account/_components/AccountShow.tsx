@@ -15,11 +15,11 @@ export type AccountTab = {
   display?: boolean;
 };
 
-type Properties = {
+export type AccountShowProperties = {
   account: Account;
   id?: string;
   tabs?: Array<AccountTab>;
-  activeKey?: string;
+  activeTab?: string;
   persistState?: boolean;
   visibleTabs?: Array<string>;
   onVisibleTabsChange?: (visibleTabs: Array<string>) => void;
@@ -29,10 +29,10 @@ export const AccountShow = ({
   id = "account-show",
   account,
   tabs = [],
-  activeKey = "info",
+  activeTab = "info",
   visibleTabs = ["info", "users", "invitations"],
   ...others
-}: Properties) => {
+}: AccountShowProperties) => {
   const { t } = useTranslation("account");
 
   const defaultTabs = [
@@ -70,8 +70,8 @@ export const AccountShow = ({
     (tab) => tab.display !== false && tab.children && tab.label,
   );
 
-  const activeTabKey = filteredTabs.find((tab) => tab.key === activeKey)
-    ? activeKey
+  const activeTabKey = filteredTabs.find((tab) => tab.key === activeTab)
+    ? activeTab
     : filteredTabs[0]?.key;
 
   return (
