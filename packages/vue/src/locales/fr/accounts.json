@@ -1,6 +1,13 @@
 {
+  "account": {
+    "actions": {
+      "switch": "Changer"
+    },
+    "active": "Actif"
+  },
   "add": "Ajouter un client",
   "edit": "Modifier un client",
+  "empty": "Aucun compte trouvé",
   "error": {
     "message": "Veuillez revenir plus tard. Si le problème persiste, contactez le support.",
     "title": "Désolé, quelque chose s'est mal passé."
@@ -74,7 +81,7 @@
     },
     "emptyMessage": "Aucun client trouvé"
   },
-  "title": "Clients",
+  "title": "Mes Comptes",
   "unregisteredDomain": {
     "message": "Veuillez revenir plus tard. Si le problème persiste, contactez le support.",
     "title": "Désolé, le sous-domaine ou le domaine n'est pas enregistré."

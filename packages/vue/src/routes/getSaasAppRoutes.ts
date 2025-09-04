@@ -2,7 +2,7 @@ import { DEFAULT_PATHS } from "../constant";
 import AcceptInvitation from "../views/AcceptInvitation/AcceptInvitation.vue";
 import JoinInvitation from "../views/AcceptInvitation/JoinInvitation.vue";
 import SignupInvitation from "../views/AcceptInvitation/SignupInvitation.vue";
-import Accounts from "../views/Accounts/Index.vue";
+import MyAccounts from "../views/Accounts/MyAccounts.vue";
 import AccountSettings from "../views/AccountSettings/AccountSettings.vue";
 
 import type { AppRoutesProperties, RouteOverwrite } from "../types/routes";
@@ -23,7 +23,7 @@ const _appRoutes = {
     meta: {
       authenticated: true,
     },
-    component: Accounts,
+    component: MyAccounts,
     name: "myAccounts",
     path: DEFAULT_PATHS.MY_ACCOUNTS,
   } as RouteRecordRaw,
