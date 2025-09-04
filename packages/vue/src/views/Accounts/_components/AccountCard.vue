@@ -9,7 +9,7 @@
               `account.type.${account.individual ? 'individual' : 'organization'}.label`
             )
           "
-          :severity="'info'"
+          severity="primary"
           size="small"
         />
       </div>
