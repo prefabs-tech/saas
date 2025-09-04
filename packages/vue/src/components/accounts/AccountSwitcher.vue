@@ -106,7 +106,11 @@ const selectAccount = (account: Account) => {
 
   switchAccount(account);
   emit("switch", account);
+
   expanded.value = false;
+
+  // Refresh the page to update all components with the new account
+  window.location.reload();
 };
 
 // Close dropdown when clicking outside

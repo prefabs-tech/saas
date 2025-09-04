@@ -17,7 +17,7 @@ import { useConfig } from "@prefabs.tech/vue3-config";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { Table } from "@prefabs.tech/vue3-tanstack-table";
 import { BadgeComponent } from "@prefabs.tech/vue3-ui";
-import { ref, onMounted, h, inject } from "vue";
+import { ref, onMounted, h, inject, computed } from "vue";
 import { useRoute } from "vue-router";
 
 import { useTranslations } from "../../index";
@@ -54,8 +54,10 @@ const eventHandlers = inject<SaasEventHandlers>(
   { notification: undefined }
 );
 
-// Support both admin app (route params) and user app (props)
-const accountId = props.account?.id || (route.params.id as string);
+// Reactive accountId
+const accountId = computed(() => {
+  return props.account?.id || (route.params.id as string);
+});
 
 const actionMenuData: DataActionsMenuItem[] = [
   {
@@ -151,7 +153,7 @@ onMounted(async () => {
 
 async function fetchUsers() {
   try {
-    const response = await getUsers(accountId, config.apiBaseUrl);
+    const response = await getUsers(accountId.value, config.apiBaseUrl);
     users.value = response;
   } catch (error) {
     console.error("Failed to fetch users:", error);

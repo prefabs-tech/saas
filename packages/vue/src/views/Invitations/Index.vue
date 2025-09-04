@@ -33,7 +33,7 @@ import { useConfig } from "@prefabs.tech/vue3-config";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { Table } from "@prefabs.tech/vue3-tanstack-table";
 import { BadgeComponent, ButtonElement } from "@prefabs.tech/vue3-ui";
-import { ref, onMounted, h, inject } from "vue";
+import { ref, onMounted, h, inject, computed } from "vue";
 import { useRoute } from "vue-router";
 
 import InvitationModal from "./_components/InvitationModal.vue";
@@ -73,8 +73,10 @@ const eventHandlers = inject<SaasEventHandlers>(
   { notification: undefined }
 );
 
-// Support both admin app (route params) and user app (props)
-const accountId = props.account?.id || (route.params.id as string);
+// Reactive accountId
+const accountId = computed(() => {
+  return props.account?.id || (route.params.id as string);
+});
 
 const actionMenuData = [
   {
@@ -179,7 +181,7 @@ onMounted(async () => {
 
 async function fetchInvitations() {
   try {
-    const response = await getInvitations(accountId, config.apiBaseUrl);
+    const response = await getInvitations(accountId.value, config.apiBaseUrl);
     invitations.value = response;
   } catch (error) {
     console.error("Failed to fetch invitations:", error);
@@ -188,7 +190,7 @@ async function fetchInvitations() {
 
 async function handleDelete(invitation: AccountInvitation) {
   try {
-    await deleteInvitation(accountId, invitation.id, config.apiBaseUrl);
+    await deleteInvitation(accountId.value, invitation.id, config.apiBaseUrl);
     await fetchInvitations();
     emit("invitation:deleted", invitation);
 
@@ -217,7 +219,7 @@ const handleInvitationCreated = async () => {
 
 async function handleResend(invitation: AccountInvitation) {
   try {
-    await resendInvitation(accountId, invitation.id, config.apiBaseUrl);
+    await resendInvitation(accountId.value, invitation.id, config.apiBaseUrl);
     await fetchInvitations();
     emit("invitation:resent", invitation);
 
@@ -241,7 +243,7 @@ async function handleResend(invitation: AccountInvitation) {
 
 async function handleRevoke(invitation: AccountInvitation) {
   try {
-    await revokeInvitation(accountId, invitation.id, config.apiBaseUrl);
+    await revokeInvitation(accountId.value, invitation.id, config.apiBaseUrl);
     await fetchInvitations();
     emit("invitation:revoked", invitation);
 
