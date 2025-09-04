@@ -8,7 +8,6 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import { useConfig } from "@/hooks";
 
 type Properties = {
-  alignment?: "fill" | "left" | "right";
   cancelButtonOptions?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
   loading?: boolean;
   showCancel?: boolean;
@@ -16,7 +15,6 @@ type Properties = {
 };
 
 export const SignupFormActions = ({
-  alignment = "fill",
   cancelButtonOptions,
   loading,
   showCancel = false,
@@ -24,7 +22,7 @@ export const SignupFormActions = ({
 }: Properties) => {
   const { t } = useTranslation("accounts");
 
-  const { accounts } = useConfig();
+  const { accounts, ui } = useConfig();
   const { termsAndConditionsUrl } = accounts?.signup || {};
 
   const {
@@ -49,7 +47,7 @@ export const SignupFormActions = ({
   ];
 
   if (showCancel) {
-    actions.unshift({
+    actions.push({
       id: "cancel",
       label: t("signup.actions.previous"),
       severity: "secondary",
@@ -60,6 +58,11 @@ export const SignupFormActions = ({
   }
 
   return (
-    <FormActions actions={actions} alignment={alignment} loading={loading} />
+    <FormActions
+      actions={actions}
+      alignment={ui?.signup?.form?.actionsAlignment}
+      reverse={ui?.signup?.form?.actionsReverse}
+      loading={loading}
+    />
   );
 };

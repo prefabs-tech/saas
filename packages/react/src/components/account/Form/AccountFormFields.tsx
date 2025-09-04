@@ -22,7 +22,7 @@ export const AccountFormFields = ({
 }: Properties) => {
   const { t } = useTranslation("account");
 
-  const { entity, multiDatabase, subdomains } = useConfig();
+  const { entity, multiDatabase, subdomains, ui } = useConfig();
 
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -116,7 +116,12 @@ export const AccountFormFields = ({
           )}
         </>
       )}
-      <FormActions actions={formActions} alignment="fill" loading={loading} />
+      <FormActions
+        actions={formActions}
+        alignment={ui?.account?.form?.actionsAlignment}
+        reverse={ui?.account?.form?.actionsReverse}
+        loading={loading}
+      />
     </>
   );
 };
