@@ -56,8 +56,8 @@ config: {
     allowMultipleSessions?: boolean; // (default: true)
     signup?: {
       apiPath?: string;
-      termsAndConditionsUrl?: string;
       appRedirection?: boolean;
+      termsAndConditionsUrl?: string;
     };
   };
   apiBaseUrl: string;
@@ -76,8 +76,8 @@ config: {
   - **`allowMultipleSessions`**: When enabled (default), users can maintain multiple active sessions across different accounts.
   - **`signup`**: Configuration for signup-related operations.
     - **`apiPath`**: The api path for signup
-    - **`termsAndConditionsUrl`**: url for the terms and conditions page.
     - **`appRedirection`**: Indicates whether to redirect to the app after signup.
+    - **`termsAndConditionsUrl`**: url for the terms and conditions page.
 - **`apiBaseUrl`**: The base url for all api requests.
 - **`mainAppSubdomain`**: Specifies the subdomain for the main application.
 - **`rootDomain`**: The root domain of your SaaS platform.
