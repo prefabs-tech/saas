@@ -255,6 +255,7 @@ export const AccountUsersTable = ({
 
   return (
     <DataTable
+      id="account-users-table"
       className={className}
       columns={[...defaultColumns, ...columns]}
       data={data || []}
@@ -274,6 +275,7 @@ export const AccountUsersTable = ({
           : defaultActionsMenu
       }
       isLoading={loading}
+      persistState={true}
       {...tableProperties}
     ></DataTable>
   );
