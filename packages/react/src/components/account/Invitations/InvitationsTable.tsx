@@ -225,6 +225,7 @@ export const AccountInvitationsTable = ({
 
   return (
     <DataTable
+      id="account-invitations-table"
       className={className}
       columns={[...defaultColumns, ...columns]}
       data={data || []}
@@ -281,6 +282,7 @@ export const AccountInvitationsTable = ({
         ],
       }}
       isLoading={loading}
+      persistState={true}
       {...tableOptions}
     ></DataTable>
   );

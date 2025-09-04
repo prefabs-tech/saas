@@ -96,6 +96,7 @@ export const AccountsTable = ({
 
   return (
     <DataTable
+      id="accounts-table"
       className={className}
       columns={[...defaultColumns, ...columns]}
       data={accounts}
@@ -108,6 +109,7 @@ export const AccountsTable = ({
         itemsPerPageControlLabel: t("table.pagination.rowsPerPage"),
       }}
       initialSorting={[{ id: "name", desc: false }]}
+      persistState={true}
       {...tableOptions}
     ></DataTable>
   );
