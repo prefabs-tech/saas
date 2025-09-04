@@ -29,21 +29,25 @@ export const getSaasAppRoutes = (
     meta: { isMainApp },
   } = useAccounts();
 
-  // TODO save path overwrites in config so that other components can use it.
+  // TODO save path overwrites in config so that other components can use it. \
+  // Then uncomment commented paths below
 
   let routes = [
     {
-      path: accountSettings?.path || DEFAULT_PATHS.ACCOUNT_SETTINGS,
+      // path: accountSettings?.path || DEFAULT_PATHS.ACCOUNT_SETTINGS,
+      path: DEFAULT_PATHS.ACCOUNT_SETTINGS,
       element: accountSettings?.element || <AccountSettingsPage />,
       disabled: accountSettings?.disabled,
     },
     {
-      path: invitationJoin?.path || DEFAULT_PATHS.INVITATION_JOIN,
+      // path: invitationJoin?.path || DEFAULT_PATHS.INVITATION_JOIN,
+      path: DEFAULT_PATHS.INVITATION_JOIN,
       element: invitationJoin?.element || <JoinInvitationPage />,
       disabled: invitationJoin?.disabled || !isMainApp,
     },
     {
-      path: myAccounts?.path || DEFAULT_PATHS.MY_ACCOUNTS,
+      // path: myAccounts?.path || DEFAULT_PATHS.MY_ACCOUNTS,
+      path: DEFAULT_PATHS.MY_ACCOUNTS,
       element: myAccounts?.element || <MyAccountsPage />,
       disabled: myAccounts?.disabled,
     },
@@ -52,12 +56,14 @@ export const getSaasAppRoutes = (
   if (type === "unauthenticated") {
     routes = [
       {
-        path: invitationSignup?.path || DEFAULT_PATHS.INVITATION_SIGNUP,
+        // path: invitationSignup?.path || DEFAULT_PATHS.INVITATION_SIGNUP,
+        path: DEFAULT_PATHS.INVITATION_SIGNUP,
         element: invitationSignup?.element || <SignupInvitationPage />,
         disabled: invitationSignup?.disabled,
       },
       {
-        path: signup?.path || DEFAULT_PATHS.SIGNUP,
+        // path: signup?.path || DEFAULT_PATHS.SIGNUP,
+        path: DEFAULT_PATHS.SIGNUP,
         element: signup?.element || <SignupPage />,
         disabled: signup?.disabled,
       },
@@ -67,7 +73,8 @@ export const getSaasAppRoutes = (
   if (type === "public") {
     routes = [
       {
-        path: invitationAccept?.path || DEFAULT_PATHS.INVITATION_ACCEPT,
+        // path: invitationAccept?.path || DEFAULT_PATHS.INVITATION_ACCEPT,
+        path: DEFAULT_PATHS.INVITATION_ACCEPT,
         element: invitationAccept?.element || <AcceptInvitationPage />,
         disabled: invitationAccept?.disabled,
       },

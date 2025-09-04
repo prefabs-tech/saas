@@ -1,5 +1,3 @@
-import { SaasConfig } from "./types";
-
 export const ACCOUNT_HEADER_NAME = "x-account-id";
 
 export const ADMIN_SUBDOMAIN_DFAULT = "admin";

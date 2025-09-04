@@ -12,7 +12,7 @@ type Properties = Omit<AccountShowProperties, "account"> & {
 };
 
 export const AccountViewPage = ({
-  showToolbar,
+  showToolbar = true,
   ...accountShowOptions
 }: Properties) => {
   const { t } = useTranslation("account");
@@ -50,7 +50,10 @@ export const AccountViewPage = ({
               variant="textOnly"
               label={t("toolbar.back")}
             ></Button>
+
             <Button
+              iconLeft={"pi pi-pen-to-square"}
+              title={t("toolbar.edit")}
               onClick={() => {
                 navigate(
                   DEFAULT_PATHS.ACCOUNTS_EDIT.replace(
@@ -59,8 +62,7 @@ export const AccountViewPage = ({
                   ),
                 );
               }}
-              label={t("toolbar.edit")}
-            ></Button>
+            />
           </>
         )
       }
