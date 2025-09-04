@@ -100,7 +100,6 @@ const toggle = () => {
 // Select account and close dropdown
 const selectAccount = (account: Account) => {
   if (account.id === activeAccount.value?.id) {
-    console.log("Same account selected, ignoring");
     expanded.value = false;
     return;
   }
@@ -109,6 +108,9 @@ const selectAccount = (account: Account) => {
   emit("switch", account);
 
   expanded.value = false;
+
+  // Refresh the page to update all components with the new account
+  window.location.reload();
 };
 
 // Close dropdown when clicking outside
