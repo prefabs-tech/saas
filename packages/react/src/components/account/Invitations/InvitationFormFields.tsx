@@ -10,12 +10,13 @@ import {
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 
+import { useConfig } from "@/hooks";
 import { InvitationExpiryDateField } from "@/types";
 
 interface IProperties {
   expiryDateField?: InvitationExpiryDateField;
-  roles?: string[];
   loading?: boolean;
+  roles?: string[];
   onCancel?: () => void;
   renderAdditionalFields?: RenderAdditionalFormFields;
 }
@@ -28,10 +29,12 @@ export const AccountInvitationFormFields: React.FC<IProperties> = ({
 }) => {
   const { t } = useTranslation("account");
 
+  const { ui } = useConfig();
+
   const {
+    formState: { errors, submitCount },
     register,
     getFieldState,
-    formState: { errors, submitCount },
   } = useFormContext();
 
   const renderExpiryDateField = () => (
@@ -90,6 +93,11 @@ export const AccountInvitationFormFields: React.FC<IProperties> = ({
       <FormActions
         actions={[
           {
+            id: "submit",
+            label: t("invitations.form.actions.submit"),
+            disabled: !!Object.values(errors).length,
+          },
+          {
             id: "cancel",
             onClick: (event) => {
               event.preventDefault();
@@ -97,14 +105,10 @@ export const AccountInvitationFormFields: React.FC<IProperties> = ({
             },
             label: t("invitations.form.actions.cancel"),
           },
-          {
-            id: "submit",
-            label: t("invitations.form.actions.submit"),
-            disabled: !!Object.values(errors).length,
-          },
         ]}
         loading={loading}
-        alignment="fill"
+        alignment={ui?.invitation?.form?.actionsAlignment}
+        reverse={ui?.invitation?.form?.actionsReverse}
       />
     </>
   );

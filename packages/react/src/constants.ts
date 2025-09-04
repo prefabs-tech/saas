@@ -1,6 +1,29 @@
+import { SaasConfig } from "./types";
+
 export const ACCOUNT_HEADER_NAME = "x-account-id";
 
 export const ADMIN_SUBDOMAIN_DFAULT = "admin";
+
+export const CONFIG_UI_DEFAULT = {
+  account: {
+    form: {
+      actionsAlignment: "right" as const,
+      actionsReverse: false,
+    },
+  },
+  invitation: {
+    form: {
+      actionsAlignment: "fill" as const,
+      actionsReverse: true,
+    },
+  },
+  signup: {
+    form: {
+      actionsAlignment: "fill" as const,
+      actionsReverse: true,
+    },
+  },
+};
 
 export const SIGNUP_PATH_DEFAULT = "/auth/signup";
 

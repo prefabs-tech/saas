@@ -218,6 +218,59 @@ To cutomize the tabs in `AccountViewPage` in admin app and `AccountSettingsPage`
 
 See component to check prop types and other options: [AccountViewPage](https://github.com/prefabs-tech/saas/blob/main/packages/react/src/views/Account/AccountView.tsx) [AccountSettingsPage](https://github.com/prefabs-tech/saas/blob/main/packages/react/src/views/Account/AccountSettings.tsx)
 
+### Customizing form actions aligment
+
+To customize the actions alignment in forms, you can pass following config options in saas config
+
+```{typescript}
+ui?: {
+    account?: {
+      form?: {
+        actionsAlignment?: "center" | "fill" | "left" | "right";
+        actionsReverse?: boolean;
+      };
+    };
+    invitation?: {
+      form?: {
+        actionsAlignment?: "center" | "fill" | "left" | "right";
+        actionsReverse?: boolean;
+      };
+    };
+    signup?: {
+      form?: {
+        actionsAlignment?: "center" | "fill" | "left" | "right";
+        actionsReverse?: boolean;
+      };
+    };
+  };
+```
+
+The current default values are as following
+```{typescript}
+export const CONFIG_UI_DEFAULT = {
+  account: {
+    form: {
+      actionsAlignment: "right" as const,
+      actionsReverse: false,
+    },
+  },
+  invitation: {
+    form: {
+      actionsAlignment: "fill" as const,
+      actionsReverse: true,
+    },
+  },
+  signup: {
+    form: {
+      actionsAlignment: "fill" as const,
+      actionsReverse: true,
+    },
+  },
+};
+```
+
+You can play around with actionsAligment and actionsReverse configs to get desired alignment.
+
 ### i18n support
 
 This package uses `@prefabs.tech/react-i18n` for translations. By default, it uses the following namespaces:
