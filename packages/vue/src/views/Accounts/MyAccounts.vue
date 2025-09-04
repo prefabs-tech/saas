@@ -41,6 +41,9 @@ const { switchAccount } = myAccountsStore;
 
 const handleSwitch = (account: Account) => {
   switchAccount(account);
+
+  // Refresh the page to update all components with the new account
+  window.location.reload();
 };
 </script>
 
