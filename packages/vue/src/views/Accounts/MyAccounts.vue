@@ -56,9 +56,9 @@ const handleSwitch = (account: Account) => {
 }
 
 .empty-state {
-  text-align: center;
-  padding: 3rem 1rem;
   color: var(--text-color-secondary);
+  padding: 3rem 1rem;
+  text-align: center;
 }
 
 .empty-state p {
@@ -69,8 +69,8 @@ const handleSwitch = (account: Account) => {
 
 @media (min-width: 768px) {
   .accounts-grid {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     margin-top: 2rem;
   }
 
@@ -81,8 +81,8 @@ const handleSwitch = (account: Account) => {
 
 @media (min-width: 992px) {
   .accounts-grid {
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
     gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   }
 
   .empty-state {
@@ -96,8 +96,8 @@ const handleSwitch = (account: Account) => {
 
 @media (min-width: 1200px) {
   .accounts-grid {
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   }
 }
 </style>

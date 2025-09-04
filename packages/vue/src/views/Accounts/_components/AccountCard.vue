@@ -69,6 +69,17 @@ defineEmits<{
 </script>
 
 <style scoped>
+.action {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  min-width: auto;
+  white-space: nowrap;
+}
+
 .card {
   background: var(--surface-card);
   border: 1px solid var(--surface-border);
@@ -81,6 +92,10 @@ defineEmits<{
   border-color: var(--primary-color);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
+}
+
+.card .badge {
+  margin-bottom: 0;
 }
 
 .content {
@@ -102,21 +117,6 @@ defineEmits<{
   line-height: 1.4;
   margin: 0;
   word-break: break-word;
-}
-
-.action {
-  align-items: center;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.button {
-  min-width: auto;
-  white-space: nowrap;
-}
-
-.card .badge {
-  margin-bottom: 0;
 }
 
 @media (min-width: 768px) {
