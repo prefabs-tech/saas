@@ -1,3 +1,23 @@
+# [0.26.0](https://github.com/prefabs-tech/saas/compare/v0.25.0...v0.26.0) (2025-09-04)
+
+
+### Bug Fixes
+
+* **react/account-show:** add page toolbar actions ([39b81a4](https://github.com/prefabs-tech/saas/commit/39b81a4d15c3f3ddaba6887f59aba17c1464a732))
+* **vue/account-card:** fix the prop value for severity for BadgeComponent in AccountCard ([40fee03](https://github.com/prefabs-tech/saas/commit/40fee0368b8cd020a4b5feac76f5d95b7308a26a))
+
+
+### Features
+
+* **form-actions:** support form actions aligment customization ([dd7bd01](https://github.com/prefabs-tech/saas/commit/dd7bd01e9c1ea0937a61a8c53974d72241b71677))
+* implement accounts page for main app ([717c106](https://github.com/prefabs-tech/saas/commit/717c1062e450de68722eb42537b2c4cfe3a7b9af))
+* make the account settings page reactive to the change of active account ([cf71eb9](https://github.com/prefabs-tech/saas/commit/cf71eb9bb2af0acb63bd30f470558f165ab92d7a))
+* **react/account-show:** allow to customize account settings page ([301d35d](https://github.com/prefabs-tech/saas/commit/301d35d9389334a3f30bb18c48f0e2248f8b0c67))
+* **vue/account-switcher:** refresh page on account switch and clean up unused watchers ([8413030](https://github.com/prefabs-tech/saas/commit/841303046bcdb292e982fd3bfec3af84c29593b4))
+* **vue/my-accounts:** refresh the page after account is switched from my accounts page ([31974a9](https://github.com/prefabs-tech/saas/commit/31974a93a73b492b5937397877f87cf4012d7d75))
+
+
+
 # [0.25.0](https://github.com/prefabs-tech/saas/compare/v0.24.0...v0.25.0) (2025-09-02)
 
 
