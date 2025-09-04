@@ -121,7 +121,7 @@ defineEmits<{
 
 @media (min-width: 768px) {
   .card {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .content {
@@ -142,7 +142,7 @@ defineEmits<{
 
 @media (min-width: 992px) {
   .card {
-    padding: 2rem;
+    padding: 1.5rem;
   }
 
   .name {
