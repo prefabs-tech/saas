@@ -15,20 +15,24 @@ export const getSaasAdminRoutes = (
   const { accountsAdd, accountsEdit, accountsView } = options?.routes || {};
 
   // TODO save path overwrites in config so that other components can use it.
+  // Then uncomment commented paths below
 
   let routes = [
     {
-      path: accountsAdd?.path || DEFAULT_PATHS.ACCOUNTS_ADD,
+      // path: accountsAdd?.path || DEFAULT_PATHS.ACCOUNTS_ADD,
+      path: DEFAULT_PATHS.ACCOUNTS_ADD,
       element: accountsAdd?.element || <AccountAddPage />,
       disabled: accountsAdd?.disabled,
     },
     {
-      path: accountsEdit?.path || DEFAULT_PATHS.ACCOUNTS_EDIT,
+      // path: accountsEdit?.path || DEFAULT_PATHS.ACCOUNTS_EDIT,
+      path: DEFAULT_PATHS.ACCOUNTS_EDIT,
       element: accountsEdit?.element || <AccountEditPage />,
       disabled: accountsEdit?.disabled,
     },
     {
-      path: accountsView?.path || DEFAULT_PATHS.ACCOUNTS_VIEW,
+      // path: accountsView?.path || DEFAULT_PATHS.ACCOUNTS_VIEW,
+      path: DEFAULT_PATHS.ACCOUNTS_VIEW,
       element: accountsView?.element || <AccountViewPage />,
       disabled: accountsView?.disabled,
     },

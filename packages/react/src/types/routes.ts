@@ -3,7 +3,7 @@ import React from "react";
 export type RouteOverwrite = {
   disabled?: boolean;
   element?: React.ReactNode;
-  path?: string;
+  // path?: string; // TODO allow to overwrite path
 };
 
 export type AdminRouteOverwrites = {
