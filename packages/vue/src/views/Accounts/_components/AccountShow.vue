@@ -1,8 +1,9 @@
 <template>
   <TabView
     v-if="processedTabs.length > 0 && visibleTabs.length > 0"
+    id="account-show"
     :active-key="activeTabKey"
-    :id="id"
+    :persist-state="persistState"
     :tabs="processedTabs"
     :visible-tabs="visibleTabs"
     @update:active-key="handleTabChange"
@@ -42,12 +43,8 @@ const props = defineProps({
     default: "info",
     type: String,
   },
-  id: {
-    default: "account-show",
-    type: String,
-  },
   persistState: {
-    default: false,
+    default: true,
     type: Boolean,
   },
   tabs: {

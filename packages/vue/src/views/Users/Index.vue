@@ -6,6 +6,7 @@
     :data-action-menu="actionMenuData"
     :empty-table-message="t('account.users.table.emptyMessage')"
     :is-loading="isLoading"
+    :persist-state="true"
     class="table-users"
     @action:select="onActionSelect"
   >

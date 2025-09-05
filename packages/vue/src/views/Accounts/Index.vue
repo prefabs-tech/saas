@@ -7,6 +7,7 @@
       :data-action-menu="actionMenuData"
       :empty-table-message="t('accounts.table.emptyMessage')"
       :is-loading="isLoading"
+      :persist-state="true"
       class="table-accounts"
       @action:select="onActionSelect"
     >

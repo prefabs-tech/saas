@@ -6,6 +6,7 @@
     :data-action-menu="actionMenuData"
     :empty-table-message="t('account.invitations.table.emptyMessage')"
     :is-loading="isLoading"
+    :persist-state="true"
     class="table-invitations"
     @action:select="onActionSelect"
   >
