@@ -11,6 +11,10 @@ import { ACCOUNT_HEADER_NAME } from "@/constants";
 import { Account } from "@/types/account";
 import { SaasConfig } from "@/types/config";
 
+type SwitchAccountOptions = {
+  clearState?: boolean;
+};
+
 export interface AccountsContextType {
   accounts: Array<Account> | null;
   activeAccount: Account | null;
@@ -26,7 +30,7 @@ export interface AccountsContextType {
   refetchAccounts: () => void;
   switchAccount: (
     account: Account | null,
-    options?: { clearState?: boolean },
+    options?: SwitchAccountOptions,
   ) => void;
   updateAccounts: (accounts: Account[]) => void;
 }
@@ -65,13 +69,12 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
   }, [subdomain]);
 
   const switchAccount = useCallback(
-    (
-      newAccount: Account | null,
-      { clearState = true }: { clearState?: boolean } = {},
-    ) => {
+    (newAccount: Account | null, options?: SwitchAccountOptions) => {
       setAccountLoading(true);
 
       setActiveAccount(newAccount);
+
+      const { clearState = true } = options || {};
 
       if (newAccount) {
         localStorage.setItem(accountStorageKey, `${newAccount.id}`);
@@ -151,14 +154,16 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
   );
 
   const updateAccounts = useCallback(
-    (newAccounts: Array<Account>) => {
+    (newAccounts: Array<Account>, options?: SwitchAccountOptions) => {
+      const { clearState = false } = options || {};
+
       setLoading(true);
 
       setAccounts(newAccounts);
 
       const newActiveAccount = computeNewActiveAccount(newAccounts);
 
-      switchAccount(newActiveAccount, { clearState: false });
+      switchAccount(newActiveAccount, { clearState });
 
       setLoading(false);
     },
@@ -170,7 +175,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
 
     getMyAccounts({ apiBaseUrl })
       .then((accounts) => {
-        updateAccounts(accounts);
+        updateAccounts(accounts, { clearState: true });
       })
       .catch((error) => {
         setError(true);
