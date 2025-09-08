@@ -35,6 +35,8 @@ declare module "@prefabs.tech/fastify-config" {
   }
 }
 
+export * from "./constants";
+
 export { default as accountInvitationRoutes } from "./model/accountInvitations/controller";
 export { default as accountRoutes } from "./model/accounts/controller";
 export { default as accountResolver } from "./model/accounts/resolver";
