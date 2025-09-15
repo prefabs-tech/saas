@@ -21,7 +21,18 @@ const plugin = async (fastify: FastifyInstance) => {
 
       // skip account discovery if request is for other apps
       for (const app of saasConfig.apps) {
-        if (`${app.subdomain}.${saasConfig.rootDomain}` === hostname) {
+        const appDomains: string[] = [
+          ...(app.domains || []),
+          ...(Array.isArray(app.subdomains)
+            ? app.subdomains.map(
+                (subdomain) => `${subdomain}.${saasConfig.rootDomain}`,
+              )
+            : []),
+        ];
+
+        console.log(appDomains, hostname);
+
+        if (appDomains?.includes(hostname)) {
           log.info(` Incoming request for ${app.name} app`);
 
           return;

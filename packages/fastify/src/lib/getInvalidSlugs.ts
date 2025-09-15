@@ -10,7 +10,9 @@ const getInvalidSlugs = (config: ApiConfig) => {
   invalidSlugs.push(saasConfig.mainAppSubdomain);
 
   for (const app of saasConfig.apps) {
-    invalidSlugs.push(app.subdomain);
+    if (Array.isArray(app.subdomains)) {
+      invalidSlugs.push(...app.subdomains);
+    }
   }
 
   return invalidSlugs;
