@@ -1,6 +1,8 @@
 const getHost = (url: string) => {
   let host: string;
 
+  console.log("url", url);
+
   try {
     host = new URL(url).host;
 

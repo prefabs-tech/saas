@@ -12,7 +12,9 @@ interface SaasOptions {
   apps?: [
     {
       name: string;
-      subdomain: string;
+      domains?: string[];
+      subdomains?: string[];
+      subdomain?: string;
     },
   ];
   excludeRoutePatterns?: Array<string | RegExp>;
@@ -72,7 +74,11 @@ interface SaasOptions {
       user: User,
     ) => Promise<void>;
   };
-  mainAppSubdomain: string;
+  mainAppSubdomain?: string;
+  mainApp?: {
+    subdomains?: string[];
+    domains?: string[];
+  };
   multiDatabase?: {
     enabled: boolean;
     migrations?: {

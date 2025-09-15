@@ -8,7 +8,7 @@ const getSaasConfig = (config: ApiConfig) => {
     apps: saasConfig.apps || [
       {
         name: "admin",
-        subdomain: "admin",
+        subdomains: ["admin"],
       },
     ],
     excludeRoutePatterns: [
@@ -25,6 +25,10 @@ const getSaasConfig = (config: ApiConfig) => {
     },
     invitation: saasConfig.invitation,
     mainAppSubdomain: saasConfig.mainAppSubdomain || "app",
+    mainApp: {
+      subdomains: saasConfig.mainApp?.subdomains || ["app"],
+      domains: saasConfig.mainApp?.domains || [],
+    },
     multiDatabase: {
       enabled: saasConfig.multiDatabase?.enabled || false,
       migrations: {
