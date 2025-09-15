@@ -30,8 +30,6 @@ const plugin = async (fastify: FastifyInstance) => {
             : []),
         ];
 
-        console.log(appDomains, hostname);
-
         if (appDomains?.includes(hostname)) {
           log.info(` Incoming request for ${app.name} app`);
 
