@@ -66,14 +66,10 @@ const defaultTabList = [
   },
 ];
 
-console.log("__saasAccountTabs", __saasAccountTabs);
-
 const tabConfig = inject<(() => typeof defaultTabList) | typeof defaultTabList>(
   __saasAccountTabs,
   defaultTabList
 );
-
-console.log("tabConfig", tabConfig);
 
 const processedTabs = computed(() => {
   const additionalTabs =
@@ -83,16 +79,10 @@ const processedTabs = computed(() => {
         ? tabConfig
         : [];
 
-  console.log("additionalTabs", additionalTabs);
-
   return [...defaultTabList, ...additionalTabs];
 });
 
-console.log("processedTabs", processedTabs.value);
-
 const visibleTabs = computed(() => processedTabs.value.map((tab) => tab.key));
-
-console.log("visibleTabs", visibleTabs.value);
 
 onMounted(async () => {
   await prepareComponent();
