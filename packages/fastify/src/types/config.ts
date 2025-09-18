@@ -8,15 +8,20 @@ import accountUserHandlers from "../model/accountUsers/handlers";
 import type { AccountInvitation } from "./accountInvitation";
 import type { FastifyInstance, FastifyRequest } from "fastify";
 
-interface SaasOptions {
-  apps?: [
-    {
+type App =
+  | {
       name: string;
-      domains?: string[];
-      subdomains?: string[];
+      domain: string;
       subdomain?: string;
-    },
-  ];
+    }
+  | {
+      name: string;
+      domain?: string;
+      subdomain: string;
+    };
+
+interface SaasOptions {
+  apps?: App[];
   excludeRoutePatterns?: Array<string | RegExp>;
   handlers?: {
     account?: {
@@ -76,8 +81,8 @@ interface SaasOptions {
   };
   mainAppSubdomain?: string;
   mainApp?: {
-    subdomains?: string[];
-    domains?: string[];
+    subdomain?: string;
+    domain?: string;
   };
   multiDatabase?: {
     enabled: boolean;
