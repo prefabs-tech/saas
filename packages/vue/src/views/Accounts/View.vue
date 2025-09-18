@@ -1,5 +1,14 @@
 <template>
-  <Page v-if="account?.id" :title="account.name" class="account-view">
+  <Page
+    v-if="account?.id"
+    :title="account.name"
+    :title-tag="
+      t(
+        `account.type.${account?.individual ? 'individual' : 'organization'}.label`
+      )
+    "
+    class="account-view"
+  >
     <LoadingIcon v-if="loading" />
 
     <TabView
