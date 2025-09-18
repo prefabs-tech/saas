@@ -85,7 +85,6 @@ interface SaasOptions {
     domain?: string;
   };
   multiDatabase?: {
-    enabled: boolean;
     migrations?: {
       path?: string;
     };

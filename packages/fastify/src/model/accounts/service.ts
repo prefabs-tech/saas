@@ -84,10 +84,7 @@ class AccountService extends BaseService<
   }
 
   protected async postCreate(account: Account): Promise<Account> {
-    if (
-      this.saasConfig.subdomains === "disabled" ||
-      !this.saasConfig.multiDatabase?.enabled
-    ) {
+    if (this.saasConfig.subdomains === "disabled") {
       return account;
     }
 
@@ -99,6 +96,8 @@ class AccountService extends BaseService<
   protected async preCreate(
     data: AccountCreateInput,
   ): Promise<AccountCreateInput> {
+    let useSeparateDatabase: boolean = false;
+
     if (this.saasConfig.subdomains === "disabled" || data.slug === "") {
       delete data.slug;
       delete data.domain;
@@ -108,12 +107,17 @@ class AccountService extends BaseService<
       delete data.domain;
     }
 
-    if (
-      this.saasConfig.subdomains !== "disabled" &&
-      this.saasConfig.multiDatabase?.enabled &&
+    if (this.saasConfig.subdomains === "required") {
+      useSeparateDatabase = true;
+    } else if (
+      this.saasConfig.subdomains === "optional" &&
       data.slug &&
       data.useSeparateDatabase
     ) {
+      useSeparateDatabase = true;
+    }
+
+    if (useSeparateDatabase) {
       const nanoid = customAlphabet(NANOID_ALPHABET, NANOID_SIZE);
       // [RL 2024-01-08] Added `s_` prefix to indicate that the database is a schema
       (data as AccountCreateInput).database = `s_${nanoid()}`;
