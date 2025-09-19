@@ -88,6 +88,7 @@ const processedTabs = computed(() => {
       : Array.isArray(tabConfig)
         ? tabConfig
         : [];
+
   return [...defaultTabList, ...additionalTabs];
 });
 
