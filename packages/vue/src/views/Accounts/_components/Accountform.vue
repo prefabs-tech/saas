@@ -125,7 +125,7 @@ const { createAccount, updateAccount } = accountsStore;
 
 const formData = ref<AccountInput>({
   domain: undefined as unknown as string,
-  individual: false,
+  individual: saasConfig.entity === "individual",
   name: undefined as unknown as string,
   registeredNumber: undefined as unknown as string,
   slug: undefined as unknown as string,

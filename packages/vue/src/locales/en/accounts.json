@@ -71,7 +71,8 @@
     "columns": {
       "name": "Name",
       "registeredNumber": "Registered number",
-      "taxId": "Tax ID"
+      "taxId": "Tax ID",
+      "type": "Type"
     },
     "confirmation": {
       "deleteCustomer": {

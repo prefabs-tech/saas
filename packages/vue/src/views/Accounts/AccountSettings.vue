@@ -2,20 +2,25 @@
   <Page
     :loading="loading"
     :title="activeAccount?.name"
-    :title-tag="
-      t(
-        `account.type.${activeAccount?.individual ? 'individual' : 'organization'}.label`
-      )
-    "
     class="account-show account-settings"
   >
+    <template #titleTag>
+      <BadgeComponent
+        :label="
+          t(
+            `account.type.${activeAccount?.individual ? 'individual' : 'organization'}.label`
+          )
+        "
+        :severity="activeAccount?.individual ? 'primary' : 'success'"
+      />
+    </template>
     <AccountShow v-if="activeAccount && !loading" :account="activeAccount" />
   </Page>
 </template>
 
 <script setup lang="ts">
 import { useI18n } from "@prefabs.tech/vue3-i18n";
-import { Page } from "@prefabs.tech/vue3-ui";
+import { Page, BadgeComponent } from "@prefabs.tech/vue3-ui";
 import { ref, onMounted, computed } from "vue";
 
 import { useTranslations } from "../../index";

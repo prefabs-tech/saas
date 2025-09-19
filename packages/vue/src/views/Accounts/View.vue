@@ -1,5 +1,15 @@
 <template>
   <Page v-if="account?.id" :title="account.name" class="account-view">
+    <template #titleTag>
+      <BadgeComponent
+        :label="
+          t(
+            `account.type.${account?.individual ? 'individual' : 'organization'}.label`
+          )
+        "
+        :severity="account?.individual ? 'primary' : 'success'"
+      />
+    </template>
     <LoadingIcon v-if="loading" />
 
     <TabView
@@ -20,7 +30,7 @@
 <script setup lang="ts">
 import { useConfig } from "@prefabs.tech/vue3-config";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
-import { TabView, LoadingIcon } from "@prefabs.tech/vue3-ui";
+import { BadgeComponent, TabView, LoadingIcon } from "@prefabs.tech/vue3-ui";
 import { ref, onMounted, computed, inject } from "vue";
 import { useRoute } from "vue-router";
 

@@ -71,7 +71,8 @@
     "columns": {
       "name": "Nom",
       "registeredNumber": "Numéro d'enregistrement",
-      "taxId": "Numéro d'identification fiscale"
+      "taxId": "Numéro d'identification fiscale",
+      "type": "Type(fr)"
     },
     "confirmation": {
       "deleteCustomer": {
