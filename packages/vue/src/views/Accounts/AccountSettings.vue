@@ -3,11 +3,6 @@
     v-if="activeAccount?.id"
     :loading="loading"
     :title="activeAccount?.name"
-    :title-tag="
-      t(
-        `account.type.${activeAccount?.individual ? 'individual' : 'organization'}.label`
-      )
-    "
     class="account-show account-settings"
   >
     <TabView
@@ -25,12 +20,22 @@
         />
       </div>
     </TabView>
+    <template #titleTag>
+      <BadgeComponent
+        :label="
+          t(
+            `account.type.${activeAccount?.individual ? 'individual' : 'organization'}.label`
+          )
+        "
+        :severity="activeAccount?.individual ? 'primary' : 'success'"
+      />
+    </template>
   </Page>
 </template>
 
 <script setup lang="ts">
 import { useI18n } from "@prefabs.tech/vue3-i18n";
-import { Page, TabView } from "@prefabs.tech/vue3-ui";
+import { Page, BadgeComponent, TabView } from "@prefabs.tech/vue3-ui";
 import { ref, onMounted, computed, inject } from "vue";
 
 import { useTranslations } from "../../index";
