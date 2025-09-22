@@ -26,7 +26,7 @@ const getSaasConfig = (config: ApiConfig) => {
     invitation: saasConfig.invitation,
     mainAppSubdomain: saasConfig.mainAppSubdomain || "app",
     multiDatabase: {
-      enabled: saasConfig.multiDatabase?.enabled || false,
+      mode: saasConfig.multiDatabase?.mode || "disabled",
       migrations: {
         path:
           saasConfig.multiDatabase?.migrations?.path ||
