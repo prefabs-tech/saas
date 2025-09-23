@@ -10,72 +10,84 @@ describe("shouldUseSeparateDatabase", () => {
     {
       subdomains: "disabled",
       multiDatabase: "required",
+      slug: "foo",
       useSeparateDatabase: true,
       expected: false,
     },
     {
       subdomains: "disabled",
       multiDatabase: "required",
+      slug: "foo",
       useSeparateDatabase: false,
       expected: false,
     },
     {
       subdomains: "disabled",
       multiDatabase: "optional",
+      slug: "foo",
       useSeparateDatabase: true,
       expected: false,
     },
     {
       subdomains: "disabled",
       multiDatabase: "optional",
+      slug: "foo",
       useSeparateDatabase: false,
       expected: false,
     },
     {
       subdomains: "disabled",
       multiDatabase: "disabled",
+      slug: "foo",
       useSeparateDatabase: true,
       expected: false,
     },
     {
       subdomains: "disabled",
       multiDatabase: "disabled",
+      slug: "foo",
       useSeparateDatabase: false,
       expected: false,
     },
     {
       subdomains: "required",
       multiDatabase: "required",
+      slug: "foo",
       useSeparateDatabase: true,
       expected: true,
     },
     {
       subdomains: "required",
       multiDatabase: "required",
+      slug: "foo",
       useSeparateDatabase: false,
       expected: true,
     },
     {
       subdomains: "required",
       multiDatabase: "optional",
+      slug: "foo",
       useSeparateDatabase: true,
       expected: true,
     },
     {
       subdomains: "required",
       multiDatabase: "optional",
+      slug: "foo",
       useSeparateDatabase: false,
       expected: false,
     },
     {
       subdomains: "required",
       multiDatabase: "disabled",
+      slug: "foo",
       useSeparateDatabase: true,
       expected: false,
     },
     {
       subdomains: "required",
       multiDatabase: "disabled",
+      slug: "foo",
       useSeparateDatabase: false,
       expected: false,
     },
@@ -83,46 +95,60 @@ describe("shouldUseSeparateDatabase", () => {
     {
       subdomains: "optional",
       multiDatabase: "disabled",
+      slug: "foo",
       useSeparateDatabase: true,
       expected: false,
     },
     {
       subdomains: "optional",
       multiDatabase: "disabled",
+      slug: "foo",
       useSeparateDatabase: false,
       expected: false,
     },
     {
       subdomains: "optional",
       multiDatabase: "required",
+      slug: "foo",
       useSeparateDatabase: true,
       expected: true,
     },
     {
       subdomains: "optional",
       multiDatabase: "required",
+      slug: "foo",
+      useSeparateDatabase: false,
+      expected: true,
+    },
+    {
+      subdomains: "optional",
+      multiDatabase: "required",
+      slug: undefined,
       useSeparateDatabase: false,
       expected: false,
     },
     {
       subdomains: "optional",
       multiDatabase: "optional",
+      slug: "foo",
       useSeparateDatabase: true,
       expected: true,
     },
     {
       subdomains: "optional",
       multiDatabase: "optional",
+      slug: "foo",
       useSeparateDatabase: false,
       expected: false,
     },
   ];
 
   for (const {
-    subdomains,
-    multiDatabase,
-    useSeparateDatabase,
     expected,
+    multiDatabase,
+    subdomains,
+    slug,
+    useSeparateDatabase,
   } of cases) {
     const config = {
       saas: {
@@ -130,7 +156,7 @@ describe("shouldUseSeparateDatabase", () => {
         multiDatabase: { mode: multiDatabase },
       },
     } as ApiConfig;
-    const input: AccountCreateInput = { slug: "foo", useSeparateDatabase };
+    const input: AccountCreateInput = { slug, useSeparateDatabase };
 
     it(`subdomains=${subdomains}, multiDatabase.mode=${multiDatabase}, useSeparateDatabase=${useSeparateDatabase} => ${expected}`, () => {
       expect(shouldUseSeparateDatabase(config, input)).toBe(expected);

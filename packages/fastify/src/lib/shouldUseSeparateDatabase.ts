@@ -31,10 +31,12 @@ const shouldUseSeparateDatabase = (
     }
     case "optional": {
       if (
-        multiDatabase.mode !== "disabled" &&
+        multiDatabase.mode === "optional" &&
         data.slug &&
         data.useSeparateDatabase
       ) {
+        useSeparateDatabase = true;
+      } else if (multiDatabase.mode === "required" && data.slug) {
         useSeparateDatabase = true;
       }
 
