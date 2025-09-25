@@ -26,14 +26,15 @@
 import { useConfig } from "@prefabs.tech/vue3-config";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { Table } from "@prefabs.tech/vue3-tanstack-table";
-import { ButtonElement } from "@prefabs.tech/vue3-ui";
-import { inject, ref, onMounted, h } from "vue";
+import { ButtonElement, BadgeComponent } from "@prefabs.tech/vue3-ui";
+import { inject, ref, onMounted, h, computed } from "vue";
 import { useRouter } from "vue-router";
 
 import { useTranslations } from "../../index";
 import useAccountsStore from "../../stores/accounts";
 
 import type { Account } from "../../types/account";
+import type { SaasConfig } from "../../types/config";
 import type { SaasEventHandlers, EventMessage } from "../../types/plugin";
 import type { AppConfig } from "@prefabs.tech/vue3-config";
 import type { TableColumnDefinition } from "@prefabs.tech/vue3-tanstack-table";
@@ -43,6 +44,7 @@ defineProps({
 });
 
 const accountsStore = useAccountsStore();
+const saasConfig = inject<SaasConfig>(Symbol.for("saas.config"));
 const { getAccounts, deleteAccount } = accountsStore;
 const config = useConfig() as AppConfig;
 
@@ -54,11 +56,69 @@ const { t } = useI18n({ messages });
 const accounts = ref<Account[]>([]);
 const account = ref<Account | undefined>(undefined);
 
-const columns: TableColumnDefinition<Account>[] = [
+if (!saasConfig) {
+  throw new Error("SAAS config not provided");
+}
+
+const { entity } = saasConfig;
+
+// Organization-specific columns
+const entityColumnsOrg: TableColumnDefinition<Account>[] = [
+  {
+    accessorKey: "registeredNumber",
+    header: t("accounts.table.columns.registeredNumber"),
+    enableSorting: true,
+    enableColumnFilter: true,
+    cell: ({ row: { original } }) => {
+      if (!original.registeredNumber) {
+        return h("code", "—");
+      }
+      return original.registeredNumber;
+    },
+  },
+  {
+    accessorKey: "taxId",
+    header: t("accounts.table.columns.taxId"),
+    enableSorting: true,
+    enableColumnFilter: true,
+    cell: ({ row: { original } }) => {
+      if (!original.taxId) {
+        return h("code", "—");
+      }
+      return original.taxId;
+    },
+  },
+];
+
+// Individual-specific columns
+const entityColumnsInd: TableColumnDefinition<Account>[] = [
+  {
+    accessorKey: "type",
+    header: t("accounts.table.columns.type"),
+    align: "center",
+    cell: ({ row: { original } }) => {
+      if (original.individual) {
+        return h(BadgeComponent, {
+          label: t("account.type.individual.label"),
+          fullWidth: true,
+        });
+      }
+      return h(BadgeComponent, {
+        label: t("account.type.organization.label"),
+        fullWidth: true,
+        severity: "success",
+      });
+    },
+  },
+];
+
+// Base columns
+const defaultColumns: TableColumnDefinition<Account>[] = [
   {
     accessorKey: "name",
     enableColumnFilter: true,
     enableSorting: true,
+    enableGlobalFilter: true,
     filterPlaceholder: t("accounts.table.columns.name"),
     header: t("accounts.table.columns.name"),
     cell: ({ row: { original } }) =>
@@ -83,15 +143,14 @@ const columns: TableColumnDefinition<Account>[] = [
         ]
       ),
   },
-  {
-    accessorKey: "registeredNumber",
-    header: t("accounts.table.columns.registeredNumber"),
-  },
-  {
-    accessorKey: "taxId",
-    header: t("accounts.table.columns.taxId"),
-  },
 ];
+
+// Computed columns based on entity type
+const columns = computed(() => [
+  ...defaultColumns,
+  ...(entity === "both" || entity === "organization" ? entityColumnsOrg : []),
+  ...(entity === "both" ? entityColumnsInd : []),
+]);
 
 const actionMenuData = [
   {

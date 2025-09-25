@@ -4,6 +4,7 @@ import { customAlphabet } from "nanoid";
 import AccountSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
 import { NANOID_ALPHABET, NANOID_SIZE } from "../../constants";
+import shouldUseSeparateDatabase from "../../lib/shouldUseSeparateDatabase";
 import { validateAccountInput } from "../../lib/validateAccountSchema";
 import runAccountMigrations from "../../migrations/runAccountMigrations";
 
@@ -84,10 +85,9 @@ class AccountService extends BaseService<
   }
 
   protected async postCreate(account: Account): Promise<Account> {
-    if (
-      this.saasConfig.subdomains === "disabled" ||
-      !this.saasConfig.multiDatabase?.enabled
-    ) {
+    const { subdomains, multiDatabase } = this.saasConfig;
+
+    if (subdomains === "disabled" || multiDatabase.mode === "disabled") {
       return account;
     }
 
@@ -99,27 +99,14 @@ class AccountService extends BaseService<
   protected async preCreate(
     data: AccountCreateInput,
   ): Promise<AccountCreateInput> {
-    if (this.saasConfig.subdomains === "disabled" || data.slug === "") {
+    const { subdomains } = this.saasConfig;
+
+    if (subdomains === "disabled" || !data.slug) {
       delete data.slug;
       delete data.domain;
-    }
-
-    if (this.saasConfig.subdomains === "disabled" || data.domain === "") {
+    } else if (!data.domain) {
       delete data.domain;
     }
-
-    if (
-      this.saasConfig.subdomains !== "disabled" &&
-      this.saasConfig.multiDatabase?.enabled &&
-      data.slug &&
-      data.useSeparateDatabase
-    ) {
-      const nanoid = customAlphabet(NANOID_ALPHABET, NANOID_SIZE);
-      // [RL 2024-01-08] Added `s_` prefix to indicate that the database is a schema
-      (data as AccountCreateInput).database = `s_${nanoid()}`;
-    }
-
-    delete data.useSeparateDatabase;
 
     validateAccountInput(this.config, data);
 
@@ -129,6 +116,16 @@ class AccountService extends BaseService<
         data.domain as string,
       );
     }
+
+    const useSeparateDatabase = shouldUseSeparateDatabase(this.config, data);
+
+    if (useSeparateDatabase) {
+      const nanoid = customAlphabet(NANOID_ALPHABET, NANOID_SIZE);
+      // [RL 2024-01-08] Added `s_` prefix to indicate that the database is a schema
+      (data as AccountCreateInput).database = `s_${nanoid()}`;
+    }
+
+    delete data.useSeparateDatabase;
 
     return data;
   }
