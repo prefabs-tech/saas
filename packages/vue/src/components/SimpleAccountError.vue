@@ -13,10 +13,10 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 
-import { useSimpleAccountError } from "../composables/useSimpleAccountError";
+import { useGlobalAccountError } from "../composables/useGlobalAccountError";
 
 const router = useRouter();
-const { clearError } = useSimpleAccountError();
+const { clearError } = useGlobalAccountError();
 
 const goToHome = () => {
   clearError();

@@ -58,6 +58,7 @@ export { default as ConfigProvider } from "./components/ConfigProvider.vue";
 
 // Error handling
 export { useSimpleAccountError } from "./composables/useSimpleAccountError";
+export { useGlobalAccountError } from "./composables/useGlobalAccountError";
 export { default as SimpleAccountError } from "./components/SimpleAccountError.vue";
 
 // Views

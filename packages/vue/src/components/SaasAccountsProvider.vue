@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import { watch, computed, defineProps } from "vue";
 
+import { useGlobalAccountError } from "../composables/useGlobalAccountError";
 import { useMyAccountsStore } from "../stores/myAccounts";
 
 import type { SaasConfig } from "../types/config";
@@ -19,6 +20,7 @@ export interface SaasAccountsProviderProperties {
 const props = defineProps<SaasAccountsProviderProperties>();
 
 const myAccountsStore = useMyAccountsStore();
+const { checkForAccountError } = useGlobalAccountError();
 // Use computed to maintain reactivity
 const loading = computed(() => myAccountsStore.loading);
 
@@ -33,8 +35,12 @@ watch(
       if (newUserId !== oldUserId) {
         try {
           await myAccountsStore.fetchMyAccounts();
-        } catch {
-          // TODO [RKS 2025-09-01]: Handle error
+        } catch (error) {
+          if (checkForAccountError(error)) {
+            return; // Error is handled, don't show other error messages
+          }
+          // Handle other errors here if needed
+          console.error("Failed to fetch accounts:", error);
         }
       }
     } else {
