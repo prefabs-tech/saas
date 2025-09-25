@@ -32,12 +32,11 @@ const getSaasConfig = (config: ApiConfig) => {
       slugs: saasConfig.invalid?.domains || ["admin"],
     },
     invitation: saasConfig.invitation,
-    mainAppSubdomain: saasConfig.mainAppSubdomain || "app",
     mainApp: {
       subdomain: saasConfig.mainApp?.subdomain || "app",
       domain:
         saasConfig.mainApp?.domain ??
-        `${saasConfig.mainApp?.subdomain || "app"}.${saasConfig.rootDomain}`,
+        `${saasConfig.mainApp?.subdomain || saasConfig.mainAppSubdomain || "app"}.${saasConfig.rootDomain}`,
     },
     multiDatabase: {
       mode: saasConfig.multiDatabase?.mode || "disabled",

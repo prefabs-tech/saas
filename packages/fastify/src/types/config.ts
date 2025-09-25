@@ -79,6 +79,9 @@ interface SaasOptions {
       user: User,
     ) => Promise<void>;
   };
+  /**
+   * @deprecated use mainApp?.subdomain instead
+   */
   mainAppSubdomain?: string;
   mainApp?: {
     subdomain?: string;
