@@ -35,11 +35,13 @@ const config: ApiConfig = {
   ...
   saas: {
     rootDomain: process.env.APP_ROOT_DOMAIN as string,
-    mainAppSubdomain:  process.env.MAIN_APP_SUBDOMAIN as string || "app",
-    multiDatabase: {
-      enabled: true, // optional, default false
+    mainApp: {
+      subdomain:  process.env.MAIN_APP_SUBDOMAIN as string || "app",
     },
-    subdomains: "optional" // "disabled", "optional", "required",
+    multiDatabase: {
+      mode: "disabled", // "disabled", "optional", "required",
+    },
+    subdomains: "disabled" // "disabled", "optional", "required",
   },
   user: {
     ...
