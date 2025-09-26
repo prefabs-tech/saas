@@ -1,4 +1,10 @@
 {
+  "error": {
+    "goToHome": "Go to home page",
+    "message": "You don't have access to any account or the account you're trying to access doesn't exist.",
+    "support": "Please contact support if you believe this is an error.",
+    "title": "Account not found"
+  },
   "invitations": {
     "addInvitation": "Add invitation",
     "form": {
@@ -193,11 +199,5 @@
     "info": "Info",
     "invitations": "Invitations",
     "users": "Users"
-  },
-  "error": {
-    "title": "Account not found",
-    "message": "You don't have access to any account or the account you're trying to access doesn't exist.",
-    "support": "Please contact support if you believe this is an error.",
-    "goToHome": "Go to home page"
   }
 }
