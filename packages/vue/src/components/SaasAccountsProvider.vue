@@ -37,9 +37,8 @@ watch(
           await myAccountsStore.fetchMyAccounts();
         } catch (error) {
           if (checkForAccountError(error)) {
-            return; // Error is handled, don't show other error messages
+            return;
           }
-          // Handle other errors here if needed
           console.error("Failed to fetch accounts:", error);
         }
       }
