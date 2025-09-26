@@ -193,5 +193,11 @@
     "info": "Informations",
     "invitations": "Invitations",
     "users": "Utilisateurs"
+  },
+  "error": {
+    "title": "Compte introuvable",
+    "message": "Vous n'avez pas accès à un compte ou le compte auquel vous essayez d'accéder n'existe pas.",
+    "support": "Veuillez contacter le support si vous pensez qu'il s'agit d'une erreur.",
+    "goToHome": "Aller à la page d'accueil"
   }
 }

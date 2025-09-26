@@ -1,21 +1,27 @@
 <template>
   <div class="account-error">
-    <h2>Account not found</h2>
-    <p>
-      You don't have access to any account or the account you're trying to
-      access doesn't exist.
-    </p>
-    <p>Please contact support if you believe this is an error.</p>
-    <button @click="goToHome">Go to home page</button>
+    <slot name="content">
+      <h2>{{ t("account.error.title") }}</h2>
+      <p>{{ t("account.error.message") }}</p>
+      <p>{{ t("account.error.support") }}</p>
+    </slot>
+
+    <slot name="action" :go-to-home="goToHome">
+      <button @click="goToHome">{{ t("account.error.goToHome") }}</button>
+    </slot>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { useRouter } from "vue-router";
 
 import { useGlobalAccountError } from "../composables/useGlobalAccountError";
+import { useTranslations } from "../index";
 
 const router = useRouter();
+const messages = useTranslations();
+const { t } = useI18n({ messages });
 const { clearError } = useGlobalAccountError();
 
 const goToHome = () => {
