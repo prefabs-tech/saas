@@ -58,7 +58,7 @@ export { default as ConfigProvider } from "./components/ConfigProvider.vue";
 
 // Error handling
 export { useGlobalAccountError } from "./composables/useGlobalAccountError";
-export { default as SimpleAccountError } from "./components/SimpleAccountError.vue";
+export { default as NotFoundMessage } from "./components/NotFoundMessage.vue";
 
 // Views
 export { default as AccountSettings } from "./views/Accounts/AccountSettings.vue";
