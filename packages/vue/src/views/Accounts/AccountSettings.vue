@@ -40,6 +40,7 @@ import { ref, onMounted, computed, inject } from "vue";
 
 import { useTranslations } from "../../index";
 import AccountDetails from "./_components/AccountDetails.vue";
+import { useGlobalAccountError } from "../../composables/useGlobalAccountError";
 import { useMyAccountsStore } from "../../stores/myAccounts";
 import Invitations from "../Invitations/Index.vue";
 import Users from "../Users/Index.vue";
@@ -49,6 +50,7 @@ import type { Component } from "vue";
 const messages = useTranslations();
 const { t } = useI18n({ messages });
 const myAccountsStore = useMyAccountsStore();
+const { checkForAccountError } = useGlobalAccountError();
 
 const __saasAccountTabs = Symbol.for("saas.accountTabs");
 
@@ -112,6 +114,11 @@ async function prepareComponent() {
     if (!activeAccount.value) {
       await myAccountsStore.fetchMyAccount();
     }
+  } catch (error) {
+    if (checkForAccountError(error)) {
+      return;
+    }
+    console.error("Failed to fetch account:", error);
   } finally {
     loading.value = false;
   }
