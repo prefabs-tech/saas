@@ -19,7 +19,6 @@ describe.concurrent("getHost", () => {
     ["http://example.test:8080/path", "example.test:8080"],
     ["http://localhost:8080/path", "localhost:8080"],
   ])("getHost(url) -> domain", async (url, expected) => {
-    console.log(getHost(url));
     expect(getHost(url)).toBe(expected);
   });
 });
