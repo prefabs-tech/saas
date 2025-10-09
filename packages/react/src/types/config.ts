@@ -10,9 +10,16 @@ export type SaasConfig = {
   };
   apiBaseUrl: string;
   entity: "both" | "individual" | "organization";
-  mainAppSubdomain: string;
-  rootDomain: string;
+  /**
+   * @deprecated use mainApp?.subdomain instead
+   */
+  mainAppSubdomain?: string;
+  mainApp?: {
+    subdomain?: string;
+    domain?: string;
+  };
   multiDatabase: boolean;
+  rootDomain: string;
   saasAccountRoles?: string[];
   subdomains: "required" | "optional" | "disabled";
   ui?: {
