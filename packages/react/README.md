@@ -100,7 +100,10 @@ export type SaasConfig = {
     - **`termsAndConditionsUrl`**: url for the terms and conditions page.
 - **`apiBaseUrl`**: The base url for all api requests.
 - **`entity`**: The type of accounts allowed. 
-- **`mainAppSubdomain`**: Specifies the subdomain for the main application.
+- **`mainAppSubdomain`**: [Depricated: use `mainApp.subdomain`] Specifies the subdomain for the main application.
+- **`mainApp`**: Configuration for main app's domain and subdomain
+  - **`subdomain`**: Specifies the subdomain for the main application
+  - **`domain`**: Specifies the full domain for the main applications
 - **`rootDomain`**: The root domain of your SaaS platform.
 - **`multiDatabase`**: Indicates whether the SaaS platform supports multiple databases.
 - **`saasAccountRoles`**: A list of roles available for accounts in the SaaS platform. Used when inviting users to an account.
