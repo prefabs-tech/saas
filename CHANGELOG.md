@@ -1,3 +1,30 @@
+# [0.27.0](https://github.com/prefabs-tech/saas/compare/v0.26.0...v0.27.0) (2025-09-26)
+
+
+### Bug Fixes
+
+* **account-form:** fix the creation of individual type account when the entity is of type individual ([467f6b1](https://github.com/prefabs-tech/saas/commit/467f6b1fea0bf3d5262fb89065915d7960734760))
+* **react/accounts-table:** persist table states ([f85c3c9](https://github.com/prefabs-tech/saas/commit/f85c3c9781fbea66203c44a5ed0814ebd9560fea))
+* **react/multiple-sessions:** clear persisted account id if not found in user accounts ([3df023b](https://github.com/prefabs-tech/saas/commit/3df023bb0cec5a29d915fa04ff6fb4281e199a0c))
+* **react/signup:** open user app on same window after signup ([885438b](https://github.com/prefabs-tech/saas/commit/885438bcf754fdc4ce446ca9f34ddb1dbe49741e))
+
+
+### Features
+
+* use global account error ([6897990](https://github.com/prefabs-tech/saas/commit/6897990a88ff543742c8094e1120a09672f353fd))
+* **vue-main-app:** implement injection of additional tabs ([9845854](https://github.com/prefabs-tech/saas/commit/9845854c30ae688f02d587558e64aca09d8b6a0d))
+* **vue/account-info:** show badge of account type ([499bdc5](https://github.com/prefabs-tech/saas/commit/499bdc574140eb8f2985317354a27e50ea487a73))
+* **vue/account-view:** show the account type as a badge alongside the account name ([7a88c88](https://github.com/prefabs-tech/saas/commit/7a88c8868cf32f758f8cdd167dbb307413d9f091))
+* **vue/accounts:** make account table dynamic based on entity type ([9dab3fe](https://github.com/prefabs-tech/saas/commit/9dab3fe7e8eb0ff043a1c7f1964c83c950599908))
+* **vue/error-handling:** show error message when no account found error is thrown ([cc865d9](https://github.com/prefabs-tech/saas/commit/cc865d95c3aa8e52cdc17d91e1e3b8330682801e))
+* **vue/tables:** set persist-state prop to true for accounts, invitations and users table ([873b5e6](https://github.com/prefabs-tech/saas/commit/873b5e678c66fd16dbdcab8671735f261a88ef04))
+* **vue/translation:** add translation for type header for accounts table ([9f647ac](https://github.com/prefabs-tech/saas/commit/9f647ac536c0cbc9a8d62c3832c24363d781108b))
+* **vue:** enhance SimpleAccountError component ([4e0eb4b](https://github.com/prefabs-tech/saas/commit/4e0eb4b899471f7806aa6fb0e8bfb7042bd144ee))
+* **vue:** introduce NotFoundMessage component and replace SimpleAccountError usage ([dda5648](https://github.com/prefabs-tech/saas/commit/dda564809ce1ed6a37334be6e9213a233f3d7b77))
+* **vue:** refactor AccountSettings view and update import paths ([903553f](https://github.com/prefabs-tech/saas/commit/903553f2beb63f8c2cc20e230a1df4c6b661fd0e))
+
+
+
 # [0.26.0](https://github.com/prefabs-tech/saas/compare/v0.25.0...v0.26.0) (2025-09-04)
 
 

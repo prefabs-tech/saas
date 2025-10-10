@@ -20,40 +20,39 @@ pnpm add --filter "@scope/project" @prefabs.tech/saas-react
 
 ### Basic setup
 
-To use this package, wrap your application with the `AccountsProvider` component. This provider manages account-related state and configuration.
+To use this package, update the App.tsx to wrap your application code with `SaasWrapper`. This wrapper manages account-related states and configurations.
 
 ```typescript
-// src/App.tsx
-import { AccountsProvider } from "@prefabs.tech/saas-react";
+import { useUser } from "@prefabs.tech/react-user";
+import { SaasWrapper } from "@prefabs.tech/saas-react";
+import { ToastContainer } from "react-toastify";
+
 import config from "./config";
+import { AppRouter } from "./Router";
 
 function App() {
+  const { user } = useUser();
+
   return (
-    <AccountsProvider
-      userId={user?.id}
-      config={{
-        apiBaseUrl: config.apiBaseUrl,
-        autoSelectAccount: true,
-        mainAppSubdomain: config.saas.mainAppSubdomain,
-        rootDomain: config.saas.rootDomain,
-      }}
-    >
+    <SaasWrapper userId={user?.id} config={config.saas}>
       <AppRouter />
-      <ToastContainer position="bottom-right" />
-    </AccountsProvider>
+      <ToastContainer position="top-center" />
+    </SaasWrapper>
   );
 }
+
+export default App;
 ```
 
 ### Configuration
 
-The `AccountsProvider` accepts a `config` prop to customize its behavior. Below are the available options with detailed explanations:
+The `SaasWrapper` accepts a `config` prop to customize its behavior. Below are the available options with detailed explanations:
 
 ```typescript
-config: {
+export type SaasConfig = {
   accounts?: {
-    autoSelectAccount?: boolean; // (default: true)
-    allowMultipleSessions?: boolean; // (default: true)
+    autoSelectAccount?: boolean;
+    allowMultipleSessions?: boolean;
     signup?: {
       apiPath?: string;
       appRedirection?: boolean;
@@ -61,11 +60,32 @@ config: {
     };
   };
   apiBaseUrl: string;
+  entity: "both" | "individual" | "organization";
   mainAppSubdomain: string;
   rootDomain: string;
   multiDatabase: boolean;
   saasAccountRoles?: string[];
   subdomains: "required" | "optional" | "disabled";
+  ui?: {
+    account?: {
+      form?: {
+        actionsAlignment?: "center" | "fill" | "left" | "right";
+        actionsReverse?: boolean;
+      };
+    };
+    invitation?: {
+      form?: {
+        actionsAlignment?: "center" | "fill" | "left" | "right";
+        actionsReverse?: boolean;
+      };
+    };
+    signup?: {
+      form?: {
+        actionsAlignment?: "center" | "fill" | "left" | "right";
+        actionsReverse?: boolean;
+      };
+    };
+  };
 };
 ```
 
@@ -91,6 +111,7 @@ config: {
   - `"required"`: Subdomains are mandatory for tenant identification.
   - `"optional"`: Subdomains are optional and can be used if needed.
   - `"disabled"`: Subdomains are not used in the SaaS platform.
+  **`ui`**: UI related configuration for customization.
 
 ### Routing
 
@@ -103,8 +124,8 @@ This package provides pre-configured routes for SaaS applications, designed to s
 - **Parameters**:
   - `type`: Specifies the type of routes. Options:
     - `"authenticated"` (default): Routes for authenticated users.
-    - `"unauthenticated"`: No routes are returned.
-    - `"public"`: No routes are returned.
+    - `"unauthenticated"`: Routes for unauthenticated users. No routes are returned at the moment.
+    - `"public"`: Routes for public users. No routes are returned at the moment.
   - `options`: An optional object to customize routes. Following route options are available under `options.routes`:
     - `accountsAdd`: Customizes the "Add Account" route.
     - `accountsEdit`: Customizes the "Edit Account" route.
@@ -273,7 +294,7 @@ export const CONFIG_UI_DEFAULT = {
 };
 ```
 
-You can play around with actionsAligment and actionsReverse configs to get desired alignment.
+You can play around with `actionsAligment` and `actionsReverse` configs to get desired alignment of form actions.
 
 ### i18n support
 
@@ -290,7 +311,3 @@ These namespaces are available in the following locales:
 Ensure you register these namespaces in your application's i18n setup.
 
 Refer to the `locales/en` and `locales/fr` folders for the required translation keys.
-
-## Contributing
-
-Contributions are welcome! Please follow the guidelines in the repository to submit issues or pull requests.

@@ -1,4 +1,10 @@
 {
+  "error": {
+    "goToHome": "Aller à la page d'accueil",
+    "message": "Vous n'avez pas accès à un compte ou le compte auquel vous essayez d'accéder n'existe pas.",
+    "support": "Veuillez contacter le support si vous pensez qu'il s'agit d'une erreur.",
+    "title": "Compte introuvable"
+  },
   "invitations": {
     "addInvitation": "Ajouter une invitation",
     "form": {

@@ -1,6 +1,8 @@
 <template>
   <LoadingIcon v-if="loading" />
 
+  <NotFoundMessage v-else-if="showAccountError" />
+
   <Page
     v-else-if="error && error.status === 404"
     class="error"
@@ -36,8 +38,10 @@ import { ref, onMounted, inject, defineProps } from "vue";
 
 import { useTranslations } from "../index";
 import ConfigProvider from "./ConfigProvider.vue";
+import NotFoundMessage from "./NotFoundMessage.vue";
 import SaasAccountsProvider from "./SaasAccountsProvider.vue";
 import { doesAccountExist } from "../api/accounts";
+import { useGlobalAccountError } from "../composables/useGlobalAccountError";
 import { checkIsAdminApp } from "../utils/common";
 
 import type { SaasConfig } from "../types/config";
@@ -62,6 +66,7 @@ const { t } = useI18n({ messages });
 
 const loading = ref(true);
 const error = ref<{ status?: number } | null>(null);
+const { showAccountError } = useGlobalAccountError();
 
 const isAdminApp = checkIsAdminApp();
 

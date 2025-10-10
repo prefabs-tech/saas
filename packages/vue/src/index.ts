@@ -56,6 +56,10 @@ export { default as SaasAccountsProvider } from "./components/SaasAccountsProvid
 export { default as SaasWrapper } from "./components/SaasWrapper.vue";
 export { default as ConfigProvider } from "./components/ConfigProvider.vue";
 
+// Error handling
+export { useGlobalAccountError } from "./composables/useGlobalAccountError";
+export { default as NotFoundMessage } from "./components/NotFoundMessage.vue";
+
 // Views
 export { default as AccountSettings } from "./views/Accounts/AccountSettings.vue";
 export { default as MyAccounts } from "./views/Accounts/MyAccounts.vue";
