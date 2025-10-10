@@ -23,7 +23,6 @@ export interface AccountsContextType {
   accountLoading: boolean;
   meta: {
     isMainApp: boolean;
-    mainAppSubdomain: string;
     rootDomain: string;
     subdomain: string;
   };
@@ -51,12 +50,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
   const [accounts, setAccounts] = useState<Array<Account> | null>(null);
   const [activeAccount, setActiveAccount] = useState<Account | null>(null);
 
-  const {
-    apiBaseUrl,
-    mainAppSubdomain,
-    rootDomain,
-    accounts: accountsConfig,
-  } = config;
+  const { apiBaseUrl, mainApp, rootDomain, accounts: accountsConfig } = config;
 
   const accountStorageKey = ACCOUNT_HEADER_NAME;
 
@@ -64,9 +58,11 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
     accountsConfig || {};
 
   const subdomain = window.location.hostname.split(".")[0];
+  const host = window.location.host;
+
   const isMainApp = useMemo(() => {
-    return subdomain === mainAppSubdomain;
-  }, [subdomain]);
+    return host === mainApp?.domain;
+  }, [host]);
 
   const switchAccount = useCallback(
     (newAccount: Account | null, options?: SwitchAccountOptions) => {
@@ -201,7 +197,6 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         accountLoading,
         meta: {
           isMainApp,
-          mainAppSubdomain,
           rootDomain,
           subdomain,
         },
