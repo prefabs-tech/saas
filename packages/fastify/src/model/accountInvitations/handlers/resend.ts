@@ -70,7 +70,7 @@ const resend = async (request: SessionRequest, reply: FastifyReply) => {
     } else if (account.slug) {
       invitationOrigin = `${request.protocol}://${account.slug}.${saasConfig.rootDomain}`;
     } else {
-      invitationOrigin = `${request.protocol}://${saasConfig.mainAppSubdomain}.${saasConfig.rootDomain}`;
+      invitationOrigin = `${request.protocol}://${saasConfig.mainApp.domain}`;
     }
 
     try {

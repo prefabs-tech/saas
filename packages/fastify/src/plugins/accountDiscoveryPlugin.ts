@@ -14,14 +14,14 @@ const plugin = async (fastify: FastifyInstance) => {
       const { config, headers, log, routeOptions, slonik: database } = request;
 
       const hostname = getHost(
-        headers.referer || headers.origin || request.hostname,
+        headers.referer || headers.origin || headers.host || request.hostname,
       );
       const accountId = headers[ACCOUNT_HEADER_NAME] as string;
       const saasConfig = getSaasConfig(config);
 
       // skip account discovery if request is for other apps
       for (const app of saasConfig.apps) {
-        if (`${app.subdomain}.${saasConfig.rootDomain}` === hostname) {
+        if (app.domain === hostname) {
           log.info(` Incoming request for ${app.name} app`);
 
           return;

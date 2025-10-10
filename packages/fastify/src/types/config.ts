@@ -8,13 +8,20 @@ import accountUserHandlers from "../model/accountUsers/handlers";
 import type { AccountInvitation } from "./accountInvitation";
 import type { FastifyInstance, FastifyRequest } from "fastify";
 
-interface SaasOptions {
-  apps?: [
-    {
+type App =
+  | {
       name: string;
+      domain: string;
+      subdomain?: string;
+    }
+  | {
+      name: string;
+      domain?: string;
       subdomain: string;
-    },
-  ];
+    };
+
+interface SaasOptions {
+  apps?: App[];
   excludeRoutePatterns?: Array<string | RegExp>;
   handlers?: {
     account?: {
@@ -72,7 +79,14 @@ interface SaasOptions {
       user: User,
     ) => Promise<void>;
   };
-  mainAppSubdomain: string;
+  /**
+   * @deprecated use mainApp?.subdomain instead
+   */
+  mainAppSubdomain?: string;
+  mainApp?: {
+    subdomain?: string;
+    domain?: string;
+  };
   multiDatabase?: {
     mode: "disabled" | "optional" | "required";
     migrations?: {

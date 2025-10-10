@@ -4,13 +4,21 @@ const getSaasConfig = (config: ApiConfig) => {
   const saasConfig = config.saas;
   const migrationsPath = config.slonik?.migrations?.path || "migrations";
 
-  return {
-    apps: saasConfig.apps || [
+  const apps = (
+    saasConfig.apps || [
       {
         name: "admin",
         subdomain: "admin",
+        domain: undefined,
       },
-    ],
+    ]
+  ).map((app) => ({
+    ...app,
+    domain: app.domain || `${app.subdomain}.${saasConfig.rootDomain}`,
+  }));
+
+  return {
+    apps: apps,
     excludeRoutePatterns: [
       /^\/$/,
       /^\/auth\//,
@@ -24,7 +32,12 @@ const getSaasConfig = (config: ApiConfig) => {
       slugs: saasConfig.invalid?.domains || ["admin"],
     },
     invitation: saasConfig.invitation,
-    mainAppSubdomain: saasConfig.mainAppSubdomain || "app",
+    mainApp: {
+      subdomain: saasConfig.mainApp?.subdomain || "app",
+      domain:
+        saasConfig.mainApp?.domain ??
+        `${saasConfig.mainApp?.subdomain || saasConfig.mainAppSubdomain || "app"}.${saasConfig.rootDomain}`,
+    },
     multiDatabase: {
       mode: saasConfig.multiDatabase?.mode || "disabled",
       migrations: {

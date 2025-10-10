@@ -8,6 +8,7 @@ import { doesAccountExist } from "./api";
 import AccountsProvider from "./contexts/AccountsProvider";
 import ConfigProvider from "./contexts/ConfigProvider";
 import { checkIsAdminApp } from "./utils/common";
+import { prepareConfig } from "./utils/config";
 
 type SaasWrapperProperties = {
   config: SaasConfig;
@@ -64,12 +65,14 @@ export const SaasWrapper = ({
     }
   }
 
+  const _config = prepareConfig(config);
+
   return (
-    <ConfigProvider config={config}>
+    <ConfigProvider config={_config}>
       {isAdminApp ? (
         children
       ) : (
-        <AccountsProvider config={config} userId={userId}>
+        <AccountsProvider config={_config} userId={userId}>
           {children}
         </AccountsProvider>
       )}

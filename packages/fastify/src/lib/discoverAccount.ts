@@ -46,9 +46,7 @@ const discoverAccount = async (
 
   const saasConfig = getSaasConfig(config);
 
-  const mainAppDomain = `${saasConfig.mainAppSubdomain}.${saasConfig.rootDomain}`;
-
-  if (hostname === mainAppDomain) {
+  if (hostname === saasConfig.mainApp.domain) {
     if (isRouteExcludedFromDiscovery) {
       return null;
     }
