@@ -37,6 +37,9 @@ const getSaasConfig = (config: ApiConfig) => {
       domain:
         saasConfig.mainApp?.domain ??
         `${saasConfig.mainApp?.subdomain || saasConfig.mainAppSubdomain || "app"}.${saasConfig.rootDomain}`,
+      skipHostnameCheck:
+        saasConfig.subdomains === "disabled" &&
+        (saasConfig.mainApp?.skipHostnameCheck ?? true),
     },
     multiDatabase: {
       mode: saasConfig.multiDatabase?.mode || "disabled",
