@@ -1,3 +1,12 @@
+## [0.27.2](https://github.com/prefabs-tech/saas/compare/v0.27.1...v0.27.2) (2025-10-16)
+
+
+### Features
+
+* skip app domain check for config with subdomains disabled ([#165](https://github.com/prefabs-tech/saas/issues/165)) ([3fc4272](https://github.com/prefabs-tech/saas/commit/3fc4272985752e052466be3633325c6e7470c613))
+
+
+
 ## [0.27.1](https://github.com/prefabs-tech/saas/compare/v0.27.0...v0.27.1) (2025-10-10)
 
 
