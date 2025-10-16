@@ -115,6 +115,42 @@ const start = async () => {
 start();
 ```
 
+### Skip account discovery for specific routes in main app
+
+You can skip the account discovery process for specific routes in the main application in two ways:
+
+#### Using a pattern in the SaaS configuration
+
+Set a route pattern in your SaaS configuration file to exclude certain routes from account discovery:
+
+```ts
+saas: {
+  excludeRoutePattern = ["/docs"]; // it also supports regex route patterns. For example: "/^\/auth\//"
+```
+
+Any route matching the specified pattern(s) will bypass the account discovery logic.
+
+#### Route Options
+
+In the route definition, set the exclude flag under the saas key:
+
+```ts
+fastify.get(
+  '/docs',
+  {
+    config: {
+      saas: {
+        exclude: true,
+      },
+    },
+  },
+  async (request, reply) => {
+    return reply.status(200).send({message: "Account not found"})
+  }
+  );
+```
+
+
 ### Cross-Domain Requests (CORS) Configuration
 
 If you are running the frontend and backend on different domains or ports, make sure your backend CORS configuration allows the custom header `X-Account-Id`.
