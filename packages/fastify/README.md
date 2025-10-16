@@ -37,6 +37,7 @@ const config: ApiConfig = {
     rootDomain: process.env.APP_ROOT_DOMAIN as string,
     mainApp: {
       subdomain:  process.env.MAIN_APP_SUBDOMAIN as string || "app",
+      domain: process.env.MAIN_APP_DOMAIN as string,
     },
     multiDatabase: {
       mode: "disabled", // "disabled", "optional", "required",
@@ -112,4 +113,22 @@ const start = async () => {
 };
 
 start();
+```
+
+### Cross-Domain Requests (CORS) Configuration
+
+If you are running the frontend and backend on different domains or ports, make sure your backend CORS configuration allows the custom header `X-Account-Id`.
+
+Update your CORS configuration to include it in the allowed headers list, for example:
+
+```ts
+await fastify.register(import('@fastify/cors'), {
+  origin: ['http://localhost:50021'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'X-Account-Id'  // 👈 Add this header
+  ],
+});
 ```
