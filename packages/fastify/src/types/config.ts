@@ -86,6 +86,7 @@ interface SaasOptions {
   mainApp?: {
     subdomain?: string;
     domain?: string;
+    skipHostnameCheck?: boolean;
   };
   multiDatabase?: {
     mode: "disabled" | "optional" | "required";

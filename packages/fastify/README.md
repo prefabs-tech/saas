@@ -37,6 +37,7 @@ const config: ApiConfig = {
     rootDomain: process.env.APP_ROOT_DOMAIN as string,
     mainApp: {
       subdomain:  process.env.MAIN_APP_SUBDOMAIN as string || "app",
+      domain: process.env.MAIN_APP_DOMAIN as string,
     },
     multiDatabase: {
       mode: "disabled", // "disabled", "optional", "required",
@@ -112,4 +113,58 @@ const start = async () => {
 };
 
 start();
+```
+
+### Skip account discovery for specific routes in main app
+
+You can skip the account discovery process for specific routes in the main application in two ways:
+
+#### Using a pattern in the SaaS configuration
+
+Set a route pattern in your SaaS configuration file to exclude certain routes from account discovery:
+
+```ts
+saas: {
+  excludeRoutePattern = ["/docs"]; // it also supports regex route patterns. For example: "/^\/auth\//"
+```
+
+Any route matching the specified pattern(s) will bypass the account discovery logic.
+
+#### Route Options
+
+In the route definition, set the exclude flag under the saas key:
+
+```ts
+fastify.get(
+  '/docs',
+  {
+    config: {
+      saas: {
+        exclude: true,
+      },
+    },
+  },
+  async (request, reply) => {
+    return reply.status(200).send({message: "Account not found"})
+  }
+  );
+```
+
+
+### Cross-Domain Requests (CORS) Configuration
+
+If you are running the frontend and backend on different domains or ports, make sure your backend CORS configuration allows the custom header `X-Account-Id`.
+
+Update your CORS configuration to include it in the allowed headers list, for example:
+
+```ts
+await fastify.register(import('@fastify/cors'), {
+  origin: ['http://localhost:50021'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'X-Account-Id'  // 👈 Add this header
+  ],
+});
 ```
