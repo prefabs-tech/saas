@@ -37,12 +37,7 @@
 
       <div class="actions">
         <FormActions
-          :actions="[
-            {
-              id: 'submit',
-              label: t('account.signup.actions.signup'),
-            },
-          ]"
+          :actions="formActions"
           :disabled="
             disableButton &&
             termsAndConditionsConfig?.display &&
@@ -51,6 +46,7 @@
           :loading="loading"
           alignment="filled"
           tabindex="0"
+          @cancel="handleCancel"
         />
       </div>
     </Form>
@@ -70,7 +66,7 @@ import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { TermsAndConditions } from "@prefabs.tech/vue3-user";
 import { toFormValidator } from "@vee-validate/zod";
 import { Form } from "vee-validate";
-import { inject, ref, watch } from "vue";
+import { computed, inject, ref, watch } from "vue";
 import { z } from "zod";
 
 import { useTranslations } from "../index";
@@ -78,6 +74,7 @@ import { useTranslations } from "../index";
 import type { UserSignupData } from "../types/user";
 
 export interface UserSignupFormProperties {
+  actions?: Array<Record<string, unknown>>;
   email?: string;
   loading?: boolean;
 }
@@ -92,11 +89,13 @@ const termsAndConditionsConfig =
   config.user?.features?.signUp?.termsAndConditions;
 
 const props = withDefaults(defineProps<UserSignupFormProperties>(), {
+  actions: undefined,
   email: "",
   loading: false,
 });
 
 const emit = defineEmits<{
+  cancel: [];
   submit: [userData: UserSignupData];
 }>();
 
@@ -147,6 +146,32 @@ const validationSchema = toFormValidator(
   )
 );
 
+const formActions = computed(() => {
+  const defaultActions = [
+    {
+      id: "submit",
+      label: t("account.signup.actions.signup"),
+      type: "submit",
+    },
+  ];
+
+  if (props.actions && props.actions.length > 0) {
+    // Merge provided actions with default submit action
+    // If a submit action is provided, use it; otherwise append default submit
+    const hasSubmit = props.actions.some(
+      (action) => action.id === "submit" || action.type === "submit"
+    );
+
+    if (hasSubmit) {
+      return props.actions;
+    }
+
+    return [...props.actions, ...defaultActions];
+  }
+
+  return defaultActions;
+});
+
 watch(
   () => props.email,
   (newEmail) => {
@@ -156,6 +181,10 @@ watch(
   },
   { immediate: true }
 );
+
+function handleCancel() {
+  emit("cancel");
+}
 
 function onSubmit(validatedData: Record<string, unknown>) {
   const userData: UserSignupData = {

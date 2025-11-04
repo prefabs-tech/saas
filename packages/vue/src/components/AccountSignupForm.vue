@@ -55,14 +55,13 @@
     </div>
 
     <!-- User Fields (Step 2) -->
-    <div v-if="activeIndex === 1">
-      <div class="step-2-header">
-        <button type="button" class="back-button" @click="activeIndex = 0">
-          {{ t("account.signup.actions.previous") }}
-        </button>
-      </div>
-      <UserSignupForm :loading="loading" @submit="handleUserSignupSubmit" />
-    </div>
+    <UserSignupForm
+      v-if="activeIndex === 1"
+      :actions="userFormActions"
+      :loading="loading"
+      @submit="handleUserSignupSubmit"
+      @cancel="activeIndex = 0"
+    />
 
     <!-- Actions for Step 1 only -->
     <div v-if="activeIndex === 0" class="actions">
@@ -202,6 +201,17 @@ const formActions = computed(() => [
     id: "next",
     label: t("account.signup.actions.next"),
     type: "submit",
+  },
+]);
+
+const userFormActions = computed(() => [
+  {
+    id: "cancel",
+    label: t("account.signup.actions.previous"),
+    onClick: () => {
+      activeIndex.value = 0;
+    },
+    type: "button",
   },
 ]);
 
