@@ -5,17 +5,15 @@
         ? t('account.signup.title.account')
         : t('account.signup.title.user')
     "
-    class="signup"
+    class="auth signup"
     :centered="true"
   >
-    <div class="signup-content">
-      <AccountSignupForm
-        v-if="isMainApp"
-        :loading="loading"
-        @submit="handleSubmit"
-      />
-      <UserSignupForm v-else :loading="loading" @submit="handleSubmit" />
-    </div>
+    <AccountSignupForm
+      v-if="isMainApp"
+      :loading="loading"
+      @submit="handleSubmit"
+    />
+    <UserSignupForm v-else :loading="loading" @submit="handleSubmit" />
   </Page>
 </template>
 
@@ -79,8 +77,6 @@ const eventHandlers = inject<SaasEventHandlers>(__saasEventHandlers);
 const handleSubmit = async (data: AccountSignupData | UserSignupData) => {
   loading.value = true;
 
-  console.log('Index', data);
-
   try {
     const result = await signup({
       apiBaseUrl: config.apiBaseUrl,
@@ -123,6 +119,8 @@ const handleSubmit = async (data: AccountSignupData | UserSignupData) => {
 
 <style scoped>
 .signup-content {
+  margin: 0 auto;
+  max-width: 430px;
   width: 100%;
 }
 </style>

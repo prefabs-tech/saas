@@ -1,81 +1,79 @@
 <template>
-  <div class="account-signup-form">
-    <Form
-      :initial-values="initialValues"
-      :validation-schema="validationSchema"
-      @submit="onSubmit"
-    >
-      <!-- Account Fields (Step 1) -->
-      <div v-show="activeIndex === 0">
+  <Form
+    :initial-values="initialValues"
+    :validation-schema="validationSchema"
+    @submit="onSubmit"
+  >
+    <!-- Account Fields (Step 1) -->
+    <div v-show="activeIndex === 0">
+      <Input
+        v-model="formData.name"
+        :label="t('accounts.form.label.name')"
+        name="name"
+        type="text"
+      />
+
+      <template v-if="saasConfig.entity === 'both'">
+        <SwitchInput
+          v-model="formData.individual"
+          :label="t('accounts.form.label.individual')"
+          name="individual"
+        />
+      </template>
+
+      <template v-if="shouldShowOrganizationFields">
         <Input
-          v-model="formData.name"
-          :label="t('accounts.form.label.name')"
-          name="name"
+          v-model="formData.registeredNumber"
+          :label="t('accounts.form.label.registeredNumber')"
+          name="registeredNumber"
           type="text"
         />
 
-        <template v-if="saasConfig.entity === 'both'">
-          <SwitchInput
-            v-model="formData.individual"
-            :label="t('accounts.form.label.individual')"
-            name="individual"
-          />
-        </template>
-
-        <template v-if="shouldShowOrganizationFields">
-          <Input
-            v-model="formData.registeredNumber"
-            :label="t('accounts.form.label.registeredNumber')"
-            name="registeredNumber"
-            type="text"
-          />
-
-          <Input
-            v-model="formData.taxId"
-            :label="t('accounts.form.label.taxId')"
-            name="taxId"
-            type="text"
-          />
-        </template>
-
-        <template v-if="saasConfig.subdomains !== 'disabled'">
-          <Input
-            v-model="formData.slug"
-            :label="t('accounts.form.label.slug')"
-            name="slug"
-            type="text"
-          />
-
-          <SwitchInput
-            v-if="saasConfig.multiDatabase"
-            v-model="formData.useSeparateDatabase"
-            :label="t('accounts.form.label.useSeparateDatabase')"
-            name="useSeparateDatabase"
-          />
-        </template>
-      </div>
-
-      <!-- User Fields (Step 2) -->
-      <div v-if="activeIndex === 1">
-        <div class="step-2-header">
-          <button type="button" class="back-button" @click="activeIndex = 0">
-            {{ t("account.signup.actions.previous") }}
-          </button>
-        </div>
-        <UserSignupForm :loading="loading" @submit="handleUserSignupSubmit" />
-      </div>
-
-      <!-- Actions for Step 1 only -->
-      <div v-if="activeIndex === 0" class="actions">
-        <FormActions
-          :actions="formActions"
-          :loading="loading"
-          alignment="filled"
-          tabindex="0"
+        <Input
+          v-model="formData.taxId"
+          :label="t('accounts.form.label.taxId')"
+          name="taxId"
+          type="text"
         />
+      </template>
+
+      <template v-if="saasConfig.subdomains !== 'disabled'">
+        <Input
+          v-model="formData.slug"
+          :label="t('accounts.form.label.slug')"
+          name="slug"
+          type="text"
+        />
+
+        <SwitchInput
+          v-if="saasConfig.multiDatabase"
+          v-model="formData.useSeparateDatabase"
+          :label="t('accounts.form.label.useSeparateDatabase')"
+          name="useSeparateDatabase"
+        />
+      </template>
+    </div>
+
+    <!-- User Fields (Step 2) -->
+    <div v-if="activeIndex === 1">
+      <div class="step-2-header">
+        <button type="button" class="back-button" @click="activeIndex = 0">
+          {{ t("account.signup.actions.previous") }}
+        </button>
       </div>
-    </Form>
-  </div>
+      <UserSignupForm :loading="loading" @submit="handleUserSignupSubmit" />
+    </div>
+
+    <!-- Actions for Step 1 only -->
+    <div v-if="activeIndex === 0" class="actions">
+      <FormActions
+        :actions="formActions"
+        :loading="loading"
+        alignment="filled"
+        tabindex="0"
+      />
+    </div>
+  </Form>
 </template>
 
 <script setup lang="ts">
@@ -258,12 +256,5 @@ function handleUserSignupSubmit(userData: UserSignupData) {
 }
 </script>
 
-<style lang="css">
-.account-signup-form {
-  width: 100%;
-}
-
-.account-signup-form .actions {
-  display: contents;
-}
-</style>
+<!-- <style lang="css">
+</style> -->
