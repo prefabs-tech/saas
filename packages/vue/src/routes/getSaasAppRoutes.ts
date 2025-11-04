@@ -4,6 +4,7 @@ import JoinInvitation from "../views/AcceptInvitation/JoinInvitation.vue";
 import SignupInvitation from "../views/AcceptInvitation/SignupInvitation.vue";
 import AccountSettings from "../views/Accounts/AccountSettings.vue";
 import MyAccounts from "../views/Accounts/MyAccounts.vue";
+import Signup from "../views/Signup/Index.vue";
 
 import type { AppRoutesProperties, RouteOverwrite } from "../types/routes";
 import type { Router, RouteRecordRaw } from "vue-router";
@@ -48,6 +49,15 @@ const _appRoutes = {
     path: DEFAULT_PATHS.INVITATION_SIGNUP,
   } as RouteRecordRaw,
 
+  signup: {
+    meta: {
+      authenticated: false,
+    },
+    component: Signup,
+    name: "signup",
+    path: DEFAULT_PATHS.SIGNUP,
+  } as RouteRecordRaw,
+
   // Public routes
   invitationAccept: {
     meta: {
@@ -83,6 +93,7 @@ export const getSaasAppRoutes = (
     invitationJoin,
     invitationSignup,
     myAccounts,
+    signup,
   } = options?.routes || {};
 
   let routes: (RouteRecordRaw & { disabled?: boolean })[] = [];
@@ -96,7 +107,10 @@ export const getSaasAppRoutes = (
   }
 
   if (type === "unauthenticated") {
-    routes = [getRoute(_appRoutes.invitationSignup, invitationSignup)];
+    routes = [
+      getRoute(_appRoutes.invitationSignup, invitationSignup),
+      getRoute(_appRoutes.signup, signup),
+    ];
   }
 
   if (type === "public") {

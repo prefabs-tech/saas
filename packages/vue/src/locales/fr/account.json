@@ -101,6 +101,8 @@
   "signup": {
     "actions": {
       "cancel": "Annuler",
+      "next": "Suivant",
+      "previous": "Précédent",
       "signup": "S'inscrire"
     },
     "fields": {
@@ -115,8 +117,12 @@
       },
       "confirmPassword": "Confirmer le mot de passe"
     },
+    "messages": {
+      "error": "Échec de création du compte. Veuillez réessayer."
+    },
     "termsAndConditions": "J'accepte tous les Termes et Conditions de l'accord utilisateur.",
     "title": {
+      "account": "Créer un nouveau compte",
       "user": "S'inscrire"
     },
     "validations": {
@@ -131,6 +137,9 @@
       "password": {
         "required": "Le mot de passe est requis",
         "weak": "Veuillez entrer un mot de passe valide"
+      },
+      "termsAndConditions": {
+        "required": "Veuillez accepter les termes et conditions"
       }
     }
   },

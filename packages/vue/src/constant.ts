@@ -29,6 +29,7 @@ export const DEFAULT_PATHS = {
   INVITATION_JOIN: "/join/token/:token",
   INVITATION_SIGNUP: "/signup/token/:token",
   MY_ACCOUNTS: "/accounts",
+  SIGNUP: "/signup",
 };
 
 // Used to persist the intended route when auth redirects to login

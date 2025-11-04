@@ -1,6 +1,9 @@
 import { client } from "./axios";
+import { prepareSignupData } from "../utils/account";
 
 import type { Account, AccountInput, Accounts } from "../types/account";
+import type { AccountSignupData, UserSignupData } from "../types/user";
+import type { User } from "../types/account";
 
 export const createAccount = async (
   data: AccountInput,
@@ -84,6 +87,26 @@ export const updateMyAccount = async (
   apiBaseUrl: string
 ): Promise<Account> => {
   const response = await client(apiBaseUrl).put("/my-account", data, {
+    withCredentials: true,
+  });
+
+  return response.data;
+};
+
+export const signup = async ({
+  apiBaseUrl,
+  path,
+  data,
+  accountSignup = true,
+}: {
+  apiBaseUrl: string;
+  path: string;
+  data: AccountSignupData | UserSignupData;
+  accountSignup?: boolean;
+}): Promise<User> => {
+  const payload = prepareSignupData({ data, accountSignup });
+
+  const response = await client(apiBaseUrl).post(path, payload, {
     withCredentials: true,
   });
 
