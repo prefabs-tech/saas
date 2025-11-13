@@ -6,7 +6,7 @@ import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
 const remove = async (request: SessionRequest, reply: FastifyReply) => {
-  const { config, log, slonik } = request;
+  const { config, server, slonik } = request;
 
   let account: Account | undefined | null = request.account;
 
@@ -16,11 +16,7 @@ const remove = async (request: SessionRequest, reply: FastifyReply) => {
   };
 
   if (account && account.id != requestParameters.accountId) {
-    return reply.status(400).send({
-      error: "Bad Request",
-      message: "Bad Request",
-      statusCode: 400,
-    });
+    throw server.httpErrors.badRequest("Account mismatch");
   }
 
   const accountId = account ? account.id : requestParameters.accountId;
@@ -32,47 +28,29 @@ const remove = async (request: SessionRequest, reply: FastifyReply) => {
   }
 
   if (!account) {
-    return reply.status(404).send({
-      error: "Not Found",
-      message: "Account not found",
-      statusCode: 404,
-    });
+    throw server.httpErrors.notFound("Account not found");
   }
 
   const dbSchema = account.database || undefined;
 
-  try {
-    const service = new AccountInvitationService(
-      config,
-      slonik,
-      accountId,
-      dbSchema,
-    );
+  const service = new AccountInvitationService(
+    config,
+    slonik,
+    accountId,
+    dbSchema,
+  );
 
-    const accountInvitation = await service.delete(requestParameters.id);
+  const accountInvitation = await service.delete(requestParameters.id);
 
-    if (!accountInvitation) {
-      return reply.status(422).send({
-        statusCode: 422,
-        status: "ERROR",
-        message: "Invitation not found",
-      });
-    }
-
-    const data: Partial<AccountInvitation> = accountInvitation;
-
-    delete data.token;
-
-    reply.send(data);
-  } catch (error) {
-    log.error(error);
-
-    reply.status(500).send({
-      message: "Oops! Something went wrong",
-      status: "ERROR",
-      statusCode: 500,
-    });
+  if (!accountInvitation) {
+    throw server.httpErrors.unprocessableEntity("Invitation not found");
   }
+
+  const data: Partial<AccountInvitation> = accountInvitation;
+
+  delete data.token;
+
+  reply.send(data);
 };
 
 export default remove;

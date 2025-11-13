@@ -3,7 +3,7 @@ import AccountInvitationService from "../service";
 import type { FastifyReply, FastifyRequest } from "fastify";
 
 const getByToken = async (request: FastifyRequest, reply: FastifyReply) => {
-  const { config, account, dbSchema, log, slonik } = request;
+  const { config, account, dbSchema, server, slonik } = request;
 
   const requestParameters = request.params as {
     token: string;
@@ -11,45 +11,27 @@ const getByToken = async (request: FastifyRequest, reply: FastifyReply) => {
   };
 
   if (account && account.id != requestParameters.accountId) {
-    return reply.status(400).send({
-      error: "Bad Request",
-      message: "Bad Request",
-      statusCode: 400,
-    });
+    throw server.httpErrors.badRequest("Account mismatch");
   }
 
   const accountId = account ? account.id : requestParameters.accountId;
 
   if (!accountId) {
-    return reply.status(400).send({
-      error: "Bad Request",
-      message: "Bad Request",
-      statusCode: 400,
-    });
+    throw server.httpErrors.badRequest("Account id is required");
   }
 
-  try {
-    const service = new AccountInvitationService(
-      config,
-      slonik,
-      accountId,
-      dbSchema,
-    );
+  const service = new AccountInvitationService(
+    config,
+    slonik,
+    accountId,
+    dbSchema,
+  );
 
-    const accountInvitation = await service.findOneByToken(
-      requestParameters.token,
-    );
+  const accountInvitation = await service.findOneByToken(
+    requestParameters.token,
+  );
 
-    reply.send(accountInvitation);
-  } catch (error) {
-    log.error(error);
-
-    reply.status(500).send({
-      message: "Oops! Something went wrong",
-      status: "ERROR",
-      statusCode: 500,
-    });
-  }
+  reply.send(accountInvitation);
 };
 
 export default getByToken;

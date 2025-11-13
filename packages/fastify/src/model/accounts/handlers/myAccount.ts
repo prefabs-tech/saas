@@ -3,11 +3,7 @@ import type { SessionRequest } from "supertokens-node/framework/fastify";
 
 const myAccount = async (request: SessionRequest, reply: FastifyReply) => {
   if (!request.account) {
-    return reply.status(400).send({
-      error: "Bad Request",
-      message: "Bad Request",
-      statusCode: 400,
-    });
+    throw request.server.httpErrors.badRequest("Account not found");
   }
 
   reply.send(request.account);

@@ -6,35 +6,25 @@ const getAccountTypes = async (
   request: FastifyRequest,
   reply: FastifyReply,
 ) => {
-  const { config, log, query, slonik } = request;
+  const { config, query, slonik } = request;
 
-  try {
-    const { limit, offset, filters, sort } = query as {
-      limit: number;
-      offset?: number;
-      filters?: string;
-      sort?: string;
-    };
+  const { limit, offset, filters, sort } = query as {
+    limit: number;
+    offset?: number;
+    filters?: string;
+    sort?: string;
+  };
 
-    const service = new Service(config, slonik);
+  const service = new Service(config, slonik);
 
-    const data = await service.list(
-      limit,
-      offset,
-      filters ? JSON.parse(filters) : undefined,
-      sort ? JSON.parse(sort) : undefined,
-    );
+  const data = await service.list(
+    limit,
+    offset,
+    filters ? JSON.parse(filters) : undefined,
+    sort ? JSON.parse(sort) : undefined,
+  );
 
-    reply.send(data);
-  } catch (error) {
-    log.error(error);
-
-    reply.status(500).send({
-      message: "Oops! Something went wrong",
-      status: "ERROR",
-      statusCode: 500,
-    });
-  }
+  reply.send(data);
 };
 
 export default getAccountTypes;

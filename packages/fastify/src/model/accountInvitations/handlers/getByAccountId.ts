@@ -6,18 +6,14 @@ import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
 const list = async (request: SessionRequest, reply: FastifyReply) => {
-  const { config, log, slonik } = request;
+  const { config, server, slonik } = request;
 
   let account: Account | undefined | null = request.account;
 
   const requestParameters = request.params as { accountId: string };
 
   if (account && account.id != requestParameters.accountId) {
-    return reply.status(400).send({
-      error: "Bad Request",
-      message: "Bad Request",
-      statusCode: 400,
-    });
+    throw server.httpErrors.badRequest("Account mismatch");
   }
 
   const accountId = account ? account.id : requestParameters.accountId;
@@ -29,42 +25,28 @@ const list = async (request: SessionRequest, reply: FastifyReply) => {
   }
 
   if (!account) {
-    return reply.status(404).send({
-      error: "Not Found",
-      message: "Account not found",
-      statusCode: 404,
-    });
+    throw server.httpErrors.notFound("Account not found");
   }
 
   const dbSchema = account.database || undefined;
 
-  try {
-    const service = new AccountInvitationService(
-      config,
-      slonik,
-      accountId,
-      dbSchema,
-    );
+  const service = new AccountInvitationService(
+    config,
+    slonik,
+    accountId,
+    dbSchema,
+  );
 
-    const invitations = await service.find({
-      key: "accountId",
-      operator: "eq",
-      value: accountId,
-    });
+  const invitations = await service.find({
+    key: "accountId",
+    operator: "eq",
+    value: accountId,
+  });
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const sanitizedInvitations = invitations.map(({ token, ...rest }) => rest);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const sanitizedInvitations = invitations.map(({ token, ...rest }) => rest);
 
-    reply.send(sanitizedInvitations);
-  } catch (error) {
-    log.error(error);
-
-    reply.status(500).send({
-      message: "Oops! Something went wrong",
-      status: "ERROR",
-      statusCode: 500,
-    });
-  }
+  reply.send(sanitizedInvitations);
 };
 
 export default list;

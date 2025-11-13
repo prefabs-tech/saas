@@ -16,11 +16,7 @@ const getUsersByAccountId = async (
   const requestParameters = request.params as { accountId: string };
 
   if (account && account.id != requestParameters.accountId) {
-    return reply.status(400).send({
-      error: "Bad Request",
-      message: "Bad Request",
-      statusCode: 400,
-    });
+    throw request.server.httpErrors.badRequest("Account mismatch");
   }
 
   const accountId = account ? account.id : requestParameters.accountId;
@@ -32,11 +28,7 @@ const getUsersByAccountId = async (
   }
 
   if (!account) {
-    return reply.status(404).send({
-      error: "Not Found",
-      message: "Account not found",
-      statusCode: 404,
-    });
+    throw request.server.httpErrors.notFound("Account not found");
   }
 
   const dbSchema = account.database || undefined;

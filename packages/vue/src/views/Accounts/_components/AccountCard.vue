@@ -24,12 +24,12 @@
           v-else
           :loading="loading"
           :label="t('accounts.account.actions.switch')"
-          @click="$emit('switch', account)"
           class="button"
           icon-left="pi pi-arrow-right-arrow-left"
           severity="secondary"
           size="small"
           variant="outlined"
+          @click="$emit('switch', account)"
         />
       </div>
     </div>

@@ -9,7 +9,7 @@ import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
 const revoke = async (request: SessionRequest, reply: FastifyReply) => {
-  const { config, log, slonik } = request;
+  const { config, server, slonik } = request;
 
   let account: Account | undefined | null = request.account;
 
@@ -19,11 +19,7 @@ const revoke = async (request: SessionRequest, reply: FastifyReply) => {
   };
 
   if (account && account.id != requestParameters.accountId) {
-    return reply.status(400).send({
-      error: "Bad Request",
-      message: "Bad Request",
-      statusCode: 400,
-    });
+    throw server.httpErrors.badRequest("Account mismatch");
   }
 
   const accountId = account ? account.id : requestParameters.accountId;
@@ -35,51 +31,35 @@ const revoke = async (request: SessionRequest, reply: FastifyReply) => {
   }
 
   if (!account) {
-    return reply.status(404).send({
-      error: "Not Found",
-      message: "Account not found",
-      statusCode: 404,
-    });
+    throw server.httpErrors.notFound("Account not found");
   }
 
   const dbSchema = account.database || undefined;
 
-  try {
-    const service = new AccountInvitationService(
-      config,
-      slonik,
-      accountId,
-      dbSchema,
+  const service = new AccountInvitationService(
+    config,
+    slonik,
+    accountId,
+    dbSchema,
+  );
+  let accountInvitation = await service.findById(requestParameters.id);
+
+  // is invitation valid
+  if (!accountInvitation || !isInvitationValid(accountInvitation)) {
+    throw server.httpErrors.unprocessableEntity(
+      "Invitation is invalid or has expired or already revoked",
     );
-    let accountInvitation = await service.findById(requestParameters.id);
-
-    // is invitation valid
-    if (!accountInvitation || !isInvitationValid(accountInvitation)) {
-      return reply.status(422).send({
-        status: "ERROR",
-        message: "Invitation is invalid or has expired or already revoked",
-      });
-    }
-
-    accountInvitation = await service.update(requestParameters.id, {
-      revokedAt: formatDate(new Date(Date.now())),
-    });
-
-    const data: Partial<AccountInvitation> = accountInvitation;
-
-    delete data.token;
-
-    reply.send(data);
-  } catch (error) {
-    log.error(error);
-    reply.status(500);
-
-    reply.send({
-      message: "Oops! Something went wrong",
-      status: "ERROR",
-      statusCode: 500,
-    });
   }
+
+  accountInvitation = await service.update(requestParameters.id, {
+    revokedAt: formatDate(new Date(Date.now())),
+  });
+
+  const data: Partial<AccountInvitation> = accountInvitation;
+
+  delete data.token;
+
+  reply.send(data);
 };
 
 export default revoke;

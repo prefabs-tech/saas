@@ -6,14 +6,10 @@ import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
 const myAccounts = async (request: SessionRequest, reply: FastifyReply) => {
-  const { config, dbSchema, slonik, user } = request;
+  const { config, dbSchema, server, slonik, user } = request;
 
   if (!user) {
-    return reply.status(401).send({
-      error: "Unauthorized",
-      message: "unauthorized",
-      statusCode: 401,
-    });
+    throw server.httpErrors.unauthorized("Unauthorised");
   }
 
   const accountUserService = new AccountUserService(

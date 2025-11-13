@@ -23,156 +23,123 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
   const { body, config, log, server, slonik, user } = request;
   let account: Account | undefined | null = request.account;
 
-  try {
-    if (!user) {
-      return reply.status(401).send({
-        error: "Unauthorized",
-        message: "unauthorized",
-        statusCode: 401,
-      });
-    }
+  if (!user) {
+    throw server.httpErrors.unauthorized("Unauthorised");
+  }
 
-    const requestParameters = request.params as { accountId: string };
+  const requestParameters = request.params as { accountId: string };
 
-    if (account && account.id != requestParameters.accountId) {
-      return reply.status(400).send({
-        error: "Bad Request",
-        message: "Bad Request",
-        statusCode: 400,
-      });
-    }
+  if (account && account.id != requestParameters.accountId) {
+    throw server.httpErrors.badRequest("Account mismatch");
+  }
 
-    if (!account) {
-      const accountService = new AccountService(config, slonik);
+  if (!account) {
+    const accountService = new AccountService(config, slonik);
 
-      account = await accountService.findById(requestParameters.accountId);
-    }
+    account = await accountService.findById(requestParameters.accountId);
+  }
 
-    if (!account) {
-      return reply.status(404).send({
-        error: "Not Found",
-        message: "Account not found",
-        statusCode: 404,
-      });
-    }
+  if (!account) {
+    throw server.httpErrors.notFound("Account not found");
+  }
 
-    const dbSchema = account.database || undefined;
+  const dbSchema = account.database || undefined;
 
-    const { email, expiresAt, payload, role } =
-      body as AccountInvitationCreateInput;
+  const { email, expiresAt, payload, role } =
+    body as AccountInvitationCreateInput;
 
-    //  check if the email is valid
-    const result = validateEmail(email, config);
+  //  check if the email is valid
+  const result = validateEmail(email, config);
 
-    if (!result.success) {
-      return reply.status(422).send({
-        statusCode: 422,
-        status: "ERROR",
-        message: result.message,
-      });
-    }
+  if (!result.success) {
+    throw server.httpErrors.unprocessableEntity(result.message || "Error");
+  }
 
-    const userService = getUserService(config, slonik, dbSchema);
+  const userService = getUserService(config, slonik, dbSchema);
 
-    const invitedUser = await userService.findOne({
-      key: "email",
-      operator: "eq",
-      value: email,
-    });
+  const invitedUser = await userService.findOne({
+    key: "email",
+    operator: "eq",
+    value: email,
+  });
 
-    if (invitedUser) {
-      const accountUserService = new AccountUserService(
-        config,
-        slonik,
-        account.id,
-        dbSchema,
-      );
-
-      const accountUserCount = await accountUserService.count({
-        key: "user_id",
-        operator: "eq",
-        value: invitedUser.id,
-      });
-
-      // check if user of the email already exists for the account
-      if (accountUserCount > 0) {
-        return reply.status(422).send({
-          statusCode: 422,
-          status: "ERROR",
-          message: `User with email ${email} already exists for the account`,
-        });
-      }
-    }
-
-    const service = new AccountInvitationService(
+  if (invitedUser) {
+    const accountUserService = new AccountUserService(
       config,
       slonik,
       account.id,
       dbSchema,
     );
 
-    const invitationCreateInput: AccountInvitationCreateInput = {
-      accountId: account.id,
-      email,
-      expiresAt: computeInvitationExpiresAt(config, expiresAt),
-      invitedById: user.id,
-      role: role || ROLE_SAAS_ACCOUNT_MEMBER,
-    };
+    const accountUserCount = await accountUserService.count({
+      key: "user_id",
+      operator: "eq",
+      value: invitedUser.id,
+    });
 
-    if (Object.keys(payload || {}).length > 0) {
-      invitationCreateInput.payload = JSON.stringify(payload);
+    // check if user of the email already exists for the account
+    if (accountUserCount > 0) {
+      throw server.httpErrors.unprocessableEntity(
+        `User with email ${email} already exists for the account`,
+      );
     }
+  }
 
-    if (invitedUser) {
-      invitationCreateInput.userId = invitedUser.id;
+  const service = new AccountInvitationService(
+    config,
+    slonik,
+    account.id,
+    dbSchema,
+  );
+
+  const invitationCreateInput: AccountInvitationCreateInput = {
+    accountId: account.id,
+    email,
+    expiresAt: computeInvitationExpiresAt(config, expiresAt),
+    invitedById: user.id,
+    role: role || ROLE_SAAS_ACCOUNT_MEMBER,
+  };
+
+  if (Object.keys(payload || {}).length > 0) {
+    invitationCreateInput.payload = JSON.stringify(payload);
+  }
+
+  if (invitedUser) {
+    invitationCreateInput.userId = invitedUser.id;
+  }
+
+  let accountInvitation: AccountInvitation | undefined;
+
+  try {
+    accountInvitation = await service.create(invitationCreateInput);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    throw server.httpErrors.unprocessableEntity(error.message);
+  }
+
+  if (accountInvitation) {
+    let invitationOrigin: string;
+    const saasConfig = getSaasConfig(config);
+
+    if (account.domain) {
+      invitationOrigin = `${request.protocol}://${account.domain}`;
+    } else if (account.slug) {
+      invitationOrigin = `${request.protocol}://${account.slug}.${saasConfig.rootDomain}`;
+    } else {
+      invitationOrigin = `${request.protocol}://${saasConfig.mainApp.domain}`;
     }
-
-    let accountInvitation: AccountInvitation | undefined;
 
     try {
-      accountInvitation = await service.create(invitationCreateInput);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      console.log(error);
-      return reply.status(422).send({
-        statusCode: 422,
-        status: "ERROR",
-        message: error.message,
-      });
+      sendInvitation(server, accountInvitation, invitationOrigin);
+    } catch (error) {
+      log.error(error);
     }
 
-    if (accountInvitation) {
-      let invitationOrigin: string;
-      const saasConfig = getSaasConfig(config);
+    const data: Partial<AccountInvitation> = accountInvitation;
 
-      if (account.domain) {
-        invitationOrigin = `${request.protocol}://${account.domain}`;
-      } else if (account.slug) {
-        invitationOrigin = `${request.protocol}://${account.slug}.${saasConfig.rootDomain}`;
-      } else {
-        invitationOrigin = `${request.protocol}://${saasConfig.mainApp.domain}`;
-      }
+    delete data.token;
 
-      try {
-        sendInvitation(server, accountInvitation, invitationOrigin);
-      } catch (error) {
-        log.error(error);
-      }
-
-      const data: Partial<AccountInvitation> = accountInvitation;
-
-      delete data.token;
-
-      reply.send(data);
-    }
-  } catch (error) {
-    log.error(error);
-
-    reply.status(500).send({
-      message: "Oops! Something went wrong",
-      status: "ERROR",
-      statusCode: 500,
-    });
+    reply.send(data);
   }
 };
 

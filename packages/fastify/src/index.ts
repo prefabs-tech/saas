@@ -1,3 +1,5 @@
+import "@prefabs.tech/fastify-error-handler";
+
 import { verifySession } from "supertokens-node/recipe/session/framework/fastify";
 
 import type { SaasConfig, Account } from "./types";

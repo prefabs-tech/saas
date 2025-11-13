@@ -6,64 +6,46 @@ import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
 const list = async (request: SessionRequest, reply: FastifyReply) => {
-  const { config, account, dbSchema, log, query, slonik } = request;
+  const { config, account, dbSchema, query, server, slonik } = request;
 
   const requestParameters = request.params as { accountId: string };
 
   if (account && account.id != requestParameters.accountId) {
-    return reply.status(400).send({
-      error: "Bad Request",
-      message: "Bad Request",
-      statusCode: 400,
-    });
+    throw server.httpErrors.badRequest("Account mismatch");
   }
 
   const accountId = account ? account.id : requestParameters.accountId;
 
   if (!accountId) {
-    return reply.status(400).send({
-      error: "Bad Request",
-      message: "Bad Request",
-      statusCode: 400,
-    });
+    throw server.httpErrors.badRequest("Account id is required");
   }
 
-  try {
-    const { limit, offset, filters, sort } = query as {
-      limit: number;
-      offset?: number;
-      filters?: string;
-      sort?: string;
-    };
+  const { limit, offset, filters, sort } = query as {
+    limit: number;
+    offset?: number;
+    filters?: string;
+    sort?: string;
+  };
 
-    const service = new AccountInvitationService(
-      config,
-      slonik,
-      accountId,
-      dbSchema,
-    );
+  const service = new AccountInvitationService(
+    config,
+    slonik,
+    accountId,
+    dbSchema,
+  );
 
-    const invitations = (await service.list(
-      limit,
-      offset,
-      filters ? JSON.parse(filters) : undefined,
-      sort ? JSON.parse(sort) : undefined,
-    )) as PaginatedList<Partial<AccountInvitation>>;
+  const invitations = (await service.list(
+    limit,
+    offset,
+    filters ? JSON.parse(filters) : undefined,
+    sort ? JSON.parse(sort) : undefined,
+  )) as PaginatedList<Partial<AccountInvitation>>;
 
-    for (const invitation of invitations.data) {
-      delete invitation.token;
-    }
-
-    reply.send(invitations);
-  } catch (error) {
-    log.error(error);
-
-    reply.status(500).send({
-      message: "Oops! Something went wrong",
-      status: "ERROR",
-      statusCode: 500,
-    });
+  for (const invitation of invitations.data) {
+    delete invitation.token;
   }
+
+  reply.send(invitations);
 };
 
 export default list;
