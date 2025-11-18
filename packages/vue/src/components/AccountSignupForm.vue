@@ -132,7 +132,7 @@ const formData = ref({
   termsAndConditions: false,
 });
 
-// Initial values for the form - matching React defaultValues
+// Initial values for the form
 const initialValues = computed(() => ({
   name: formData.value.name,
   individual: formData.value.individual,
