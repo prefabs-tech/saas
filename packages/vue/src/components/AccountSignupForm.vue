@@ -5,7 +5,7 @@
     @submit="onSubmit"
   >
     <!-- Account Fields (Step 1) -->
-    <div v-show="activeIndex === 0">
+    <div v-show="activeIndex === 0" class="account-signup-step">
       <Input
         v-model="formData.name"
         :label="t('accounts.form.label.name')"
@@ -266,5 +266,14 @@ function handleUserSignupSubmit(userData: UserSignupData) {
 }
 </script>
 
-<!-- <style lang="css">
-</style> -->
+<style scoped>
+.account-signup-step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--_gap, 1.25rem);
+}
+
+.actions {
+  margin-top: 1rem;
+}
+</style>
