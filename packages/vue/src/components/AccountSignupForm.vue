@@ -118,32 +118,30 @@ const { nameSchema, registeredNumberSchema, taxIdSchema, createSlugSchema } =
 const slugSchema = computed(() => createSlugSchema(saasConfig));
 
 const formData = ref({
-  // Account fields
-  name: "",
-  individual: saasConfig.entity === "individual",
-  registeredNumber: "",
-  taxId: "",
-  slug: "",
-  useSeparateDatabase: false,
-  // User fields
-  email: "",
-  password: "",
   confirmPassword: "",
+  email: "",
+  individual: saasConfig.entity === "individual",
+  name: "",
+  password: "",
+  registeredNumber: "",
+  slug: "",
+  taxId: "",
   termsAndConditions: false,
+  useSeparateDatabase: false,
 });
 
 // Initial values for the form
 const initialValues = computed(() => ({
-  name: formData.value.name,
-  individual: formData.value.individual,
-  registeredNumber: formData.value.registeredNumber,
-  taxId: formData.value.taxId,
-  slug: formData.value.slug,
-  useSeparateDatabase: formData.value.useSeparateDatabase,
-  email: formData.value.email,
-  password: formData.value.password,
   confirmPassword: formData.value.confirmPassword,
+  email: formData.value.email,
+  individual: formData.value.individual,
+  name: formData.value.name,
+  password: formData.value.password,
+  registeredNumber: formData.value.registeredNumber,
+  slug: formData.value.slug,
+  taxId: formData.value.taxId,
   termsAndConditions: formData.value.termsAndConditions,
+  useSeparateDatabase: formData.value.useSeparateDatabase,
 }));
 
 const shouldShowOrganizationFields = computed(() => {
@@ -161,8 +159,8 @@ const shouldShowOrganizationFields = computed(() => {
 // Account schema for step 1
 const accountSchemaObject = computed(() => {
   const base = {
-    name: nameSchema,
     individual: z.boolean(),
+    name: nameSchema,
     registeredNumber: registeredNumberSchema.nullable(),
     taxId: taxIdSchema.nullable(),
     useSeparateDatabase: z.boolean().nullable(),
@@ -231,18 +229,23 @@ function onSubmit(validatedData: Record<string, unknown>) {
   if (validatedData.name) {
     formData.value.name = validatedData.name as string;
   }
+
   if (typeof validatedData.individual === "boolean") {
     formData.value.individual = validatedData.individual;
   }
+
   if (validatedData.registeredNumber !== undefined) {
     formData.value.registeredNumber = validatedData.registeredNumber as string;
   }
+
   if (validatedData.taxId !== undefined) {
     formData.value.taxId = validatedData.taxId as string;
   }
+
   if (validatedData.slug !== undefined) {
     formData.value.slug = validatedData.slug as string;
   }
+
   if (typeof validatedData.useSeparateDatabase === "boolean") {
     formData.value.useSeparateDatabase = validatedData.useSeparateDatabase;
   }
@@ -254,11 +257,11 @@ function handleUserSignupSubmit(userData: UserSignupData) {
   // Step 2 submission - merge account data from step 1 with user data from UserSignupForm
   const accountData: AccountSignupData = {
     ...userData,
-    name: formData.value.name,
     individual: formData.value.individual,
+    name: formData.value.name,
     registeredNumber: formData.value.registeredNumber || null,
-    taxId: formData.value.taxId || null,
     slug: formData.value.slug || null,
+    taxId: formData.value.taxId || null,
     useSeparateDatabase: formData.value.useSeparateDatabase || null,
   };
 
