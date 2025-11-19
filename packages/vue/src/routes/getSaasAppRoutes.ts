@@ -12,58 +12,58 @@ import type { Router, RouteRecordRaw } from "vue-router";
 const _appRoutes = {
   // Account management routes (authenticated)
   accountSettings: {
+    component: AccountSettings,
     meta: {
       authenticated: true,
     },
-    component: AccountSettings,
     name: "accountSettings",
     path: DEFAULT_PATHS.ACCOUNT_SETTINGS,
   } as RouteRecordRaw,
 
   myAccounts: {
+    component: MyAccounts,
     meta: {
       authenticated: true,
     },
-    component: MyAccounts,
     name: "myAccounts",
     path: DEFAULT_PATHS.MY_ACCOUNTS,
   } as RouteRecordRaw,
 
   // Invitation routes (authenticated)
   invitationJoin: {
+    component: JoinInvitation,
     meta: {
       authenticated: true,
     },
-    component: JoinInvitation,
     name: "invitationJoin",
     path: DEFAULT_PATHS.INVITATION_JOIN,
   } as RouteRecordRaw,
 
   // Invitation routes (unauthenticated)
   invitationSignup: {
+    component: SignupInvitation,
     meta: {
       authenticated: false,
     },
-    component: SignupInvitation,
     name: "invitationSignup",
     path: DEFAULT_PATHS.INVITATION_SIGNUP,
   } as RouteRecordRaw,
 
   signup: {
+    component: Signup,
     meta: {
       authenticated: false,
     },
-    component: Signup,
     name: "signup",
     path: DEFAULT_PATHS.SIGNUP,
   } as RouteRecordRaw,
 
   // Public routes
   invitationAccept: {
+    component: AcceptInvitation,
     meta: {
       authenticated: false,
     },
-    component: AcceptInvitation,
     name: "invitationAccept",
     path: DEFAULT_PATHS.INVITATION_ACCEPT,
   } as RouteRecordRaw,
