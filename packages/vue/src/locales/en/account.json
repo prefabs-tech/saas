@@ -101,6 +101,8 @@
   "signup": {
     "actions": {
       "cancel": "Cancel",
+      "next": "Next",
+      "previous": "Previous",
       "signup": "Signup"
     },
     "fields": {
@@ -115,8 +117,12 @@
       },
       "confirmPassword": "Confirm password"
     },
+    "messages": {
+      "error": "Failed to create account. Please try again."
+    },
     "termsAndConditions": "I agree to all the Terms and Conditions by the user agreement.",
     "title": {
+      "account": "Create a new account",
       "user": "Sign up"
     },
     "validations": {
@@ -131,6 +137,9 @@
       "password": {
         "required": "Please provide a password",
         "weak": "Your password should be at least 8 characters long"
+      },
+      "termsAndConditions": {
+        "required": "Please agree to the terms and conditions"
       }
     }
   },

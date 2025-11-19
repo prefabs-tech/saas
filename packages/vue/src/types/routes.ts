@@ -20,6 +20,7 @@ export type AppRouteOverwrites = {
   invitationJoin?: RouteOverwrite;
   invitationSignup?: RouteOverwrite;
   myAccounts?: RouteOverwrite;
+  signup?: RouteOverwrite;
 };
 
 export type AdminRoutesProperties = {

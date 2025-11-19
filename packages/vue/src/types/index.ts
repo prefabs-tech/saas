@@ -4,4 +4,4 @@ export type { SaasVuePluginOptions } from "./plugin";
 
 export type { SaasConfig } from "./config";
 
-export type { UserSignupData } from "./user";
+export type { AccountSignupData, UserSignupData } from "./user";
