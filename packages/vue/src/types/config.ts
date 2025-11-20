@@ -15,4 +15,24 @@ export type SaasConfig = {
   rootDomain: string;
   saasAccountRoles?: string[];
   subdomains: "required" | "optional" | "disabled";
+  ui?: {
+    account?: {
+      form?: {
+        actionsAlignment?: "center" | "fill" | "left" | "right";
+        actionsReverse?: boolean;
+      };
+    };
+    invitation?: {
+      form?: {
+        actionsAlignment?: "center" | "fill" | "left" | "right";
+        actionsReverse?: boolean;
+      };
+    };
+    signup?: {
+      form?: {
+        actionsAlignment?: "center" | "fill" | "left" | "right";
+        actionsReverse?: boolean;
+      };
+    };
+  };
 };

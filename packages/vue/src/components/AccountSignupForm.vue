@@ -68,7 +68,9 @@
       <FormActions
         :actions="formActions"
         :loading="loading"
-        alignment="filled"
+        :alignment="signupActionsAlignment"
+        :reverse="signupActionsReverse"
+        :class="{ 'reverse-actions': signupActionsReverse }"
         tabindex="0"
       />
     </div>
@@ -84,7 +86,9 @@ import { computed, inject, ref, watch } from "vue";
 import { z } from "zod";
 
 import UserSignupForm from "./UserSignupForm.vue";
+import { CONFIG_UI_DEFAULT } from "../constant";
 import { useTranslations } from "../index";
+import { mapUiAlignmentToFormAlignment } from "../utils/ui";
 import { createValidationSchemas } from "../views/Accounts/validations/accountValidations";
 
 import type { SaasConfig } from "../types/config";
@@ -116,6 +120,16 @@ const { nameSchema, registeredNumberSchema, taxIdSchema, createSlugSchema } =
   createValidationSchemas();
 
 const slugSchema = computed(() => createSlugSchema(saasConfig));
+
+const signupFormUi = computed(
+  () => saasConfig.ui?.signup?.form ?? CONFIG_UI_DEFAULT.signup.form
+);
+
+const signupActionsAlignment = computed(() =>
+  mapUiAlignmentToFormAlignment(signupFormUi.value.actionsAlignment)
+);
+
+const signupActionsReverse = computed(() => signupFormUi.value.actionsReverse);
 
 const formData = ref({
   confirmPassword: "",

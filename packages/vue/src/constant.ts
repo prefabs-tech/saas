@@ -16,6 +16,27 @@ export const SAAS_ACCOUNT_ROLES_DEFAULT = [
   SAAS_ACCOUNT_MEMBER,
 ];
 
+export const CONFIG_UI_DEFAULT = {
+  account: {
+    form: {
+      actionsAlignment: "right" as const,
+      actionsReverse: false,
+    },
+  },
+  invitation: {
+    form: {
+      actionsAlignment: "fill" as const,
+      actionsReverse: true,
+    },
+  },
+  signup: {
+    form: {
+      actionsAlignment: "fill" as const,
+      actionsReverse: true,
+    },
+  },
+};
+
 export const DEFAULT_PATHS = {
   // admin routes
   ACCOUNTS: "/accounts",

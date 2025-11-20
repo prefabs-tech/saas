@@ -20,7 +20,9 @@
       />
 
       <FormActions
-        alignment="filled"
+        :alignment="invitationActionsAlignment"
+        :reverse="invitationActionsReverse"
+        :class="{ 'reverse-actions': invitationActionsReverse }"
         :cancel-label="t('account.invitations.form.actions.cancel')"
         :submit-label="t('account.invitations.form.actions.create')"
         :loading="loading"
@@ -38,9 +40,13 @@ import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { computed, inject, ref } from "vue";
 import { useRoute } from "vue-router";
 
-import { SAAS_ACCOUNT_ROLES_DEFAULT } from "../../../constant";
+import {
+  CONFIG_UI_DEFAULT,
+  SAAS_ACCOUNT_ROLES_DEFAULT,
+} from "../../../constant";
 import { useTranslations } from "../../../index";
 import useInvitationStore from "../../../stores/accountInvitations";
+import { mapUiAlignmentToFormAlignment } from "../../../utils/ui";
 import {
   createEmailSchema,
   createRoleSchema,
@@ -83,6 +89,18 @@ const formData = ref<AccountInvitationCreateInput>({
 const roles = computed(() => {
   return saasConfig?.saasAccountRoles || SAAS_ACCOUNT_ROLES_DEFAULT;
 });
+
+const invitationFormUi = computed(
+  () => saasConfig?.ui?.invitation?.form ?? CONFIG_UI_DEFAULT.invitation.form
+);
+
+const invitationActionsAlignment = computed(() =>
+  mapUiAlignmentToFormAlignment(invitationFormUi.value.actionsAlignment)
+);
+
+const invitationActionsReverse = computed(
+  () => invitationFormUi.value.actionsReverse
+);
 
 // Build safe options for SelectInput
 const roleOptions = computed(() => {
@@ -134,7 +152,7 @@ async function onSubmit() {
   margin-top: 1rem;
 }
 
-.invitation-form .form-actions.direction-horizontal {
+.invitation-form .reverse-actions.form-actions.direction-horizontal {
   flex-direction: row-reverse;
 }
 </style>
