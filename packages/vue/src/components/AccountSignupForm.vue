@@ -67,10 +67,10 @@
     <div v-if="activeIndex === 0" class="actions">
       <FormActions
         :actions="formActions"
-        :loading="loading"
         :alignment="actionsAlignment"
-        :reverse="actionsReverse"
         :class="{ 'reverse-actions': actionsReverse }"
+        :loading="loading"
+        :reverse="actionsReverse"
         tabindex="0"
       />
     </div>

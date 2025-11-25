@@ -64,15 +64,15 @@
 
       <FormActions
         :alignment="actionsAlignment"
-        :reverse="actionsReverse"
-        :class="{ 'reverse-actions': actionsReverse }"
         :cancel-label="t('accounts.form.actions.cancel')"
+        :class="{ 'reverse-actions': actionsReverse }"
+        :loading="loading"
+        :reverse="actionsReverse"
         :submit-label="
           isUpdateMode
             ? t('accounts.form.actions.update')
             : t('accounts.form.actions.create')
         "
-        :loading="loading"
         flow-direction="horizontal"
         @cancel="$emit('cancel')"
       />

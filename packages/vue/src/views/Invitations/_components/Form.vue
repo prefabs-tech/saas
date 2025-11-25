@@ -21,11 +21,11 @@
 
       <FormActions
         :alignment="actionsAlignment"
-        :reverse="actionsReverse"
-        :class="{ 'reverse-actions': actionsReverse }"
         :cancel-label="t('account.invitations.form.actions.cancel')"
-        :submit-label="t('account.invitations.form.actions.create')"
+        :class="{ 'reverse-actions': actionsReverse }"
         :loading="loading"
+        :submit-label="t('account.invitations.form.actions.create')"
+        :reverse="actionsReverse"
         flow-direction="horizontal"
         @cancel="$emit('cancel')"
       />

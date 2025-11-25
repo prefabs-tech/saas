@@ -38,15 +38,15 @@
       <div class="actions">
         <FormActions
           :actions="formActions"
+          :alignment="actionsAlignment"
+          :class="{ 'reverse-actions': actionsReverse }"
           :disabled="
             disableButton &&
             termsAndConditionsConfig?.display &&
             termsAndConditionsConfig?.showCheckbox
           "
           :loading="loading"
-          :alignment="actionsAlignment"
           :reverse="actionsReverse"
-          :class="{ 'reverse-actions': actionsReverse }"
           tabindex="0"
           @cancel="handleCancel"
         />
