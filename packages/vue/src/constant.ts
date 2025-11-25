@@ -19,19 +19,19 @@ export const SAAS_ACCOUNT_ROLES_DEFAULT = [
 export const CONFIG_UI_DEFAULT = {
   account: {
     form: {
-      actionsAlignment: "right" as const,
+      actionsAlignment: "filled" as const,
       actionsReverse: false,
     },
   },
   invitation: {
     form: {
-      actionsAlignment: "fill" as const,
+      actionsAlignment: "filled" as const,
       actionsReverse: true,
     },
   },
   signup: {
     form: {
-      actionsAlignment: "fill" as const,
+      actionsAlignment: "filled" as const,
       actionsReverse: true,
     },
   },

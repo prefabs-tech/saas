@@ -20,9 +20,9 @@
       />
 
       <FormActions
-        :alignment="invitationActionsAlignment"
-        :reverse="invitationActionsReverse"
-        :class="{ 'reverse-actions': invitationActionsReverse }"
+        :alignment="actionsAlignment"
+        :reverse="actionsReverse"
+        :class="{ 'reverse-actions': actionsReverse }"
         :cancel-label="t('account.invitations.form.actions.cancel')"
         :submit-label="t('account.invitations.form.actions.create')"
         :loading="loading"
@@ -46,7 +46,6 @@ import {
 } from "../../../constant";
 import { useTranslations } from "../../../index";
 import useInvitationStore from "../../../stores/accountInvitations";
-import { mapUiAlignmentToFormAlignment } from "../../../utils/ui";
 import {
   createEmailSchema,
   createRoleSchema,
@@ -94,13 +93,11 @@ const invitationFormUi = computed(
   () => saasConfig?.ui?.invitation?.form ?? CONFIG_UI_DEFAULT.invitation.form
 );
 
-const invitationActionsAlignment = computed(() =>
-  mapUiAlignmentToFormAlignment(invitationFormUi.value.actionsAlignment)
+const actionsAlignment = computed(
+  () => invitationFormUi.value.actionsAlignment
 );
 
-const invitationActionsReverse = computed(
-  () => invitationFormUi.value.actionsReverse
-);
+const actionsReverse = computed(() => invitationFormUi.value.actionsReverse);
 
 // Build safe options for SelectInput
 const roleOptions = computed(() => {

@@ -18,19 +18,19 @@ export type SaasConfig = {
   ui?: {
     account?: {
       form?: {
-        actionsAlignment?: "center" | "fill" | "left" | "right";
+        actionsAlignment?: "center" | "filled" | "left" | "right";
         actionsReverse?: boolean;
       };
     };
     invitation?: {
       form?: {
-        actionsAlignment?: "center" | "fill" | "left" | "right";
+        actionsAlignment?: "center" | "filled" | "left" | "right";
         actionsReverse?: boolean;
       };
     };
     signup?: {
       form?: {
-        actionsAlignment?: "center" | "fill" | "left" | "right";
+        actionsAlignment?: "center" | "filled" | "left" | "right";
         actionsReverse?: boolean;
       };
     };

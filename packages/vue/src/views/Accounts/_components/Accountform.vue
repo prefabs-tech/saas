@@ -63,9 +63,9 @@
       </template>
 
       <FormActions
-        :alignment="accountActionsAlignment"
-        :reverse="accountActionsReverse"
-        :class="{ 'reverse-actions': accountActionsReverse }"
+        :alignment="actionsAlignment"
+        :reverse="actionsReverse"
+        :class="{ 'reverse-actions': actionsReverse }"
         :cancel-label="t('accounts.form.actions.cancel')"
         :submit-label="
           isUpdateMode
@@ -89,7 +89,6 @@ import { ref, computed, inject, watch } from "vue";
 import { CONFIG_UI_DEFAULT } from "../../../constant";
 import { useTranslations } from "../../../index";
 import useAccountsStore from "../../../stores/accounts";
-import { mapUiAlignmentToFormAlignment } from "../../../utils/ui";
 import { createValidationSchemas } from "../validations/accountValidations";
 
 import type { Account, AccountInput } from "../../../types/account";
@@ -157,13 +156,9 @@ const accountFormUi = computed(
   () => saasConfig.ui?.account?.form ?? CONFIG_UI_DEFAULT.account.form
 );
 
-const accountActionsAlignment = computed(() =>
-  mapUiAlignmentToFormAlignment(accountFormUi.value.actionsAlignment)
-);
+const actionsAlignment = computed(() => accountFormUi.value.actionsAlignment);
 
-const accountActionsReverse = computed(
-  () => accountFormUi.value.actionsReverse
-);
+const actionsReverse = computed(() => accountFormUi.value.actionsReverse);
 
 const onSubmit = async () => {
   try {
