@@ -63,14 +63,16 @@
       </template>
 
       <FormActions
-        alignment="filled"
+        :alignment="actionsAlignment"
         :cancel-label="t('accounts.form.actions.cancel')"
+        :class="{ 'reverse-actions': actionsReverse }"
+        :loading="loading"
+        :reverse="actionsReverse"
         :submit-label="
           isUpdateMode
             ? t('accounts.form.actions.update')
             : t('accounts.form.actions.create')
         "
-        :loading="loading"
         flow-direction="horizontal"
         @cancel="$emit('cancel')"
       />
@@ -84,6 +86,7 @@ import { Form, FormActions, Input, SwitchInput } from "@prefabs.tech/vue3-form";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { ref, computed, inject, watch } from "vue";
 
+import { CONFIG_UI_DEFAULT } from "../../../constant";
 import { useTranslations } from "../../../index";
 import useAccountsStore from "../../../stores/accounts";
 import { createValidationSchemas } from "../validations/accountValidations";
@@ -148,6 +151,14 @@ const shouldShowOrganizationFields = computed(() => {
 });
 
 const slugSchema = computed(() => createSlugSchema(saasConfig));
+
+const accountFormUi = computed(
+  () => saasConfig.ui?.account?.form ?? CONFIG_UI_DEFAULT.account.form
+);
+
+const actionsAlignment = computed(() => accountFormUi.value.actionsAlignment);
+
+const actionsReverse = computed(() => accountFormUi.value.actionsReverse);
 
 const onSubmit = async () => {
   try {
@@ -215,7 +226,7 @@ watch(
   margin-top: 1rem;
 }
 
-.account-form .form-actions.direction-horizontal {
+.account-form .reverse-actions.form-actions.direction-horizontal {
   flex-direction: row-reverse;
 }
 </style>

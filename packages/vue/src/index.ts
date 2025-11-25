@@ -3,6 +3,7 @@ import { inject } from "vue";
 
 import enMessages from "./locales/en/index";
 import frMessages from "./locales/fr/index";
+import { prepareConfig } from "./utils/config";
 
 import type { SaasVuePluginOptions } from "./types";
 import type { LocaleMessages, VueMessageType } from "@prefabs.tech/vue3-i18n";
@@ -20,7 +21,9 @@ const defaultMessages = {
 
 const plugin: Plugin = {
   install: (app: App, options: SaasVuePluginOptions): void => {
-    app.provide(__saasConfig, options.saasConfig);
+    const preparedConfig = prepareConfig(options.saasConfig);
+
+    app.provide(__saasConfig, preparedConfig);
 
     const translations = options?.translations
       ? prependMessages(defaultMessages, options.translations)
