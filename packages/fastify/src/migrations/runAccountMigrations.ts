@@ -14,6 +14,7 @@ import getSaasConfig from "../config";
 import changeSchema from "../lib/changeSchema";
 import getDatabaseConfig from "../lib/getDatabaseConfig";
 import initializePgPool from "../lib/initializePgPool";
+import readPreMigrationQueries from "../lib/readPreMigrationQueries";
 
 import type { Account } from "../types";
 
@@ -41,6 +42,31 @@ const runAccountMigrations = async (
     // Switch to the correct schema
     await changeSchema(client, account.database);
 
+    // Execute pre-migration queries if configured
+    const preMigrationQueriesPath =
+      saasConfig.multiDatabase.migrations.preMigrationQueriesPath;
+
+    if (preMigrationQueriesPath) {
+      const preMigrationQueries = readPreMigrationQueries(
+        preMigrationQueriesPath,
+      );
+
+      if (preMigrationQueries.length > 0) {
+        for (const query of preMigrationQueries) {
+          console.log(
+            `Running pre-migration query for account ${account.name}: ${query.slice(0, 100)}${query.length > 100 ? "..." : ""}`,
+          );
+
+          await client.query({ text: query });
+        }
+      }
+    }
+
+    // Check if the migrations path exists
+    if (existsSync(migrationsPath)) {
+      await migrate({ client }, migrationsPath);
+    }
+
     // list of migrations that needs to be run from the package
     // for the accounts who uses separate database.
     const queries = [
@@ -55,11 +81,6 @@ const runAccountMigrations = async (
         text: query.sql, // Raw SQL string
         values: query.values.length > 0 ? [...query.values] : undefined, // Spread to ensure it's mutable
       });
-    }
-
-    // Check if the migrations path exists
-    if (existsSync(migrationsPath)) {
-      await migrate({ client }, migrationsPath);
     }
 
     return true;

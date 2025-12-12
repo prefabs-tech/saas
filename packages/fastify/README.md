@@ -4,13 +4,13 @@ A [Fastify](https://github.com/fastify/fastify) plugin that provides an easy int
 
 ## Requirements
 
-* [@prefabs.tech/fastify-config](https://github.com/prefabs-tech/fastify/tree/main/packages/config)
-* [@prefabs.tech/fastify-mailer](https://github.com/prefabs-tech/fastify/tree/main/packages/mailer)
-* [@prefabs.tech/fastify-s3](https://github.com/prefabs-tech/fastify/tree/main/packages/s3)
-* [@prefabs.tech/fastify-slonik](https://github.com/prefabs-tech/fastify/tree/main/packages/slonik)
-* [@prefabs.tech/fastify-user](https://github.com/prefabs-tech/fastify/tree/main/packages/user)
-* [slonik](https://github.com/spa5k/fastify-slonik)
-* [supertokens-node](https://github.com/supertokens/supertokens-node)
+- [@prefabs.tech/fastify-config](https://github.com/prefabs-tech/fastify/tree/main/packages/config)
+- [@prefabs.tech/fastify-mailer](https://github.com/prefabs-tech/fastify/tree/main/packages/mailer)
+- [@prefabs.tech/fastify-s3](https://github.com/prefabs-tech/fastify/tree/main/packages/s3)
+- [@prefabs.tech/fastify-slonik](https://github.com/prefabs-tech/fastify/tree/main/packages/slonik)
+- [@prefabs.tech/fastify-user](https://github.com/prefabs-tech/fastify/tree/main/packages/user)
+- [slonik](https://github.com/spa5k/fastify-slonik)
+- [supertokens-node](https://github.com/supertokens/supertokens-node)
 
 ## Installation
 
@@ -49,7 +49,7 @@ const config: ApiConfig = {
     supertokens: {
       recipes: supertokensRecipesConfig,
     }
-  } 
+  }
   ...
 };
 ```
@@ -115,6 +115,47 @@ const start = async () => {
 start();
 ```
 
+### Pre-Migration Queries
+
+When using multi-database mode, you can configure pre-migration queries that will be executed before the regular migrations for each account database. This is useful for setting up database-specific configurations, extensions, or schema modifications that need to run before migrations.
+
+#### Configuration
+
+Set the `preMigrationQueriesPath` in your SaaS configuration:
+
+```typescript
+const config: ApiConfig = {
+  ...
+  saas: {
+    ...
+    multiDatabase: {
+      mode: "optional", // or "required"
+      migrations: {
+        path: "migrations/accounts",
+        preMigrationQueriesPath: "migrations/pre-migration-queries.sql", // Path to your SQL file
+      },
+    },
+  },
+  ...
+};
+```
+
+#### SQL File Format
+
+Create a SQL file (must have `.sql` extension) with queries separated by semicolons. Comments starting with `--` are automatically ignored:
+
+```sql
+-- Example pre-migration queries file
+
+CREATE TYPE user_role AS ENUM ('admin', 'user', 'guest');
+```
+
+#### How It Works
+
+1. When account migrations run (via `accountMigrationPlugin`), the system checks if `preMigrationQueriesPath` is configured
+
+**Note:** Pre-migration queries are executed for each account database individually, allowing you to set up account-specific database configurations.
+
 ### Skip account discovery for specific routes in main app
 
 You can skip the account discovery process for specific routes in the main application in two ways:
@@ -136,7 +177,7 @@ In the route definition, set the exclude flag under the saas key:
 
 ```ts
 fastify.get(
-  '/docs',
+  "/docs",
   {
     config: {
       saas: {
@@ -145,11 +186,10 @@ fastify.get(
     },
   },
   async (request, reply) => {
-    return reply.status(200).send({message: "Account not found"})
-  }
-  );
+    return reply.status(200).send({ message: "Account not found" });
+  },
+);
 ```
-
 
 ### Cross-Domain Requests (CORS) Configuration
 
@@ -158,13 +198,13 @@ If you are running the frontend and backend on different domains or ports, make 
 Update your CORS configuration to include it in the allowed headers list, for example:
 
 ```ts
-await fastify.register(import('@fastify/cors'), {
-  origin: ['http://localhost:50021'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+await fastify.register(import("@fastify/cors"), {
+  origin: ["http://localhost:50021"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: [
-    'Content-Type',
-    'Authorization',
-    'X-Account-Id'  // 👈 Add this header
+    "Content-Type",
+    "Authorization",
+    "X-Account-Id", // 👈 Add this header
   ],
 });
 ```
