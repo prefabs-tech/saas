@@ -115,7 +115,7 @@ const start = async () => {
 start();
 ```
 
-### Pre-Migration Queries
+### Pre-Migration queries
 
 When using multi-database mode, you can configure pre-migration queries that will be executed before the regular migrations for each account database. This is useful for setting up database-specific configurations, extensions, or schema modifications that need to run before migrations.
 
@@ -140,7 +140,7 @@ const config: ApiConfig = {
 };
 ```
 
-#### SQL File Format
+#### SQL file format
 
 Create a SQL file (must have `.sql` extension) with queries separated by semicolons. Comments starting with `--` are automatically ignored:
 
@@ -150,7 +150,7 @@ Create a SQL file (must have `.sql` extension) with queries separated by semicol
 CREATE TYPE user_role AS ENUM ('admin', 'user', 'guest');
 ```
 
-#### How It Works
+#### How it works
 
 1. When account migrations run (via `accountMigrationPlugin`), the system checks if `preMigrationQueriesPath` is configured
 
@@ -171,7 +171,7 @@ saas: {
 
 Any route matching the specified pattern(s) will bypass the account discovery logic.
 
-#### Route Options
+#### Route options
 
 In the route definition, set the exclude flag under the saas key:
 
@@ -191,7 +191,7 @@ fastify.get(
 );
 ```
 
-### Cross-Domain Requests (CORS) Configuration
+### Cross-Domain requests (CORS) configuration
 
 If you are running the frontend and backend on different domains or ports, make sure your backend CORS configuration allows the custom header `X-Account-Id`.
 
