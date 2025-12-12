@@ -177,7 +177,7 @@ In the route definition, set the exclude flag under the saas key:
 
 ```ts
 fastify.get(
-  "/docs",
+  '/docs',
   {
     config: {
       saas: {
@@ -198,13 +198,13 @@ If you are running the frontend and backend on different domains or ports, make 
 Update your CORS configuration to include it in the allowed headers list, for example:
 
 ```ts
-await fastify.register(import("@fastify/cors"), {
-  origin: ["http://localhost:50021"],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+await fastify.register(import('@fastify/cors'), {
+  origin: ['http://localhost:50021'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "X-Account-Id", // 👈 Add this header
+    'Content-Type',
+    'Authorization',
+    'X-Account-Id'  // 👈 Add this header
   ],
 });
 ```
