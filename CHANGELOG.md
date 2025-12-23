@@ -1,3 +1,19 @@
+# [0.28.0](https://github.com/prefabs-tech/saas/compare/v0.27.2...v0.28.0) (2025-12-23)
+
+
+### Bug Fixes
+
+* fix the styling of forms ([1bfca36](https://github.com/prefabs-tech/saas/commit/1bfca3615a026ec95bf916a22824ab6101255bb0))
+
+
+### Features
+
+* **vue/account-signup-form:** add appropriate gap between form fields ([25b0f8c](https://github.com/prefabs-tech/saas/commit/25b0f8cc946907a35bd84b2b9f55167438941d0b))
+* **vue/forms:** implement the customization of form actions ([9542b3d](https://github.com/prefabs-tech/saas/commit/9542b3d38b5ababb6ce5c98df404d11e2206664c))
+* **vue:** implement account signup ([e3e0bc6](https://github.com/prefabs-tech/saas/commit/e3e0bc6b369af81ceec83c82f432381c018b8e49))
+
+
+
 ## [0.27.2](https://github.com/prefabs-tech/saas/compare/v0.27.1...v0.27.2) (2025-10-16)
 
 
