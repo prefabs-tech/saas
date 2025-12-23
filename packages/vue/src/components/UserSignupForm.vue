@@ -38,13 +38,15 @@
       <div class="actions">
         <FormActions
           :actions="formActions"
+          :alignment="actionsAlignment"
+          :class="{ 'reverse-actions': actionsReverse }"
           :disabled="
             disableButton &&
             termsAndConditionsConfig?.display &&
             termsAndConditionsConfig?.showCheckbox
           "
           :loading="loading"
-          alignment="filled"
+          :reverse="actionsReverse"
           tabindex="0"
           @cancel="handleCancel"
         />
@@ -69,8 +71,10 @@ import { Form } from "vee-validate";
 import { computed, inject, ref, watch } from "vue";
 import { z } from "zod";
 
+import { CONFIG_UI_DEFAULT } from "../constant";
 import { useTranslations } from "../index";
 
+import type { SaasConfig } from "../types/config";
 import type { UserSignupData } from "../types/user";
 
 export interface UserSignupFormProperties {
@@ -81,12 +85,25 @@ export interface UserSignupFormProperties {
 
 const config = useConfig();
 
+const saasConfig = inject<SaasConfig>(Symbol.for("saas.config"));
+if (!saasConfig) {
+  throw new Error("SAAS config not provided");
+}
+
 const customTermsAndCondition = inject("dzangolabVueUserTerms");
 
 const disableButton = ref<boolean>(true);
 
 const termsAndConditionsConfig =
   config.user?.features?.signUp?.termsAndConditions;
+
+const signupFormUi = computed(
+  () => saasConfig.ui?.signup?.form ?? CONFIG_UI_DEFAULT.signup.form
+);
+
+const actionsAlignment = computed(() => signupFormUi.value.actionsAlignment);
+
+const actionsReverse = computed(() => signupFormUi.value.actionsReverse);
 
 const props = withDefaults(defineProps<UserSignupFormProperties>(), {
   actions: undefined,
