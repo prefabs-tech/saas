@@ -92,6 +92,7 @@ interface SaasOptions {
     mode: "disabled" | "optional" | "required";
     migrations?: {
       path?: string;
+      preMigrationQueriesPath?: string;
     };
   };
   rootDomain: string;

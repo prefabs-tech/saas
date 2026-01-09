@@ -49,7 +49,7 @@ const config: ApiConfig = {
     supertokens: {
       recipes: supertokensRecipesConfig,
     }
-  } 
+  }
   ...
 };
 ```
@@ -115,6 +115,47 @@ const start = async () => {
 start();
 ```
 
+### Pre-Migration queries
+
+When using multi-database mode, you can configure pre-migration queries that will be executed before the regular migrations for each account database. This is useful for setting up database-specific configurations, extensions, or schema modifications that need to run before migrations.
+
+#### Configuration
+
+Set the `preMigrationQueriesPath` in your SaaS configuration:
+
+```typescript
+const config: ApiConfig = {
+  ...
+  saas: {
+    ...
+    multiDatabase: {
+      mode: "optional", // or "required"
+      migrations: {
+        path: "migrations/accounts",
+        preMigrationQueriesPath: "migrations/pre-migration-queries.sql", // Path to your SQL file
+      },
+    },
+  },
+  ...
+};
+```
+
+#### SQL file format
+
+Create a SQL file (must have `.sql` extension) with queries separated by semicolons. Comments starting with `--` are automatically ignored:
+
+```sql
+-- Example pre-migration queries file
+
+CREATE TYPE user_role AS ENUM ('admin', 'user', 'guest');
+```
+
+#### How it works
+
+1. When account migrations run (via `accountMigrationPlugin`), the system checks if `preMigrationQueriesPath` is configured
+
+**Note:** Pre-migration queries are executed for each account database individually, allowing you to set up account-specific database configurations.
+
 ### Skip account discovery for specific routes in main app
 
 You can skip the account discovery process for specific routes in the main application in two ways:
@@ -130,7 +171,7 @@ saas: {
 
 Any route matching the specified pattern(s) will bypass the account discovery logic.
 
-#### Route Options
+#### Route options
 
 In the route definition, set the exclude flag under the saas key:
 
@@ -145,13 +186,12 @@ fastify.get(
     },
   },
   async (request, reply) => {
-    return reply.status(200).send({message: "Account not found"})
-  }
-  );
+    return reply.status(200).send({ message: "Account not found" });
+  },
+);
 ```
 
-
-### Cross-Domain Requests (CORS) Configuration
+### Cross-Domain requests (CORS) configuration
 
 If you are running the frontend and backend on different domains or ports, make sure your backend CORS configuration allows the custom header `X-Account-Id`.
 
