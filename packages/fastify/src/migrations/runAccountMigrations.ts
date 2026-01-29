@@ -41,6 +41,11 @@ const runAccountMigrations = async (
     // Switch to the correct schema
     await changeSchema(client, account.database);
 
+    // Check if the migrations path exists
+    if (existsSync(migrationsPath)) {
+      await migrate({ client }, migrationsPath);
+    }
+
     // list of migrations that needs to be run from the package
     // for the accounts who uses separate database.
     const queries = [
@@ -55,11 +60,6 @@ const runAccountMigrations = async (
         text: query.sql, // Raw SQL string
         values: query.values.length > 0 ? [...query.values] : undefined, // Spread to ensure it's mutable
       });
-    }
-
-    // Check if the migrations path exists
-    if (existsSync(migrationsPath)) {
-      await migrate({ client }, migrationsPath);
     }
 
     return true;
