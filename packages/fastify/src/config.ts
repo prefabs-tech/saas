@@ -47,8 +47,6 @@ const getSaasConfig = (config: ApiConfig) => {
         path:
           saasConfig.multiDatabase?.migrations?.path ||
           `${migrationsPath}/accounts`,
-        preMigrationQueriesPath:
-          saasConfig.multiDatabase?.migrations?.preMigrationQueriesPath,
       },
     },
     rootDomain: saasConfig.rootDomain,
