@@ -14,7 +14,6 @@ import getSaasConfig from "../config";
 import changeSchema from "../lib/changeSchema";
 import getDatabaseConfig from "../lib/getDatabaseConfig";
 import initializePgPool from "../lib/initializePgPool";
-import readPreMigrationQueries from "../lib/readPreMigrationQueries";
 
 import type { Account } from "../types";
 
@@ -41,26 +40,6 @@ const runAccountMigrations = async (
 
     // Switch to the correct schema
     await changeSchema(client, account.database);
-
-    // Execute pre-migration queries if configured
-    const preMigrationQueriesPath =
-      saasConfig.multiDatabase.migrations.preMigrationQueriesPath;
-
-    if (preMigrationQueriesPath) {
-      const preMigrationQueries = readPreMigrationQueries(
-        preMigrationQueriesPath,
-      );
-
-      if (preMigrationQueries.length > 0) {
-        for (const query of preMigrationQueries) {
-          console.log(
-            `Running pre-migration query for account ${account.name}: ${query.slice(0, 100)}${query.length > 100 ? "..." : ""}`,
-          );
-
-          await client.query({ text: query });
-        }
-      }
-    }
 
     // Check if the migrations path exists
     if (existsSync(migrationsPath)) {
