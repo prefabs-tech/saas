@@ -1,3 +1,7 @@
+### Bug Fixes
+
+* **fastify/migrations:** increase accounts table database column from VARCHAR(10) to VARCHAR(24)
+
 # [0.28.0](https://github.com/prefabs-tech/saas/compare/v0.27.2...v0.28.0) (2025-12-23)
 
 
