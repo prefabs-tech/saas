@@ -56,7 +56,7 @@ const createAccountsTableQuery = (
       individual BOOLEAN NOT NULL DEFAULT FALSE,
       type_id INTEGER,
       slug VARCHAR(24),
-      database VARCHAR(10),
+      database VARCHAR(24),
       domain VARCHAR(255),
       UNIQUE (slug),
       UNIQUE (database),
