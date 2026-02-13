@@ -14,10 +14,9 @@ import type { Account } from "@/types";
 
 type VisibleColumn = "name" | "taxId" | "type" | string;
 
-export interface AccountsTableProperties
-  extends Partial<
-    Omit<TDataTableProperties<Account>, "data" | "visibleColumns" | "fetchData">
-  > {
+export interface AccountsTableProperties extends Partial<
+  Omit<TDataTableProperties<Account>, "data" | "visibleColumns" | "fetchData">
+> {
   fetchAccounts?: (arguments_: TRequestJSON) => void;
   accounts: Array<Account>;
   visibleColumns?: VisibleColumn[];

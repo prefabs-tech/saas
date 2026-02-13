@@ -1,2 +1,2 @@
-export * from "./getSaasAdminRoutes";
-export * from "./getSaasAppRoutes";
+export * from "./GetSaasAdminRoutes";
+export * from "./GetSaasAppRoutes";

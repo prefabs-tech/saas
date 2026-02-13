@@ -31,10 +31,12 @@ export const SignupFormActions = ({
     formState: { errors, submitCount },
   } = useFormContext();
 
-  let isChecked = false;
-  if (termsAndConditionsUrl) {
-    isChecked = useWatch({ control, name: "termsAndConditions" });
-  }
+  const watched = useWatch({
+    control,
+    name: "termsAndConditions",
+    defaultValue: false,
+  });
+  const isChecked = termsAndConditionsUrl ? watched : true;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const actions: any = [

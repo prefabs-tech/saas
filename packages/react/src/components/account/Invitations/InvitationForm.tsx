@@ -81,11 +81,7 @@ export const AccountInvitationForm = ({
     }
 
     return defaultValues;
-  }, [
-    roles,
-    additionalInvitationFields?.defaultValues,
-    expiryDateField?.display,
-  ]);
+  }, [roles, additionalInvitationFields, expiryDateField?.display]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getFormData = (data: any) => {

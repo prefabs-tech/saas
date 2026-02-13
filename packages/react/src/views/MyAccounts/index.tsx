@@ -2,7 +2,7 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Page } from "@prefabs.tech/react-ui";
 import { Navigate } from "react-router-dom";
 
-import { MyAccounts } from "@/components/my-accounts";
+import { MyAccounts } from "@/components/MyAccounts";
 import { useAccounts } from "@/hooks";
 import { Account } from "@/types";
 

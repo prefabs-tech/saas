@@ -19,7 +19,7 @@ export const useAddInvitationMutation = <
 
       trigger(url, data);
     },
-    [],
+    [trigger],
   );
 
   return { loading, trigger: callMutation };

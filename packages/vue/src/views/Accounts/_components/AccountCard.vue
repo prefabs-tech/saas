@@ -6,7 +6,7 @@
         <BadgeComponent
           :label="
             t(
-              `account.type.${account.individual ? 'individual' : 'organization'}.label`
+              `account.type.${account.individual ? 'individual' : 'organization'}.label`,
             )
           "
           severity="primary"
