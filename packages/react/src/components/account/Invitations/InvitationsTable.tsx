@@ -18,7 +18,7 @@ import {
   useResendInvitationMutation,
   useRevokeInvitationMutation,
 } from "@/hooks/accounts";
-import { DeleteAccountInvitationResponse } from "@/types/account-invitation";
+import { DeleteAccountInvitationResponse } from "@/types/AccountInvitation";
 
 import { AccountInvitationModal } from "./InvitationModal";
 
