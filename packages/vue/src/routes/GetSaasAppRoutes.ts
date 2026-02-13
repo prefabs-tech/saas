@@ -71,7 +71,7 @@ const _appRoutes = {
 
 const getRoute = (
   defaultRoute: RouteRecordRaw,
-  override?: RouteOverwrite
+  override?: RouteOverwrite,
 ): RouteRecordRaw => {
   return {
     ...defaultRoute,
@@ -85,7 +85,7 @@ const getRoute = (
 
 export const getSaasAppRoutes = (
   type: "authenticated" | "unauthenticated" | "public" = "authenticated",
-  options?: AppRoutesProperties
+  options?: AppRoutesProperties,
 ): RouteRecordRaw[] => {
   const {
     accountSettings,
@@ -123,10 +123,10 @@ export const getSaasAppRoutes = (
 export const addSaasAppRoutes = (
   router: Router,
   type: "authenticated" | "unauthenticated" | "public" = "authenticated",
-  options?: AppRoutesProperties
+  options?: AppRoutesProperties,
 ): void => {
   const routes = getSaasAppRoutes(type, options);
-  routes.forEach((route) => {
+  for (const route of routes) {
     router.addRoute(route);
-  });
+  }
 };

@@ -2,6 +2,7 @@
   "name": "@prefabs.tech/saas-react",
   "version": "0.28.0",
   "description": "Saas plugin for react",
+  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/PrefabsTechSaasReact.es.js",

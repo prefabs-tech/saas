@@ -27,7 +27,7 @@ export const AccountFields = () => {
     if (!slug) {
       setValue("useSeparateDatabase", false);
     }
-  }, [slug]);
+  }, [slug, setValue]);
 
   const renderEntityFields = () => {
     if (entity === "both") {

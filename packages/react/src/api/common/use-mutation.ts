@@ -34,29 +34,32 @@ export const useMutation = <MutationResponse = any, MutationData = any>( // esli
 
   const { apiBaseUrl } = useConfig();
 
-  const trigger = useCallback((url: string, data?: MutationData) => {
-    setLoading(true);
+  const trigger = useCallback(
+    (url: string, data?: MutationData) => {
+      setLoading(true);
 
-    const requestObject = {
-      url,
-      method,
-      data,
-      withCredentials,
-    };
+      const requestObject = {
+        url,
+        method,
+        data,
+        withCredentials,
+      };
 
-    client(apiBaseUrl)
-      .request(requestObject)
-      .then((response) => {
-        if ("status" in response.data && response.data.status === "ERROR") {
-          onError && onError(response, requestObject);
-        } else {
-          onSuccess &&
-            onSuccess(response.data as MutationResponse, requestObject);
-        }
-      })
-      .catch((error) => onError && onError(error))
-      .finally(() => setLoading(false));
-  }, []);
+      client(apiBaseUrl)
+        .request(requestObject)
+        .then((response) => {
+          if ("status" in response.data && response.data.status === "ERROR") {
+            onError && onError(response, requestObject);
+          } else {
+            onSuccess &&
+              onSuccess(response.data as MutationResponse, requestObject);
+          }
+        })
+        .catch((error) => onError && onError(error))
+        .finally(() => setLoading(false));
+    },
+    [apiBaseUrl, method, withCredentials, onError, onSuccess],
+  );
 
   return { loading, trigger };
 };

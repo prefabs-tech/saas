@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 
 import { useMutation, UseMutationOptions } from "@/api";
-import { ResendAccountInvitationResponse } from "@/types";
+import { RevokeAccountInvitationResponse } from "@/types";
 
-export const useResendInvitationMutation = <
-  Response extends ResendAccountInvitationResponse,
+export const useRevokeInvitationMutation = <
+  Response extends RevokeAccountInvitationResponse,
 >(
   options?: Omit<UseMutationOptions<Response>, "method">,
 ) => {
@@ -12,11 +12,11 @@ export const useResendInvitationMutation = <
 
   const callMutation = useCallback(
     (accountId: string, invitationId: number) => {
-      const url = `accounts/${accountId}/invitations/${invitationId}/resend`;
+      const url = `accounts/${accountId}/invitations/${invitationId}/revoke`;
 
       trigger(url);
     },
-    [],
+    [trigger],
   );
 
   return { loading, trigger: callMutation };

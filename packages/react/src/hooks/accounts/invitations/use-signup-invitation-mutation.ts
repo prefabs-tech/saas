@@ -22,7 +22,7 @@ export const useSignupInvitationMutation = <
 
       trigger(url, data);
     },
-    [],
+    [trigger],
   );
 
   return { loading, trigger: callMutation };

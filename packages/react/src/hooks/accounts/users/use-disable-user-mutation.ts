@@ -13,11 +13,14 @@ export const useDisableUserMutation = <
     ...options,
   });
 
-  const callMutation = useCallback((userId: string) => {
-    const url = `users/${userId}/disable`;
+  const callMutation = useCallback(
+    (userId: string) => {
+      const url = `users/${userId}/disable`;
 
-    trigger(url);
-  }, []);
+      trigger(url);
+    },
+    [trigger],
+  );
 
   return { loading, trigger: callMutation };
 };

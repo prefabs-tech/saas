@@ -4,8 +4,10 @@ import { toast } from "react-toastify";
 
 import { AccountForm as AccountFormBase } from "@/components/account";
 import { DEFAULT_PATHS } from "@/constants";
-import { useAddAccountMutation } from "@/hooks/accounts/useAddAccountMutation";
-import { useEditAccountMutation } from "@/hooks/accounts/useEditAccountMutation";
+import {
+  useAddAccountMutation,
+  useEditAccountMutation,
+} from "@/hooks/accounts";
 import { Account, AccountCreateInput, AccountUpdateInput } from "@/types";
 
 type Properties = {

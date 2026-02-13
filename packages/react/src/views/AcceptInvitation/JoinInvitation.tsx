@@ -1,6 +1,6 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { AuthPage, Button } from "@prefabs.tech/react-ui";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -33,6 +33,8 @@ export const JoinInvitationPage = ({
   const [searchParameters] = useSearchParams();
   const accountId = searchParameters.get("accountId");
 
+  const [now, setNow] = useState<number | null>(null);
+
   const {
     data: invitation,
     loading: invitationLoading,
@@ -41,6 +43,10 @@ export const JoinInvitationPage = ({
   } = useGetInvitationQuery(token!, accountId, {
     lazy: true,
   });
+
+  useEffect(() => {
+    queueMicrotask(() => setNow(Date.now()));
+  }, []);
 
   const { loading: acceptLoading, trigger: triggerAcceptInvitation } =
     useJoinInvitationMutation({
@@ -64,7 +70,7 @@ export const JoinInvitationPage = ({
     if (token) {
       trigger();
     }
-  }, []);
+  }, [token, trigger]);
 
   const handleSubmit = () => {
     if (!token) {
@@ -86,7 +92,7 @@ export const JoinInvitationPage = ({
     if (
       invitation?.acceptedAt ||
       invitation?.revokedAt ||
-      (invitation?.expiresAt && invitation.expiresAt < Date.now())
+      (now !== null && invitation?.expiresAt && invitation.expiresAt < now)
     ) {
       return <p>{t(`joinInvitation.messages.invalid`)}</p>;
     }

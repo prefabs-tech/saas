@@ -40,8 +40,11 @@
     "pg": "8.13.3"
   },
   "devDependencies": {
+    "@fastify/cors": "^11.0.1",
+    "@fastify/formbody": "^8.0.2",
     "@prefabs.tech/eslint-config": "0.5.0",
     "@prefabs.tech/fastify-config": "0.93.5",
+    "@prefabs.tech/fastify-error-handler": "0.93.5",
     "@prefabs.tech/fastify-graphql": "0.93.5",
     "@prefabs.tech/fastify-mailer": "0.93.5",
     "@prefabs.tech/fastify-s3": "0.93.5",
@@ -53,8 +56,8 @@
     "@types/pg": "8.11.10",
     "@typescript-eslint/eslint-plugin": "8.42.0",
     "@typescript-eslint/parser": "8.42.0",
-    "@vitest/coverage-istanbul": "3.0.5",
-    "eslint": "8.57.1",
+    "@vitest/coverage-istanbul": "3.2.4",
+    "eslint": "9.39.2",
     "eslint-config-prettier": "9.1.2",
     "eslint-import-resolver-alias": "1.1.2",
     "eslint-import-resolver-typescript": "3.10.1",
@@ -71,13 +74,16 @@
     "prettier": "3.8.1",
     "slonik": "46.8.0",
     "supertokens-node": "14.1.4",
-    "typescript": "5.9.2",
+    "typescript": "5.7.3",
     "vite": "6.3.5",
     "vitest": "3.2.4",
-    "zod": "3.25.76"
+    "zod": "3.23.8"
   },
   "peerDependencies": {
+    "@fastify/cors": ">=11.0.1",
+    "@fastify/formbody": ">=8.0.2",
     "@prefabs.tech/fastify-config": ">=0.93.0",
+    "@prefabs.tech/fastify-error-handler": ">=0.93.0",
     "@prefabs.tech/fastify-graphql": ">=0.93.0",
     "@prefabs.tech/fastify-mailer": ">=0.93.0",
     "@prefabs.tech/fastify-s3": ">=0.93.0",
@@ -88,7 +94,7 @@
     "mercurius": ">=16.2.0",
     "slonik": ">=46.8.0",
     "supertokens-node": ">=14.1.4",
-    "zod": ">=3.25.76"
+    "zod": ">=3.23.8"
   },
   "engines": {
     "node": ">=20",

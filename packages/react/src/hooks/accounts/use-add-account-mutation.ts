@@ -8,11 +8,14 @@ export const useAddAccountMutation = <Response extends AddAccountResponse>(
 ) => {
   const { loading, trigger } = useMutation<Response>(options);
 
-  const callMutation = useCallback((data: AccountCreateInput) => {
-    const url = `accounts`;
+  const callMutation = useCallback(
+    (data: AccountCreateInput) => {
+      const url = `accounts`;
 
-    trigger(url, data);
-  }, []);
+      trigger(url, data);
+    },
+    [trigger],
+  );
 
   return { loading, trigger: callMutation };
 };

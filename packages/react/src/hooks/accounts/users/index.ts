@@ -1,3 +1,3 @@
-export * from "./useDisableUserMutation";
-export * from "./useEnableUserMutation";
-export * from "./useGetUsersQuery";
+export * from "./use-disable-user-mutation";
+export * from "./use-enable-user-mutation";
+export * from "./use-get-users-query";

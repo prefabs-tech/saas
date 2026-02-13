@@ -2,11 +2,16 @@ import { ref } from "vue";
 
 const globalShowAccountError = ref(false);
 
+type ErrorWithResponse = {
+  response?: { status?: number; data?: { error?: { message?: string } } };
+};
+
 export function useGlobalAccountError() {
-  const checkForAccountError = (error: any) => {
+  const checkForAccountError = (error: unknown) => {
+    const err = error as ErrorWithResponse;
     if (
-      error?.response?.status === 404 &&
-      error?.response?.data?.error?.message === "Account not found"
+      err?.response?.status === 404 &&
+      err?.response?.data?.error?.message === "Account not found"
     ) {
       globalShowAccountError.value = true;
       return true;

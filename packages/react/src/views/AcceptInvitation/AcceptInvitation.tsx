@@ -22,7 +22,7 @@ export const AcceptInvitationPage = () => {
     if (token) {
       trigger();
     }
-  }, []);
+  }, [token, trigger]);
 
   if (invitationLoading || !invitation) {
     return <LoadingPage />;
