@@ -9,13 +9,16 @@ type ErrorWithResponse = {
 export function useGlobalAccountError() {
   const checkForAccountError = (error: unknown) => {
     const err = error as ErrorWithResponse;
+
     if (
       err?.response?.status === 404 &&
       err?.response?.data?.error?.message === "Account not found"
     ) {
       globalShowAccountError.value = true;
+
       return true;
     }
+
     return false;
   };
 
