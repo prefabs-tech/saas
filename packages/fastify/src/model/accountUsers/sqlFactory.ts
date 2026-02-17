@@ -47,6 +47,7 @@ class AccountUserSqlFactory extends AccountAwareSqlFactory {
       SELECT
         ${this.getUserTableIdentifier()}.*,
         ${this.tableIdentifier}.role_id as role,
+        ${this.tableIdentifier}.disabled,
         ${this.tableIdentifier}.date_start,
         ${this.tableIdentifier}.date_end,
         ${this.tableIdentifier}.created_at,
@@ -69,6 +70,7 @@ class AccountUserSqlFactory extends AccountAwareSqlFactory {
       SELECT
         ${this.getUserTableIdentifier()}.*,
         ${this.tableIdentifier}.role_id as role,
+        ${this.tableIdentifier}.disabled,
         ${this.tableIdentifier}.date_start,
         ${this.tableIdentifier}.date_end,
         ${this.tableIdentifier}.created_at,

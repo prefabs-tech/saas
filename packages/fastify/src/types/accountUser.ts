@@ -3,6 +3,7 @@ interface AccountUser {
   accountId: string;
   userId: string;
   roleId: string;
+  disabled: boolean;
 }
 
 type AccountUserCreateInput = Partial<Omit<AccountUser, "id">> & {

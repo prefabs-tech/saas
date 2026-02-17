@@ -30,10 +30,14 @@ const myAccounts = async (request: SessionRequest, reply: FastifyReply) => {
     value: user.id,
   });
 
+  const enabledAccountUsers = accountUsers.filter(
+    (accountUser) => !(accountUser as AccountUser).disabled,
+  );
+
   const accounts = await accountService.find({
     key: "id",
     operator: "in",
-    value: accountUsers
+    value: enabledAccountUsers
       .map((accountUser) => (accountUser as unknown as AccountUser).accountId)
       .join(","),
   });
