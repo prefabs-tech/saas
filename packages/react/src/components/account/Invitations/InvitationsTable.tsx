@@ -184,9 +184,11 @@ export const AccountInvitationsTable = ({
           if (acceptedAt) {
             return t("invitations.status.accepted");
           }
+
           if (revokedAt) {
             return t("invitations.status.revoked");
           }
+
           if (isExpired(expiresAt)) {
             return t("invitations.status.expired");
           }
@@ -198,9 +200,11 @@ export const AccountInvitationsTable = ({
           if (acceptedAt) {
             return "green";
           }
+
           if (revokedAt) {
             return "red";
           }
+
           if (isExpired(expiresAt)) {
             return "gray";
           }

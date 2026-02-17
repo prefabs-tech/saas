@@ -36,6 +36,7 @@ export const SignupFormActions = ({
     name: "termsAndConditions",
     defaultValue: false,
   });
+
   const isChecked = termsAndConditionsUrl ? watched : true;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
