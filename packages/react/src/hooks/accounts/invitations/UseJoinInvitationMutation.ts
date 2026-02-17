@@ -17,7 +17,7 @@ export const useJoinInvitationMutation = <Response = AcceptInvitationResponse>(
 
       trigger(url);
     },
-    [],
+    [trigger],
   );
 
   return { loading, trigger: callMutation };

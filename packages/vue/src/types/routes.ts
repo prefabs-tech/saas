@@ -4,7 +4,7 @@ export type RouteOverwrite = {
   disabled?: boolean;
   component?: RouteComponent;
   path?: string;
-  meta?: Record<string, any>;
+  meta?: Record<string, unknown>;
 };
 
 export type AdminRouteOverwrites = {

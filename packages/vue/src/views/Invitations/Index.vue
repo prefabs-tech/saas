@@ -39,9 +39,9 @@ import { useRoute } from "vue-router";
 
 import InvitationModal from "./_components/InvitationModal.vue";
 import { useTranslations } from "../../index";
-import useInvitationStore from "../../stores/accountInvitations";
+import useInvitationStore from "../../stores/AccountInvitations";
 
-import type { AccountInvitation } from "../../types/accountInvitation";
+import type { AccountInvitation } from "../../types/AccountInvitation";
 import type { SaasEventHandlers } from "../../types/plugin";
 import type { AppConfig } from "@prefabs.tech/vue3-config";
 import type { TableColumnDefinition } from "@prefabs.tech/vue3-tanstack-table";
@@ -71,7 +71,7 @@ const route = useRoute();
 
 const eventHandlers = inject<SaasEventHandlers>(
   Symbol.for("saas.eventHandlers"),
-  { notification: undefined }
+  { notification: undefined },
 );
 
 // Reactive accountId
@@ -83,10 +83,10 @@ const actionMenuData = [
   {
     confirmationOptions: {
       body: t(
-        "account.invitations.table.confirmation.resendInvitation.message"
+        "account.invitations.table.confirmation.resendInvitation.message",
       ),
       header: t(
-        "account.invitations.table.confirmation.resendInvitation.header"
+        "account.invitations.table.confirmation.resendInvitation.header",
       ),
     },
     key: "resendInvitation",
@@ -98,10 +98,10 @@ const actionMenuData = [
     class: "warning",
     confirmationOptions: {
       body: t(
-        "account.invitations.table.confirmation.revokeInvitation.message"
+        "account.invitations.table.confirmation.revokeInvitation.message",
       ),
       header: t(
-        "account.invitations.table.confirmation.revokeInvitation.header"
+        "account.invitations.table.confirmation.revokeInvitation.header",
       ),
     },
     key: "revokeInvitation",
@@ -113,10 +113,10 @@ const actionMenuData = [
     class: "danger",
     confirmationOptions: {
       body: t(
-        "account.invitations.table.confirmation.deleteInvitation.message"
+        "account.invitations.table.confirmation.deleteInvitation.message",
       ),
       header: t(
-        "account.invitations.table.confirmation.deleteInvitation.header"
+        "account.invitations.table.confirmation.deleteInvitation.header",
       ),
     },
     key: "deleteInvitation",
@@ -185,6 +185,7 @@ async function fetchInvitations() {
     const response = await getInvitations(accountId.value, config.apiBaseUrl);
     invitations.value = response;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Failed to fetch invitations:", error);
   }
 }
@@ -202,6 +203,7 @@ async function handleDelete(invitation: AccountInvitation) {
       });
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Failed to delete invitation:", error);
 
     if (eventHandlers?.notification) {
@@ -231,6 +233,7 @@ async function handleResend(invitation: AccountInvitation) {
       });
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Failed to resend invitation:", error);
 
     if (eventHandlers?.notification) {
@@ -255,6 +258,7 @@ async function handleRevoke(invitation: AccountInvitation) {
       });
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Failed to revoke invitation:", error);
 
     if (eventHandlers?.notification) {
@@ -268,15 +272,18 @@ async function handleRevoke(invitation: AccountInvitation) {
 
 function onActionSelect(rowData: { action: string; data: AccountInvitation }) {
   switch (rowData.action) {
-    case "resendInvitation":
+    case "resendInvitation": {
       handleResend(rowData.data);
       break;
-    case "revokeInvitation":
+    }
+    case "revokeInvitation": {
       handleRevoke(rowData.data);
       break;
-    case "deleteInvitation":
+    }
+    case "deleteInvitation": {
       handleDelete(rowData.data);
       break;
+    }
   }
 }
 </script>

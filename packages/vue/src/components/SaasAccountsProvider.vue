@@ -7,8 +7,8 @@
 <script setup lang="ts">
 import { watch, computed, defineProps } from "vue";
 
-import { useGlobalAccountError } from "../composables/useGlobalAccountError";
-import { useMyAccountsStore } from "../stores/myAccounts";
+import { useGlobalAccountError } from "../composables/UseGlobalAccountError";
+import { useMyAccountsStore } from "../stores/MyAccounts";
 
 import type { SaasConfig } from "../types/config";
 
@@ -39,6 +39,7 @@ watch(
           if (checkForAccountError(error)) {
             return;
           }
+          // eslint-disable-next-line no-console
           console.error("Failed to fetch accounts:", error);
         }
       }
@@ -49,6 +50,6 @@ watch(
       myAccountsStore.error = false;
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 </script>

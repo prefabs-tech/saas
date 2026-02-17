@@ -6,12 +6,11 @@ import type { AccountAwareService as Service } from "./types/service";
 import type { ApiConfig } from "@prefabs.tech/fastify-config";
 import type { Database } from "@prefabs.tech/fastify-slonik";
 
-/* eslint-disable brace-style */
 abstract class AccountAwareBaseService<
-    T,
-    C extends Record<string, unknown>,
-    U extends Record<string, unknown>,
-  >
+  T,
+  C extends Record<string, unknown>,
+  U extends Record<string, unknown>,
+>
   extends BaseService<T, C, U>
   implements Service<T, C, U>
 {

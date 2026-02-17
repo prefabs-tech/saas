@@ -3,7 +3,7 @@ import { AuthPage } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 
 import { signup } from "@/api/accounts";
-import { AccountSignupForm, UserSignupForm } from "@/components/signup";
+import { AccountSignupForm, UserSignupForm } from "@/components/Signup";
 import { SIGNUP_PATH_DEFAULT } from "@/constants";
 import { useAccounts, useConfig } from "@/hooks";
 import { AccountSignupData, User, UserSignupData } from "@/types/account";

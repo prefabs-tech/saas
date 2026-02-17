@@ -15,7 +15,6 @@ import getSaasConfig from "../../config";
 import type { AccountTypeI18nCreateInput } from "../../types";
 import type { FilterInput, SortInput } from "@prefabs.tech/fastify-slonik";
 
-/* eslint-disable brace-style */
 class AccountTypeSqlFactory extends DefaultSqlFactory {
   getAllSql(fields: string[], sort?: SortInput[]): QuerySqlToken {
     const identifiers = [];

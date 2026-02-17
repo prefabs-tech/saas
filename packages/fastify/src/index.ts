@@ -1,7 +1,6 @@
 import { verifySession } from "supertokens-node/recipe/session/framework/fastify";
 
 import type { SaasConfig, Account } from "./types";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { ApiConfig } from "@prefabs.tech/fastify-config";
 import type { Database } from "@prefabs.tech/fastify-slonik";
 
