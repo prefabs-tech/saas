@@ -12,10 +12,15 @@ import {
   SignupPage,
 } from "@/views";
 
-export const getSaasAppRoutes = (
-  type: "authenticated" | "unauthenticated" | "public" = "authenticated",
-  options?: AppRoutesProperties,
-) => {
+type GetSaasAppRoutesProperties = {
+  type?: "authenticated" | "unauthenticated" | "public";
+  options?: AppRoutesProperties;
+};
+
+export const GetSaasAppRoutes = ({
+  type = "authenticated",
+  options,
+}: GetSaasAppRoutesProperties) => {
   const {
     accountSettings,
     invitationAccept,
@@ -91,3 +96,8 @@ export const getSaasAppRoutes = (
     </>
   );
 };
+
+export const getSaasAppRoutes = (
+  type: "authenticated" | "unauthenticated" | "public" = "authenticated",
+  options?: AppRoutesProperties,
+) => <GetSaasAppRoutes type={type} options={options} />;

@@ -50,9 +50,9 @@ import { useRoute, useRouter } from "vue-router";
 
 import { REDIRECT_AFTER_LOGIN_KEY } from "../../constant";
 import { useTranslations } from "../../index";
-import useInvitationStore from "../../stores/accountInvitations";
+import useInvitationStore from "../../stores/AccountInvitations";
 
-import type { AccountInvitation } from "../../types/accountInvitation";
+import type { AccountInvitation } from "../../types/AccountInvitation";
 import type { SaasEventHandlers, EventMessage } from "../../types/plugin";
 import type { AppConfig } from "@prefabs.tech/vue3-config";
 
@@ -76,7 +76,7 @@ const { t } = useI18n({ messages });
 
 const eventHandlers = inject<SaasEventHandlers>(
   Symbol.for("saas.eventHandlers"),
-  { notification: undefined }
+  { notification: undefined },
 );
 
 const token = route.params.token as string;
@@ -111,13 +111,13 @@ async function fetchInvitation() {
     const response = await getInvitationByToken(
       token,
       accountId || null,
-      config.apiBaseUrl
+      config.apiBaseUrl,
     );
 
     invitation.value = response;
-  } catch (err) {
+  } catch (error_) {
     // eslint-disable-next-line no-console
-    console.error("Failed to fetch invitation:", err);
+    console.error("Failed to fetch invitation:", error_);
 
     error.value = true;
   } finally {
@@ -146,9 +146,9 @@ async function handleSubmit() {
 
     // Navigate to home or dashboard
     router.push("/");
-  } catch (err) {
+  } catch (error_) {
     // eslint-disable-next-line no-console
-    console.error("Failed to join invitation:", err);
+    console.error("Failed to join invitation:", error_);
 
     const message: EventMessage = {
       type: "error",

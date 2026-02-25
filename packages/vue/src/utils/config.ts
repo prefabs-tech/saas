@@ -7,19 +7,19 @@ export const prepareUiConfig = (ui: SaasConfig["ui"] = {}) => {
     account: {
       form: {
         ...CONFIG_UI_DEFAULT.account.form,
-        ...(ui?.account?.form || {}),
+        ...ui?.account?.form,
       },
     },
     invitation: {
       form: {
         ...CONFIG_UI_DEFAULT.invitation.form,
-        ...(ui?.invitation?.form || {}),
+        ...ui?.invitation?.form,
       },
     },
     signup: {
       form: {
         ...CONFIG_UI_DEFAULT.signup.form,
-        ...(ui?.signup?.form || {}),
+        ...ui?.signup?.form,
       },
     },
   };

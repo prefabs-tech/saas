@@ -58,7 +58,7 @@ import { onClickOutside } from "@vueuse/core";
 import { defineProps, defineEmits, ref, computed } from "vue";
 
 import { useTranslations } from "../../index";
-import { useMyAccountsStore } from "../../stores/myAccounts";
+import { useMyAccountsStore } from "../../stores/MyAccounts";
 
 import type { Account } from "../../types/account";
 

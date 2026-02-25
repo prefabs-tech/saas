@@ -17,7 +17,7 @@ export const useEditAccountMutation = <Response extends EditAccountResponse>(
 
       trigger(url, data);
     },
-    [],
+    [trigger],
   );
 
   return { loading, trigger: callMutation };

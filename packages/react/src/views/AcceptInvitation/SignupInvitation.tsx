@@ -1,11 +1,11 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { AuthPage } from "@prefabs.tech/react-ui";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { UseMutationRequestObject } from "@/api";
-import { UserSignupForm } from "@/components/signup";
+import { UserSignupForm } from "@/components/Signup";
 import { useGetInvitationQuery, useSignupInvitationMutation } from "@/hooks";
 import { AcceptInvitationResponse, UserSignupData } from "@/types";
 
@@ -27,6 +27,8 @@ export const SignupInvitationPage = ({
   const [searchParameters] = useSearchParams();
   const accountId = searchParameters.get("accountId");
 
+  const [now, setNow] = useState<number | null>(null);
+
   const {
     data: invitation,
     loading: invitationLoading,
@@ -35,6 +37,10 @@ export const SignupInvitationPage = ({
   } = useGetInvitationQuery(token!, accountId, {
     lazy: true,
   });
+
+  useEffect(() => {
+    queueMicrotask(() => setNow(Date.now()));
+  }, []);
 
   const { loading: acceptLoading, trigger: triggerAcceptInvitation } =
     useSignupInvitationMutation({
@@ -53,7 +59,7 @@ export const SignupInvitationPage = ({
     if (token) {
       trigger();
     }
-  }, []);
+  }, [token, trigger]);
 
   const handleSubmit = (credential: UserSignupData) => {
     if (!token) {
@@ -71,7 +77,7 @@ export const SignupInvitationPage = ({
     if (
       invitation?.acceptedAt ||
       invitation?.revokedAt ||
-      (invitation?.expiresAt && invitation.expiresAt < Date.now())
+      (now !== null && invitation?.expiresAt && invitation.expiresAt < now)
     ) {
       return <p>{t(`signupInvitation.messages.invalid`)}</p>;
     }

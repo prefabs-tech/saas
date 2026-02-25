@@ -1,3 +1,3 @@
-export * from "./useAccounts";
-export * from "./useConfig";
+export * from "./UseAccounts";
+export * from "./UseConfig";
 export * from "./accounts";

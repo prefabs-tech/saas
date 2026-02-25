@@ -37,7 +37,7 @@ const account = ref({} as Account);
 
 const eventHandlers = inject<SaasEventHandlers>(
   Symbol.for("saas.eventHandlers"),
-  { notification: undefined }
+  { notification: undefined },
 );
 
 onMounted(async () => {

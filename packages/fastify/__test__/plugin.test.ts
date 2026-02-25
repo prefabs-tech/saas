@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-empty-function */
+
 import configPlugin from "@prefabs.tech/fastify-config";
 import Fastify, { FastifyInstance, FastifyReply } from "fastify";
 import FastifyPlugin from "fastify-plugin";

@@ -42,7 +42,7 @@ const plugin: Plugin = {
 const useTranslations = (): LocaleMessages<VueMessageType> => {
   return inject<LocaleMessages<VueMessageType>>(
     __saasVueTranslations,
-    defaultMessages
+    defaultMessages,
   );
 };
 
@@ -52,15 +52,15 @@ export * from "./routes";
 export * from "./types/routes";
 
 // Account management
-export { default as useMyAccountsStore } from "./stores/myAccounts";
-export { useMyAccounts } from "./composables/useMyAccounts";
+export { default as useMyAccountsStore } from "./stores/MyAccounts";
+export { useMyAccounts } from "./composables/UseMyAccounts";
 export { default as AccountSwitcher } from "./components/accounts/AccountSwitcher.vue";
 export { default as SaasAccountsProvider } from "./components/SaasAccountsProvider.vue";
 export { default as SaasWrapper } from "./components/SaasWrapper.vue";
 export { default as ConfigProvider } from "./components/ConfigProvider.vue";
 
 // Error handling
-export { useGlobalAccountError } from "./composables/useGlobalAccountError";
+export { useGlobalAccountError } from "./composables/UseGlobalAccountError";
 export { default as NotFoundMessage } from "./components/NotFoundMessage.vue";
 
 // Views

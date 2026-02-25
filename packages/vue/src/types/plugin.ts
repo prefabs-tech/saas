@@ -1,10 +1,10 @@
+import type { SaasConfig } from "./config";
 import type { AppConfig } from "@prefabs.tech/vue3-config";
-import type { DzangolabVueUserConfig } from "@prefabs.tech/vue3-user";
 import type { LocaleMessages, VueMessageType } from "@prefabs.tech/vue3-i18n";
+import type { DzangolabVueUserConfig } from "@prefabs.tech/vue3-user";
 import type { Pinia } from "pinia";
 import type { Component } from "vue";
 import type { Router } from "vue-router";
-import type { SaasConfig } from "./config";
 
 export type MessageType = "error" | "success";
 

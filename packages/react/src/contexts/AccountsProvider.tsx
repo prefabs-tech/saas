@@ -62,7 +62,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
 
   const isMainApp = useMemo(() => {
     return host === mainApp?.domain;
-  }, [host]);
+  }, [host, mainApp?.domain]);
 
   const switchAccount = useCallback(
     (newAccount: Account | null, options?: SwitchAccountOptions) => {
@@ -88,7 +88,7 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
 
       setAccountLoading(false);
     },
-    [setLoading, setActiveAccount],
+    [accountStorageKey, allowMultipleSessions],
   );
 
   const computeNewActiveAccount = useCallback(
@@ -146,7 +146,14 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
         ? newAccounts[previousAccountIndex]
         : newActiveAccount;
     },
-    [activeAccount, subdomain],
+    [
+      activeAccount,
+      subdomain,
+      isMainApp,
+      autoSelectAccount,
+      accountStorageKey,
+      allowMultipleSessions,
+    ],
   );
 
   const updateAccounts = useCallback(
@@ -179,13 +186,13 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
       .finally(() => {
         setLoading(false);
       });
-  }, [userId]);
+  }, [apiBaseUrl, updateAccounts]);
 
   useEffect(() => {
     if (userId) {
-      fetchMyAccounts();
+      queueMicrotask(() => fetchMyAccounts());
     }
-  }, [userId]);
+  }, [userId, fetchMyAccounts]);
 
   return (
     <accountsContext.Provider

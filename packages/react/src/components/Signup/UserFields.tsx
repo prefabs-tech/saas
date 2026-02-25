@@ -56,6 +56,7 @@ export const UserFields = ({ disableEmailField = false }: Properties) => {
                 href={termsAndConditionsUrl}
                 className="inline-link underlined"
                 target="_blank"
+                rel="noreferrer"
               >
                 Terms and Conditions
               </a>

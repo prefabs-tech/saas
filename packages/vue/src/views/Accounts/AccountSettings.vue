@@ -24,7 +24,7 @@
       <BadgeComponent
         :label="
           t(
-            `account.type.${activeAccount?.individual ? 'individual' : 'organization'}.label`
+            `account.type.${activeAccount?.individual ? 'individual' : 'organization'}.label`,
           )
         "
         :severity="activeAccount?.individual ? 'primary' : 'success'"
@@ -40,8 +40,8 @@ import { ref, onMounted, computed, inject } from "vue";
 
 import { useTranslations } from "../../index";
 import AccountDetails from "./_components/AccountDetails.vue";
-import { useGlobalAccountError } from "../../composables/useGlobalAccountError";
-import { useMyAccountsStore } from "../../stores/myAccounts";
+import { useGlobalAccountError } from "../../composables/UseGlobalAccountError";
+import { useMyAccountsStore } from "../../stores/MyAccounts";
 import Invitations from "../Invitations/Index.vue";
 import Users from "../Users/Index.vue";
 
@@ -78,7 +78,7 @@ const defaultTabList = [
 
 const tabConfig = inject<(() => typeof defaultTabList) | typeof defaultTabList>(
   __saasAccountTabs,
-  defaultTabList
+  defaultTabList,
 );
 
 const processedTabs = computed(() => {
@@ -118,6 +118,7 @@ async function prepareComponent() {
     if (checkForAccountError(error)) {
       return;
     }
+    // eslint-disable-next-line no-console
     console.error("Failed to fetch account:", error);
   } finally {
     loading.value = false;

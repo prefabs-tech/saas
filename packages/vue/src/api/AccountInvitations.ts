@@ -10,19 +10,19 @@ import type {
   GetInvitationResponse,
   ResendAccountInvitationResponse,
   RevokeAccountInvitationResponse,
-} from "../types/accountInvitation";
+} from "../types/AccountInvitation";
 
 export const addInvitation = async (
   accountId: string,
   data: AccountInvitationCreateInput,
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<AddAccountInvitationResponse> => {
   const response = await client(apiBaseUrl).post(
     `/accounts/${accountId}/invitations`,
     data,
     {
       withCredentials: true,
-    }
+    },
   );
 
   return response.data;
@@ -31,13 +31,13 @@ export const addInvitation = async (
 export const deleteInvitation = async (
   accountId: string,
   id: number,
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<DeleteAccountInvitationResponse> => {
   const response = await client(apiBaseUrl).delete(
     `/accounts/${accountId}/invitations/${id}`,
     {
       withCredentials: true,
-    }
+    },
   );
 
   return response.data;
@@ -46,13 +46,13 @@ export const deleteInvitation = async (
 export const getInvitation = async (
   accountId: string,
   id: number,
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<GetInvitationResponse> => {
   const response = await client(apiBaseUrl).get(
     `/accounts/${accountId}/invitations/${id}`,
     {
       withCredentials: true,
-    }
+    },
   );
 
   return response.data;
@@ -61,14 +61,14 @@ export const getInvitation = async (
 export const getInvitations = async (
   accountId: string,
   apiBaseUrl: string,
-  parameters?: object
+  parameters?: object,
 ): Promise<GetAccountInvitationsResponse> => {
   const response = await client(apiBaseUrl).get(
     `/accounts/${accountId}/invitations`,
     {
       params: parameters,
       withCredentials: true,
-    }
+    },
   );
 
   return response.data;
@@ -77,14 +77,14 @@ export const getInvitations = async (
 export const joinInvitation = async (
   token: string,
   accountId: string | null,
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<AccountInvitation> => {
   const response = await client(apiBaseUrl).post(
     `/accounts/${accountId}/invitations/join/${token}`,
     {},
     {
       withCredentials: true,
-    }
+    },
   );
 
   return response.data;
@@ -93,14 +93,14 @@ export const joinInvitation = async (
 export const resendInvitation = async (
   accountId: string,
   id: number,
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<ResendAccountInvitationResponse> => {
   const response = await client(apiBaseUrl).post(
     `/accounts/${accountId}/invitations/${id}/resend`,
     null,
     {
       withCredentials: true,
-    }
+    },
   );
 
   return response.data;
@@ -109,14 +109,14 @@ export const resendInvitation = async (
 export const revokeInvitation = async (
   accountId: string,
   id: number,
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<RevokeAccountInvitationResponse> => {
   const response = await client(apiBaseUrl).post(
     `/accounts/${accountId}/invitations/${id}/revoke`,
     null,
     {
       withCredentials: true,
-    }
+    },
   );
 
   return response.data;
@@ -125,7 +125,7 @@ export const revokeInvitation = async (
 export const getInvitationByToken = async (
   token: string,
   accountId: string | null | undefined,
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<GetInvitationResponse> => {
   const url = accountId
     ? `/accounts/${accountId}/invitations/token/${token}`
@@ -148,7 +148,7 @@ export const signupInvitation = async (
     surname?: string;
   },
   accountId: string | null | undefined,
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<AcceptInvitationResponse> => {
   const url = accountId
     ? `/accounts/${accountId}/invitations/token/${token}`

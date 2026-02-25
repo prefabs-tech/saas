@@ -19,7 +19,7 @@ export const useDeleteInvitationMutation = <
 
       trigger(url);
     },
-    [],
+    [trigger],
   );
 
   return { loading, trigger: callMutation };

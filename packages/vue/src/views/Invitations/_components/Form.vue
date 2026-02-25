@@ -45,13 +45,13 @@ import {
   SAAS_ACCOUNT_ROLES_DEFAULT,
 } from "../../../constant";
 import { useTranslations } from "../../../index";
-import useInvitationStore from "../../../stores/accountInvitations";
+import useInvitationStore from "../../../stores/AccountInvitations";
 import {
   createEmailSchema,
   createRoleSchema,
-} from "../validations/invitationValidation";
+} from "../validations/InvitationValidation";
 
-import type { AccountInvitationCreateInput } from "../../../types/accountInvitation";
+import type { AccountInvitationCreateInput } from "../../../types/AccountInvitation";
 import type { SaasConfig } from "../../../types/config";
 import type { SaasEventHandlers, EventMessage } from "../../../types/plugin";
 
@@ -90,11 +90,11 @@ const roles = computed(() => {
 });
 
 const invitationFormUi = computed(
-  () => saasConfig?.ui?.invitation?.form ?? CONFIG_UI_DEFAULT.invitation.form
+  () => saasConfig?.ui?.invitation?.form ?? CONFIG_UI_DEFAULT.invitation.form,
 );
 
 const actionsAlignment = computed(
-  () => invitationFormUi.value.actionsAlignment
+  () => invitationFormUi.value.actionsAlignment,
 );
 
 const actionsReverse = computed(() => invitationFormUi.value.actionsReverse);
@@ -111,7 +111,7 @@ const roleOptions = computed(() => {
 
 const eventHandlers = inject<SaasEventHandlers>(
   Symbol.for("saas.eventHandlers"),
-  { notification: undefined }
+  { notification: undefined },
 );
 
 async function onSubmit() {
@@ -129,7 +129,7 @@ async function onSubmit() {
         eventHandlers?.notification?.(message);
 
         emit("success", response);
-      }
+      },
     );
   } catch (error) {
     // eslint-disable-next-line no-console

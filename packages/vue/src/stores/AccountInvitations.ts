@@ -10,9 +10,7 @@ import {
   resendInvitation,
   revokeInvitation,
   signupInvitation,
-} from "../api/accountInvitations";
-
-import type { AccountInvitationCreateInput } from "../types/accountInvitation";
+} from "../api/AccountInvitations";
 
 const useInvitationStore = defineStore("invitation", () => {
   return {

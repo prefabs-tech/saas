@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { encodeURIParameter } from "@/api/utils";
+import { encodeURIParameter } from "@/api/utilities";
 import { useConfig } from "@/hooks";
 
 import { client } from "../axios";
@@ -52,13 +52,13 @@ export const useQuery = <QueryResponse>(
         onError && onError(error);
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [apiBaseUrl, parametersString, url, onError, onSuccess]);
 
   useEffect(() => {
     if (!lazy && !skip) {
-      trigger();
+      queueMicrotask(() => trigger());
     }
-  }, [parametersString]);
+  }, [lazy, skip, trigger]);
 
   return { data, loading, error, trigger };
 };

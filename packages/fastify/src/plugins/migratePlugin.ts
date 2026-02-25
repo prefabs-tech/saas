@@ -34,7 +34,6 @@ const plugin = async (fastify: FastifyInstance) => {
           continue;
         }
 
-        /* eslint-disable-next-line unicorn/consistent-destructuring */
         fastify.log.info(`Running migrations for account ${account.name}`);
 
         await runAccountMigrations(
@@ -48,13 +47,11 @@ const plugin = async (fastify: FastifyInstance) => {
 
       await client.end();
     } else {
-      /* eslint-disable-next-line unicorn/consistent-destructuring */
       fastify.log.warn(
         `Account migrations path '${migrationsPath}' does not exists.`,
       );
     }
   } catch (error: unknown) {
-    /* eslint-disable-next-line unicorn/consistent-destructuring */
     fastify.log.error("🔴 SaaS: Failed to run account migrations");
     throw error;
   }

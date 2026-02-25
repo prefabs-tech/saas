@@ -1,13 +1,12 @@
 import { client } from "./axios";
 import { prepareSignupData } from "../utils/account";
 
-import type { Account, AccountInput, Accounts } from "../types/account";
+import type { Account, AccountInput, Accounts, User } from "../types/account";
 import type { AccountSignupData, UserSignupData } from "../types/user";
-import type { User } from "../types/account";
 
 export const createAccount = async (
   data: AccountInput,
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<Account> => {
   const response = await client(apiBaseUrl).post("/accounts", data, {
     withCredentials: true,
@@ -18,7 +17,7 @@ export const createAccount = async (
 
 export const deleteAccount = async (
   id: string,
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<void> => {
   await client(apiBaseUrl).delete(`/accounts/${id}`, {
     withCredentials: true,
@@ -26,7 +25,7 @@ export const deleteAccount = async (
 };
 
 export const doesAccountExist = async (
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<boolean> => {
   const response = await client(apiBaseUrl).get(`/`, {
     withCredentials: true,
@@ -37,7 +36,7 @@ export const doesAccountExist = async (
 
 export const getAccount = async (
   id: string,
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<Account> => {
   const response = await client(apiBaseUrl).get(`/accounts/${id}`, {
     withCredentials: true,
@@ -73,7 +72,7 @@ export const getMyAccounts = async (apiBaseUrl: string): Promise<Account[]> => {
 export const updateAccount = async (
   id: string,
   data: AccountInput,
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<Account> => {
   const response = await client(apiBaseUrl).put(`/accounts/${id}`, data, {
     withCredentials: true,
@@ -84,7 +83,7 @@ export const updateAccount = async (
 
 export const updateMyAccount = async (
   data: AccountInput,
-  apiBaseUrl: string
+  apiBaseUrl: string,
 ): Promise<Account> => {
   const response = await client(apiBaseUrl).put("/my-account", data, {
     withCredentials: true,

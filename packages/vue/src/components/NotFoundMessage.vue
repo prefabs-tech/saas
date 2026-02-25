@@ -16,7 +16,7 @@
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { useRouter } from "vue-router";
 
-import { useGlobalAccountError } from "../composables/useGlobalAccountError";
+import { useGlobalAccountError } from "../composables/UseGlobalAccountError";
 import { useTranslations } from "../index";
 
 const router = useRouter();

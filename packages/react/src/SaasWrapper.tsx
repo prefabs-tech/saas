@@ -35,7 +35,7 @@ export const SaasWrapper = ({
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [config.apiBaseUrl]);
 
   const isAdminApp = checkIsAdminApp();
 

@@ -32,9 +32,9 @@ import { useRoute, useRouter } from "vue-router";
 
 import UserSignupForm from "../../components/UserSignupForm.vue";
 import { useTranslations } from "../../index";
-import useInvitationStore from "../../stores/accountInvitations";
+import useInvitationStore from "../../stores/AccountInvitations";
 
-import type { AccountInvitation } from "../../types/accountInvitation";
+import type { AccountInvitation } from "../../types/AccountInvitation";
 import type { SaasEventHandlers } from "../../types/plugin";
 import type { UserSignupData } from "../../types/user";
 import type { AppConfig } from "@prefabs.tech/vue3-config";
@@ -93,7 +93,7 @@ async function fetchInvitation() {
     const response = await getInvitationByToken(
       token,
       accountId || null,
-      config.apiBaseUrl
+      config.apiBaseUrl,
     );
     invitation.value = response;
   } catch {
@@ -114,7 +114,7 @@ async function handleSubmit(userData: UserSignupData) {
       token,
       userData,
       accountId || null,
-      config.apiBaseUrl
+      config.apiBaseUrl,
     );
 
     if (eventHandlers?.notification) {

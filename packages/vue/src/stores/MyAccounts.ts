@@ -73,7 +73,7 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
 
   const switchAccount = (
     newAccount: Account | null,
-    options: { clearState?: boolean } = {}
+    options: { clearState?: boolean } = {},
   ) => {
     const { clearState = true } = options;
     accountLoading.value = true;
@@ -110,7 +110,7 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
     // For non-main apps, find account by subdomain (like React implementation)
     if (!isMainApp) {
       const accountBySubdomain = accountsList.find(
-        (account) => account.slug === subdomain
+        (account) => account.slug === subdomain,
       );
       if (!accountBySubdomain) {
         throw new Error("Account not found for user");
@@ -136,7 +136,7 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
       }
 
       const savedAccount = accountsList.find(
-        (account) => account.id === savedAccountId
+        (account) => account.id === savedAccountId,
       );
 
       return savedAccount || defaultAccount;
@@ -144,7 +144,7 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
 
     // If there's already an active account, try to preserve it
     const previousAccount = accountsList.find(
-      (account) => account.id === activeAccount.value?.id
+      (account) => account.id === activeAccount.value?.id,
     );
 
     return previousAccount || defaultAccount;
@@ -173,9 +173,9 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
     try {
       const accountsList = await getMyAccounts(config.value.apiBaseUrl);
       updateAccounts(accountsList);
-    } catch (err) {
+    } catch (error_) {
       error.value = true;
-      throw err;
+      throw error_;
     } finally {
       loading.value = false;
     }
@@ -205,7 +205,7 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
     // Update in accounts list
     if (accounts.value) {
       const index = accounts.value.findIndex(
-        (acc) => acc.id === updatedAccount.id
+        (accumulator) => accumulator.id === updatedAccount.id,
       );
       if (index !== -1) {
         accounts.value[index] = updatedAccount;

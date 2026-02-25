@@ -47,7 +47,7 @@ const _adminRoutes = {
 
 const getRoute = (
   defaultRoute: RouteRecordRaw,
-  override?: RouteOverwrite
+  override?: RouteOverwrite,
 ): RouteRecordRaw => {
   return {
     ...defaultRoute,
@@ -61,7 +61,7 @@ const getRoute = (
 
 export const getSaasAdminRoutes = (
   type: "authenticated" | "unauthenticated" | "public" = "authenticated",
-  options?: AdminRoutesProperties
+  options?: AdminRoutesProperties,
 ): RouteRecordRaw[] => {
   const { accounts, accountsAdd, accountsEdit, accountsView } =
     options?.routes || {};
@@ -87,10 +87,10 @@ export const getSaasAdminRoutes = (
 export const addSaasAdminRoutes = (
   router: Router,
   type: "authenticated" | "unauthenticated" | "public" = "authenticated",
-  options?: AdminRoutesProperties
+  options?: AdminRoutesProperties,
 ): void => {
   const routes = getSaasAdminRoutes(type, options);
-  routes.forEach((route) => {
+  for (const route of routes) {
     router.addRoute(route);
-  });
+  }
 };
