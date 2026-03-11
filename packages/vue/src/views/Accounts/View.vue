@@ -4,7 +4,7 @@
       <BadgeComponent
         :label="
           t(
-            `account.type.${account?.individual ? 'individual' : 'organization'}.label`
+            `account.type.${account?.individual ? 'individual' : 'organization'}.label`,
           )
         "
         :severity="account?.individual ? 'primary' : 'success'"
@@ -78,7 +78,7 @@ const defaultTabList = [
 
 const tabConfig = inject<(() => typeof defaultTabList) | typeof defaultTabList>(
   __saasAccountTabs,
-  defaultTabList
+  defaultTabList,
 );
 
 const processedTabs = computed(() => {

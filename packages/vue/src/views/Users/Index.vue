@@ -22,9 +22,9 @@ import { ref, onMounted, h, inject, computed } from "vue";
 import { useRoute } from "vue-router";
 
 import { useTranslations } from "../../index";
-import useUsersStore from "../../stores/accountUsers";
+import useUsersStore from "../../stores/AccountUsers";
 
-import type { AccountUser } from "../../types/accountUser";
+import type { AccountUser } from "../../types/AccountUser";
 import type { SaasEventHandlers } from "../../types/plugin";
 import type { AppConfig } from "@prefabs.tech/vue3-config";
 import type {
@@ -52,7 +52,7 @@ const route = useRoute();
 
 const eventHandlers = inject<SaasEventHandlers>(
   Symbol.for("saas.eventHandlers"),
-  { notification: undefined }
+  { notification: undefined },
 );
 
 // Reactive accountId
@@ -98,11 +98,14 @@ const columns: TableColumnDefinition<AccountUser>[] = [
     id: "name",
     header: t("account.users.table.columns.name"),
     accessorFn: (original) => {
-      return (
-        (original.givenName ? original.givenName : "") +
-          (original.middleNames ? " " + original.middleNames : "") +
-          (original.surname ? " " + original.surname : "") || "-"
-      );
+      const name = [
+        original.givenName || "",
+        original.middleNames || "",
+        original.surname || "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+      return name || "-";
     },
     cell: ({ getValue }) => {
       const value = getValue();
@@ -157,6 +160,7 @@ async function fetchUsers() {
     const response = await getUsers(accountId.value, config.apiBaseUrl);
     users.value = response;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Failed to fetch users:", error);
   }
 }
@@ -174,6 +178,7 @@ async function handleEnable(user: AccountUser) {
       });
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Failed to enable user:", error);
 
     if (eventHandlers?.notification) {
@@ -198,6 +203,7 @@ async function handleDisable(user: AccountUser) {
       });
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Failed to disable user:", error);
 
     if (eventHandlers?.notification) {
@@ -211,12 +217,14 @@ async function handleDisable(user: AccountUser) {
 
 function onActionSelect(rowData: { action: string; data: AccountUser }) {
   switch (rowData.action) {
-    case "enable":
+    case "enable": {
       handleEnable(rowData.data);
       break;
-    case "disable":
+    }
+    case "disable": {
       handleDisable(rowData.data);
       break;
+    }
   }
 }
 </script>

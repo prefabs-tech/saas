@@ -26,7 +26,7 @@ import { computed, inject, ref } from "vue";
 import { signup } from "../../api/accounts";
 import AccountSignupForm from "../../components/AccountSignupForm.vue";
 import UserSignupForm from "../../components/UserSignupForm.vue";
-import { useMyAccounts } from "../../composables/useMyAccounts";
+import { useMyAccounts } from "../../composables/UseMyAccounts";
 import { SIGNUP_PATH_DEFAULT } from "../../constant";
 import { useTranslations } from "../../index";
 
@@ -38,11 +38,11 @@ import type { AppConfig } from "@prefabs.tech/vue3-config";
 export interface SignupProperties {
   onSignupFailure?: (
     err?: unknown,
-    data?: UserSignupData | AccountSignupData
+    data?: UserSignupData | AccountSignupData,
   ) => Promise<void> | void;
   onSignupSuccess?: (
     res?: User,
-    data?: UserSignupData | AccountSignupData
+    data?: UserSignupData | AccountSignupData,
   ) => Promise<void> | void;
 }
 
@@ -59,7 +59,7 @@ const myAccountsStore = useMyAccounts();
 const isMainApp = computed(() => myAccountsStore.meta.isMainApp);
 
 const saasConfig = inject<import("../../types/config").SaasConfig>(
-  Symbol.for("saas.config")
+  Symbol.for("saas.config"),
 );
 
 if (!saasConfig) {

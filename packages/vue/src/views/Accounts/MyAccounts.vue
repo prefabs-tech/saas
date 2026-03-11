@@ -24,7 +24,7 @@ import { computed } from "vue";
 
 import { useTranslations } from "../../index";
 import AccountCard from "./_components/AccountCard.vue";
-import { useMyAccountsStore } from "../../stores/myAccounts";
+import { useMyAccountsStore } from "../../stores/MyAccounts";
 
 import type { Account } from "../../types/account";
 

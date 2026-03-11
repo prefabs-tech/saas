@@ -89,7 +89,7 @@ import { ref, computed, inject, watch } from "vue";
 import { CONFIG_UI_DEFAULT } from "../../../constant";
 import { useTranslations } from "../../../index";
 import useAccountsStore from "../../../stores/accounts";
-import { createValidationSchemas } from "../validations/accountValidations";
+import { createValidationSchemas } from "../validations/AccountValidations";
 
 import type { Account, AccountInput } from "../../../types/account";
 import type { SaasConfig } from "../../../types/config";
@@ -153,7 +153,7 @@ const shouldShowOrganizationFields = computed(() => {
 const slugSchema = computed(() => createSlugSchema(saasConfig));
 
 const accountFormUi = computed(
-  () => saasConfig.ui?.account?.form ?? CONFIG_UI_DEFAULT.account.form
+  () => saasConfig.ui?.account?.form ?? CONFIG_UI_DEFAULT.account.form,
 );
 
 const actionsAlignment = computed(() => accountFormUi.value.actionsAlignment);
@@ -174,7 +174,7 @@ const onSubmit = async () => {
       await updateAccount(
         props.account.id,
         updateDataPayload,
-        config.apiBaseUrl
+        config.apiBaseUrl,
       ).then((response) => {
         emit("account:updated", response);
       });
@@ -182,10 +182,11 @@ const onSubmit = async () => {
       await createAccount(formData.value, config.apiBaseUrl).then(
         (response) => {
           emit("account:created", response);
-        }
+        },
       );
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error("Form submission error:", error);
   }
 };
@@ -197,7 +198,7 @@ watch(
       formData.value.registeredNumber = "";
       formData.value.taxId = "";
     }
-  }
+  },
 );
 
 watch(
@@ -211,7 +212,7 @@ watch(
       formData.value.taxId = newValue.taxId ?? undefined;
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 </script>
 

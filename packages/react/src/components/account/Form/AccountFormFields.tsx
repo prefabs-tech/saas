@@ -39,7 +39,7 @@ export const AccountFormFields = ({
       setValue("useSeparateDatabase", false);
       setValue("domain", "");
     }
-  }, [slug]);
+  }, [slug, setValue]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const formActions: any = [
