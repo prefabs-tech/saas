@@ -56,6 +56,8 @@ interface SaasOptions {
     accountUser?: {
       getByAccountId?: typeof accountUserHandlers.getByAccountId;
       list?: typeof accountUserHandlers.list;
+      disableAccountUser?: typeof accountUserHandlers.disableAccountUser;
+      enableAccountUser?: typeof accountUserHandlers.enableAccountUser;
     };
   };
   invalid?: {

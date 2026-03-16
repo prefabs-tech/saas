@@ -54,7 +54,7 @@ class AccountSqlFactory extends DefaultSqlFactory {
       JOIN ${accountUsersTable} AS ${this.getAccountUserTableIdentifier} 
         on ${this.tableIdentifier}.id = ${this.getAccountUserTableIdentifier}.account_id
       ${this.getWhereFragment({
-        filterFragment: sql.fragment`${this.getAccountUserTableIdentifier}.user_id = ${userId}`,
+        filterFragment: sql.fragment`${this.getAccountUserTableIdentifier}.user_id = ${userId} AND ${this.getAccountUserTableIdentifier}.disabled = false`,
       })};
     `;
   }
