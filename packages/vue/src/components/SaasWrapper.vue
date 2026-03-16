@@ -41,7 +41,7 @@ import ConfigProvider from "./ConfigProvider.vue";
 import NotFoundMessage from "./NotFoundMessage.vue";
 import SaasAccountsProvider from "./SaasAccountsProvider.vue";
 import { doesAccountExist } from "../api/accounts";
-import { useGlobalAccountError } from "../composables/useGlobalAccountError";
+import { useGlobalAccountError } from "../composables/UseGlobalAccountError";
 import { checkIsAdminApp } from "../utils/common";
 
 import type { SaasConfig } from "../types/config";
@@ -57,7 +57,7 @@ const config = inject<SaasConfig>(Symbol.for("saas.config"));
 
 if (!config) {
   throw new Error(
-    "SaasConfig not found! Make sure you've installed the SaaS Vue plugin with saasConfig."
+    "SaasConfig not found! Make sure you've installed the SaaS Vue plugin with saasConfig.",
   );
 }
 
@@ -73,8 +73,8 @@ const isAdminApp = checkIsAdminApp();
 onMounted(async () => {
   try {
     await doesAccountExist(config.apiBaseUrl);
-  } catch (err) {
-    error.value = err as { status?: number };
+  } catch (error_) {
+    error.value = error_ as { status?: number };
   } finally {
     loading.value = false;
   }

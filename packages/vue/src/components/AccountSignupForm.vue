@@ -88,7 +88,7 @@ import { z } from "zod";
 import UserSignupForm from "./UserSignupForm.vue";
 import { CONFIG_UI_DEFAULT } from "../constant";
 import { useTranslations } from "../index";
-import { createValidationSchemas } from "../views/Accounts/validations/accountValidations";
+import { createValidationSchemas } from "../views/Accounts/validations/AccountValidations";
 
 import type { SaasConfig } from "../types/config";
 import type { AccountSignupData, UserSignupData } from "../types/user";
@@ -121,7 +121,7 @@ const { nameSchema, registeredNumberSchema, taxIdSchema, createSlugSchema } =
 const slugSchema = computed(() => createSlugSchema(saasConfig));
 
 const signupFormUi = computed(
-  () => saasConfig.ui?.signup?.form ?? CONFIG_UI_DEFAULT.signup.form
+  () => saasConfig.ui?.signup?.form ?? CONFIG_UI_DEFAULT.signup.form,
 );
 
 const actionsAlignment = computed(() => signupFormUi.value.actionsAlignment);
@@ -188,7 +188,7 @@ const accountSchemaObject = computed(() => {
               .string()
               .regex(
                 /^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/,
-                t("accounts.form.validations.slug.invalid")
+                t("accounts.form.validations.slug.invalid"),
               )
               .nullable()
               .optional()
@@ -200,7 +200,7 @@ const accountSchemaObject = computed(() => {
 });
 
 const accountSchema = computed(() =>
-  toFormValidator(z.object(accountSchemaObject.value))
+  toFormValidator(z.object(accountSchemaObject.value)),
 );
 
 const validationSchema = computed(() => accountSchema.value);
@@ -231,7 +231,7 @@ watch(
       formData.value.registeredNumber = "";
       formData.value.taxId = "";
     }
-  }
+  },
 );
 
 function onSubmit(validatedData: Record<string, unknown>) {

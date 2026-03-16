@@ -18,7 +18,7 @@ import {
   useResendInvitationMutation,
   useRevokeInvitationMutation,
 } from "@/hooks/accounts";
-import { DeleteAccountInvitationResponse } from "@/types/account-invitation";
+import { DeleteAccountInvitationResponse } from "@/types/AccountInvitation";
 
 import { AccountInvitationModal } from "./InvitationModal";
 
@@ -137,10 +137,13 @@ export const AccountInvitationsTable = ({
     triggereDelete(accountId, invitation.id);
   };
 
-  const onInvitationSubmitted = (invitation: AccountInvitation) => {
-    onInvitationAdded && onInvitationAdded(invitation);
-    refetch();
-  };
+  const onInvitationSubmitted = useCallback(
+    (invitation: AccountInvitation) => {
+      onInvitationAdded && onInvitationAdded(invitation);
+      refetch();
+    },
+    [onInvitationAdded, refetch],
+  );
 
   const isExpired = (date?: string | Date | number) => {
     return !!(date && new Date(date) < new Date());
@@ -178,17 +181,33 @@ export const AccountInvitationsTable = ({
         const { acceptedAt, revokedAt, expiresAt } = original;
 
         const getLabel = () => {
-          if (acceptedAt) return t("invitations.status.accepted");
-          if (revokedAt) return t("invitations.status.revoked");
-          if (isExpired(expiresAt)) return t("invitations.status.expired");
+          if (acceptedAt) {
+            return t("invitations.status.accepted");
+          }
+
+          if (revokedAt) {
+            return t("invitations.status.revoked");
+          }
+
+          if (isExpired(expiresAt)) {
+            return t("invitations.status.expired");
+          }
 
           return t("invitations.status.pending");
         };
 
         const getColor = () => {
-          if (acceptedAt) return "green";
-          if (revokedAt) return "red";
-          if (isExpired(expiresAt)) return "gray";
+          if (acceptedAt) {
+            return "green";
+          }
+
+          if (revokedAt) {
+            return "red";
+          }
+
+          if (isExpired(expiresAt)) {
+            return "gray";
+          }
 
           return "yellow";
         };
@@ -221,7 +240,16 @@ export const AccountInvitationsTable = ({
         </div>
       );
     }
-  }, [showInviteAction]);
+  }, [
+    showInviteAction,
+    accountId,
+    additionalInvitationFields,
+    invitationButtonOptions,
+    invitationExpiryDateField,
+    onInvitationSubmitted,
+    prepareInvitationData,
+    roles,
+  ]);
 
   return (
     <DataTable

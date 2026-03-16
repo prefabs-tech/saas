@@ -98,7 +98,7 @@ const termsAndConditionsConfig =
   config.user?.features?.signUp?.termsAndConditions;
 
 const signupFormUi = computed(
-  () => saasConfig.ui?.signup?.form ?? CONFIG_UI_DEFAULT.signup.form
+  () => saasConfig.ui?.signup?.form ?? CONFIG_UI_DEFAULT.signup.form,
 );
 
 const actionsAlignment = computed(() => signupFormUi.value.actionsAlignment);
@@ -133,21 +133,21 @@ let fieldSchema: Record<string, any> = {
       invalid: t("account.signup.validations.email.invalid"),
       required: t("account.signup.validations.email.required"),
     },
-    config?.user?.options?.email
+    config?.user?.options?.email,
   ),
   password: passwordSchema(
     {
       required: t("account.signup.validations.password.required"),
       weak: t("account.signup.validations.password.weak"),
     },
-    config?.user?.options?.password
+    config?.user?.options?.password,
   ),
   confirmPassword: passwordSchema(
     {
       required: t("account.signup.validations.password.required"),
       weak: t("account.signup.validations.password.weak"),
     },
-    { minLength: 0 }
+    { minLength: 0 },
   ),
 };
 
@@ -159,8 +159,8 @@ const validationSchema = toFormValidator(
     {
       message: t("account.signup.validations.confirmPassword.match"),
       path: ["confirmPassword"],
-    }
-  )
+    },
+  ),
 );
 
 const formActions = computed(() => {
@@ -176,7 +176,7 @@ const formActions = computed(() => {
     // Merge provided actions with default submit action
     // If a submit action is provided, use it; otherwise append default submit
     const hasSubmit = props.actions.some(
-      (action) => action.id === "submit" || action.type === "submit"
+      (action) => action.id === "submit" || action.type === "submit",
     );
 
     if (hasSubmit) {
@@ -196,7 +196,7 @@ watch(
       formData.value.email = newEmail;
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 function handleCancel() {

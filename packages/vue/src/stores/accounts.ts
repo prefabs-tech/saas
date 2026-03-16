@@ -8,8 +8,6 @@ import {
   updateAccount,
 } from "../api/accounts";
 
-import type { Account, AccountInput } from "../types/account";
-
 const useAccountsStore = defineStore("accounts", () => {
   return {
     createAccount,

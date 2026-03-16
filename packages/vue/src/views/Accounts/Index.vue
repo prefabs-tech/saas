@@ -138,9 +138,9 @@ const defaultColumns: TableColumnDefinition<Account>[] = [
                 router.push(`/accounts/${original.id}`);
               },
             },
-            original.name
+            original.name,
           ),
-        ]
+        ],
       ),
   },
 ];
@@ -171,7 +171,7 @@ const actionMenuData = [
 
 const eventHandlers = inject<SaasEventHandlers>(
   Symbol.for("saas.eventHandlers"),
-  { notification: undefined }
+  { notification: undefined },
 );
 
 onMounted(async () => {
@@ -185,12 +185,14 @@ async function fetchAccounts() {
 
 function onActionSelect(rowData: { action: string; data: Account }) {
   switch (rowData.action) {
-    case "editCustomer":
+    case "editCustomer": {
       onEditCustomer(rowData.data);
       break;
-    case "deleteCustomer":
+    }
+    case "deleteCustomer": {
       onDeleteCustomer(rowData.data);
       break;
+    }
   }
 }
 

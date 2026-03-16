@@ -1,5 +1,7 @@
 import { inject } from "vue";
-import { useMyAccountsStore } from "../stores/myAccounts";
+
+import { useMyAccountsStore } from "../stores/MyAccounts";
+
 import type { SaasConfig } from "../types/config";
 
 export const useMyAccounts = (config?: SaasConfig) => {
@@ -11,13 +13,13 @@ export const useMyAccounts = (config?: SaasConfig) => {
   if (!saasConfig) {
     saasConfig = inject<SaasConfig | undefined>(
       Symbol.for("saas.config"),
-      undefined
+      undefined,
     );
   }
 
   if (!saasConfig && !myAccountsStore.meta.mainAppSubdomain) {
     throw new Error(
-      "SaasConfig is required! Make sure you've installed the Saas plugin or passed config directly."
+      "SaasConfig is required! Make sure you've installed the Saas plugin or passed config directly.",
     );
   }
 

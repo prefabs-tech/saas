@@ -25,10 +25,12 @@ class AccountAwareSqlFactory extends DefaultSqlFactory {
 
     const allSchema =
       this.validationSchema._def.typeName === "ZodObject"
-        ? (this.validationSchema as z.AnyZodObject).pick(fieldsObject)
+        ? (this.validationSchema as unknown as z.AnyZodObject).pick(
+            fieldsObject,
+          )
         : z.any();
 
-    return sql.type(allSchema)`
+    return sql.type(allSchema as z.ZodTypeAny)`
       SELECT ${sql.join(identifiers, sql.fragment`, `)}
       FROM ${this.tableFragment} AS ${this.tableIdentifier}
       ${this.getWhereFragment()}

@@ -11,9 +11,9 @@ import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import { REDIRECT_AFTER_LOGIN_KEY } from "../../constant";
-import useInvitationStore from "../../stores/accountInvitations";
+import useInvitationStore from "../../stores/AccountInvitations";
 
-import type { AccountInvitation } from "../../types/accountInvitation";
+import type { AccountInvitation } from "../../types/AccountInvitation";
 import type { AppConfig } from "@prefabs.tech/vue3-config";
 
 const config = useConfig() as AppConfig;
@@ -41,7 +41,7 @@ async function fetchInvitation() {
     const response = await getInvitationByToken(
       token,
       accountId || null,
-      config.apiBaseUrl
+      config.apiBaseUrl,
     );
     invitation.value = response;
 
