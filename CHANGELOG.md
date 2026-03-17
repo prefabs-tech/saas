@@ -3,11 +3,24 @@
 
 ### Bug Fixes
 
-* **fastify/migrations:** increase accounts table database column to VARCHAR(24) ([0fd89ae](https://github.com/prefabs-tech/saas/commit/0fd89ae25fc61e2d20a4629f9e04b4603162ffad))
-* zod type assertions in sqlFactory and format useGlobalAccountError ([23b800b](https://github.com/prefabs-tech/saas/commit/23b800baa1064979dcfc750629b18093131912f9))
-### Bug Fixes
+* **fastify/migrations:** increase accounts table database column to VARCHAR(24) ([a496ce3](https://github.com/prefabs-tech/saas/commit/a496ce3e3ab3b4269493f4332a266e08e3b5d81c))
+* **fastify:** zod type assertions in sqlFactory and format useGlobalAccountError ([23b800b](https://github.com/prefabs-tech/saas/commit/23b800baa1064979dcfc750629b18093131912f9))
+* **react/accounts-provider:** fix missing hook dependencies and use queueMicrotask for account fetch ([4b7b81e](https://github.com/prefabs-tech/saas/commit/4b7b81e9252dd24ddcd75ad775d30cf99f1dcde7))
+* **react/invitations-table:** fix missing dependencies in useCallback and useMemo ([4b7b81e](https://github.com/prefabs-tech/saas/commit/4b7b81e9252dd24ddcd75ad775d30cf99f1dcde7))
+* **react/signup-form-actions:** fix conditional useWatch hook violation ([4b7b81e](https://github.com/prefabs-tech/saas/commit/4b7b81e9252dd24ddcd75ad775d30cf99f1dcde7))
+* **vue/users:** fix user display name for users with partial names ([4b7b81e](https://github.com/prefabs-tech/saas/commit/4b7b81e9252dd24ddcd75ad775d30cf99f1dcde7))
 
-* **fastify/migrations:** increase accounts table database column from VARCHAR(10) to VARCHAR(24)
+
+### Features
+
+* **react:** export GetSaasAppRoutes as a named React component ([4b7b81e](https://github.com/prefabs-tech/saas/commit/4b7b81e9252dd24ddcd75ad775d30cf99f1dcde7))
+* **vue:** rewrite MyAccounts store using Pinia composition API ([4b7b81e](https://github.com/prefabs-tech/saas/commit/4b7b81e9252dd24ddcd75ad775d30cf99f1dcde7))
+
+
+### Refactors
+
+* **react:** rename files and folders to PascalCase ([4b7b81e](https://github.com/prefabs-tech/saas/commit/4b7b81e9252dd24ddcd75ad775d30cf99f1dcde7))
+* **fastify/react/vue:** remove ESLint dev dependencies ([bbc73d5](https://github.com/prefabs-tech/saas/commit/bbc73d5aae76964d239a3bf2f38fdf410767e6ae))
 
 # [0.28.0](https://github.com/prefabs-tech/saas/compare/v0.27.2...v0.28.0) (2025-12-23)
 
