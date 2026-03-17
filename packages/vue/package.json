@@ -1,6 +1,6 @@
 {
   "name": "@prefabs.tech/saas-vue",
-  "version": "0.28.0",
+  "version": "0.29.0",
   "description": "Saas plugin for vue",
   "type": "module",
   "exports": {

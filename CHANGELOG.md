@@ -1,3 +1,10 @@
+# [0.29.0](https://github.com/prefabs-tech/saas/compare/v0.28.0...v0.29.0) (2026-03-17)
+
+
+### Bug Fixes
+
+* **fastify/migrations:** increase accounts table database column to VARCHAR(24) ([0fd89ae](https://github.com/prefabs-tech/saas/commit/0fd89ae25fc61e2d20a4629f9e04b4603162ffad))
+* zod type assertions in sqlFactory and format useGlobalAccountError ([23b800b](https://github.com/prefabs-tech/saas/commit/23b800baa1064979dcfc750629b18093131912f9))
 ### Bug Fixes
 
 * **fastify/migrations:** increase accounts table database column from VARCHAR(10) to VARCHAR(24)
