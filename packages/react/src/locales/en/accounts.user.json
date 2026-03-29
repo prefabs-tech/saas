@@ -6,11 +6,7 @@
     "active": "Active",
     "name": "Name",
     "registeredNumber": "Registered number",
-    "taxId": "Tax ID",
-    "type": {
-      "individual": "Individual",
-      "organization": "Organization"
-    }
+    "taxId": "Tax ID"
   },
   "error": {
     "message": "Please visit again later. If the problem persists, please contact support.",
@@ -23,12 +19,10 @@
     },
     "info": "You've been invited to join account: {{account}}",
     "messages": {
-      "messages": {
-        "error": "Error accepting invitation",
-        "errorFetching": "Invalid token. Please contact your administrator",
-        "invalid": "Invitation is no longer valid",
-        "success": "Successfully accepted invitation"
-      }
+      "error": "Error accepting invitation",
+      "errorFetching": "Invalid token. Please contact your administrator",
+      "invalid": "Invitation is no longer valid",
+      "success": "Successfully accepted invitation"
     },
     "title": "Invitation to join"
   },
@@ -143,6 +137,6 @@
   "title": "My accounts",
   "unregisteredDomain": {
     "message": "Please visit again later. If the problem persists, please contact support.",
-    "title": "Sorry, the subdomain or domain is not registered. "
+    "title": "Sorry, the subdomain or domain is not registered."
   }
 }
