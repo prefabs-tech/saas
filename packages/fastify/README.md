@@ -49,7 +49,7 @@ const config: ApiConfig = {
     supertokens: {
       recipes: supertokensRecipesConfig,
     }
-  } 
+  }
   ...
 };
 ```
@@ -130,7 +130,7 @@ saas: {
 
 Any route matching the specified pattern(s) will bypass the account discovery logic.
 
-#### Route Options
+#### Route options
 
 In the route definition, set the exclude flag under the saas key:
 
@@ -145,13 +145,12 @@ fastify.get(
     },
   },
   async (request, reply) => {
-    return reply.status(200).send({message: "Account not found"})
-  }
-  );
+    return reply.status(200).send({ message: "Account not found" });
+  },
+);
 ```
 
-
-### Cross-Domain Requests (CORS) Configuration
+### Cross-Domain requests (CORS) configuration
 
 If you are running the frontend and backend on different domains or ports, make sure your backend CORS configuration allows the custom header `X-Account-Id`.
 
