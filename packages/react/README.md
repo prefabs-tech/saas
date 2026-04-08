@@ -99,7 +99,7 @@ export type SaasConfig = {
     - **`appRedirection`**: Indicates whether to redirect to the app after signup.
     - **`termsAndConditionsUrl`**: url for the terms and conditions page.
 - **`apiBaseUrl`**: The base url for all api requests.
-- **`entity`**: The type of accounts allowed. 
+- **`entity`**: The type of accounts allowed.
 - **`mainAppSubdomain`**: [Depricated: use `mainApp.subdomain`] Specifies the subdomain for the main application.
 - **`mainApp`**: Configuration for main app's domain and subdomain
   - **`subdomain`**: Specifies the subdomain for the main application
@@ -111,7 +111,7 @@ export type SaasConfig = {
   - `"required"`: Subdomains are mandatory for tenant identification.
   - `"optional"`: Subdomains are optional and can be used if needed.
   - `"disabled"`: Subdomains are not used in the SaaS platform.
-  **`ui`**: UI related configuration for customization.
+    **`ui`**: UI related configuration for customization.
 
 ### Routing
 
@@ -187,20 +187,17 @@ This package provides several reusable components and pages to simplify SaaS app
 #### Pages
 
 - **AcceptInvitation pages**:
-
   - `AcceptInvitationPage`: Handles the process of accepting an invitation to join or signup to an account.
   - `JoinInvitationPage`: Manages the process of joining an account via an invitation.
   - `SignupInvitationPage`: Facilitates signing up for an account through an invitation.
 
 - **Account pages**:
-
   - `AccountAddPage`: Provides a page for adding a new account.
   - `AccountEditPage`: Allows editing of existing account details.
   - `AccountSettingsPage`: Displays and manages account information including user and invitations.
   - `AccountViewPage`: Shows detailed information about a specific account.
 
 - **MyAccounts pages**:
-
   - `MyAccountsPage`: Displays a list of accounts associated with the user and allows account switching or management.
 
 - **Signup pages**:
@@ -271,6 +268,7 @@ ui?: {
 ```
 
 The current default values are as following
+
 ```{typescript}
 export const CONFIG_UI_DEFAULT = {
   account: {
