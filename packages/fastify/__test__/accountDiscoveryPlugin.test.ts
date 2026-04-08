@@ -2,13 +2,12 @@ import configPlugin from "@prefabs.tech/fastify-config";
 import Fastify from "fastify";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import discoverAccount from "../src/lib/discoverAccount";
 import accountDiscoveryPlugin from "../src/plugins/accountDiscoveryPlugin";
 
 vi.mock("../src/lib/discoverAccount", () => ({
   default: vi.fn(),
 }));
-
-import discoverAccount from "../src/lib/discoverAccount";
 
 const mockDiscoverAccount = vi.mocked(discoverAccount);
 
@@ -98,7 +97,7 @@ describe("accountDiscoveryPlugin", () => {
   });
 
   it("does not set account when discoverAccount returns null", async () => {
-    mockDiscoverAccount.mockResolvedValue(null as never);
+    mockDiscoverAccount.mockResolvedValue(undefined as never);
 
     await fastify.inject({ method: "GET", url: "/test" });
 
@@ -115,7 +114,7 @@ describe("accountDiscoveryPlugin", () => {
   });
 
   it("extracts hostname from referer header when present", async () => {
-    mockDiscoverAccount.mockResolvedValue(null as never);
+    mockDiscoverAccount.mockResolvedValue(undefined as never);
 
     await fastify.inject({
       method: "GET",
@@ -138,7 +137,7 @@ describe("accountDiscoveryPlugin", () => {
   });
 
   it("calls discoverAccount with isRouteExcluded=true for root route", async () => {
-    mockDiscoverAccount.mockResolvedValue(null as never);
+    mockDiscoverAccount.mockResolvedValue(undefined as never);
 
     await fastify.inject({ method: "GET", url: "/" });
 
@@ -147,7 +146,7 @@ describe("accountDiscoveryPlugin", () => {
   });
 
   it("calls discoverAccount with isRouteExcluded=true for /auth/ routes", async () => {
-    mockDiscoverAccount.mockResolvedValue(null as never);
+    mockDiscoverAccount.mockResolvedValue(undefined as never);
 
     await fastify.inject({ method: "GET", url: "/auth/login" });
 
@@ -156,7 +155,7 @@ describe("accountDiscoveryPlugin", () => {
   });
 
   it("calls discoverAccount with isRouteExcluded=true for per-route excluded routes", async () => {
-    mockDiscoverAccount.mockResolvedValue(null as never);
+    mockDiscoverAccount.mockResolvedValue(undefined as never);
 
     await fastify.inject({ method: "GET", url: "/excluded" });
 
@@ -165,7 +164,7 @@ describe("accountDiscoveryPlugin", () => {
   });
 
   it("calls discoverAccount with isRouteExcluded=false for normal routes", async () => {
-    mockDiscoverAccount.mockResolvedValue(null as never);
+    mockDiscoverAccount.mockResolvedValue(undefined as never);
 
     await fastify.inject({
       method: "GET",

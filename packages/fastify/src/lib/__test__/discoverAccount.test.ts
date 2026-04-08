@@ -1,22 +1,23 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 
+import AccountService from "../../model/accounts/service";
 import discoverAccount from "../discoverAccount";
 
 vi.mock("../../../src/model/accounts/service", () => ({
   default: vi.fn(),
 }));
 
-import AccountService from "../../model/accounts/service";
+const MockAccountService = vi.mocked(
+  AccountService as unknown as {
+    new (...arguments_: unknown[]): {
+      findByHostname: ReturnType<typeof vi.fn>;
+      findOne: ReturnType<typeof vi.fn>;
+    };
+  },
+);
 
-const MockAccountService = vi.mocked(AccountService as unknown as {
-  new (...args: unknown[]): {
-    findByHostname: ReturnType<typeof vi.fn>;
-    findOne: ReturnType<typeof vi.fn>;
-  };
-});
-
-import type { ApiConfig } from "@prefabs.tech/fastify-config";
 import type { SaasConfig } from "../../types";
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
 
 declare module "@prefabs.tech/fastify-config" {
   interface ApiConfig {
@@ -64,10 +65,16 @@ describe("discoverAccount", () => {
     });
 
     it("throws when hostname-based lookup returns null", async () => {
-      mockFindByHostname.mockResolvedValue(null);
+      mockFindByHostname.mockResolvedValue();
 
       await expect(
-        discoverAccount(subdomainConfig, database, "unknown.example.test", undefined, false),
+        discoverAccount(
+          subdomainConfig,
+          database,
+          "unknown.example.test",
+          undefined,
+          false,
+        ),
       ).rejects.toThrow("Account not found");
     });
   });
@@ -120,7 +127,13 @@ describe("discoverAccount", () => {
 
     it("throws without calling findOne when id header is absent", async () => {
       await expect(
-        discoverAccount(headerOnlyConfig, database, "app.example.test", undefined, false),
+        discoverAccount(
+          headerOnlyConfig,
+          database,
+          "app.example.test",
+          undefined,
+          false,
+        ),
       ).rejects.toThrow("Account not found");
 
       // getAccountById short-circuits on undefined id — findOne is never called
@@ -128,10 +141,16 @@ describe("discoverAccount", () => {
     });
 
     it("throws when header-based lookup returns null", async () => {
-      mockFindOne.mockResolvedValue(null);
+      mockFindOne.mockResolvedValue();
 
       await expect(
-        discoverAccount(headerOnlyConfig, database, "app.example.test", "missing-id", false),
+        discoverAccount(
+          headerOnlyConfig,
+          database,
+          "app.example.test",
+          "missing-id",
+          false,
+        ),
       ).rejects.toThrow("Account not found");
     });
   });

@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 
 import getSaasConfig from "../src/config";
 
-import type { ApiConfig } from "@prefabs.tech/fastify-config";
 import type { SaasConfig } from "../src/types";
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
 
 declare module "@prefabs.tech/fastify-config" {
   interface ApiConfig {
@@ -47,7 +47,7 @@ describe("getSaasConfig", () => {
     it("includes four built-in default patterns", () => {
       const config = getSaasConfig(base);
       expect(config.excludeRoutePatterns).toHaveLength(4);
-      expect(config.excludeRoutePatterns[0]).toEqual(/^\/$/)
+      expect(config.excludeRoutePatterns[0]).toEqual(/^\/$/);
       expect(config.excludeRoutePatterns[1]).toEqual(/^\/auth\//);
       expect(config.excludeRoutePatterns[2]).toBe("/me");
       expect(config.excludeRoutePatterns[3]).toBe("/invitation/token/");
