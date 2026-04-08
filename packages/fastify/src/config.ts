@@ -29,7 +29,7 @@ const getSaasConfig = (config: ApiConfig) => {
     handlers: saasConfig.handlers,
     invalid: {
       domains: saasConfig.invalid?.domains || [],
-      slugs: saasConfig.invalid?.domains || ["admin"],
+      slugs: saasConfig.invalid?.slugs || ["admin"],
     },
     invitation: saasConfig.invitation,
     mainApp: {
