@@ -147,3 +147,17 @@ Install with pnpm:
 ```bash
 pnpm add --filter "<@scope/project>" @prefabs.tech/fastify-config @prefabs.tech/fastify-mailer @prefabs.tech/fastify-s3 @prefabs.tech/fastify-slonik @prefabs.tech/fastify-user slonik supertokens-node @prefabs.tech/saas-fastify
 ```
+
+## Testing
+
+From the monorepo root:
+
+```bash
+pnpm test --filter @prefabs.tech/saas-fastify
+```
+
+From this package folder:
+
+```bash
+pnpm test
+```
