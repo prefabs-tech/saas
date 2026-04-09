@@ -88,3 +88,18 @@ Install with pnpm:
 ```bash
 pnpm add @prefabs.tech/saas-react
 ```
+
+## Testing
+
+From the monorepo root:
+
+```bash
+pnpm test --filter @prefabs.tech/saas-react
+```
+
+From this package folder:
+
+```bash
+pnpm test
+pnpm test:unit
+```

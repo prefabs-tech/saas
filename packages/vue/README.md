@@ -113,3 +113,23 @@ Install with pnpm:
 ```bash
 pnpm add --filter "@scope/project" @prefabs.tech/saas-vue
 ```
+
+## Testing
+
+From the monorepo root (runs all packages with tests):
+
+```bash
+pnpm test
+```
+
+To run only this package’s tests from the monorepo root:
+
+```bash
+pnpm --filter @prefabs.tech/saas-vue vitest run --coverage
+```
+
+From this package folder:
+
+```bash
+pnpm vitest run --coverage
+```
