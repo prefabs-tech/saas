@@ -14,6 +14,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: 19.2.2
         version: 19.2.2
+      '@prefabs.tech/claude-skills':
+        specifier: git+https://github.com/prefabs-tech/skills.git
+        version: '@prefabs.tech/skills@git+https://git@github.com:prefabs-tech/skills.git#dc2173338bc07276921d0ec62da2d336ca29976f'
       '@types/node':
         specifier: 22.4.0
         version: 22.4.0
@@ -1460,6 +1463,10 @@ packages:
       react: '>=18.2'
       react-dom: '>=18.2'
       react-router-dom: '>=6.9'
+
+  '@prefabs.tech/skills@git+https://git@github.com:prefabs-tech/skills.git#dc2173338bc07276921d0ec62da2d336ca29976f':
+    resolution: {commit: dc2173338bc07276921d0ec62da2d336ca29976f, repo: git@github.com:prefabs-tech/skills.git, type: git}
+    version: 0.1.0
 
   '@prefabs.tech/tsconfig@0.5.0':
     resolution: {integrity: sha512-lpu9UPVDpbpMKlClhImF8x0YIqSm6dTtBpVK8/BFkhfOrJR1hp5l1EBlvbkzEL2hxx1vx/cQ43dEDobAZvBBQA==}
@@ -8682,6 +8689,8 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-router-dom: 6.28.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+
+  '@prefabs.tech/skills@git+https://git@github.com:prefabs-tech/skills.git#dc2173338bc07276921d0ec62da2d336ca29976f': {}
 
   '@prefabs.tech/tsconfig@0.5.0(@types/node@24.10.0)':
     dependencies:
