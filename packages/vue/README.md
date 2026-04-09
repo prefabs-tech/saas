@@ -111,5 +111,5 @@ npm install @prefabs.tech/saas-vue
 Install with pnpm:
 
 ```bash
-pnpm add @prefabs.tech/saas-vue
+pnpm add --filter "@scope/project" @prefabs.tech/saas-vue
 ```
