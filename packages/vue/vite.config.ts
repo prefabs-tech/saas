@@ -4,7 +4,9 @@ import { fileURLToPath } from "node:url";
 import vue from "@vitejs/plugin-vue";
 import { defineConfig, loadEnv } from "vite";
 
-import { dependencies, peerDependencies } from "./package.json";
+import packageJson from "./package.json";
+
+const { dependencies = {}, peerDependencies = {} } = packageJson;
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {

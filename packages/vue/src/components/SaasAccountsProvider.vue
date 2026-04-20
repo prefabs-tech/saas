@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch, computed, defineProps } from "vue";
+import { watch, computed } from "vue";
 
 import { useGlobalAccountError } from "../composables/UseGlobalAccountError";
 import { useMyAccountsStore } from "../stores/MyAccounts";
