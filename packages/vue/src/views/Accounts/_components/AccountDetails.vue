@@ -46,7 +46,7 @@ import type { SaasConfig } from "../../../types/config";
 
 defineProps({
   account: {
-    default: undefined,
+    required: true,
     type: Object as PropType<Account>,
   },
 });
