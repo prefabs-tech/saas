@@ -19,12 +19,12 @@
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
-    "@commitlint/cli": "19.4.0",
+    "@commitlint/cli": "19.4.1",
     "@commitlint/config-conventional": "19.2.2",
-    "@types/node": "22.4.0",
-    "husky": "9.1.4",
-    "shipjs": "0.26.3",
-    "turbo": "2.4.2",
+    "@types/node": "22.4.2",
+    "husky": "9.1.7",
+    "shipjs": "0.26.4",
+    "turbo": "2.4.4",
     "typescript": "5.5.4"
   },
   "packageManager": "pnpm@9.12.2",
