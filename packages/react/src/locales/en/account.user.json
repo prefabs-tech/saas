@@ -79,7 +79,7 @@
           "placeholder": "Select role"
         }
       },
-      "title": "Invite a user",
+      "title": "Invite an user",
       "validation": {
         "messages": {
           "email": "Email is required",
@@ -117,7 +117,7 @@
     "table": {
       "actions": {
         "delete": "Delete",
-        "invite": "Invite a user",
+        "invite": "Invite an user",
         "resend": "Resend",
         "revoke": "Revoke"
       },
@@ -169,7 +169,7 @@
       "actions": {
         "disable": "Disable user",
         "enable": "Enable user",
-        "invite": "Invite a user"
+        "invite": "Invite an user"
       },
       "columns": {
         "email": "Email",

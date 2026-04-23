@@ -1,4 +1,6 @@
 {
+  "addTitle": "Add customer (fr)",
+  "editTitle": "Edit customer (fr)",
   "form": {
     "actions": {
       "cancel": "Cancel (fr)",
@@ -79,7 +81,7 @@
           "placeholder": "Select role (fr)"
         }
       },
-      "title": "Invite a user (fr)",
+      "title": "Invite an user (fr)",
       "validation": {
         "messages": {
           "email": "Email is required (fr)",
@@ -117,7 +119,7 @@
     "table": {
       "actions": {
         "delete": "Delete (fr)",
-        "invite": "Invite a user (fr)",
+        "invite": "Invite an user (fr)",
         "resend": "Resend (fr)",
         "revoke": "Revoke (fr)"
       },
@@ -145,6 +147,10 @@
     },
     "title": "Invitations (fr)"
   },
+  "toolbar": {
+    "back": "Back (fr)",
+    "edit": "Edit (fr)"
+  },
   "users": {
     "messages": {
       "enable": {
@@ -169,7 +175,7 @@
       "actions": {
         "disable": "Disable user (fr)",
         "enable": "Enable user (fr)",
-        "invite": "Invite a user (fr)"
+        "invite": "Invite an user (fr)"
       },
       "columns": {
         "email": "Email (fr)",

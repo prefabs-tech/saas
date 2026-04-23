@@ -6,17 +6,13 @@
     "active": "Active (fr)",
     "name": "Name (fr)",
     "registeredNumber": "Registered number (fr)",
-    "taxId": "Tax ID (fr)",
-    "type": {
-      "individual": "Individual (fr)",
-      "organization": "Organization (fr)"
-    }
+    "taxId": "Tax ID (fr)"
   },
   "error": {
     "message": "Please visit again later. If the problem persists, please contact support. (fr)",
     "title": "Sorry, something went wrong. (fr)"
   },
-  "joinAccount": {
+  "joinInvitation": {
     "actions": {
       "accept": "Accept invitation (fr)",
       "ignore": "Ignore (fr)"
