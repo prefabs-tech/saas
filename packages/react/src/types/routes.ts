@@ -1,16 +1,14 @@
 import React from "react";
 
-export type RouteOverwrite = {
-  disabled?: boolean;
-  element?: React.ReactNode;
-  // path?: string; // TODO allow to overwrite path
-};
-
 export type AdminRouteOverwrites = {
   accountsAdd?: RouteOverwrite;
   accountsEdit?: RouteOverwrite;
   accountsView?: RouteOverwrite;
   // accounts?: RouteOverwrite; // TODO
+};
+
+export type AdminRoutesProperties = {
+  routes?: AdminRouteOverwrites;
 };
 
 export type AppRouteOverwrites = {
@@ -22,10 +20,12 @@ export type AppRouteOverwrites = {
   signup?: RouteOverwrite;
 };
 
-export type AdminRoutesProperties = {
-  routes?: AdminRouteOverwrites;
-};
-
 export type AppRoutesProperties = {
   routes?: AppRouteOverwrites;
+};
+
+export type RouteOverwrite = {
+  disabled?: boolean;
+  element?: React.ReactNode;
+  // path?: string; // TODO allow to overwrite path
 };

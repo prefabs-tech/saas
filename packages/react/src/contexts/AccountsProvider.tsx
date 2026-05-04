@@ -11,16 +11,12 @@ import { ACCOUNT_HEADER_NAME } from "@/constants";
 import { Account } from "@/types/account";
 import { SaasConfig } from "@/types/config";
 
-type SwitchAccountOptions = {
-  clearState?: boolean;
-};
-
 export interface AccountsContextType {
+  accountLoading: boolean;
   accounts: Array<Account> | null;
   activeAccount: Account | null;
-  loading: boolean;
   error: boolean;
-  accountLoading: boolean;
+  loading: boolean;
   meta: {
     isMainApp: boolean;
     rootDomain: string;
@@ -35,14 +31,18 @@ export interface AccountsContextType {
 }
 
 interface Properties {
+  children: React.ReactNode;
   config: SaasConfig;
   userId?: string;
-  children: React.ReactNode;
 }
+
+type SwitchAccountOptions = {
+  clearState?: boolean;
+};
 
 export const accountsContext = createContext<AccountsContextType | null>(null);
 
-const AccountsProvider = ({ config, userId, children }: Properties) => {
+const AccountsProvider = ({ children, config, userId }: Properties) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [accountLoading, setAccountLoading] = useState(false);
@@ -50,11 +50,11 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
   const [accounts, setAccounts] = useState<Array<Account> | null>(null);
   const [activeAccount, setActiveAccount] = useState<Account | null>(null);
 
-  const { apiBaseUrl, mainApp, rootDomain, accounts: accountsConfig } = config;
+  const { accounts: accountsConfig, apiBaseUrl, mainApp, rootDomain } = config;
 
   const accountStorageKey = ACCOUNT_HEADER_NAME;
 
-  const { autoSelectAccount = true, allowMultipleSessions = true } =
+  const { allowMultipleSessions = true, autoSelectAccount = true } =
     accountsConfig || {};
 
   const subdomain = window.location.hostname.split(".")[0];
@@ -197,11 +197,11 @@ const AccountsProvider = ({ config, userId, children }: Properties) => {
   return (
     <accountsContext.Provider
       value={{
+        accountLoading,
         accounts,
         activeAccount,
-        loading,
         error,
-        accountLoading,
+        loading,
         meta: {
           isMainApp,
           rootDomain,

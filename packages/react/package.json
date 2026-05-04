@@ -33,7 +33,7 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@prefabs.tech/eslint-config": "0.5.0",
+    "@prefabs.tech/eslint-config": "0.7.0",
     "@prefabs.tech/react-config": "0.70.0",
     "@prefabs.tech/react-form": "0.70.0",
     "@prefabs.tech/react-i18n": "0.70.0",

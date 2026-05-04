@@ -1,15 +1,21 @@
 import { AdditionalFormFields } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import {
+  type DataActionsMenuProperties,
   TDataTable as DataTable,
-  TDataTableProperties,
+  formatDate,
   IButtonProperties,
   TableColumnDefinition,
   Tag,
-  formatDate,
-  type DataActionsMenuProperties,
+  TDataTableProperties,
 } from "@prefabs.tech/react-ui";
 import { toast } from "react-toastify";
+
+import type {
+  AccountUser,
+  AddAccountInvitationResponse,
+  InvitationExpiryDateField,
+} from "@/types";
 
 import { SAAS_ACCOUNT_OWNER } from "@/constants";
 import {
@@ -20,25 +26,10 @@ import {
 
 import { AccountInvitationModal } from "../Invitations";
 
-import type {
-  AddAccountInvitationResponse,
-  InvitationExpiryDateField,
-  AccountUser,
-} from "@/types";
-
-type VisibleColumn =
-  | "name"
-  | "email"
-  | "roles"
-  | "signedUpAt"
-  | "status"
-  | "actions"
-  | string;
-
 export type UsersTableProperties = Partial<
   Omit<
     TDataTableProperties<AccountUser>,
-    "data" | "dataActionsMenu" | "visibleColumns" | "fetchData"
+    "data" | "dataActionsMenu" | "fetchData" | "visibleColumns"
   >
 > & {
   accountId: string;
@@ -51,26 +42,39 @@ export type UsersTableProperties = Partial<
     | DataActionsMenuProperties<AccountUser>;
   invitationButtonOptions?: IButtonProperties;
   invitationExpiryDateField?: InvitationExpiryDateField;
-  roles?: string[];
-  showInviteAction?: boolean;
-  visibleColumns?: VisibleColumn[];
   onInvitationAdded?: (response: AddAccountInvitationResponse) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onUserEnabled?: (data: any) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onUserDisabled?: (data: any) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onUserEnabled?: (data: any) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prepareInvitationData?: (data: any) => any;
+  roles?: string[];
+  showInviteAction?: boolean;
+  visibleColumns?: VisibleColumn[];
 };
 
+type VisibleColumn =
+  | "actions"
+  | "email"
+  | "name"
+  | "roles"
+  | "signedUpAt"
+  | "status"
+  | string;
+
 export const AccountUsersTable = ({
+  accountId,
   additionalInvitationFields,
   className = "table-users",
   columns = [],
-  accountId,
   dataActionsMenu,
   invitationButtonOptions,
   invitationExpiryDateField,
+  onInvitationAdded,
+  onUserDisabled,
+  onUserEnabled,
+  prepareInvitationData,
   roles,
   showInviteAction = true,
   totalRecords = 0,
@@ -82,10 +86,6 @@ export const AccountUsersTable = ({
     "status",
     "actions",
   ],
-  onInvitationAdded,
-  onUserDisabled,
-  onUserEnabled,
-  prepareInvitationData,
   ...tableProperties
 }: UsersTableProperties) => {
   const { t } = useTranslation("account");
@@ -93,6 +93,9 @@ export const AccountUsersTable = ({
   const { data, loading, trigger: refetch } = useGetUsersQuery(accountId);
 
   const { trigger: triggerDisable } = useDisableUserMutation({
+    onError: () => {
+      toast.error(t("users.messages.disable.error"));
+    },
     onSuccess: (response) => {
       toast.success(t("users.messages.disable.success"));
 
@@ -102,12 +105,12 @@ export const AccountUsersTable = ({
 
       refetch();
     },
-    onError: () => {
-      toast.error(t("users.messages.disable.error"));
-    },
   });
 
   const { trigger: triggerEnable } = useEnableUserMutation({
+    onError: () => {
+      toast.error(t("users.messages.enable.error"));
+    },
     onSuccess: (response) => {
       toast.success(t("users.messages.enable.success"));
 
@@ -116,9 +119,6 @@ export const AccountUsersTable = ({
       }
 
       refetch();
-    },
-    onError: () => {
-      toast.error(t("users.messages.enable.error"));
     },
   });
 
@@ -133,13 +133,11 @@ export const AccountUsersTable = ({
   const defaultColumns: Array<TableColumnDefinition<AccountUser>> = [
     {
       accessorKey: "email",
-      header: t("users.table.columns.email"),
-      enableSorting: true,
       enableColumnFilter: true,
+      enableSorting: true,
+      header: t("users.table.columns.email"),
     },
     {
-      id: "name",
-      header: t("users.table.columns.name"),
       accessorFn: (original) => {
         return (
           (original.givenName ? original.givenName : "") +
@@ -153,28 +151,29 @@ export const AccountUsersTable = ({
         return value;
       },
       enableColumnFilter: true,
+      header: t("users.table.columns.name"),
+      id: "name",
     },
     {
       align: "center",
-      id: "roles",
-      header: t("users.table.columns.roles"),
       cell: ({ row: { original } }) => {
         const role = original.role || "";
 
         return (
           <>
             <Tag
-              label={t(`users.roles.${role}`)}
               color={role === SAAS_ACCOUNT_OWNER ? "default" : "green"}
               fullWidth
+              label={t(`users.roles.${role}`)}
             />
           </>
         );
       },
+      header: t("users.table.columns.roles"),
+      id: "roles",
     },
     {
       accessorKey: "signedUpAt",
-      header: t("users.table.columns.signedUpOn"),
       cell: ({ row: { original } }) => {
         if (original.signedUpAt) {
           return formatDate(original.signedUpAt);
@@ -182,53 +181,54 @@ export const AccountUsersTable = ({
 
         return "-";
       },
+      header: t("users.table.columns.signedUpOn"),
     },
     {
-      align: "center",
       accessorKey: "status",
-      header: t("users.table.columns.status"),
+      align: "center",
       cell: ({ row: { original } }) => {
         const color = original.disabled ? "red" : "green";
 
         return (
           <Tag
+            color={color}
+            fullWidth
             label={
               original.disabled
                 ? t("users.status.disabled")
                 : t("users.status.enabled")
             }
-            color={color}
-            fullWidth
           />
         );
       },
+      header: t("users.table.columns.status"),
     },
   ];
 
   const defaultActionsMenu: DataActionsMenuProperties<AccountUser> = {
     actions: [
       {
-        label: t("users.table.actions.enable"),
-        icon: "pi pi-check",
+        confirmationOptions: {
+          header: t("users.table.confirmation.header"),
+          message: t("users.table.confirmation.messages.enable"),
+        },
         disabled: (user) => !user.disabled,
+        icon: "pi pi-check",
+        label: t("users.table.actions.enable"),
         onClick: handleEnableUser,
         requireConfirmationModal: true,
-        confirmationOptions: {
-          message: t("users.table.confirmation.messages.enable"),
-          header: t("users.table.confirmation.header"),
-        },
       },
       {
-        label: t("users.table.actions.disable"),
         className: "danger",
-        icon: "pi pi-times",
+        confirmationOptions: {
+          header: t("users.table.confirmation.header"),
+          message: t("users.table.confirmation.messages.disable"),
+        },
         disabled: (user) => user.disabled,
+        icon: "pi pi-times",
+        label: t("users.table.actions.disable"),
         onClick: handleDisableUser,
         requireConfirmationModal: true,
-        confirmationOptions: {
-          message: t("users.table.confirmation.messages.disable"),
-          header: t("users.table.confirmation.header"),
-        },
       },
     ],
   };
@@ -255,18 +255,9 @@ export const AccountUsersTable = ({
 
   return (
     <DataTable
-      id="account-users-table"
       className={className}
       columns={[...defaultColumns, ...columns]}
       data={data || []}
-      emptyTableMessage={t("app:table.emptyMessage")}
-      renderToolbarItems={showInviteAction ? renderToolbar : undefined}
-      totalRecords={data?.length || 0}
-      visibleColumns={visibleColumns}
-      paginationOptions={{
-        pageInputLabel: t("users.table.pagination.pageControl"),
-        itemsPerPageControlLabel: t("users.table.pagination.rowsPerPage"),
-      }}
       dataActionsMenu={
         dataActionsMenu
           ? typeof dataActionsMenu === "function"
@@ -274,8 +265,17 @@ export const AccountUsersTable = ({
             : dataActionsMenu
           : defaultActionsMenu
       }
+      emptyTableMessage={t("app:table.emptyMessage")}
+      id="account-users-table"
       isLoading={loading}
+      paginationOptions={{
+        itemsPerPageControlLabel: t("users.table.pagination.rowsPerPage"),
+        pageInputLabel: t("users.table.pagination.pageControl"),
+      }}
       persistState={true}
+      renderToolbarItems={showInviteAction ? renderToolbar : undefined}
+      totalRecords={data?.length || 0}
+      visibleColumns={visibleColumns}
       {...tableProperties}
     ></DataTable>
   );

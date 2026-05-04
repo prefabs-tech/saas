@@ -15,13 +15,13 @@ import { SignupFormActions } from "./SignupFormActions";
 import { UserFields } from "./UserFields";
 
 export type AccountSignupProperties = {
-  loading?: boolean;
   handleSubmit: (formData: AccountSignupData) => void;
+  loading?: boolean;
 };
 
 export const AccountSignupForm = ({
-  loading,
   handleSubmit,
+  loading,
 }: AccountSignupProperties) => {
   const { t } = useTranslation("accounts");
 
@@ -31,6 +31,7 @@ export const AccountSignupForm = ({
   const { termsAndConditionsUrl } = accounts?.signup || {};
 
   const accountSchema = z.object({
+    individual: z.boolean(),
     name: z
       .string()
       .max(255, {
@@ -39,17 +40,10 @@ export const AccountSignupForm = ({
       .min(1, {
         message: t("signup.validations.name.required"),
       }),
-    individual: z.boolean(),
     registeredNumber: z
       .string()
       .max(255, {
         message: t("signup.validations.registeredNumber.invalid"),
-      })
-      .nullable(),
-    taxId: z
-      .string()
-      .max(255, {
-        message: t("signup.validations.taxId.invalid"),
       })
       .nullable(),
     slug:
@@ -69,10 +63,19 @@ export const AccountSignupForm = ({
             .nullable()
             .optional()
             .or(z.literal("")),
+    taxId: z
+      .string()
+      .max(255, {
+        message: t("signup.validations.taxId.invalid"),
+      })
+      .nullable(),
     useSeparateDatabase: z.boolean().nullable(),
   });
 
   const userSchema = z.object({
+    confirmPassword: z
+      .string()
+      .min(1, t("signup.validations.confirmPassword.required")),
     email: emailSchema({
       invalid: t("signup.validations.email.invalid"),
       required: t("signup.validations.email.required"),
@@ -90,9 +93,6 @@ export const AccountSignupForm = ({
         minUppercase: 1,
       },
     ),
-    confirmPassword: z
-      .string()
-      .min(1, t("signup.validations.confirmPassword.required")),
     ...(termsAndConditionsUrl
       ? {
           termsAndConditions: z.boolean().refine((value) => value === true, {
@@ -127,22 +127,22 @@ export const AccountSignupForm = ({
   return (
     <>
       <Provider
-        onSubmit={onSubmit}
+        className="account-signup"
         defaultValues={{
+          confirmPassword: "",
+          // user fields
+          email: "",
           // account fields
           individual: entity === "individual", // if entity is individual, default to true
           name: "",
+          password: "",
           registeredNumber: "",
+
           slug: "",
           taxId: "",
           useSeparateDatabase: false,
-
-          // user fields
-          email: "",
-          password: "",
-          confirmPassword: "",
         }}
-        className="account-signup"
+        onSubmit={onSubmit}
         validationSchema={
           activeIndex === 0 ? accountSchema : accountSignupSchema
         }
@@ -150,19 +150,19 @@ export const AccountSignupForm = ({
         {activeIndex === 0 && <AccountFields />}
         {activeIndex === 1 && <UserFields />}
         <SignupFormActions
-          submitButtonOptions={{
-            label:
-              activeIndex === 1
-                ? t("signup.actions.submit")
-                : t("signup.actions.next"),
-            disabled: false, // FIXME disable submit only when user fields are shown
-          }}
           cancelButtonOptions={{
             label: t("signup.actions.previous"),
             onClick: onCancel,
           }}
           loading={loading}
           showCancel={activeIndex === 1}
+          submitButtonOptions={{
+            disabled: false, // FIXME disable submit only when user fields are shown
+            label:
+              activeIndex === 1
+                ? t("signup.actions.submit")
+                : t("signup.actions.next"),
+          }}
         />
       </Provider>
     </>

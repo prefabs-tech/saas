@@ -10,15 +10,15 @@ import { useEffect } from "react";
 import { useConfig } from "@/hooks";
 
 type Properties = {
+  handleCancel: () => void;
   isEditForm?: boolean;
   loading?: boolean;
-  handleCancel: () => void;
 };
 
 export const AccountFormFields = ({
+  handleCancel,
   isEditForm,
   loading,
-  handleCancel,
 }: Properties) => {
   const { t } = useTranslation("account");
 
@@ -27,8 +27,8 @@ export const AccountFormFields = ({
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     formState: { errors, submitCount },
-    watch,
     setValue,
+    watch,
   } = useFormContext();
 
   const individual = watch("individual");
@@ -50,10 +50,10 @@ export const AccountFormFields = ({
     {
       id: "cancel",
       label: t("form.actions.cancel"),
+      onClick: handleCancel,
       severity: "secondary",
       type: "button",
       variant: "outlined",
-      onClick: handleCancel,
     },
   ];
 
@@ -103,15 +103,15 @@ export const AccountFormFields = ({
         <>
           <TextInput label={t("form.fields.slug")} name="slug" />
           <TextInput
+            disabled={!slug}
             label={t("form.fields.domain")}
             name="domain"
-            disabled={!slug}
           />
           {multiDatabase && !isEditForm && (
             <SwitchInput
+              disabled={!slug || isEditForm}
               label={t("form.fields.useSeparateDb")}
               name="useSeparateDatabase"
-              disabled={!slug || isEditForm}
             />
           )}
         </>
@@ -119,8 +119,8 @@ export const AccountFormFields = ({
       <FormActions
         actions={formActions}
         alignment={ui?.account?.form?.actionsAlignment}
-        reverse={ui?.account?.form?.actionsReverse}
         loading={loading}
+        reverse={ui?.account?.form?.actionsReverse}
       />
     </>
   );

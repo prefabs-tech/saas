@@ -33,12 +33,12 @@ export const JoinInvitationPage = ({
   const [searchParameters] = useSearchParams();
   const accountId = searchParameters.get("accountId");
 
-  const [now, setNow] = useState<number | null>(null);
+  const [now, setNow] = useState<null | number>(null);
 
   const {
     data: invitation,
-    loading: invitationLoading,
     error,
+    loading: invitationLoading,
     trigger,
   } = useGetInvitationQuery(token!, accountId, {
     lazy: true,
@@ -50,6 +50,9 @@ export const JoinInvitationPage = ({
 
   const { loading: acceptLoading, trigger: triggerAcceptInvitation } =
     useJoinInvitationMutation({
+      onError: () => {
+        toast.error(t("joinInvitation.messages.error"));
+      },
       onSuccess: (response, request) => {
         onAcceptInvitationSuccess &&
           onAcceptInvitationSuccess(response, request);
@@ -60,9 +63,6 @@ export const JoinInvitationPage = ({
 
         toast.success(t("joinInvitation.messages.success"));
         navigate("/");
-      },
-      onError: () => {
-        toast.error(t("joinInvitation.messages.error"));
       },
     });
 
@@ -105,14 +105,14 @@ export const JoinInvitationPage = ({
           })}
         </p>
         <div className="actions">
-          <Button onClick={handleSubmit} loading={acceptLoading}>
+          <Button loading={acceptLoading} onClick={handleSubmit}>
             {t(`joinInvitation.actions.accept`)}
           </Button>
           <Button
-            onClick={handleIgnore}
-            variant="outlined"
-            severity="secondary"
             disabled={acceptLoading}
+            onClick={handleIgnore}
+            severity="secondary"
+            variant="outlined"
           >
             {t(`joinInvitation.actions.ignore`)}
           </Button>
@@ -123,10 +123,10 @@ export const JoinInvitationPage = ({
 
   return (
     <AuthPage
-      className="join-invitation"
-      title={t("joinInvitation.title")}
-      loading={invitationLoading || !invitation}
       centered={centered}
+      className="join-invitation"
+      loading={invitationLoading || !invitation}
+      title={t("joinInvitation.title")}
     >
       {renderPageContent()}
     </AuthPage>

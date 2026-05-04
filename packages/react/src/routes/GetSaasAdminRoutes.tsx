@@ -9,7 +9,7 @@ import {
 } from "@/views/Account";
 
 export const getSaasAdminRoutes = (
-  type: "authenticated" | "unauthenticated" | "public" = "authenticated",
+  type: "authenticated" | "public" | "unauthenticated" = "authenticated",
   options?: AdminRoutesProperties,
 ) => {
   const { accountsAdd, accountsEdit, accountsView } = options?.routes || {};
@@ -19,22 +19,22 @@ export const getSaasAdminRoutes = (
 
   let routes = [
     {
+      disabled: accountsAdd?.disabled,
+      element: accountsAdd?.element || <AccountAddPage />,
       // path: accountsAdd?.path || DEFAULT_PATHS.ACCOUNTS_ADD,
       path: DEFAULT_PATHS.ACCOUNTS_ADD,
-      element: accountsAdd?.element || <AccountAddPage />,
-      disabled: accountsAdd?.disabled,
     },
     {
+      disabled: accountsEdit?.disabled,
+      element: accountsEdit?.element || <AccountEditPage />,
       // path: accountsEdit?.path || DEFAULT_PATHS.ACCOUNTS_EDIT,
       path: DEFAULT_PATHS.ACCOUNTS_EDIT,
-      element: accountsEdit?.element || <AccountEditPage />,
-      disabled: accountsEdit?.disabled,
     },
     {
+      disabled: accountsView?.disabled,
+      element: accountsView?.element || <AccountViewPage />,
       // path: accountsView?.path || DEFAULT_PATHS.ACCOUNTS_VIEW,
       path: DEFAULT_PATHS.ACCOUNTS_VIEW,
-      element: accountsView?.element || <AccountViewPage />,
-      disabled: accountsView?.disabled,
     },
   ];
 
@@ -50,7 +50,7 @@ export const getSaasAdminRoutes = (
     <>
       {routes.map((route) =>
         !route.disabled ? (
-          <Route key={route.path} path={route.path} element={route.element} />
+          <Route element={route.element} key={route.path} path={route.path} />
         ) : null,
       )}
     </>

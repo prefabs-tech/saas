@@ -32,7 +32,7 @@ export const MyAccountsPage = ({ onAccountSwitch }: Properties) => {
   };
 
   return (
-    <Page title={t("title")} loading={loading}>
+    <Page loading={loading} title={t("title")}>
       <MyAccounts onAccountSwitch={handleSwitch} />
     </Page>
   );

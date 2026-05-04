@@ -8,9 +8,9 @@ import { client } from "../axios";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type UseQueryOptions<T = any> = {
   lazy?: boolean;
-  skip?: boolean;
   onError?: (error: any) => void; // eslint-disable-line @typescript-eslint/no-explicit-any
   onSuccess?: (response: T) => void;
+  skip?: boolean;
 };
 
 export const useQuery = <QueryResponse>(
@@ -24,7 +24,7 @@ export const useQuery = <QueryResponse>(
 
   const { apiBaseUrl } = useConfig();
 
-  const { lazy = false, skip = false, onError, onSuccess } = options || {};
+  const { lazy = false, onError, onSuccess, skip = false } = options || {};
 
   const parametersString =
     parameters && Object.keys(parameters).length
@@ -60,5 +60,5 @@ export const useQuery = <QueryResponse>(
     }
   }, [lazy, skip, trigger]);
 
-  return { data, loading, error, trigger };
+  return { data, error, loading, trigger };
 };

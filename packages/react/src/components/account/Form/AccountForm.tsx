@@ -9,25 +9,36 @@ import { AccountFormFields } from "./AccountFormFields";
 
 type Properties = {
   account?: Account;
-  loading?: boolean;
   handleCancel: () => void;
   handleSubmit: (
     data: AccountCreateInput | AccountUpdateInput,
     options?: FormSubmitOptions,
   ) => void;
+  loading?: boolean;
 };
 
 export const AccountForm = ({
   account,
-  loading,
   handleCancel,
   handleSubmit,
+  loading,
 }: Properties) => {
   const { t } = useTranslation("account");
 
   const { entity, subdomains } = useConfig();
 
   const accountValidationSchema = z.object({
+    domain: z
+      .string()
+      .max(255)
+      .regex(
+        /^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/,
+        t("form.validations.domain.invalid"),
+      )
+      .nullable()
+      .optional()
+      .or(z.literal("")),
+    individual: z.boolean(),
     name: z
       .string()
       .max(255, {
@@ -36,17 +47,10 @@ export const AccountForm = ({
       .min(1, {
         message: t("form.validations.name.required"),
       }),
-    individual: z.boolean(),
     registeredNumber: z
       .string()
       .max(255, {
         message: t("form.validations.registeredNumber.invalid"),
-      })
-      .nullable(),
-    taxId: z
-      .string()
-      .max(255, {
-        message: t("form.validations.taxId.invalid"),
       })
       .nullable(),
     slug:
@@ -66,22 +70,18 @@ export const AccountForm = ({
             .nullable()
             .optional()
             .or(z.literal("")),
-    domain: z
+    taxId: z
       .string()
-      .max(255)
-      .regex(
-        /^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/,
-        t("form.validations.domain.invalid"),
-      )
-      .nullable()
-      .optional()
-      .or(z.literal("")),
+      .max(255, {
+        message: t("form.validations.taxId.invalid"),
+      })
+      .nullable(),
     useSeparateDatabase: z.boolean().nullable(),
   });
 
   return (
     <Provider
-      onSubmit={handleSubmit}
+      className="account-form"
       defaultValues={{
         individual: account?.individual || entity === "individual", // if entity is individual, default to true
         name: account?.name || "",
@@ -90,7 +90,7 @@ export const AccountForm = ({
         taxId: account?.taxId || "",
         useSeparateDatabase: !!account?.database,
       }}
-      className="account-form"
+      onSubmit={handleSubmit}
       validationSchema={accountValidationSchema}
     >
       <AccountFormFields
