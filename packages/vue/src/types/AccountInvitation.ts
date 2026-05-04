@@ -1,5 +1,8 @@
 import type { Account, User } from "./account";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AcceptInvitationResponse = any;
+
 export interface AccountInvitation {
   acceptedAt?: number;
   account?: Account;
@@ -21,19 +24,19 @@ export interface AccountInvitation {
 
 export type AccountInvitationCreateInput = Omit<
   AccountInvitation,
-  | "id"
   | "acceptedAt"
   | "account"
   | "accountId"
+  | "createdAt"
   | "expiresAt"
+  | "id"
   | "invitedBy"
   | "invitedById"
   | "payload"
   | "revokedAt"
   | "token"
-  | "user"
-  | "createdAt"
   | "updatedAt"
+  | "user"
 > & {
   expiresAt: string;
   payload?: string;
@@ -42,21 +45,21 @@ export type AccountInvitationCreateInput = Omit<
 export type AccountInvitationUpdateInput = Partial<
   Omit<
     AccountInvitation,
-    | "id"
     | "acceptedAt"
     | "account"
     | "accountId"
+    | "createdAt"
     | "email"
     | "expiresAt"
+    | "id"
     | "invitedBy"
     | "invitedById"
     | "payload"
     | "revokedAt"
     | "role"
     | "token"
-    | "user"
-    | "createdAt"
     | "updatedAt"
+    | "user"
   > & {
     acceptedAt: string;
     expiresAt: string;
@@ -64,22 +67,19 @@ export type AccountInvitationUpdateInput = Partial<
   }
 >;
 
+export type AddAccountInvitationResponse = AccountInvitation;
+
+export type DeleteAccountInvitationResponse = AccountInvitation;
+
+export type GetAccountInvitationsResponse = AccountInvitation[];
+
+export type GetInvitationResponse = AccountInvitation;
+
 export interface InvitationExpiryDateField {
   display: boolean;
   mode: "calendar" | "input";
 }
 
-export type GetAccountInvitationsResponse = AccountInvitation[];
-
-export type AddAccountInvitationResponse = AccountInvitation;
-
-export type DeleteAccountInvitationResponse = AccountInvitation;
-
 export type ResendAccountInvitationResponse = AccountInvitation;
 
 export type RevokeAccountInvitationResponse = AccountInvitation;
-
-export type GetInvitationResponse = AccountInvitation;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AcceptInvitationResponse = any;

@@ -18,10 +18,16 @@
 </template>
 
 <script setup lang="ts">
+import type { AppConfig } from "@prefabs.tech/vue3-config";
+
 import { useConfig } from "@prefabs.tech/vue3-config";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { Page } from "@prefabs.tech/vue3-ui";
 import { computed, inject, ref } from "vue";
+
+import type { User } from "../../types/account";
+import type { SaasEventHandlers } from "../../types/plugin";
+import type { AccountSignupData, UserSignupData } from "../../types/user";
 
 import { signup } from "../../api/accounts";
 import AccountSignupForm from "../../components/AccountSignupForm.vue";
@@ -30,19 +36,14 @@ import { useMyAccounts } from "../../composables/UseMyAccounts";
 import { SIGNUP_PATH_DEFAULT } from "../../constant";
 import { useTranslations } from "../../index";
 
-import type { User } from "../../types/account";
-import type { SaasEventHandlers } from "../../types/plugin";
-import type { AccountSignupData, UserSignupData } from "../../types/user";
-import type { AppConfig } from "@prefabs.tech/vue3-config";
-
 export interface SignupProperties {
   onSignupFailure?: (
     err?: unknown,
-    data?: UserSignupData | AccountSignupData,
+    data?: AccountSignupData | UserSignupData,
   ) => Promise<void> | void;
   onSignupSuccess?: (
     res?: User,
-    data?: UserSignupData | AccountSignupData,
+    data?: AccountSignupData | UserSignupData,
   ) => Promise<void> | void;
 }
 
@@ -79,10 +80,10 @@ const handleSubmit = async (data: AccountSignupData | UserSignupData) => {
 
   try {
     const result = await signup({
-      apiBaseUrl: config.apiBaseUrl,
-      path: apiPath,
-      data,
       accountSignup: isMainApp.value,
+      apiBaseUrl: config.apiBaseUrl,
+      data,
+      path: apiPath,
     });
 
     if (result) {
@@ -107,8 +108,8 @@ const handleSubmit = async (data: AccountSignupData | UserSignupData) => {
 
     if (eventHandlers?.notification) {
       eventHandlers.notification({
-        type: "error",
         message: t("account.signup.messages.error"),
+        type: "error",
       });
     }
   } finally {

@@ -1,20 +1,20 @@
 export type AccountUser = {
   disabled?: boolean;
   email: string;
-  givenName: string | null;
+  givenName: null | string;
   id: string;
   isEmailVerified?: boolean;
   isProfileCompleted?: boolean;
   lastLoginAt: number;
-  middleNames: string | null;
+  middleNames: null | string;
   role: string;
   signedUpAt: number;
-  surname: string | null;
+  surname: null | string;
   timeJoined: number;
 };
 
-export type GetAccountUsersResponse = AccountUser[];
+export type DisableAccountUserResponse = AccountUser;
 
 export type EnableAccountUserResponse = AccountUser;
 
-export type DisableAccountUserResponse = AccountUser;
+export type GetAccountUsersResponse = AccountUser[];

@@ -34,18 +34,18 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from "@prefabs.tech/vue3-i18n";
-import { Page, BadgeComponent, TabView } from "@prefabs.tech/vue3-ui";
-import { ref, onMounted, computed, inject } from "vue";
+import type { Component } from "vue";
 
-import { useTranslations } from "../../index";
-import AccountDetails from "./_components/AccountDetails.vue";
+import { useI18n } from "@prefabs.tech/vue3-i18n";
+import { BadgeComponent, Page, TabView } from "@prefabs.tech/vue3-ui";
+import { computed, inject, onMounted, ref } from "vue";
+
 import { useGlobalAccountError } from "../../composables/UseGlobalAccountError";
+import { useTranslations } from "../../index";
 import { useMyAccountsStore } from "../../stores/MyAccounts";
 import Invitations from "../Invitations/Index.vue";
 import Users from "../Users/Index.vue";
-
-import type { Component } from "vue";
+import AccountDetails from "./_components/AccountDetails.vue";
 
 const messages = useTranslations();
 const { t } = useI18n({ messages });

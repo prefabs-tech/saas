@@ -1,10 +1,10 @@
-import { client } from "./axios";
-
 import type {
   DisableAccountUserResponse,
   EnableAccountUserResponse,
   GetAccountUsersResponse,
 } from "../types/AccountUser";
+
+import { client } from "./axios";
 
 export const disableUser = async (
   userId: string,

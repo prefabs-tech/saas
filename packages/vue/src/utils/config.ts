@@ -1,6 +1,6 @@
-import { CONFIG_UI_DEFAULT } from "../constant";
-
 import type { SaasConfig } from "../types/config";
+
+import { CONFIG_UI_DEFAULT } from "../constant";
 
 export const prepareUiConfig = (ui: SaasConfig["ui"] = {}) => {
   return {

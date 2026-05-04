@@ -85,13 +85,13 @@ import { Form } from "vee-validate";
 import { computed, inject, ref, watch } from "vue";
 import { z } from "zod";
 
-import UserSignupForm from "./UserSignupForm.vue";
+import type { SaasConfig } from "../types/config";
+import type { AccountSignupData, UserSignupData } from "../types/user";
+
 import { CONFIG_UI_DEFAULT } from "../constant";
 import { useTranslations } from "../index";
 import { createValidationSchemas } from "../views/Accounts/validations/AccountValidations";
-
-import type { SaasConfig } from "../types/config";
-import type { AccountSignupData, UserSignupData } from "../types/user";
+import UserSignupForm from "./UserSignupForm.vue";
 
 export interface AccountSignupFormProperties {
   loading?: boolean;
@@ -115,7 +115,7 @@ if (!saasConfig) {
 
 const activeIndex = ref(0);
 
-const { nameSchema, registeredNumberSchema, taxIdSchema, createSlugSchema } =
+const { createSlugSchema, nameSchema, registeredNumberSchema, taxIdSchema } =
   createValidationSchemas();
 
 const slugSchema = computed(() => createSlugSchema(saasConfig));
@@ -234,6 +234,21 @@ watch(
   },
 );
 
+function handleUserSignupSubmit(userData: UserSignupData) {
+  // Step 2 submission - merge account data from step 1 with user data from UserSignupForm
+  const accountData: AccountSignupData = {
+    ...userData,
+    individual: formData.value.individual,
+    name: formData.value.name,
+    registeredNumber: formData.value.registeredNumber || null,
+    slug: formData.value.slug || null,
+    taxId: formData.value.taxId || null,
+    useSeparateDatabase: formData.value.useSeparateDatabase || null,
+  };
+
+  emit("submit", accountData);
+}
+
 function onSubmit(validatedData: Record<string, unknown>) {
   // Step 1 submission - validate account fields and advance to step 2
   // Update formData with validated values from step 1
@@ -262,21 +277,6 @@ function onSubmit(validatedData: Record<string, unknown>) {
   }
 
   activeIndex.value = 1;
-}
-
-function handleUserSignupSubmit(userData: UserSignupData) {
-  // Step 2 submission - merge account data from step 1 with user data from UserSignupForm
-  const accountData: AccountSignupData = {
-    ...userData,
-    individual: formData.value.individual,
-    name: formData.value.name,
-    registeredNumber: formData.value.registeredNumber || null,
-    slug: formData.value.slug || null,
-    taxId: formData.value.taxId || null,
-    useSeparateDatabase: formData.value.useSeparateDatabase || null,
-  };
-
-  emit("submit", accountData);
 }
 </script>
 

@@ -8,10 +8,10 @@ export const client = (baseURL: string) => {
   return axios.create({
     baseURL: baseURL,
     headers: {
+      [ACCOUNT_HEADER_NAME]: accountId || "",
       post: {
         "Content-Type": "application/json",
       },
-      [ACCOUNT_HEADER_NAME]: accountId || "",
     },
   });
 };

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-import { getUsers, enableUser, disableUser } from "../api/AccountUsers";
+import { disableUser, enableUser, getUsers } from "../api/AccountUsers";
 
 const useUsersStore = defineStore("users", () => {
   return {

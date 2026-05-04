@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { provide, defineProps } from "vue";
+import { defineProps, provide } from "vue";
 
 import type { SaasConfig } from "../types/config";
 

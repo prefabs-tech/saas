@@ -26,8 +26,8 @@
   "dependencies": {},
   "devDependencies": {
     "@iconify/vue": "4.3.0",
-    "@prefabs.tech/eslint-config": "0.5.0",
-    "@prefabs.tech/tsconfig": "0.5.0",
+    "@prefabs.tech/eslint-config": "0.7.0",
+    "@prefabs.tech/tsconfig": "0.7.0",
     "@prefabs.tech/vue3-config": "0.31.0",
     "@prefabs.tech/vue3-form": "0.31.0",
     "@prefabs.tech/vue3-i18n": "0.31.0",
