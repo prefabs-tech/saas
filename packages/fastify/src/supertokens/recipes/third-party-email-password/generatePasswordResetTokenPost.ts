@@ -1,7 +1,7 @@
-import updateFields from "../../utils/updateFields";
-
 import type { FastifyInstance } from "fastify";
 import type { APIInterface } from "supertokens-node/recipe/thirdpartyemailpassword/types";
+
+import updateFields from "../../utils/updateFields";
 
 const generatePasswordResetTokenPOST = (
   originalImplementation: APIInterface,

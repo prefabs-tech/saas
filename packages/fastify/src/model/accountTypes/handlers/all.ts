@@ -1,6 +1,6 @@
-import Service from "../service";
+import type { FastifyReply, FastifyRequest } from "fastify";
 
-import type { FastifyRequest, FastifyReply } from "fastify";
+import Service from "../service";
 
 const getAccountTypes = async (
   request: FastifyRequest,

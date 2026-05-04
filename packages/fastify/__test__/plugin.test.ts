@@ -4,7 +4,7 @@ import configPlugin from "@prefabs.tech/fastify-config";
 import Fastify, { FastifyInstance, FastifyReply } from "fastify";
 import FastifyPlugin from "fastify-plugin";
 import { SessionRequest } from "supertokens-node/framework/fastify";
-import { describe, it, expect, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import plugin from "../src/index";
 
@@ -25,10 +25,10 @@ describe("plugin", () => {
     const fastify = Fastify();
     fastify.register(configPlugin, {
       config: {
-        user: {},
         saas: {
           routePrefix: undefined,
         },
+        user: {},
       },
     });
 

@@ -1,13 +1,13 @@
-import AccountInvitationService from "../service";
-
 import type { FastifyReply, FastifyRequest } from "fastify";
 
+import AccountInvitationService from "../service";
+
 const getByToken = async (request: FastifyRequest, reply: FastifyReply) => {
-  const { config, account, dbSchema, log, slonik } = request;
+  const { account, config, dbSchema, log, slonik } = request;
 
   const requestParameters = request.params as {
-    token: string;
     accountId: string;
+    token: string;
   };
 
   if (account && account.id != requestParameters.accountId) {

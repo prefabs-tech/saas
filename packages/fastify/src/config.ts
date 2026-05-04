@@ -7,9 +7,9 @@ const getSaasConfig = (config: ApiConfig) => {
   const apps = (
     saasConfig.apps || [
       {
+        domain: undefined,
         name: "admin",
         subdomain: "admin",
-        domain: undefined,
       },
     ]
   ).map((app) => ({
@@ -33,27 +33,36 @@ const getSaasConfig = (config: ApiConfig) => {
     },
     invitation: saasConfig.invitation,
     mainApp: {
-      subdomain: saasConfig.mainApp?.subdomain || "app",
       domain:
         saasConfig.mainApp?.domain ??
         `${saasConfig.mainApp?.subdomain || saasConfig.mainAppSubdomain || "app"}.${saasConfig.rootDomain}`,
       skipHostnameCheck:
         saasConfig.subdomains === "disabled" &&
         (saasConfig.mainApp?.skipHostnameCheck ?? true),
+      subdomain: saasConfig.mainApp?.subdomain || "app",
     },
     multiDatabase: {
-      mode: saasConfig.multiDatabase?.mode || "disabled",
       migrations: {
         path:
           saasConfig.multiDatabase?.migrations?.path ||
           `${migrationsPath}/accounts`,
       },
+      mode: saasConfig.multiDatabase?.mode || "disabled",
     },
     rootDomain: saasConfig.rootDomain,
     routePrefix: saasConfig.routePrefix,
     routes: saasConfig.routes,
     subdomains: saasConfig.subdomains,
     tables: {
+      accountAddresses: {
+        name:
+          saasConfig.tables?.accountAddresses?.name || "__account_addresses",
+      },
+      accountInvitations: {
+        name:
+          saasConfig.tables?.accountInvitations?.name ||
+          "__account_invitations",
+      },
       accounts: {
         name: saasConfig.tables?.accounts?.name || "__accounts",
       },
@@ -66,15 +75,6 @@ const getSaasConfig = (config: ApiConfig) => {
       },
       accountUsers: {
         name: saasConfig.tables?.accountUsers?.name || "__account_users",
-      },
-      accountAddresses: {
-        name:
-          saasConfig.tables?.accountAddresses?.name || "__account_addresses",
-      },
-      accountInvitations: {
-        name:
-          saasConfig.tables?.accountInvitations?.name ||
-          "__account_invitations",
       },
     },
   };

@@ -1,21 +1,22 @@
+import type { FastifyReply } from "fastify";
+import type { SessionRequest } from "supertokens-node/framework/fastify";
+
+import type { Account, AccountInvitation } from "../../../types";
+
 import getSaasConfig from "../../../config";
 import isInvitationValid from "../../../lib/isInvitationValid";
 import sendInvitation from "../../../lib/sendInvitation";
 import AccountService from "../../accounts/service";
 import AccountInvitationService from "../service";
 
-import type { Account, AccountInvitation } from "../../../types";
-import type { FastifyReply } from "fastify";
-import type { SessionRequest } from "supertokens-node/framework/fastify";
-
 const resend = async (request: SessionRequest, reply: FastifyReply) => {
   const { config, log, server, slonik } = request;
 
-  let account: Account | undefined | null = request.account;
+  let account: Account | null | undefined = request.account;
 
   const requestParameters = request.params as {
-    id: string;
     accountId: string;
+    id: string;
   };
 
   if (account && account.id != requestParameters.accountId) {
@@ -57,8 +58,8 @@ const resend = async (request: SessionRequest, reply: FastifyReply) => {
     // check if invitation is valid
     if (!accountInvitation || !isInvitationValid(accountInvitation)) {
       return reply.send({
-        status: "ERROR",
         message: "Invitation is invalid or has expired",
+        status: "ERROR",
       });
     }
 

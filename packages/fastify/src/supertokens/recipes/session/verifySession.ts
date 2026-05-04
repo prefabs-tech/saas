@@ -20,8 +20,8 @@ const verifySession = (
         await originalResponse.revokeSession();
 
         throw {
-          name: "SESSION_VERIFICATION_FAILED",
           message: "user not found",
+          name: "SESSION_VERIFICATION_FAILED",
           statusCode: 401,
         } as FastifyError;
       }
@@ -30,8 +30,8 @@ const verifySession = (
         await originalResponse.revokeSession();
 
         throw {
-          name: "SESSION_VERIFICATION_FAILED",
           message: "user is disabled",
+          name: "SESSION_VERIFICATION_FAILED",
           statusCode: 401,
         } as FastifyError;
       }

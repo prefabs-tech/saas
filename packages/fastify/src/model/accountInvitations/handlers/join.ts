@@ -1,3 +1,6 @@
+import type { User } from "@prefabs.tech/fastify-user";
+import type { FastifyReply, FastifyRequest } from "fastify";
+
 import { formatDate } from "@prefabs.tech/fastify-slonik";
 import { SessionRequest } from "supertokens-node/framework/fastify";
 
@@ -6,15 +9,12 @@ import AccountService from "../../accounts/service";
 import AccountUserService from "../../accountUsers/service";
 import AccountInvitationService from "../service";
 
-import type { User } from "@prefabs.tech/fastify-user";
-import type { FastifyReply, FastifyRequest } from "fastify";
-
 const join = async (request: SessionRequest, reply: FastifyReply) => {
   const { config, log, slonik, user } = request;
 
   const requestParameters = request.params as {
-    token: string;
     accountId: string;
+    token: string;
   };
 
   if (!user) {
@@ -54,18 +54,18 @@ const join = async (request: SessionRequest, reply: FastifyReply) => {
     // validate the invitation
     if (!accountInvitation || !isInvitationValid(accountInvitation)) {
       return reply.status(422).send({
-        statusCode: 422,
-        status: "ERROR",
         message: "Invitation is invalid or has expired",
+        status: "ERROR",
+        statusCode: 422,
       });
     }
 
     // compare the FieldInput email to the invitation email
     if (accountInvitation.userId != user.id) {
       return reply.status(422).send({
-        statusCode: 422,
-        status: "ERROR",
         message: "User do not match with the invitation",
+        status: "ERROR",
+        statusCode: 422,
       });
     }
 
@@ -78,8 +78,8 @@ const join = async (request: SessionRequest, reply: FastifyReply) => {
 
     await accountUserService.create({
       accountId: account.id,
-      userId: user.id,
       roleId: accountInvitation.role,
+      userId: user.id,
     });
 
     // update invitation's acceptedAt value with current time
@@ -106,9 +106,9 @@ const join = async (request: SessionRequest, reply: FastifyReply) => {
     reply.status(500);
 
     reply.send({
-      statusCode: 500,
-      status: "ERROR",
       message: "Oops! Something went wrong",
+      status: "ERROR",
+      statusCode: 500,
     });
   }
 };

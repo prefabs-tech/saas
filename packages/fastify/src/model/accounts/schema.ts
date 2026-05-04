@@ -1,6 +1,6 @@
-import { gql } from "graphql-tag";
-
 import type { DocumentNode } from "graphql";
+
+import { gql } from "graphql-tag";
 
 const accountSchema: DocumentNode = gql`
   input AccountCreateInput {

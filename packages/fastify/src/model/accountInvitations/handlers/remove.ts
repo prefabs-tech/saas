@@ -1,18 +1,19 @@
-import AccountService from "../../accounts/service";
-import AccountInvitationService from "../service";
-
-import type { Account, AccountInvitation } from "../../../types";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
+
+import type { Account, AccountInvitation } from "../../../types";
+
+import AccountService from "../../accounts/service";
+import AccountInvitationService from "../service";
 
 const remove = async (request: SessionRequest, reply: FastifyReply) => {
   const { config, log, slonik } = request;
 
-  let account: Account | undefined | null = request.account;
+  let account: Account | null | undefined = request.account;
 
   const requestParameters = request.params as {
-    id: string;
     accountId: string;
+    id: string;
   };
 
   if (account && account.id != requestParameters.accountId) {
@@ -53,9 +54,9 @@ const remove = async (request: SessionRequest, reply: FastifyReply) => {
 
     if (!accountInvitation) {
       return reply.status(422).send({
-        statusCode: 422,
-        status: "ERROR",
         message: "Invitation not found",
+        status: "ERROR",
+        statusCode: 422,
       });
     }
 

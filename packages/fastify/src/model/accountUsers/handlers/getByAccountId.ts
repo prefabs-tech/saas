@@ -1,9 +1,10 @@
-import AccountService from "../../accounts/service";
-import Service from "../service";
-
-import type { Account } from "../../../types";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
+
+import type { Account } from "../../../types";
+
+import AccountService from "../../accounts/service";
+import Service from "../service";
 
 const getUsersByAccountId = async (
   request: SessionRequest,
@@ -11,7 +12,7 @@ const getUsersByAccountId = async (
 ) => {
   const { config, slonik } = request;
 
-  let account: Account | undefined | null = request.account;
+  let account: Account | null | undefined = request.account;
 
   const requestParameters = request.params as { accountId: string };
 

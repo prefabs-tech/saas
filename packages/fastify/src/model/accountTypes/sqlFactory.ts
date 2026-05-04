@@ -1,3 +1,5 @@
+import type { FilterInput, SortInput } from "@prefabs.tech/fastify-slonik";
+
 import {
   createTableFragment,
   DefaultSqlFactory,
@@ -6,16 +8,27 @@ import humps from "humps";
 import {
   FragmentSqlToken,
   IdentifierSqlToken,
-  sql,
   type QuerySqlToken,
+  sql,
 } from "slonik";
+
+import type { AccountTypeI18nCreateInput } from "../../types";
 
 import getSaasConfig from "../../config";
 
-import type { AccountTypeI18nCreateInput } from "../../types";
-import type { FilterInput, SortInput } from "@prefabs.tech/fastify-slonik";
-
 class AccountTypeSqlFactory extends DefaultSqlFactory {
+  get saasConfig() {
+    return getSaasConfig(this.config);
+  }
+
+  get table() {
+    return this.saasConfig.tables.accountTypes.name;
+  }
+
+  get tableIdentifier(): IdentifierSqlToken {
+    return sql.identifier(["account_types"]);
+  }
+
   getAllSql(fields: string[], sort?: SortInput[]): QuerySqlToken {
     const identifiers = [];
     const fieldsObject: Record<string, true> = {};
@@ -41,16 +54,6 @@ class AccountTypeSqlFactory extends DefaultSqlFactory {
     `;
   }
 
-  getFindByIdSql(id: number | string): QuerySqlToken {
-    return sql.unsafe`
-      SELECT 
-        ${this.tableIdentifier}.*,
-        ${this.getTableWithI18nFragment()}
-      ${this.getWhereFragment({ filterFragment: sql.fragment`${this.tableIdentifier}.id = ${id}` })}
-      GROUP BY ${this.tableIdentifier}.id;
-    `;
-  }
-
   getCreateI18nsSql(id: number, i18n: AccountTypeI18nCreateInput[]) {
     return sql.unsafe`
       INSERT INTO ${this.getAccountTypesI18nTableFragment()} (id, locale, name) VALUES
@@ -72,6 +75,16 @@ class AccountTypeSqlFactory extends DefaultSqlFactory {
       DELETE FROM ${accountTypesI18nTable}
       WHERE id = ${id}
       RETURNING *;
+    `;
+  }
+
+  getFindByIdSql(id: number | string): QuerySqlToken {
+    return sql.unsafe`
+      SELECT 
+        ${this.tableIdentifier}.*,
+        ${this.getTableWithI18nFragment()}
+      ${this.getWhereFragment({ filterFragment: sql.fragment`${this.tableIdentifier}.id = ${id}` })}
+      GROUP BY ${this.tableIdentifier}.id;
     `;
   }
 
@@ -108,27 +121,15 @@ class AccountTypeSqlFactory extends DefaultSqlFactory {
     `;
   }
 
-  get saasConfig() {
-    return getSaasConfig(this.config);
-  }
-
-  get table() {
-    return this.saasConfig.tables.accountTypes.name;
-  }
-
-  get tableIdentifier(): IdentifierSqlToken {
-    return sql.identifier(["account_types"]);
-  }
-
-  protected getAccountTypesI18nTableIdentifier(): IdentifierSqlToken {
-    return sql.identifier(["account_types_i18n"]);
-  }
-
   protected getAccountTypesI18nTableFragment(): FragmentSqlToken {
     return createTableFragment(
       this.saasConfig.tables.accountTypesI18n.name,
       this.schema,
     );
+  }
+
+  protected getAccountTypesI18nTableIdentifier(): IdentifierSqlToken {
+    return sql.identifier(["account_types_i18n"]);
   }
 }
 

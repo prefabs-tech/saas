@@ -1,15 +1,15 @@
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
+import type { Database } from "@prefabs.tech/fastify-slonik";
+
+import getSaasConfig from "../config";
 import {
   createAccountAddressesTableQuery,
   createAccountInvitationsTableQuery,
-  createAccountUsersTableQuery,
   createAccountsTableQuery,
-  createAccountTypesTableQuery,
   createAccountTypesI18nTableQuery,
+  createAccountTypesTableQuery,
+  createAccountUsersTableQuery,
 } from "./queries";
-import getSaasConfig from "../config";
-
-import type { ApiConfig } from "@prefabs.tech/fastify-config";
-import type { Database } from "@prefabs.tech/fastify-slonik";
 
 const runMigrations = async (config: ApiConfig, database: Database) => {
   const saasConfig = getSaasConfig(config);

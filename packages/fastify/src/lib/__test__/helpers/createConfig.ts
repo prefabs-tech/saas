@@ -1,6 +1,7 @@
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
+
 /* istanbul ignore file */
 import type { SaasConfig } from "../../../types";
-import type { ApiConfig } from "@prefabs.tech/fastify-config";
 
 declare module "@prefabs.tech/fastify-config" {
   interface ApiConfig {
@@ -14,10 +15,10 @@ const createConfig = (saasConfig: Partial<SaasConfig>) => {
     appOrigin: ["http://localhost"],
     baseUrl: "http://localhost",
     env: "development",
+    graphql: {},
     logger: {
       level: "debug",
     },
-    graphql: {},
     name: "Test",
     port: 3000,
     protocol: "http",

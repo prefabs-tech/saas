@@ -1,10 +1,11 @@
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
+
+import type { AccountCreateInput } from "../types";
+
+import getSaasConfig from "../config";
 import { accountCreateInputSchema } from "../schemas";
 import getInvalidDomains from "./getInvalidDomains";
 import getInvalidSlugs from "./getInvalidSlugs";
-import getSaasConfig from "../config";
-
-import type { AccountCreateInput } from "../types";
-import type { ApiConfig } from "@prefabs.tech/fastify-config";
 
 const validateAccountInput = (
   config: ApiConfig,
@@ -19,24 +20,24 @@ const validateAccountInput = (
     const errorField = validationResult.error.issues[0]?.path?.[0] || "unknown";
 
     throw {
-      name: `ERROR_INVALID_${errorField}`.toUpperCase(),
       message: `Invalid ${errorField}`,
+      name: `ERROR_INVALID_${errorField}`.toUpperCase(),
       statusCode: 422,
     };
   }
 
   if (getInvalidSlugs(config).includes(accountInput.slug as string)) {
     throw {
-      name: "ERROR_INVALID_SLUG",
       message: `The requested slug "${accountInput.slug}" is invalid and cannot be used`,
+      name: "ERROR_INVALID_SLUG",
       statusCode: 422,
     };
   }
 
   if (getInvalidDomains(config).includes(accountInput.domain as string)) {
     throw {
-      name: "ERROR_INVALID_DOMAIN",
       message: `The requested domain "${accountInput.domain}" is invalid and cannot be used`,
+      name: "ERROR_INVALID_DOMAIN",
       statusCode: 422,
     };
   }

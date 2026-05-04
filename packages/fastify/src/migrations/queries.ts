@@ -144,9 +144,9 @@ const createAccountInvitationsTableQuery = (
 
 export {
   createAccountAddressesTableQuery,
+  createAccountInvitationsTableQuery,
   createAccountsTableQuery,
   createAccountTypesI18nTableQuery,
   createAccountTypesTableQuery,
   createAccountUsersTableQuery,
-  createAccountInvitationsTableQuery,
 };

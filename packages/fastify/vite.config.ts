@@ -1,6 +1,5 @@
-import { resolve, dirname } from "node:path";
+import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-
 import { defineConfig, loadEnv } from "vite";
 
 import { dependencies, peerDependencies } from "./package.json";
@@ -27,6 +26,7 @@ export default defineConfig(({ mode }) => {
         output: {
           exports: "named",
           globals: {
+            "@graphql-tools/merge": "graphqlToolsMerge",
             "@prefabs.tech/fastify-config": "PrefabsTechFastifyConfig",
             "@prefabs.tech/fastify-graphql": "PrefabsTechFastifyGraphql",
             "@prefabs.tech/fastify-mailer": "PrefabsTechFastifyMailer",
@@ -35,16 +35,15 @@ export default defineConfig(({ mode }) => {
             "@prefabs.tech/fastify-user": "PrefabsTechFastifyUser",
             "@prefabs.tech/postgres-migrations":
               "PrefabsTechPostgresMigrations",
-            "@graphql-tools/merge": "graphqlToolsMerge",
             fastify: "Fastify",
             "fastify-plugin": "FastifyPlugin",
-            mercurius: "Mercurius",
-            "lodash.merge": "LodashMerge",
             graphql: "Graphql",
             "graphql-tag": "graphqlTag",
             humps: "Humps",
-            "node:fs": "NodeFs",
+            "lodash.merge": "LodashMerge",
+            mercurius: "Mercurius",
             nanoid: "NanoId",
+            "node:fs": "NodeFs",
             pg: "Pg",
             slonik: "Slonik",
             "supertokens-node": "SupertokensNode",
@@ -54,9 +53,9 @@ export default defineConfig(({ mode }) => {
             "supertokens-node/lib/build/recipe/session/claims": "claims",
             "supertokens-node/lib/build/recipe/session/recipe": "SessionRecipe",
             "supertokens-node/recipe/emailverification": "EmailVerification",
+            "supertokens-node/recipe/session": "SupertokensSession",
             "supertokens-node/recipe/session/framework/fastify":
               "SupertokensSessionFastify",
-            "supertokens-node/recipe/session": "SupertokensSession",
             "supertokens-node/recipe/thirdpartyemailpassword":
               "SupertokensThirdPartyEmailPassword",
             "supertokens-node/recipe/userroles": "SupertokensUserRoles",
