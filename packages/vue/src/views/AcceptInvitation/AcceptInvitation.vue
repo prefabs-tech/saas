@@ -82,9 +82,9 @@ async function fetchInvitation() {
 
 <style lang="css">
 .accept-invitation {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
   min-height: 100vh;
 }
 </style>

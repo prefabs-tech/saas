@@ -117,7 +117,7 @@ defineEmits<{
   font-weight: 600;
   line-height: 1.4;
   margin: 0;
-  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 @media (min-width: 768px) {

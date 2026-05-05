@@ -32,10 +32,10 @@ const goToHome = () => {
 
 <style scoped>
 .account-error {
-  text-align: center;
-  padding: 2rem;
-  max-width: 500px;
   margin: 0 auto;
+  max-width: 500px;
+  padding: 2rem;
+  text-align: center;
 }
 
 .account-error h2 {
@@ -44,17 +44,17 @@ const goToHome = () => {
 }
 
 .account-error p {
-  margin-bottom: 1rem;
   color: #666;
+  margin-bottom: 1rem;
 }
 
 .account-error button {
   background: #007bff;
-  color: white;
   border: none;
-  padding: 0.5rem 1rem;
   border-radius: 4px;
+  color: white;
   cursor: pointer;
+  padding: 0.5rem 1rem;
 }
 
 .account-error button:hover {

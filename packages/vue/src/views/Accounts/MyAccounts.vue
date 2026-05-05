@@ -50,8 +50,8 @@ const handleSwitch = (account: Account) => {
 <style scoped>
 .accounts-grid {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 1rem;
+  grid-template-columns: 1fr;
   margin-top: 1.5rem;
 }
 

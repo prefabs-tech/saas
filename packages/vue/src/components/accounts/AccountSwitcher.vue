@@ -122,9 +122,9 @@ onClickOutside(accountSwitcherReference, () => {
 <style scoped>
 .account-switcher-helper {
   color: var(--text-color-secondary, #6b7280);
+  display: block;
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
-  display: block;
 }
 
 nav.account-switcher {
@@ -182,8 +182,8 @@ nav.account-switcher > ul.dropdown {
   display: none;
   list-style: none;
   min-width: var(--_min-width);
-  padding-inline-start: 0;
   padding: 0.15rem 0;
+  padding-inline-start: 0;
   position: absolute;
   right: 0;
   top: 120%;

@@ -21,6 +21,12 @@
     "sort-package": {
       "outputs": []
     },
+    "stylelint": {
+      "outputs": []
+    },
+    "stylelint:fix": {
+      "outputs": []
+    },
     "test": {
       "outputs": []
     },
