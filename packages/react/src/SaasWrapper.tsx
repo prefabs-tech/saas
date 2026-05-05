@@ -11,15 +11,15 @@ import { checkIsAdminApp } from "./utils/common";
 import { prepareConfig } from "./utils/config";
 
 type SaasWrapperProperties = {
+  children: React.ReactNode;
   config: SaasConfig;
   userId?: string;
-  children: React.ReactNode;
 };
 
 export const SaasWrapper = ({
+  children,
   config,
   userId,
-  children,
 }: SaasWrapperProperties) => {
   const [t] = useTranslation("accounts");
 
@@ -47,19 +47,19 @@ export const SaasWrapper = ({
     if (error.status === 404) {
       return (
         <Page
-          className="error"
-          title={t("unregisteredDomain.title")}
-          subtitle={t("unregisteredDomain.message")}
           centered
+          className="error"
+          subtitle={t("unregisteredDomain.message")}
+          title={t("unregisteredDomain.title")}
         ></Page>
       );
     } else {
       return (
         <Page
-          className="error"
-          title={t("error.title")}
-          subtitle={t("error.message")}
           centered
+          className="error"
+          subtitle={t("error.message")}
+          title={t("error.title")}
         ></Page>
       );
     }

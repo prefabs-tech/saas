@@ -1,7 +1,7 @@
 export type SaasConfig = {
   accounts?: {
-    autoSelectAccount?: boolean;
     allowMultipleSessions?: boolean;
+    autoSelectAccount?: boolean;
     signup?: {
       apiPath?: string;
       appRedirection?: boolean;
@@ -10,18 +10,18 @@ export type SaasConfig = {
   };
   apiBaseUrl: string;
   entity: "both" | "individual" | "organization";
+  mainApp?: {
+    domain?: string;
+    subdomain?: string;
+  };
   /**
    * @deprecated use mainApp?.subdomain instead
    */
   mainAppSubdomain?: string;
-  mainApp?: {
-    subdomain?: string;
-    domain?: string;
-  };
   multiDatabase: boolean;
   rootDomain: string;
   saasAccountRoles?: string[];
-  subdomains: "required" | "optional" | "disabled";
+  subdomains: "disabled" | "optional" | "required";
   ui?: {
     account?: {
       form?: {

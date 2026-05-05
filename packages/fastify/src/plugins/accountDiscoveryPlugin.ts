@@ -1,11 +1,11 @@
+import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+
 import FastifyPlugin from "fastify-plugin";
 
 import getSaasConfig from "../config";
 import { ACCOUNT_HEADER_NAME } from "../constants";
 import discoverAccount from "../lib/discoverAccount";
 import getHost from "../lib/getHost";
-
-import type { FastifyInstance, FastifyRequest, FastifyReply } from "fastify";
 
 const plugin = async (fastify: FastifyInstance) => {
   fastify.addHook(

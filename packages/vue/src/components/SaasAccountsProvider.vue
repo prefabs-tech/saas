@@ -5,12 +5,12 @@
 </template>
 
 <script setup lang="ts">
-import { watch, computed, defineProps } from "vue";
+import { computed, defineProps, watch } from "vue";
+
+import type { SaasConfig } from "../types/config";
 
 import { useGlobalAccountError } from "../composables/UseGlobalAccountError";
 import { useMyAccountsStore } from "../stores/MyAccounts";
-
-import type { SaasConfig } from "../types/config";
 
 export interface SaasAccountsProviderProperties {
   config: SaasConfig;

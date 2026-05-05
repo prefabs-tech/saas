@@ -12,7 +12,7 @@ export const useJoinInvitationMutation = <Response = AcceptInvitationResponse>(
   });
 
   const callMutation = useCallback(
-    (token: string, accountId: string | null) => {
+    (token: string, accountId: null | string) => {
       const url = `accounts/${accountId}/invitations/join/${token}`;
 
       trigger(url);

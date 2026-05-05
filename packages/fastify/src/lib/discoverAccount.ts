@@ -1,10 +1,11 @@
 /* eslint-disable unicorn/no-null */
-import getSaasConfig from "../config";
-import AccountService from "../model/accounts/service";
-
-import type { Account } from "../types";
 import type { ApiConfig } from "@prefabs.tech/fastify-config";
 import type { Database } from "@prefabs.tech/fastify-slonik";
+
+import type { Account } from "../types";
+
+import getSaasConfig from "../config";
+import AccountService from "../model/accounts/service";
 
 const getAccountByHostname = async (
   config: ApiConfig,
@@ -30,7 +31,7 @@ const getAccountById = async (
   return (await service.findOne({
     AND: [
       { key: "id", operator: "eq", value: id },
-      { key: "slug", operator: "eq", not: false, value: "NULL" },
+      { key: "slug", not: false, operator: "eq", value: "NULL" },
     ],
   })) as unknown as Account;
 };

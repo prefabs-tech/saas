@@ -1,28 +1,31 @@
+import type { FastifyInstance, FastifyRequest } from "fastify";
+
 import { User } from "@prefabs.tech/fastify-user";
+
+import type { AccountInvitation } from "./accountInvitation";
 
 import accountInvitationHandlers from "../model/accountInvitations/handlers";
 import accountHandlers from "../model/accounts/handlers";
 import accountTypeHandlers from "../model/accountTypes/handlers";
 import accountUserHandlers from "../model/accountUsers/handlers";
 
-import type { AccountInvitation } from "./accountInvitation";
-import type { FastifyInstance, FastifyRequest } from "fastify";
+export type SaasConfig = SaasOptions;
 
 type App =
   | {
-      name: string;
       domain: string;
+      name: string;
       subdomain?: string;
     }
   | {
-      name: string;
       domain?: string;
+      name: string;
       subdomain: string;
     };
 
 interface SaasOptions {
   apps?: App[];
-  excludeRoutePatterns?: Array<string | RegExp>;
+  excludeRoutePatterns?: Array<RegExp | string>;
   handlers?: {
     account?: {
       create?: typeof accountHandlers.create;
@@ -48,9 +51,9 @@ interface SaasOptions {
     accountType?: {
       all?: typeof accountTypeHandlers.all;
       create?: typeof accountTypeHandlers.create;
-      remove?: typeof accountTypeHandlers.remove;
       getById?: typeof accountTypeHandlers.getById;
       list?: typeof accountTypeHandlers.list;
+      remove?: typeof accountTypeHandlers.remove;
       update?: typeof accountTypeHandlers.update;
     };
     accountUser?: {
@@ -66,11 +69,11 @@ interface SaasOptions {
     acceptLinkPath?: string;
     emailOverrides?: {
       subject?:
-        | string
         | ((
             fastify: FastifyInstance,
             invitation: AccountInvitation,
-          ) => Promise<string>);
+          ) => Promise<string>)
+        | string;
       templateName?: string;
     };
     postAccept?: (
@@ -79,39 +82,45 @@ interface SaasOptions {
       user: User,
     ) => Promise<void>;
   };
+  mainApp?: {
+    domain?: string;
+    skipHostnameCheck?: boolean;
+    subdomain?: string;
+  };
   /**
    * @deprecated use mainApp?.subdomain instead
    */
   mainAppSubdomain?: string;
-  mainApp?: {
-    subdomain?: string;
-    domain?: string;
-    skipHostnameCheck?: boolean;
-  };
   multiDatabase?: {
-    mode: "disabled" | "optional" | "required";
     migrations?: {
       path?: string;
     };
+    mode: "disabled" | "optional" | "required";
   };
   rootDomain: string;
   routePrefix?: string;
   routes?: {
-    accounts?: {
-      disabled: boolean;
-    };
     accountInvitations?: {
       disabled: boolean;
     };
-    accountUsers?: {
+    accounts?: {
       disabled: boolean;
     };
     accountTypes?: {
       disabled: boolean;
     };
+    accountUsers?: {
+      disabled: boolean;
+    };
   };
-  subdomains: "disabled" | "required" | "optional";
+  subdomains: "disabled" | "optional" | "required";
   tables?: {
+    accountAddresses?: {
+      name: string;
+    };
+    accountInvitations?: {
+      name: string;
+    };
     accounts?: {
       name: string;
     };
@@ -124,13 +133,5 @@ interface SaasOptions {
     accountUsers?: {
       name: string;
     };
-    accountAddresses?: {
-      name: string;
-    };
-    accountInvitations?: {
-      name: string;
-    };
   };
 }
-
-export type SaasConfig = SaasOptions;

@@ -3,22 +3,22 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Button, IButtonProperties, Modal } from "@prefabs.tech/react-ui";
 import React, { useState } from "react";
 
-import { AccountInvitationForm } from "./InvitationForm";
-
 import type {
   AddAccountInvitationResponse,
   InvitationExpiryDateField,
 } from "@/types";
+
+import { AccountInvitationForm } from "./InvitationForm";
 
 interface Properties {
   accountId: string;
   additionalInvitationFields?: AdditionalFormFields;
   expiryDateField?: InvitationExpiryDateField;
   invitationButtonOptions?: IButtonProperties;
-  roles?: string[];
   onSubmitted?: (response: AddAccountInvitationResponse) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prepareData?: (data: any) => any;
+  roles?: string[];
 }
 
 export const AccountInvitationModal = ({
@@ -44,8 +44,8 @@ export const AccountInvitationModal = ({
       <Modal
         className="invitation-modal"
         header={t("invitations.form.title")}
-        visible={modalVisible}
         onHide={() => setModalVisible(false)}
+        visible={modalVisible}
       >
         <AccountInvitationForm
           accountId={accountId}

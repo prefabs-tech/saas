@@ -1,7 +1,7 @@
-import Email from "../../utils/email";
-
 import type { FastifyInstance } from "fastify";
 import type { RecipeInterface } from "supertokens-node/recipe/thirdpartyemailpassword";
+
+import Email from "../../utils/email";
 
 const getUserById = (
   originalImplementation: RecipeInterface,

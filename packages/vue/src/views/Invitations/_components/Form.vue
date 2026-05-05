@@ -40,6 +40,10 @@ import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { computed, inject, ref } from "vue";
 import { useRoute } from "vue-router";
 
+import type { AccountInvitationCreateInput } from "../../../types/AccountInvitation";
+import type { SaasConfig } from "../../../types/config";
+import type { EventMessage, SaasEventHandlers } from "../../../types/plugin";
+
 import {
   CONFIG_UI_DEFAULT,
   SAAS_ACCOUNT_ROLES_DEFAULT,
@@ -50,10 +54,6 @@ import {
   createEmailSchema,
   createRoleSchema,
 } from "../validations/InvitationValidation";
-
-import type { AccountInvitationCreateInput } from "../../../types/AccountInvitation";
-import type { SaasConfig } from "../../../types/config";
-import type { SaasEventHandlers, EventMessage } from "../../../types/plugin";
 
 const props = defineProps({
   account: {
@@ -71,7 +71,7 @@ const invitationStore = useInvitationStore();
 const { addInvitation } = invitationStore;
 const messages = useTranslations();
 const saasConfig = inject<SaasConfig>(Symbol.for("saas.config"));
-const { t } = useI18n({ messages, locale: "en" });
+const { t } = useI18n({ locale: "en", messages });
 const route = useRoute();
 
 const emailSchema = createEmailSchema(t);
@@ -119,11 +119,11 @@ async function onSubmit() {
     await addInvitation(accountId, formData.value, config.apiBaseUrl).then(
       (response) => {
         const message: EventMessage = {
-          type: "success",
-          message: t("account.invitations.messages.created"),
           details: {
             invitation: response,
           },
+          message: t("account.invitations.messages.created"),
+          type: "success",
         };
 
         eventHandlers?.notification?.(message);

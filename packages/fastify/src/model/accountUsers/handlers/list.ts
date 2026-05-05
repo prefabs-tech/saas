@@ -1,14 +1,15 @@
-import AccountService from "../../accounts/service";
-import Service from "../service";
-
-import type { Account } from "../../../types";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
-const list = async (request: SessionRequest, reply: FastifyReply) => {
-  const { config, slonik, query } = request;
+import type { Account } from "../../../types";
 
-  let account: Account | undefined | null = request.account;
+import AccountService from "../../accounts/service";
+import Service from "../service";
+
+const list = async (request: SessionRequest, reply: FastifyReply) => {
+  const { config, query, slonik } = request;
+
+  let account: Account | null | undefined = request.account;
 
   const requestParameters = request.params as { accountId: string };
 
@@ -38,10 +39,10 @@ const list = async (request: SessionRequest, reply: FastifyReply) => {
 
   const dbSchema = account.database || undefined;
 
-  const { limit, offset, filters, sort } = query as {
+  const { filters, limit, offset, sort } = query as {
+    filters?: string;
     limit: number;
     offset?: number;
-    filters?: string;
     sort?: string;
   };
 

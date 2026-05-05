@@ -1,44 +1,44 @@
 import {
-  Provider,
-  emailSchema,
   AdditionalFormFields,
+  emailSchema,
+  Provider,
 } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import React, { useCallback } from "react";
 import { toast } from "react-toastify";
 import * as zod from "zod";
 
-import { SAAS_ACCOUNT_ROLES_DEFAULT } from "@/constants";
-import { useAddInvitationMutation, useConfig } from "@/hooks";
-
-import { AccountInvitationFormFields } from "./InvitationFormFields";
-
 import type {
   AddAccountInvitationResponse,
   InvitationExpiryDateField,
 } from "@/types";
 
+import { SAAS_ACCOUNT_ROLES_DEFAULT } from "@/constants";
+import { useAddInvitationMutation, useConfig } from "@/hooks";
+
+import { AccountInvitationFormFields } from "./InvitationFormFields";
+
 interface Properties {
   accountId: string;
   additionalInvitationFields?: AdditionalFormFields;
   expiryDateField?: InvitationExpiryDateField;
-  roles?: string[];
   onCancel?: () => void;
   onSubmitted?: (response: AddAccountInvitationResponse) => void; // afterSubmit
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prepareData?: (rawFormData: any) => any;
+  roles?: string[];
 }
 
 export const AccountInvitationForm = ({
   accountId,
   additionalInvitationFields,
   expiryDateField,
-  roles: customRoles,
   onCancel,
   onSubmitted,
   prepareData,
+  roles: customRoles,
 }: Properties) => {
-  const { t, i18n } = useTranslation("account");
+  const { i18n, t } = useTranslation("account");
 
   const { saasAccountRoles = SAAS_ACCOUNT_ROLES_DEFAULT } = useConfig();
 
@@ -46,15 +46,15 @@ export const AccountInvitationForm = ({
 
   const { loading: addLoading, trigger: triggerAdd } = useAddInvitationMutation(
     {
+      onError: () => {
+        toast.error(t("invitations.messages.invite.error"));
+      },
       onSuccess: (response) => {
         toast.success(t("invitations.messages.invite.success"));
 
         if (onSubmitted) {
           onSubmitted(response);
         }
-      },
-      onError: () => {
-        toast.error(t("invitations.messages.invite.error"));
       },
     },
   );
@@ -87,8 +87,8 @@ export const AccountInvitationForm = ({
   const getFormData = (data: any) => {
     const parsedData: {
       email: string;
-      role: string;
       expiresAt?: Date;
+      role: string;
     } = {
       email: data.email,
       role: data.role,
@@ -144,16 +144,16 @@ export const AccountInvitationForm = ({
 
   return (
     <Provider
-      onSubmit={onSubmit}
       defaultValues={getDefaultValues()}
+      onSubmit={onSubmit}
       validationSchema={InvitationFormSchema}
       validationTriggerKey={i18n.language}
     >
       <AccountInvitationFormFields
-        renderAdditionalFields={additionalInvitationFields?.renderFields}
         expiryDateField={expiryDateField}
         loading={addLoading}
         onCancel={onCancel}
+        renderAdditionalFields={additionalInvitationFields?.renderFields}
         roles={roles}
       />
     </Provider>

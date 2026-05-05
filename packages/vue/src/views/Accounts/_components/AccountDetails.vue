@@ -39,10 +39,10 @@ import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { Data } from "@prefabs.tech/vue3-ui";
 import { computed, inject, PropType } from "vue";
 
-import { useTranslations } from "../../../index";
-
 import type { Account } from "../../../types/account";
 import type { SaasConfig } from "../../../types/config";
+
+import { useTranslations } from "../../../index";
 
 defineProps({
   account: {

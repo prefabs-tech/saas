@@ -1,8 +1,8 @@
 import {
-  AccountSignupData,
   Account,
-  UserSignupData,
+  AccountSignupData,
   User,
+  UserSignupData,
 } from "@/types/account";
 import { prepareSignupData } from "@/utils";
 
@@ -41,17 +41,17 @@ export const getMyAccounts = async ({
 };
 
 export const signup = async ({
-  apiBaseUrl,
-  path,
-  data,
   accountSignup = true,
+  apiBaseUrl,
+  data,
+  path,
 }: {
-  apiBaseUrl: string;
-  path: string;
-  data: AccountSignupData | UserSignupData;
   accountSignup?: boolean;
+  apiBaseUrl: string;
+  data: AccountSignupData | UserSignupData;
+  path: string;
 }): Promise<User> => {
-  const payload = prepareSignupData({ data, accountSignup });
+  const payload = prepareSignupData({ accountSignup, data });
 
   const response = await client(apiBaseUrl).post(path, payload, {
     withCredentials: true,

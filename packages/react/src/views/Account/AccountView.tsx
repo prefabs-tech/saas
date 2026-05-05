@@ -4,8 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { useConfig, useGetAccountQuery } from "@/hooks";
 
-import { AccountShow, AccountShowProperties } from "./_components";
 import { DEFAULT_PATHS } from "../../constants";
+import { AccountShow, AccountShowProperties } from "./_components";
 
 type Properties = Omit<AccountShowProperties, "account"> & {
   showToolbar?: boolean;
@@ -34,26 +34,28 @@ export const AccountViewPage = ({
     }
 
     return (
-      <Tag label={t("form.fields.type.options.organization")} color="green" />
+      <Tag color="green" label={t("form.fields.type.options.organization")} />
     );
   };
 
   return (
     <Page
       className="account-show"
+      loading={loading}
+      title={data?.name}
+      titleTag={renderTitleTag()}
       toolbar={
         showToolbar && (
           <>
             <Button
-              onClick={() => navigate(DEFAULT_PATHS.ACCOUNTS)}
               iconLeft={<i className="pi pi-chevron-left"></i>}
-              variant="textOnly"
               label={t("toolbar.back")}
+              onClick={() => navigate(DEFAULT_PATHS.ACCOUNTS)}
+              variant="textOnly"
             ></Button>
 
             <Button
               iconLeft={"pi pi-pen-to-square"}
-              title={t("toolbar.edit")}
               onClick={() => {
                 navigate(
                   DEFAULT_PATHS.ACCOUNTS_EDIT.replace(
@@ -62,13 +64,11 @@ export const AccountViewPage = ({
                   ),
                 );
               }}
+              title={t("toolbar.edit")}
             />
           </>
         )
       }
-      titleTag={renderTitleTag()}
-      title={data?.name}
-      loading={loading}
     >
       {data && <AccountShow account={data} {...accountShowOptions} />}
     </Page>

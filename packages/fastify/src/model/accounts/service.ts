@@ -1,24 +1,40 @@
 import { BaseService } from "@prefabs.tech/fastify-slonik";
 import { customAlphabet } from "nanoid";
 
-import AccountSqlFactory from "./sqlFactory";
-import getSaasConfig from "../../config";
-import { NANOID_ALPHABET, NANOID_SIZE } from "../../constants";
-import shouldUseSeparateDatabase from "../../lib/shouldUseSeparateDatabase";
-import { validateAccountInput } from "../../lib/validateAccountSchema";
-import runAccountMigrations from "../../migrations/runAccountMigrations";
-
 import type {
   Account,
   AccountCreateInput,
   AccountUpdateInput,
 } from "../../types";
 
+import getSaasConfig from "../../config";
+import { NANOID_ALPHABET, NANOID_SIZE } from "../../constants";
+import shouldUseSeparateDatabase from "../../lib/shouldUseSeparateDatabase";
+import { validateAccountInput } from "../../lib/validateAccountSchema";
+import runAccountMigrations from "../../migrations/runAccountMigrations";
+import AccountSqlFactory from "./sqlFactory";
+
 class AccountService extends BaseService<
   Account,
   AccountCreateInput,
   AccountUpdateInput
 > {
+  get factory() {
+    return super.factory as AccountSqlFactory;
+  }
+
+  get saasConfig() {
+    return getSaasConfig(this.config);
+  }
+
+  get sqlFactoryClass() {
+    return AccountSqlFactory;
+  }
+
+  get table() {
+    return this.saasConfig.tables.accounts.name;
+  }
+
   async findByHostname(hostname: string): Promise<Account | null> {
     const saasConfig = getSaasConfig(this.config);
 
@@ -54,38 +70,22 @@ class AccountService extends BaseService<
     if (accounts.length > 0) {
       if (accounts.some((account) => account.slug === slug)) {
         throw {
-          name: "ERROR_SLUG_ALREADY_EXISTS",
           message: `The specified slug "${slug}" already exists`,
+          name: "ERROR_SLUG_ALREADY_EXISTS",
           statusCode: 422,
         };
       }
 
       throw {
-        name: "ERROR_DOMAIN_ALREADY_EXISTS",
         message: `The specified domain "${domain}" already exists`,
+        name: "ERROR_DOMAIN_ALREADY_EXISTS",
         statusCode: 422,
       };
     }
   }
 
-  get factory() {
-    return super.factory as AccountSqlFactory;
-  }
-
-  get saasConfig() {
-    return getSaasConfig(this.config);
-  }
-
-  get sqlFactoryClass() {
-    return AccountSqlFactory;
-  }
-
-  get table() {
-    return this.saasConfig.tables.accounts.name;
-  }
-
   protected async postCreate(account: Account): Promise<Account> {
-    const { subdomains, multiDatabase } = this.saasConfig;
+    const { multiDatabase, subdomains } = this.saasConfig;
 
     if (subdomains === "disabled" || multiDatabase.mode === "disabled") {
       return account;

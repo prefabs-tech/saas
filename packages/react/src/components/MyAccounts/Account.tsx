@@ -22,12 +22,12 @@ export const Account = ({ account, active, loading, onSwitch }: Properties) => {
             <Tag label={t("account.active")}></Tag>
           ) : (
             <Button
-              onClick={onSwitch}
-              loading={loading}
               iconLeft="pi pi-arrow-right-arrow-left"
+              loading={loading}
+              onClick={onSwitch}
+              severity="secondary"
               size="small"
               variant="outlined"
-              severity="secondary"
             >
               {t("account.actions.switch")}
             </Button>

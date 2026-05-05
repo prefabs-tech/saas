@@ -33,8 +33,8 @@ export const SignupFormActions = ({
 
   const watched = useWatch({
     control,
-    name: "termsAndConditions",
     defaultValue: false,
+    name: "termsAndConditions",
   });
 
   const isChecked = termsAndConditionsUrl ? watched : true;
@@ -42,8 +42,8 @@ export const SignupFormActions = ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const actions: any = [
     {
-      label: t("signup.actions.submit"),
       disabled: !!termsAndConditionsUrl && !isChecked,
+      label: t("signup.actions.submit"),
       ...(submitButtonOptions || {}),
       type: "submit",
     },
@@ -64,8 +64,8 @@ export const SignupFormActions = ({
     <FormActions
       actions={actions}
       alignment={ui?.signup?.form?.actionsAlignment}
-      reverse={ui?.signup?.form?.actionsReverse}
       loading={loading}
+      reverse={ui?.signup?.form?.actionsReverse}
     />
   );
 };

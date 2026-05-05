@@ -13,7 +13,7 @@ export const AccountEditPage = () => {
   const { data, loading } = useGetAccountQuery(parameters.id!);
 
   return (
-    <Page title={t("editTitle")} loading={loading}>
+    <Page loading={loading} title={t("editTitle")}>
       {data && <AccountForm account={data} />}
     </Page>
   );

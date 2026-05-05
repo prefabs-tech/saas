@@ -22,11 +22,11 @@ import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { Page } from "@prefabs.tech/vue3-ui";
 import { computed } from "vue";
 
-import { useTranslations } from "../../index";
-import AccountCard from "./_components/AccountCard.vue";
-import { useMyAccountsStore } from "../../stores/MyAccounts";
-
 import type { Account } from "../../types/account";
+
+import { useTranslations } from "../../index";
+import { useMyAccountsStore } from "../../stores/MyAccounts";
+import AccountCard from "./_components/AccountCard.vue";
 
 const messages = useTranslations();
 const { t } = useI18n({ messages });
@@ -50,8 +50,8 @@ const handleSwitch = (account: Account) => {
 <style scoped>
 .accounts-grid {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 1rem;
+  grid-template-columns: 1fr;
   margin-top: 1.5rem;
 }
 

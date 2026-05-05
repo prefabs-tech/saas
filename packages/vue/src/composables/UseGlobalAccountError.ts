@@ -3,7 +3,7 @@ import { ref } from "vue";
 const globalShowAccountError = ref(false);
 
 type ErrorWithResponse = {
-  response?: { status?: number; data?: { error?: { message?: string } } };
+  response?: { data?: { error?: { message?: string } }; status?: number };
 };
 
 export function useGlobalAccountError() {
@@ -27,8 +27,8 @@ export function useGlobalAccountError() {
   };
 
   return {
-    showAccountError: globalShowAccountError,
     checkForAccountError,
     clearError,
+    showAccountError: globalShowAccountError,
   };
 }

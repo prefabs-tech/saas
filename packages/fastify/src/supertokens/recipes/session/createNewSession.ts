@@ -1,3 +1,6 @@
+import type { FastifyError, FastifyInstance, FastifyRequest } from "fastify";
+import type { RecipeInterface } from "supertokens-node/recipe/session/types";
+
 import {
   getUserService,
   ProfileValidationClaim,
@@ -5,8 +8,6 @@ import {
 import { getRequestFromUserContext } from "supertokens-node";
 
 import type { Account } from "../../../types";
-import type { FastifyError, FastifyInstance, FastifyRequest } from "fastify";
-import type { RecipeInterface } from "supertokens-node/recipe/session/types";
 
 const createNewSession = (
   originalImplementation: RecipeInterface,
@@ -39,16 +40,16 @@ const createNewSession = (
 
       if (user?.deletedAt) {
         throw {
-          name: "SIGN_IN_FAILED",
           message: "user not found",
+          name: "SIGN_IN_FAILED",
           statusCode: 401,
         } as FastifyError;
       }
 
       if (user?.disabled) {
         throw {
-          name: "SIGN_IN_FAILED",
           message: "user is disabled",
+          name: "SIGN_IN_FAILED",
           statusCode: 401,
         } as FastifyError;
       }

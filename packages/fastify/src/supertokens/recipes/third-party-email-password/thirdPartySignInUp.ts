@@ -1,3 +1,7 @@
+import type { User } from "@prefabs.tech/fastify-user";
+import type { FastifyError, FastifyInstance } from "fastify";
+import type { RecipeInterface } from "supertokens-node/recipe/thirdpartyemailpassword";
+
 import {
   areRolesExist,
   formatDate,
@@ -7,13 +11,10 @@ import { deleteUser } from "supertokens-node";
 import { getUserByThirdPartyInfo } from "supertokens-node/recipe/thirdpartyemailpassword";
 import UserRoles from "supertokens-node/recipe/userroles";
 
+import type { Account } from "../../../types";
+
 import { ROLE_SAAS_ACCOUNT_MEMBER } from "../../../constants";
 import AccountUserService from "../../../model/accountUsers/service";
-
-import type { Account } from "../../../types";
-import type { User } from "@prefabs.tech/fastify-user";
-import type { FastifyInstance, FastifyError } from "fastify";
-import type { RecipeInterface } from "supertokens-node/recipe/thirdpartyemailpassword";
 
 const thirdPartySignInUp = (
   originalImplementation: RecipeInterface,
@@ -36,8 +37,8 @@ const thirdPartySignInUp = (
 
     if (!thirdPartyUser && config.user.features?.signUp?.enabled === false) {
       throw {
-        name: "SIGN_UP_DISABLED",
         message: "SignUp feature is currently disabled",
+        name: "SIGN_UP_DISABLED",
         statusCode: 404,
       } as FastifyError;
     }
@@ -58,8 +59,8 @@ const thirdPartySignInUp = (
         log.error(`At least one role from ${roles.join(", ")} does not exist.`);
 
         throw {
-          name: "SIGN_UP_FAILED",
           message: "Something went wrong",
+          name: "SIGN_UP_FAILED",
           statusCode: 500,
         } as FastifyError;
       }
@@ -75,12 +76,12 @@ const thirdPartySignInUp = (
         }
       }
 
-      let user: User | null | undefined;
+      let user: null | undefined | User;
 
       try {
         user = await userService.create({
-          id: originalResponse.user.id,
           email: originalResponse.user.email,
+          id: originalResponse.user.id,
         });
 
         if (!user) {
@@ -94,8 +95,8 @@ const thirdPartySignInUp = (
         await deleteUser(originalResponse.user.id);
 
         throw {
-          name: "SIGN_UP_FAILED",
           message: "Something went wrong",
+          name: "SIGN_UP_FAILED",
           statusCode: 500,
         };
       }
@@ -110,8 +111,8 @@ const thirdPartySignInUp = (
 
         await accountUserService.create({
           accountId: account.id,
-          userId: originalResponse.user.id,
           roleId: ROLE_SAAS_ACCOUNT_MEMBER,
+          userId: originalResponse.user.id,
         });
       }
     } else {

@@ -31,20 +31,20 @@ export const prepareUiConfig = (ui: SaasConfig["ui"] = {}) => {
  * @returns Config with default values merged
  */
 export const prepareConfig = (config: SaasConfig): SaasConfig => {
-  const { ui, mainAppSubdomain, mainApp, ...restConfig } = config;
+  const { mainApp, mainAppSubdomain, ui, ...restConfig } = config;
 
   const _mainApp = {
-    subdomain: config.mainApp?.subdomain || "app",
     domain:
       config.mainApp?.domain ??
       `${config.mainApp?.subdomain || config.mainAppSubdomain || "app"}.${config.rootDomain}`,
+    subdomain: config.mainApp?.subdomain || "app",
   };
 
   const _ui = prepareUiConfig(ui);
 
   return {
-    ui: _ui,
     mainApp: _mainApp,
+    ui: _ui,
     ...restConfig,
   };
 };

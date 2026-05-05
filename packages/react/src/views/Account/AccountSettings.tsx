@@ -15,18 +15,18 @@ export const AccountSettingsPage = ({ ...accountShowOptions }: Properties) => {
   return (
     <Page
       className="account-show account-settings"
+      loading={loading}
+      title={data?.name}
       titleTag={
         data?.individual ? (
           <Tag label={t("form.fields.type.options.individual")} />
         ) : (
           <Tag
-            label={t("form.fields.type.options.organization")}
             color="green"
+            label={t("form.fields.type.options.organization")}
           />
         )
       }
-      title={data?.name}
-      loading={loading}
     >
       {data && <AccountShow account={data} {...accountShowOptions} />}
     </Page>

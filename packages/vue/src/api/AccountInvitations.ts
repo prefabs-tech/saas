@@ -1,5 +1,3 @@
-import { client } from "./axios";
-
 import type {
   AcceptInvitationResponse,
   AccountInvitation,
@@ -11,6 +9,8 @@ import type {
   ResendAccountInvitationResponse,
   RevokeAccountInvitationResponse,
 } from "../types/AccountInvitation";
+
+import { client } from "./axios";
 
 export const addInvitation = async (
   accountId: string,
@@ -76,7 +76,7 @@ export const getInvitations = async (
 
 export const joinInvitation = async (
   token: string,
-  accountId: string | null,
+  accountId: null | string,
   apiBaseUrl: string,
 ): Promise<AccountInvitation> => {
   const response = await client(apiBaseUrl).post(
@@ -124,7 +124,7 @@ export const revokeInvitation = async (
 
 export const getInvitationByToken = async (
   token: string,
-  accountId: string | null | undefined,
+  accountId: null | string | undefined,
   apiBaseUrl: string,
 ): Promise<GetInvitationResponse> => {
   const url = accountId
@@ -147,7 +147,7 @@ export const signupInvitation = async (
     password: string;
     surname?: string;
   },
-  accountId: string | null | undefined,
+  accountId: null | string | undefined,
   apiBaseUrl: string,
 ): Promise<AcceptInvitationResponse> => {
   const url = accountId

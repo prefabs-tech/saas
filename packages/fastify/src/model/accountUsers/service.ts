@@ -1,4 +1,3 @@
-import AccountUserSqlFactory from "./sqlFactory";
 import getSaasConfig from "../../config";
 import AccountAwareBaseService from "../../service";
 import {
@@ -6,22 +5,13 @@ import {
   AccountUserCreateInput,
   AccountUserUpdateInput,
 } from "../../types";
+import AccountUserSqlFactory from "./sqlFactory";
 
 class AccountUserService extends AccountAwareBaseService<
   AccountUser,
   AccountUserCreateInput,
   AccountUserUpdateInput
 > {
-  async getUsers(): Promise<readonly AccountUser[]> {
-    const query = this.factory.getUsersSql();
-
-    const result = await this.database.connect((connection) => {
-      return connection.any(query);
-    });
-
-    return result as readonly AccountUser[];
-  }
-
   get factory() {
     return super.factory as AccountUserSqlFactory;
   }
@@ -32,6 +22,16 @@ class AccountUserService extends AccountAwareBaseService<
 
   get sqlFactoryClass() {
     return AccountUserSqlFactory;
+  }
+
+  async getUsers(): Promise<readonly AccountUser[]> {
+    const query = this.factory.getUsersSql();
+
+    const result = await this.database.connect((connection) => {
+      return connection.any(query);
+    });
+
+    return result as readonly AccountUser[];
   }
 }
 

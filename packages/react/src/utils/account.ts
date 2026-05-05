@@ -1,13 +1,13 @@
 import { AccountSignupData, UserSignupData } from "@/types/account";
 
 type PrepareSignupData = {
-  data: AccountSignupData | UserSignupData;
   accountSignup?: boolean;
+  data: AccountSignupData | UserSignupData;
 };
 
 export const prepareSignupData = ({
-  data,
   accountSignup = true,
+  data,
 }: PrepareSignupData) => {
   if (!accountSignup) {
     return {
@@ -26,26 +26,16 @@ export const prepareSignupData = ({
 
   const {
     email,
-    password,
-    name,
     individual,
+    name,
+    password,
     registeredNumber,
-    taxId,
     slug,
+    taxId,
     useSeparateDatabase,
   } = data as AccountSignupData;
 
   return {
-    formFields: [
-      {
-        id: "email",
-        value: email,
-      },
-      {
-        id: "password",
-        value: password,
-      },
-    ],
     accountFormFields: [
       {
         id: "name",
@@ -70,6 +60,16 @@ export const prepareSignupData = ({
       {
         id: "useSeparateDatabase",
         value: slug ? useSeparateDatabase : false,
+      },
+    ],
+    formFields: [
+      {
+        id: "email",
+        value: email,
+      },
+      {
+        id: "password",
+        value: password,
       },
     ],
   };

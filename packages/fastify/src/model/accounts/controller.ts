@@ -1,6 +1,6 @@
-import handlers from "./handlers";
-
 import type { FastifyInstance } from "fastify";
+
+import handlers from "./handlers";
 
 const plugin = async (fastify: FastifyInstance) => {
   const handlersConfig = fastify.config.saas?.handlers?.account;

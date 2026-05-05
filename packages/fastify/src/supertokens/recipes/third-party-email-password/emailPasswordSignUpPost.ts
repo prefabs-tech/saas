@@ -1,4 +1,9 @@
+import type { FastifyError, FastifyInstance, FastifyRequest } from "fastify";
+import type { APIInterface } from "supertokens-node/recipe/thirdpartyemailpassword/types";
+
 import { ROLE_USER } from "@prefabs.tech/fastify-user";
+
+import type { Account, AccountCreateInput } from "../../../types";
 
 import getSaasConfig from "../../../config";
 import {
@@ -8,10 +13,6 @@ import {
 import getHost from "../../../lib/getHost";
 import AccountService from "../../../model/accounts/service";
 
-import type { Account, AccountCreateInput } from "../../../types";
-import type { FastifyError, FastifyInstance, FastifyRequest } from "fastify";
-import type { APIInterface } from "supertokens-node/recipe/thirdpartyemailpassword/types";
-
 const emailPasswordSignUpPOST = (
   originalImplementation: APIInterface,
   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
@@ -20,17 +21,17 @@ const emailPasswordSignUpPOST = (
   return async (input) => {
     const request = input.options.req.original as FastifyRequest<{
       Body: {
-        accountFormFields?: { id: string; value: string | number | boolean }[];
+        accountFormFields?: { id: string; value: boolean | number | string }[];
         formFields: { id: string; value: string }[];
       };
     }>;
 
     const {
+      account,
+      authEmailPrefix,
       body,
       config,
-      account,
       dbSchema,
-      authEmailPrefix,
       headers,
       slonik,
     } = request;
@@ -45,8 +46,8 @@ const emailPasswordSignUpPOST = (
 
     if (config.user.features?.signUp?.enabled === false) {
       throw {
-        name: "SIGN_UP_DISABLED",
         message: "SignUp feature is currently disabled",
+        name: "SIGN_UP_DISABLED",
         statusCode: 404,
       } as FastifyError;
     }
@@ -69,8 +70,8 @@ const emailPasswordSignUpPOST = (
 
       if (!accountFormFields) {
         throw {
-          name: "ERROR_MISSING_ACCOUNT_FORM_FIELDS",
           message: "Missing account form fields",
+          name: "ERROR_MISSING_ACCOUNT_FORM_FIELDS",
           statusCode: 422,
         } as FastifyError;
       }
@@ -79,7 +80,7 @@ const emailPasswordSignUpPOST = (
         accountFormFields.map(
           (accountFormField: {
             id: string;
-            value: string | number | boolean;
+            value: boolean | number | string;
           }) => [accountFormField.id, accountFormField.value],
         ),
       );

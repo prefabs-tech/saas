@@ -14,23 +14,24 @@
 </template>
 
 <script setup lang="ts">
+import type { AppConfig } from "@prefabs.tech/vue3-config";
+import type {
+  DataActionsMenuItem,
+  TableColumnDefinition,
+} from "@prefabs.tech/vue3-tanstack-table";
+
 import { useConfig } from "@prefabs.tech/vue3-config";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { Table } from "@prefabs.tech/vue3-tanstack-table";
 import { BadgeComponent } from "@prefabs.tech/vue3-ui";
-import { ref, onMounted, h, inject, computed } from "vue";
+import { computed, h, inject, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-
-import { useTranslations } from "../../index";
-import useUsersStore from "../../stores/AccountUsers";
 
 import type { AccountUser } from "../../types/AccountUser";
 import type { SaasEventHandlers } from "../../types/plugin";
-import type { AppConfig } from "@prefabs.tech/vue3-config";
-import type {
-  TableColumnDefinition,
-  DataActionsMenuItem,
-} from "@prefabs.tech/vue3-tanstack-table";
+
+import { useTranslations } from "../../index";
+import useUsersStore from "../../stores/AccountUsers";
 
 const props = defineProps({
   account: {
@@ -47,7 +48,7 @@ const config = useConfig() as AppConfig;
 const messages = useTranslations();
 const { t } = useI18n({ messages });
 const usersStore = useUsersStore();
-const { getUsers, enableUser, disableUser } = usersStore;
+const { disableUser, enableUser, getUsers } = usersStore;
 const route = useRoute();
 
 const eventHandlers = inject<SaasEventHandlers>(
@@ -62,27 +63,27 @@ const accountId = computed(() => {
 
 const actionMenuData: DataActionsMenuItem[] = [
   {
+    confirmationOptions: {
+      body: t("account.users.table.confirmation.messages.enable"),
+      header: t("account.users.table.confirmation.header"),
+    },
+    disabled: (data: AccountUser) => Boolean(!data.disabled),
+    icon: "pi pi-check",
     key: "enable",
     label: t("account.users.table.actions.enable"),
-    icon: "pi pi-check",
-    disabled: (data: AccountUser) => Boolean(!data.disabled),
     requireConfirmationModal: true,
-    confirmationOptions: {
-      header: t("account.users.table.confirmation.header"),
-      body: t("account.users.table.confirmation.messages.enable"),
-    },
   },
   {
+    class: "danger",
+    confirmationOptions: {
+      body: t("account.users.table.confirmation.messages.disable"),
+      header: t("account.users.table.confirmation.header"),
+    },
+    disabled: (data: AccountUser) => Boolean(data.disabled),
+    icon: "pi pi-times",
     key: "disable",
     label: t("account.users.table.actions.disable"),
-    icon: "pi pi-times",
-    class: "danger",
-    disabled: (data: AccountUser) => Boolean(data.disabled),
     requireConfirmationModal: true,
-    confirmationOptions: {
-      header: t("account.users.table.confirmation.header"),
-      body: t("account.users.table.confirmation.messages.disable"),
-    },
   },
 ];
 
@@ -95,8 +96,6 @@ const columns: TableColumnDefinition<AccountUser>[] = [
     header: t("account.users.table.columns.email"),
   },
   {
-    id: "name",
-    header: t("account.users.table.columns.name"),
     accessorFn: (original) => {
       const name = [
         original.givenName || "",
@@ -112,11 +111,11 @@ const columns: TableColumnDefinition<AccountUser>[] = [
       return value;
     },
     enableColumnFilter: true,
+    header: t("account.users.table.columns.name"),
+    id: "name",
   },
   {
     align: "center",
-    id: "roles",
-    header: t("account.users.table.columns.roles"),
     cell: ({ row: { original } }) => {
       const role = original.role || "";
       return h(BadgeComponent, {
@@ -124,21 +123,22 @@ const columns: TableColumnDefinition<AccountUser>[] = [
         severity: role === "owner" ? "primary" : "success",
       });
     },
+    header: t("account.users.table.columns.roles"),
+    id: "roles",
   },
   {
     accessorKey: "signedUpAt",
-    header: t("account.users.table.columns.signedUpOn"),
     cell: ({ row: { original } }) => {
       if (original.signedUpAt) {
         return new Date(original.signedUpAt).toLocaleDateString();
       }
       return "-";
     },
+    header: t("account.users.table.columns.signedUpOn"),
   },
   {
-    align: "center",
     accessorKey: "status",
-    header: t("account.users.table.columns.status"),
+    align: "center",
     cell: ({ row: { original } }) =>
       h(BadgeComponent, {
         label: original.disabled
@@ -146,6 +146,7 @@ const columns: TableColumnDefinition<AccountUser>[] = [
           : t("account.users.table.status.enabled"),
         severity: original.disabled ? "danger" : "success",
       }),
+    header: t("account.users.table.columns.status"),
   },
 ];
 
@@ -165,31 +166,6 @@ async function fetchUsers() {
   }
 }
 
-async function handleEnable(user: AccountUser) {
-  try {
-    await enableUser(user.id, config.apiBaseUrl);
-    await fetchUsers();
-    emit("user:enabled", user);
-
-    if (eventHandlers?.notification) {
-      eventHandlers.notification({
-        type: "success",
-        message: t("account.users.messages.enable.success"),
-      });
-    }
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error("Failed to enable user:", error);
-
-    if (eventHandlers?.notification) {
-      eventHandlers.notification({
-        type: "error",
-        message: t("account.users.messages.enable.error"),
-      });
-    }
-  }
-}
-
 async function handleDisable(user: AccountUser) {
   try {
     await disableUser(user.id, config.apiBaseUrl);
@@ -198,8 +174,8 @@ async function handleDisable(user: AccountUser) {
 
     if (eventHandlers?.notification) {
       eventHandlers.notification({
-        type: "success",
         message: t("account.users.messages.disable.success"),
+        type: "success",
       });
     }
   } catch (error) {
@@ -208,8 +184,33 @@ async function handleDisable(user: AccountUser) {
 
     if (eventHandlers?.notification) {
       eventHandlers.notification({
-        type: "error",
         message: t("account.users.messages.disable.error"),
+        type: "error",
+      });
+    }
+  }
+}
+
+async function handleEnable(user: AccountUser) {
+  try {
+    await enableUser(user.id, config.apiBaseUrl);
+    await fetchUsers();
+    emit("user:enabled", user);
+
+    if (eventHandlers?.notification) {
+      eventHandlers.notification({
+        message: t("account.users.messages.enable.success"),
+        type: "success",
+      });
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Failed to enable user:", error);
+
+    if (eventHandlers?.notification) {
+      eventHandlers.notification({
+        message: t("account.users.messages.enable.error"),
+        type: "error",
       });
     }
   }
@@ -217,12 +218,12 @@ async function handleDisable(user: AccountUser) {
 
 function onActionSelect(rowData: { action: string; data: AccountUser }) {
   switch (rowData.action) {
-    case "enable": {
-      handleEnable(rowData.data);
-      break;
-    }
     case "disable": {
       handleDisable(rowData.data);
+      break;
+    }
+    case "enable": {
+      handleEnable(rowData.data);
       break;
     }
   }

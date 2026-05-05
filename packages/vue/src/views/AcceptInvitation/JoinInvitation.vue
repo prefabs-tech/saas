@@ -42,19 +42,20 @@
 </template>
 
 <script setup lang="ts">
+import type { AppConfig } from "@prefabs.tech/vue3-config";
+
 import { useConfig } from "@prefabs.tech/vue3-config";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { ButtonElement, Page } from "@prefabs.tech/vue3-ui";
-import { ref, onMounted, computed, inject } from "vue";
+import { computed, inject, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+
+import type { AccountInvitation } from "../../types/AccountInvitation";
+import type { EventMessage, SaasEventHandlers } from "../../types/plugin";
 
 import { REDIRECT_AFTER_LOGIN_KEY } from "../../constant";
 import { useTranslations } from "../../index";
 import useInvitationStore from "../../stores/AccountInvitations";
-
-import type { AccountInvitation } from "../../types/AccountInvitation";
-import type { SaasEventHandlers, EventMessage } from "../../types/plugin";
-import type { AppConfig } from "@prefabs.tech/vue3-config";
 
 export interface JoinInvitationProperties {
   centered?: boolean;
@@ -125,6 +126,10 @@ async function fetchInvitation() {
   }
 }
 
+function handleIgnore() {
+  router.push("/");
+}
+
 async function handleSubmit() {
   if (!token) {
     return;
@@ -135,11 +140,11 @@ async function handleSubmit() {
     await joinInvitation(token, accountId || null, config.apiBaseUrl);
 
     const message: EventMessage = {
-      type: "success",
-      message: t("account.joinInvitation.messages.success"),
       details: {
         invitation: invitation.value,
       },
+      message: t("account.joinInvitation.messages.success"),
+      type: "success",
     };
 
     eventHandlers?.notification?.(message);
@@ -151,18 +156,14 @@ async function handleSubmit() {
     console.error("Failed to join invitation:", error_);
 
     const message: EventMessage = {
-      type: "error",
       message: t("account.joinInvitation.messages.error"),
+      type: "error",
     };
 
     eventHandlers?.notification?.(message);
   } finally {
     loading.value = false;
   }
-}
-
-function handleIgnore() {
-  router.push("/");
 }
 </script>
 

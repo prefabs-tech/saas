@@ -6,8 +6,8 @@ import remove from "./remove";
 import update from "./update";
 
 export default {
-  create,
   all,
+  create,
   getById,
   list,
   remove,

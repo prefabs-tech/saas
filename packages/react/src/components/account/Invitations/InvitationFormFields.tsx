@@ -1,11 +1,11 @@
 import {
-  Select,
-  DaysInput,
   DatePicker,
+  DaysInput,
   Email,
-  useFormContext,
-  RenderAdditionalFormFields,
   FormActions,
+  RenderAdditionalFormFields,
+  Select,
+  useFormContext,
 } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
@@ -16,16 +16,16 @@ import { InvitationExpiryDateField } from "@/types";
 interface IProperties {
   expiryDateField?: InvitationExpiryDateField;
   loading?: boolean;
-  roles?: string[];
   onCancel?: () => void;
   renderAdditionalFields?: RenderAdditionalFormFields;
+  roles?: string[];
 }
 export const AccountInvitationFormFields: React.FC<IProperties> = ({
   expiryDateField,
   loading,
-  roles,
   onCancel,
   renderAdditionalFields,
+  roles,
 }) => {
   const { t } = useTranslation("account");
 
@@ -33,8 +33,8 @@ export const AccountInvitationFormFields: React.FC<IProperties> = ({
 
   const {
     formState: { errors, submitCount },
-    register,
     getFieldState,
+    register,
   } = useFormContext();
 
   const renderExpiryDateField = () => (
@@ -74,8 +74,8 @@ export const AccountInvitationFormFields: React.FC<IProperties> = ({
         <Select
           autoSelectSingleOption
           disabled={roles.length <= 1 && true}
-          name="role"
           label={t("invitations.form.fields.role.label")}
+          name="role"
           options={roles.map((role) => {
             return {
               label: t(`users.roles.${role}`),
@@ -93,21 +93,21 @@ export const AccountInvitationFormFields: React.FC<IProperties> = ({
       <FormActions
         actions={[
           {
+            disabled: !!Object.values(errors).length,
             id: "submit",
             label: t("invitations.form.actions.submit"),
-            disabled: !!Object.values(errors).length,
           },
           {
             id: "cancel",
+            label: t("invitations.form.actions.cancel"),
             onClick: (event) => {
               event.preventDefault();
               onCancel && onCancel();
             },
-            label: t("invitations.form.actions.cancel"),
           },
         ]}
-        loading={loading}
         alignment={ui?.invitation?.form?.actionsAlignment}
+        loading={loading}
         reverse={ui?.invitation?.form?.actionsReverse}
       />
     </>

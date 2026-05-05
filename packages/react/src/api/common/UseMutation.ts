@@ -5,19 +5,19 @@ import { useConfig } from "@/hooks";
 import { client } from "../axios";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type UseMutationRequestObject<D = any> = {
-  url: string;
-  method: "POST" | "PUT" | "DELETE" | "PATCH";
-  withCredentials: boolean;
-  data?: D;
+export type UseMutationOptions<R = any, D = any> = {
+  method?: "DELETE" | "PATCH" | "POST" | "PUT";
+  onError?: (error: any, request?: UseMutationRequestObject<D>) => void; // eslint-disable-line @typescript-eslint/no-explicit-any
+  onSuccess?: (response: R, request?: UseMutationRequestObject<D>) => void;
+  withCredentials?: boolean;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type UseMutationOptions<R = any, D = any> = {
-  method?: "POST" | "PUT" | "DELETE" | "PATCH";
-  withCredentials?: boolean;
-  onError?: (error: any, request?: UseMutationRequestObject<D>) => void; // eslint-disable-line @typescript-eslint/no-explicit-any
-  onSuccess?: (response: R, request?: UseMutationRequestObject<D>) => void;
+export type UseMutationRequestObject<D = any> = {
+  data?: D;
+  method: "DELETE" | "PATCH" | "POST" | "PUT";
+  url: string;
+  withCredentials: boolean;
 };
 
 export const useMutation = <MutationResponse = any, MutationData = any>( // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -25,9 +25,9 @@ export const useMutation = <MutationResponse = any, MutationData = any>( // esli
 ) => {
   const {
     method = "POST",
-    withCredentials = true,
     onError,
     onSuccess,
+    withCredentials = true,
   } = options || {};
 
   const [loading, setLoading] = useState(false);
@@ -39,9 +39,9 @@ export const useMutation = <MutationResponse = any, MutationData = any>( // esli
       setLoading(true);
 
       const requestObject = {
-        url,
-        method,
         data,
+        method,
+        url,
         withCredentials,
       };
 

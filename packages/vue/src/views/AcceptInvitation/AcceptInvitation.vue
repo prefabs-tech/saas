@@ -5,16 +5,17 @@
 </template>
 
 <script setup lang="ts">
+import type { AppConfig } from "@prefabs.tech/vue3-config";
+
 import { useConfig } from "@prefabs.tech/vue3-config";
 import { LoadingIcon } from "@prefabs.tech/vue3-ui";
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+
+import type { AccountInvitation } from "../../types/AccountInvitation";
 
 import { REDIRECT_AFTER_LOGIN_KEY } from "../../constant";
 import useInvitationStore from "../../stores/AccountInvitations";
-
-import type { AccountInvitation } from "../../types/AccountInvitation";
-import type { AppConfig } from "@prefabs.tech/vue3-config";
 
 const config = useConfig() as AppConfig;
 const route = useRoute();
@@ -81,9 +82,9 @@ async function fetchInvitation() {
 
 <style lang="css">
 .accept-invitation {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
   min-height: 100vh;
 }
 </style>

@@ -55,20 +55,20 @@
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { LoadingIcon } from "@prefabs.tech/vue3-ui";
 import { onClickOutside } from "@vueuse/core";
-import { defineProps, defineEmits, ref, computed } from "vue";
+import { computed, defineEmits, defineProps, ref } from "vue";
+
+import type { Account } from "../../types/account";
 
 import { useTranslations } from "../../index";
 import { useMyAccountsStore } from "../../stores/MyAccounts";
 
-import type { Account } from "../../types/account";
+export interface AccountSwitcherEmits {
+  (event: "switch", account?: Account): void;
+}
 
 export interface AccountSwitcherProperties {
   emptyLabel?: string;
   noHelperText?: boolean;
-}
-
-export interface AccountSwitcherEmits {
-  (event: "switch", account?: Account): void;
 }
 
 const props = withDefaults(defineProps<AccountSwitcherProperties>(), {
@@ -122,9 +122,9 @@ onClickOutside(accountSwitcherReference, () => {
 <style scoped>
 .account-switcher-helper {
   color: var(--text-color-secondary, #6b7280);
+  display: block;
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
-  display: block;
 }
 
 nav.account-switcher {
@@ -182,8 +182,8 @@ nav.account-switcher > ul.dropdown {
   display: none;
   list-style: none;
   min-width: var(--_min-width);
-  padding-inline-start: 0;
   padding: 0.15rem 0;
+  padding-inline-start: 0;
   position: absolute;
   right: 0;
   top: 120%;

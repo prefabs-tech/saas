@@ -1,159 +1,160 @@
-import { describe, it, expect } from "vitest";
+import type { ApiConfig } from "@prefabs.tech/fastify-config";
 
-import shouldUseSeparateDatabase from "../shouldUseSeparateDatabase";
+import { describe, expect, it } from "vitest";
 
 import type { AccountCreateInput } from "../../types";
-import type { ApiConfig } from "@prefabs.tech/fastify-config";
+
+import shouldUseSeparateDatabase from "../shouldUseSeparateDatabase";
 
 describe("shouldUseSeparateDatabase", () => {
   const cases = [
     {
-      subdomains: "disabled",
+      expected: false,
       multiDatabase: "required",
       slug: "foo",
+      subdomains: "disabled",
       useSeparateDatabase: true,
-      expected: false,
     },
     {
-      subdomains: "disabled",
+      expected: false,
       multiDatabase: "required",
       slug: "foo",
+      subdomains: "disabled",
       useSeparateDatabase: false,
-      expected: false,
     },
     {
-      subdomains: "disabled",
+      expected: false,
       multiDatabase: "optional",
       slug: "foo",
+      subdomains: "disabled",
       useSeparateDatabase: true,
-      expected: false,
     },
     {
-      subdomains: "disabled",
+      expected: false,
       multiDatabase: "optional",
       slug: "foo",
+      subdomains: "disabled",
       useSeparateDatabase: false,
-      expected: false,
     },
     {
-      subdomains: "disabled",
+      expected: false,
       multiDatabase: "disabled",
       slug: "foo",
+      subdomains: "disabled",
       useSeparateDatabase: true,
-      expected: false,
     },
     {
-      subdomains: "disabled",
+      expected: false,
       multiDatabase: "disabled",
       slug: "foo",
+      subdomains: "disabled",
       useSeparateDatabase: false,
-      expected: false,
     },
     {
-      subdomains: "required",
-      multiDatabase: "required",
-      slug: "foo",
-      useSeparateDatabase: true,
       expected: true,
-    },
-    {
-      subdomains: "required",
       multiDatabase: "required",
       slug: "foo",
-      useSeparateDatabase: false,
-      expected: true,
+      subdomains: "required",
+      useSeparateDatabase: true,
     },
     {
+      expected: true,
+      multiDatabase: "required",
+      slug: "foo",
       subdomains: "required",
+      useSeparateDatabase: false,
+    },
+    {
+      expected: true,
       multiDatabase: "optional",
       slug: "foo",
+      subdomains: "required",
       useSeparateDatabase: true,
-      expected: true,
     },
     {
-      subdomains: "required",
+      expected: false,
       multiDatabase: "optional",
       slug: "foo",
+      subdomains: "required",
       useSeparateDatabase: false,
-      expected: false,
     },
     {
-      subdomains: "required",
+      expected: false,
       multiDatabase: "disabled",
       slug: "foo",
+      subdomains: "required",
       useSeparateDatabase: true,
-      expected: false,
     },
     {
-      subdomains: "required",
+      expected: false,
       multiDatabase: "disabled",
       slug: "foo",
+      subdomains: "required",
       useSeparateDatabase: false,
-      expected: false,
     },
 
     {
-      subdomains: "optional",
+      expected: false,
       multiDatabase: "disabled",
       slug: "foo",
+      subdomains: "optional",
       useSeparateDatabase: true,
-      expected: false,
     },
     {
-      subdomains: "optional",
+      expected: false,
       multiDatabase: "disabled",
       slug: "foo",
+      subdomains: "optional",
       useSeparateDatabase: false,
-      expected: false,
     },
     {
-      subdomains: "optional",
+      expected: true,
       multiDatabase: "required",
       slug: "foo",
+      subdomains: "optional",
       useSeparateDatabase: true,
-      expected: true,
     },
     {
-      subdomains: "optional",
+      expected: true,
       multiDatabase: "required",
       slug: "foo",
+      subdomains: "optional",
       useSeparateDatabase: false,
-      expected: true,
     },
     {
-      subdomains: "optional",
+      expected: false,
       multiDatabase: "required",
       slug: undefined,
+      subdomains: "optional",
       useSeparateDatabase: false,
-      expected: false,
     },
     {
-      subdomains: "optional",
-      multiDatabase: "optional",
-      slug: "foo",
-      useSeparateDatabase: true,
       expected: true,
-    },
-    {
-      subdomains: "optional",
       multiDatabase: "optional",
       slug: "foo",
-      useSeparateDatabase: false,
+      subdomains: "optional",
+      useSeparateDatabase: true,
+    },
+    {
       expected: false,
+      multiDatabase: "optional",
+      slug: "foo",
+      subdomains: "optional",
+      useSeparateDatabase: false,
     },
   ];
 
   for (const {
     expected,
     multiDatabase,
-    subdomains,
     slug,
+    subdomains,
     useSeparateDatabase,
   } of cases) {
     const config = {
       saas: {
-        subdomains,
         multiDatabase: { mode: multiDatabase },
+        subdomains,
       },
     } as ApiConfig;
     const input: AccountCreateInput = { slug, useSeparateDatabase };

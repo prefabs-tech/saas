@@ -1,14 +1,15 @@
-import Service from "../service";
-
-import type { AccountUpdateInput } from "../../../types";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
+
+import type { AccountUpdateInput } from "../../../types";
+
+import Service from "../service";
 
 const updateMyAccount = async (
   request: SessionRequest,
   reply: FastifyReply,
 ) => {
-  const { config, account, slonik } = request;
+  const { account, config, slonik } = request;
   const service = new Service(config, slonik);
 
   if (!account) {

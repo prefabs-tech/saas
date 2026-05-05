@@ -1,7 +1,7 @@
+import type { IMemoryDb, SlonikAdapterOptions } from "pg-mem";
+
 /* istanbul ignore file */
 import { newDb } from "pg-mem";
-
-import type { SlonikAdapterOptions, IMemoryDb } from "pg-mem";
 
 interface IOptions {
   db?: IMemoryDb;

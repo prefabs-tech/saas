@@ -3,15 +3,15 @@ import { z } from "zod";
 import type { SaasConfig } from "../types";
 
 const accountSchema = z.object({
-  id: z.string().uuid(),
-  name: z.string().min(1).max(255),
-  registered_number: z.string().max(255).nullable().optional(),
-  tax_id: z.string().max(255).nullable().optional(),
-  individual: z.boolean(),
-  slug: z.string().max(24).nullable().optional(),
+  created_at: z.number(),
   database: z.string().max(10).nullable().optional(),
   domain: z.string().max(255).nullable().optional(),
-  created_at: z.number(),
+  id: z.string().uuid(),
+  individual: z.boolean(),
+  name: z.string().min(1).max(255),
+  registered_number: z.string().max(255).nullable().optional(),
+  slug: z.string().max(24).nullable().optional(),
+  tax_id: z.string().max(255).nullable().optional(),
   updated_at: z.number(),
 });
 
@@ -19,10 +19,16 @@ const accountCreateInputSchema = (saasConfig: SaasConfig) => {
   const subdomainsConfig = saasConfig.subdomains;
 
   return z.object({
+    database: z.string().max(10).nullable().optional(),
+    domain: z
+      .string()
+      .max(255)
+      .regex(/^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/)
+      .nullable()
+      .optional(),
+    individual: z.boolean(),
     name: z.string().min(1).max(255),
     registered_number: z.string().max(255).nullable().optional(),
-    tax_id: z.string().max(255).nullable().optional(),
-    individual: z.boolean(),
     slug:
       subdomainsConfig === "required"
         ? z.string().regex(/^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/)
@@ -31,14 +37,8 @@ const accountCreateInputSchema = (saasConfig: SaasConfig) => {
             .regex(/^(?!.*-+$)[\da-z][\da-z-]{0,23}([\da-z])?$/)
             .nullable()
             .optional(),
-    database: z.string().max(10).nullable().optional(),
-    domain: z
-      .string()
-      .max(255)
-      .regex(/^([\da-z]([\da-z-]{0,61}[\da-z])?\.)+[a-z]{2,}$/)
-      .nullable()
-      .optional(),
+    tax_id: z.string().max(255).nullable().optional(),
   });
 };
 
-export { accountSchema, accountCreateInputSchema };
+export { accountCreateInputSchema, accountSchema };

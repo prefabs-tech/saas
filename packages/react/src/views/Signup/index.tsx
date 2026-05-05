@@ -11,11 +11,11 @@ import { AccountSignupData, User, UserSignupData } from "@/types/account";
 type SignupProperties = {
   onSignupFailure?: (
     err?: any, // eslint-disable-line @typescript-eslint/no-explicit-any
-    data?: UserSignupData | AccountSignupData,
+    data?: AccountSignupData | UserSignupData,
   ) => Promise<void> | void;
   onSignupSuccess?: (
     res?: User,
-    data?: UserSignupData | AccountSignupData,
+    data?: AccountSignupData | UserSignupData,
   ) => Promise<void> | void;
 };
 
@@ -28,7 +28,7 @@ export const SignupPage = ({
   const {
     meta: { isMainApp },
   } = useAccounts();
-  const { apiBaseUrl, accounts, rootDomain } = useConfig();
+  const { accounts, apiBaseUrl, rootDomain } = useConfig();
 
   const { apiPath = SIGNUP_PATH_DEFAULT, appRedirection = true } =
     accounts?.signup || {};
@@ -38,7 +38,7 @@ export const SignupPage = ({
   const handleSubmit = (data: AccountSignupData | UserSignupData) => {
     setLoading(true);
 
-    signup({ apiBaseUrl, path: apiPath, data })
+    signup({ apiBaseUrl, data, path: apiPath })
       .then(async (result) => {
         if (result) {
           if (onSignupSuccess) {
@@ -63,8 +63,8 @@ export const SignupPage = ({
 
   return (
     <AuthPage
-      title={isMainApp ? t("signup.title.account") : t("signup.title.user")}
       centered
+      title={isMainApp ? t("signup.title.account") : t("signup.title.user")}
     >
       {isMainApp ? (
         <AccountSignupForm handleSubmit={handleSubmit} loading={loading} />

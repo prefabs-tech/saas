@@ -1,3 +1,5 @@
+import type { FastifyInstance } from "fastify";
+
 import FastifyPlugin from "fastify-plugin";
 
 import createSaasRoles from "./lib/createSaasRoles";
@@ -7,8 +9,6 @@ import accountRoutes from "./model/accounts/controller";
 import accountTypeRoutes from "./model/accountTypes/controller";
 import accountUserRoutes from "./model/accountUsers/controller";
 import accountDiscoveryPlugin from "./plugins/accountDiscoveryPlugin";
-
-import type { FastifyInstance } from "fastify";
 
 const plugin = FastifyPlugin(async (fastify: FastifyInstance) => {
   const { config, log, slonik } = fastify;

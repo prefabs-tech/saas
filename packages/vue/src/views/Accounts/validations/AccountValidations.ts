@@ -1,9 +1,9 @@
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { z } from "zod";
 
-import { useTranslations } from "../../../index";
-
 import type { SaasConfig } from "../../../types/config";
+
+import { useTranslations } from "../../../index";
 
 export const createValidationSchemas = () => {
   const messages = useTranslations();

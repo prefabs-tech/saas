@@ -29,22 +29,23 @@
 </template>
 
 <script setup lang="ts">
+import type { AppConfig } from "@prefabs.tech/vue3-config";
+import type { TableColumnDefinition } from "@prefabs.tech/vue3-tanstack-table";
+
 // Imports
 import { useConfig } from "@prefabs.tech/vue3-config";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { Table } from "@prefabs.tech/vue3-tanstack-table";
 import { BadgeComponent, ButtonElement } from "@prefabs.tech/vue3-ui";
-import { ref, onMounted, h, inject, computed } from "vue";
+import { computed, h, inject, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-
-import InvitationModal from "./_components/InvitationModal.vue";
-import { useTranslations } from "../../index";
-import useInvitationStore from "../../stores/AccountInvitations";
 
 import type { AccountInvitation } from "../../types/AccountInvitation";
 import type { SaasEventHandlers } from "../../types/plugin";
-import type { AppConfig } from "@prefabs.tech/vue3-config";
-import type { TableColumnDefinition } from "@prefabs.tech/vue3-tanstack-table";
+
+import { useTranslations } from "../../index";
+import useInvitationStore from "../../stores/AccountInvitations";
+import InvitationModal from "./_components/InvitationModal.vue";
 
 const props = defineProps({
   account: {
@@ -135,16 +136,15 @@ const columns: TableColumnDefinition<AccountInvitation>[] = [
   },
   {
     accessorKey: "role",
-    header: t("account.invitations.table.columns.role"),
     cell: ({ row: { original } }) =>
       h(BadgeComponent, {
         label: t(`account.invitations.table.roles.${original.role}`),
         severity: original.role === "admin" ? "primary" : "success",
       }),
+    header: t("account.invitations.table.columns.role"),
   },
   {
     accessorKey: "status",
-    header: t("account.invitations.table.columns.status"),
     cell: ({ row: { original } }) =>
       h(BadgeComponent, {
         label: original.acceptedAt
@@ -158,18 +158,19 @@ const columns: TableColumnDefinition<AccountInvitation>[] = [
             ? "danger"
             : "warning",
       }),
+    header: t("account.invitations.table.columns.status"),
   },
   {
     accessorKey: "expiresAt",
-    header: t("account.invitations.table.columns.expiresAt"),
     cell: ({ row: { original } }) =>
       new Date(original.expiresAt).toLocaleDateString(),
+    header: t("account.invitations.table.columns.expiresAt"),
   },
   {
     accessorKey: "createdAt",
-    header: t("account.invitations.table.columns.createdAt"),
     cell: ({ row: { original } }) =>
       new Date(original.createdAt).toLocaleDateString(),
+    header: t("account.invitations.table.columns.createdAt"),
   },
 ];
 
@@ -198,8 +199,8 @@ async function handleDelete(invitation: AccountInvitation) {
 
     if (eventHandlers?.notification) {
       eventHandlers.notification({
-        type: "success",
         message: t("account.invitations.messages.deleted"),
+        type: "success",
       });
     }
   } catch (error) {
@@ -208,8 +209,8 @@ async function handleDelete(invitation: AccountInvitation) {
 
     if (eventHandlers?.notification) {
       eventHandlers.notification({
-        type: "error",
         message: t("account.invitations.messages.deleteError"),
+        type: "error",
       });
     }
   }
@@ -228,8 +229,8 @@ async function handleResend(invitation: AccountInvitation) {
 
     if (eventHandlers?.notification) {
       eventHandlers.notification({
-        type: "success",
         message: t("account.invitations.messages.resent"),
+        type: "success",
       });
     }
   } catch (error) {
@@ -238,8 +239,8 @@ async function handleResend(invitation: AccountInvitation) {
 
     if (eventHandlers?.notification) {
       eventHandlers.notification({
-        type: "error",
         message: t("account.invitations.messages.resendError"),
+        type: "error",
       });
     }
   }
@@ -253,8 +254,8 @@ async function handleRevoke(invitation: AccountInvitation) {
 
     if (eventHandlers?.notification) {
       eventHandlers.notification({
-        type: "success",
         message: t("account.invitations.messages.revoked"),
+        type: "success",
       });
     }
   } catch (error) {
@@ -263,8 +264,8 @@ async function handleRevoke(invitation: AccountInvitation) {
 
     if (eventHandlers?.notification) {
       eventHandlers.notification({
-        type: "error",
         message: t("account.invitations.messages.revokeError"),
+        type: "error",
       });
     }
   }
@@ -272,16 +273,16 @@ async function handleRevoke(invitation: AccountInvitation) {
 
 function onActionSelect(rowData: { action: string; data: AccountInvitation }) {
   switch (rowData.action) {
+    case "deleteInvitation": {
+      handleDelete(rowData.data);
+      break;
+    }
     case "resendInvitation": {
       handleResend(rowData.data);
       break;
     }
     case "revokeInvitation": {
       handleRevoke(rowData.data);
-      break;
-    }
-    case "deleteInvitation": {
-      handleDelete(rowData.data);
       break;
     }
   }

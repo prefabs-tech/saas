@@ -9,18 +9,19 @@
 </template>
 
 <script setup lang="ts">
+import type { AppConfig } from "@prefabs.tech/vue3-config";
+
 import { useConfig } from "@prefabs.tech/vue3-config";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
-import { inject, ref, onMounted } from "vue";
+import { inject, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import AccountForm from "./_components/Accountform.vue";
+import type { Account } from "../../types/account";
+import type { EventMessage, SaasEventHandlers } from "../../types/plugin";
+
 import { useTranslations } from "../../index";
 import useAccountsStore from "../../stores/accounts";
-
-import type { Account } from "../../types/account";
-import type { SaasEventHandlers, EventMessage } from "../../types/plugin";
-import type { AppConfig } from "@prefabs.tech/vue3-config";
+import AccountForm from "./_components/Accountform.vue";
 
 const route = useRoute();
 const accountId = route.params.id as string;
@@ -48,21 +49,21 @@ const onCancel = () => {
   router.push({ name: "accounts" });
 };
 
-async function prepareComponent() {
-  const response = await getAccount(accountId, config.apiBaseUrl);
-  account.value = response;
-}
-
 function onAccountUpdated(account: Account) {
   const message: EventMessage = {
-    type: "success",
-    message: t("accounts.messages.updated"),
     details: {
       account: account,
     },
+    message: t("accounts.messages.updated"),
+    type: "success",
   };
 
   eventHandlers?.notification?.(message);
   router.push({ name: "accounts" });
+}
+
+async function prepareComponent() {
+  const response = await getAccount(accountId, config.apiBaseUrl);
+  account.value = response;
 }
 </script>

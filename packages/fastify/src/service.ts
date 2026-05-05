@@ -1,10 +1,11 @@
-import { BaseService } from "@prefabs.tech/fastify-slonik";
-
-import SqlFactory from "./sqlFactory";
-
-import type { AccountAwareService as Service } from "./types/service";
 import type { ApiConfig } from "@prefabs.tech/fastify-config";
 import type { Database } from "@prefabs.tech/fastify-slonik";
+
+import { BaseService } from "@prefabs.tech/fastify-slonik";
+
+import type { AccountAwareService as Service } from "./types/service";
+
+import SqlFactory from "./sqlFactory";
 
 abstract class AccountAwareBaseService<
   T,
@@ -14,20 +15,6 @@ abstract class AccountAwareBaseService<
   extends BaseService<T, C, U>
   implements Service<T, C, U>
 {
-  /* eslint-enabled */
-  protected _accountId: string | undefined;
-
-  constructor(
-    config: ApiConfig,
-    database: Database,
-    accountId?: string,
-    schema?: string,
-  ) {
-    super(config, database, schema);
-
-    this._accountId = accountId;
-  }
-
   get accountId(): string | undefined {
     return this._accountId;
   }
@@ -41,6 +28,20 @@ abstract class AccountAwareBaseService<
 
   get sqlFactoryClass() {
     return SqlFactory;
+  }
+
+  /* eslint-enabled */
+  protected _accountId: string | undefined;
+
+  constructor(
+    config: ApiConfig,
+    database: Database,
+    accountId?: string,
+    schema?: string,
+  ) {
+    super(config, database, schema);
+
+    this._accountId = accountId;
   }
 }
 

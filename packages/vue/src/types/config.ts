@@ -14,7 +14,7 @@ export type SaasConfig = {
   multiDatabase: boolean;
   rootDomain: string;
   saasAccountRoles?: string[];
-  subdomains: "required" | "optional" | "disabled";
+  subdomains: "disabled" | "optional" | "required";
   ui?: {
     account?: {
       form?: {

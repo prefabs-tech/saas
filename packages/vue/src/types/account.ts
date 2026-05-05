@@ -1,14 +1,26 @@
 interface Account {
   createdAt: number;
-  database?: string | null;
-  domain?: string | null;
+  database?: null | string;
+  domain?: null | string;
   id: string;
   individual: boolean;
   name: string;
-  registeredNumber?: string | null;
-  slug?: string | null;
-  taxId?: string | null;
+  registeredNumber?: null | string;
+  slug?: null | string;
+  taxId?: null | string;
   updatedAt: number;
+}
+
+interface AccountInput {
+  database?: null | string;
+  domain?: null | string;
+  id?: string;
+  individual: boolean;
+  name: string;
+  registeredNumber?: null | string;
+  slug?: null | string;
+  taxId?: null | string;
+  useSeparateDatabase?: boolean;
 }
 
 interface Accounts {
@@ -17,30 +29,18 @@ interface Accounts {
   totalCount: number;
 }
 
-interface AccountInput {
-  database?: string | null;
-  domain?: string | null;
-  id?: string;
-  individual: boolean;
-  name: string;
-  registeredNumber?: string | null;
-  slug?: string | null;
-  taxId?: string | null;
-  useSeparateDatabase?: boolean;
-}
-
 interface User {
   disabled?: boolean;
   email: string;
-  givenName: string | null;
+  givenName: null | string;
   id: string;
   isEmailVerified?: boolean;
   isProfileCompleted?: boolean;
   lastLoginAt: number;
-  middleNames: string | null;
+  middleNames: null | string;
   roles: string[];
   signedUpAt: number;
-  surname: string | null;
+  surname: null | string;
   thirdParty?: {
     id: string;
     userId: string;
@@ -48,4 +48,4 @@ interface User {
   timeJoined: number;
 }
 
-export type { Account, Accounts, AccountInput, User };
+export type { Account, AccountInput, Accounts, User };

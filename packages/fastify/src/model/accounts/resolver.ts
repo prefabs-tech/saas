@@ -1,8 +1,9 @@
-import Service from "./service";
-
-import type { AccountCreateInput, AccountUpdateInput } from "../../types";
 import type { FilterInput, SortInput } from "@prefabs.tech/fastify-slonik";
 import type { MercuriusContext } from "mercurius";
+
+import type { AccountCreateInput, AccountUpdateInput } from "../../types";
+
+import Service from "./service";
 
 const Mutation = {
   createAccount: async (
@@ -50,8 +51,8 @@ const Mutation = {
   updateAccount: async (
     parent: unknown,
     arguments_: {
-      id: number;
       data: AccountUpdateInput;
+      id: number;
     },
     context: MercuriusContext,
   ) => {
@@ -84,9 +85,9 @@ const Query = {
   accounts: async (
     parent: unknown,
     arguments_: {
+      filters?: FilterInput;
       limit: number;
       offset: number;
-      filters?: FilterInput;
       sort?: SortInput[];
     },
     context: MercuriusContext,

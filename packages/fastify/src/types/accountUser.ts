@@ -1,8 +1,8 @@
 interface AccountUser {
-  id: number;
   accountId: string;
-  userId: string;
+  id: number;
   roleId: string;
+  userId: string;
 }
 
 type AccountUserCreateInput = Partial<Omit<AccountUser, "id">> & {
@@ -10,7 +10,7 @@ type AccountUserCreateInput = Partial<Omit<AccountUser, "id">> & {
 };
 
 type AccountUserUpdateInput = Partial<
-  Omit<AccountUser, "id" | "accountId" | "userId">
+  Omit<AccountUser, "accountId" | "id" | "userId">
 >;
 
 export type { AccountUser, AccountUserCreateInput, AccountUserUpdateInput };

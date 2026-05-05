@@ -1,22 +1,39 @@
-import { formatDate } from "@prefabs.tech/fastify-slonik";
+import type { FilterInput } from "@prefabs.tech/fastify-slonik";
 
-import AccountInvitationSqlFactory from "./sqlFactory";
-import getSaasConfig from "../../config";
-import AccountAwareBaseService from "../../service";
-import AccountService from "../accounts/service";
+import { formatDate } from "@prefabs.tech/fastify-slonik";
 
 import type {
   AccountInvitation,
   AccountInvitationCreateInput,
   AccountInvitationUpdateInput,
 } from "../../types";
-import type { FilterInput } from "@prefabs.tech/fastify-slonik";
+
+import getSaasConfig from "../../config";
+import AccountAwareBaseService from "../../service";
+import AccountService from "../accounts/service";
+import AccountInvitationSqlFactory from "./sqlFactory";
 
 class AccountInvitationService extends AccountAwareBaseService<
   AccountInvitation,
   AccountInvitationCreateInput,
   AccountInvitationUpdateInput
 > {
+  get factory() {
+    return super.factory as AccountInvitationSqlFactory;
+  }
+
+  get saasConfig() {
+    return getSaasConfig(this.config);
+  }
+
+  get sqlFactoryClass() {
+    return AccountInvitationSqlFactory;
+  }
+
+  get table() {
+    return this.saasConfig.tables.accountInvitations.name;
+  }
+
   async findOneByToken(token: string): Promise<AccountInvitation | null> {
     if (!this.validateUUID(token)) {
       // eslint-disable-next-line unicorn/no-null
@@ -44,22 +61,6 @@ class AccountInvitationService extends AccountAwareBaseService<
     }
 
     return result;
-  }
-
-  get factory() {
-    return super.factory as AccountInvitationSqlFactory;
-  }
-
-  get saasConfig() {
-    return getSaasConfig(this.config);
-  }
-
-  get sqlFactoryClass() {
-    return AccountInvitationSqlFactory;
-  }
-
-  get table() {
-    return this.saasConfig.tables.accountInvitations.name;
   }
 
   protected async preCreate(

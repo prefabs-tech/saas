@@ -1,6 +1,6 @@
-import Service from "../service";
+import type { FastifyReply, FastifyRequest } from "fastify";
 
-import type { FastifyRequest, FastifyReply } from "fastify";
+import Service from "../service";
 
 const getById = async (request: FastifyRequest, reply: FastifyReply) => {
   const service = new Service(request.config, request.slonik);
