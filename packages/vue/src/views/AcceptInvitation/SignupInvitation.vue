@@ -151,9 +151,9 @@ async function handleSubmit(userData: UserSignupData) {
 }
 
 .signup-invitation .error-message {
-  text-align: center;
   color: var(--error-color, #dc3545);
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .signup-invitation .invitation-content {

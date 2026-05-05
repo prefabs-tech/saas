@@ -1,7 +1,7 @@
-@import "./account-switcher.css";
-@import "./account.css";
-@import "./accounts-table.css";
-@import "./accounts.css";
-@import "./error.css";
-@import "./join-invitation.css";
-@import "./my-accounts.css";
+@import url("./account-switcher.css");
+@import url("./account.css");
+@import url("./accounts-table.css");
+@import url("./accounts.css");
+@import url("./error.css");
+@import url("./join-invitation.css");
+@import url("./my-accounts.css");
