@@ -3,7 +3,7 @@ import { GetInvitationResponse } from "@/types";
 
 export const useGetInvitationQuery = <Response extends GetInvitationResponse>(
   token: string,
-  accountId?: string | null,
+  accountId?: null | string,
   options?: UseQueryOptions<Response>,
 ) => {
   const url = accountId

@@ -1,9 +1,10 @@
-import AccountUserService from "../../accountUsers/service";
-import Service from "../service";
-
-import type { AccountUser } from "../../../types";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
+
+import type { AccountUser } from "../../../types";
+
+import AccountUserService from "../../accountUsers/service";
+import Service from "../service";
 
 const myAccounts = async (request: SessionRequest, reply: FastifyReply) => {
   const { config, dbSchema, slonik, user } = request;

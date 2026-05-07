@@ -1,6 +1,6 @@
 import { LoadingPage } from "@prefabs.tech/react-ui";
 import { useEffect } from "react";
-import { useParams, useSearchParams, Navigate } from "react-router-dom";
+import { Navigate, useParams, useSearchParams } from "react-router-dom";
 
 import { DEFAULT_PATHS } from "@/constants";
 import { useGetInvitationQuery } from "@/hooks";
@@ -31,13 +31,13 @@ export const AcceptInvitationPage = () => {
   if (invitation) {
     return invitation.userId ? (
       <Navigate
-        to={`${DEFAULT_PATHS.INVITATION_JOIN.replace(":token", token!)}?accountId=${accountId}`}
         replace={true}
+        to={`${DEFAULT_PATHS.INVITATION_JOIN.replace(":token", token!)}?accountId=${accountId}`}
       />
     ) : (
       <Navigate
-        to={`${DEFAULT_PATHS.INVITATION_SIGNUP.replace(":token", token!)}?accountId=${accountId}`}
         replace={true}
+        to={`${DEFAULT_PATHS.INVITATION_SIGNUP.replace(":token", token!)}?accountId=${accountId}`}
       />
     );
   }

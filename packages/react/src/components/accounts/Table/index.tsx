@@ -1,34 +1,34 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import {
   TDataTable as DataTable,
-  TDataTableProperties,
-  TRequestJSON,
   TableColumnDefinition,
   Tag,
+  TDataTableProperties,
+  TRequestJSON,
 } from "@prefabs.tech/react-ui";
 import React from "react";
 
-import { useConfig } from "@/hooks";
-
 import type { Account } from "@/types";
 
-type VisibleColumn = "name" | "taxId" | "type" | string;
+import { useConfig } from "@/hooks";
 
 export interface AccountsTableProperties extends Partial<
-  Omit<TDataTableProperties<Account>, "data" | "visibleColumns" | "fetchData">
+  Omit<TDataTableProperties<Account>, "data" | "fetchData" | "visibleColumns">
 > {
-  fetchAccounts?: (arguments_: TRequestJSON) => void;
   accounts: Array<Account>;
+  fetchAccounts?: (arguments_: TRequestJSON) => void;
   visibleColumns?: VisibleColumn[];
 }
 
+type VisibleColumn = "name" | "taxId" | "type" | string;
+
 export const AccountsTable = ({
+  accounts,
   className = "table-accounts",
   columns = [],
-  accounts,
+  fetchAccounts,
   totalRecords = 0,
   visibleColumns = ["name", "registeredNumber", "taxId", "type"],
-  fetchAccounts,
   ...tableOptions
 }: AccountsTableProperties) => {
   const { t } = useTranslation("accounts");
@@ -38,9 +38,6 @@ export const AccountsTable = ({
   const entityColumnsOrg: Array<TableColumnDefinition<Account>> = [
     {
       accessorKey: "registeredNumber",
-      header: t("table.columns.registeredNumber"),
-      enableSorting: true,
-      enableColumnFilter: true,
       cell: ({ row: { original } }) => {
         if (!original.registeredNumber) {
           return <code>&#8212;</code>;
@@ -48,12 +45,12 @@ export const AccountsTable = ({
 
         return original.registeredNumber;
       },
+      enableColumnFilter: true,
+      enableSorting: true,
+      header: t("table.columns.registeredNumber"),
     },
     {
       accessorKey: "taxId",
-      header: t("table.columns.taxId"),
-      enableSorting: true,
-      enableColumnFilter: true,
       cell: ({ row: { original } }) => {
         if (!original.taxId) {
           return <code>&#8212;</code>;
@@ -61,33 +58,36 @@ export const AccountsTable = ({
 
         return original.taxId;
       },
+      enableColumnFilter: true,
+      enableSorting: true,
+      header: t("table.columns.taxId"),
     },
   ];
 
   const entityColumnsInd: Array<TableColumnDefinition<Account>> = [
     {
-      align: "center",
       accessorKey: "type",
-      header: t("table.columns.type"),
+      align: "center",
       cell({ row: { original } }) {
         if (original.individual) {
           return <Tag fullWidth label={t("account.type.individual")} />;
         }
 
         return (
-          <Tag fullWidth label={t("account.type.organization")} color="green" />
+          <Tag color="green" fullWidth label={t("account.type.organization")} />
         );
       },
+      header: t("table.columns.type"),
     },
   ];
 
   const defaultColumns: Array<TableColumnDefinition<Account>> = [
     {
       accessorKey: "name",
-      header: t("table.columns.name"),
-      enableSorting: true,
       enableColumnFilter: true,
       enableGlobalFilter: true,
+      enableSorting: true,
+      header: t("table.columns.name"),
     },
     ...(entity === "both" || entity === "organization" ? entityColumnsOrg : []),
     ...(entity === "both" ? entityColumnsInd : []),
@@ -95,20 +95,20 @@ export const AccountsTable = ({
 
   return (
     <DataTable
-      id="accounts-table"
       className={className}
       columns={[...defaultColumns, ...columns]}
       data={accounts}
       emptyTableMessage={t("table.emptyMessage")}
       fetchData={fetchAccounts}
+      id="accounts-table"
+      initialSorting={[{ desc: false, id: "name" }]}
+      paginationOptions={{
+        itemsPerPageControlLabel: t("table.pagination.rowsPerPage"),
+        pageInputLabel: t("table.pagination.pageControl"),
+      }}
+      persistState={true}
       totalRecords={totalRecords}
       visibleColumns={visibleColumns}
-      paginationOptions={{
-        pageInputLabel: t("table.pagination.pageControl"),
-        itemsPerPageControlLabel: t("table.pagination.rowsPerPage"),
-      }}
-      initialSorting={[{ id: "name", desc: false }]}
-      persistState={true}
       {...tableOptions}
     ></DataTable>
   );

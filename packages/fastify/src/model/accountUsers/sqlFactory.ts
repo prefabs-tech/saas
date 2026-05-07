@@ -8,15 +8,27 @@ import humps from "humps";
 import {
   FragmentSqlToken,
   IdentifierSqlToken,
-  sql,
   type QuerySqlToken,
+  sql,
 } from "slonik";
+
+import type { AccountUserCreateInput } from "../../types";
 
 import getSaasConfig from "../../config";
 import AccountAwareSqlFactory from "../../sqlFactory";
-
-import type { AccountUserCreateInput } from "../../types";
 class AccountUserSqlFactory extends AccountAwareSqlFactory {
+  get saasConfig() {
+    return getSaasConfig(this.config);
+  }
+
+  get table() {
+    return this.saasConfig.tables.accountUsers.name;
+  }
+
+  get tableIdentifier(): IdentifierSqlToken {
+    return sql.identifier(["account_users"]);
+  }
+
   getCreateSql(data: AccountUserCreateInput): QuerySqlToken {
     const identifiers = [];
     const values = [];
@@ -39,23 +51,6 @@ class AccountUserSqlFactory extends AccountAwareSqlFactory {
       ON CONFLICT (account_id, user_id)
       DO NOTHING
       RETURNING *;
-    `;
-  }
-
-  getUsersSql(): QuerySqlToken {
-    return sql.type(this.validationSchema)`
-      SELECT
-        ${this.getUserTableIdentifier()}.*,
-        ${this.tableIdentifier}.role_id as role,
-        ${this.tableIdentifier}.date_start,
-        ${this.tableIdentifier}.date_end,
-        ${this.tableIdentifier}.created_at,
-        ${this.tableIdentifier}.updated_at,
-        ${this.tableIdentifier}.account_id
-      FROM ${this.tableFragment} AS ${this.tableIdentifier}
-      INNER JOIN ${this.getUserTableFragment()} AS ${this.getUserTableIdentifier()}
-        ON (${this.getUserTableIdentifier()}.id = ${this.tableIdentifier}.user_id)
-      ${this.getWhereFragment()};
     `;
   }
 
@@ -83,16 +78,21 @@ class AccountUserSqlFactory extends AccountAwareSqlFactory {
     `;
   }
 
-  get saasConfig() {
-    return getSaasConfig(this.config);
-  }
-
-  get table() {
-    return this.saasConfig.tables.accountUsers.name;
-  }
-
-  get tableIdentifier(): IdentifierSqlToken {
-    return sql.identifier(["account_users"]);
+  getUsersSql(): QuerySqlToken {
+    return sql.type(this.validationSchema)`
+      SELECT
+        ${this.getUserTableIdentifier()}.*,
+        ${this.tableIdentifier}.role_id as role,
+        ${this.tableIdentifier}.date_start,
+        ${this.tableIdentifier}.date_end,
+        ${this.tableIdentifier}.created_at,
+        ${this.tableIdentifier}.updated_at,
+        ${this.tableIdentifier}.account_id
+      FROM ${this.tableFragment} AS ${this.tableIdentifier}
+      INNER JOIN ${this.getUserTableFragment()} AS ${this.getUserTableIdentifier()}
+        ON (${this.getUserTableIdentifier()}.id = ${this.tableIdentifier}.user_id)
+      ${this.getWhereFragment()};
+    `;
   }
 
   protected getUserTableFragment(): FragmentSqlToken {

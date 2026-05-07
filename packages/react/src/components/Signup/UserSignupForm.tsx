@@ -14,14 +14,14 @@ import { UserFields } from "./UserFields";
 
 export type UserSignupProperties = {
   email?: string;
-  loading?: boolean;
   handleSubmit: (formData: UserSignupData) => void;
+  loading?: boolean;
 };
 
 export const UserSignupForm = ({
   email,
-  loading,
   handleSubmit,
+  loading,
 }: UserSignupProperties) => {
   const { t } = useTranslation("accounts");
 
@@ -34,6 +34,9 @@ export const UserSignupForm = ({
 
   const userSignupSchema = z
     .object({
+      confirmPassword: z
+        .string()
+        .min(1, t("signup.validations.confirmPassword.required")),
       email: emailSchema({
         invalid: t("signup.validations.email.invalid"),
         required: t("signup.validations.email.required"),
@@ -51,9 +54,6 @@ export const UserSignupForm = ({
           minUppercase: 1,
         },
       ),
-      confirmPassword: z
-        .string()
-        .min(1, t("signup.validations.confirmPassword.required")),
       ...(termsAndConditionsUrl
         ? {
             termsAndConditions: z.boolean().refine((value) => value === true, {
@@ -74,13 +74,13 @@ export const UserSignupForm = ({
   return (
     <>
       <Provider
-        onSubmit={(data) => onSubmit(data)}
+        className="account-signup"
         defaultValues={{
+          confirmPassword: "",
           email: email || "",
           password: "",
-          confirmPassword: "",
         }}
-        className="account-signup"
+        onSubmit={(data) => onSubmit(data)}
         validationSchema={userSignupSchema}
       >
         <UserFields disableEmailField={!!email} />

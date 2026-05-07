@@ -10,7 +10,7 @@ type Properties = {
 };
 
 export const MyAccounts = ({ onAccountSwitch }: Properties) => {
-  const { loading, accountLoading, accounts, activeAccount, switchAccount } =
+  const { accountLoading, accounts, activeAccount, loading, switchAccount } =
     useAccounts();
 
   const handleSwitch = (account: AccountType) => {
@@ -27,9 +27,9 @@ export const MyAccounts = ({ onAccountSwitch }: Properties) => {
       {accounts?.map((account) => {
         return (
           <Account
-            key={account.id}
             account={account}
             active={account.id === activeAccount?.id}
+            key={account.id}
             loading={accountLoading}
             onSwitch={() => handleSwitch(account)}
           />

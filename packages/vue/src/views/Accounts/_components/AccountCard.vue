@@ -37,13 +37,14 @@
 </template>
 
 <script setup lang="ts">
+import type { PropType } from "vue";
+
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { BadgeComponent, ButtonElement } from "@prefabs.tech/vue3-ui";
 
-import { useTranslations } from "../../../index";
-
 import type { Account } from "../../../types/account";
-import type { PropType } from "vue";
+
+import { useTranslations } from "../../../index";
 
 const messages = useTranslations();
 const { t } = useI18n({ messages });
@@ -116,7 +117,7 @@ defineEmits<{
   font-weight: 600;
   line-height: 1.4;
   margin: 0;
-  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 @media (min-width: 768px) {

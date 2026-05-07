@@ -1,3 +1,7 @@
+import type { FastifyInstance, FastifyRequest } from "fastify";
+import type { EmailDeliveryInterface } from "supertokens-node/lib/build/ingredients/emaildelivery/types";
+import type { TypeEmailVerificationEmailDeliveryInput } from "supertokens-node/recipe/emailverification/types";
+
 import {
   EMAIL_VERIFICATION_PATH,
   getOrigin,
@@ -6,10 +10,6 @@ import {
 import emailVerification from "supertokens-node/recipe/emailverification";
 
 import Email from "../../utils/email";
-
-import type { FastifyInstance, FastifyRequest } from "fastify";
-import type { EmailDeliveryInterface } from "supertokens-node/lib/build/ingredients/emaildelivery/types";
-import type { TypeEmailVerificationEmailDeliveryInput } from "supertokens-node/recipe/emailverification/types";
 
 const sendEmailVerificationEmail = (
   originalImplementation: EmailDeliveryInterface<TypeEmailVerificationEmailDeliveryInput>,
@@ -48,13 +48,13 @@ const sendEmailVerificationEmail = (
         subject:
           fastify.config.user.emailOverrides?.emailVerification?.subject ||
           "Email Verification",
+        templateData: {
+          emailVerifyLink,
+        },
         templateName:
           fastify.config.user.emailOverrides?.emailVerification?.templateName ||
           "email-verification",
         to: email,
-        templateData: {
-          emailVerifyLink,
-        },
       });
     } catch (error: unknown) {
       if (error instanceof Error) {

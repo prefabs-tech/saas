@@ -1,10 +1,3 @@
-import { createTableFragment } from "@prefabs.tech/fastify-slonik";
-import { TABLE_USERS } from "@prefabs.tech/fastify-user";
-import { sql } from "slonik";
-
-import getSaasConfig from "../../config";
-import AccountAwareSqlFactory from "../../sqlFactory";
-
 import type { FilterInput, SortInput } from "@prefabs.tech/fastify-slonik";
 import type {
   FragmentSqlToken,
@@ -12,7 +5,26 @@ import type {
   QuerySqlToken,
 } from "slonik";
 
+import { createTableFragment } from "@prefabs.tech/fastify-slonik";
+import { TABLE_USERS } from "@prefabs.tech/fastify-user";
+import { sql } from "slonik";
+
+import getSaasConfig from "../../config";
+import AccountAwareSqlFactory from "../../sqlFactory";
+
 class AccountInvitationSqlFactory extends AccountAwareSqlFactory {
+  get saasConfig() {
+    return getSaasConfig(this.config);
+  }
+
+  get table() {
+    return this.saasConfig.tables.accountInvitations.name;
+  }
+
+  get tableIdentifier(): IdentifierSqlToken {
+    return sql.identifier(["account_invitations"]);
+  }
+
   getListSql(
     limit: number,
     offset?: number,
@@ -30,18 +42,6 @@ class AccountInvitationSqlFactory extends AccountAwareSqlFactory {
       ${this.getSortFragment(sort)}
       ${this.getLimitFragment(limit, offset)};
     `;
-  }
-
-  get saasConfig() {
-    return getSaasConfig(this.config);
-  }
-
-  get table() {
-    return this.saasConfig.tables.accountInvitations.name;
-  }
-
-  get tableIdentifier(): IdentifierSqlToken {
-    return sql.identifier(["account_invitations"]);
   }
 
   protected getUserTableFragment(): FragmentSqlToken {

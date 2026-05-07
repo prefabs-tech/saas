@@ -1,12 +1,13 @@
-import AccountInvitationService from "../service";
-
-import type { AccountInvitation } from "../../../types";
 import type { PaginatedList } from "@prefabs.tech/fastify-slonik";
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
 
+import type { AccountInvitation } from "../../../types";
+
+import AccountInvitationService from "../service";
+
 const list = async (request: SessionRequest, reply: FastifyReply) => {
-  const { config, account, dbSchema, log, query, slonik } = request;
+  const { account, config, dbSchema, log, query, slonik } = request;
 
   const requestParameters = request.params as { accountId: string };
 
@@ -29,10 +30,10 @@ const list = async (request: SessionRequest, reply: FastifyReply) => {
   }
 
   try {
-    const { limit, offset, filters, sort } = query as {
+    const { filters, limit, offset, sort } = query as {
+      filters?: string;
       limit: number;
       offset?: number;
-      filters?: string;
       sort?: string;
     };
 

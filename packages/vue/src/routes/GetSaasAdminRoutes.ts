@@ -1,45 +1,46 @@
+import type { Router, RouteRecordRaw } from "vue-router";
+
+import type { AdminRoutesProperties, RouteOverwrite } from "../types/routes";
+
 import { DEFAULT_PATHS } from "../constant";
 import AccountAdd from "../views/Accounts/Add.vue";
 import AccountEdit from "../views/Accounts/Edit.vue";
 import Accounts from "../views/Accounts/Index.vue";
 import AccountView from "../views/Accounts/View.vue";
 
-import type { AdminRoutesProperties, RouteOverwrite } from "../types/routes";
-import type { Router, RouteRecordRaw } from "vue-router";
-
 const _adminRoutes = {
   accounts: {
+    component: Accounts,
     meta: {
       authenticated: true,
     },
-    component: Accounts,
     name: "accounts",
     path: DEFAULT_PATHS.ACCOUNTS,
   } as RouteRecordRaw,
 
   accountsAdd: {
+    component: AccountAdd,
     meta: {
       authenticated: true,
     },
-    component: AccountAdd,
     name: "accountsAdd",
     path: DEFAULT_PATHS.ACCOUNTS_ADD,
   } as RouteRecordRaw,
 
   accountsEdit: {
+    component: AccountEdit,
     meta: {
       authenticated: true,
     },
-    component: AccountEdit,
     name: "accountsEdit",
     path: DEFAULT_PATHS.ACCOUNTS_EDIT,
   } as RouteRecordRaw,
 
   accountsView: {
+    component: AccountView,
     meta: {
       authenticated: true,
     },
-    component: AccountView,
     name: "accountsView",
     path: DEFAULT_PATHS.ACCOUNTS_VIEW,
   } as RouteRecordRaw,
@@ -60,7 +61,7 @@ const getRoute = (
 };
 
 export const getSaasAdminRoutes = (
-  type: "authenticated" | "unauthenticated" | "public" = "authenticated",
+  type: "authenticated" | "public" | "unauthenticated" = "authenticated",
   options?: AdminRoutesProperties,
 ): RouteRecordRaw[] => {
   const { accounts, accountsAdd, accountsEdit, accountsView } =
@@ -86,7 +87,7 @@ export const getSaasAdminRoutes = (
 
 export const addSaasAdminRoutes = (
   router: Router,
-  type: "authenticated" | "unauthenticated" | "public" = "authenticated",
+  type: "authenticated" | "public" | "unauthenticated" = "authenticated",
   options?: AdminRoutesProperties,
 ): void => {
   const routes = getSaasAdminRoutes(type, options);

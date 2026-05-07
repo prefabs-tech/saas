@@ -16,8 +16,8 @@ export const AccountFields = () => {
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     formState: { errors, submitCount },
-    watch,
     setValue,
+    watch,
   } = useFormContext();
 
   const individual = watch("individual");
@@ -74,9 +74,9 @@ export const AccountFields = () => {
           <TextInput label={t("signup.fields.slug")} name="slug" />
           {multiDatabase && (
             <SwitchInput
+              disabled={!slug}
               label={t("signup.fields.useSeparateDb")}
               name="useSeparateDatabase"
-              disabled={!slug}
             />
           )}
         </>

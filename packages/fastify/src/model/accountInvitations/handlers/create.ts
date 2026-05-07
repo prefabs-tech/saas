@@ -1,8 +1,17 @@
+import type { FastifyReply } from "fastify";
+import type { SessionRequest } from "supertokens-node/framework/fastify";
+
 import {
   computeInvitationExpiresAt,
   getUserService,
   validateEmail,
 } from "@prefabs.tech/fastify-user";
+
+import type {
+  Account,
+  AccountInvitation,
+  AccountInvitationCreateInput,
+} from "../../../types";
 
 import getSaasConfig from "../../../config";
 import { ROLE_SAAS_ACCOUNT_MEMBER } from "../../../constants";
@@ -11,17 +20,9 @@ import AccountService from "../../accounts/service";
 import AccountUserService from "../../accountUsers/service";
 import AccountInvitationService from "../service";
 
-import type {
-  Account,
-  AccountInvitation,
-  AccountInvitationCreateInput,
-} from "../../../types";
-import type { FastifyReply } from "fastify";
-import type { SessionRequest } from "supertokens-node/framework/fastify";
-
 const create = async (request: SessionRequest, reply: FastifyReply) => {
   const { body, config, log, server, slonik, user } = request;
-  let account: Account | undefined | null = request.account;
+  let account: Account | null | undefined = request.account;
 
   try {
     if (!user) {
@@ -66,9 +67,9 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
 
     if (!result.success) {
       return reply.status(422).send({
-        statusCode: 422,
-        status: "ERROR",
         message: result.message,
+        status: "ERROR",
+        statusCode: 422,
       });
     }
 
@@ -97,9 +98,9 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
       // check if user of the email already exists for the account
       if (accountUserCount > 0) {
         return reply.status(422).send({
-          statusCode: 422,
-          status: "ERROR",
           message: `User with email ${email} already exists for the account`,
+          status: "ERROR",
+          statusCode: 422,
         });
       }
     }
@@ -135,9 +136,9 @@ const create = async (request: SessionRequest, reply: FastifyReply) => {
     } catch (error: any) {
       console.log(error);
       return reply.status(422).send({
-        statusCode: 422,
-        status: "ERROR",
         message: error.message,
+        status: "ERROR",
+        statusCode: 422,
       });
     }
 

@@ -81,19 +81,20 @@
 </template>
 
 <script setup lang="ts">
+import type { PropType } from "vue";
+
 import { useConfig } from "@prefabs.tech/vue3-config";
 import { Form, FormActions, Input, SwitchInput } from "@prefabs.tech/vue3-form";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
-import { ref, computed, inject, watch } from "vue";
+import { computed, inject, ref, watch } from "vue";
+
+import type { Account, AccountInput } from "../../../types/account";
+import type { SaasConfig } from "../../../types/config";
 
 import { CONFIG_UI_DEFAULT } from "../../../constant";
 import { useTranslations } from "../../../index";
 import useAccountsStore from "../../../stores/accounts";
 import { createValidationSchemas } from "../validations/AccountValidations";
-
-import type { Account, AccountInput } from "../../../types/account";
-import type { SaasConfig } from "../../../types/config";
-import type { PropType } from "vue";
 
 const props = defineProps({
   account: {
@@ -107,11 +108,11 @@ const props = defineProps({
 const emit = defineEmits(["cancel", "account:created", "account:updated"]);
 
 const {
+  createSlugSchema,
+  domainSchema,
   nameSchema,
   registeredNumberSchema,
   taxIdSchema,
-  createSlugSchema,
-  domainSchema,
 } = createValidationSchemas();
 
 const accountsStore = useAccountsStore();

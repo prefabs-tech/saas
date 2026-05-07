@@ -1,15 +1,15 @@
-import Service from "../service";
-
 import type { FastifyReply } from "fastify";
 import type { SessionRequest } from "supertokens-node/framework/fastify";
+
+import Service from "../service";
 
 const list = async (request: SessionRequest, reply: FastifyReply) => {
   const service = new Service(request.config, request.slonik);
 
-  const { limit, offset, filters, sort } = request.query as {
+  const { filters, limit, offset, sort } = request.query as {
+    filters?: string;
     limit: number;
     offset?: number;
-    filters?: string;
     sort?: string;
   };
 

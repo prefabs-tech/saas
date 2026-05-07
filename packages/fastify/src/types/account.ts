@@ -1,19 +1,19 @@
 interface Account {
+  database: null | string;
+  domain: null | string;
   id: string;
-  name: string;
-  registeredNumber: string | null;
-  taxId: string | null;
   individual: boolean;
-  typeId: number | null;
-  slug: string | null;
-  domain: string | null;
-  database: string | null;
+  name: string;
+  registeredNumber: null | string;
+  slug: null | string;
+  taxId: null | string;
+  typeId: null | number;
 }
 
 type AccountCreateInput = Partial<Omit<Account, "id">> & {
   useSeparateDatabase?: boolean;
 };
 
-type AccountUpdateInput = Partial<Omit<Account, "id" | "database" | "name">>;
+type AccountUpdateInput = Partial<Omit<Account, "database" | "id" | "name">>;
 
 export type { Account, AccountCreateInput, AccountUpdateInput };

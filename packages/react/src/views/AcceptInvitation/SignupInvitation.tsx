@@ -13,7 +13,7 @@ export type SignupInvitationProperties = {
   centered?: boolean;
   onAcceptInvitationSuccess?: (
     response?: AcceptInvitationResponse,
-    request?: UseMutationRequestObject<UserSignupData | undefined>,
+    request?: UseMutationRequestObject<undefined | UserSignupData>,
   ) => void;
 };
 
@@ -27,12 +27,12 @@ export const SignupInvitationPage = ({
   const [searchParameters] = useSearchParams();
   const accountId = searchParameters.get("accountId");
 
-  const [now, setNow] = useState<number | null>(null);
+  const [now, setNow] = useState<null | number>(null);
 
   const {
     data: invitation,
-    loading: invitationLoading,
     error,
+    loading: invitationLoading,
     trigger,
   } = useGetInvitationQuery(token!, accountId, {
     lazy: true,
@@ -44,14 +44,14 @@ export const SignupInvitationPage = ({
 
   const { loading: acceptLoading, trigger: triggerAcceptInvitation } =
     useSignupInvitationMutation({
+      onError: () => {
+        toast.error(t("signupInvitation.messages.error"));
+      },
       onSuccess: (response, request) => {
         onAcceptInvitationSuccess &&
           onAcceptInvitationSuccess(response, request);
 
         toast.success(t("signupInvitation.messages.success"));
-      },
-      onError: () => {
-        toast.error(t("signupInvitation.messages.error"));
       },
     });
 
@@ -93,10 +93,10 @@ export const SignupInvitationPage = ({
 
   return (
     <AuthPage
-      className="signup"
-      title={t("user:signup.title")}
-      loading={invitationLoading || !invitation}
       centered={centered}
+      className="signup"
+      loading={invitationLoading || !invitation}
+      title={t("user:signup.title")}
     >
       {renderPageContent()}
     </AuthPage>

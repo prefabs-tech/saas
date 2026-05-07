@@ -1,6 +1,9 @@
-import { existsSync } from "node:fs";
+import type { FastifyInstance } from "fastify";
 
 import FastifyPlugin from "fastify-plugin";
+import { existsSync } from "node:fs";
+
+import type { Account } from "../types";
 
 import getSaasConfig from "../config";
 import changeSchema from "../lib/changeSchema";
@@ -8,9 +11,6 @@ import getDatabaseConfig from "../lib/getDatabaseConfig";
 import initializePgPool from "../lib/initializePgPool";
 import runAccountMigrations from "../migrations/runAccountMigrations";
 import Service from "../model/accounts/service";
-
-import type { Account } from "../types";
-import type { FastifyInstance } from "fastify";
 
 const plugin = async (fastify: FastifyInstance) => {
   try {

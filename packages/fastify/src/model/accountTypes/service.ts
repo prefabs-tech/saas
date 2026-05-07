@@ -1,21 +1,33 @@
 import { BaseService } from "@prefabs.tech/fastify-slonik";
 
-import AccountTypeSqlFactory from "./sqlFactory";
-import getSaasConfig from "../../config";
-
 import type {
+  AccountType,
   AccountTypeCreateInput,
-  AccountTypeUpdateInput,
   AccountTypeI18nCreateInput,
   AccountTypeI18nUpdateInput,
-  AccountType,
+  AccountTypeUpdateInput,
 } from "../../types";
+
+import getSaasConfig from "../../config";
+import AccountTypeSqlFactory from "./sqlFactory";
 
 class AccountTypeService extends BaseService<
   AccountType,
   AccountTypeCreateInput,
   AccountTypeUpdateInput & Record<string, unknown>
 > {
+  get factory() {
+    return super.factory as AccountTypeSqlFactory;
+  }
+
+  get saasConfig() {
+    return getSaasConfig(this.config);
+  }
+
+  get sqlFactoryClass() {
+    return AccountTypeSqlFactory;
+  }
+
   async createWithI18ns(
     data: AccountTypeCreateInput,
   ): Promise<AccountType | undefined> {
@@ -80,18 +92,6 @@ class AccountTypeService extends BaseService<
     });
 
     return result ? ((await this.findById(result.id)) ?? undefined) : undefined;
-  }
-
-  get factory() {
-    return super.factory as AccountTypeSqlFactory;
-  }
-
-  get sqlFactoryClass() {
-    return AccountTypeSqlFactory;
-  }
-
-  get saasConfig() {
-    return getSaasConfig(this.config);
   }
 }
 

@@ -1,6 +1,6 @@
-import Service from "../service";
+import type { FastifyReply, FastifyRequest } from "fastify";
 
-import type { FastifyRequest, FastifyReply } from "fastify";
+import Service from "../service";
 
 const getAccountTypes = async (
   request: FastifyRequest,
@@ -9,10 +9,10 @@ const getAccountTypes = async (
   const { config, log, query, slonik } = request;
 
   try {
-    const { limit, offset, filters, sort } = query as {
+    const { filters, limit, offset, sort } = query as {
+      filters?: string;
       limit: number;
       offset?: number;
-      filters?: string;
       sort?: string;
     };
 

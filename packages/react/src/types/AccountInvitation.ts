@@ -1,37 +1,40 @@
 import type { Account, User } from "./account";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AcceptInvitationResponse = any;
+
 export interface AccountInvitation {
-  id: number;
   acceptedAt?: number;
   account?: Account;
   accountId: string;
+  createdAt: number;
   email: string;
   expiresAt: number;
+  id: number;
   invitedBy?: User;
   invitedById: string;
   payload?: Record<string, unknown>;
   revokedAt?: number;
   role: string;
   token: string;
+  updatedAt: number;
   user?: User;
   userId?: string;
-  createdAt: number;
-  updatedAt: number;
 }
 
 export type AccountInvitationCreateInput = Omit<
   AccountInvitation,
-  | "id"
   | "acceptedAt"
   | "account"
+  | "createdAt"
   | "expiresAt"
+  | "id"
   | "invitedBy"
   | "payload"
   | "revokedAt"
   | "token"
-  | "user"
-  | "createdAt"
   | "updatedAt"
+  | "user"
 > & {
   expiresAt: string;
   payload?: string;
@@ -40,21 +43,21 @@ export type AccountInvitationCreateInput = Omit<
 export type AccountInvitationUpdateInput = Partial<
   Omit<
     AccountInvitation,
-    | "id"
     | "acceptedAt"
     | "account"
     | "accountId"
+    | "createdAt"
     | "email"
     | "expiresAt"
+    | "id"
     | "invitedBy"
     | "invitedById"
     | "payload"
     | "revokedAt"
     | "role"
     | "token"
-    | "user"
-    | "createdAt"
     | "updatedAt"
+    | "user"
   > & {
     acceptedAt: string;
     expiresAt: string;
@@ -62,22 +65,19 @@ export type AccountInvitationUpdateInput = Partial<
   }
 >;
 
+export type AddAccountInvitationResponse = AccountInvitation;
+
+export type DeleteAccountInvitationResponse = AccountInvitation;
+
+export type GetAccountInvitationsResponse = AccountInvitation[];
+
+export type GetInvitationResponse = AccountInvitation;
+
 export interface InvitationExpiryDateField {
   display: boolean;
   mode: "calendar" | "input";
 }
 
-export type GetAccountInvitationsResponse = AccountInvitation[];
-
-export type AddAccountInvitationResponse = AccountInvitation;
-
-export type DeleteAccountInvitationResponse = AccountInvitation;
-
 export type ResendAccountInvitationResponse = AccountInvitation;
 
 export type RevokeAccountInvitationResponse = AccountInvitation;
-
-export type GetInvitationResponse = AccountInvitation;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AcceptInvitationResponse = any;

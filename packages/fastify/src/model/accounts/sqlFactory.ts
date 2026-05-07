@@ -1,3 +1,5 @@
+import type { IdentifierSqlToken, QuerySqlToken } from "slonik";
+
 import {
   createTableFragment,
   DefaultSqlFactory,
@@ -5,9 +7,19 @@ import {
 import { sql } from "slonik";
 
 import getSaasConfig from "../../config";
-
-import type { IdentifierSqlToken, QuerySqlToken } from "slonik";
 class AccountSqlFactory extends DefaultSqlFactory {
+  get getAccountUserTableIdentifier(): IdentifierSqlToken {
+    return sql.identifier(["account_users"]);
+  }
+
+  get saasConfig() {
+    return getSaasConfig(this.config);
+  }
+
+  get table() {
+    return this.saasConfig.tables.accounts.name;
+  }
+
   getFindByHostnameSql(hostname: string, rootDomain: string): QuerySqlToken {
     const filterFragment = sql.fragment`domain = ${hostname}
       OR (
@@ -57,18 +69,6 @@ class AccountSqlFactory extends DefaultSqlFactory {
         filterFragment: sql.fragment`${this.getAccountUserTableIdentifier}.user_id = ${userId}`,
       })};
     `;
-  }
-
-  get getAccountUserTableIdentifier(): IdentifierSqlToken {
-    return sql.identifier(["account_users"]);
-  }
-
-  get saasConfig() {
-    return getSaasConfig(this.config);
-  }
-
-  get table() {
-    return this.saasConfig.tables.accounts.name;
   }
 }
 

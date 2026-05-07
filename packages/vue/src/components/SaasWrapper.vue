@@ -34,17 +34,17 @@
 <script setup lang="ts">
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { LoadingIcon, Page } from "@prefabs.tech/vue3-ui";
-import { ref, onMounted, inject, defineProps } from "vue";
+import { defineProps, inject, onMounted, ref } from "vue";
 
+import type { SaasConfig } from "../types/config";
+
+import { doesAccountExist } from "../api/accounts";
+import { useGlobalAccountError } from "../composables/UseGlobalAccountError";
 import { useTranslations } from "../index";
+import { checkIsAdminApp } from "../utils/common";
 import ConfigProvider from "./ConfigProvider.vue";
 import NotFoundMessage from "./NotFoundMessage.vue";
 import SaasAccountsProvider from "./SaasAccountsProvider.vue";
-import { doesAccountExist } from "../api/accounts";
-import { useGlobalAccountError } from "../composables/UseGlobalAccountError";
-import { checkIsAdminApp } from "../utils/common";
-
-import type { SaasConfig } from "../types/config";
 
 export interface SaasWrapperProperties {
   userId?: string;
@@ -65,7 +65,7 @@ const messages = useTranslations();
 const { t } = useI18n({ messages });
 
 const loading = ref(true);
-const error = ref<{ status?: number } | null>(null);
+const error = ref<null | { status?: number }>(null);
 const { showAccountError } = useGlobalAccountError();
 
 const isAdminApp = checkIsAdminApp();

@@ -1,21 +1,20 @@
-import { existsSync } from "node:fs";
-
 import { ApiConfig } from "@prefabs.tech/fastify-config";
 import { createFilesTableQuery } from "@prefabs.tech/fastify-s3";
 import { createUsersTableQuery } from "@prefabs.tech/fastify-user";
 import { migrate } from "@prefabs.tech/postgres-migrations";
+import { existsSync } from "node:fs";
 import * as pg from "pg";
 
-import {
-  createAccountInvitationsTableQuery,
-  createAccountUsersTableQuery,
-} from "./queries";
+import type { Account } from "../types";
+
 import getSaasConfig from "../config";
 import changeSchema from "../lib/changeSchema";
 import getDatabaseConfig from "../lib/getDatabaseConfig";
 import initializePgPool from "../lib/initializePgPool";
-
-import type { Account } from "../types";
+import {
+  createAccountInvitationsTableQuery,
+  createAccountUsersTableQuery,
+} from "./queries";
 
 const runAccountMigrations = async (
   config: ApiConfig,

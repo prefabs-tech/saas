@@ -33,14 +33,14 @@ export const SAAS_ACCOUNT_ROLES_DEFAULT = [
 ];
 
 export const DEFAULT_PATHS = {
+  // app routes
+  ACCOUNT_SETTINGS: "/account-settings",
   // admin routes
   ACCOUNTS: "/accounts",
-  ACCOUNTS_VIEW: "/accounts/:id",
   ACCOUNTS_ADD: "/accounts/new",
   ACCOUNTS_EDIT: "/accounts/:id/edit",
 
-  // app routes
-  ACCOUNT_SETTINGS: "/account-settings",
+  ACCOUNTS_VIEW: "/accounts/:id",
   INVITATION_ACCEPT: "/invitation/token/:token",
   INVITATION_JOIN: "/join/token/:token",
   INVITATION_SIGNUP: "/signup/token/:token",

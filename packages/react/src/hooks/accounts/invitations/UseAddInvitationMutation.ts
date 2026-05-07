@@ -2,8 +2,8 @@ import { useCallback } from "react";
 
 import { useMutation, UseMutationOptions } from "@/api";
 import {
-  AddAccountInvitationResponse,
   AccountInvitationCreateInput,
+  AddAccountInvitationResponse,
 } from "@/types";
 
 export const useAddInvitationMutation = <

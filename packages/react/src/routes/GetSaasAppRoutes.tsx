@@ -13,13 +13,13 @@ import {
 } from "@/views";
 
 type GetSaasAppRoutesProperties = {
-  type?: "authenticated" | "unauthenticated" | "public";
   options?: AppRoutesProperties;
+  type?: "authenticated" | "public" | "unauthenticated";
 };
 
 export const GetSaasAppRoutes = ({
-  type = "authenticated",
   options,
+  type = "authenticated",
 }: GetSaasAppRoutesProperties) => {
   const {
     accountSettings,
@@ -39,38 +39,38 @@ export const GetSaasAppRoutes = ({
 
   let routes = [
     {
+      disabled: accountSettings?.disabled,
+      element: accountSettings?.element || <AccountSettingsPage />,
       // path: accountSettings?.path || DEFAULT_PATHS.ACCOUNT_SETTINGS,
       path: DEFAULT_PATHS.ACCOUNT_SETTINGS,
-      element: accountSettings?.element || <AccountSettingsPage />,
-      disabled: accountSettings?.disabled,
     },
     {
+      disabled: invitationJoin?.disabled || !isMainApp,
+      element: invitationJoin?.element || <JoinInvitationPage />,
       // path: invitationJoin?.path || DEFAULT_PATHS.INVITATION_JOIN,
       path: DEFAULT_PATHS.INVITATION_JOIN,
-      element: invitationJoin?.element || <JoinInvitationPage />,
-      disabled: invitationJoin?.disabled || !isMainApp,
     },
     {
+      disabled: myAccounts?.disabled,
+      element: myAccounts?.element || <MyAccountsPage />,
       // path: myAccounts?.path || DEFAULT_PATHS.MY_ACCOUNTS,
       path: DEFAULT_PATHS.MY_ACCOUNTS,
-      element: myAccounts?.element || <MyAccountsPage />,
-      disabled: myAccounts?.disabled,
     },
   ];
 
   if (type === "unauthenticated") {
     routes = [
       {
+        disabled: invitationSignup?.disabled,
+        element: invitationSignup?.element || <SignupInvitationPage />,
         // path: invitationSignup?.path || DEFAULT_PATHS.INVITATION_SIGNUP,
         path: DEFAULT_PATHS.INVITATION_SIGNUP,
-        element: invitationSignup?.element || <SignupInvitationPage />,
-        disabled: invitationSignup?.disabled,
       },
       {
+        disabled: signup?.disabled,
+        element: signup?.element || <SignupPage />,
         // path: signup?.path || DEFAULT_PATHS.SIGNUP,
         path: DEFAULT_PATHS.SIGNUP,
-        element: signup?.element || <SignupPage />,
-        disabled: signup?.disabled,
       },
     ];
   }
@@ -78,10 +78,10 @@ export const GetSaasAppRoutes = ({
   if (type === "public") {
     routes = [
       {
+        disabled: invitationAccept?.disabled,
+        element: invitationAccept?.element || <AcceptInvitationPage />,
         // path: invitationAccept?.path || DEFAULT_PATHS.INVITATION_ACCEPT,
         path: DEFAULT_PATHS.INVITATION_ACCEPT,
-        element: invitationAccept?.element || <AcceptInvitationPage />,
-        disabled: invitationAccept?.disabled,
       },
     ];
   }
@@ -90,7 +90,7 @@ export const GetSaasAppRoutes = ({
     <>
       {routes.map((route) =>
         !route.disabled ? (
-          <Route key={route.path} path={route.path} element={route.element} />
+          <Route element={route.element} key={route.path} path={route.path} />
         ) : null,
       )}
     </>
@@ -98,6 +98,6 @@ export const GetSaasAppRoutes = ({
 };
 
 export const getSaasAppRoutes = (
-  type: "authenticated" | "unauthenticated" | "public" = "authenticated",
+  type: "authenticated" | "public" | "unauthenticated" = "authenticated",
   options?: AppRoutesProperties,
-) => <GetSaasAppRoutes type={type} options={options} />;
+) => <GetSaasAppRoutes options={options} type={type} />;

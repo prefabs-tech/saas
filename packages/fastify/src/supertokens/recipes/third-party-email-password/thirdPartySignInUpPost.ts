@@ -1,7 +1,7 @@
-import { getUserService, ROLE_USER } from "@prefabs.tech/fastify-user";
-
 import type { FastifyInstance, FastifyRequest } from "fastify";
 import type { APIInterface } from "supertokens-node/recipe/thirdpartyemailpassword/types";
+
+import { getUserService, ROLE_USER } from "@prefabs.tech/fastify-user";
 
 const thirdPartySignInUpPOST = (
   originalImplementation: APIInterface,
@@ -36,8 +36,8 @@ const thirdPartySignInUpPOST = (
         );
 
         return {
-          status: "GENERAL_ERROR",
           message: "Something went wrong",
+          status: "GENERAL_ERROR",
         };
       }
 

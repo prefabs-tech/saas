@@ -1,8 +1,8 @@
 import { inject } from "vue";
 
-import { useMyAccountsStore } from "../stores/MyAccounts";
-
 import type { SaasConfig } from "../types/config";
+
+import { useMyAccountsStore } from "../stores/MyAccounts";
 
 export const useMyAccounts = (config?: SaasConfig) => {
   const myAccountsStore = useMyAccountsStore();

@@ -24,20 +24,21 @@
 </template>
 
 <script setup lang="ts">
+import type { AppConfig } from "@prefabs.tech/vue3-config";
+
 import { useConfig } from "@prefabs.tech/vue3-config";
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { Page } from "@prefabs.tech/vue3-ui";
-import { ref, onMounted, computed, inject } from "vue";
+import { computed, inject, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-
-import UserSignupForm from "../../components/UserSignupForm.vue";
-import { useTranslations } from "../../index";
-import useInvitationStore from "../../stores/AccountInvitations";
 
 import type { AccountInvitation } from "../../types/AccountInvitation";
 import type { SaasEventHandlers } from "../../types/plugin";
 import type { UserSignupData } from "../../types/user";
-import type { AppConfig } from "@prefabs.tech/vue3-config";
+
+import UserSignupForm from "../../components/UserSignupForm.vue";
+import { useTranslations } from "../../index";
+import useInvitationStore from "../../stores/AccountInvitations";
 
 export interface SignupInvitationProperties {
   centered?: boolean;
@@ -119,8 +120,8 @@ async function handleSubmit(userData: UserSignupData) {
 
     if (eventHandlers?.notification) {
       eventHandlers.notification({
-        type: "success",
         message: t("account.signupInvitation.messages.success"),
+        type: "success",
       });
     }
 
@@ -131,8 +132,8 @@ async function handleSubmit(userData: UserSignupData) {
 
     if (eventHandlers?.notification) {
       eventHandlers.notification({
-        type: "error",
         message: t("account.signupInvitation.messages.error"),
+        type: "error",
       });
     }
   } finally {
@@ -150,9 +151,9 @@ async function handleSubmit(userData: UserSignupData) {
 }
 
 .signup-invitation .error-message {
-  text-align: center;
   color: var(--error-color, #dc3545);
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .signup-invitation .invitation-content {

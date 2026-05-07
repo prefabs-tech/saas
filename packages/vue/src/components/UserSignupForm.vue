@@ -71,11 +71,11 @@ import { Form } from "vee-validate";
 import { computed, inject, ref, watch } from "vue";
 import { z } from "zod";
 
-import { CONFIG_UI_DEFAULT } from "../constant";
-import { useTranslations } from "../index";
-
 import type { SaasConfig } from "../types/config";
 import type { UserSignupData } from "../types/user";
+
+import { CONFIG_UI_DEFAULT } from "../constant";
+import { useTranslations } from "../index";
 
 export interface UserSignupFormProperties {
   actions?: Array<Record<string, unknown>>;
@@ -120,14 +120,21 @@ const messages = useTranslations();
 const { t } = useI18n({ messages });
 
 const formData = ref({
+  confirmPassword: "",
   email: props.email || "",
   password: "",
-  confirmPassword: "",
   termsAndConditions: false,
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let fieldSchema: Record<string, any> = {
+  confirmPassword: passwordSchema(
+    {
+      required: t("account.signup.validations.password.required"),
+      weak: t("account.signup.validations.password.weak"),
+    },
+    { minLength: 0 },
+  ),
   email: emailSchema(
     {
       invalid: t("account.signup.validations.email.invalid"),
@@ -141,13 +148,6 @@ let fieldSchema: Record<string, any> = {
       weak: t("account.signup.validations.password.weak"),
     },
     config?.user?.options?.password,
-  ),
-  confirmPassword: passwordSchema(
-    {
-      required: t("account.signup.validations.password.required"),
-      weak: t("account.signup.validations.password.weak"),
-    },
-    { minLength: 0 },
   ),
 };
 

@@ -9,6 +9,18 @@ import { FragmentSqlToken, QuerySqlToken, sql } from "slonik";
 import { z } from "zod";
 
 class AccountAwareSqlFactory extends DefaultSqlFactory {
+  get accountId(): string | undefined {
+    return this._accountId;
+  }
+
+  set accountId(accountId: string | undefined) {
+    this._accountId = accountId;
+  }
+
+  get applyAccountIdFilter(): boolean {
+    return this._applyAccountIdFilter;
+  }
+
   protected _accountId: string | undefined;
 
   protected _applyAccountIdFilter: boolean = true;
@@ -135,26 +147,14 @@ class AccountAwareSqlFactory extends DefaultSqlFactory {
     `;
   }
 
-  get accountId(): string | undefined {
-    return this._accountId;
-  }
-
-  get applyAccountIdFilter(): boolean {
-    return this._applyAccountIdFilter;
-  }
-
-  set accountId(accountId: string | undefined) {
-    this._accountId = accountId;
-  }
-
-  protected getAdditionalFilterFragments(): FragmentSqlToken[] {
-    return [this.getAccountIdFilterFragment()];
-  }
-
   protected getAccountIdFilterFragment(): FragmentSqlToken {
     return this.accountId && this.applyAccountIdFilter
       ? sql.fragment`${this.tableIdentifier}.account_id = ${this.accountId}`
       : sql.fragment``;
+  }
+
+  protected getAdditionalFilterFragments(): FragmentSqlToken[] {
+    return [this.getAccountIdFilterFragment()];
   }
 }
 

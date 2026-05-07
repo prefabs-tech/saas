@@ -9,10 +9,10 @@ import revoke from "./revoke";
 import signup from "./signup";
 
 export default {
-  join,
   create,
   getByAccountId,
   getByToken,
+  join,
   list,
   remove,
   resend,

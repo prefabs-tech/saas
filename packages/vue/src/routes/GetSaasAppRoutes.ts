@@ -1,3 +1,7 @@
+import type { Router, RouteRecordRaw } from "vue-router";
+
+import type { AppRoutesProperties, RouteOverwrite } from "../types/routes";
+
 import { DEFAULT_PATHS } from "../constant";
 import AcceptInvitation from "../views/AcceptInvitation/AcceptInvitation.vue";
 import JoinInvitation from "../views/AcceptInvitation/JoinInvitation.vue";
@@ -5,9 +9,6 @@ import SignupInvitation from "../views/AcceptInvitation/SignupInvitation.vue";
 import AccountSettings from "../views/Accounts/AccountSettings.vue";
 import MyAccounts from "../views/Accounts/MyAccounts.vue";
 import Signup from "../views/Signup/Index.vue";
-
-import type { AppRoutesProperties, RouteOverwrite } from "../types/routes";
-import type { Router, RouteRecordRaw } from "vue-router";
 
 const _appRoutes = {
   // Account management routes (authenticated)
@@ -20,13 +21,14 @@ const _appRoutes = {
     path: DEFAULT_PATHS.ACCOUNT_SETTINGS,
   } as RouteRecordRaw,
 
-  myAccounts: {
-    component: MyAccounts,
+  // Public routes
+  invitationAccept: {
+    component: AcceptInvitation,
     meta: {
-      authenticated: true,
+      authenticated: false,
     },
-    name: "myAccounts",
-    path: DEFAULT_PATHS.MY_ACCOUNTS,
+    name: "invitationAccept",
+    path: DEFAULT_PATHS.INVITATION_ACCEPT,
   } as RouteRecordRaw,
 
   // Invitation routes (authenticated)
@@ -49,6 +51,15 @@ const _appRoutes = {
     path: DEFAULT_PATHS.INVITATION_SIGNUP,
   } as RouteRecordRaw,
 
+  myAccounts: {
+    component: MyAccounts,
+    meta: {
+      authenticated: true,
+    },
+    name: "myAccounts",
+    path: DEFAULT_PATHS.MY_ACCOUNTS,
+  } as RouteRecordRaw,
+
   signup: {
     component: Signup,
     meta: {
@@ -56,16 +67,6 @@ const _appRoutes = {
     },
     name: "signup",
     path: DEFAULT_PATHS.SIGNUP,
-  } as RouteRecordRaw,
-
-  // Public routes
-  invitationAccept: {
-    component: AcceptInvitation,
-    meta: {
-      authenticated: false,
-    },
-    name: "invitationAccept",
-    path: DEFAULT_PATHS.INVITATION_ACCEPT,
   } as RouteRecordRaw,
 };
 
@@ -84,7 +85,7 @@ const getRoute = (
 };
 
 export const getSaasAppRoutes = (
-  type: "authenticated" | "unauthenticated" | "public" = "authenticated",
+  type: "authenticated" | "public" | "unauthenticated" = "authenticated",
   options?: AppRoutesProperties,
 ): RouteRecordRaw[] => {
   const {
@@ -122,7 +123,7 @@ export const getSaasAppRoutes = (
 
 export const addSaasAppRoutes = (
   router: Router,
-  type: "authenticated" | "unauthenticated" | "public" = "authenticated",
+  type: "authenticated" | "public" | "unauthenticated" = "authenticated",
   options?: AppRoutesProperties,
 ): void => {
   const routes = getSaasAppRoutes(type, options);

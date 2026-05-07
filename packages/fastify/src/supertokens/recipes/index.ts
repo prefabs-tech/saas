@@ -1,23 +1,23 @@
+import type {
+  EmailVerificationRecipe,
+  SessionRecipe,
+  ThirdPartyEmailPasswordRecipe,
+} from "@prefabs.tech/fastify-user";
+
 import { sendEmailVerificationEmail } from "./email-verification";
 import { createNewSession, verifySession } from "./session";
 import {
   emailPasswordSignIn,
+  emailPasswordSignInPOST,
   emailPasswordSignUp,
   emailPasswordSignUpPOST,
-  thirdPartySignInUp,
-  thirdPartySignInUpPOST,
-  resetPasswordUsingToken,
-  sendPasswordResetEmail,
-  emailPasswordSignInPOST,
   generatePasswordResetTokenPOST,
   getUserById,
+  resetPasswordUsingToken,
+  sendPasswordResetEmail,
+  thirdPartySignInUp,
+  thirdPartySignInUpPOST,
 } from "./third-party-email-password";
-
-import type {
-  EmailVerificationRecipe,
-  ThirdPartyEmailPasswordRecipe,
-  SessionRecipe,
-} from "@prefabs.tech/fastify-user";
 
 const emailVerificationConfig: EmailVerificationRecipe = {
   sendEmail: sendEmailVerificationEmail,
@@ -55,8 +55,8 @@ const thirdPartyEmailPasswordConfig: ThirdPartyEmailPasswordRecipe = {
 
 const recipes = {
   emailVerification: emailVerificationConfig,
-  thirdPartyEmailPassword: thirdPartyEmailPasswordConfig,
   session: sessionConfig,
+  thirdPartyEmailPassword: thirdPartyEmailPasswordConfig,
 };
 
 export default recipes;

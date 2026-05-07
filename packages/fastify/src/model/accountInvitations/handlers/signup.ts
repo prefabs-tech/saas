@@ -1,3 +1,6 @@
+import type { User } from "@prefabs.tech/fastify-user";
+import type { FastifyReply, FastifyRequest } from "fastify";
+
 import { formatDate } from "@prefabs.tech/fastify-slonik";
 import {
   ROLE_USER,
@@ -12,9 +15,6 @@ import isInvitationValid from "../../../lib/isInvitationValid";
 import AccountService from "../../accounts/service";
 import AccountInvitationService from "../service";
 
-import type { User } from "@prefabs.tech/fastify-user";
-import type { FastifyReply, FastifyRequest } from "fastify";
-
 const signup = async (request: SessionRequest, reply: FastifyReply) => {
   const { authEmailPrefix, body, config, log, slonik } =
     request as FastifyRequest<{
@@ -25,8 +25,8 @@ const signup = async (request: SessionRequest, reply: FastifyReply) => {
     }>;
 
   const requestParameters = request.params as {
-    token: string;
     accountId: string;
+    token: string;
   };
 
   try {
@@ -38,9 +38,9 @@ const signup = async (request: SessionRequest, reply: FastifyReply) => {
 
     if (!emailResult.success) {
       return reply.status(422).send({
-        statusCode: 422,
-        status: "ERROR",
         message: emailResult.message,
+        status: "ERROR",
+        statusCode: 422,
       });
     }
 
@@ -49,9 +49,9 @@ const signup = async (request: SessionRequest, reply: FastifyReply) => {
 
     if (!passwordStrength.success) {
       return reply.status(422).send({
-        statusCode: 422,
-        status: "ERROR",
         message: passwordStrength.message,
+        status: "ERROR",
+        statusCode: 422,
       });
     }
 
@@ -83,29 +83,29 @@ const signup = async (request: SessionRequest, reply: FastifyReply) => {
     // validate the invitation
     if (!accountInvitation || !isInvitationValid(accountInvitation)) {
       return reply.status(422).send({
-        statusCode: 422,
-        status: "ERROR",
         message: "Invitation is invalid or has expired",
+        status: "ERROR",
+        statusCode: 422,
       });
     }
 
     // compare the FieldInput email to the invitation email
     if (accountInvitation.email != email) {
       return reply.status(422).send({
-        statusCode: 422,
-        status: "ERROR",
         message: "Email do not match with the invitation",
+        status: "ERROR",
+        statusCode: 422,
       });
     }
 
     // signup
     const signUpResponse = await emailPasswordSignUp(email, password, {
+      account: account,
+      authEmailPrefix: authEmailPrefix,
+      autoVerifyEmail: true,
+      dbSchema: dbSchema,
       roles: [config.user.role || ROLE_USER],
       saasAccountRole: accountInvitation.role,
-      autoVerifyEmail: true,
-      account: account,
-      dbSchema: dbSchema,
-      authEmailPrefix: authEmailPrefix,
     });
 
     if (signUpResponse.status !== "OK") {
@@ -143,9 +143,9 @@ const signup = async (request: SessionRequest, reply: FastifyReply) => {
     reply.status(500);
 
     reply.send({
-      statusCode: 500,
-      status: "ERROR",
       message: "Oops! Something went wrong",
+      status: "ERROR",
+      statusCode: 500,
     });
   }
 };

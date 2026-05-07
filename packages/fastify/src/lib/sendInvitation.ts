@@ -1,17 +1,18 @@
-import { ACCOUNT_INVITATION_ACCEPT_LINK_PATH } from "../constants";
-
-import type { AccountInvitation } from "../types";
 import type { ApiConfig } from "@prefabs.tech/fastify-config";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { FastifyMailer } from "@prefabs.tech/fastify-mailer";
 import type { FastifyInstance } from "fastify";
+
+import type { AccountInvitation } from "../types";
+
+import { ACCOUNT_INVITATION_ACCEPT_LINK_PATH } from "../constants";
 
 const getInvitationLink = (
   config: ApiConfig,
   invitation: AccountInvitation,
   origin: string,
 ): string => {
-  const { token, accountId } = invitation;
+  const { accountId, token } = invitation;
 
   let invitationAcceptPath =
     config.saas.invitation?.acceptLinkPath ||
@@ -44,12 +45,12 @@ const sendEmail = async ({
   return mailer
     .sendMail({
       subject: subject,
-      templateName: templateName,
-      to: to,
       templateData: {
         appName: config.appName,
         ...templateData,
       },
+      templateName: templateName,
+      to: to,
     })
     .catch((error: Error) => {
       log.error(error.stack);
@@ -79,8 +80,8 @@ const sendInvitation = async (
       fastify,
       subject,
       templateData: {
-        invitationLink: getInvitationLink(config, invitation, origin),
         invitation,
+        invitationLink: getInvitationLink(config, invitation, origin),
       },
       templateName:
         config.saas.invitation?.emailOverrides?.templateName ||

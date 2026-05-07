@@ -1,13 +1,14 @@
+import type { LocaleMessages, VueMessageType } from "@prefabs.tech/vue3-i18n";
+import type { App, Plugin } from "vue";
+
 import { prependMessages } from "@prefabs.tech/vue3-i18n";
 import { inject } from "vue";
+
+import type { SaasVuePluginOptions } from "./types";
 
 import enMessages from "./locales/en/index";
 import frMessages from "./locales/fr/index";
 import { prepareConfig } from "./utils/config";
-
-import type { SaasVuePluginOptions } from "./types";
-import type { LocaleMessages, VueMessageType } from "@prefabs.tech/vue3-i18n";
-import type { App, Plugin } from "vue";
 
 const __saasConfig = Symbol.for("saas.config");
 const __saasEventHandlers = Symbol.for("saas.eventHandlers");
@@ -48,25 +49,25 @@ const useTranslations = (): LocaleMessages<VueMessageType> => {
 
 export default plugin;
 export { useTranslations };
-export * from "./routes";
-export * from "./types/routes";
-
-// Account management
-export { default as useMyAccountsStore } from "./stores/MyAccounts";
-export { useMyAccounts } from "./composables/UseMyAccounts";
 export { default as AccountSwitcher } from "./components/accounts/AccountSwitcher.vue";
-export { default as SaasAccountsProvider } from "./components/SaasAccountsProvider.vue";
-export { default as SaasWrapper } from "./components/SaasWrapper.vue";
 export { default as ConfigProvider } from "./components/ConfigProvider.vue";
 
+export { default as NotFoundMessage } from "./components/NotFoundMessage.vue";
+export { default as SaasAccountsProvider } from "./components/SaasAccountsProvider.vue";
+export { default as SaasWrapper } from "./components/SaasWrapper.vue";
 // Error handling
 export { useGlobalAccountError } from "./composables/UseGlobalAccountError";
-export { default as NotFoundMessage } from "./components/NotFoundMessage.vue";
-
-// Views
-export { default as AccountSettings } from "./views/Accounts/AccountSettings.vue";
-export { default as MyAccounts } from "./views/Accounts/MyAccounts.vue";
+export { useMyAccounts } from "./composables/UseMyAccounts";
 export { DEFAULT_PATHS } from "./constant";
 
+export * from "./routes";
+// Account management
+export { default as useMyAccountsStore } from "./stores/MyAccounts";
+
+export * from "./types/routes";
 // Utilities
 export { checkIsAdminApp } from "./utils/common";
+// Views
+export { default as AccountSettings } from "./views/Accounts/AccountSettings.vue";
+
+export { default as MyAccounts } from "./views/Accounts/MyAccounts.vue";

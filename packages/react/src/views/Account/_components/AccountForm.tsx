@@ -1,5 +1,5 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { AccountForm as AccountFormBase } from "@/components/account";
@@ -20,18 +20,21 @@ export const AccountForm = ({ account }: Properties) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { trigger: triggerAdd, loading: addLoading } = useAddAccountMutation({
+  const { loading: addLoading, trigger: triggerAdd } = useAddAccountMutation({
+    onError: (error) => {
+      toast.error(t("form.messages.error.create"));
+    },
     onSuccess: (response) => {
       toast.success(t("form.messages.success.create"));
       navigate(DEFAULT_PATHS.ACCOUNTS_VIEW.replace(":id", `${response?.id}`));
     },
-    onError: (error) => {
-      toast.error(t("form.messages.error.create"));
-    },
   });
 
-  const { trigger: triggerEdit, loading: editLoading } = useEditAccountMutation(
+  const { loading: editLoading, trigger: triggerEdit } = useEditAccountMutation(
     {
+      onError: (error) => {
+        toast.error(t("form.messages.error.edit"));
+      },
       onSuccess: (response) => {
         location.state
           ? navigate(location.state.previousUrl)
@@ -40,9 +43,6 @@ export const AccountForm = ({ account }: Properties) => {
             );
 
         toast.success(t("form.messages.success.edit"));
-      },
-      onError: (error) => {
-        toast.error(t("form.messages.error.edit"));
       },
     },
   );
@@ -79,10 +79,10 @@ export const AccountForm = ({ account }: Properties) => {
 
   return (
     <AccountFormBase
-      loading={addLoading || editLoading}
       account={account}
       handleCancel={handleCancel}
       handleSubmit={handleSubmit}
+      loading={addLoading || editLoading}
     />
   );
 };

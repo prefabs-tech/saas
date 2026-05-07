@@ -1,3 +1,7 @@
+import type { User } from "@prefabs.tech/fastify-user";
+import type { FastifyError, FastifyInstance } from "fastify";
+import type { RecipeInterface } from "supertokens-node/recipe/thirdpartyemailpassword";
+
 import {
   areRolesExist,
   getUserService,
@@ -12,10 +16,6 @@ import { ROLE_SAAS_ACCOUNT_MEMBER } from "../../../constants";
 import AccountUserService from "../../../model/accountUsers/service";
 import Email from "../../utils/email";
 
-import type { User } from "@prefabs.tech/fastify-user";
-import type { FastifyInstance, FastifyError } from "fastify";
-import type { RecipeInterface } from "supertokens-node/recipe/thirdpartyemailpassword";
-
 const emailPasswordSignUp = (
   originalImplementation: RecipeInterface,
   fastify: FastifyInstance,
@@ -29,8 +29,8 @@ const emailPasswordSignUp = (
       log.error(`At least one role from ${roles.join(", ")} does not exist.`);
 
       throw {
-        name: "SIGN_UP_FAILED",
         message: "Something went wrong",
+        name: "SIGN_UP_FAILED",
         statusCode: 500,
       } as FastifyError;
     }
@@ -52,12 +52,12 @@ const emailPasswordSignUp = (
         input.userContext?.dbSchema,
       );
 
-      let user: User | null | undefined;
+      let user: null | undefined | User;
 
       try {
         user = await userService.create({
-          id: originalResponse.user.id,
           email: originalEmail,
+          id: originalResponse.user.id,
         });
 
         if (!user) {
@@ -71,8 +71,8 @@ const emailPasswordSignUp = (
         await deleteUser(originalResponse.user.id);
 
         throw {
-          name: "SIGN_UP_FAILED",
           message: "Something went wrong",
+          name: "SIGN_UP_FAILED",
           statusCode: 500,
         };
       }
@@ -87,8 +87,8 @@ const emailPasswordSignUp = (
 
         await accountUserService.create({
           accountId: input.userContext.account.id,
-          userId: originalResponse.user.id,
           roleId: input.userContext.saasAccountRole || ROLE_SAAS_ACCOUNT_MEMBER,
+          userId: originalResponse.user.id,
         });
       }
 
@@ -128,12 +128,12 @@ const emailPasswordSignUp = (
               // [DU 2023-SEP-4] We need to provide all the arguments.
               // emailVerifyLink is same as what would supertokens create.
               await EmailVerification.sendEmail({
+                emailVerifyLink: `${config.appOrigin[0]}/auth/verify-email?token=${tokenResponse.token}&rid=emailverification`,
                 type: "EMAIL_VERIFICATION",
                 user: {
-                  id: originalResponse.user.id,
                   email: input.email,
+                  id: originalResponse.user.id,
                 },
-                emailVerifyLink: `${config.appOrigin[0]}/auth/verify-email?token=${tokenResponse.token}&rid=emailverification`,
                 userContext: input.userContext,
               });
             }

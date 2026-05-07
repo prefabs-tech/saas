@@ -1,17 +1,14 @@
 import type { RouteComponent } from "vue-router";
 
-export type RouteOverwrite = {
-  disabled?: boolean;
-  component?: RouteComponent;
-  path?: string;
-  meta?: Record<string, unknown>;
-};
-
 export type AdminRouteOverwrites = {
   accounts?: RouteOverwrite;
   accountsAdd?: RouteOverwrite;
   accountsEdit?: RouteOverwrite;
   accountsView?: RouteOverwrite;
+};
+
+export type AdminRoutesProperties = {
+  routes?: AdminRouteOverwrites;
 };
 
 export type AppRouteOverwrites = {
@@ -23,10 +20,13 @@ export type AppRouteOverwrites = {
   signup?: RouteOverwrite;
 };
 
-export type AdminRoutesProperties = {
-  routes?: AdminRouteOverwrites;
-};
-
 export type AppRoutesProperties = {
   routes?: AppRouteOverwrites;
+};
+
+export type RouteOverwrite = {
+  component?: RouteComponent;
+  disabled?: boolean;
+  meta?: Record<string, unknown>;
+  path?: string;
 };

@@ -1,23 +1,23 @@
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+import type { AppConfig } from "@prefabs.tech/react-config";
+
 import {
-  AccountSwitcher,
   AccountForm,
   AccountInfo,
   AccountInvitationForm,
   AccountInvitationModal,
   AccountInvitationsTable,
   AccountSignupForm,
-  AccountUsersTable,
   AccountsTable,
+  AccountSwitcher,
+  AccountUsersTable,
   MyAccounts,
   UserSignupForm,
 } from "@/components";
 
 import AccountsProvider, { accountsContext } from "./contexts/AccountsProvider";
-import { SaasConfig } from "./types";
 import "./assets/css/index.css";
-
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-import type { AppConfig } from "@prefabs.tech/react-config";
+import { SaasConfig } from "./types";
 
 declare module "@prefabs.tech/react-config" {
   export interface AppConfig {
@@ -32,29 +32,28 @@ export * from "./hooks";
 
 export * from "./routes";
 
+export * from "./SaasWrapper";
+
 export * from "./types";
 
 export * from "./utils";
 
-export * from "./views";
-
 export {
-  // components
-  AccountSwitcher,
   AccountForm,
   AccountInfo,
   AccountInvitationForm,
   AccountInvitationModal,
   AccountInvitationsTable,
-  AccountSignupForm,
-  AccountUsersTable,
-  AccountsTable,
-  MyAccounts,
-  UserSignupForm,
-
   // contexts
   accountsContext,
+  AccountSignupForm,
   AccountsProvider,
+  AccountsTable,
+  // components
+  AccountSwitcher,
+  AccountUsersTable,
+  MyAccounts,
+  UserSignupForm,
 };
 
-export * from "./SaasWrapper";
+export * from "./views";

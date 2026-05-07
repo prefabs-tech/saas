@@ -1,29 +1,14 @@
 import { defineStore } from "pinia";
-import { ref, computed } from "vue";
-
-import { getMyAccounts, getMyAccount, updateMyAccount } from "../api/accounts";
-import { ACCOUNT_HEADER_NAME } from "../constant";
+import { computed, ref } from "vue";
 
 import type { Account, AccountInput } from "../types/account";
 
-export interface MyAccountsState {
-  accounts: Account[] | null;
-  activeAccount: Account | null;
-  loading: boolean;
-  error: boolean;
-  accountLoading: boolean;
-}
+import { getMyAccount, getMyAccounts, updateMyAccount } from "../api/accounts";
+import { ACCOUNT_HEADER_NAME } from "../constant";
 
 export interface AccountsConfig {
-  autoSelectAccount?: boolean;
   allowMultipleSessions?: boolean;
-}
-
-export interface SaasConfig {
-  apiBaseUrl: string;
-  mainAppSubdomain: string;
-  rootDomain: string;
-  accounts?: AccountsConfig;
+  autoSelectAccount?: boolean;
 }
 
 export interface MyAccountsMeta {
@@ -33,6 +18,21 @@ export interface MyAccountsMeta {
   subdomain: string;
 }
 
+export interface MyAccountsState {
+  accountLoading: boolean;
+  accounts: Account[] | null;
+  activeAccount: Account | null;
+  error: boolean;
+  loading: boolean;
+}
+
+export interface SaasConfig {
+  accounts?: AccountsConfig;
+  apiBaseUrl: string;
+  mainAppSubdomain: string;
+  rootDomain: string;
+}
+
 export const useMyAccountsStore = defineStore("myAccounts", () => {
   // State
   const accounts = ref<Account[] | null>(null);
@@ -40,7 +40,7 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
   const loading = ref(false);
   const error = ref(false);
   const accountLoading = ref(false);
-  const config = ref<SaasConfig | null>(null);
+  const config = ref<null | SaasConfig>(null);
 
   // Getters
   const meta = computed((): MyAccountsMeta => {
@@ -101,7 +101,7 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
   const computeNewActiveAccount = (accountsList: Account[]): Account | null => {
     if (!config.value || !accountsList?.length) return null;
 
-    const { autoSelectAccount = true, allowMultipleSessions = true } =
+    const { allowMultipleSessions = true, autoSelectAccount = true } =
       config.value.accounts || {};
 
     const subdomain = window.location.hostname.split(".")[0];
@@ -220,22 +220,22 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
   };
 
   return {
+    accountLoading,
     // State
     accounts,
     activeAccount,
-    loading,
     error,
-    accountLoading,
-    meta,
+    fetchMyAccount,
+    fetchMyAccounts,
 
+    loading,
+    meta,
+    refetchAccounts,
     // Actions
     setConfig,
     switchAccount,
     updateAccounts,
-    fetchMyAccounts,
-    fetchMyAccount,
     updateActiveAccount,
-    refetchAccounts,
   };
 });
 

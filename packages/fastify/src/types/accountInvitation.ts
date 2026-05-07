@@ -1,38 +1,39 @@
-import type { Account } from "./account";
 import type { User } from "@prefabs.tech/fastify-user";
 
+import type { Account } from "./account";
+
 interface AccountInvitation {
-  id: number;
   acceptedAt?: number;
   account?: Account;
   accountId: string;
+  createdAt: number;
   email: string;
   expiresAt: number;
+  id: number;
   invitedBy?: User;
   invitedById: string;
   payload?: Record<string, unknown>;
   revokedAt?: number;
   role: string;
   token: string;
+  updatedAt: number;
   user?: User;
   userId?: string;
-  createdAt: number;
-  updatedAt: number;
 }
 
 type AccountInvitationCreateInput = Omit<
   AccountInvitation,
-  | "id"
   | "acceptedAt"
   | "account"
+  | "createdAt"
   | "expiresAt"
+  | "id"
   | "invitedBy"
   | "payload"
   | "revokedAt"
   | "token"
-  | "user"
-  | "createdAt"
   | "updatedAt"
+  | "user"
 > & {
   expiresAt: string;
   payload?: string;
@@ -41,21 +42,21 @@ type AccountInvitationCreateInput = Omit<
 type AccountInvitationUpdateInput = Partial<
   Omit<
     AccountInvitation,
-    | "id"
     | "acceptedAt"
     | "account"
     | "accountId"
+    | "createdAt"
     | "email"
     | "expiresAt"
+    | "id"
     | "invitedBy"
     | "invitedById"
     | "payload"
     | "revokedAt"
     | "role"
     | "token"
-    | "user"
-    | "createdAt"
     | "updatedAt"
+    | "user"
   > & {
     acceptedAt: string;
     expiresAt: string;
