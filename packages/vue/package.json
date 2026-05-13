@@ -20,10 +20,15 @@
     "build": "vite build && vue-tsc --emitDeclarationOnly",
     "lint": "eslint . --ext .vue",
     "lint:fix": "eslint . --ext .vue --fix",
+    "snapshot:update": "vitest --environment jsdom run --update",
     "sort-package": "npx sort-package-json",
     "stylelint": "stylelint \"src/**/*.{css,vue}\" --allow-empty-input",
     "stylelint:fix": "stylelint \"src/**/*.{css,vue}\" --fix --allow-empty-input",
-    "typecheck": "vue-tsc --noEmit -p tsconfig.json --composite false"
+    "test": "vitest --environment jsdom run --coverage --passWithNoTests",
+    "test:component": "vitest --environment jsdom run component/ --passWithNoTests",
+    "test:snapshot": "vitest --environment jsdom run snapshot/ --passWithNoTests",
+    "test:unit": "vitest --environment jsdom run unit/ --passWithNoTests",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false"
   },
   "dependencies": {},
   "devDependencies": {
