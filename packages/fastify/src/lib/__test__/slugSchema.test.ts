@@ -2,12 +2,14 @@ import { describe, expect, it } from "vitest";
 
 import getSaasConfig from "../../config";
 import { accountCreateInputSchema } from "../../schemas";
+import createConfig from "./helpers/createConfig";
 
-const saasConfig = getSaasConfig({
-  saas: {
+const saasConfig = getSaasConfig(
+  createConfig({
+    rootDomain: "example.test",
     subdomains: "optional",
-  },
-});
+  }),
+);
 
 const slugSchema = accountCreateInputSchema(saasConfig).shape.slug;
 

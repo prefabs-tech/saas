@@ -5,7 +5,7 @@ import type { SaasConfig } from "../../../types";
 
 declare module "@prefabs.tech/fastify-config" {
   interface ApiConfig {
-    saas?: SaasConfig;
+    saas: SaasConfig;
   }
 }
 
