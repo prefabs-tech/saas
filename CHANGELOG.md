@@ -1,3 +1,4 @@
+## [0.29.1](https://github.com/prefabs-tech/saas/compare/v0.29.0...v0.29.1) (2026-05-19)
 # [0.29.0](https://github.com/prefabs-tech/saas/compare/v0.28.0...v0.29.0) (2026-03-17)
 
 
