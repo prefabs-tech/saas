@@ -1,4 +1,28 @@
 ## [0.29.1](https://github.com/prefabs-tech/saas/compare/v0.29.0...v0.29.1) (2026-05-19)
+
+
+### Refactors
+
+* **fastify:** update eslint-config and tsconfig to latest 0.7.0 ([c654ec0](https://github.com/prefabs-tech/saas/commit/c654ec0858ad0fae96929c909223f065d8733e40))
+* **react:** update eslint-config to latest 0.7.0 ([716f4d6](https://github.com/prefabs-tech/saas/commit/716f4d63ee9324f262aa3aa7b6971b41fd873d9e))
+* **vue:** update eslint-config and tsconfig to latest 0.7.0 ([0a551a4](https://github.com/prefabs-tech/saas/commit/0a551a4096b33b0a5a5624a7cbafecce360758ce))
+* **stylelint:** update packages styles according to stylelint config ([#192](https://github.com/prefabs-tech/saas/issues/192)) ([bb32c06](https://github.com/prefabs-tech/saas/commit/bb32c06b1e4a5322604d848fed1a12d7619656ad))
+* **tsconfig:** update tsconfig to use the prefab tools package ([#193](https://github.com/prefabs-tech/saas/issues/193)) ([6e79177](https://github.com/prefabs-tech/saas/commit/6e79177a69431882272ff9a86ecb176609dcae1f))
+
+
+### Chores
+
+* update prefabs versions ([#199](https://github.com/prefabs-tech/saas/issues/199)) ([2cd9e71](https://github.com/prefabs-tech/saas/commit/2cd9e710a3bebaa3b17b1e11907bf0ea41765ab9))
+* **fastify:** bump prefabs fastify packages to 0.94.1 ([#198](https://github.com/prefabs-tech/saas/issues/198)) ([72f4afa](https://github.com/prefabs-tech/saas/commit/72f4afa1316819042c5bf6477e87c64d551a2da1))
+* **fastify:** bump prefabs fastify packages to 0.94.0 ([#194](https://github.com/prefabs-tech/saas/issues/194)) ([10de43b](https://github.com/prefabs-tech/saas/commit/10de43b8a3a6d06e4ecb71e95a35e7194685e6ec))
+* **tsconfig:** update typecheck command and add tsconfig.vitest.json ([#197](https://github.com/prefabs-tech/saas/issues/197)) ([28f9237](https://github.com/prefabs-tech/saas/commit/28f92372448881a8da89eb8c0ade0e8941d6191e))
+* update minor version dependencies ([#196](https://github.com/prefabs-tech/saas/issues/196)) ([7930265](https://github.com/prefabs-tech/saas/commit/7930265fdb12ed65c404ae8253e290368780140e))
+* update dependencies patch version ([#190](https://github.com/prefabs-tech/saas/issues/190)) ([e227325](https://github.com/prefabs-tech/saas/commit/e227325f005cabe29050aca3556364db6ab6d061))
+* **react:** bump jsdom to 26 and refresh lockfile ([#189](https://github.com/prefabs-tech/saas/issues/189)) ([df35baa](https://github.com/prefabs-tech/saas/commit/df35baa40fb5654accc761641288241601ceaf28))
+* **ci:** update workflow Node versions and release trigger ([#187](https://github.com/prefabs-tech/saas/issues/187)) ([10c718f](https://github.com/prefabs-tech/saas/commit/10c718f18c869699e5cb67d3c84d0812e0f41355))
+
+
+
 # [0.29.0](https://github.com/prefabs-tech/saas/compare/v0.28.0...v0.29.0) (2026-03-17)
 
 
