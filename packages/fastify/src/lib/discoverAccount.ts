@@ -6,6 +6,7 @@ import type { Account } from "../types";
 
 import getSaasConfig from "../config";
 import AccountService from "../model/accounts/service";
+import AccountNotFoundError from "./accountNotFoundError";
 
 const getAccountByHostname = async (
   config: ApiConfig,
@@ -66,7 +67,8 @@ const discoverAccount = async (
     return account;
   }
 
-  throw new Error("Account not found");
+  // Signal not-found with a typed error to distinguish it from unexpected failures.
+  throw new AccountNotFoundError();
 };
 
 export default discoverAccount;
