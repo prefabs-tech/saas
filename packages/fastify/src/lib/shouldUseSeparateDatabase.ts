@@ -19,24 +19,22 @@ const shouldUseSeparateDatabase = (
 
     case "optional": {
       if (
-        multiDatabase.mode === "optional" &&
-        data.slug &&
-        data.useSeparateDatabase
+        (multiDatabase.mode === "optional" &&
+          data.slug &&
+          data.useSeparateDatabase) ||
+        (multiDatabase.mode === "required" && data.slug)
       ) {
-        useSeparateDatabase = true;
-      } else if (multiDatabase.mode === "required" && data.slug) {
         useSeparateDatabase = true;
       }
 
       break;
     }
     case "required": {
-      if (multiDatabase.mode === "required") {
-        useSeparateDatabase = true;
-      } else if (
-        multiDatabase.mode === "optional" &&
-        data.slug &&
-        data.useSeparateDatabase
+      if (
+        multiDatabase.mode === "required" ||
+        (multiDatabase.mode === "optional" &&
+          data.slug &&
+          data.useSeparateDatabase)
       ) {
         useSeparateDatabase = true;
       }

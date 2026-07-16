@@ -61,7 +61,7 @@ const emailPasswordSignUpPOST = (
 
     const saasConfig = getSaasConfig(config);
 
-    const mainAppDomain = `${saasConfig.mainApp.domain}`;
+    const mainAppDomain = saasConfig.mainApp.domain;
 
     if (hostname === mainAppDomain) {
       const accountService = new AccountService(config, slonik);

@@ -53,7 +53,7 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
       };
     }
 
-    const subdomain = window.location.hostname.split(".")[0];
+    const subdomain = window.location.hostname.split(".", 1)[0];
     const isMainApp = subdomain === config.value.mainAppSubdomain;
 
     return {
@@ -83,10 +83,10 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
     const { allowMultipleSessions = true } = config.value?.accounts || {};
 
     if (newAccount) {
-      localStorage.setItem(accountStorageKey, `${newAccount.id}`);
+      localStorage.setItem(accountStorageKey, newAccount.id);
 
       if (allowMultipleSessions) {
-        sessionStorage.setItem(accountStorageKey, `${newAccount.id}`);
+        sessionStorage.setItem(accountStorageKey, newAccount.id);
       }
     } else if (clearState) {
       if (allowMultipleSessions) {
@@ -104,7 +104,7 @@ export const useMyAccountsStore = defineStore("myAccounts", () => {
     const { allowMultipleSessions = true, autoSelectAccount = true } =
       config.value.accounts || {};
 
-    const subdomain = window.location.hostname.split(".")[0];
+    const subdomain = window.location.hostname.split(".", 1)[0];
     const isMainApp = subdomain === config.value.mainAppSubdomain;
 
     // For non-main apps, find account by subdomain (like React implementation)

@@ -74,11 +74,7 @@ export const getSaasAdminRoutes = (
     getRoute(_adminRoutes.accountsView, accountsView),
   ];
 
-  if (type === "unauthenticated") {
-    routes = [];
-  }
-
-  if (type === "public") {
+  if (type === "unauthenticated" || type === "public") {
     routes = [];
   }
 

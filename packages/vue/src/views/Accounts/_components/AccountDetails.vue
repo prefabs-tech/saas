@@ -67,7 +67,7 @@ const saasConfig = computed(() => {
 });
 
 const isAdminApp = computed(() => {
-  const subdomain = window.location.hostname.split(".")[0];
+  const subdomain = window.location.hostname.split(".", 1)[0];
 
   return subdomain === "admin";
 });

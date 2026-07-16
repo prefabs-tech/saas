@@ -20,12 +20,10 @@ const createNewSession = (
     }
 
     const request = getRequestFromUserContext(input.userContext)?.original as
-      | FastifyRequest
-      | undefined;
+      FastifyRequest | undefined;
 
     const account = (input.userContext?.account || request?.account) as
-      | Account
-      | undefined;
+      Account | undefined;
 
     const { config, slonik } = fastify;
 

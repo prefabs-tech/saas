@@ -11,4 +11,20 @@ export default [
       "jest.config.cjs",
     ],
   },
+  {
+    rules: {
+      "unicorn/filename-case": [
+        "error",
+        {
+          cases: {
+            camelCase: true,
+            kebabCase: true,
+            pascalCase: true,
+            snakeCase: true,
+          },
+          ignore: [/__test__/],
+        },
+      ],
+    },
+  },
 ];
