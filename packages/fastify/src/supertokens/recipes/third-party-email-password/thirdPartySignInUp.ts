@@ -1,4 +1,3 @@
-import type { User } from "@prefabs.tech/fastify-user";
 import type { FastifyError, FastifyInstance } from "fastify";
 import type { RecipeInterface } from "supertokens-node/recipe/thirdpartyemailpassword";
 
@@ -76,10 +75,8 @@ const thirdPartySignInUp = (
         }
       }
 
-      let user: null | undefined | User;
-
       try {
-        user = await userService.create({
+        const user = await userService.create({
           email: originalResponse.user.email,
           id: originalResponse.user.id,
         });

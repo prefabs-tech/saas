@@ -52,12 +52,7 @@ export type InvitationsTableProperties = Partial<
 };
 
 type VisibleColumn =
-  | "actions"
-  | "email"
-  | "expiresAt"
-  | "role"
-  | "status"
-  | string;
+  "actions" | "email" | "expiresAt" | "role" | "status" | string;
 
 export const AccountInvitationsTable = ({
   accountId,

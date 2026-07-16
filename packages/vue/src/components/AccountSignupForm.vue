@@ -227,10 +227,12 @@ const userFormActions = computed(() => [
 watch(
   () => formData.value.individual,
   (newValue: boolean) => {
-    if (newValue) {
-      formData.value.registeredNumber = "";
-      formData.value.taxId = "";
+    if (!newValue) {
+      return;
     }
+
+    formData.value.registeredNumber = "";
+    formData.value.taxId = "";
   },
 );
 

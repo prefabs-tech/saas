@@ -5,6 +5,7 @@ export default [
   ...reactConfig,
   {
     rules: {
+      "@eslint-react/naming-convention-context-name": "off",
       "@typescript-eslint/no-empty-object-type": "off",
     },
   },

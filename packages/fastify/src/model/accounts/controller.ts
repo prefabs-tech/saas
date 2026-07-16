@@ -14,7 +14,7 @@ const plugin = async (fastify: FastifyInstance) => {
   );
 
   fastify.get(
-    String.raw`/accounts/:id(^[0-9a-fa-f-]{36}$)`,
+    "/accounts/:id(^[0-9a-fa-f-]{36}$)",
     {
       preHandler: fastify.verifySession(),
     },
@@ -22,7 +22,7 @@ const plugin = async (fastify: FastifyInstance) => {
   );
 
   fastify.delete(
-    String.raw`/accounts/:id(^[0-9a-fa-f-]{36}$)`,
+    "/accounts/:id(^[0-9a-fa-f-]{36}$)",
     {
       preHandler: fastify.verifySession(),
     },
@@ -38,7 +38,7 @@ const plugin = async (fastify: FastifyInstance) => {
   );
 
   fastify.put(
-    String.raw`/accounts/:id(^[0-9a-fa-f-]{36}$)`,
+    "/accounts/:id(^[0-9a-fa-f-]{36}$)",
     {
       preHandler: fastify.verifySession(),
     },
@@ -46,7 +46,7 @@ const plugin = async (fastify: FastifyInstance) => {
   );
 
   fastify.put(
-    String.raw`/accounts/:id(^[0-9a-fa-f-]{36}$)/users`,
+    "/accounts/:id(^[0-9a-fa-f-]{36}$)/users",
     {
       preHandler: fastify.verifySession(),
     },

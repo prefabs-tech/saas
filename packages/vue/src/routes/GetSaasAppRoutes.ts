@@ -99,23 +99,30 @@ export const getSaasAppRoutes = (
 
   let routes: (RouteRecordRaw & { disabled?: boolean })[] = [];
 
-  if (type === "authenticated") {
-    routes = [
-      getRoute(_appRoutes.accountSettings, accountSettings),
-      getRoute(_appRoutes.invitationJoin, invitationJoin),
-      getRoute(_appRoutes.myAccounts, myAccounts),
-    ];
-  }
+  switch (type) {
+    case "authenticated": {
+      routes = [
+        getRoute(_appRoutes.accountSettings, accountSettings),
+        getRoute(_appRoutes.invitationJoin, invitationJoin),
+        getRoute(_appRoutes.myAccounts, myAccounts),
+      ];
 
-  if (type === "unauthenticated") {
-    routes = [
-      getRoute(_appRoutes.invitationSignup, invitationSignup),
-      getRoute(_appRoutes.signup, signup),
-    ];
-  }
+      break;
+    }
+    case "public": {
+      routes = [getRoute(_appRoutes.invitationAccept, invitationAccept)];
 
-  if (type === "public") {
-    routes = [getRoute(_appRoutes.invitationAccept, invitationAccept)];
+      break;
+    }
+    case "unauthenticated": {
+      routes = [
+        getRoute(_appRoutes.invitationSignup, invitationSignup),
+        getRoute(_appRoutes.signup, signup),
+      ];
+
+      break;
+    }
+    // No default
   }
 
   return routes.filter((route) => !route.disabled);

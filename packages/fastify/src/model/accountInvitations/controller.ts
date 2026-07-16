@@ -38,7 +38,7 @@ const plugin = async (fastify: FastifyInstance) => {
   );
 
   fastify.get(
-    String.raw`/accounts/:accountId/invitations/token/:token`,
+    "/accounts/:accountId/invitations/token/:token",
     {
       config: {
         saas: {
@@ -58,7 +58,7 @@ const plugin = async (fastify: FastifyInstance) => {
   );
 
   fastify.post(
-    String.raw`/accounts/:accountId/invitations/join/:token`,
+    "/accounts/:accountId/invitations/join/:token",
     {
       config: {
         saas: {
@@ -71,7 +71,7 @@ const plugin = async (fastify: FastifyInstance) => {
   );
 
   fastify.post(
-    String.raw`/accounts/:accountId/invitations/token/:token`,
+    "/accounts/:accountId/invitations/token/:token",
     {
       config: {
         saas: {

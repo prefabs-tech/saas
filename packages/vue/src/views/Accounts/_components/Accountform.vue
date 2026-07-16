@@ -191,27 +191,29 @@ const onSubmit = async () => {
     console.error("Form submission error:", error);
   }
 };
-
 watch(
   () => formData.value.individual,
   (newValue: boolean) => {
-    if (newValue) {
-      formData.value.registeredNumber = "";
-      formData.value.taxId = "";
+    if (!newValue) {
+      return;
     }
+
+    formData.value.registeredNumber = "";
+    formData.value.taxId = "";
   },
 );
-
 watch(
   () => props.account,
   (newValue: Account | undefined) => {
-    if (newValue) {
-      formData.value.domain = newValue.domain ?? undefined;
-      formData.value.name = newValue.name;
-      formData.value.registeredNumber = newValue.registeredNumber ?? undefined;
-      formData.value.slug = newValue.slug ?? undefined;
-      formData.value.taxId = newValue.taxId ?? undefined;
+    if (!newValue) {
+      return;
     }
+
+    formData.value.domain = newValue.domain ?? undefined;
+    formData.value.name = newValue.name;
+    formData.value.registeredNumber = newValue.registeredNumber ?? undefined;
+    formData.value.slug = newValue.slug ?? undefined;
+    formData.value.taxId = newValue.taxId ?? undefined;
   },
   { immediate: true },
 );
