@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
         fileName: (format) => `PrefabsTechSaasReact.${format}.js`,
         name: "PrefabsTechSaasReact",
       },
-      rollupOptions: {
+      rolldownOptions: {
         external: [...Object.keys(peerDependencies)],
         output: {
           exports: "named",

@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
         fileName: (format) => `PrefabsTechSaasVue.${format}.js`,
         name: "PrefabsTechSaasVue",
       },
-      rollupOptions: {
+      rolldownOptions: {
         external: [
           ...Object.keys(peerDependencies),
           ...Object.keys(dependencies),
