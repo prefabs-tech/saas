@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, watch } from "vue";
+import { computed, watch } from "vue";
 
 import type { SaasConfig } from "../types/config";
 

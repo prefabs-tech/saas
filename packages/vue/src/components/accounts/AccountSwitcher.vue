@@ -55,7 +55,7 @@
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { LoadingIcon } from "@prefabs.tech/vue3-ui";
 import { onClickOutside } from "@vueuse/core";
-import { computed, defineEmits, defineProps, ref } from "vue";
+import { computed, ref } from "vue";
 
 import type { Account } from "../../types/account";
 

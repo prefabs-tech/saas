@@ -3,7 +3,9 @@
   "compilerOptions": {
     "module": "esnext",
     "outDir": "./dist/src",
-    "types": ["vite/client", "vue"]
+    "rootDir": "./src",
+    "types": ["vite/client", "vue"],
+    "ignoreDeprecations": "6.0"
   },
   "include": [
     "__test__/**/*",

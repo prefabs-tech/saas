@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { useI18n } from "@prefabs.tech/vue3-i18n";
 import { LoadingIcon, Page } from "@prefabs.tech/vue3-ui";
-import { defineProps, inject, onMounted, ref } from "vue";
+import { inject, onMounted, ref } from "vue";
 
 import type { SaasConfig } from "../types/config";
 
