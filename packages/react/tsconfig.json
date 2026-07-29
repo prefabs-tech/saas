@@ -1,12 +1,14 @@
 {
   "extends": "@prefabs.tech/tsconfig/react",
   "compilerOptions": {
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "resolvePackageJsonExports": false,
     "outDir": "./dist",
     "rootDir": ".",
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "ignoreDeprecations": "6.0"
+    }
   },
   "exclude": ["vite.config.ts"],
   "include": ["src/**/*", "src/**/*.tsx", "./setup-test.ts"]

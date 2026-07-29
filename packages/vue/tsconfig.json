@@ -1,11 +1,11 @@
 {
   "extends": "@prefabs.tech/tsconfig/vue",
   "compilerOptions": {
-    "module": "esnext",
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "outDir": "./dist/src",
     "rootDir": "./src",
-    "types": ["vite/client", "vue"],
-    "ignoreDeprecations": "6.0"
+    "types": ["vite/client", "vue"]
   },
   "include": [
     "__test__/**/*",
