@@ -5,7 +5,8 @@
     "outDir": "./dist",
     "paths": {
       "@types": ["src/*"]
-    }
+    },
+    "ignoreDeprecations": "6.0"
   },
   "exclude": ["src/**/__test__/**/*", "vite.config.ts"],
   "include": ["src/**/*.ts"],
