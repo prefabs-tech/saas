@@ -1,6 +1,6 @@
 <template>
   <div class="account-info">
-    <template v-if="!account.individual">
+    <template v-if="account && !account.individual">
       <Data :caption="t('accounts.form.fields.name')" :value="account.name" />
 
       <Data
@@ -14,7 +14,7 @@
       />
     </template>
 
-    <template v-if="saasConfig.subdomains !== 'disabled'">
+    <template v-if="account && saasConfig.subdomains !== 'disabled'">
       <Data
         :caption="t('accounts.form.fields.slug')"
         :value="account.slug || '-'"
