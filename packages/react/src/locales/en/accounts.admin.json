@@ -1,0 +1,120 @@
+{
+  "account": {
+    "actions": {
+      "switch": "Switch"
+    },
+    "active": "Active",
+    "name": "Name",
+    "registeredNumber": "Registered number",
+    "taxId": "Tax ID",
+    "type": {
+      "individual": "Individual",
+      "organization": "Organization"
+    }
+  },
+  "signup": {
+    "actions": {
+      "cancel": "Cancel",
+      "next": "Next",
+      "previous": "Previous",
+      "submit": "Signup"
+    },
+    "fields": {
+      "billingAddress": "Billing address",
+      "confirmPassword": "Confirm password",
+      "domain": "Custom domain",
+      "email": { "label": "Your email", "placeholder": "" },
+      "individual": "Individual",
+      "name": "Name",
+      "password": {
+        "label": "Your password",
+        "helper": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase"
+      },
+      "registeredNumber": "Registered number",
+      "slug": "Slug",
+      "taxId": "Tax ID",
+      "typeId": {
+        "label": "Type",
+        "options": {
+          "individual": "Individual",
+          "organization": "Organization"
+        }
+      },
+      "useSeparateDb": "Use separate database"
+    },
+    "fieldsGroup": {
+      "accountType": "What is the type of your account?",
+      "configuration": "Account configurations"
+    },
+    "termsAndConditions": "I agree to all the <0>Terms and Conditions</0> by the user agreement.",
+    "title": {
+      "account": "Create a new account",
+      "user": "Signup"
+    },
+    "validations": {
+      "confirmPassword": {
+        "mustMatch": "Passwords must match",
+        "required": "Confirm password is required"
+      },
+      "domain": {
+        "invalid": "Please enter a valid domain upto 255 characters"
+      },
+      "email": {
+        "invalid": "Please enter valid email address",
+        "required": "Email is required"
+      },
+      "name": {
+        "invalid": "Name must be less than 255 characters",
+        "required": "Name is required"
+      },
+      "password": {
+        "invalid": "Please enter valid password",
+        "required": "Password is required"
+      },
+      "registeredNumber": {
+        "invalid": "Registered number must be less than 255 characters"
+      },
+      "slug": {
+        "invalid": "Please enter a valid slug upto 24 characters",
+        "required": "Slug is required"
+      },
+      "taxId": {
+        "invalid": "Tax id must be less than 255 characters"
+      },
+      "termsAndConditions": {
+        "required": "Please agree to the terms and conditions"
+      }
+    }
+  },
+  "switcher": {
+    "emptyLabel": "Choose account",
+    "helper": "Accounts"
+  },
+  "table": {
+    "actions": {
+      "add": "Add",
+      "edit": "Edit",
+      "view": "View"
+    },
+    "columns": {
+      "name": "Name",
+      "registeredNumber": "Registered name",
+      "schema": "Schema",
+      "taxId": "Tax ID",
+      "tenant": "Tenant",
+      "type": "Type"
+    },
+    "emptyMessage": "Table is empty",
+    "pagination": {
+      "pageControl": "Go to",
+      "rowsPerPage": "Rows"
+    },
+    "searchPlaceholder": "",
+    "title": "Customers"
+  },
+  "title": "Customers",
+  "unregisteredDomain": {
+    "message": "Please visit again later. If the problem persists, please contact support.",
+    "title": "Sorry, the subdomain or domain is not registered."
+  }
+}

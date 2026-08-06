@@ -1,0 +1,196 @@
+{
+  "form": {
+    "actions": {
+      "cancel": "Cancel (fr)",
+      "save": "Save (fr)",
+      "submit": "Save (fr)"
+    },
+    "fields": {
+      "billingAddress": "Billing address (fr)",
+      "database": "Database (fr)",
+      "domain": "Domain (fr)",
+      "name": "Name (fr)",
+      "registeredNumber": "Registered number (fr)",
+      "slug": "Slug (fr)",
+      "taxId": "Tax ID (fr)",
+      "type": {
+        "label": "Individual (fr)",
+        "options": {
+          "individual": "Individual (fr)",
+          "organization": "Organization (fr)"
+        }
+      },
+      "useSeparateDb": "Use separate database (fr)"
+    },
+    "messages": {
+      "error": {
+        "create": "Failed to create account (fr)",
+        "edit": "Failed to update account (fr)"
+      },
+      "success": {
+        "create": "Account created successfully (fr)",
+        "edit": "Account updated successfully (fr)"
+      }
+    },
+    "validations": {
+      "domain": {
+        "invalid": "Domain must be less than 255 characters (fr)"
+      },
+      "name": {
+        "invalid": "Name must be less than 255 characters (fr)",
+        "required": "Name is required (fr)"
+      },
+      "registeredNumber": {
+        "invalid": "Registered number must be less than 255 characters (fr)"
+      },
+      "slug": {
+        "invalid": "Slug must be less than 24 characters (fr)",
+        "required": "Slug is required (fr)"
+      },
+      "taxId": {
+        "invalid": "Tax id must be less than 255 characters (fr)"
+      }
+    }
+  },
+  "info": {
+    "title": "Info (fr)"
+  },
+  "invitations": {
+    "form": {
+      "actions": {
+        "cancel": "Cancel (fr)",
+        "submit": "Invite user (fr)"
+      },
+      "fields": {
+        "email": {
+          "label": "Email (fr)",
+          "placeholder": ""
+        },
+        "expiresAfter": {
+          "label": "Expires after (fr)",
+          "placeholder": "Enter number of days (fr)"
+        },
+        "expiresAt": {
+          "label": "Expires at (fr)",
+          "placeholder": "Select a date (fr)"
+        },
+        "role": {
+          "label": "Role (fr)",
+          "placeholder": "Select role (fr)"
+        }
+      },
+      "title": "Invite an user (fr)",
+      "validation": {
+        "messages": {
+          "email": "Email is required (fr)",
+          "expiresAt": "Expiry date is required (fr)",
+          "requiredField": "This field is required (fr)",
+          "role": "Role is required (fr)",
+          "validEmail": "Email must be a valid email (fr)"
+        }
+      }
+    },
+    "messages": {
+      "delete": {
+        "error": "Error deleting invitation (fr)",
+        "success": "Successfully deleted invitation (fr)"
+      },
+      "invite": {
+        "error": "Error inviting user (fr)",
+        "success": "Successfully invited user (fr)"
+      },
+      "resend": {
+        "error": "Error resending invitation (fr)",
+        "success": "Successfully resent invitation (fr)"
+      },
+      "revoke": {
+        "error": "Error revoking invitation (fr)",
+        "success": "Successfully revoked invitation (fr)"
+      }
+    },
+    "status": {
+      "accepted": "Accepted (fr)",
+      "expired": "Expired (fr)",
+      "pending": "Pending (fr)",
+      "revoked": "Revoked (fr)"
+    },
+    "table": {
+      "actions": {
+        "delete": "Delete (fr)",
+        "invite": "Invite an user (fr)",
+        "resend": "Resend (fr)",
+        "revoke": "Revoke (fr)"
+      },
+      "columns": {
+        "email": "Email (fr)",
+        "expiresAt": "Expires at (fr)",
+        "invitedBy": "Invited by (fr)",
+        "role": "Role (fr)",
+        "status": "Status (fr)"
+      },
+      "confirmation": {
+        "header": "Confirmation (fr)",
+        "messages": {
+          "delete": "Are you sure you want to delete (fr)?",
+          "resend": "Are you sure you want to resend (fr)?",
+          "revoke": "Are you sure you want to revoke (fr)?"
+        }
+      },
+      "emptyMessage": "Table is empty (fr)",
+      "pagination": {
+        "pageControl": "Go to (fr)",
+        "rowsPerPage": "Rows (fr)"
+      },
+      "searchPlaceholder": ""
+    },
+    "title": "Invitations (fr)"
+  },
+  "users": {
+    "messages": {
+      "enable": {
+        "error": "Error enabling user (fr)",
+        "success": "User enabled successfully (fr)"
+      },
+      "disable": {
+        "error": "Error disabling user (fr)",
+        "success": "User disabled successfully (fr)"
+      }
+    },
+    "roles": {
+      "SAAS_ACCOUNT_MEMBER": "Member (fr)",
+      "SAAS_ACCOUNT_OWNER": "Owner (fr)"
+    },
+    "status": {
+      "active": "Active (fr)",
+      "disabled": "Disabled (fr)",
+      "enabled": "Enabled (fr)"
+    },
+    "table": {
+      "actions": {
+        "disable": "Disable user (fr)",
+        "enable": "Enable user (fr)",
+        "invite": "Invite an user (fr)"
+      },
+      "columns": {
+        "email": "Email (fr)",
+        "name": "Name (fr)",
+        "roles": "Roles (fr)",
+        "signedUpOn": "Signed up on (fr)",
+        "status": "Status (fr)"
+      },
+      "confirmation": {
+        "header": "Confirmation (fr)",
+        "messages": {
+          "disable": "Are you sure you want to disable this user (fr)?",
+          "enable": "Are you sure you want to enable this user (fr)?"
+        }
+      },
+      "pagination": {
+        "pageControl": "Go to (fr)",
+        "rowsPerPage": "Rows (fr)"
+      },
+      "searchPlaceholder": "Search (fr)"
+    },
+    "title": "Users (fr)"
+  }
+}
