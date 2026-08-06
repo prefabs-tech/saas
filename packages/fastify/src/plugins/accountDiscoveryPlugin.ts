@@ -4,6 +4,7 @@ import FastifyPlugin from "fastify-plugin";
 
 import getSaasConfig from "../config";
 import { ACCOUNT_HEADER_NAME } from "../constants";
+import AccountNotFoundError from "../lib/accountNotFoundError";
 import discoverAccount from "../lib/discoverAccount";
 import getHost from "../lib/getHost";
 
@@ -60,11 +61,17 @@ const plugin = async (fastify: FastifyInstance) => {
           }
         }
       } catch (error) {
-        fastify.log.error(error);
+        // Expected not-found (e.g. unknown subdomain): return 404 without error logging.
+        if (error instanceof AccountNotFoundError) {
+          log.debug({ hostname }, "Account discovery: no account found");
 
-        return reply
-          .status(404)
-          .send({ error: { message: "Account not found" } });
+          return reply
+            .status(404)
+            .send({ error: { message: "Account not found" } });
+        }
+
+        // Rethrow unexpected system failures to let the central error handler report them as 500s.
+        throw error;
       }
     },
   );
