@@ -155,7 +155,7 @@ const emailPasswordSignUp = (
             config.user.emailOverrides?.duplicateEmail?.subject ||
             "Duplicate Email Registration",
           templateData: {
-            emailId: input.email,
+            emailId: originalEmail,
           },
           templateName:
             config.user.emailOverrides?.duplicateEmail?.templateName ||
